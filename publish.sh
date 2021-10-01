@@ -6,7 +6,7 @@ function main {
   rm -rf docs
   mkdir docs
 
-  git clone git@github.com:flame-engine/flame.git $tmp_flame_src
+  git clone https://github.com/flame-engine/flame.git $tmp_flame_src
 
   cd $tmp_flame_src
   list=`git tag | grep '^1.0.0'`
