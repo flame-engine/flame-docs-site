@@ -77,6 +77,7 @@ function generate_index {
 
   cp ../index_template.html index.html
   echo 'index.html' | rex -f '{content}' "$content"
+  cd ..
 }
 
 main
