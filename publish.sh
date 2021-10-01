@@ -21,6 +21,10 @@ function main {
   generate_index
 
   rm -rf $tmp_flame_src
+
+  git add docs
+  git commit -m "Update versions"
+  git push
 }
 
 function generate {

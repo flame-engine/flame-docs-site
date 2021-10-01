@@ -1,0 +1,10 @@
+name: GH-Pages
+
+on: workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - run: ./publish.sh
