@@ -7,5 +7,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - run: tree /
+      - uses: actions/checkout@v2
       - run: ./publish.sh
