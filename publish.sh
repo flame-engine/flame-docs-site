@@ -15,16 +15,12 @@ function main {
   while IFS= read -r line; do
     generate $line
   done <<< "$list"
-
   generate main
 
   generate_index
+  git_push
 
   rm -rf $tmp_flame_src
-
-  git add docs
-  git commit -m "Update versions"
-  git push
 }
 
 function generate {
@@ -78,6 +74,14 @@ function generate_index {
   cp ../index_template.html index.html
   echo 'index.html' | rex -f '{content}' "$content"
   cd ..
+}
+
+function git_push {
+  git config --global user.email "luanpotter27@gmail.com"
+  git config --global user.name "Luan Nico"
+  git add docs
+  git commit -m "Update & publish new doc versions"
+  git push
 }
 
 main
