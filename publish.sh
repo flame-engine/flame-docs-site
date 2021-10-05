@@ -6,6 +6,7 @@ function main {
   rm -rf docs
   mkdir docs
   touch docs/.nojekyll
+  echo 'docs.flame-engine.org' >> docs/CNAME
 
   git clone https://github.com/flame-engine/flame.git $tmp_flame_src
 
