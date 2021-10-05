@@ -5,6 +5,7 @@ tmp_flame_src='_flame-src'
 function main {
   rm -rf docs
   mkdir docs
+  touch docs/.nojekyll
 
   git clone https://github.com/flame-engine/flame.git $tmp_flame_src
 
