@@ -69,7 +69,9 @@ function generate_index {
   content+='<ul>'
 
   while IFS= read -r line; do
-    content+="<li><a href=\"$line/index.html\">$line</a></li>"
+    if [ $line != ".nojekyll" ] && [ $line != "CNAME" ] && [ $line != "index.html" ]; then
+     content+="<li><a href=\"$line/index.html\">$line</a></li>"
+    fi
   done <<< "$list"
   content+='</ul>'
 
