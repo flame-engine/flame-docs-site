@@ -3,7 +3,7 @@
 tmp_flame_src='_flame-src'
 
 function main {
-  rm -rf docs
+  rm -rf docs $tmp_flame_src
   mkdir docs
   touch docs/.nojekyll
   echo 'docs.flame-engine.org' >> docs/CNAME
@@ -11,19 +11,18 @@ function main {
   git clone https://github.com/flame-engine/flame.git $tmp_flame_src
 
   cd $tmp_flame_src
-  list=`git tag | grep '^1.0.0'`
+  list=`git tag | grep '^1.0.0' | tac`
   cd ..
 
-  generate main
   while IFS= read -r line; do
     generate $line
   done <<< "$list"
+  generate main
 
   cd docs
-  rm -f versions.txt
   ln -s main/index.html index.html
   cd ..
-  #git_push
+  git_push
 
   rm -rf $tmp_flame_src
 }
