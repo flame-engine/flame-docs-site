@@ -19,7 +19,9 @@ function main {
   done <<< "$list"
   generate main
 
-  generate_index
+  cd docs
+  ln -s main/index.html index.html
+  cd ..
   git_push
 
   rm -rf $tmp_flame_src
@@ -52,11 +54,12 @@ function generate {
 function pre_process {
   cd ..
   if [ $version == 'main' ]; then
-    output='\n    git:\n      url: https://github.com/flame-engine/flame.git\n      ref: main'
+    output='    git:\n      url: https://github.com/flame-engine/flame.git\n      ref: main'
+    find . -name "*.md" -exec sed -i "/<VERSION>.*/a $output/" {} \;
+    find . -name "*.md" -exec sed -i "s/<VERSION>//" {} \;
   else
-    output=$version
+    find . -name "*.md" -exec sed -i "s/<VERSION>/$version/" {} \;
   fi
-  find . -name "*.md" | rex -f '<VERSION>' "$output"
   cd _sphinx
 }
 
@@ -66,17 +69,14 @@ function generate_index {
   list=`ls -1a | sed -e '1,2d'`
 
   content=''
-  content+='<ul>'
 
   while IFS= read -r line; do
     if [ $line != ".nojekyll" ] && [ $line != "CNAME" ] && [ $line != "index.html" ]; then
-     content+="<li><a href=\"$line/index.html\">$line</a></li>"
+     content+="$line"
     fi
   done <<< "$list"
-  content+='</ul>'
 
-  cp ../index_template.html index.html
-  echo 'index.html' | rex -f '{content}' "$content"
+  echo $content > versions.txt
   cd ..
 }
 
