@@ -56,7 +56,7 @@ function pre_process {
   if [ $version == 'main' ]; then
     output='    git:\n      url: https://github.com/flame-engine/flame.git\n      ref: main'
     find . -name "*.md" -exec sed -i "/<VERSION>.*/a $output/" {} \;
-    find . -name "*.md" -exec sed -i "s/<VERSION>//" {} \;
+    find . -name "*.md" -exec sed -i "s/ <VERSION>//" {} \;
   else
     find . -name "*.md" -exec sed -i "s/<VERSION>/$version/" {} \;
   fi
