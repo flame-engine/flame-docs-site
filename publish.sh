@@ -14,15 +14,16 @@ function main {
   list=`git tag | grep '^1.0.0'`
   cd ..
 
+  generate main
   while IFS= read -r line; do
     generate $line
   done <<< "$list"
-  generate main
 
   cd docs
+  rm -f versions.txt
   ln -s main/index.html index.html
   cd ..
-  git_push
+  #git_push
 
   rm -rf $tmp_flame_src
 }
@@ -49,6 +50,7 @@ function generate {
 
   cd ../../..
   cp -r $tmp_flame_src/doc/_build/html docs/$version
+  echo $version >> docs/versions.txt
 }
 
 function pre_process {
@@ -61,23 +63,6 @@ function pre_process {
     find . -name "*.md" -exec sed -i "s/<VERSION>/$version/" {} \;
   fi
   cd _sphinx
-}
-
-function generate_index {
-  cd docs
-
-  list=`ls -1a | sed -e '1,2d'`
-
-  content=''
-
-  while IFS= read -r line; do
-    if [ $line != ".nojekyll" ] && [ $line != "CNAME" ] && [ $line != "index.html" ]; then
-     content+="$line"
-    fi
-  done <<< "$list"
-
-  echo $content > versions.txt
-  cd ..
 }
 
 function git_push {
