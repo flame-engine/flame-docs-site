@@ -81,8 +81,6 @@ function generate_index {
 }
 
 function git_push {
-  git config --global user.email "luanpotter27@gmail.com"
-  git config --global user.name "Luan Nico"
   git add docs
   git commit -m "Update & publish new doc versions"
   git push
