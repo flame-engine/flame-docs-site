@@ -55,7 +55,7 @@ function generate {
 function pre_process {
   cd ..
   if [ $version == 'main' ]; then
-    output='    git:\n      url: https://github.com/flame-engine/flame.git\n      ref: main'
+    output="\ \ \ \ git:\n      url: https://github.com/flame-engine/flame.git\n      ref: main"
     find . -name "*.md" -exec sed -i "/<VERSION>.*/a $output/" {} \;
     find . -name "*.md" -exec sed -i "s/ <VERSION>//" {} \;
   else
