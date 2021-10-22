@@ -31,7 +31,7 @@ function generate {
   version=$1
 
   cd $tmp_flame_src
-  git checkout $version
+  git checkout -f $version
   cd ..
 
   sphinx_dir="$tmp_flame_src/doc/_sphinx"
