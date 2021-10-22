@@ -65,8 +65,8 @@ function pre_process {
 }
 
 function git_push {
-  git config user.email "luanpotter27@gmail.com"
-  git config user.name "Luan Nico"
+  git config user.email "contact@blue-fire.xyz"
+  git config user.name "Blue Fire"
   git add docs
   git commit -m "Update & publish new doc versions"
   git push
