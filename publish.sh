@@ -19,9 +19,7 @@ function main {
   done <<< "$list"
   generate main
 
-  cd docs
-  ln -s main/index.html index.html
-  cd ..
+  cp -r docs/main/* docs/
   git_push
 
   rm -rf $tmp_flame_src
