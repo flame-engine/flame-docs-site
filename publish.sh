@@ -19,7 +19,6 @@ function main {
   done <<< "$list"
   generate main
 
-  cp -r docs/main/* docs/
   git_push
 
   rm -rf $tmp_flame_src
