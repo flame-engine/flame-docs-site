@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Forge2D &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -351,7 +350,7 @@
         
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="forge2d">
+  <div class="tex2jax_ignore mathjax_ignore section" id="forge2d">
 <h1>Forge2D<a class="headerlink" href="#forge2d" title="Permalink to this headline">¶</a></h1>
 <p>We (the Flame organization) maintain a ported version of the Box2D physics engine and our version
 is called Forge2D.</p>
@@ -363,7 +362,7 @@ just want to use it in a Dart project you can use the
 in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d/example">Forge2D example</a>
 and in the pub.dev <a class="reference external" href="https://pub.dev/packages/flame_forge2d">installation instructions</a>.</p>
-<section id="forge2dgame-flamegame-extension">
+<div class="section" id="forge2dgame-flamegame-extension">
 <h2>Forge2DGame (FlameGame extension)<a class="headerlink" href="#forge2dgame-flamegame-extension" title="Permalink to this headline">¶</a></h2>
 <p>If you are going to use Forge2D in your project it can be a good idea to use the Forge2D specific
 extension of the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class.</p>
@@ -382,8 +381,8 @@ component list along with your physical entities. When the update is called, it 
 physics engine to properly update every child.</p>
 <p>A simple <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> implementation examples can be seen in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d/example">examples folder</a>.</p>
-</section>
-<section id="bodycomponent">
+</div>
+<div class="section" id="bodycomponent">
 <h2>BodyComponent<a class="headerlink" href="#bodycomponent" title="Permalink to this headline">¶</a></h2>
 <p>If you don’t need to have a sprite on top of your body you should use the plain <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>, for
 example if you want a circle, rectangle or polygon but only painted with a Flutter <code class="docutils literal notranslate"><span class="pre">Paint</span></code>.</p>
@@ -391,22 +390,22 @@ example if you want a circle, rectangle or polygon but only painted with a Flutt
 anything after you have created a <code class="docutils literal notranslate"><span class="pre">Body</span></code> and added the <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> to the game. If you want to
 turn it off you can either override <code class="docutils literal notranslate"><span class="pre">debugMode</span></code> to set it to false or assign false to it in your
 component constructor.</p>
-</section>
-<section id="spritebodycomponent">
+</div>
+<div class="section" id="spritebodycomponent">
 <h2>SpriteBodyComponent<a class="headerlink" href="#spritebodycomponent" title="Permalink to this headline">¶</a></h2>
 <p>Often you want to render a sprite on top of the <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> that you are going to use in your
 <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>. This component will handle the scaling and positioning of your sprite on top of the
 body.</p>
-</section>
-<section id="positionbodycomponent">
+</div>
+<div class="section" id="positionbodycomponent">
 <h2>PositionBodyComponent<a class="headerlink" href="#positionbodycomponent" title="Permalink to this headline">¶</a></h2>
 <p>One of the most commonly used classes in Flame is the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, many of the commonly used
 components in Flame are subclasses of <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>. If you want to put a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
 or any of its subclasses on top of a Forge2D body you can use the <code class="docutils literal notranslate"><span class="pre">PositionBodyComponent</span></code> and it
 will, just like with the <code class="docutils literal notranslate"><span class="pre">SpriteBodyComponent</span></code>, handle the rotation, positioning and scaling of that
 component so that it follows the underlying <code class="docutils literal notranslate"><span class="pre">Body</span></code>.</p>
-</section>
-<section id="contact-callbacks">
+</div>
+<div class="section" id="contact-callbacks">
 <h2>Contact callbacks<a class="headerlink" href="#contact-callbacks" title="Permalink to this headline">¶</a></h2>
 <p>If you are using <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> you can take advantage of its way of handling contacts between two
 <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>s.</p>
@@ -450,8 +449,8 @@ parameters of your <code class="docutils literal notranslate"><span class="pre">
 <p><code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">BallAnythingCallback</span> <span class="pre">implements</span> <span class="pre">ContactCallback&lt;Ball,</span> <span class="pre">BodyComponent&gt;</span> <span class="pre">...</span></code></p>
 <p>An implementation example can be seen in the
 <a class="reference external" href="https://github.com/flame-engine/flame_forge2d/blob/main/example">Flame Forge2D example</a>.</p>
-</section>
-<section id="viewport-and-camera">
+</div>
+<div class="section" id="viewport-and-camera">
 <h2>Viewport and Camera<a class="headerlink" href="#viewport-and-camera" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> is using an implementation of the normal Flame <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> and <code class="docutils literal notranslate"><span class="pre">Camera</span></code>, which can be
 read more about <a class="reference internal" href="camera_and_viewport.html"><span class="doc std std-doc">here</span></a>.</p>
@@ -461,8 +460,8 @@ your screen.</p>
 <p>To move around what you see in that window you use the <code class="docutils literal notranslate"><span class="pre">Camera</span></code>, which can also be very useful if
 you want to follow one of your components around in the Forge2D world, or know where in the world
 a point on the screen is or vice versa.</p>
-</section>
-</section>
+</div>
+</div>
 
 
               </div>

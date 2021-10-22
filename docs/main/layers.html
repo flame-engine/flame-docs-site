@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Layers &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -337,7 +336,7 @@
         
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="layers">
+  <div class="tex2jax_ignore mathjax_ignore section" id="layers">
 <h1>Layers<a class="headerlink" href="#layers" title="Permalink to this headline">¶</a></h1>
 <p>Layers allow you to group rendering by context, as well as allow you to pre-render things. This
 enables, for example, rendering parts of your game that don’t change much in memory, like a
@@ -348,7 +347,7 @@ rendered every game tick.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">DynamicLayer</span></code>: For things that are moving or changing.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">PreRenderedLayer</span></code>: For things that are static.</p></li>
 </ul>
-<section id="dynamiclayer">
+<div class="section" id="dynamiclayer">
 <h2>DynamicLayer<a class="headerlink" href="#dynamiclayer" title="Permalink to this headline">¶</a></h2>
 <p>Dynamic layers are layers that are rendered every time that they are drawn on the canvas. As the
 name suggests, it is meant for dynamic content and is most useful for grouping rendering of objects
@@ -382,8 +381,8 @@ that have the same context.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="prerenderedlayer">
+</div>
+<div class="section" id="prerenderedlayer">
 <h2>PreRenderedLayer<a class="headerlink" href="#prerenderedlayer" title="Permalink to this headline">¶</a></h2>
 <p>Pre-rendered layers are rendered only once, cached in memory and then just
 replicated on the game canvas afterwards. They are useful for caching content that doesn’t change
@@ -413,8 +412,8 @@ during the game, like a background for example.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="layer-processors">
+</div>
+<div class="section" id="layer-processors">
 <h2>Layer Processors<a class="headerlink" href="#layer-processors" title="Permalink to this headline">¶</a></h2>
 <p>Flame also provides a way to add processors on your layer, which are ways to add effects on the
 entire layer. At the moment, out of the box, only the <code class="docutils literal notranslate"><span class="pre">ShadowProcessor</span></code> is available, this processor
@@ -438,8 +437,8 @@ list. For example:</p>
 <p>Custom processors can be created by extending the <code class="docutils literal notranslate"><span class="pre">LayerProcessor</span></code> class.</p>
 <p>You can check a working example of layers
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/rendering/layers.dart">here</a>.</p>
-</section>
-</section>
+</div>
+</div>
 
 
               </div>
