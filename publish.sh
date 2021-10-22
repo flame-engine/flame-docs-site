@@ -23,6 +23,7 @@ function main {
   git_push
 
   rm -rf $tmp_flame_src
+  echo "Successfully built the docs"
 }
 
 function generate {
