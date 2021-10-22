@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Oxygen &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -405,7 +404,7 @@
         
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="oxygen">
+  <div class="tex2jax_ignore mathjax_ignore section" id="oxygen">
 <h1>Oxygen<a class="headerlink" href="#oxygen" title="Permalink to this headline">¶</a></h1>
 <p>We (the Flame organization) built an ECS(Entity Component System) named Oxygen.</p>
 <p>If you want to use Oxygen specifically for Flame as a replacement for the
@@ -419,7 +418,7 @@ just want to use it in a Dart project you can use the
 in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_oxygen/example">Oxygen example</a>
 and in the pub.dev <a class="reference external" href="https://pub.dev/packages/flame_oxygen">installation instructions</a>.</p>
-<section id="oxygengame-game-extension">
+<div class="section" id="oxygengame-game-extension">
 <h2>OxygenGame (Game extension)<a class="headerlink" href="#oxygengame-game-extension" title="Permalink to this headline">¶</a></h2>
 <p>If you are going to use Oxygen in your project it can be a good idea to use the Oxygen specific
 extension of the <code class="docutils literal notranslate"><span class="pre">Game</span></code> class.</p>
@@ -433,8 +432,8 @@ to register components and systems and do anything else that you normally would 
 <p>The <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code> also comes with it’s own <code class="docutils literal notranslate"><span class="pre">createEntity</span></code> method that automically adds certain
 default components on the entity. This is especially helpfull when you are using the
 <span class="xref myst">BaseSystem</span> as your base.</p>
-</section>
-<section id="systems">
+</div>
+<div class="section" id="systems">
 <h2>Systems<a class="headerlink" href="#systems" title="Permalink to this headline">¶</a></h2>
 <p>Systems define the logic of your game. In FCS you normally would add your logic inside a component
 with Oxygen we use systems for that. Oxygen itself is completly platform agnostic, meaning it has
@@ -452,7 +451,7 @@ to subclass it to your own system. For more information see the
 <span class="xref myst">BaseSystem</span> section.</p>
 <p>Systems can be registered to the world using the <code class="docutils literal notranslate"><span class="pre">world.registerSystem</span></code> method on
 <span class="xref myst">OxygenGame</span>.</p>
-<section id="mixin-gameref">
+<div class="section" id="mixin-gameref">
 <h3>mixin GameRef<a class="headerlink" href="#mixin-gameref" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameRef</span></code> mixin allows a system to become aware of the <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code> instance its attached to. This
 allows easy access to the methods on the game class.</p>
@@ -466,8 +465,8 @@ allows easy access to the methods on the game class.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="mixin-rendersystem">
+</div>
+<div class="section" id="mixin-rendersystem">
 <h3>mixin RenderSystem<a class="headerlink" href="#mixin-rendersystem" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">RenderSystem</span></code> mixin allows a system to be registered for the render loop.
 By adding a <code class="docutils literal notranslate"><span class="pre">render</span></code> method to the system you get full access to the canvas as
@@ -488,8 +487,8 @@ you normally would in Flame.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="mixin-updatesystem">
+</div>
+<div class="section" id="mixin-updatesystem">
 <h3>mixin UpdateSystem<a class="headerlink" href="#mixin-updatesystem" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">MixinSystem</span></code> mixin allows a system to be registered for the update loop.
 By adding a <code class="docutils literal notranslate"><span class="pre">update</span></code> method to the system you get full access to the delta time as you
@@ -510,8 +509,8 @@ normally would in Flame.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="basesystem">
+</div>
+<div class="section" id="basesystem">
 <h3>BaseSystem<a class="headerlink" href="#basesystem" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> is an abstract class whoms logic can be compared to the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
 from FCS. The <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> automatically filters all entities that have the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
@@ -542,8 +541,8 @@ canvas:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="particlesystem">
+</div>
+<div class="section" id="particlesystem">
 <h3>ParticleSystem<a class="headerlink" href="#particlesystem" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ParticleSystem</span></code> is a simple system that brings the Particle API from Flame to Oxygen. This
 allows you to use the <span class="xref myst">ParticleComponent</span> without having to worry about how
@@ -557,9 +556,9 @@ itself.</p>
 </div>
 <p>You can now create a new entity with a <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code>. For more info about that see the
 <span class="xref myst">ParticleComponent</span> section.</p>
-</section>
-</section>
-<section id="components">
+</div>
+</div>
+<div class="section" id="components">
 <h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
 <p>Components in Oxygen are different than the ones from FCS mainly because instead of containing
 logic they only contain data. This data is then used in systems which in turn define the logic.</p>
@@ -569,7 +568,7 @@ you get started. Some of these components are based on the multiple functionalit
 functionality, they are often accompanied by predefined systems that you can use.</p>
 <p>Components can be registered to the world using the <code class="docutils literal notranslate"><span class="pre">world.registerComponent</span></code> method on
 <span class="xref myst">OxygenGame</span>.</p>
-<section id="positioncomponent">
+<div class="section" id="positioncomponent">
 <h3>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is as its name implies is a component that describe the position of an
 entity. And it is registered to the world by default.</p>
@@ -585,8 +584,8 @@ entity. And it is registered to the world by default.</p>
   <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="p">,</span> <span class="n">Vector2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">100</span><span class="p">));</span>
 </pre></div>
 </div>
-</section>
-<section id="sizecomponent">
+</div>
+<div class="section" id="sizecomponent">
 <h3>SizeComponent<a class="headerlink" href="#sizecomponent" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">SizeComponent</span></code> is as its name implies is a component that describe the size of an entity.
 And it is registered to the world by default.</p>
@@ -602,8 +601,8 @@ And it is registered to the world by default.</p>
   <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">SizeComponent</span><span class="p">,</span> <span class="n">Vector2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span> <span class="m">50</span><span class="p">));</span>
 </pre></div>
 </div>
-</section>
-<section id="anchorcomponent">
+</div>
+<div class="section" id="anchorcomponent">
 <h3>AnchorComponent<a class="headerlink" href="#anchorcomponent" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">AnchorComponent</span></code> is as its name implies is a component that describe the anchor position of an
 entity. And it is registered to the world by default.</p>
@@ -622,8 +621,8 @@ be used for your own anchoring logic.</p>
   <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">AnchorComponent</span><span class="p">,</span> <span class="n">Anchor</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">);</span>
 </pre></div>
 </div>
-</section>
-<section id="anglecomponent">
+</div>
+<div class="section" id="anglecomponent">
 <h3>AngleComponent<a class="headerlink" href="#anglecomponent" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">AngleComponent</span></code> is as its name implies is a component that describe the angle of an entity.
 And it is registered to the world by default. The angle is in radians.</p>
@@ -642,8 +641,8 @@ be used for your own angle logic.</p>
   <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">AngleComponent</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="m">1.570796</span><span class="p">);</span>
 </pre></div>
 </div>
-</section>
-<section id="flipcomponent">
+</div>
+<div class="section" id="flipcomponent">
 <h3>FlipComponent<a class="headerlink" href="#flipcomponent" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlipComponent</span></code> can be used to flip your rendering on either the X or Y axis. It is registered
 to the world by default.</p>
@@ -662,8 +661,8 @@ be used for your own flipping logic.</p>
   <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">FlipComponent</span><span class="p">,</span> <span class="n">FlipInit</span><span class="o">&gt;</span><span class="p">(</span><span class="n">FlipInit</span><span class="p">(</span><span class="nl">flipX:</span> <span class="kc">true</span><span class="p">));</span>
 </pre></div>
 </div>
-</section>
-<section id="spritecomponent">
+</div>
+<div class="section" id="spritecomponent">
 <h3>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> is as its name implies is a component that describe the sprite of an entity.
 And it is registered to the world by default.</p>
@@ -684,8 +683,8 @@ And it is registered to the world by default.</p>
   <span class="p">);</span>
 </pre></div>
 </div>
-</section>
-<section id="textcomponent">
+</div>
+<div class="section" id="textcomponent">
 <h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> is as its name implies is a component that adds a text component to an entity.
 And it is registered to the world by default.</p>
@@ -713,8 +712,8 @@ as a text entity.</p>
   <span class="p">);</span>
 </pre></div>
 </div>
-</section>
-<section id="particlecomponent">
+</div>
+<div class="section" id="particlecomponent">
 <h3>ParticleComponent<a class="headerlink" href="#particlecomponent" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code> wraps a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> from Flame. Combined with the
 <span class="xref myst">ParticleSystem</span> you can easily add particles to your game without having to
@@ -735,9 +734,9 @@ worry about how to render a particle or when/how to update one.</p>
   <span class="p">);</span>
 </pre></div>
 </div>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
               </div>

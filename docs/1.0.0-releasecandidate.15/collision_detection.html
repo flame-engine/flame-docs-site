@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Collision detection &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -416,7 +415,7 @@
         
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="collision-detection">
+  <div class="tex2jax_ignore mathjax_ignore section" id="collision-detection">
 <h1>Collision detection<a class="headerlink" href="#collision-detection" title="Permalink to this headline">¶</a></h1>
 <p>If you want to have a full blown physics engine in your game we recommend that you use
 Forge2D by adding <a class="reference external" href="https://github.com/flame-engine/flame_forge2d">flame_forge2d</a> as a dependency.
@@ -448,9 +447,9 @@ when for example two position components have intersecting hitboxes.</p>
 that overshoot each other into account, this could happen when they either move too fast or <code class="docutils literal notranslate"><span class="pre">update</span></code>
 being called with a large delta time (for example if your app is not in the foreground). This
 behaviour is called tunneling, if you want to read more about it.</p>
-<section id="mixins">
+<div class="section" id="mixins">
 <h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this headline">¶</a></h2>
-<section id="hitbox">
+<div class="section" id="hitbox">
 <h3>Hitbox<a class="headerlink" href="#hitbox" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code> mixin is mainly used for two things; to make detection of collisions with other
 hitboxes and to more accurately recognize gestures on top of your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s. Say that you
@@ -459,8 +458,8 @@ that is in the corner of the image where the rock is not displayed, since an ima
 rectangular. Then you can use the <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code> mixin to define a more accurate polygon (or another
 shape) for which the input should be within for the event to be registered on your component.</p>
 <p>You can add new shapes to the <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code> just like they are added in the below <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> example.</p>
-</section>
-<section id="collidable">
+</div>
+<div class="section" id="collidable">
 <h3>Collidable<a class="headerlink" href="#collidable" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> mixin is added to a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> that has a <code class="docutils literal notranslate"><span class="pre">HitBox</span></code> and it is used for
 detecting collisions with other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s. If you do not add a shape to your <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code> component
@@ -520,7 +519,7 @@ shapes that were previously colliding no longer colliding with each other.</p>
 <p>If you want to check collisions with the screen edges, as we do in the example above, you can use
 the predefined <span class="xref myst">ScreenCollidable</span> class and since that one also is a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
 you can implement your own <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method for that class if needed.</p>
-<section id="collidabletype">
+<div class="section" id="collidabletype">
 <h4>CollidableType<a class="headerlink" href="#collidabletype" title="Permalink to this headline">¶</a></h4>
 <p>By default the <code class="docutils literal notranslate"><span class="pre">CollidableType</span></code> is <code class="docutils literal notranslate"><span class="pre">active</span></code> on your <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>, but there are two other types that
 you can set your collidable to too if you need to optimize the collision detection.</p>
@@ -540,9 +539,9 @@ about at the moment but that might later come back in to view so they are not co
 from the game.</p>
 <p>These are just examples of how you could use these types, there will be a lot more use cases for
 them so don’t doubt to use them even if your use case isn’t listed here.</p>
-</section>
-</section>
-<section id="hascollidables">
+</div>
+</div>
+<div class="section" id="hascollidables">
 <h3>HasCollidables<a class="headerlink" href="#hascollidables" title="Permalink to this headline">¶</a></h3>
 <p>If you want to use this collision detection in your game you have to add the <code class="docutils literal notranslate"><span class="pre">HasCollidables</span></code> mixin
 to your game so that the game knows that it should keep track of which components that can collide.</p>
@@ -554,8 +553,8 @@ to your game so that the game knows that it should keep track of which component
 </div>
 <p>Now when you add your <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> components to your game they will automatically be checked for
 collisions.</p>
-</section>
-<section id="screencollidable">
+</div>
+<div class="section" id="screencollidable">
 <h3>ScreenCollidable<a class="headerlink" href="#screencollidable" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> is not a mixin, but a pre-made collidable component which represents the edges of
 your game/screen. If you add a <code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> to your game your other collidables will be
@@ -564,26 +563,26 @@ notified when they collide with the edges. It doesn’t take any arguments, it o
 your game, if you don’t want the <code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> itself to be notified when something collides
 with it. If you so want it to be notified, then you need to extend it and implement the
 <code class="docutils literal notranslate"><span class="pre">collisionCallback</span></code> method for it.</p>
-</section>
-</section>
-<section id="shapes">
+</div>
+</div>
+<div class="section" id="shapes">
 <h2>Shapes<a class="headerlink" href="#shapes" title="Permalink to this headline">¶</a></h2>
-<section id="shape">
+<div class="section" id="shape">
 <h3>Shape<a class="headerlink" href="#shape" title="Permalink to this headline">¶</a></h3>
 <p>A Shape is the base class for representing a scalable geometrical shape. The shapes have different
 ways of defining how they look, but they all have a size and angle that can be modified and the
 shape definition will scale or rotate the shape accordingly.</p>
 <p>There are currently three shapes: <span class="xref myst">Polygon</span>, <span class="xref myst">Rectangle</span> and
 <span class="xref myst">Cirlce</span>.</p>
-</section>
-<section id="hitboxshape">
+</div>
+<div class="section" id="hitboxshape">
 <h3>HitboxShape<a class="headerlink" href="#hitboxshape" title="Permalink to this headline">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code> is a <code class="docutils literal notranslate"><span class="pre">Shape</span></code> defined from the center position of the component that it is attached
 to and it has the same bounding size and angle as the component. You can set <code class="docutils literal notranslate"><span class="pre">localPosition</span></code> to have
 the position of the shape deviate from the center of the component. A <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code> is the type of
 shape that you add to your <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code>, or <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>. Usually these types of shapes are the only
 ones that you need to use.</p>
-<section id="hitboxpolygon">
+<div class="section" id="hitboxpolygon">
 <h4>HitboxPolygon<a class="headerlink" href="#hitboxpolygon" title="Permalink to this headline">¶</a></h4>
 <p>It should be noted that if you want to use collision detection or <code class="docutils literal notranslate"><span class="pre">containsPoint</span></code> on the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>,
 the polygon needs to be convex. So always use convex polygons or you will most likely run into
@@ -612,8 +611,8 @@ the center of the polygon.</p>
 <p><img alt="An example of how to define a polygon shape" src="_images/polygon_shape.png" /></p>
 <p>In the image you can see how the polygon shape formed by the purple arrows is defined by the red
 arrows.</p>
-</section>
-<section id="hitboxrectangle">
+</div>
+<div class="section" id="hitboxrectangle">
 <h4>HitboxRectangle<a class="headerlink" href="#hitboxrectangle" title="Permalink to this headline">¶</a></h4>
 <p>A <code class="docutils literal notranslate"><span class="pre">HitboxRectangle</span></code> is really just a simplified Polygon, but it can be defined more easily.
 To create rectangle you add a <code class="docutils literal notranslate"><span class="pre">relation</span></code> in the constructor which defines the relationship between
@@ -624,8 +623,8 @@ do this: <code class="docutils literal notranslate"><span class="pre">HitboxRect
 in relation to that component. So if the size of your component is <code class="docutils literal notranslate"><span class="pre">Vector2(400,</span> <span class="pre">200)</span></code> and the
 relation argument is the same as above your rectangle would be placed in the middle of the component
 and be 200 pixels wide and 200 pixels tall.</p>
-</section>
-<section id="hitboxcircle">
+</div>
+<div class="section" id="hitboxcircle">
 <h4>HitboxCircle<a class="headerlink" href="#hitboxcircle" title="Permalink to this headline">¶</a></h4>
 <p>When creating a <code class="docutils literal notranslate"><span class="pre">Circle</span></code> you can define how long the radius is in comparison to the shortest edge
 of the bounding box, this is the <code class="docutils literal notranslate"><span class="pre">definition</span></code> argument.</p>
@@ -633,38 +632,38 @@ of the bounding box, this is the <code class="docutils literal notranslate"><spa
 has the size <code class="docutils literal notranslate"><span class="pre">Vector2(100,</span> <span class="pre">400)</span></code> and you want the head to be half of the width and have its center
 on the top fourth of the component you would write something like this:</p>
 <p><code class="docutils literal notranslate"><span class="pre">HitboxCircle(definition:</span> <span class="pre">0.5)..relativePosition</span> <span class="pre">=</span> <span class="pre">Vector2(0,</span> <span class="pre">0.5)</span></code></p>
-</section>
-</section>
-<section id="normal-shapes">
+</div>
+</div>
+<div class="section" id="normal-shapes">
 <h3>Normal Shapes<a class="headerlink" href="#normal-shapes" title="Permalink to this headline">¶</a></h3>
 <p>These shapes are meant as a tool for using geometrical shapes in a more general way than together
 with the collision detection system.</p>
-<section id="polygon">
+<div class="section" id="polygon">
 <h4>Polygon<a class="headerlink" href="#polygon" title="Permalink to this headline">¶</a></h4>
 <p>You can also create you <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> by giving it a list of points in the constructor.
 This list will be transformed into a polygon with a size, which can still be scaled and rotated.</p>
-</section>
-<section id="rectangle">
+</div>
+<div class="section" id="rectangle">
 <h4>Rectangle<a class="headerlink" href="#rectangle" title="Permalink to this headline">¶</a></h4>
 <p>Dart already has an excellent way to create rectangles and that class is called <code class="docutils literal notranslate"><span class="pre">Rect</span></code>, you can
 create a Flame <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> from a <code class="docutils literal notranslate"><span class="pre">Rect</span></code> by using the <code class="docutils literal notranslate"><span class="pre">Rectangle.fromRect</span></code> factory, and just like
 with the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> factory, your rectangle will be sized according to the <code class="docutils literal notranslate"><span class="pre">Rect</span></code> if you use this
 factory.</p>
 <p>You can also use the default constructor to build your rectangle from a position, size and angle.</p>
-</section>
-<section id="circle">
+</div>
+<div class="section" id="circle">
 <h4>Circle<a class="headerlink" href="#circle" title="Permalink to this headline">¶</a></h4>
 <p>If you know how long your circle’s position and/or how long the radius is going to be from the start
 you can use the optional arguments <code class="docutils literal notranslate"><span class="pre">radius</span></code> and <code class="docutils literal notranslate"><span class="pre">position</span></code> to set those, if the <code class="docutils literal notranslate"><span class="pre">radius</span></code> is set the
 <code class="docutils literal notranslate"><span class="pre">size</span></code> of the <code class="docutils literal notranslate"><span class="pre">Circle</span></code> will be automatically set too.</p>
-</section>
-</section>
-</section>
-<section id="example">
+</div>
+</div>
+</div>
+<div class="section" id="example">
 <h2>Example<a class="headerlink" href="#example" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collidables">https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collidables</a></p>
-</section>
-</section>
+</div>
+</div>
 
 
               </div>

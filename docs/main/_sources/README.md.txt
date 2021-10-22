@@ -32,7 +32,10 @@ Put the pub package as your dependency by putting the following in your `pubspec
 
 ```yaml
 dependencies:
-  flame: 1.0.0-releasecandidate.15
+  flame:
+git:
+      url: https://github.com/flame-engine/flame.git
+      ref: main/
 ```
 
 The latest version can be found on [pub.dev](https://pub.dev/packages/flame/install).

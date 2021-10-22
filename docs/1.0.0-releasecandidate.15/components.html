@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Components &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -403,11 +402,11 @@
         
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="components">
+  <div class="tex2jax_ignore mathjax_ignore section" id="components">
 <h1>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h1>
 <p><img alt="Components Diagram" src="_images/diagram.png" /></p>
 <p>This diagram might look intimidating, but don’t worry, it is not as complex as it looks.</p>
-<section id="component">
+<div class="section" id="component">
 <h2>Component<a class="headerlink" href="#component" title="Permalink to this headline">¶</a></h2>
 <p>All components inherit from the abstract class <code class="docutils literal notranslate"><span class="pre">Component</span></code>.</p>
 <p>If you want to skip reading about abstract classes you can jump directly to
@@ -439,8 +438,8 @@ run every time the component is added to a new parent. This means that you shoul
 lifetime. This method is executed after the initial “preparation” of the component is done and after
 <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> and <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>, but before the inclusion of the component in the parent’s list of
 components.</p>
-</section>
-<section id="basecomponent">
+</div>
+<div class="section" id="basecomponent">
 <h2>BaseComponent<a class="headerlink" href="#basecomponent" title="Permalink to this headline">¶</a></h2>
 <p>Usually if you are going to make your own component you want to extend <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, but if
 you want to be able to handle effects and child components but handle the positioning differently
@@ -448,7 +447,7 @@ you can extend the <code class="docutils literal notranslate"><span class="pre">
 <p><code class="docutils literal notranslate"><span class="pre">Component</span></code> is used by <code class="docutils literal notranslate"><span class="pre">SpriteBodyComponent</span></code>, <code class="docutils literal notranslate"><span class="pre">PositionBodyComponent</span></code>, and <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> in
 <code class="docutils literal notranslate"><span class="pre">flame_forge2d</span></code> since those components doesn’t have their position in relation to the screen, but in
 relation to the Forge2D world.</p>
-<section id="composability-of-components">
+<div class="section" id="composability-of-components">
 <h3>Composability of components<a class="headerlink" href="#composability-of-components" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes it is useful to wrap other components inside of your component. For example by grouping
 visual components through a hierarchy. You can do this by adding child components to any component,
@@ -480,9 +479,9 @@ children are rendered and updated with the same conditions.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-</section>
-<section id="positioncomponent">
+</div>
+</div>
+<div class="section" id="positioncomponent">
 <h2>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this headline">¶</a></h2>
 <p>This class represent a single object on the screen, being a floating rectangle or a rotating sprite.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> has a <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">size</span></code> and <code class="docutils literal notranslate"><span class="pre">angle</span></code>, as well as some useful methods like
@@ -501,8 +500,8 @@ recommended.</p>
 This is available on all <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> objects, and is especially useful on <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code>
 and <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code>. For example set <code class="docutils literal notranslate"><span class="pre">component.renderFlipX</span> <span class="pre">=</span> <span class="pre">true</span></code> to mirror the
 horizontal rendering.</p>
-</section>
-<section id="spritecomponent">
+</div>
+<div class="section" id="spritecomponent">
 <h2>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this headline">¶</a></h2>
 <p>The most commonly used implementation of <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code>, and it can be
 created with a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code>:</p>
@@ -525,8 +524,8 @@ created with a <code class="docutils literal notranslate"><span class="pre">Spri
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="spriteanimationcomponent">
+</div>
+<div class="section" id="spriteanimationcomponent">
 <h2>SpriteAnimationComponent<a class="headerlink" href="#spriteanimationcomponent" title="Permalink to this headline">¶</a></h2>
 <p>This class is used to represent a Component that has sprites that run in a single cyclic animation.</p>
 <p>This will create a simple three frame animation using 3 different images:</p>
@@ -558,8 +557,8 @@ class (check more details on <a class="reference internal" href="images.html#ani
 </div>
 <p>If you are not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, don’t forget this component needs to be updated, because the
 animation object needs to be ticked to move the frames.</p>
-</section>
-<section id="spriteanimationgroup">
+</div>
+<div class="section" id="spriteanimationgroup">
 <h2>SpriteAnimationGroup<a class="headerlink" href="#spriteanimationgroup" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SpriteAnimationGroupComponent</span></code> is a simple wrapper around <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> which enables
 your component to hold several animations and change the current playing animation in runtime.</p>
@@ -587,8 +586,8 @@ single animation, this component receives a Map of a generic type <code class="d
 <span class="n">robot</span><span class="p">.</span><span class="n">current</span> <span class="o">=</span> <span class="n">RobotState</span><span class="p">.</span><span class="n">running</span><span class="p">;</span>
 </pre></div>
 </div>
-</section>
-<section id="spritegroup">
+</div>
+<div class="section" id="spritegroup">
 <h2>SpriteGroup<a class="headerlink" href="#spritegroup" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SpriteGroupComponent</span></code> is pretty similar to its animation counterpart, but especially for sprites.</p>
 <p>Example:</p>
@@ -611,8 +610,8 @@ single animation, this component receives a Map of a generic type <code class="d
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="svgcomponent">
+</div>
+<div class="section" id="svgcomponent">
 <h2>SvgComponent<a class="headerlink" href="#svgcomponent" title="Permalink to this headline">¶</a></h2>
 <p><strong>Note</strong>: To use SVG with Flame, use the <a class="reference external" href="https://github.com/flame-engine/flame_svg"><code class="docutils literal notranslate"><span class="pre">flame_svg</span></code></a>
 package.</p>
@@ -626,8 +625,8 @@ rendered in the game:</p>
 <span class="p">);</span>
 </pre></div>
 </div>
-</section>
-<section id="flareactorcomponent">
+</div>
+<div class="section" id="flareactorcomponent">
 <h2>FlareActorComponent<a class="headerlink" href="#flareactorcomponent" title="Permalink to this headline">¶</a></h2>
 <p><strong>Note</strong>: The previous implementation of a Flare integration API using <code class="docutils literal notranslate"><span class="pre">FlareAnimation</span></code> and
 <code class="docutils literal notranslate"><span class="pre">FlareComponent</span></code> has been deprecated.</p>
@@ -679,8 +678,8 @@ FlareController that can play multiple animations and control nodes.</p>
 <p>You can also change the current playing animation by using the <code class="docutils literal notranslate"><span class="pre">updateAnimation</span></code> method.</p>
 <p>For a working example, check the example in the
 <a class="reference external" href="https://github.com/flame-engine/flame_flare/tree/main/example">flame_flare repository</a>.</p>
-</section>
-<section id="parallaxcomponent">
+</div>
+<div class="section" id="parallaxcomponent">
 <h2>ParallaxComponent<a class="headerlink" href="#parallaxcomponent" title="Permalink to this headline">¶</a></h2>
 <p>This <code class="docutils literal notranslate"><span class="pre">Component</span></code> can be used to render backgrounds with a depth feeling by drawing several transparent
 images on top of each other, where each image or animation (<code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code>) is moving with a
@@ -779,20 +778,20 @@ size of the game, it will also resize to fullscreen when the game changes size o
 It is also possible to create custom renderers by extending the <code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code> class.</p>
 <p>Three example implementations can be found in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/parallax">examples directory</a>.</p>
-</section>
-<section id="spritebodycomponent">
+</div>
+<div class="section" id="spritebodycomponent">
 <h2>SpriteBodyComponent<a class="headerlink" href="#spritebodycomponent" title="Permalink to this headline">¶</a></h2>
 <p>See <a class="reference internal" href="forge2d.html#spritebodycomponent"><span class="std std-ref">SpriteBodyComponent</span></a> in the Forge2D documentation.</p>
-</section>
-<section id="tiledcomponent">
+</div>
+<div class="section" id="tiledcomponent">
 <h2>TiledComponent<a class="headerlink" href="#tiledcomponent" title="Permalink to this headline">¶</a></h2>
 <p>Currently we have a very basic implementation of a Tiled component. This API uses the lib
 <a class="reference external" href="https://github.com/flame-engine/tiled.dart">tiled.dart</a> to parse map files and render visible
 layers.</p>
 <p>An example of how to use the API can be found
 <a class="reference external" href="https://github.com/flame-engine/flame_tiled/tree/main/example">here</a>.</p>
-</section>
-<section id="isometrictilemapcomponent">
+</div>
+<div class="section" id="isometrictilemapcomponent">
 <h2>IsometricTileMapComponent<a class="headerlink" href="#isometrictilemapcomponent" title="Permalink to this headline">¶</a></h2>
 <p>This component allows you to render an isometric map based on a cartesian matrix of blocks and an
 isometric tileset.</p>
@@ -819,8 +818,8 @@ the height colored in the darker tone:</p>
 selector. The code can be found
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/tile_maps/isometric_tile_map.dart">here</a>,
 and a live version can be seen <a class="reference external" href="https://examples.flame-engine.org/#/Tile%20Maps_Isometric%20Tile%20Map">here</a>.</p>
-</section>
-<section id="ninetileboxcomponent">
+</div>
+<div class="section" id="ninetileboxcomponent">
 <h2>NineTileBoxComponent<a class="headerlink" href="#ninetileboxcomponent" title="Permalink to this headline">¶</a></h2>
 <p>A Nine Tile Box is a rectangle drawn using a grid sprite.</p>
 <p>The grid sprite is a 3x3 grid and with 9 blocks, representing the 4 corners, the 4 sides and the
@@ -832,15 +831,15 @@ panels, dialogs, borders.</p>
 <p>Check the example app
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/utils/nine_tile_box.dart">nine_tile_box</a>
 for details on how to use it.</p>
-</section>
-<section id="effects">
+</div>
+<div class="section" id="effects">
 <h2>Effects<a class="headerlink" href="#effects" title="Permalink to this headline">¶</a></h2>
 <p>Flame provides a set of effects that can be applied to a certain type of components, these effects
 can be used to animate some properties of your components, like position or dimensions.
 You can check the list of those effects <a class="reference internal" href="effects.html"><span class="doc std std-doc">here</span></a>.</p>
 <p>Examples of the running effects can be found <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/effects">here</a>;</p>
-</section>
-</section>
+</div>
+</div>
 
 
               </div>
