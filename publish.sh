@@ -19,6 +19,7 @@ function main {
   done <<< "$list"
   generate main
 
+  cp index_redirect.html docs/index.html
   git_push
 
   rm -rf $tmp_flame_src
