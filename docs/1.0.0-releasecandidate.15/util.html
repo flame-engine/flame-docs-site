@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Util &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -426,45 +427,45 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="util">
+  <section class="tex2jax_ignore mathjax_ignore" id="util">
 <h1>Util<a class="headerlink" href="#util" title="Permalink to this headline">¶</a></h1>
 <p>On this page you can find documentation for some utility classes and methods.</p>
-<div class="section" id="device-class">
+<section id="device-class">
 <h2>Device Class<a class="headerlink" href="#device-class" title="Permalink to this headline">¶</a></h2>
 <p>This class can be accessed from <code class="docutils literal notranslate"><span class="pre">Flame.device</span></code> and it has some methods that can be used to control
 the state of the device, for instance you can change the screen orientation and set whether the
 application should be fullscreen or not.</p>
-<div class="section" id="flame-device-fullscreen">
+<section id="flame-device-fullscreen">
 <h3><code class="docutils literal notranslate"><span class="pre">Flame.device.fullScreen()</span></code><a class="headerlink" href="#flame-device-fullscreen" title="Permalink to this headline">¶</a></h3>
 <p>When called, this disables all <code class="docutils literal notranslate"><span class="pre">SystemUiOverlay</span></code> making the app full screen.
 When called in the main method, it makes your app full screen (no top nor bottom bars).</p>
 <p><strong>Note:</strong> It has no effect when called on the web.</p>
-</div>
-<div class="section" id="flame-device-setlandscape">
+</section>
+<section id="flame-device-setlandscape">
 <h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setLandscape()</span></code><a class="headerlink" href="#flame-device-setlandscape" title="Permalink to this headline">¶</a></h3>
 <p>This method sets the orientation of the whole application (effectively, also the game) to landscape
 and depending on operating system and device setting, should allow both left and right landscape
 orientations. To set the app orientation to landscape on a specific direction, use either
 <code class="docutils literal notranslate"><span class="pre">Flame.device.setLandscapeLeftOnly</span></code> or <code class="docutils literal notranslate"><span class="pre">Flame.device.setLandscapeRightOnly</span></code>.</p>
 <p><strong>Note:</strong> It has no effect when called on the web.</p>
-</div>
-<div class="section" id="flame-device-setportrait">
+</section>
+<section id="flame-device-setportrait">
 <h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setPortrait()</span></code><a class="headerlink" href="#flame-device-setportrait" title="Permalink to this headline">¶</a></h3>
 <p>This method sets the orientation of the whole application (effectively, also the game) to portrait
 and depending on operating system and device setting, it should allow for both up and down portrait
 orientations. To set the app orientation to portrait for a specific direction, use either
 <code class="docutils literal notranslate"><span class="pre">Flame.device.setPortraitUpOnly</span></code> or <code class="docutils literal notranslate"><span class="pre">Flame.device.setPortraitDownOnly</span></code>.</p>
 <p><strong>Note:</strong> It has no effect when called on the web.</p>
-</div>
-<div class="section" id="flame-device-setorientation-and-flame-device-setorientations">
+</section>
+<section id="flame-device-setorientation-and-flame-device-setorientations">
 <h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientation()</span></code> and <code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientations()</span></code><a class="headerlink" href="#flame-device-setorientation-and-flame-device-setorientations" title="Permalink to this headline">¶</a></h3>
 <p>If a finer control of the allowed orientations is required (without having to deal with
 <code class="docutils literal notranslate"><span class="pre">SystemChrome</span></code> directly), <code class="docutils literal notranslate"><span class="pre">setOrientation</span></code> (accepts a single <code class="docutils literal notranslate"><span class="pre">DeviceOrientation</span></code> as a parameter) and
 <code class="docutils literal notranslate"><span class="pre">setOrientations</span></code> (accepts a <code class="docutils literal notranslate"><span class="pre">List&lt;DeviceOrientation&gt;</span></code> for possible orientations) can be used.</p>
 <p><strong>Note:</strong> It has no effect when called on the web.</p>
-</div>
-</div>
-<div class="section" id="timer">
+</section>
+</section>
+<section id="timer">
 <h2>Timer<a class="headerlink" href="#timer" title="Permalink to this headline">¶</a></h2>
 <p>Flame provides a simple utility class to help you handle countdowns and timer state changes like
 events.</p>
@@ -560,13 +561,13 @@ events.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="extensions">
+</section>
+<section id="extensions">
 <h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h2>
 <p>Flame bundles a collection of utility extensions, these extensions are meant to help the developer
 with shortcuts and conversion methods, here you can find the summary of those extensions.</p>
 <p>They can all be imported from <code class="docutils literal notranslate"><span class="pre">package:flame/extensions.dart</span></code></p>
-<div class="section" id="canvas">
+<section id="canvas">
 <h3>Canvas<a class="headerlink" href="#canvas" title="Permalink to this headline">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
@@ -577,8 +578,8 @@ with shortcuts and conversion methods, here you can find the summary of those ex
 functions to easily manipulate coordinates to render things on the correct places. They change the
 <code class="docutils literal notranslate"><span class="pre">Canvas</span></code> transformation matrix but reset afterwards.</p></li>
 </ul>
-</div>
-<div class="section" id="color">
+</section>
+<section id="color">
 <h3>Color<a class="headerlink" href="#color" title="Permalink to this headline">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
@@ -590,8 +591,8 @@ functions to easily manipulate coordinates to render things on the correct place
 <li><p><code class="docutils literal notranslate"><span class="pre">fromRGBHexString</span></code>: Parses an RGB color from a valid hex string (e.g. #1C1C1C).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fromARGBHexString</span></code>: Parses an ARGB color from a valid hex string (e.g. #FF1C1C1C).</p></li>
 </ul>
-</div>
-<div class="section" id="image">
+</section>
+<section id="image">
 <h3>Image<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
@@ -602,8 +603,8 @@ pixel format, for the image.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">darken</span></code>: Darken each pixel of the <code class="docutils literal notranslate"><span class="pre">Image</span></code> by an amount between 0 to 1.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">brighten</span></code>: Brighten each pixel of the <code class="docutils literal notranslate"><span class="pre">Image</span></code> by an amount between 0 to 1.</p></li>
 </ul>
-</div>
-<div class="section" id="offset">
+</section>
+<section id="offset">
 <h3>Offset<a class="headerlink" href="#offset" title="Permalink to this headline">¶</a></h3>
 <p>Methods;</p>
 <ul class="simple">
@@ -612,8 +613,8 @@ pixel format, for the image.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">toPoint</span></code>: Creates a <code class="docutils literal notranslate"><span class="pre">Point</span></code> from the <code class="docutils literal notranslate"><span class="pre">Offset</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">toRect</span></code>: Creates a <code class="docutils literal notranslate"><span class="pre">Rect</span></code> starting in (0,0) and its bottom right corner is the [Offset].</p></li>
 </ul>
-</div>
-<div class="section" id="rect">
+</section>
+<section id="rect">
 <h3>Rect<a class="headerlink" href="#rect" title="Permalink to this headline">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
@@ -626,15 +627,15 @@ pixel format, for the image.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">toMathRectangle</span></code>: Converts this <code class="docutils literal notranslate"><span class="pre">Rect</span></code> into a <code class="docutils literal notranslate"><span class="pre">math.Rectangle</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">toGeometryRectangle</span></code>: Converts this <code class="docutils literal notranslate"><span class="pre">Rect</span></code> into a <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> from flame-geom.</p></li>
 </ul>
-</div>
-<div class="section" id="math-rectangle">
+</section>
+<section id="math-rectangle">
 <h3>math.Rectangle<a class="headerlink" href="#math-rectangle" title="Permalink to this headline">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">toRect</span></code>: Converts this math <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> into an ui <code class="docutils literal notranslate"><span class="pre">Rect</span></code>.</p></li>
 </ul>
-</div>
-<div class="section" id="size">
+</section>
+<section id="size">
 <h3>Size<a class="headerlink" href="#size" title="Permalink to this headline">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
@@ -643,8 +644,8 @@ pixel format, for the image.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">toPoint</span></code>: Creates a <code class="docutils literal notranslate"><span class="pre">Point</span></code> from the <code class="docutils literal notranslate"><span class="pre">Size</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">toRect</span></code>: Creates a <code class="docutils literal notranslate"><span class="pre">Rect</span></code> starting in (0,0) with the size of <code class="docutils literal notranslate"><span class="pre">Size</span></code>.</p></li>
 </ul>
-</div>
-<div class="section" id="vector2">
+</section>
+<section id="vector2">
 <h3>Vector2<a class="headerlink" href="#vector2" title="Permalink to this headline">¶</a></h3>
 <p>This class comes from the <code class="docutils literal notranslate"><span class="pre">vector_math</span></code> package and we have some useful extension methods on top of
 what is offered by that package.</p>
@@ -672,8 +673,8 @@ direction.</p></li>
 right.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">%</span></code>: Modulo/Remainder of x and y separately of two <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>s.</p></li>
 </ul>
-</div>
-<div class="section" id="matrix4">
+</section>
+<section id="matrix4">
 <h3>Matrix4<a class="headerlink" href="#matrix4" title="Permalink to this headline">¶</a></h3>
 <p>This class comes from the <code class="docutils literal notranslate"><span class="pre">vector_math</span></code> package. We have created a few extension methods on top
 of what is already offered by <code class="docutils literal notranslate"><span class="pre">vector_math</span></code>.</p>
@@ -707,9 +708,9 @@ of what is already offered by <code class="docutils literal notranslate"><span c
 <li><p><code class="docutils literal notranslate"><span class="pre">scale</span></code>: Create a scaled <code class="docutils literal notranslate"><span class="pre">Matrix4</span></code>. Either by passing a <code class="docutils literal notranslate"><span class="pre">Vector4</span></code> or <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> as it’s first
 argument, or by passing x y z doubles.</p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
               </div>

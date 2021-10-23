@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Keyboard Input &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -342,7 +343,7 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="keyboard-input">
+  <section class="tex2jax_ignore mathjax_ignore" id="keyboard-input">
 <h1>Keyboard Input<a class="headerlink" href="#keyboard-input" title="Permalink to this headline">¶</a></h1>
 <p>This includes documentation for keyboard inputs.</p>
 <p>For other input documents, see also:</p>
@@ -350,14 +351,14 @@
 <li><p><a class="reference internal" href="gesture-input.html"><span class="doc std std-doc">Gesture Input</span></a>: for mouse and touch pointer gestures</p></li>
 <li><p><a class="reference internal" href="other-inputs.html"><span class="doc std std-doc">Other Inputs</span></a>: For joysticks, game pads, etc.</p></li>
 </ul>
-<div class="section" id="intro">
+<section id="intro">
 <h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
 <p>The keyboard API on flame relies on the
 <a class="reference external" href="https://api.flutter.dev/flutter/widgets/Focus-class.html">Flutter’s Focus widget</a>.</p>
 <p>To customize focus behavior, see <span class="xref myst">Controlling focus</span>.</p>
 <p>There are two ways a game can be sensitive to key strokes; at the game level and at a component level.
 For each we have a mixin that can me added to  <code class="docutils literal notranslate"><span class="pre">Game</span></code>s and <code class="docutils literal notranslate"><span class="pre">BaseComponent</span></code>s, respectively.</p>
-<div class="section" id="receive-keyboard-events-in-a-game-level">
+<section id="receive-keyboard-events-in-a-game-level">
 <h3>Receive keyboard events in a game level<a class="headerlink" href="#receive-keyboard-events-in-a-game-level" title="Permalink to this headline">¶</a></h3>
 <p>To make a <code class="docutils literal notranslate"><span class="pre">Game</span></code> sub class sensitive to key stroke, mix it with <code class="docutils literal notranslate"><span class="pre">KeyboardEvents</span></code>.</p>
 <p>After that, it will be possible to override an <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> method.</p>
@@ -393,8 +394,8 @@ that triggered the callback in the first place. The second is a set of the curre
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="receive-keyboard-events-in-a-component-level">
+</section>
+<section id="receive-keyboard-events-in-a-component-level">
 <h3>Receive keyboard events in a component level<a class="headerlink" href="#receive-keyboard-events-in-a-component-level" title="Permalink to this headline">¶</a></h3>
 <p>To receive keyboard events directly in components, there is the mixin <code class="docutils literal notranslate"><span class="pre">KeyboardHandler</span></code>.</p>
 <p>Similarly to <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> and <code class="docutils literal notranslate"><span class="pre">Draggable</span></code>, <code class="docutils literal notranslate"><span class="pre">KeyboardHandler</span></code> can be mixed into any <code class="docutils literal notranslate"><span class="pre">BaseComponent</span></code>
@@ -409,17 +410,17 @@ from the game mixin list to avoid conflicts.</p>
 that triggered the callback in the first place. The second is a set of the currently pressed <a class="reference external" href="https://api.flutter.dev/flutter/widgets/KeyEventResult-class.html"><code class="docutils literal notranslate"><span class="pre">LogicalKeyboardKey</span></code></a>s.</p>
 <p>The returned value should be <code class="docutils literal notranslate"><span class="pre">true</span></code> to allow the continuous propagation of the key event among other components.
 To not allow any other component to receive the event, return <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
-</div>
-<div class="section" id="controlling-focus">
+</section>
+<section id="controlling-focus">
 <h3>Controlling focus<a class="headerlink" href="#controlling-focus" title="Permalink to this headline">¶</a></h3>
 <p>On the widget level, it is possible to use the <a class="reference external" href="https://api.flutter.dev/flutter/widgets/FocusNode-class.html"><code class="docutils literal notranslate"><span class="pre">FocusNode</span></code></a> API to control whether the game is focused or not.</p>
 <p><code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> has an optional <code class="docutils literal notranslate"><span class="pre">focusNode</span></code> parameter that allow its focus to be controlled externally.</p>
 <p>By default <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> has its <code class="docutils literal notranslate"><span class="pre">autofocus</span></code> set to true, which means it will get focused once it is mounted. To override that behavior, set <code class="docutils literal notranslate"><span class="pre">autofocus</span></code> to false.</p>
 <p>For a more complete example see
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/keyboard.dart">here</a>.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
               </div>

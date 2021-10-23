@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>FlameGame &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -358,7 +359,7 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="flamegame">
+  <section class="tex2jax_ignore mathjax_ignore" id="flamegame">
 <h1>FlameGame<a class="headerlink" href="#flamegame" title="Permalink to this headline">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is the most basic and most commonly used <code class="docutils literal notranslate"><span class="pre">Game</span></code> class in Flame.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class implements a <code class="docutils literal notranslate"><span class="pre">Component</span></code> based <code class="docutils literal notranslate"><span class="pre">Game</span></code>. Basically it has a list of <code class="docutils literal notranslate"><span class="pre">Component</span></code>s
@@ -412,7 +413,7 @@ The first can be used if you just want to remove one component, and the second c
 want to remove a list of components.</p>
 <p>Any component on which the <code class="docutils literal notranslate"><span class="pre">remove()</span></code> method has been called will also be removed. You can do this
 simply by doing <code class="docutils literal notranslate"><span class="pre">yourComponent.remove();</span></code>.</p>
-<div class="section" id="lifecycle">
+<section id="lifecycle">
 <h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline">¶</a></h2>
 <p><img alt="Game Lifecycle Diagram" src="_images/component_lifecycle.png" /></p>
 <p>When a game first is added to a Flutter widget tree the following lifecycle methods will be called
@@ -420,8 +421,8 @@ in order: <code class="docutils literal notranslate"><span class="pre">onGameRes
 <code class="docutils literal notranslate"><span class="pre">render</span></code> back and forth every tick, until the widget is removed from the tree.
 Once the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> is removed from the tree, <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> is called, just like when a normal
 component is removed from the component tree.</p>
-</div>
-<div class="section" id="changing-component-priorities-render-update-order">
+</section>
+<section id="changing-component-priorities-render-update-order">
 <h2>Changing component priorities (render/update order)<a class="headerlink" href="#changing-component-priorities-render-update-order" title="Permalink to this headline">¶</a></h2>
 <p>To update a component with a new priority you have to call either <code class="docutils literal notranslate"><span class="pre">FlameGame.changePriority</span></code>, or
 <code class="docutils literal notranslate"><span class="pre">FlameGame.changePriorities</span></code> if you want to change the priorities of many components at once.
@@ -432,17 +433,17 @@ priority change, if you have several changes.</p>
 <p>The higher a priority is the later it is rendered and updated, which will make it appear closer on
 the screen since it will be rendered on top of any components with lower priority that were rendered
 before it.</p>
-</div>
-<div class="section" id="debug-mode">
+</section>
+<section id="debug-mode">
 <h2>Debug mode<a class="headerlink" href="#debug-mode" title="Permalink to this headline">¶</a></h2>
 <p>Flame’s <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class provides a variable called <code class="docutils literal notranslate"><span class="pre">debugMode</span></code>, which by default is <code class="docutils literal notranslate"><span class="pre">false</span></code>. It can
 however, be set to <code class="docutils literal notranslate"><span class="pre">true</span></code> to enable debug features for the components of the game. <strong>Be aware</strong> that
 the value of this variable is passed through to its components when they are added to the game, so
 if you change the <code class="docutils literal notranslate"><span class="pre">debugMode</span></code> at runtime, it will not affect already added components by default.</p>
 <p>To read more about the <code class="docutils literal notranslate"><span class="pre">debugMode</span></code> on Flame, please refer to the <a class="reference internal" href="debug.html"><span class="doc std std-doc">Debug Docs</span></a></p>
-</div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="low-level-game-api">
+</section>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="low-level-game-api">
 <h1>Low-level Game API<a class="headerlink" href="#low-level-game-api" title="Permalink to this headline">¶</a></h1>
 <p><img alt="Game low-level API" src="_images/game_mixin.png" /></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixin is a low-level API that can be used when you want to implement the functionality of
@@ -480,8 +481,8 @@ missing out on all of the built-in features in Flame if you use it.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="gameloop">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="gameloop">
 <h1>GameLoop<a class="headerlink" href="#gameloop" title="Permalink to this headline">¶</a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> module is a simple abstraction over the game loop concept. Basically most games are
 built upon two methods:</p>
@@ -491,8 +492,8 @@ built upon two methods:</p>
 to the next state.</p></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is used by all of Flame’s <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementations.</p>
-</div>
-<div class="tex2jax_ignore mathjax_ignore section" id="flutter-widgets-and-game-instances">
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="flutter-widgets-and-game-instances">
 <h1>Flutter Widgets and Game instances<a class="headerlink" href="#flutter-widgets-and-game-instances" title="Permalink to this headline">¶</a></h1>
 <p>Since a Flame game can be wrapped in a widget, it is quite easy to use it alongside other Flutter
 widgets. But still, there is the Widgets Overlay API that makes things even easier.</p>
@@ -529,7 +530,7 @@ overlays will be rendered.</p>
 <p>Here you can see a
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/widgets/overlay.dart">working example</a>
 of this feature.</p>
-</div>
+</section>
 
 
               </div>
