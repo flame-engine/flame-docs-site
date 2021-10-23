@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Images &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -388,7 +387,7 @@
         
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="images">
+  <div class="tex2jax_ignore mathjax_ignore section" id="images">
 <h1>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h1>
 <p>To start off you must have an appropriate folder structure and add the files to the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>
 file, like this:</p>
@@ -399,7 +398,7 @@ file, like this:</p>
 </pre></div>
 </div>
 <p>It has to be png files and they can have transparency.</p>
-<section id="loading-images">
+<div class="section" id="loading-images">
 <h2>Loading images<a class="headerlink" href="#loading-images" title="Permalink to this headline">¶</a></h2>
 <p>Flame bundles an utility class called <code class="docutils literal notranslate"><span class="pre">Images</span></code> that allows you to easily load and cache images from
 the assets directory into memory.</p>
@@ -411,7 +410,7 @@ an <code class="docutils literal notranslate"><span class="pre">Image</span></co
 They return a <code class="docutils literal notranslate"><span class="pre">Future</span></code> for the loaded Image.</p>
 <p>To synchronously retrieve a previously cached image, the <code class="docutils literal notranslate"><span class="pre">fromCache</span></code> method can be used. If an image
 with that key was not previously loaded, it will throw an exception.</p>
-<section id="standalone-usage">
+<div class="section" id="standalone-usage">
 <h3>Standalone usage<a class="headerlink" href="#standalone-usage" title="Permalink to this headline">¶</a></h3>
 <p>It can manually be used by instantiating it:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;package:flame/images.dart&#39;</span><span class="p">;</span>
@@ -420,8 +419,8 @@ with that key was not previously loaded, it will throw an exception.</p>
 </pre></div>
 </div>
 <p>But Flame also offers two ways of using this class without instantiating it yourself.</p>
-</section>
-<section id="flame-images">
+</div>
+<div class="section" id="flame-images">
 <h3>Flame.images<a class="headerlink" href="#flame-images" title="Permalink to this headline">¶</a></h3>
 <p>There is a singleton, provided by the <code class="docutils literal notranslate"><span class="pre">Flame</span></code> class, that can be used as a global image cache.</p>
 <p>Example:</p>
@@ -434,8 +433,8 @@ with that key was not previously loaded, it will throw an exception.</p>
 <span class="kd">final</span> <span class="n">playerSprite</span> <span class="o">=</span> <span class="n">Sprite</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
 </pre></div>
 </div>
-</section>
-<section id="game-images">
+</div>
+<div class="section" id="game-images">
 <h3>Game.images<a class="headerlink" href="#game-images" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> class offers some utility methods for handling images loading too. It bundles an instance
 of the <code class="docutils literal notranslate"><span class="pre">Images</span></code> class, that can be used to load image assets to be used during the game. The game
@@ -474,9 +473,9 @@ will automatically free the cache when the game widget is removed from the widge
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-</section>
-<section id="sprite">
+</div>
+</div>
+<div class="section" id="sprite">
 <h2>Sprite<a class="headerlink" href="#sprite" title="Permalink to this headline">¶</a></h2>
 <p>Flame offers a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> class that represents an image, or a region of an image.</p>
 <p>You can create a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> by providing it an <code class="docutils literal notranslate"><span class="pre">Image</span></code> and coordinates that defines the piece of the
@@ -513,8 +512,8 @@ render call.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Sprite</span></code>s can also be used as widgets, to do so just use <code class="docutils literal notranslate"><span class="pre">SpriteWidget</span></code> class.</p>
 <p>A complete example using sprite as widgets can be found
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/widget/sprite_widget.dart">here</a>.</p>
-</section>
-<section id="spritebatch">
+</div>
+<div class="section" id="spritebatch">
 <h2>SpriteBatch<a class="headerlink" href="#spritebatch" title="Permalink to this headline">¶</a></h2>
 <p>If you have a sprite sheet (also called an image atlas, which is an image with smaller images
 inside), and would like to render it effectively - <code class="docutils literal notranslate"><span class="pre">SpriteBatch</span></code> handles that job for you.</p>
@@ -524,8 +523,8 @@ image, in addition to transforms (position, scale and rotation) and optional col
 <p>A <code class="docutils literal notranslate"><span class="pre">SpriteBatchComponent</span></code> is also available for your convenience.</p>
 <p>See the examples
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/sprites/spritebatch.dart">here</a>.</p>
-</section>
-<section id="imagecomposition">
+</div>
+<div class="section" id="imagecomposition">
 <h2>ImageComposition<a class="headerlink" href="#imagecomposition" title="Permalink to this headline">¶</a></h2>
 <p>In some cases you may want to merge multiple images into a single image; this is called
 <a class="reference external" href="https://en.wikipedia.org/wiki/Compositing">Compositing</a>. This can be useful for example when
@@ -546,8 +545,8 @@ images, each at their own position, onto a new image:</p>
 <p><strong>Note:</strong> Composing images is expensive, we do not recommend you run this every tick as it affect
 the performance badly. Instead we recommend to have your compositions pre-rendered so you can just
 reuse the output image.</p>
-</section>
-<section id="svg">
+</div>
+<div class="section" id="svg">
 <h2>Svg<a class="headerlink" href="#svg" title="Permalink to this headline">¶</a></h2>
 <p>Flame provides a simple API to render SVG images in your game.</p>
 <p>Svg support is provided by the <code class="docutils literal notranslate"><span class="pre">flame_svg</span></code> external package, be sure to put it in your pubspec file
@@ -576,8 +575,8 @@ following snippet to render it on the canvas:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="animation">
+</div>
+<div class="section" id="animation">
 <h2>Animation<a class="headerlink" href="#animation" title="Permalink to this headline">¶</a></h2>
 <p>The Animation class helps you create a cyclic animation of sprites.</p>
 <p>You can create it by passing a list of equally sized sprites and the stepTime (that is, how many
@@ -637,8 +636,8 @@ and the former ticks the internal clock to update the frames.</p>
 Animations can be created as well.</p>
 <p>A complete example of using animations as widgets can be found
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/widgets/sprite_animation_widget.dart">here</a>.</p>
-</section>
-<section id="flareanimation">
+</div>
+<div class="section" id="flareanimation">
 <h2>FlareAnimation<a class="headerlink" href="#flareanimation" title="Permalink to this headline">¶</a></h2>
 <p>Flame provides a simple wrapper of <a class="reference external" href="https://rive.app/#LearnMore">Flare</a> animations so you can use
 them in Flame games.</p>
@@ -681,8 +680,8 @@ them in Flame games.</p>
 <code class="docutils literal notranslate"><span class="pre">render</span></code> and <code class="docutils literal notranslate"><span class="pre">update</span></code> automatically.</p>
 <p>You can see a full example of how to use Flare together with Flame in the example
 <a class="reference external" href="https://github.com/flame-engine/flame_flare/tree/main/example">here</a>.</p>
-</section>
-<section id="spritesheet">
+</div>
+<div class="section" id="spritesheet">
 <h2>SpriteSheet<a class="headerlink" href="#spritesheet" title="Permalink to this headline">¶</a></h2>
 <p>Sprite sheets are big images with several frames of the same sprite on it and is a very good way to
 organize and keep your animations stored. Flame provides a very simple utility class to deal with
@@ -705,8 +704,8 @@ a very simple example of how to use it:</p>
 </div>
 <p>You can see a full example of the <code class="docutils literal notranslate"><span class="pre">SpriteSheet</span></code> class
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/sprites/spritesheet.dart">here</a>.</p>
-</section>
-<section id="flame-images-decodeimagefrompixels">
+</div>
+<div class="section" id="flame-images-decodeimagefrompixels">
 <h2><code class="docutils literal notranslate"><span class="pre">Flame.images.decodeImageFromPixels()</span></code><a class="headerlink" href="#flame-images-decodeimagefrompixels" title="Permalink to this headline">¶</a></h2>
 <p>The <a class="reference external" href="https://api.flutter.dev/flutter/dart-ui/decodeImageFromPixels.html">dart-ui decodeImageFromPixels</a>
 currently does not support the web platform. So if you are looking for a way to manipulate pixel
@@ -718,8 +717,8 @@ data on the web this method can be used as a replacement for <code class="docuti
 <span class="p">);</span>
 </pre></div>
 </div>
-</section>
-</section>
+</div>
+</div>
 
 
               </div>

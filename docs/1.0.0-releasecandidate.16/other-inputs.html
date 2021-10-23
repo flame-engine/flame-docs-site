@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Other inputs &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -337,7 +336,7 @@
         
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="other-inputs">
+  <div class="tex2jax_ignore mathjax_ignore section" id="other-inputs">
 <h1>Other inputs<a class="headerlink" href="#other-inputs" title="Permalink to this headline">¶</a></h1>
 <p>This includes documentation for input methods besides keyboard and mouse.</p>
 <p>For other input documents, see also:</p>
@@ -345,7 +344,7 @@
 <li><p><a class="reference internal" href="gesture-input.html"><span class="doc std std-doc">Gesture Input</span></a>: for mouse and touch pointer gestures</p></li>
 <li><p><a class="reference internal" href="keyboard-input.html"><span class="doc std std-doc">Keyboard Input</span></a>: for keystrokes</p></li>
 </ul>
-<section id="joystick">
+<div class="section" id="joystick">
 <h2>Joystick<a class="headerlink" href="#joystick" title="Permalink to this headline">¶</a></h2>
 <p>Flame provides a component capable of creating a virtual joystick for taking input for your game.
 To use this feature, you need to create a <code class="docutils literal notranslate"><span class="pre">JoystickComponent</span></code>, configure it the way you want, and
@@ -434,8 +433,8 @@ pulled from its base position to a edge of the joystick.</p></li>
 <p>A full examples of how to use it can be found
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/joystick.dart">here</a>.
 And it can be seen running <a class="reference external" href="https://examples.flame-engine.org/#/Controls_Joystick">here</a>.</p>
-</section>
-<section id="hudbuttoncomponent">
+</div>
+<div class="section" id="hudbuttoncomponent">
 <h2>HudButtonComponent<a class="headerlink" href="#hudbuttoncomponent" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">HudButtonComponent</span></code> is a button that can be defined with margins to the edge of the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code>
 instead of with a position. It takes two <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s. <code class="docutils literal notranslate"><span class="pre">button</span></code> and <code class="docutils literal notranslate"><span class="pre">buttonDown</span></code>, the first
@@ -448,13 +447,13 @@ setting <code class="docutils literal notranslate"><span class="pre">hudButtonCo
 <p>If you want to act upon the button being pressed (which would be the common thing to do) you can either pass in
 a callback function as the <code class="docutils literal notranslate"><span class="pre">onPressed</span></code> argument, or you extend the component and override
 <code class="docutils literal notranslate"><span class="pre">onTapDown</span></code>, <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code> and/or <code class="docutils literal notranslate"><span class="pre">onTapCancel</span></code> and implement your logic in there.</p>
-</section>
-<section id="gamepad">
+</div>
+<div class="section" id="gamepad">
 <h2>Gamepad<a class="headerlink" href="#gamepad" title="Permalink to this headline">¶</a></h2>
 <p>Flame has a separate plugin to support external game controllers (gamepads), checkout
 <a class="reference external" href="https://github.com/flame-engine/flame_gamepad">here</a> for more information.</p>
-</section>
-</section>
+</div>
+</div>
 
 
               </div>

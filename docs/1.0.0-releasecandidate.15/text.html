@@ -4,8 +4,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Text Rendering &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -348,16 +347,16 @@
         
               <div>
                 
-  <section class="tex2jax_ignore mathjax_ignore" id="text-rendering">
+  <div class="tex2jax_ignore mathjax_ignore section" id="text-rendering">
 <h1>Text Rendering<a class="headerlink" href="#text-rendering" title="Permalink to this headline">¶</a></h1>
 <p>Flame has some dedicated classes to help you render text.</p>
-<section id="textrenderer">
+<div class="section" id="textrenderer">
 <h2>TextRenderer<a class="headerlink" href="#textrenderer" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">TextRenderer</span></code> is the abstract class used by Flame to render text. Flame provides one
 implementation for this called <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> but anyone can implement this abstraction
 and create a custom way to render text.</p>
-</section>
-<section id="textpaint">
+</div>
+<div class="section" id="textpaint">
 <h2>TextPaint<a class="headerlink" href="#textpaint" title="Permalink to this headline">¶</a></h2>
 <p>A Text Paint is the built in implementation of text rendering on Flame, it is based on top of
 Flutter’s <code class="docutils literal notranslate"><span class="pre">TextPainter</span></code> class (hence the name), it can be configured by its config class
@@ -390,12 +389,12 @@ pubspec (see <a class="reference external" href="https://flutter.io/custom-fonts
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">textPaint</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="s1">&#39;Flame is awesome&#39;</span><span class="p">,</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">10</span><span class="p">),</span> <span class="nl">anchor:</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">);</span>
 </pre></div>
 </div>
-</section>
-<section id="text-components">
+</div>
+<div class="section" id="text-components">
 <h2>Text Components<a class="headerlink" href="#text-components" title="Permalink to this headline">¶</a></h2>
 <p>Flame provides two text components that make it even easier to render text in your game:
 <code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> and <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code>.</p>
-<section id="textcomponent">
+<div class="section" id="textcomponent">
 <h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> is a simple component that renders a single line of text.</p>
 <p>Example usage:</p>
@@ -412,8 +411,8 @@ pubspec (see <a class="reference external" href="https://flutter.io/custom-fonts
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="textboxcomponent">
+</div>
+<div class="section" id="textboxcomponent">
 <h3>TextBoxComponent<a class="headerlink" href="#textboxcomponent" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> is very similar to <code class="docutils literal notranslate"><span class="pre">TextComponent</span></code>, but as its name suggest it is used to render
 text inside a bounding box, creating line breaks according to the provided box size.</p>
@@ -439,9 +438,9 @@ text inside a bounding box, creating line breaks according to the provided box s
 </div>
 <p>Both components are showcased in an example
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/rendering/text.dart">here</a></p>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
               </div>
