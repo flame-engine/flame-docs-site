@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Looping Background Music &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -348,7 +349,7 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="looping-background-music">
+  <section class="tex2jax_ignore mathjax_ignore" id="looping-background-music">
 <h1>Looping Background Music<a class="headerlink" href="#looping-background-music" title="Permalink to this headline">¶</a></h1>
 <p>With the <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class you can manage looping of background music tracks with regards to application
 (or game) lifecycle state changes.</p>
@@ -387,7 +388,7 @@ running, use the <code class="docutils literal notranslate"><span class="pre">di
 music files.</p>
 <p>You must have an appropriate folder structure and add the files to the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file, as
 explained in <a class="reference internal" href="audio.html"><span class="doc std std-doc">Flame Audio documentation</span></a>.</p>
-<div class="section" id="caching-music-files">
+<section id="caching-music-files">
 <h2>Caching music files<a class="headerlink" href="#caching-music-files" title="Permalink to this headline">¶</a></h2>
 <p>The following functions can be used to preload (and unload) music files into the cache. These
 functions are just aliases for the ones in <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> with the same names.</p>
@@ -403,10 +404,10 @@ functions are just aliases for the ones in <code class="docutils literal notrans
 <span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">clearCache</span><span class="p">();</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="methods">
+</section>
+<section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="play">
+<section id="play">
 <h3>Play<a class="headerlink" href="#play" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">play</span></code> function takes in a <code class="docutils literal notranslate"><span class="pre">String</span></code> that should be a path that points to the location of the
 music file to be played (following the Flame Audio folder structure requirements).</p>
@@ -418,15 +419,15 @@ music file to be played (following the Flame Audio folder structure requirements
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;bgm/world-map.mp3&#39;</span><span class="p">,</span> <span class="nl">volume:</span> <span class="p">.</span><span class="m">25</span><span class="p">);</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="stop">
+</section>
+<section id="stop">
 <h3>Stop<a class="headerlink" href="#stop" title="Permalink to this headline">¶</a></h3>
 <p>To stop a currently playing background music track, just call <code class="docutils literal notranslate"><span class="pre">stop</span></code>.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="pause-and-resume">
+</section>
+<section id="pause-and-resume">
 <h3>Pause and Resume<a class="headerlink" href="#pause-and-resume" title="Permalink to this headline">¶</a></h3>
 <p>To manually pause and resume background music you can use the <code class="docutils literal notranslate"><span class="pre">pause</span></code> and <code class="docutils literal notranslate"><span class="pre">resume</span></code> functions.</p>
 <p><code class="docutils literal notranslate"><span class="pre">FlameAudio.bgm</span></code> automatically handles pausing and resuming the currently playing background music
@@ -438,9 +439,9 @@ app/game.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">resume</span><span class="p">();</span>
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
               </div>

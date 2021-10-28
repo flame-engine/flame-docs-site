@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Supported Platforms &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -338,17 +339,17 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="supported-platforms">
+  <section class="tex2jax_ignore mathjax_ignore" id="supported-platforms">
 <h1>Supported Platforms<a class="headerlink" href="#supported-platforms" title="Permalink to this headline">¶</a></h1>
 <p>Since Flame runs on top of Flutter, so its supported platforms depend on which platforms that are
 supported by Flutter.</p>
 <p>At the moment, Flame supports both mobile and web.</p>
-<div class="section" id="flutter-channels">
+<section id="flutter-channels">
 <h2>Flutter channels<a class="headerlink" href="#flutter-channels" title="Permalink to this headline">¶</a></h2>
 <p>Flame keeps it support on the stable channel. The dev, beta and master channel should work, but we
 don’t support them. This means that issues happening outside the stable channel are not a priority.</p>
-</div>
-<div class="section" id="flame-web">
+</section>
+<section id="flame-web">
 <h2>Flame web<a class="headerlink" href="#flame-web" title="Permalink to this headline">¶</a></h2>
 <p>To use Flame on web you need to make sure your game is using the CanvasKit/<a class="reference external" href="https://skia.org/">Skia</a>
 renderer. This will increase performance on the web, as it will use the <code class="docutils literal notranslate"><span class="pre">canvas</span></code> element instead of
@@ -357,7 +358,7 @@ separate DOM elements.</p>
 <p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">flutter</span> <span class="pre">run</span> <span class="pre">-d</span> <span class="pre">chrome</span> <span class="pre">--web-renderer</span> <span class="pre">canvaskit</span></code></p>
 <p>To build the game for production, using skia, use the following:</p>
 <p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">flutter</span> <span class="pre">build</span> <span class="pre">web</span> <span class="pre">--release</span> <span class="pre">--web-renderer</span> <span class="pre">canvaskit</span></code></p>
-<div class="section" id="web-support">
+<section id="web-support">
 <h3>Web support<a class="headerlink" href="#web-support" title="Permalink to this headline">¶</a></h3>
 <p>When using Flame on the web some methods may not work. For example <code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientation</span></code> and
 <code class="docutils literal notranslate"><span class="pre">Flame.device.fullScreen</span></code> won’t work on web, they can be called, but nothing will happen.</p>
@@ -371,9 +372,9 @@ library, but with support for the web platform. If the <code class="docutils lit
 default it is set to <code class="docutils literal notranslate"><span class="pre">kIsWeb</span></code>) it will decode the image using an internal image method. When the
 <code class="docutils literal notranslate"><span class="pre">runAsWeb</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code> it will use the <code class="docutils literal notranslate"><span class="pre">decodeImageFromPixels</span></code>, which is currently not supported on
 the web.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
               </div>

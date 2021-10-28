@@ -4,7 +4,8 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     <title>Effects &#8212; Flame</title>
     
   <link href="_static/css/theme.css" rel="stylesheet" />
@@ -386,18 +387,18 @@
         
               <div>
                 
-  <div class="tex2jax_ignore mathjax_ignore section" id="effects">
+  <section class="tex2jax_ignore mathjax_ignore" id="effects">
 <h1>Effects<a class="headerlink" href="#effects" title="Permalink to this headline">¶</a></h1>
 <p>An effect can be added to any <code class="docutils literal notranslate"><span class="pre">Component</span></code> that the effect supports.</p>
 <p>If you want to create an effect for another component than the ones that already exist, just extend
 the <code class="docutils literal notranslate"><span class="pre">ComponentEffect</span></code> class and add your created effect to the component by calling
 <code class="docutils literal notranslate"><span class="pre">component.add(yourEffect)</span></code>.</p>
-<div class="section" id="common-for-all-effects">
+<section id="common-for-all-effects">
 <h2>Common for all effects<a class="headerlink" href="#common-for-all-effects" title="Permalink to this headline">¶</a></h2>
 <p>All effects can be paused and resumed with <code class="docutils literal notranslate"><span class="pre">effect.pause()</span></code> and <code class="docutils literal notranslate"><span class="pre">effect.resume()</span></code>, and you can check
 whether it is paused with <code class="docutils literal notranslate"><span class="pre">effect.isPaused</span></code>.</p>
-</div>
-<div class="section" id="more-advanced-effects">
+</section>
+<section id="more-advanced-effects">
 <h2>More advanced effects<a class="headerlink" href="#more-advanced-effects" title="Permalink to this headline">¶</a></h2>
 <p>Then there are two optional boolean parameters called <code class="docutils literal notranslate"><span class="pre">isInfinite</span></code> and <code class="docutils literal notranslate"><span class="pre">isAlternating</span></code>, by combining
 them you can get different effects.</p>
@@ -417,8 +418,8 @@ you give to it. If it is <code class="docutils literal notranslate"><span class=
 the value you give it no matter where it started.</p>
 <p>When an effect is completed the callback <code class="docutils literal notranslate"><span class="pre">onComplete</span></code> will be called, it can be set as an optional
 argument to your effect.</p>
-</div>
-<div class="section" id="common-for-moveeffect-scaleeffect-sizeeffect-and-rotateeffect-simplepositioncomponenteffects">
+</section>
+<section id="common-for-moveeffect-scaleeffect-sizeeffect-and-rotateeffect-simplepositioncomponenteffects">
 <h2>Common for MoveEffect, ScaleEffect, SizeEffect and RotateEffect (SimplePositionComponentEffects)<a class="headerlink" href="#common-for-moveeffect-scaleeffect-sizeeffect-and-rotateeffect-simplepositioncomponenteffects" title="Permalink to this headline">¶</a></h2>
 <p>A common thing for <code class="docutils literal notranslate"><span class="pre">MoveEffect</span></code>, <code class="docutils literal notranslate"><span class="pre">ScaleEffect</span></code>, <code class="docutils literal notranslate"><span class="pre">SizeEffect</span></code> and <code class="docutils literal notranslate"><span class="pre">RotateEffect</span></code> is that it takes
 <code class="docutils literal notranslate"><span class="pre">duration</span></code> and <code class="docutils literal notranslate"><span class="pre">speed</span></code> as arguments, but only use one of them at a time.</p>
@@ -446,8 +447,8 @@ is 5 seconds, the effect would look like this:</p>
 <span class="p">)</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="moveeffect">
+</section>
+<section id="moveeffect">
 <h2>MoveEffect<a class="headerlink" href="#moveeffect" title="Permalink to this headline">¶</a></h2>
 <p>Applied to <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, this effect can be used to move the component to new positions,
 using an <a class="reference external" href="https://api.flutter.dev/flutter/animation/Curves-class.html">animation curve</a>.</p>
@@ -471,8 +472,8 @@ list, or if it is the first element of the list it is relative to the components
 So if you have a component which is positioned at <code class="docutils literal notranslate"><span class="pre">Vector2(100,</span> <span class="pre">100)</span></code> and you use
 <code class="docutils literal notranslate"><span class="pre">isRelative</span> <span class="pre">=</span> <span class="pre">true</span></code> with the following path list <code class="docutils literal notranslate"><span class="pre">path:</span> <span class="pre">[Vector(20,</span> <span class="pre">0),</span> <span class="pre">Vector(0,</span> <span class="pre">50)]</span></code>, then the
 component will first move to <code class="docutils literal notranslate"><span class="pre">(120,</span> <span class="pre">0)</span></code> and then to <code class="docutils literal notranslate"><span class="pre">(120,</span> <span class="pre">100)</span></code>.</p>
-</div>
-<div class="section" id="scaleeffect">
+</section>
+<section id="scaleeffect">
 <h2>ScaleEffect<a class="headerlink" href="#scaleeffect" title="Permalink to this headline">¶</a></h2>
 <p>Applied to <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, this effect can be used to change the scale with which the
 component and its children is rendered on the canvas with, using an
@@ -491,8 +492,8 @@ argument instead of <code class="docutils literal notranslate"><span class="pre"
 <span class="p">));</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="sizeeffect">
+</section>
+<section id="sizeeffect">
 <h2>SizeEffect<a class="headerlink" href="#sizeeffect" title="Permalink to this headline">¶</a></h2>
 <p>Applied to <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, this effect can be used to change the width and height of the
 component, using an <a class="reference external" href="https://api.flutter.dev/flutter/animation/Curves-class.html">animation curve</a>.</p>
@@ -509,8 +510,8 @@ instead of <code class="docutils literal notranslate"><span class="pre">speed</s
 <span class="p">));</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="rotateeffect">
+</section>
+<section id="rotateeffect">
 <h2>RotateEffect<a class="headerlink" href="#rotateeffect" title="Permalink to this headline">¶</a></h2>
 <p>Applied to <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, this effect can be used to rotate the component, using an
 <a class="reference external" href="https://api.flutter.dev/flutter/animation/Curves-class.html">animation curve</a>.</p>
@@ -532,8 +533,8 @@ should last for instead of its speed, which would be much simpler for this examp
 <span class="p">));</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="sequenceeffect">
+</section>
+<section id="sequenceeffect">
 <h2>SequenceEffect<a class="headerlink" href="#sequenceeffect" title="Permalink to this headline">¶</a></h2>
 <p>This effect is a combination of other effects. You provide it with a list of your predefined
 effects.</p>
@@ -552,8 +553,8 @@ set to <code class="docutils literal notranslate"><span class="pre">true</span><
 </div>
 <p>An example of how to use the <code class="docutils literal notranslate"><span class="pre">SequenceEffect</span></code> can be found
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/effects/sequence_effect.dart">here</a>.</p>
-</div>
-<div class="section" id="combinedeffect">
+</section>
+<section id="combinedeffect">
 <h2>CombinedEffect<a class="headerlink" href="#combinedeffect" title="Permalink to this headline">¶</a></h2>
 <p>This effect runs several different type of effects simultaneously on the component that it is added
 to. You provide it with a list of your predefined effects and if you don’t want them to start or end
@@ -570,8 +571,8 @@ example a <code class="docutils literal notranslate"><span class="pre">PositionC
 </div>
 <p>An example of how to use the <code class="docutils literal notranslate"><span class="pre">CombinedEffect</span></code> can be found
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/effects/combined_effect.dart">here</a>.</p>
-</div>
-<div class="section" id="common-for-paint-effects">
+</section>
+<section id="common-for-paint-effects">
 <h2>Common for paint effects<a class="headerlink" href="#common-for-paint-effects" title="Permalink to this headline">¶</a></h2>
 <p>Flame provides an useful mixin called <code class="docutils literal notranslate"><span class="pre">HasPaint</span></code> that adds paint variables to your components.
 It adds a default <code class="docutils literal notranslate"><span class="pre">Paint</span></code> attribute to the class and an additional collection of paints in case
@@ -584,8 +585,8 @@ component that uses this mixin can have paint effects applied to it.</p>
 a <code class="docutils literal notranslate"><span class="pre">paintId</span></code> to the effect contructor. This can be useful for when you have a component that have
 multiple paints; for example a component which has a foreground and background layer.</p>
 <p>Below is a list of the available paint effects.</p>
-</div>
-<div class="section" id="opacityeffect">
+</section>
+<section id="opacityeffect">
 <h2>OpacityEffect<a class="headerlink" href="#opacityeffect" title="Permalink to this headline">¶</a></h2>
 <p>This effect allows you animate the opacity of your paint. It receives a double for the opacity,
 which must be between 0 and 1 (including), and a duration in seconds, represented by a double as
@@ -601,8 +602,8 @@ well.</p>
 </div>
 <p>An example of how to use the <code class="docutils literal notranslate"><span class="pre">OpacityEffect</span></code> can be found
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/effects/opacity_effect.dart">here</a>.</p>
-</div>
-<div class="section" id="coloreffect">
+</section>
+<section id="coloreffect">
 <h2>ColorEffect<a class="headerlink" href="#coloreffect" title="Permalink to this headline">¶</a></h2>
 <p>This effect will change the base color of the paint, causing the rendered component to be tinted by
 the provided color.</p>
@@ -617,13 +618,13 @@ the provided color.</p>
 </div>
 <p>A more in-depth example can be found
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/effects/color_effect.dart">here</a>.</p>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <p>Full examples can be found
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/effects">here</a>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
               </div>
