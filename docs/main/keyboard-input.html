@@ -378,8 +378,8 @@ that triggered the callback in the first place. The second is a set of the curre
     <span class="n">Set</span><span class="o">&lt;</span><span class="n">LogicalKeyboardKey</span><span class="o">&gt;</span> <span class="n">keysPressed</span><span class="p">,</span>
   <span class="p">)</span> <span class="p">{</span>
     <span class="kd">final</span> <span class="n">isKeyDown</span> <span class="o">=</span> <span class="n">event</span> <span class="k">is</span> <span class="n">RawKeyDownEvent</span><span class="p">;</span>
-    
-    <span class="kd">final</span> <span class="n">isSpace</span> <span class="o">=</span> <span class="n">event</span> <span class="o">==</span> <span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">space</span><span class="p">;</span>
+
+    <span class="kd">final</span> <span class="n">isSpace</span> <span class="o">=</span> <span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">space</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="n">isSpace</span> <span class="o">&amp;&amp;</span> <span class="n">isKeyDown</span><span class="p">)</span> <span class="p">{</span>
       <span class="k">if</span> <span class="p">(</span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">altLeft</span><span class="p">)</span> <span class="o">||</span>
