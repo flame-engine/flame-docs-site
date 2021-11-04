@@ -35,7 +35,8 @@ dependencies:
   flame:
     git:
       url: https://github.com/flame-engine/flame.git
-      ref: main/
+      ref: main
+      path: packages/flame
 ```
 
 The latest version can be found on [pub.dev](https://pub.dev/packages/flame/install).

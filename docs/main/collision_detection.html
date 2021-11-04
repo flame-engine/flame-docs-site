@@ -317,8 +317,8 @@
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hitbox">
-     Hitbox
+    <a class="reference internal nav-link" href="#hashitboxes">
+     HasHitboxes
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
@@ -451,25 +451,27 @@ being called with a large delta time (for example if your app is not in the fore
 behaviour is called tunneling, if you want to read more about it.</p>
 <section id="mixins">
 <h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this headline">¶</a></h2>
-<section id="hitbox">
-<h3>Hitbox<a class="headerlink" href="#hitbox" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code> mixin is mainly used for two things; to make detection of collisions with other
+<section id="hashitboxes">
+<h3>HasHitboxes<a class="headerlink" href="#hashitboxes" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> mixin is mainly used for two things; to make detection of collisions with other
 hitboxes and to more accurately recognize gestures on top of your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s. Say that you
 have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you don’t want to register input
 that is in the corner of the image where the rock is not displayed, since an image is always
-rectangular. Then you can use the <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code> mixin to define a more accurate polygon (or another
+rectangular. Then you can use the <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> mixin to define a more accurate polygon (or another
 shape) for which the input should be within for the event to be registered on your component.</p>
-<p>You can add new shapes to the <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code> just like they are added in the below <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> example.</p>
+<p>You can add new shapes to the <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> just like they are added in the below <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
+example.</p>
 </section>
 <section id="collidable">
 <h3>Collidable<a class="headerlink" href="#collidable" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> mixin is added to a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> that has a <code class="docutils literal notranslate"><span class="pre">HitBox</span></code> and it is used for
-detecting collisions with other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s. If you do not add a shape to your <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code> component
-it will never collide with anything. If you want the component to have a default rectangular shape
-that fills the size of your component you can simply do <code class="docutils literal notranslate"><span class="pre">addHitbox(HitboxRectangle())</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> mixin is added to a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> that has a <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> and it is used for
+detecting collisions with other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s. If you do not add a shape to your <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code>
+component it will never collide with anything. If you want the component to have a default
+rectangular shape that fills the size of your component you can simply do
+<code class="docutils literal notranslate"><span class="pre">addHitbox(HitboxRectangle())</span></code>.</p>
 <p>To make your component collidable you would start off something like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCollidable</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="kd">with</span> <span class="n">Hitbox</span><span class="p">,</span> <span class="n">Collidable</span> <span class="p">{</span>
-  <span class="n">MyCollidable</span> <span class="p">(</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCollidable</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="kd">with</span> <span class="n">HasHitboxes</span><span class="p">,</span> <span class="n">Collidable</span> <span class="p">{</span>
+  <span class="n">MyCollidable</span><span class="p">()</span> <span class="p">{</span>
     <span class="c1">// This could also be done in onLoad instead of in the constructor</span>
     <span class="kd">final</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">HitboxPolygon</span><span class="p">([</span>
       <span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span>
@@ -489,7 +491,7 @@ complex hitboxes. For example a snowman with a hat could be represented by three
 a <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code> as its hat.</p>
 <p>To react to a collision you should override the <code class="docutils literal notranslate"><span class="pre">collisionCallback</span></code> in your component.
 Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCollidable</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="kd">with</span> <span class="n">Hitbox</span><span class="p">,</span> <span class="n">Collidable</span> <span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCollidable</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="kd">with</span> <span class="n">HasHitboxes</span><span class="p">,</span> <span class="n">Collidable</span> <span class="p">{</span>
   <span class="p">...</span>
 
   <span class="nd">@override</span>
@@ -549,7 +551,7 @@ them so don’t doubt to use them even if your use case isn’t listed here.</p>
 to your game so that the game knows that it should keep track of which components that can collide.</p>
 <p>Example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasCollidables</span> <span class="p">{</span>
-  <span class="p">...</span>
+  <span class="c1">// ...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -582,8 +584,8 @@ shape definition will scale or rotate the shape accordingly.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code> is a <code class="docutils literal notranslate"><span class="pre">Shape</span></code> defined from the center position of the component that it is attached
 to and it has the same bounding size and angle as the component. You can set <code class="docutils literal notranslate"><span class="pre">localPosition</span></code> to have
 the position of the shape deviate from the center of the component. A <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code> is the type of
-shape that you add to your <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code>, or <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>. Usually these types of shapes are the only
-ones that you need to use.</p>
+shape that you add to your <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code>, or <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>. Usually these types of shapes are the
+only ones that you need to use.</p>
 <section id="hitboxpolygon">
 <h4>HitboxPolygon<a class="headerlink" href="#hitboxpolygon" title="Permalink to this headline">¶</a></h4>
 <p>It should be noted that if you want to use collision detection or <code class="docutils literal notranslate"><span class="pre">containsPoint</span></code> on the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>,

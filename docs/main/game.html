@@ -344,6 +344,11 @@
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#pause-resuming-game-execution">
+   Pause/Resuming game execution
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#flutter-widgets-and-game-instances">
    Flutter Widgets and Game instances
   </a>
@@ -492,6 +497,16 @@ built upon two methods:</p>
 to the next state.</p></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is used by all of Flame’s <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementations.</p>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="pause-resuming-game-execution">
+<h1>Pause/Resuming game execution<a class="headerlink" href="#pause-resuming-game-execution" title="Permalink to this headline">¶</a></h1>
+<p>A Flame <code class="docutils literal notranslate"><span class="pre">Game</span></code> can be paused and resumed in two ways:</p>
+<ul class="simple">
+<li><p>With the use of the <code class="docutils literal notranslate"><span class="pre">pauseEngine</span></code> and <code class="docutils literal notranslate"><span class="pre">resumeEngine</span></code> methods.</p></li>
+<li><p>By changing the <code class="docutils literal notranslate"><span class="pre">paused</span></code> attribute.</p></li>
+</ul>
+<p>When pausing a Flame <code class="docutils literal notranslate"><span class="pre">Game</span></code>, the <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is effectively paused, meaning that no updates or new
+renders will happen until it is resumed.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="flutter-widgets-and-game-instances">
 <h1>Flutter Widgets and Game instances<a class="headerlink" href="#flutter-widgets-and-game-instances" title="Permalink to this headline">¶</a></h1>

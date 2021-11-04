@@ -371,8 +371,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#hitbox">
-   Hitbox
+  <a class="reference internal nav-link" href="#hashitboxes">
+   HasHitboxes
   </a>
  </li>
 </ul>
@@ -689,13 +689,13 @@ While the mouse movement is kept inside or outside, no events are fired and thos
 not propagated. Only when the state is changed the handlers are triggered.</p>
 </section>
 </section>
-<section id="hitbox">
-<h2>Hitbox<a class="headerlink" href="#hitbox" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code> mixin is used to make detection of gestures on top of your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s more
-accurate. Say that you have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you don’t
-want to register input that is in the corner of the image where the rock is not displayed. Then you
-can use the <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code> mixin to define a more accurate polygon for which the input should be within
-for the event to be counted on your component.</p>
+<section id="hashitboxes">
+<h2>HasHitboxes<a class="headerlink" href="#hashitboxes" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> mixin is used to make detection of gestures on top of your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s
+more accurate. Say that you have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you
+don’t want to register input that is in the corner of the image where the rock is not displayed.
+Then you can use the <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> mixin to define a more accurate polygon for which the input
+should be within for the event to be counted on your component.</p>
 <p>An example of you to use it can be seen
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/">here</a>.</p>
 </section>
