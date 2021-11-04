@@ -11,7 +11,8 @@ function main {
   git clone https://github.com/flame-engine/flame.git $tmp_flame_src
 
   cd $tmp_flame_src
-  list=`git tag | grep '^1.0.0' | tac`
+  list=$(git tag | grep '^1.0.0' | tac)
+  latest_version=$(head -n 1 <<< $list)
   cd ..
 
   while IFS= read -r line; do
@@ -21,7 +22,8 @@ function main {
 
   cp index_redirect.html docs/index.html
   cp index_redirect.html docs/404.html
-  git_push
+  sed -i "s/FLAME_VERSION/$latest_version/g" docs/index.html
+  #git_push
 
   rm -rf $tmp_flame_src
   echo "Successfully built the docs"
@@ -29,6 +31,7 @@ function main {
 
 function generate {
   version=$1
+  echo "Generating $version"
 
   cd $tmp_flame_src
   git checkout -f $version
@@ -55,8 +58,8 @@ function generate {
 function pre_process {
   cd ..
   if [ $version == 'main' ]; then
-    output="\ \ \ \ git:\n      url: https://github.com/flame-engine/flame.git\n      ref: main"
-    find . -name "*.md" -exec sed -i "/<VERSION>.*/a $output/" {} \;
+    output="\ \ \ \ git:\n      url: https://github.com/flame-engine/flame.git\n      ref: main\n      path: packages/flame"
+    find . -name "*.md" -exec sed -i "/<VERSION>.*/a $output" {} \;
     find . -name "*.md" -exec sed -i "s/ <VERSION>//" {} \;
   else
     find . -name "*.md" -exec sed -i "s/<VERSION>/$version/" {} \;
