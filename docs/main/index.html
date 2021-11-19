@@ -8,8 +8,8 @@
 
     <title>Getting Started! &#8212; Flame</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -40,7 +40,10 @@
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Structure" href="structure.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -70,7 +73,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption" role="heading">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Basic concepts
  </span>
@@ -112,7 +115,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Inputs
  </span>
@@ -134,7 +137,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Audio
  </span>
@@ -151,7 +154,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Rendering
  </span>
@@ -183,7 +186,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Other Modules
  </span>
@@ -324,7 +327,24 @@
   <a class="reference internal nav-link" href="#id1">
    Getting started
   </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#outside-of-the-scope-of-the-engine">
+   Outside of the scope of the engine
+  </a>
   <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#multiplayer-netcode">
+     Multiplayer (netcode)
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#external-assets">
+     External assets
+    </a>
+    <ul class="nav section-nav flex-column">
+    </ul>
+   </li>
   </ul>
  </li>
 </ul>
@@ -388,6 +408,35 @@ reach out, open issues, PRs and make suggestions.</p>
 <a class="reference external" href="https://github.com/flame-engine/awesome-flame#articles--tutorials">awesome flame repository</a>,
 It contains quite a lot of good tutorials and articles written by the community to get you started
 with Flame.</p>
+</section>
+<section id="outside-of-the-scope-of-the-engine">
+<h2>Outside of the scope of the engine<a class="headerlink" href="#outside-of-the-scope-of-the-engine" title="Permalink to this headline">¶</a></h2>
+<p>Games sometimes require complex feature sets depending on what the game is all about. And some of
+those feature sets are outside of the scope of the Flame Engine ecosystem, in this section you can find
+them, and also some recommendations of packages/services that can be used:</p>
+<section id="multiplayer-netcode">
+<h3>Multiplayer (netcode)<a class="headerlink" href="#multiplayer-netcode" title="Permalink to this headline">¶</a></h3>
+<p>Flame doesn’t bundle any network feature, which may be needed to write online multiplayer games.</p>
+<p>If you are building a multipler game, here are some recommendations of packages/services:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Allan-Nava/nakama-flutter">Nakama</a>: Nakama is an open-source server designed
+to power modern games and apps.</p></li>
+<li><p><a class="reference external" href="https://firebase.google.com/">Firebase</a>: Provides dozens of services that can be used to write
+simpler multiplayer experiences.</p></li>
+</ul>
+</section>
+<section id="external-assets">
+<h3>External assets<a class="headerlink" href="#external-assets" title="Permalink to this headline">¶</a></h3>
+<p>Flame doesn’t bundle any helpers to load assets from an external source (external storage or online
+sources).</p>
+<p>But most of Flame’s API can be loaded from concrete asset instances, for examples, <code class="docutils literal notranslate"><span class="pre">Sprite</span></code>s can be
+created from <code class="docutils literal notranslate"><span class="pre">dart:ui</span></code>s <code class="docutils literal notranslate"><span class="pre">Image</span></code> instaces, so the user can write custom code to load images from
+anywhere they need, and then load it into Flame’s classes.</p>
+<p>Here are some suggestions for http client packages:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pub.dev/packages/http">http</a>: A simple pacakage for perfoming http requests.</p></li>
+<li><p><a class="reference external" href="https://pub.dev/packages/dio">Dio</a>: A popular and powerful package for perfoming http requests.</p></li>
+</ul>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -398,6 +447,7 @@ with Flame.</p>
 </div>
 <div class="toctree-wrapper compound">
 </div>
+</section>
 </section>
 </section>
 
@@ -405,22 +455,15 @@ with Flame.</p>
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-     <div id="next">
-        <a class="right-next" href="structure.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Structure</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+    <a class='right-next' id="next-link" href="structure.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Structure</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
@@ -441,8 +484,7 @@ with Flame.</p>
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

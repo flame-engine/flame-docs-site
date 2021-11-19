@@ -8,8 +8,8 @@
 
     <title>Keyboard Input &#8212; Flame</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -41,7 +41,10 @@
     <link rel="next" title="Other inputs" href="other-inputs.html" />
     <link rel="prev" title="Gesture Input" href="gesture-input.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -71,7 +74,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption" role="heading">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Basic concepts
  </span>
@@ -113,7 +116,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Inputs
  </span>
@@ -135,7 +138,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Audio
  </span>
@@ -152,7 +155,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Rendering
  </span>
@@ -184,7 +187,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Other Modules
  </span>
@@ -356,21 +359,28 @@
 <h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
 <p>The keyboard API on flame relies on the
 <a class="reference external" href="https://api.flutter.dev/flutter/widgets/Focus-class.html">Flutter’s Focus widget</a>.</p>
-<p>To customize focus behavior, see <span class="xref myst">Controlling focus</span>.</p>
-<p>There are two ways a game can be sensitive to key strokes; at the game level and at a component level.
-For each we have a mixin that can me added to  <code class="docutils literal notranslate"><span class="pre">Game</span></code>s and <code class="docutils literal notranslate"><span class="pre">BaseComponent</span></code>s, respectively.</p>
+<p>To customize focus behavior, see <a class="reference internal" href="#controlling-focus"><span class="std std-doc">Controlling focus</span></a>.</p>
+<p>There are two ways a game can react to key strokes; at the game level and at a component level.
+For each we have a mixin that can me added to a <code class="docutils literal notranslate"><span class="pre">Game</span></code> or <code class="docutils literal notranslate"><span class="pre">Component</span></code> class.</p>
 <section id="receive-keyboard-events-in-a-game-level">
 <h3>Receive keyboard events in a game level<a class="headerlink" href="#receive-keyboard-events-in-a-game-level" title="Permalink to this headline">¶</a></h3>
 <p>To make a <code class="docutils literal notranslate"><span class="pre">Game</span></code> sub class sensitive to key stroke, mix it with <code class="docutils literal notranslate"><span class="pre">KeyboardEvents</span></code>.</p>
 <p>After that, it will be possible to override an <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> method.</p>
-<p>This method receives two parameters, first the <a class="reference external" href="https://api.flutter.dev/flutter/services/RawKeyEvent-class.html"><code class="docutils literal notranslate"><span class="pre">RawKeyEvent</span></code></a>
-that triggered the callback in the first place. The second is a set of the currently pressed <a class="reference external" href="https://api.flutter.dev/flutter/widgets/KeyEventResult-class.html"><code class="docutils literal notranslate"><span class="pre">LogicalKeyboardKey</span></code></a>.</p>
-<p>The return value should be a <a class="reference external" href="https://api.flutter.dev/flutter/widgets/KeyEventResult-class.html"><code class="docutils literal notranslate"><span class="pre">KeyEventResult</span></code></a>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">KeyEventResult.handled</span></code> will tell the framework that the key stroke was resolved inside of Flame and skip any other keyboard handler widgets apart of <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">KeyEventResult.ignored</span></code> will tell the framework to keep testing this event in any other keyboard handler widget apart of <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>. If the event is not resolved by any handler, the framework will trigger <code class="docutils literal notranslate"><span class="pre">SystemSoundType.alert</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">KeyEventResult.skipRemainingHandlers</span></code> is very similar to <code class="docutils literal notranslate"><span class="pre">.ignored</span></code>, apart from the fact that will skip any other handler widget and will straight up play the alert sound.</p>
+<p>This method receives two parameters, first the
+<a class="reference external" href="https://api.flutter.dev/flutter/services/RawKeyEvent-class.html"><code class="docutils literal notranslate"><span class="pre">RawKeyEvent</span></code></a>
+that triggers the callback in the first place. The second is a set of the currently pressed
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/KeyEventResult-class.html"><code class="docutils literal notranslate"><span class="pre">LogicalKeyboardKey</span></code></a>.</p>
+<p>The return value is a
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/KeyEventResult-class.html"><code class="docutils literal notranslate"><span class="pre">KeyEventResult</span></code></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">KeyEventResult.handled</span></code> will tell the framework that the key stroke was resolved inside of Flame
+and skip any other keyboard handler widgets apart of <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">KeyEventResult.ignored</span></code> will tell the framework to keep testing this event in any other keyboard
+handler widget apart of <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>. If the event is not resolved by any handler, the framework
+will trigger <code class="docutils literal notranslate"><span class="pre">SystemSoundType.alert</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">KeyEventResult.skipRemainingHandlers</span></code> is very similar to <code class="docutils literal notranslate"><span class="pre">.ignored</span></code>, apart from the fact that will
+skip any other handler widget and will straight up play the alert sound.</p>
 <p>Minimal example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">Game</span> <span class="kd">with</span> <span class="n">KeyboardEvents</span> <span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">KeyboardEvents</span> <span class="p">{</span>
   <span class="c1">// ...</span>
   <span class="nd">@override</span>
   <span class="n">KeyEventResult</span> <span class="n">onKeyEvent</span><span class="p">(</span>
@@ -399,24 +409,29 @@ that triggered the callback in the first place. The second is a set of the curre
 <section id="receive-keyboard-events-in-a-component-level">
 <h3>Receive keyboard events in a component level<a class="headerlink" href="#receive-keyboard-events-in-a-component-level" title="Permalink to this headline">¶</a></h3>
 <p>To receive keyboard events directly in components, there is the mixin <code class="docutils literal notranslate"><span class="pre">KeyboardHandler</span></code>.</p>
-<p>Similarly to <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> and <code class="docutils literal notranslate"><span class="pre">Draggable</span></code>, <code class="docutils literal notranslate"><span class="pre">KeyboardHandler</span></code> can be mixed into any <code class="docutils literal notranslate"><span class="pre">BaseComponent</span></code>
-subclass.</p>
+<p>Similarly to <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> and <code class="docutils literal notranslate"><span class="pre">Draggable</span></code>, <code class="docutils literal notranslate"><span class="pre">KeyboardHandler</span></code> can be mixed into any subclass of
+<code class="docutils literal notranslate"><span class="pre">Component</span></code>.</p>
 <p>KeyboardHandlers must only be added to games that are mixed with <code class="docutils literal notranslate"><span class="pre">HasKeyboardHandlerComponents</span></code>.</p>
 <blockquote>
-<div><p>⚠️ Attention: If <code class="docutils literal notranslate"><span class="pre">HasKeyboardHandlerComponents</span></code> is used, you must remove <code class="docutils literal notranslate"><span class="pre">KeyboardEvents</span></code>
+<div><p>⚠️ Note: If <code class="docutils literal notranslate"><span class="pre">HasKeyboardHandlerComponents</span></code> is used, you must remove <code class="docutils literal notranslate"><span class="pre">KeyboardEvents</span></code>
 from the game mixin list to avoid conflicts.</p>
 </div></blockquote>
-<p>After applying <code class="docutils literal notranslate"><span class="pre">HasKeyboardHandlerComponents</span></code>, it will be possible to override an <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> method.</p>
-<p>This method receives two parameters. First the <a class="reference external" href="https://api.flutter.dev/flutter/services/RawKeyEvent-class.html"><code class="docutils literal notranslate"><span class="pre">RawKeyEvent</span></code></a>
-that triggered the callback in the first place. The second is a set of the currently pressed <a class="reference external" href="https://api.flutter.dev/flutter/widgets/KeyEventResult-class.html"><code class="docutils literal notranslate"><span class="pre">LogicalKeyboardKey</span></code></a>s.</p>
-<p>The returned value should be <code class="docutils literal notranslate"><span class="pre">true</span></code> to allow the continuous propagation of the key event among other components.
-To not allow any other component to receive the event, return <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<p>After applying <code class="docutils literal notranslate"><span class="pre">KeyboardHandler</span></code>, it will be possible to override an <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> method.</p>
+<p>This method receives two parameters. First the
+<a class="reference external" href="https://api.flutter.dev/flutter/services/RawKeyEvent-class.html"><code class="docutils literal notranslate"><span class="pre">RawKeyEvent</span></code></a>
+that triggered the callback in the first place. The second is a set of the currently pressed
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/KeyEventResult-class.html"><code class="docutils literal notranslate"><span class="pre">LogicalKeyboardKey</span></code></a>s.</p>
+<p>The returned value should be <code class="docutils literal notranslate"><span class="pre">true</span></code> to allow the continuous propagation of the key event among other
+components. To not allow any other component to receive the event, return <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
 </section>
 <section id="controlling-focus">
 <h3>Controlling focus<a class="headerlink" href="#controlling-focus" title="Permalink to this headline">¶</a></h3>
-<p>On the widget level, it is possible to use the <a class="reference external" href="https://api.flutter.dev/flutter/widgets/FocusNode-class.html"><code class="docutils literal notranslate"><span class="pre">FocusNode</span></code></a> API to control whether the game is focused or not.</p>
+<p>On the widget level, it is possible to use the
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/FocusNode-class.html"><code class="docutils literal notranslate"><span class="pre">FocusNode</span></code></a> API to control whether
+the game is focused or not.</p>
 <p><code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> has an optional <code class="docutils literal notranslate"><span class="pre">focusNode</span></code> parameter that allow its focus to be controlled externally.</p>
-<p>By default <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> has its <code class="docutils literal notranslate"><span class="pre">autofocus</span></code> set to true, which means it will get focused once it is mounted. To override that behavior, set <code class="docutils literal notranslate"><span class="pre">autofocus</span></code> to false.</p>
+<p>By default <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> has its <code class="docutils literal notranslate"><span class="pre">autofocus</span></code> set to true, which means it will get focused once it is
+mounted. To override that behavior, set <code class="docutils literal notranslate"><span class="pre">autofocus</span></code> to false.</p>
 <p>For a more complete example see
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/keyboard.dart">here</a>.</p>
 </section>
@@ -427,31 +442,22 @@ To not allow any other component to receive the event, return <code class="docut
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="gesture-input.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Gesture Input</p>
-            </div>
-        </a>
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="gesture-input.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Gesture Input</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="other-inputs.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Other inputs</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="other-inputs.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Other inputs</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
@@ -472,8 +478,7 @@ To not allow any other component to receive the event, return <code class="docut
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

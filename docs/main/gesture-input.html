@@ -8,8 +8,8 @@
 
     <title>Gesture Input &#8212; Flame</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -41,7 +41,10 @@
     <link rel="next" title="Keyboard Input" href="keyboard-input.html" />
     <link rel="prev" title="Camera and Viewport" href="camera_and_viewport.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -71,7 +74,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption" role="heading">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Basic concepts
  </span>
@@ -113,7 +116,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Inputs
  </span>
@@ -135,7 +138,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Audio
  </span>
@@ -152,7 +155,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Rendering
  </span>
@@ -184,7 +187,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Other Modules
  </span>
@@ -543,7 +546,7 @@ transformations, this will be equal to the <code class="docutils literal notrans
 </section>
 <section id="tappable-draggable-and-hoverable-components">
 <h2>Tappable, Draggable and Hoverable components<a class="headerlink" href="#tappable-draggable-and-hoverable-components" title="Permalink to this headline">¶</a></h2>
-<p>Any component derived from <code class="docutils literal notranslate"><span class="pre">BaseComponent</span></code> (most components) can add the <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>, the
+<p>Any component derived from <code class="docutils literal notranslate"><span class="pre">Component</span></code> (most components) can add the <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>, the
 <code class="docutils literal notranslate"><span class="pre">Draggable</span></code>, and/or the <code class="docutils literal notranslate"><span class="pre">Hoverable</span></code> mixins to handle taps, drags and hovers on the component.</p>
 <p>All overridden methods return a boolean to control if the event should be passed down further along
 to components underneath it. So say that you only want your top visible component to receive a tap
@@ -554,7 +557,7 @@ you should return <code class="docutils literal notranslate"><span class="pre">t
 children tree and then passed further down until a method returns <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
 <section id="tappable-components">
 <h3>Tappable components<a class="headerlink" href="#tappable-components" title="Permalink to this headline">¶</a></h3>
-<p>By adding the <code class="docutils literal notranslate"><span class="pre">HasTappableComponents</span></code> mixin to your game, and using the mixin <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> on your
+<p>By adding the <code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> mixin to your game, and using the mixin <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> on your
 components, you can override the following methods on your components:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="n">onTapCancel</span><span class="p">();</span>
 <span class="kt">bool</span> <span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span> <span class="n">event</span><span class="p">);</span>
@@ -587,20 +590,20 @@ components, you can override the following methods on your components:</p>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasTappableComponents</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasTappables</span> <span class="p">{</span>
   <span class="n">MyGame</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">add</span><span class="p">(</span><span class="n">TappableComponent</span><span class="p">());</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>Note</strong>: <code class="docutils literal notranslate"><span class="pre">HasTappableComponents</span></code> uses an advanced gesture detector under the hood and as explained
+<p><strong>Note</strong>: <code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> uses an advanced gesture detector under the hood and as explained
 further up on this page it shouldn’t be used alongside basic detectors.</p>
 </section>
 <section id="draggable-components">
 <h3>Draggable components<a class="headerlink" href="#draggable-components" title="Permalink to this headline">¶</a></h3>
 <p>Just like with <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>, Flame offers a mixin for <code class="docutils literal notranslate"><span class="pre">Draggable</span></code>.</p>
-<p>By adding the <code class="docutils literal notranslate"><span class="pre">HasDraggableComponents</span></code> mixin to your game, and by using the mixin <code class="docutils literal notranslate"><span class="pre">Draggable</span></code> on
+<p>By adding the <code class="docutils literal notranslate"><span class="pre">HasDraggables</span></code> mixin to your game, and by using the mixin <code class="docutils literal notranslate"><span class="pre">Draggable</span></code> on
 your components, they can override the simple methods that enable an easy to use drag api on your
 components.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="kt">bool</span> <span class="n">onDragStart</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">Vector2</span> <span class="n">startPosition</span><span class="p">);</span>
@@ -656,21 +659,21 @@ multi-drag):</p>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasDraggableComponents</span> <span class="p">{</span>
+<span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasDraggables</span> <span class="p">{</span>
   <span class="n">MyGame</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">add</span><span class="p">(</span><span class="n">DraggableComponent</span><span class="p">());</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>Note</strong>: <code class="docutils literal notranslate"><span class="pre">HasDraggableComponents</span></code> uses an advanced gesture detector under the hood and as explained
+<p><strong>Note</strong>: <code class="docutils literal notranslate"><span class="pre">HasDraggables</span></code> uses an advanced gesture detector under the hood and as explained
 further up on this page, shouldn’t be used alongside basic detectors.</p>
 </section>
 <section id="hoverable-components">
 <h3>Hoverable components<a class="headerlink" href="#hoverable-components" title="Permalink to this headline">¶</a></h3>
 <p>Just like the others, this mixin allows for easy wiring of your component to listen to hover states
 and events.</p>
-<p>By adding the <code class="docutils literal notranslate"><span class="pre">HasHoverableComponents</span></code> mixin to your base game, and by using the mixin <code class="docutils literal notranslate"><span class="pre">Hoverable</span></code> on
+<p>By adding the <code class="docutils literal notranslate"><span class="pre">HasHoverables</span></code> mixin to your base game, and by using the mixin <code class="docutils literal notranslate"><span class="pre">Hoverable</span></code> on
 your components, they get an <code class="docutils literal notranslate"><span class="pre">isHovered</span></code> field and a couple of methods (<code class="docutils literal notranslate"><span class="pre">onHoverStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onHoverEnd</span></code>) that
 you can override if you want to listen to the events.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="kt">bool</span> <span class="n">isHovered</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
@@ -705,31 +708,22 @@ should be within for the event to be counted on your component.</p>
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="camera_and_viewport.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Camera and Viewport</p>
-            </div>
-        </a>
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="camera_and_viewport.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Camera and Viewport</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="keyboard-input.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Keyboard Input</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="keyboard-input.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Keyboard Input</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
@@ -750,8 +744,7 @@ should be within for the event to be counted on your component.</p>
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

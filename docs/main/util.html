@@ -8,8 +8,8 @@
 
     <title>Util &#8212; Flame</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -41,7 +41,10 @@
     <link rel="next" title="Widgets" href="widgets.html" />
     <link rel="prev" title="Layers" href="layers.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -71,7 +74,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption" role="heading">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Basic concepts
  </span>
@@ -113,7 +116,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Inputs
  </span>
@@ -135,7 +138,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Audio
  </span>
@@ -152,7 +155,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Rendering
  </span>
@@ -184,7 +187,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Other Modules
  </span>
@@ -482,10 +485,6 @@ events.</p>
   <span class="kd">final</span> <span class="n">TextConfig</span> <span class="n">textConfig</span> <span class="o">=</span> <span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span> <span class="k">const</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">));</span>
   <span class="kd">final</span> <span class="n">countdown</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
 
-  <span class="n">MyGame</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">countdown</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
-  <span class="p">}</span>
-
   <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">countdown</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
@@ -522,10 +521,9 @@ events.</p>
   <span class="n">MyGame</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">interval</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span>
       <span class="m">1</span><span class="p">,</span>
-      <span class="nl">callback:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">elapsedSecs</span> <span class="o">+=</span> <span class="m">1</span><span class="p">,</span>
+      <span class="nl">onTick:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">elapsedSecs</span> <span class="o">+=</span> <span class="m">1</span><span class="p">,</span>
       <span class="nl">repeat:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="p">);</span>
-    <span class="n">interval</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
   <span class="p">}</span>
 
   <span class="nd">@override</span>
@@ -550,12 +548,9 @@ events.</p>
   <span class="n">MyFlameGame</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">add</span><span class="p">(</span>
       <span class="n">TimerComponent</span><span class="p">(</span>
-        <span class="n">Timer</span><span class="p">(</span>
-          <span class="m">10</span><span class="p">,</span>
-          <span class="nl">callback:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="p">(</span><span class="s2">&quot;10 seconds elapsed&quot;</span><span class="p">),</span>
-          <span class="nl">repeat:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="p">)</span>
-        <span class="p">..</span><span class="n">start</span><span class="p">()</span>
+        <span class="nl">period:</span> <span class="m">10</span><span class="p">,</span>
+        <span class="nl">repeat:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="nl">onTick:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="p">(</span><span class="s1">&#39;10 seconds elapsed&#39;</span><span class="p">),</span>
       <span class="p">)</span>
     <span class="p">);</span>
   <span class="p">}</span>
@@ -717,31 +712,22 @@ argument, or by passing x y z doubles.</p></li>
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="layers.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Layers</p>
-            </div>
-        </a>
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="layers.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Layers</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="widgets.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Widgets</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="widgets.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Widgets</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
@@ -762,8 +748,7 @@ argument, or by passing x y z doubles.</p></li>
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>

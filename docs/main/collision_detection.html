@@ -8,8 +8,8 @@
 
     <title>Collision detection &#8212; Flame</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -27,7 +27,7 @@
     <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
@@ -41,7 +41,10 @@
     <link rel="next" title="Effects" href="effects.html" />
     <link rel="prev" title="Supported Platforms" href="platforms.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
     
   </head>
   <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
@@ -71,7 +74,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption" role="heading">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Basic concepts
  </span>
@@ -113,7 +116,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Inputs
  </span>
@@ -135,7 +138,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Audio
  </span>
@@ -152,7 +155,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Rendering
  </span>
@@ -184,7 +187,7 @@
   </a>
  </li>
 </ul>
-<p class="caption" role="heading">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Other Modules
  </span>
@@ -419,7 +422,7 @@
                 
   <section class="tex2jax_ignore mathjax_ignore" id="collision-detection">
 <h1>Collision detection<a class="headerlink" href="#collision-detection" title="Permalink to this headline">¶</a></h1>
-<p>If you want to have a full blown physics engine in your game we recommend that you use
+<p>If you want to have a full-blown physics engine in your game we recommend that you use
 Forge2D by adding <a class="reference external" href="https://github.com/flame-engine/flame_forge2d">flame_forge2d</a> as a dependency.
 But if you have a simpler use-case and just want to check for collisions of components and improve
 the accuracy of gestures, Flame’s built-in collision detection will serve you very well.</p>
@@ -449,6 +452,8 @@ when for example two position components have intersecting hitboxes.</p>
 that overshoot each other into account, this could happen when they either move too fast or <code class="docutils literal notranslate"><span class="pre">update</span></code>
 being called with a large delta time (for example if your app is not in the foreground). This
 behaviour is called tunneling, if you want to read more about it.</p>
+<p>Also note that the collision detection system doesn’t work properly if you scale ancestors of the
+component that is <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>.</p>
 <section id="mixins">
 <h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this headline">¶</a></h2>
 <section id="hashitboxes">
@@ -485,7 +490,7 @@ rectangular shape that fills the size of your component you can simply do
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code> added to the <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> here is a diamond shape(◇).
-More about how the different shapes are defined in the <span class="xref myst">Shapes</span> section.</p>
+More about how the different shapes are defined in the <a class="reference internal" href="#shapes"><span class="std std-doc">Shapes</span></a> section.</p>
 <p>Remember that you can add as many <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code>s as you want to your <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> to make up more
 complex hitboxes. For example a snowman with a hat could be represented by three <code class="docutils literal notranslate"><span class="pre">HitboxCircle</span></code>s and
 a <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code> as its hat.</p>
@@ -521,7 +526,7 @@ have both implemented the <code class="docutils literal notranslate"><span class
 implemented. The same goes for the <code class="docutils literal notranslate"><span class="pre">onCollisionEnd</span></code> method, which is called when two components or
 shapes that were previously colliding no longer colliding with each other.</p>
 <p>If you want to check collisions with the screen edges, as we do in the example above, you can use
-the predefined <span class="xref myst">ScreenCollidable</span> class and since that one also is a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
+the predefined <a class="reference internal" href="#screencollidable"><span class="std std-doc">ScreenCollidable</span></a> class and since that one also is a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
 you can implement your own <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method for that class if needed.</p>
 <section id="collidabletype">
 <h4>CollidableType<a class="headerlink" href="#collidabletype" title="Permalink to this headline">¶</a></h4>
@@ -576,8 +581,7 @@ with it. If you so want it to be notified, then you need to extend it and implem
 <p>A Shape is the base class for representing a scalable geometrical shape. The shapes have different
 ways of defining how they look, but they all have a size and angle that can be modified and the
 shape definition will scale or rotate the shape accordingly.</p>
-<p>There are currently three shapes: <span class="xref myst">Polygon</span>, <span class="xref myst">Rectangle</span> and
-<span class="xref myst">Cirlce</span>.</p>
+<p>There are currently three shapes: <a class="reference internal" href="#polygon"><span class="std std-doc">Polygon</span></a>, <a class="reference internal" href="#rectangle"><span class="std std-doc">Rectangle</span></a> and <a class="reference internal" href="#circle"><span class="std std-doc">Circle</span></a>.</p>
 </section>
 <section id="hitboxshape">
 <h3>HitboxShape<a class="headerlink" href="#hitboxshape" title="Permalink to this headline">¶</a></h3>
@@ -592,10 +596,10 @@ only ones that you need to use.</p>
 the polygon needs to be convex. So always use convex polygons or you will most likely run into
 problems if you don’t really know what you are doing. It should also be noted that you should always
 define the vertices in your polygon in a clockwise order.</p>
-<p>In comparision to the normal <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>, there is only one way to create a <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code>, the only
+<p>In comparison to the normal <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>, there is only one way to create a <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code>, the only
 mandatory argument is a list of <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> which defines how your polygon should look, but not the
 size or position for it (since that sill be defined by the component that you attach it to).
-For example you could create a diamond like in the <span class="xref myst">Collidable</span> example like this:</p>
+For example you could create a diamond like in the <a class="reference internal" href="#collidable"><span class="std std-doc">Collidable</span></a> example like this:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">HitboxPolygon</span><span class="p">([</span>
   <span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span>  <span class="c1">// Middle of top wall</span>
   <span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>  <span class="c1">// Middle of right wall</span>
@@ -610,7 +614,7 @@ polygon can be made in an infinite number of ways inside of a bounding box you h
 definition in the constructor for this shape.</p>
 <p>The vectors in the example defines percentages of the length from the center to the edge of the
 screen in both x and y axis, so for our first item in our list (<code class="docutils literal notranslate"><span class="pre">Vector2(0,</span> <span class="pre">1)</span></code>) we are pointing on
-on the middle of the top wall of the bounding box, since the cordinate system here is defined from
+on the middle of the top wall of the bounding box, since the coordinate system here is defined from
 the center of the polygon.</p>
 <p><img alt="An example of how to define a polygon shape" src="_images/polygon_shape.png" /></p>
 <p>In the image you can see how the polygon shape formed by the purple arrows is defined by the red
@@ -665,10 +669,12 @@ you can use the optional arguments <code class="docutils literal notranslate"><s
 </section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
-<p><a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Circles">https://examples.flame-engine.org/#/Collision Detection_Circles</a>
-<a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Multiple%20shapes">https://examples.flame-engine.org/#/Collision Detection_Multiple shapes</a>
-<a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Shapes%20without%20components">https://examples.flame-engine.org/#/Collision Detection_Shapes without components</a>
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collision_detection">https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collision_detection</a></p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Circles">https://examples.flame-engine.org/#/Collision Detection_Circles</a></p></li>
+<li><p><a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Multiple%20shapes">https://examples.flame-engine.org/#/Collision Detection_Multiple shapes</a></p></li>
+<li><p><a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Shapes%20without%20components">https://examples.flame-engine.org/#/Collision Detection_Shapes without components</a></p></li>
+<li><p><a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collision_detection">https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collision_detection</a></p></li>
+</ul>
 </section>
 </section>
 
@@ -676,31 +682,22 @@ you can use the optional arguments <code class="docutils literal notranslate"><s
               </div>
               
         
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="platforms.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Supported Platforms</p>
-            </div>
-        </a>
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="platforms.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Supported Platforms</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="effects.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Effects</p>
     </div>
-     <div id="next">
-        <a class="right-next" href="effects.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Effects</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
+    <i class="fas fa-angle-right"></i>
+    </a>
 </div>
         
         </div>
@@ -721,8 +718,7 @@ you can use the optional arguments <code class="docutils literal notranslate"><s
       </div>
     </div>
   
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  
   </body>
 </html>
