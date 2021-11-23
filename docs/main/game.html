@@ -390,14 +390,17 @@ screen (it defaults to [0,0] like a regular <code class="docutils literal notran
 
   <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">onGameResize</span><span class="p">(</span><span class="n">Vector2</span> <span class="n">gameSize</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// We don&#39;t need to set the position in the constructor, we can it directly here since it will</span>
+    <span class="k">super</span><span class="p">.</span><span class="n">onGameResize</span><span class="p">(</span><span class="n">gameSize</span><span class="p">);</span>
+    <span class="c1">// We don&#39;t need to set the position in the constructor, we can set it directly here since it will</span>
     <span class="c1">// be called once before the first time it is rendered.</span>
     <span class="n">position</span> <span class="o">=</span> <span class="n">gameSize</span> <span class="o">/</span> <span class="m">2</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
-  <span class="n">MyGame</span><span class="p">()</span> <span class="p">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+    <span class="kd">await</span> <span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
     <span class="n">add</span><span class="p">(</span><span class="n">MyCrate</span><span class="p">());</span>
   <span class="p">}</span>
 <span class="p">}</span>

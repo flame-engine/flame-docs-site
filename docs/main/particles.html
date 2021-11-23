@@ -399,7 +399,7 @@ the <code class="docutils literal notranslate"><span class="pre">Particle</span>
   <span class="c1">// which maps Component lifecycle hooks to Particle ones</span>
   <span class="c1">// and embeds a trigger for removing the component.</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
-    <span class="nl">particle:</span> <span class="n">CircleParticle</span><span class="p">(),</span>
+    <span class="n">CircleParticle</span><span class="p">(),</span>
   <span class="p">),</span>
 <span class="p">);</span>
 </pre></div>
@@ -430,7 +430,7 @@ needed.</p>
 <span class="c1">//       &gt; CircleParticle</span>
 <span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
-    <span class="nl">particle:</span> <span class="n">Particle</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
+    <span class="n">Particle</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
       <span class="nl">count:</span> <span class="m">10</span><span class="p">,</span>
       <span class="nl">generator:</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">AcceleratedParticle</span><span class="p">(</span>
         <span class="nl">acceleration:</span> <span class="n">randomVector2</span><span class="p">(),</span>
@@ -447,13 +447,12 @@ needed.</p>
 <span class="c1">// Expresses the same behavior as above, but with a more fluent API.</span>
 <span class="c1">// Only Particles with SingleChildParticle mixin can be used as chainable behaviors.</span>
 <span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-  <span class="n">Particle</span>
-    <span class="p">.</span><span class="n">generate</span><span class="p">(</span>
+  <span class="n">ParticleComponent</span><span class="p">(</span>
+    <span class="n">Particle</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
       <span class="nl">count:</span> <span class="m">10</span><span class="p">,</span>
-      <span class="nl">generator:</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">CircleParticle</span><span class="p">(</span><span class="nl">paint:</span> <span class="n">Paint</span><span class="p">()..</span><span class="n">color</span> <span class="o">=</span> <span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">)</span>
-                    <span class="p">.</span><span class="n">accelerating</span><span class="p">(</span><span class="n">randomVector2</span><span class="p">())</span>
-      <span class="p">)</span>
-      <span class="p">.</span><span class="n">asComponent</span><span class="p">(),</span>
+      <span class="nl">generator:</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">pt</span><span class="p">.</span><span class="n">CircleParticle</span><span class="p">(</span><span class="nl">paint:</span> <span class="n">Paint</span><span class="p">()..</span><span class="n">color</span> <span class="o">=</span> <span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">)</span>
+    <span class="p">)</span>
+  <span class="p">)</span>
 <span class="p">);</span>
 
 <span class="c1">// Computed Particle.</span>
@@ -461,30 +460,30 @@ needed.</p>
 <span class="c1">// All the behaviors are defined explicitly. Offers greater flexibility</span>
 <span class="c1">// compared to built-in behaviors.</span>
 <span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-  <span class="n">Particle</span>
-    <span class="p">.</span><span class="n">generate</span><span class="p">(</span>
-      <span class="nl">count:</span> <span class="m">10</span><span class="p">,</span>
-      <span class="nl">generator:</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">final</span> <span class="n">position</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">();</span>
-        <span class="kd">final</span> <span class="n">speed</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">();</span>
-        <span class="kd">final</span> <span class="n">acceleration</span> <span class="o">=</span> <span class="n">randomVector2</span><span class="p">();</span>
-        <span class="kd">final</span> <span class="n">paint</span> <span class="o">=</span> <span class="n">Paint</span><span class="p">()..</span><span class="n">color</span> <span class="o">=</span> <span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">;</span>
-
-        <span class="k">return</span> <span class="n">ComputedParticle</span><span class="p">(</span>
-          <span class="nl">renderer:</span> <span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="p">{</span>
-            <span class="n">speed</span> <span class="o">+=</span> <span class="n">acceleration</span><span class="p">;</span>
-            <span class="n">position</span> <span class="o">+=</span> <span class="n">speed</span><span class="p">;</span>
-            <span class="n">canvas</span><span class="p">.</span><span class="n">drawCircle</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="m">10</span><span class="p">,</span> <span class="n">paint</span><span class="p">);</span>
-          <span class="p">}</span>
+  <span class="n">ParticleComponent</span><span class="p">(</span>
+      <span class="n">Particle</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
+        <span class="nl">count:</span> <span class="m">10</span><span class="p">,</span>
+        <span class="nl">generator:</span> <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="p">{</span>
+          <span class="n">Vector2</span> <span class="n">position</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">();</span>
+          <span class="n">Vector2</span> <span class="n">speed</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">();</span>
+          <span class="kd">final</span> <span class="n">acceleration</span> <span class="o">=</span> <span class="n">randomVector2</span><span class="p">();</span>
+          <span class="kd">final</span> <span class="n">paint</span> <span class="o">=</span> <span class="n">Paint</span><span class="p">()..</span><span class="n">color</span> <span class="o">=</span> <span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">;</span>
+          
+          <span class="k">return</span> <span class="n">ComputedParticle</span><span class="p">(</span>
+            <span class="nl">renderer:</span> <span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="p">{</span>
+              <span class="n">speed</span> <span class="o">+=</span> <span class="n">acceleration</span><span class="p">;</span>
+              <span class="n">position</span> <span class="o">+=</span> <span class="n">speed</span><span class="p">;</span>
+              <span class="n">canvas</span><span class="p">.</span><span class="n">drawCircle</span><span class="p">(</span><span class="n">Offset</span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">),</span> <span class="m">1</span><span class="p">,</span> <span class="n">paint</span><span class="p">);</span>
+            <span class="p">}</span>
         <span class="p">);</span>
       <span class="p">}</span>
     <span class="p">)</span>
-    <span class="p">.</span><span class="n">asComponent</span><span class="p">()</span>
-<span class="p">)</span>
+  <span class="p">)</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>You can find more examples of how to use different built-in particles in various combinations
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/utils/particles.dart">here</a>.</p>
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/particles_example.dart">here</a>.</p>
 <section id="lifecycle">
 <h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline">¶</a></h2>
 <p>A behavior common to all <code class="docutils literal notranslate"><span class="pre">Particle</span></code>s is that all of them accept a <code class="docutils literal notranslate"><span class="pre">lifespan</span></code> argument. This value is
@@ -509,7 +508,7 @@ getter, which returns a value between <code class="docutils literal notranslate"
 as the <code class="docutils literal notranslate"><span class="pre">value</span></code> property of the <code class="docutils literal notranslate"><span class="pre">AnimationController</span></code> class in Flutter.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">particle</span> <span class="o">=</span> <span class="n">Particle</span><span class="p">(</span><span class="nl">lifespan:</span> <span class="m">2.0</span><span class="p">);</span>
 
-<span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">ParticleComponent</span><span class="p">(</span><span class="nl">particle:</span> <span class="n">particle</span><span class="p">));</span>
+<span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">ParticleComponent</span><span class="p">(</span><span class="n">particle</span><span class="p">));</span>
 
 <span class="c1">// Will print values from 0 to 1 with step of .1: 0, 0.1, 0.2 ... 0.9, 1.0.</span>
 <span class="n">Timer</span><span class="p">.</span><span class="n">periodic</span><span class="p">(</span><span class="n">duration</span> <span class="o">*</span> <span class="p">.</span><span class="m">1</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="p">(</span><span class="n">particle</span><span class="p">.</span><span class="n">progress</span><span class="p">));</span>
@@ -545,7 +544,7 @@ where change of position is required. Same effect could be achieved by translati
 layer.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
-    <span class="nl">particle:</span> <span class="n">TranslatedParticle</span><span class="p">(</span>
+    <span class="n">TranslatedParticle</span><span class="p">(</span>
       <span class="c1">// Will translate the child Particle effect to the center of game canvas.</span>
       <span class="nl">offset:</span> <span class="n">game</span><span class="p">.</span><span class="n">size</span> <span class="o">/</span> <span class="m">2</span><span class="p">,</span>
       <span class="nl">child:</span> <span class="n">Particle</span><span class="p">(),</span>
@@ -561,11 +560,14 @@ layer.</p>
 <code class="docutils literal notranslate"><span class="pre">Curve</span></code> via <code class="docutils literal notranslate"><span class="pre">CurvedParticle</span></code>.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
-    <span class="nl">particle:</span> <span class="n">MovingParticle</span><span class="p">(</span>
+    <span class="n">MovingParticle</span><span class="p">(</span>
       <span class="c1">// Will move from corner to corner of the game canvas.</span>
       <span class="nl">from:</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">(),</span>
       <span class="nl">to:</span> <span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">,</span>
-      <span class="nl">child:</span> <span class="n">Particle</span><span class="p">(),</span>
+      <span class="nl">child:</span> <span class="n">CircleParticle</span><span class="p">(</span>
+        <span class="nl">radius:</span> <span class="m">2.0</span><span class="p">,</span>
+        <span class="nl">paint:</span> <span class="n">Paint</span><span class="p">()..</span><span class="n">color</span> <span class="o">=</span> <span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">,</span>
+      <span class="p">),</span>
     <span class="p">),</span>
   <span class="p">),</span>
 <span class="p">);</span>
@@ -579,19 +581,22 @@ layer.</p>
 you can think of as vectors. It works especially well for physics-based “bursts”, but it is not
 limited to that. Unit of the <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> value is <em>logical px/s</em>. So a speed of <code class="docutils literal notranslate"><span class="pre">Vector2(0,</span> <span class="pre">100)</span></code> will
 move a child <code class="docutils literal notranslate"><span class="pre">Particle</span></code> by 100 logical pixels of the device every second of game time.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">rng</span> <span class="o">=</span> <span class="n">Random</span><span class="p">();</span>
-<span class="n">Vector2</span> <span class="n">randomVector2</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="n">random</span><span class="p">)</span> <span class="o">-</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="n">rng</span><span class="p">))</span> <span class="o">*</span> <span class="m">100</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">rnd</span> <span class="o">=</span> <span class="n">Random</span><span class="p">();</span>
+<span class="n">Vector2</span> <span class="n">randomVector2</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="n">rnd</span><span class="p">)</span> <span class="o">-</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="n">rnd</span><span class="p">))</span> <span class="o">*</span> <span class="m">100</span><span class="p">;</span>
 
 <span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
-    <span class="nl">particle:</span> <span class="n">AcceleratedParticle</span><span class="p">(</span>
+    <span class="n">AcceleratedParticle</span><span class="p">(</span>
       <span class="c1">// Will fire off in the center of game canvas</span>
-      <span class="nl">position:</span> <span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">center</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">()),</span>
+      <span class="nl">position:</span> <span class="n">game</span><span class="p">.</span><span class="n">canvasSize</span><span class="o">/</span><span class="m">2</span><span class="p">,</span>
       <span class="c1">// With random initial speed of Vector2(-100..100, 0..-100)</span>
       <span class="nl">speed:</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">rnd</span><span class="p">.</span><span class="n">nextDouble</span><span class="p">()</span> <span class="o">*</span> <span class="m">200</span> <span class="o">-</span> <span class="m">100</span><span class="p">,</span> <span class="o">-</span><span class="n">rnd</span><span class="p">.</span><span class="n">nextDouble</span><span class="p">()</span> <span class="o">*</span> <span class="m">100</span><span class="p">),</span>
       <span class="c1">// Accelerating downwards, simulating &quot;gravity&quot;</span>
-      <span class="nl">speed:</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">100</span><span class="p">),</span>
-      <span class="nl">child:</span> <span class="n">Particle</span><span class="p">(),</span>
+      <span class="c1">// speed: Vector2(0, 100),</span>
+      <span class="nl">child:</span> <span class="n">CircleParticle</span><span class="p">(</span>
+        <span class="nl">radius:</span> <span class="m">2.0</span><span class="p">,</span>
+        <span class="nl">paint:</span> <span class="n">Paint</span><span class="p">()..</span><span class="n">color</span> <span class="o">=</span> <span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">,</span>
+      <span class="p">),</span>
     <span class="p">),</span>
   <span class="p">),</span>
 <span class="p">);</span>
@@ -605,7 +610,7 @@ conjunction with <code class="docutils literal notranslate"><span class="pre">Tr
 desired positioning.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
-    <span class="nl">particle:</span> <span class="n">CircleParticle</span><span class="p">(</span>
+    <span class="n">CircleParticle</span><span class="p">(</span>
       <span class="nl">radius:</span> <span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span> <span class="o">/</span> <span class="m">2</span><span class="p">,</span>
       <span class="nl">paint:</span> <span class="n">Paint</span><span class="p">()..</span><span class="n">color</span> <span class="o">=</span> <span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">withOpacity</span><span class="p">(.</span><span class="m">5</span><span class="p">),</span>
     <span class="p">),</span>
@@ -619,7 +624,7 @@ desired positioning.</p>
 <p>Allows you to embed a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> into your particle effects.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
-  <span class="nl">particle:</span> <span class="n">SpriteParticle</span><span class="p">(</span>
+    <span class="n">SpriteParticle</span><span class="p">(</span>
       <span class="nl">sprite:</span> <span class="n">Sprite</span><span class="p">(</span><span class="s1">&#39;sprite.png&#39;</span><span class="p">),</span>
       <span class="nl">size:</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">64</span><span class="p">,</span> <span class="m">64</span><span class="p">),</span>
     <span class="p">),</span>
@@ -643,7 +648,7 @@ desired positioning.</p>
 
 <span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
-    <span class="nl">particle:</span> <span class="n">ImageParticle</span><span class="p">(</span>
+    <span class="n">ImageParticle</span><span class="p">(</span>
       <span class="nl">size:</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">24</span><span class="p">),</span>
       <span class="nl">image:</span> <span class="n">image</span><span class="p">,</span>
     <span class="p">);</span>
@@ -664,7 +669,7 @@ it’s fully played during the <code class="docutils literal notranslate"><span 
 
 <span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
-    <span class="nl">particle:</span> <span class="n">AnimationParticle</span><span class="p">(</span>
+    <span class="n">AnimationParticle</span><span class="p">(</span>
       <span class="nl">animation:</span> <span class="n">spritesheet</span><span class="p">.</span><span class="n">createAnimation</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="nl">stepTime:</span> <span class="m">0.1</span><span class="p">),</span>
     <span class="p">);</span>
   <span class="p">),</span>
@@ -682,7 +687,7 @@ to the <code class="docutils literal notranslate"><span class="pre">game</span><
 
 <span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
-    <span class="nl">particle:</span> <span class="n">ComponentParticle</span><span class="p">(</span>
+    <span class="n">ComponentParticle</span><span class="p">(</span>
       <span class="nl">component:</span> <span class="n">longLivingRect</span>
     <span class="p">);</span>
   <span class="p">),</span>
@@ -720,7 +725,7 @@ propagates the <code class="docutils literal notranslate"><span class="pre">upda
 <span class="c1">// Somewhere in game</span>
 <span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
-    <span class="nl">particle:</span> <span class="n">FlareParticle</span><span class="p">(</span><span class="nl">flare:</span> <span class="n">flareAnimation</span><span class="p">),</span>
+    <span class="n">FlareParticle</span><span class="p">(</span><span class="nl">flare:</span> <span class="n">flareAnimation</span><span class="p">),</span>
   <span class="p">),</span>
 <span class="p">);</span>
 </pre></div>
@@ -739,7 +744,7 @@ on each frame to perform necessary computations and render something to the <cod
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
     <span class="c1">// Renders a circle which gradually changes its color and size during the particle lifespan.</span>
-    <span class="nl">particle:</span> <span class="n">ComputedParticle</span><span class="p">(</span>
+    <span class="n">ComputedParticle</span><span class="p">(</span>
       <span class="nl">renderer:</span> <span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">particle</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">canvas</span><span class="p">.</span><span class="n">drawCircle</span><span class="p">(</span>
         <span class="n">Offset</span><span class="p">.</span><span class="n">zero</span><span class="p">,</span>
         <span class="n">particle</span><span class="p">.</span><span class="n">progress</span> <span class="o">*</span> <span class="m">10</span><span class="p">,</span>
