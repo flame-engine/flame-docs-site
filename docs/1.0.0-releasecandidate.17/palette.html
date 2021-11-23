@@ -1,0 +1,436 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Palette &#8212; Flame</title>
+    
+  <link href="_static/css/theme.css" rel="stylesheet">
+  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+
+    
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/versions.js"></script>
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Particles" href="particles.html" />
+    <link rel="prev" title="Text Rendering" href="text.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo_flame.png" class="logo" alt="logo">
+      
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Basic concepts
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="structure.html">
+   File structure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="game.html">
+   FlameGame
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="components.html">
+   Components
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="platforms.html">
+   Platforms
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="collision_detection.html">
+   Collision detection
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="effects.html">
+   Effects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="camera_and_viewport.html">
+   Camera &amp; Viewport
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Inputs
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="gesture-input.html">
+   Gesture input
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="keyboard-input.html">
+   Keyboard input
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="other-inputs.html">
+   Other inputs
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Audio
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="audio.html">
+   General audio
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="bgm.html">
+   Background music
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Rendering
+ </span>
+</p>
+<ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="images.html">
+   Images, sprites and animations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="text.html">
+   Text rendering
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Colors and palette
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="particles.html">
+   Particles
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="layers.html">
+   Layers
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Other Modules
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="util.html">
+   Util
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="widgets.html">
+   Widgets
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="forge2d.html">
+   Forge2D
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="oxygen.html">
+   Oxygen
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="tiled.html">
+   Tiled
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="debug.html">
+   Debugging
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="splash_screen.html">
+   Splash screen
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/palette.md.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/flame-engine/flame"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        <a class="edit-button" href="https://github.com/flame-engine/flame/edit/main/doc/palette.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <section class="tex2jax_ignore mathjax_ignore" id="palette">
+<h1>Palette<a class="headerlink" href="#palette" title="Permalink to this headline">¶</a></h1>
+<p>Throughout your game you are going to need to use colors in lots of places. There are two classes on
+<code class="docutils literal notranslate"><span class="pre">dart:ui</span></code> that can be used, <code class="docutils literal notranslate"><span class="pre">Color</span></code> and <code class="docutils literal notranslate"><span class="pre">Paint</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Color</span></code> class represents a ARGB color in a hexadecimal integer
+format. So to create a <code class="docutils literal notranslate"><span class="pre">Color</span></code> instance, you just need to pass the color as an integer in the ARGB
+format.</p>
+<p>You can use Dart’s hexadecimal notation to make it really easy; for instance: <code class="docutils literal notranslate"><span class="pre">0xFF00FF00</span></code> is fully
+opaque green (the “mask” would be <code class="docutils literal notranslate"><span class="pre">0xAARRGGBB</span></code>).</p>
+<p><strong>Note</strong>: The first two hexadecimal digits are for
+the alpha channel (transparency), unlike on regular (non-A) RGB. The max(FF = 255) for the two first
+digits means fully opaque, and the min (00 = 0) means fully transparent.</p>
+<p>In the Material Flutter package there is a <code class="docutils literal notranslate"><span class="pre">Colors</span></code> class that provides common colors as constants:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;package:flutter/material.dart&#39;</span> <span class="k">show</span> <span class="n">Colors</span><span class="p">;</span>
+
+<span class="k">const</span> <span class="n">black</span> <span class="o">=</span> <span class="n">Colors</span><span class="p">.</span><span class="n">black</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Some more complex methods might also take a <code class="docutils literal notranslate"><span class="pre">Paint</span></code> object, which is a more complete structure that
+allows you to configure aspects related to stroke, colors, filters and blends.
+However, normally when using even the more complex APIs, you just want an instance of a <code class="docutils literal notranslate"><span class="pre">Paint</span></code>
+object representing just a single simple plain solid color.</p>
+<p><strong>Note:</strong> we don’t recommend that you create a new <code class="docutils literal notranslate"><span class="pre">Paint</span></code> object every time you need a specific
+<code class="docutils literal notranslate"><span class="pre">Paint</span></code>, since it could potentially lead to a lot of unnecessary objects being created. A better way
+is to either define the <code class="docutils literal notranslate"><span class="pre">Paint</span></code> object somewhere and re-use it (however, do note that the <code class="docutils literal notranslate"><span class="pre">Paint</span></code>
+class is mutable, unlike <code class="docutils literal notranslate"><span class="pre">Color</span></code>), or to use the <code class="docutils literal notranslate"><span class="pre">Palette</span></code> class to define all the colors that you
+want to use in your game.</p>
+<p>You can create such an object like this:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Paint</span> <span class="n">green</span> <span class="o">=</span> <span class="n">Paint</span><span class="p">()..</span><span class="n">color</span> <span class="o">=</span> <span class="k">const</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFF00FF00</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To help you with this and to also keep your game’s color palette consistent, Flame adds the <code class="docutils literal notranslate"><span class="pre">Palette</span></code>
+class. You can use it to easily access both <code class="docutils literal notranslate"><span class="pre">Color</span></code>s and <code class="docutils literal notranslate"><span class="pre">Paint</span></code>s where needed and also to define
+the colors your game use as constants, so you don’t get those mixed up.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">BasicPalette</span></code> class is an example of what a palette can look like, and adds black and white as
+colors. So to use black or white you can access those directly from the <code class="docutils literal notranslate"><span class="pre">BasicPalette</span></code>; for example,
+using <code class="docutils literal notranslate"><span class="pre">color</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">TextConfig</span> <span class="n">regular</span> <span class="o">=</span> <span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span> <span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Or using <code class="docutils literal notranslate"><span class="pre">paint</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span> <span class="n">BasicPalette</span><span class="p">.</span><span class="n">black</span><span class="p">.</span><span class="n">paint</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>However, the idea is that you can create your own palette, following the <code class="docutils literal notranslate"><span class="pre">BasicPalette</span></code> example, and
+add the color palette/scheme of your game. Then you will be able to statically access any color in
+your components and classes. Below is an example of a <code class="docutils literal notranslate"><span class="pre">Palette</span></code> implementation, from the example
+game <a class="reference external" href="https://github.com/bluefireteam/bgug/blob/master/lib/palette.dart">BGUG</a>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
+
+<span class="k">import</span> <span class="s1">&#39;package:flame/palette.dart&#39;</span><span class="p">;</span>
+
+<span class="kd">class</span> <span class="nc">Palette</span> <span class="p">{</span>
+  <span class="kd">static</span> <span class="n">PaletteEntry</span> <span class="n">white</span> <span class="o">=</span> <span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">;</span>
+
+  <span class="kd">static</span> <span class="n">PaletteEntry</span> <span class="n">toastBackground</span> <span class="o">=</span> <span class="n">PaletteEntry</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFAC3232</span><span class="p">));</span>
+  <span class="kd">static</span> <span class="n">PaletteEntry</span> <span class="n">toastText</span> <span class="o">=</span> <span class="n">PaletteEntry</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFDA9A00</span><span class="p">));</span>
+
+  <span class="kd">static</span> <span class="n">PaletteEntry</span> <span class="n">grey</span> <span class="o">=</span> <span class="n">PaletteEntry</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF404040</span><span class="p">));</span>
+  <span class="kd">static</span> <span class="n">PaletteEntry</span> <span class="n">green</span> <span class="o">=</span> <span class="n">PaletteEntry</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF54a286</span><span class="p">));</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">PaletteEntry</span></code> is a <code class="docutils literal notranslate"><span class="pre">const</span></code> class that holds information of a color and it has the following
+members:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: returns the <code class="docutils literal notranslate"><span class="pre">Color</span></code> specified</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">paint</span></code>: creates a new <code class="docutils literal notranslate"><span class="pre">Paint</span></code> with the color specified. <code class="docutils literal notranslate"><span class="pre">Paint</span></code> is a non-<code class="docutils literal notranslate"><span class="pre">const</span></code> class, so this
+method actually creates a brand new instance every time it’s called. It’s safe to cascade
+mutations to this.</p></li>
+</ul>
+</section>
+
+
+              </div>
+              
+        
+            <!-- Previous / next buttons -->
+<div class='prev-next-area'> 
+    <a class='left-prev' id="prev-link" href="text.html" title="previous page">
+        <i class="fas fa-angle-left"></i>
+        <div class="prev-next-info">
+            <p class="prev-next-subtitle">previous</p>
+            <p class="prev-next-title">Text Rendering</p>
+        </div>
+    </a>
+    <a class='right-next' id="next-link" href="particles.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Particles</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
+    </a>
+</div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Blue Fire Team<br/>
+        
+            &copy; Copyright 2021, Blue Fire Team.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+  
+  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+
+  </body>
+</html>
