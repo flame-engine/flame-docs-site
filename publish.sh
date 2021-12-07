@@ -11,7 +11,8 @@ function main {
   git clone https://github.com/flame-engine/flame.git $tmp_flame_src
 
   cd $tmp_flame_src
-  list=$(git tag | grep '^1.0.0' | tac)
+  # This sorts the list in a semantic versioning fashion
+  list=$(git tag | tr - \~ | sort -V | tr \~ - | grep '^1' | tac)
   latest_version=$(head -n 1 <<< $list)
   cd ..
 
