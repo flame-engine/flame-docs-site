@@ -1,3 +1,4 @@
+1.0.0
 1.0.0-releasecandidate.18
 1.0.0-releasecandidate.17
 1.0.0-releasecandidate.16
