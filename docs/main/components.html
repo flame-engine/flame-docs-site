@@ -34,6 +34,8 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
     <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -329,6 +331,16 @@
      Composability of components
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#querying-child-components">
+     Querying child components
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#positioning-types">
+     Positioning types
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -473,7 +485,7 @@
                 
   <section class="tex2jax_ignore mathjax_ignore" id="components">
 <h1>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h1>
-<p><img alt="Components Diagram" src="_images/diagram.png" /></p>
+<p><img alt="Component tree" src="_images/component_tree.png" /></p>
 <p>This diagram might look intimidating, but don’t worry, it is not as complex as it looks.</p>
 <section id="component">
 <h2>Component<a class="headerlink" href="#component" title="Permalink to this headline">¶</a></h2>
@@ -490,8 +502,9 @@ the component is added to the game via the <code class="docutils literal notrans
 component before the next update loop. It will then no longer be rendered or updated. Note that
 <code class="docutils literal notranslate"><span class="pre">game.remove(Component</span> <span class="pre">c)</span></code> and <code class="docutils literal notranslate"><span class="pre">component.removeFromParent()</span></code> also can be used to remove components
 from its parent.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">isHUD</span></code> variable can be overridden or set to true (defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>) to make the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>
-ignore the <code class="docutils literal notranslate"><span class="pre">camera</span></code> for this element, making it static in relation to the screen that is.
+<p>The <code class="docutils literal notranslate"><span class="pre">respectCamera</span></code> variable can be overridden or set to <code class="docutils literal notranslate"><span class="pre">false</span></code> (defaults to <code class="docutils literal notranslate"><span class="pre">true</span></code>) to make the
+<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> ignore the <code class="docutils literal notranslate"><span class="pre">camera</span></code> for this component, making it static in relation to the viewport
+that is.
 Do note that this currently only works if the component is added directly to the root <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> method can be overridden to run code before the component is removed from the game,
 it is only run once even if the component is removed both by using the parents remove method and
@@ -547,6 +560,48 @@ children are rendered and updated with the same conditions.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+</section>
+<section id="querying-child-components">
+<h3>Querying child components<a class="headerlink" href="#querying-child-components" title="Permalink to this headline">¶</a></h3>
+<p>The children that have been added to a component live in the <code class="docutils literal notranslate"><span class="pre">QueryableOrderedSet</span></code> called
+<code class="docutils literal notranslate"><span class="pre">components</span></code>. To query for a specific type of components in the set, a query first has to be
+registered on the set, and then the <code class="docutils literal notranslate"><span class="pre">query</span></code> function can be run efficiently at any later point. The
+register call is usually done in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span> <span class="kd">async</span> <span class="p">{</span>
+  <span class="kd">await</span> <span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+  <span class="n">components</span><span class="p">.</span><span class="n">register</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the example above a query is registered for <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, and an example of how to query
+the registered component type can be seen below.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kd">final</span> <span class="n">allPositionComponents</span> <span class="o">=</span> <span class="n">components</span><span class="p">.</span><span class="n">query</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="positioning-types">
+<h3>Positioning types<a class="headerlink" href="#positioning-types" title="Permalink to this headline">¶</a></h3>
+<p>If you want to create a HUD (Head-up display) or another component that isn’t positioned in relation
+to the game coordinates, you can change the <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> of the component.
+The default <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> is <code class="docutils literal notranslate"><span class="pre">positionType</span> <span class="pre">=</span> <span class="pre">PositionType.game</span></code> and that can be changed to
+either <code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code> or <code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> depending on how you want to position
+the component.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.game</span></code> (Default) - Respects camera and viewport.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code> - Respects viewport only (ignores camera).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> - Position in relation to the coordinate system of the Flutter game
+widget (i.e. the raw canvas).</p></li>
+</ul>
+<p>Most of your components will probably be positioned according to <code class="docutils literal notranslate"><span class="pre">PositionType.game</span></code>, since you
+want them to respect the <code class="docutils literal notranslate"><span class="pre">Camera</span></code> and the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code>. But quite often you want for example buttons
+and text to always show on the screen, no matter if you move the camera, then you want to use
+<code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code>. In some rare cases you want to use <code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> to position
+your widgets, when you don’t want the component to respect the camera nor the viewport; this could
+for example be for controls or joysticks that would be unergonomic to use if they had to stay within
+the viewport.</p>
 </section>
 </section>
 <section id="positioncomponent">

@@ -34,6 +34,8 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+    <script>mermaid.initialize({startOnLoad:true});</script>
     <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -325,6 +327,16 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spritebuttoncomponent">
+   SpriteButtonComponent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#buttoncomponent">
+   ButtonComponent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gamepad">
    Gamepad
   </a>
@@ -447,10 +459,23 @@ second one is optional if you don’t want to change the look of the button when
 you handle this through the <code class="docutils literal notranslate"><span class="pre">button</span></code> component.</p>
 <p>As the name suggests this button is a hud by default, which means that it will be static on your
 screen even if the camera for the game moves around. You can also use this component as a non-hud by
-setting <code class="docutils literal notranslate"><span class="pre">hudButtonComponent.isHud</span> <span class="pre">=</span> <span class="pre">false;</span></code>.</p>
+setting <code class="docutils literal notranslate"><span class="pre">hudButtonComponent.respectCamera</span> <span class="pre">=</span> <span class="pre">true;</span></code>.</p>
 <p>If you want to act upon the button being pressed (which would be the common thing to do) you can either pass in
 a callback function as the <code class="docutils literal notranslate"><span class="pre">onPressed</span></code> argument, or you extend the component and override
 <code class="docutils literal notranslate"><span class="pre">onTapDown</span></code>, <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code> and/or <code class="docutils literal notranslate"><span class="pre">onTapCancel</span></code> and implement your logic there.</p>
+</section>
+<section id="spritebuttoncomponent">
+<h2>SpriteButtonComponent<a class="headerlink" href="#spritebuttoncomponent" title="Permalink to this headline">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">SpriteButtonComponent</span></code> is a button that is defined by two <code class="docutils literal notranslate"><span class="pre">Sprite</span></code>s, one that represents
+when the button is pressed and one that represents when the button is released.</p>
+</section>
+<section id="buttoncomponent">
+<h2>ButtonComponent<a class="headerlink" href="#buttoncomponent" title="Permalink to this headline">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">ButtonComponent</span></code> is a button that is defined by two <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, one that represents
+when the button is pressed and one that represents when the button is released. If you only want
+to use sprites for the button, use the <a class="reference internal" href="#spritebuttoncomponent"><span class="std std-doc">SpriteButtonComponent</span></a> instead, but this component can be
+good to use if you for example want to have a <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> as a button, or anything
+else which isn’t a pure sprite.</p>
 </section>
 <section id="gamepad">
 <h2>Gamepad<a class="headerlink" href="#gamepad" title="Permalink to this headline">¶</a></h2>
