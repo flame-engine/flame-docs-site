@@ -481,10 +481,10 @@ of these <code class="docutils literal notranslate"><span class="pre">mixin</spa
 and horizontal drags, so not all of them can be used together.</p>
 <p>It is also not possible to mix advanced detectors (<code class="docutils literal notranslate"><span class="pre">MultiTouch*</span></code>) with basic detectors as they will
 <em>always win the gesture arena</em> and the basic detectors will never be triggered. So for example, you
-can use both <code class="docutils literal notranslate"><span class="pre">MultiTouchDragDetector</span></code> and <code class="docutils literal notranslate"><span class="pre">MultiTouchDragDetector</span></code> together, but if you try to use
+can use both <code class="docutils literal notranslate"><span class="pre">MultiTouchTapDetector</span></code> and <code class="docutils literal notranslate"><span class="pre">MultiTouchDragDetector</span></code> together, but if you try to use
 <code class="docutils literal notranslate"><span class="pre">MultiTouchTapDetector</span></code> and <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code>, no events will be triggered for the latter.</p>
 <p>Flame’s GestureApi is provided by Flutter’s Gesture Widgets, including
-GestureDetector widget](<a class="reference external" href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html">https://api.flutter.dev/flutter/widgets/GestureDetector-class.html</a>),
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html">GestureDetector widget</a>,
 <a class="reference external" href="https://api.flutter.dev/flutter/widgets/RawGestureDetector-class.html">RawGestureDetector widget</a>
 and <a class="reference external" href="https://api.flutter.dev/flutter/widgets/MouseRegion-class.html">MouseRegion widget</a>, you can
 also read more about Flutter’s gestures
@@ -530,14 +530,14 @@ transformations, this will be equal to the <code class="docutils literal notrans
   <span class="c1">// Other methods omitted</span>
 
   <span class="nd">@override</span>
-  <span class="kt">bool</span> <span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">print</span><span class="p">(</span><span class="s2">&quot;Player tap down on </span><span class="si">${</span><span class="n">event</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
+  <span class="kt">bool</span> <span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span> <span class="n">info</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">print</span><span class="p">(</span><span class="s2">&quot;Player tap down on </span><span class="si">${</span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="nd">@override</span>
-  <span class="kt">bool</span> <span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpInfo</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">print</span><span class="p">(</span><span class="s2">&quot;Player tap up on </span><span class="si">${</span><span class="n">event</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
+  <span class="kt">bool</span> <span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpInfo</span> <span class="n">info</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">print</span><span class="p">(</span><span class="s2">&quot;Player tap up on </span><span class="si">${</span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -562,8 +562,8 @@ children tree and then passed further down until a method returns <code class="d
 <p>By adding the <code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> mixin to your game, and using the mixin <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> on your
 components, you can override the following methods on your components:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="n">onTapCancel</span><span class="p">();</span>
-<span class="kt">bool</span> <span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span> <span class="n">event</span><span class="p">);</span>
-<span class="kt">bool</span> <span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpInfo</span> <span class="n">event</span><span class="p">);</span>
+<span class="kt">bool</span> <span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span> <span class="n">info</span><span class="p">);</span>
+<span class="kt">bool</span> <span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpInfo</span> <span class="n">info</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Minimal component example:</p>
@@ -574,13 +574,13 @@ components, you can override the following methods on your components:</p>
   <span class="c1">// update and render omitted</span>
 
   <span class="nd">@override</span>
-  <span class="kt">bool</span> <span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpInfo</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpInfo</span> <span class="n">info</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">print</span><span class="p">(</span><span class="s2">&quot;tap up&quot;</span><span class="p">);</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="nd">@override</span>
-  <span class="kt">bool</span> <span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span> <span class="n">info</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">print</span><span class="p">(</span><span class="s2">&quot;tap down&quot;</span><span class="p">);</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="p">}</span>
@@ -608,9 +608,9 @@ further up on this page it shouldn’t be used alongside basic detectors.</p>
 <p>By adding the <code class="docutils literal notranslate"><span class="pre">HasDraggables</span></code> mixin to your game, and by using the mixin <code class="docutils literal notranslate"><span class="pre">Draggable</span></code> on
 your components, they can override the simple methods that enable an easy to use drag api on your
 components.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="kt">bool</span> <span class="n">onDragStart</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">Vector2</span> <span class="n">startPosition</span><span class="p">);</span>
-  <span class="kt">bool</span> <span class="n">onDragUpdate</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">DragUpdateInfo</span> <span class="n">event</span><span class="p">);</span>
-  <span class="kt">bool</span> <span class="n">onDragEnd</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">DragEndInfo</span> <span class="n">event</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="kt">bool</span> <span class="n">onDragStart</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">DragStartInfo</span> <span class="n">info</span><span class="p">);</span>
+  <span class="kt">bool</span> <span class="n">onDragUpdate</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">DragUpdateInfo</span> <span class="n">info</span><span class="p">);</span>
+  <span class="kt">bool</span> <span class="n">onDragEnd</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">DragEndInfo</span> <span class="n">info</span><span class="p">);</span>
   <span class="kt">bool</span> <span class="n">onDragCancel</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -636,20 +636,20 @@ multi-drag):</p>
   <span class="kt">bool</span> <span class="kd">get</span> <span class="n">isDragging</span> <span class="o">=&gt;</span> <span class="n">dragDeltaPosition</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">;</span>
 
   <span class="nd">@override</span>
-  <span class="kt">bool</span> <span class="n">onDragStart</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">Vector2</span> <span class="n">startPosition</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">dragDeltaPosition</span> <span class="o">=</span> <span class="n">startPosition</span> <span class="o">-</span> <span class="n">position</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">onDragStart</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">DragStartInfo</span> <span class="n">info</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">dragDeltaPosition</span> <span class="o">=</span> <span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span> <span class="o">-</span> <span class="n">position</span><span class="p">;</span>
     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="nd">@override</span>
-  <span class="kt">bool</span> <span class="n">onDragUpdate</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">DragUpdateInfo</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
-    <span class="kd">final</span> <span class="n">localCoords</span> <span class="o">=</span> <span class="n">event</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span><span class="p">;</span>
+  <span class="kt">bool</span> <span class="n">onDragUpdate</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">DragUpdateInfo</span> <span class="n">info</span><span class="p">)</span> <span class="p">{</span>
+    <span class="kd">final</span> <span class="n">localCoords</span> <span class="o">=</span> <span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span><span class="p">;</span>
     <span class="n">position</span> <span class="o">=</span> <span class="n">localCoords</span> <span class="o">-</span> <span class="n">dragDeltaPosition</span><span class="p">;</span>
     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="nd">@override</span>
-  <span class="kt">bool</span> <span class="n">onDragEnd</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">DragEndInfo</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">onDragEnd</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">DragEndInfo</span> <span class="n">info</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">dragDeltaPosition</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
     <span class="k">return</span> <span class="kc">false</span><span class="p">;</span>
   <span class="p">}</span>
@@ -679,11 +679,11 @@ and events.</p>
 your components, they get an <code class="docutils literal notranslate"><span class="pre">isHovered</span></code> field and a couple of methods (<code class="docutils literal notranslate"><span class="pre">onHoverStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onHoverEnd</span></code>) that
 you can override if you want to listen to the events.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="kt">bool</span> <span class="n">isHovered</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>
-  <span class="kt">bool</span> <span class="n">onHoverEnter</span><span class="p">(</span><span class="n">PointerHoverInfo</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">onHoverEnter</span><span class="p">(</span><span class="n">PointerHoverInfo</span> <span class="n">info</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">print</span><span class="p">(</span><span class="s2">&quot;hover enter&quot;</span><span class="p">);</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="p">}</span>
-  <span class="kt">bool</span> <span class="n">onHoverLeave</span><span class="p">(</span><span class="n">PointerHoverInfo</span> <span class="n">event</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">bool</span> <span class="n">onHoverLeave</span><span class="p">(</span><span class="n">PointerHoverInfo</span> <span class="n">info</span><span class="p">)</span> <span class="p">{</span>
    <span class="n">print</span><span class="p">(</span><span class="s2">&quot;hover leave&quot;</span><span class="p">);</span>
    <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
   <span class="p">}</span>

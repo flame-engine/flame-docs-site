@@ -421,7 +421,7 @@ a canvas:</p>
 <span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
   <span class="nd">@override</span>
   <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">TextComponent</span><span class="p">(</span><span class="s1">&#39;Hello, Flame&#39;</span><span class="p">,</span> <span class="nl">textRenderer:</span> <span class="n">regular</span><span class="p">)</span>
+    <span class="n">add</span><span class="p">(</span><span class="n">TextComponent</span><span class="p">(</span><span class="nl">text:</span> <span class="s1">&#39;Hello, Flame&#39;</span><span class="p">,</span> <span class="nl">textRenderer:</span> <span class="n">regular</span><span class="p">)</span>
       <span class="p">..</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span>
       <span class="p">..</span><span class="n">x</span> <span class="o">=</span> <span class="n">size</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="m">2</span> <span class="c1">// size is a property from game</span>
       <span class="p">..</span><span class="n">y</span> <span class="o">=</span> <span class="m">32.0</span><span class="p">);</span>
@@ -439,7 +439,7 @@ text inside a bounding box, creating line breaks according to the provided box s
 <p>If you want to change the margins of the box use the <code class="docutils literal notranslate"><span class="pre">margins</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>.</p>
 <p>Example usage:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyTextBox</span> <span class="kd">extends</span> <span class="n">TextBoxComponent</span> <span class="p">{</span>
-  <span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span> <span class="n">text</span><span class="p">)</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nl">textRenderer:</span> <span class="n">tiny</span><span class="p">,</span> <span class="nl">boxConfig:</span> <span class="n">TextBoxConfig</span><span class="p">(</span><span class="nl">timePerChar:</span> <span class="m">0.05</span><span class="p">));</span>
+  <span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span> <span class="n">text</span><span class="p">)</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">text:</span> <span class="n">text</span><span class="p">,</span> <span class="nl">textRenderer:</span> <span class="n">tiny</span><span class="p">,</span> <span class="nl">boxConfig:</span> <span class="n">TextBoxConfig</span><span class="p">(</span><span class="nl">timePerChar:</span> <span class="m">0.05</span><span class="p">));</span>
 
   <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">drawBackground</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>

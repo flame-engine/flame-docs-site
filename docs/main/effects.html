@@ -541,6 +541,15 @@
      </code>
     </a>
    </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#randomeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       RandomEffectController
+      </span>
+     </code>
+    </a>
+   </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -587,7 +596,6 @@ the final value is provided by the user explicitly, and progression over time is
 <p>There are multiple effects provided by Flame, and you can also
 <a class="reference internal" href="#creating-new-effects"><span class="std std-doc">create your own</span></a>. The following effects are included:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#coloreffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">ColorEffect</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#moveeffect-by"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">MoveEffect.by</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#moveeffect-to"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">MoveEffect.to</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#movealongpatheffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">MoveAlongPathEffect</span></code></span></a></p></li>
@@ -598,6 +606,7 @@ the final value is provided by the user explicitly, and progression over time is
 <li><p><a class="reference internal" href="#sizeeffect-by"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">SizeEffect.by</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#sizeeffect-to"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">SizeEffect.to</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#opacityeffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">OpacityEffect</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#coloreffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">ColorEffect</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#removeeffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">RemoveEffect</span></code></span></a></p></li>
 </ul>
 <p>An <code class="docutils literal notranslate"><span class="pre">EffectController</span></code> is an object that describes how the effect should evolve over time. If you
@@ -616,6 +625,7 @@ the job of the effect controller is to map from the “physical” time, measure
 <li><p><a class="reference internal" href="#infiniteeffectcontroller"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">InfiniteEffectController</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#sequenceeffectcontroller"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">SequenceEffectController</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#delayedeffectcontroller"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">DelayedEffectController</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#randomeffectcontroller"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">RandomEffectController</span></code></span></a></p></li>
 </ul>
 </section>
 <section id="built-in-effects">
@@ -632,6 +642,8 @@ check whether the effect is currently paused using <code class="docutils literal
 <li><p>Property <code class="docutils literal notranslate"><span class="pre">removeOnFinish</span></code> (which is true by default) will cause the effect component to be
 removed from the game tree and garbage-collected once the effect completes. Set this to false
 if you plan to reuse the effect after it is finished.</p></li>
+<li><p>Optional user-provided <code class="docutils literal notranslate"><span class="pre">onFinishCallback</span></code>, which will be invoked when the effect has just
+completed its execution but before it is removed from the game.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">reset()</span></code> method reverts the effect to its original state, allowing it to run once again.</p></li>
 </ul>
 </section>
@@ -755,18 +767,16 @@ tree after the specified delay has passed:</p>
 <p>This effect will change the base color of the paint, causing the rendered component to be tinted by
 the provided color between a provided range.</p>
 <p>Usage example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">myComponent</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-  <span class="n">ColorEffect</span><span class="p">(</span>
-    <span class="k">const</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFF00FF00</span><span class="p">),</span>
-    <span class="k">const</span> <span class="n">Offset</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span> <span class="m">0.8</span><span class="p">),</span>
-    <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">1.5</span><span class="p">),</span>
-  <span class="p">),</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">ColorEffect</span><span class="p">(</span>
+  <span class="k">const</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFF00FF00</span><span class="p">),</span>
+  <span class="k">const</span> <span class="n">Offset</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span> <span class="m">0.8</span><span class="p">),</span>
+  <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">1.5</span><span class="p">),</span>
 <span class="p">);</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">Offset</span></code> argument will determine “how much” of the color that will be applied to the component,
 in this example the effect will start with 0% and will go up to 80%.</p>
-<p>__Note :__Due to how this effect is implemented, and how Flutter’s <code class="docutils literal notranslate"><span class="pre">ColorFilter</span></code> class works, this
+<p><strong>Note:</strong> Due to how this effect is implemented, and how Flutter’s <code class="docutils literal notranslate"><span class="pre">ColorFilter</span></code> class works, this
 effect can’t be mixed with other <code class="docutils literal notranslate"><span class="pre">ColorEffect</span></code>s, when more than one is added to the component, only
 the last one will have effect.</p>
 </section>
@@ -939,6 +949,22 @@ controller is executing the “delay” stage, the effect will be considered “
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">DelayedEffectController</span><span class="p">(</span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="nl">delay:</span> <span class="m">5</span><span class="p">);</span>
 </pre></div>
 </div>
+</section>
+<section id="randomeffectcontroller">
+<h3><code class="docutils literal notranslate"><span class="pre">RandomEffectController</span></code><a class="headerlink" href="#randomeffectcontroller" title="Permalink to this headline">¶</a></h3>
+<p>This controller wraps another controller and makes its duration random. The actual value for the
+duration is re-generated upon each reset, which makes this controller particularly useful within
+repeated contexts, such as <a class="reference internal" href="#repeatedeffectcontroller"><span class="std std-doc">RepeatedEffectController</span></a> or <a class="reference internal" href="#infiniteeffectcontroller"><span class="std std-doc">InfiniteEffectController</span></a>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">RandomEffectController</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span>
+  <span class="n">LinearEffectController</span><span class="p">(</span><span class="m">0</span><span class="p">),</span>  <span class="c1">// duration here is irrelevant</span>
+  <span class="nl">min:</span> <span class="m">0.5</span><span class="p">,</span>
+  <span class="nl">max:</span> <span class="m">1.5</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>The user has the ability to control which <code class="docutils literal notranslate"><span class="pre">Random</span></code> source to use, as well as the exact distribution
+of the produced random durations. Two distributions – <code class="docutils literal notranslate"><span class="pre">.uniform</span></code> and <code class="docutils literal notranslate"><span class="pre">.exponential</span></code> are included,
+any other can be implemented by the user.</p>
 </section>
 </section>
 <section id="see-also">

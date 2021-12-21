@@ -525,8 +525,11 @@ Example:</p>
 that your component collided with. The set of points is where the edges of the hitboxes collided.
 Note that the <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method will be called on both collidable components if they
 have both implemented the <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method, and also on both shapes if they have that method
-implemented. The same goes for the <code class="docutils literal notranslate"><span class="pre">onCollisionEnd</span></code> method, which is called when two components or
-shapes that were previously colliding no longer colliding with each other.</p>
+implemented. The same goes for the <code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> and <code class="docutils literal notranslate"><span class="pre">onCollisionEnd</span></code> methods, which are
+called when two components or shapes starts or stops colliding with each other.</p>
+<p>When a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> (or <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code>) starts to collide with another <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> both
+<code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> and <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> are called, so if you don’t need to do something specific when
+a collision starts you only need to override <code class="docutils literal notranslate"><span class="pre">onCollision</span></code>, and vice versa.</p>
 <p>If you want to check collisions with the screen edges, as we do in the example above, you can use
 the predefined <a class="reference internal" href="#screencollidable"><span class="std std-doc">ScreenCollidable</span></a> class and since that one also is a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
 you can implement your own <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method for that class if needed.</p>
