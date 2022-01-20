@@ -24,7 +24,7 @@
 
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=84ace793992934648b4de8eed757e5a2" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
   <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
@@ -33,7 +33,7 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
     <script src="_static/versions.js"></script>
@@ -58,7 +58,12 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<div class="col-12 col-md-3 bd-sidebar site-navigation " id="site-navigation">
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
@@ -246,22 +251,22 @@
 
 
           
+<!-- This is an invisible pixel that we watch to see if we've scrolled. -->
+<div class="sbt-scroll-pixel-helper"></div>
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
     <div class="topbar container-xl fixed-top">
     <div class="topbar-contents row">
         <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
         <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
+            <div class="topbar-left">
+                
+                <label class="nav-toggle-button" for="__navigation">
+                    <div class="visually-hidden">Toggle navigation</div>
+                    <i class="fas fa-bars"></i>
+                </label>
+                
+            </div>
             
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
@@ -276,7 +281,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -309,7 +314,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -373,15 +378,6 @@
    SpriteSheet
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#flame-images-decodeimagefrompixels">
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     Flame.images.decodeImageFromPixels()
-    </span>
-   </code>
-  </a>
- </li>
 </ul>
 
             </nav>
@@ -390,17 +386,92 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Images</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#loading-images">
+   Loading images
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standalone-usage">
+     Standalone usage
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flame-images">
+     Flame.images
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#game-images">
+     Game.images
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sprite">
+   Sprite
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spritebatch">
+   SpriteBatch
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imagecomposition">
+   ImageComposition
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#svg">
+   Svg
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#animation">
+   Animation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flareanimation">
+   FlareAnimation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spritesheet">
+   SpriteSheet
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="images">
 <h1>Images<a class="headerlink" href="#images" title="Permalink to this headline">¶</a></h1>
 <p>To start off you must have an appropriate folder structure and add the files to the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>
 file, like this:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span>
-  <span class="nt">assets</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">assets/images/player.png</span>
-    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">assets/images/enemy.png</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">assets</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/images/player.png</span><span class="w"></span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/images/enemy.png</span><span class="w"></span>
 </pre></div>
 </div>
 <p>It has to be png files and they can have transparency.</p>
@@ -416,6 +487,11 @@ an <code class="docutils literal notranslate"><span class="pre">Image</span></co
 They return a <code class="docutils literal notranslate"><span class="pre">Future</span></code> for the loaded Image.</p>
 <p>To synchronously retrieve a previously cached image, the <code class="docutils literal notranslate"><span class="pre">fromCache</span></code> method can be used. If an image
 with that key was not previously loaded, it will throw an exception.</p>
+<p>To add an already loaded image to the cache, the <code class="docutils literal notranslate"><span class="pre">add</span></code> method can be used and you can set the key
+that the image should have in the cache.</p>
+<p>You can also use <code class="docutils literal notranslate"><span class="pre">ImageExtension.fromPixels()</span></code> to dynamically create an image during the game.</p>
+<p>For <code class="docutils literal notranslate"><span class="pre">clear</span></code> and <code class="docutils literal notranslate"><span class="pre">clearCache</span></code>, do note that <code class="docutils literal notranslate"><span class="pre">dispose</span></code> is called for each removed image from the
+cache, so make sure that you don’t use the image afterwards.</p>
 <section id="standalone-usage">
 <h3>Standalone usage<a class="headerlink" href="#standalone-usage" title="Permalink to this headline">¶</a></h3>
 <p>It can manually be used by instantiating it:</p>
@@ -711,26 +787,13 @@ a very simple example of how to use it:</p>
 <p>You can see a full example of the <code class="docutils literal notranslate"><span class="pre">SpriteSheet</span></code> class
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/sprites/spritesheet.dart">here</a>.</p>
 </section>
-<section id="flame-images-decodeimagefrompixels">
-<h2><code class="docutils literal notranslate"><span class="pre">Flame.images.decodeImageFromPixels()</span></code><a class="headerlink" href="#flame-images-decodeimagefrompixels" title="Permalink to this headline">¶</a></h2>
-<p>The <a class="reference external" href="https://api.flutter.dev/flutter/dart-ui/decodeImageFromPixels.html">dart-ui decodeImageFromPixels</a>
-currently does not support the web platform. So if you are looking for a way to manipulate pixel
-data on the web this method can be used as a replacement for <code class="docutils literal notranslate"><span class="pre">dart-ui</span> <span class="pre">decodeImageFromPixels</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span> <span class="n">image</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">decodeImageFromPixels</span><span class="p">(</span>
-  <span class="n">data</span><span class="p">,</span> <span class="c1">// A Uint8List containing pixel data in the RGBA format.</span>
-  <span class="m">200</span><span class="p">,</span>
-  <span class="m">200</span><span class="p">,</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</section>
 </section>
 
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="bgm.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -747,19 +810,17 @@ data on the web this method can be used as a replacement for <code class="docuti
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Blue Fire Team<br/>
-        
-            &copy; Copyright 2021, Blue Fire Team.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Blue Fire Team<br/>
+    
+        &copy; Copyright 2021, Blue Fire Team.<br/>
+  </p>
+</footer>
 </main>
 
 

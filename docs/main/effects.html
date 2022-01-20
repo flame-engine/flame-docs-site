@@ -24,7 +24,7 @@
 
     
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=84ace793992934648b4de8eed757e5a2" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
   <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
@@ -33,7 +33,7 @@
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
+    <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
     <script src="_static/versions.js"></script>
@@ -58,7 +58,12 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<div class="col-12 col-md-3 bd-sidebar site-navigation " id="site-navigation">
     
         <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
@@ -246,22 +251,22 @@
 
 
           
+<!-- This is an invisible pixel that we watch to see if we've scrolled. -->
+<div class="sbt-scroll-pixel-helper"></div>
 <main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
     
     <div class="topbar container-xl fixed-top">
     <div class="topbar-contents row">
         <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
         <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
+            <div class="topbar-left">
+                
+                <label class="nav-toggle-button" for="__navigation">
+                    <div class="visually-hidden">Toggle navigation</div>
+                    <i class="fas fa-bars"></i>
+                </label>
+                
+            </div>
             
 <div class="dropdown-buttons-trigger">
     <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
@@ -276,7 +281,7 @@
                 data-placement="left">.md</button></a>
         <!-- Download PDF via print -->
         <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
     </div>
 </div>
 
@@ -309,7 +314,7 @@
         </div>
 
         <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
+        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
             
             <div class="tocsection onthispage pt-5 pb-3">
                 <i class="fas fa-list"></i> Contents
@@ -426,6 +431,15 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sequenceeffect">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       SequenceEffect
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#removeeffect">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -533,6 +547,15 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#speedeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       SpeedEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#delayedeffectcontroller">
      <code class="docutils literal notranslate">
       <span class="pre">
@@ -546,6 +569,24 @@
      <code class="docutils literal notranslate">
       <span class="pre">
        RandomEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sineeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       SineEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zigzageffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ZigzagEffectController
       </span>
      </code>
     </a>
@@ -565,7 +606,302 @@
 </div>
     <div id="main-content" class="row">
         <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Effects</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#built-in-effects">
+   Built-in effects
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#effect">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       Effect
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#moveeffect-by">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       MoveEffect.by
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#moveeffect-to">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       MoveEffect.to
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#movealongpatheffect">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       MoveAlongPathEffect
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rotateeffect-by">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       RotateEffect.by
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rotateeffect-to">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       RotateEffect.to
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scaleeffect-by">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ScaleEffect.by
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scaleeffect-to">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ScaleEffect.to
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sizeeffect-by">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       SizeEffect.by
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sizeeffect-to">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       SizeEffect.to
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#opacityeffect">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       OpacityEffect
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sequenceeffect">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       SequenceEffect
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#removeeffect">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       RemoveEffect
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#coloreffect">
+   ColorEffect
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#creating-new-effects">
+   Creating new effects
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#effect-controllers">
+   Effect controllers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#effectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       EffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lineareffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       LinearEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reverselineareffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ReverseLinearEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#curvedeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       CurvedEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#reversecurvedeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ReverseCurvedEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#pauseeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       PauseEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#repeatedeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       RepeatedEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#infiniteeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       InfiniteEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sequenceeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       SequenceEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#speedeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       SpeedEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#delayedeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       DelayedEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#randomeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       RandomEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#sineeffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       SineEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#zigzageffectcontroller">
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       ZigzagEffectController
+      </span>
+     </code>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#see-also">
+   See also
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="effects">
@@ -607,6 +943,7 @@ the final value is provided by the user explicitly, and progression over time is
 <li><p><a class="reference internal" href="#sizeeffect-to"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">SizeEffect.to</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#opacityeffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">OpacityEffect</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#coloreffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">ColorEffect</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#sequenceeffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">SequenceEffect</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#removeeffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">RemoveEffect</span></code></span></a></p></li>
 </ul>
 <p>An <code class="docutils literal notranslate"><span class="pre">EffectController</span></code> is an object that describes how the effect should evolve over time. If you
@@ -624,8 +961,11 @@ the job of the effect controller is to map from the “physical” time, measure
 <li><p><a class="reference internal" href="#repeatedeffectcontroller"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">RepeatedEffectController</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#infiniteeffectcontroller"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">InfiniteEffectController</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#sequenceeffectcontroller"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">SequenceEffectController</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#speedeffectcontroller"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">SpeedEffectController</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#delayedeffectcontroller"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">DelayedEffectController</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#randomeffectcontroller"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">RandomEffectController</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#sineeffectcontroller"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">SineEffectController</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#zigzageffectcontroller"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">ZigzagEffectController</span></code></span></a></p></li>
 </ul>
 </section>
 <section id="built-in-effects">
@@ -692,7 +1032,7 @@ the move- and the rotate- effect at the same time.</p>
 <p>Rotates the target clockwise by the specified angle relative to its current orientation. The angle
 is in radians. For example, the following effect will rotate the target 90º (=<a class="reference external" href="https://en.wikipedia.org/wiki/Tau_(mathematical_constant)">tau</a>/4 in radians)
 clockwise:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">RotateEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span> <span class="n">EffectController</span><span class="p">(</span><span class="m">2</span><span class="p">));</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">RotateEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">2</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
@@ -700,7 +1040,7 @@ clockwise:</p>
 <h3><code class="docutils literal notranslate"><span class="pre">RotateEffect.to</span></code><a class="headerlink" href="#rotateeffect-to" title="Permalink to this headline">¶</a></h3>
 <p>Rotates the target clockwise to the specified angle. For example, the following will rotate the
 target to look east (0º is north, 90º=<a class="reference external" href="https://en.wikipedia.org/wiki/Tau_(mathematical_constant)">tau</a>/4 east, 180º=tau/2 south, and 270º=tau*3/4 west):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">RotateEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span> <span class="n">EffectController</span><span class="p">(</span><span class="m">2</span><span class="p">));</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">RotateEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">2</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
@@ -708,14 +1048,14 @@ target to look east (0º is north, 90º=<a class="reference external" href="http
 <h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.by</span></code><a class="headerlink" href="#scaleeffect-by" title="Permalink to this headline">¶</a></h3>
 <p>This effect will change the target’s scale by the specified amount. For example, this will cause
 the component to grow 50% larger:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1.5</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="m">0.3</span><span class="p">));</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1.5</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">0.3</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
 <section id="scaleeffect-to">
 <h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.to</span></code><a class="headerlink" href="#scaleeffect-to" title="Permalink to this headline">¶</a></h3>
 <p>This effect works similar to <code class="docutils literal notranslate"><span class="pre">ScaleEffect.by</span></code>, but sets the absolute value of the target’s scale.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">ScaleEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">(),</span> <span class="n">EffectController</span><span class="p">(</span><span class="m">0.5</span><span class="p">));</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">ScaleEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">(),</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">0.5</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
@@ -724,7 +1064,7 @@ the component to grow 50% larger:</p>
 <p>This effect will change the size of the target component, relative to its current size. For example,
 if the target has size <code class="docutils literal notranslate"><span class="pre">Vector2(100,</span> <span class="pre">100)</span></code>, then after the following effect is applied and runs its
 course, the new size will be <code class="docutils literal notranslate"><span class="pre">Vector2(120,</span> <span class="pre">50)</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">SizeEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="o">-</span><span class="m">50</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="m">1</span><span class="p">));</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">SizeEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="o">-</span><span class="m">50</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">1</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>The size of a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> cannot be negative. If an effect attempts to set the size to a
@@ -737,7 +1077,7 @@ more generally and scales the children components too.</p>
 <section id="sizeeffect-to">
 <h3><code class="docutils literal notranslate"><span class="pre">SizeEffect.to</span></code><a class="headerlink" href="#sizeeffect-to" title="Permalink to this headline">¶</a></h3>
 <p>Changes the size of the target component to the specified size. Target size cannot be negative:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">SizeEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">120</span><span class="p">,</span> <span class="m">120</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="m">1</span><span class="p">));</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">SizeEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">120</span><span class="p">,</span> <span class="m">120</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">1</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
@@ -746,12 +1086,27 @@ more generally and scales the children components too.</p>
 <p>This effect will change over time the opacity of the target to the specified alpha-value. Currently
 this effect can only be applied to components that have a <code class="docutils literal notranslate"><span class="pre">HasPaint</span></code> mixin. If the target component
 uses multiple paints, the effect can target any individual color using the <code class="docutils literal notranslate"><span class="pre">paintId</span></code> parameter.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">OpacityEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="n">EffectController</span><span class="p">(</span><span class="m">0.75</span><span class="p">));</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">OpacityEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">0.75</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>The opacity value of 0 corresponds to a fully transparent component, and the opacity value of 1 is
 fully opaque. Convenience constructors <code class="docutils literal notranslate"><span class="pre">OpacityEffect.fadeOut()</span></code> and <code class="docutils literal notranslate"><span class="pre">OpacityEffect.fadeIn()</span></code> will
 animate the target into full transparency / full visibility respectively.</p>
+</section>
+<section id="sequenceeffect">
+<h3><code class="docutils literal notranslate"><span class="pre">SequenceEffect</span></code><a class="headerlink" href="#sequenceeffect" title="Permalink to this headline">¶</a></h3>
+<p>This effect can be used to run multiple other effects one after another. The constituent effects
+may have different types.</p>
+<p>The sequence effect can also be alternating (the sequence will first run forward, and then
+backward); and also repeat a certain predetermined number of times, or infinitely.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">SequenceEffect</span><span class="p">([</span>
+  <span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">0.2</span><span class="p">,</span> <span class="nl">alternate:</span> <span class="kc">true</span><span class="p">)),</span>
+  <span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">30</span><span class="p">,</span> <span class="o">-</span><span class="m">50</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">0.5</span><span class="p">)),</span>
+  <span class="n">OpacityEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">0.3</span><span class="p">)),</span>
+  <span class="n">RemoveEffect</span><span class="p">(),</span>
+<span class="p">]);</span>
+</pre></div>
+</div>
 </section>
 <section id="removeeffect">
 <h3><code class="docutils literal notranslate"><span class="pre">RemoveEffect</span></code><a class="headerlink" href="#removeeffect" title="Permalink to this headline">¶</a></h3>
@@ -941,6 +1296,24 @@ empty.</p>
 </pre></div>
 </div>
 </section>
+<section id="speedeffectcontroller">
+<h3><code class="docutils literal notranslate"><span class="pre">SpeedEffectController</span></code><a class="headerlink" href="#speedeffectcontroller" title="Permalink to this headline">¶</a></h3>
+<p>Alters the duration of its child effect controller so that the effect proceeds at the predefined
+speed. The initial duration of the child EffectController is irrelevant. The child controller must
+be the subclass of <code class="docutils literal notranslate"><span class="pre">DurationEffectController</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">SpeedEffectController</span></code> can only be applied to effects for which the notion of speed is
+well-defined. Such effects must implement the <code class="docutils literal notranslate"><span class="pre">MeasurableEffect</span></code> interface. For example, the
+following effects qualify: <a class="reference internal" href="#moveeffect-by"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">MoveEffect.by</span></code></span></a>, <a class="reference internal" href="#moveeffect-to"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">MoveEffect.to</span></code></span></a>,
+<a class="reference internal" href="#movealongpatheffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">MoveAlongPathEffect</span></code></span></a>, <a class="reference internal" href="#rotateeffect-by"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">RotateEffect.by</span></code></span></a>,
+<a class="reference internal" href="#rotateeffect-to"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">RotateEffect.to</span></code></span></a>.</p>
+<p>The parameter <code class="docutils literal notranslate"><span class="pre">speed</span></code> is in units per second, where the notion of a “unit” depends on the target
+effect. For example, for move effects, they refer to the distance travelled; for rotation effects
+the units are radians.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec1</span> <span class="o">=</span> <span class="n">SpeedEffectController</span><span class="p">(</span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">0</span><span class="p">),</span> <span class="nl">speed:</span> <span class="m">1</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">ec2</span> <span class="o">=</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span> <span class="m">1</span><span class="p">);</span> <span class="c1">// same as ec1</span>
+</pre></div>
+</div>
+</section>
 <section id="delayedeffectcontroller">
 <h3><code class="docutils literal notranslate"><span class="pre">DelayedEffectController</span></code><a class="headerlink" href="#delayedeffectcontroller" title="Permalink to this headline">¶</a></h3>
 <p>Effect controller that executes its child controller after the prescribed <code class="docutils literal notranslate"><span class="pre">delay</span></code>. While the
@@ -955,7 +1328,7 @@ controller is executing the “delay” stage, the effect will be considered “
 <p>This controller wraps another controller and makes its duration random. The actual value for the
 duration is re-generated upon each reset, which makes this controller particularly useful within
 repeated contexts, such as <a class="reference internal" href="#repeatedeffectcontroller"><span class="std std-doc">RepeatedEffectController</span></a> or <a class="reference internal" href="#infiniteeffectcontroller"><span class="std std-doc">InfiniteEffectController</span></a>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">RandomEffectController</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">RandomEffectController</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span>
   <span class="n">LinearEffectController</span><span class="p">(</span><span class="m">0</span><span class="p">),</span>  <span class="c1">// duration here is irrelevant</span>
   <span class="nl">min:</span> <span class="m">0.5</span><span class="p">,</span>
   <span class="nl">max:</span> <span class="m">1.5</span><span class="p">,</span>
@@ -965,6 +1338,25 @@ repeated contexts, such as <a class="reference internal" href="#repeatedeffectco
 <p>The user has the ability to control which <code class="docutils literal notranslate"><span class="pre">Random</span></code> source to use, as well as the exact distribution
 of the produced random durations. Two distributions – <code class="docutils literal notranslate"><span class="pre">.uniform</span></code> and <code class="docutils literal notranslate"><span class="pre">.exponential</span></code> are included,
 any other can be implemented by the user.</p>
+</section>
+<section id="sineeffectcontroller">
+<h3><code class="docutils literal notranslate"><span class="pre">SineEffectController</span></code><a class="headerlink" href="#sineeffectcontroller" title="Permalink to this headline">¶</a></h3>
+<p>An effect controller that represents a single period of the sine function. Use this to create
+natural-looking harmonic oscillations. Two perpendicular move effects governed by
+<code class="docutils literal notranslate"><span class="pre">SineEffectControllers</span></code> with different periods, will create a <a class="reference external" href="https://en.wikipedia.org/wiki/Lissajous_curve">Lissajous curve</a>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">SineEffectController</span><span class="p">(</span><span class="nl">period:</span> <span class="m">1</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="zigzageffectcontroller">
+<h3><code class="docutils literal notranslate"><span class="pre">ZigzagEffectController</span></code><a class="headerlink" href="#zigzageffectcontroller" title="Permalink to this headline">¶</a></h3>
+<p>Simple alternating effect controller. Over the course of one <code class="docutils literal notranslate"><span class="pre">period</span></code>, this controller will proceed
+linearly from 0 to 1, then to -1, and then back to 0. Use this for oscillating effects where the
+starting position should be the center of the oscillations, rather than the extreme (as provided
+by the standard alternating <code class="docutils literal notranslate"><span class="pre">EffectController</span></code>).</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">ZigzagEffectController</span><span class="p">(</span><span class="nl">period:</span> <span class="m">2</span><span class="p">);</span>
+</pre></div>
+</div>
 </section>
 </section>
 <section id="see-also">
@@ -978,8 +1370,8 @@ any other can be implemented by the user.</p>
 
               </div>
               
-        
-            <!-- Previous / next buttons -->
+            
+                <!-- Previous / next buttons -->
 <div class='prev-next-area'> 
     <a class='left-prev' id="prev-link" href="collision_detection.html" title="previous page">
         <i class="fas fa-angle-left"></i>
@@ -996,19 +1388,17 @@ any other can be implemented by the user.</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-        
+            
         </div>
     </div>
     <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Blue Fire Team<br/>
-        
-            &copy; Copyright 2021, Blue Fire Team.<br/>
-      </p>
-    </div>
-  </footer>
+  <p>
+    
+      By Blue Fire Team<br/>
+    
+        &copy; Copyright 2021, Blue Fire Team.<br/>
+  </p>
+</footer>
 </main>
 
 
