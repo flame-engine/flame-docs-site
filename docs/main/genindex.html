@@ -1,317 +1,135 @@
-
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Index &#8212; Flame</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="_static/flames.css" />
+  <!-- Scripts -->
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
+  <script src="_static/versions.js"></script>
+  <!--script src="searchindex.js" defer></script-->
+  <!-- Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="_static/fontawesome/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="_static/fontawesome/fa-solid-900.woff2">
+  <link rel="stylesheet" href="_static/fontawesome/all.min.css">
+  <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <link rel="index" title="Index" href="#" />
+  <link rel="search" title="Search" href="search.html" />
+</head>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Index &#8212; Flame</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+<body data-spy="scroll" data-target="#toc-local" data-offset="80">
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+<div class="top-bar">
+  <button id="menu-button" class="btn" title="Toggle menu"><i class="fa fa-bars"></i></button>
+  <script type="text/javascript">
+    jQuery(function(){
+      $("#menu-button").click(function() {
+        $(this).toggleClass("active");
+        $(".sidebar-left-area").toggleClass("active");
+      });
+    });
+  </script>
 
-    
-      
-
-    
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=84ace793992934648b4de8eed757e5a2" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
-
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
-    <script src="_static/versions.js"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="index" title="Index" href="#" />
-    <link rel="search" title="Search" href="search.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
-    
-  </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<div class="col-12 col-md-3 bd-sidebar site-navigation " id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
-      <img src="_static/logo_flame.png" class="logo" alt="logo">
-      
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Basic concepts
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="structure.html">
-   File structure
+  <a href="index.html" class="logo_image">
+    <img src="_static/logo_flame.png">
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="game.html">
-   FlameGame
+
+  <div class="highlight-box" role="alert" style="display:none">
+    <div>
+      <div class="title">highlighted:</div>
+      <div class="content" id="highlight-content"></div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Dismiss">×</button>
+  </div>
+  <div class="expander"></div>
+
+  <div class="versions-placeholder"></div>
+  <a href="https://discord.com/channels/509714518008528896/516639688581316629" id="discord-button"
+     class="btn" title="Flame Discord channel">
+    <i class="fab fa-discord"></i>
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="components.html">
-   Components
+  <a href="https://github.com/flame-engine/flame/" id="github-button" class="btn"
+     title="GitHub repository">
+    <i class="fab fa-github"></i>
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="platforms.html">
-   Platforms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="collision_detection.html">
-   Collision detection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="effects.html">
-   Effects
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="camera_and_viewport.html">
-   Camera &amp; Viewport
-  </a>
- </li>
+</div>
+
+<div class="sidebar-left-area">
+  <div class="sidebar-left-bg"></div>
+  <div class="sidebar-left">
+    <div class="searchbox" role="search">
+      <form id="search-form" action="search.html" method="get">
+        <i class="icon fa fa-search"></i>
+        <input type="search" class="form-control" id="search-input" name="q"
+               placeholder="Search the docs..." autocomplete="off" />
+      </form>
+    </div>
+    <div class="nav-left" role="navigation" aria-label="Main">
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="flame/flame.html">flame</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flame/structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flame/game.html">Game loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flame/platforms.html">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flame/collision_detection.html">Collision detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flame/camera_and_viewport.html">Camera &amp; Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flame/inputs/gesture-input.html">Gesture input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/inputs/keyboard-input.html">Keyboard input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/inputs/other-inputs.html">Other inputs</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Inputs
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="gesture-input.html">
-   Gesture input
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="keyboard-input.html">
-   Keyboard input
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="other-inputs.html">
-   Other inputs
-  </a>
- </li>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flame/rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flame/rendering/images.html">Images, sprites and animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/rendering/text.html">Text rendering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/rendering/palette.html">Colors and palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/rendering/particles.html">Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/rendering/layers.html">Layers</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Audio
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="audio.html">
-   General audio
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bgm.html">
-   Background music
-  </a>
- </li>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="flame/other/other.html">Other</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flame/other/debug.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/other/util.html">Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/other/widgets.html">Widgets</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Rendering
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="images.html">
-   Images, sprites and animations
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="text.html">
-   Text rendering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="palette.html">
-   Colors and palette
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="particles.html">
-   Particles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="layers.html">
-   Layers
-  </a>
- </li>
+</li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Other Modules
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="util.html">
-   Util
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="widgets.html">
-   Widgets
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="forge2d.html">
-   Forge2D
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="oxygen.html">
-   Oxygen
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="tiled.html">
-   Tiled
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="debug.html">
-   Debugging
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="splash_screen.html">
-   Splash screen
-  </a>
- </li>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="flame_audio/flame_audio.html">flame_audio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="flame_audio/audio.html">General audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flame_audio/bgm.html">Background music</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="other_modules/forge2d.html">Forge2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other_modules/oxygen.html">Oxygen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other_modules/tiled.html">Tiled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="other_modules/splash_screen.html">Splash screen</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+  </div>
 </div>
 
-</div>
-
-
-          
-
-
-          
-<!-- This is an invisible pixel that we watch to see if we've scrolled. -->
-<div class="sbt-scroll-pixel-helper"></div>
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            <div class="topbar-left">
-                
-                <label class="nav-toggle-button" for="__navigation">
-                    <div class="visually-hidden">Toggle navigation</div>
-                    <i class="fas fa-bars"></i>
-                </label>
-                
-            </div>
-            
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/flame-engine/flame"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-        </div>
-    </div>
-</div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1></h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            
-              <div>
-                
+<div class="main-area">
+  <div class="document-wrapper">
+    <div class="document" role="main">
+      
 
 <h1 id="index">Index</h1>
 
@@ -320,30 +138,28 @@
 </div>
 
 
-              </div>
-              
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+    </div>
+    <div class="copyright">
+      The content on this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 License</a>,
+      and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
+    </div>
+    <div class="prev-next-area">
+      <div class='expander'></div>
+    </div>
+  </div>
+
+  <div class="sidebar-right">
+    
+    <div class="nav-right" role="navigation" aria-label="table of contents">
+      
+    </div>
+  </div>
+
+  <div class="expander"></div>
 </div>
-            
-        </div>
-    </div>
-    <footer class="footer">
-  <p>
-    
-      By Blue Fire Team<br/>
-    
-        &copy; Copyright 2021, Blue Fire Team.<br/>
-  </p>
-</footer>
-</main>
 
 
-      </div>
-    </div>
-  
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
 
-  </body>
+
+</body>
 </html>

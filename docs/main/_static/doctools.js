@@ -1,12 +1,14 @@
 /*
+ * Originally from:
+ * -----------------------------------------------------------------------------
  * doctools.js
  * ~~~~~~~~~~~
  *
  * Sphinx JavaScript utilities for all documentation.
  *
- * :copyright: Copyright 2007-2022 by the Sphinx team, see AUTHORS.
+ * :copyright: Copyright 2007-2020 by the Sphinx team, see AUTHORS.
  * :license: BSD, see LICENSE for details.
- *
+ * -----------------------------------------------------------------------------
  */
 
 /**
@@ -29,14 +31,9 @@ if (!window.console || !console.firebug) {
 
 /**
  * small helper function to urldecode strings
- *
- * See https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent#Decoding_query_parameters_from_a_URL
  */
 jQuery.urldecode = function(x) {
-  if (!x) {
-    return x
-  }
-  return decodeURIComponent(x.replace(/\+/g, ' '));
+  return decodeURIComponent(x).replace(/\+/g, ' ');
 };
 
 /**
@@ -70,7 +67,7 @@ jQuery.getQueryParameters = function(s) {
  * highlight a given string on a jquery object by wrapping it in
  * span elements with the given class name.
  */
-jQuery.fn.highlightText = function(text, className) {
+jQuery.fn.highlightText = function(text, className, index) {
   function highlight(node, addItems) {
     if (node.nodeType === 3) {
       var val = node.nodeValue;
@@ -84,7 +81,7 @@ jQuery.fn.highlightText = function(text, className) {
           span = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
         } else {
           span = document.createElement("span");
-          span.className = className;
+          span.className = className + " i" + index;
         }
         span.appendChild(document.createTextNode(val.substr(pos, text.length)));
         node.parentNode.insertBefore(span, node.parentNode.insertBefore(
@@ -225,18 +222,24 @@ var Documentation = {
     var params = $.getQueryParameters();
     var terms = (params.highlight) ? params.highlight[0].split(/\s+/) : [];
     if (terms.length) {
-      var body = $('div.body');
+      var body = $('div[role="main"]');
       if (!body.length) {
         body = $('body');
       }
+      var hbox = $("#highlight-content");
       window.setTimeout(function() {
-        $.each(terms, function() {
-          body.highlightText(this.toLowerCase(), 'highlighted');
+        $.each(terms, function(i) {
+          var text = this.toLowerCase();
+          body.highlightText(text, 'highlighted', i);
+          hbox.append($('<span>' + text + '</span>').click(function(){
+            $(this).toggleClass("off");
+            Documentation.toggleSearchWord(i);
+          }));
         });
       }, 10);
-      $('<p class="highlight-link"><a href="javascript:Documentation.' +
-        'hideSearchWords()">' + _('Hide Search Matches') + '</a></p>')
-          .appendTo($('#searchbox'));
+
+      $("div.highlight-box").show();
+      $("div.highlight-box button.close").click(Documentation.hideSearchWords);
     }
   },
 
@@ -258,15 +261,16 @@ var Documentation = {
     }
   },
 
+  toggleSearchWord : function(i) {
+    $('span.highlighted.i' + i).toggleClass('off');
+  },
+
   /**
    * helper function to hide the search marks again
    */
   hideSearchWords : function() {
-    $('#searchbox .highlight-link').fadeOut(300);
     $('span.highlighted').removeClass('highlighted');
-    var url = new URL(window.location);
-    url.searchParams.delete('highlight');
-    window.history.replaceState({}, '', url);
+    $("div.highlight-box").fadeOut(300);
   },
 
   /**
@@ -293,10 +297,9 @@ var Documentation = {
   initOnKeyListeners: function() {
     $(document).keydown(function(event) {
       var activeElementType = document.activeElement.tagName;
-      // don't navigate when in search box, textarea, dropdown or button
+      // don't navigate when in search box or textarea
       if (activeElementType !== 'TEXTAREA' && activeElementType !== 'INPUT' && activeElementType !== 'SELECT'
-          && activeElementType !== 'BUTTON' && !event.altKey && !event.ctrlKey && !event.metaKey
-          && !event.shiftKey) {
+          && !event.altKey && !event.ctrlKey && !event.metaKey && !event.shiftKey) {
         switch (event.keyCode) {
           case 37: // left
             var prevHref = $('link[rel="prev"]').prop('href');
@@ -304,14 +307,12 @@ var Documentation = {
               window.location.href = prevHref;
               return false;
             }
-            break;
           case 39: // right
             var nextHref = $('link[rel="next"]').prop('href');
             if (nextHref) {
               window.location.href = nextHref;
               return false;
             }
-            break;
         }
       }
     });

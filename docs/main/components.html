@@ -34,9 +34,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
-    <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -327,23 +324,13 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Component
+  <a class="reference internal nav-link" href="#basecomponent">
+   BaseComponent
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#composability-of-components">
      Composability of components
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#querying-child-components">
-     Querying child components
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#positioning-types">
-     Positioning types
     </a>
    </li>
   </ul>
@@ -352,43 +339,6 @@
   <a class="reference internal nav-link" href="#positioncomponent">
    PositionComponent
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#position">
-     Position
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#size">
-     Size
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scale">
-     Scale
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#angle">
-     Angle
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#anchor">
-     Anchor
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#positioncomponent-children">
-     PositionComponent children
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#render-positioncomponent">
-     Render PositionComponent
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#spritecomponent">
@@ -426,28 +376,6 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shapecomponents">
-   ShapeComponents
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#circlecomponent">
-     CircleComponent
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rectanglecomponent">
-     RectangleComponent
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#polygoncomponent">
-     PolygonComponent
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#spritebodycomponent">
    SpriteBodyComponent
   </a>
@@ -465,11 +393,6 @@
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#ninetileboxcomponent">
    NineTileBoxComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#custompaintercomponent">
-   CustomPainterComponent
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -503,23 +426,13 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Component
+  <a class="reference internal nav-link" href="#basecomponent">
+   BaseComponent
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#composability-of-components">
      Composability of components
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#querying-child-components">
-     Querying child components
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#positioning-types">
-     Positioning types
     </a>
    </li>
   </ul>
@@ -528,43 +441,6 @@
   <a class="reference internal nav-link" href="#positioncomponent">
    PositionComponent
   </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#position">
-     Position
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#size">
-     Size
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scale">
-     Scale
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#angle">
-     Angle
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#anchor">
-     Anchor
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#positioncomponent-children">
-     PositionComponent children
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#render-positioncomponent">
-     Render PositionComponent
-    </a>
-   </li>
-  </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#spritecomponent">
@@ -602,28 +478,6 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shapecomponents">
-   ShapeComponents
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#circlecomponent">
-     CircleComponent
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rectanglecomponent">
-     RectangleComponent
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#polygoncomponent">
-     PolygonComponent
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#spritebodycomponent">
    SpriteBodyComponent
   </a>
@@ -644,11 +498,6 @@
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#custompaintercomponent">
-   CustomPainterComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#effects">
    Effects
   </a>
@@ -664,26 +513,25 @@
                 
   <section class="tex2jax_ignore mathjax_ignore" id="components">
 <h1>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h1>
-<p><img alt="Component tree" src="_images/component_tree.png" /></p>
+<p><img alt="Components Diagram" src="_images/diagram.png" /></p>
 <p>This diagram might look intimidating, but don’t worry, it is not as complex as it looks.</p>
 <section id="component">
 <h2>Component<a class="headerlink" href="#component" title="Permalink to this headline">¶</a></h2>
 <p>All components inherit from the abstract class <code class="docutils literal notranslate"><span class="pre">Component</span></code>.</p>
 <p>If you want to skip reading about abstract classes you can jump directly to
-<a class="reference internal" href="#positioncomponent"><span class="std std-doc">PositionComponent</span></a>.</p>
+<span class="xref myst">PositionComponent</span>.</p>
 <p>Every <code class="docutils literal notranslate"><span class="pre">Component</span></code> has a few methods that you can optionally implement, which are used by the
 <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class. If you are not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, you can use these methods on your own game loop
 if you wish.</p>
-<p><img alt="Component Lifecycle Diagram" src="_images/component_lifecycle.png" /></p>
+<p><img alt="Component Lifecycle Diagram" src="_images/diagram.png" /></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> method is called whenever the screen is resized, and once in the beginning when
 the component is added to the game via the <code class="docutils literal notranslate"><span class="pre">add</span></code> method.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">shouldRemove</span></code> variable can be overridden or set to true and <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> will remove the
 component before the next update loop. It will then no longer be rendered or updated. Note that
 <code class="docutils literal notranslate"><span class="pre">game.remove(Component</span> <span class="pre">c)</span></code> and <code class="docutils literal notranslate"><span class="pre">component.removeFromParent()</span></code> also can be used to remove components
 from its parent.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">respectCamera</span></code> variable can be overridden or set to <code class="docutils literal notranslate"><span class="pre">false</span></code> (defaults to <code class="docutils literal notranslate"><span class="pre">true</span></code>) to make the
-<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> ignore the <code class="docutils literal notranslate"><span class="pre">camera</span></code> for this component, making it static in relation to the viewport
-that is.
+<p>The <code class="docutils literal notranslate"><span class="pre">isHUD</span></code> variable can be overridden or set to true (defaults to <code class="docutils literal notranslate"><span class="pre">false</span></code>) to make the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>
+ignore the <code class="docutils literal notranslate"><span class="pre">camera</span></code> for this element, making it static in relation to the screen that is.
 Do note that this currently only works if the component is added directly to the root <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> method can be overridden to run code before the component is removed from the game,
 it is only run once even if the component is removed both by using the parents remove method and
@@ -700,8 +548,8 @@ lifetime. This method is executed after the initial “preparation” of the com
 <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> and <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>, but before the inclusion of the component in the parent’s list of
 components.</p>
 </section>
-<section id="id1">
-<h2>Component<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<section id="basecomponent">
+<h2>BaseComponent<a class="headerlink" href="#basecomponent" title="Permalink to this headline">¶</a></h2>
 <p>Usually if you are going to make your own component you want to extend <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, but if
 you want to be able to handle effects and child components but handle the positioning differently
 you can extend the <code class="docutils literal notranslate"><span class="pre">Component</span></code> directly.</p>
@@ -734,128 +582,33 @@ children are rendered and updated with the same conditions.</p>
   <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">render</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="p">(</span><span class="n">visible</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">super</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span>
     <span class="p">}</span> <span class="c1">// If not visible none of the children will be rendered</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 </section>
-<section id="querying-child-components">
-<h3>Querying child components<a class="headerlink" href="#querying-child-components" title="Permalink to this headline">¶</a></h3>
-<p>The children that have been added to a component live in a <code class="docutils literal notranslate"><span class="pre">QueryableOrderedSet</span></code> called
-<code class="docutils literal notranslate"><span class="pre">children</span></code>. To query for a specific type of components in the set, the <code class="docutils literal notranslate"><span class="pre">query&lt;T&gt;()</span></code> function can be
-used. By default <code class="docutils literal notranslate"><span class="pre">strictMode</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code> in the children set, but if you set it to true, then the
-queries will have to be registered with <code class="docutils literal notranslate"><span class="pre">children.register</span></code> before a query can be used.</p>
-<p>If you know in compile time that you later will run a query of a specific type it is recommended to
-register the query, no matter if the <code class="docutils literal notranslate"><span class="pre">strictMode</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>, since there are some
-performance benefits to gain from it. The <code class="docutils literal notranslate"><span class="pre">register</span></code> call is usually done in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>.</p>
-<p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span> <span class="kd">async</span> <span class="p">{</span>
-  <span class="kd">await</span> <span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-  <span class="n">components</span><span class="p">.</span><span class="n">register</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>In the example above a query is registered for <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, and an example of how to query
-the registered component type can be seen below.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kd">final</span> <span class="n">allPositionComponents</span> <span class="o">=</span> <span class="n">components</span><span class="p">.</span><span class="n">query</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="o">&gt;</span><span class="p">();</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
-<section id="positioning-types">
-<h3>Positioning types<a class="headerlink" href="#positioning-types" title="Permalink to this headline">¶</a></h3>
-<p>If you want to create a HUD (Head-up display) or another component that isn’t positioned in relation
-to the game coordinates, you can change the <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> of the component.
-The default <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> is <code class="docutils literal notranslate"><span class="pre">positionType</span> <span class="pre">=</span> <span class="pre">PositionType.game</span></code> and that can be changed to
-either <code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code> or <code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> depending on how you want to position
-the component.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.game</span></code> (Default) - Respects camera and viewport.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code> - Respects viewport only (ignores camera).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> - Position in relation to the coordinate system of the Flutter game
-widget (i.e. the raw canvas).</p></li>
-</ul>
-<p>Most of your components will probably be positioned according to <code class="docutils literal notranslate"><span class="pre">PositionType.game</span></code>, since you
-want them to respect the <code class="docutils literal notranslate"><span class="pre">Camera</span></code> and the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code>. But quite often you want for example buttons
-and text to always show on the screen, no matter if you move the camera, then you want to use
-<code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code>. In some rare cases you want to use <code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> to position
-your widgets, when you don’t want the component to respect the camera nor the viewport; this could
-for example be for controls or joysticks that would be unergonomic to use if they had to stay within
-the viewport.</p>
-<p>Do note that this setting is only respected if the component is added directly to the root
-<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> and not as a child component of another component.</p>
-</section>
 </section>
 <section id="positioncomponent">
 <h2>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this headline">¶</a></h2>
-<p>This class represent a positioned object on the screen, being a floating rectangle or a rotating
-sprite. It can also represent a group of positioned components if children are added to it.</p>
-<p>The base of the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is that it has a <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">size</span></code>, <code class="docutils literal notranslate"><span class="pre">scale</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code> and
-<code class="docutils literal notranslate"><span class="pre">anchor</span></code> which transforms how the component is rendered.</p>
-<section id="position">
-<h3>Position<a class="headerlink" href="#position" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">position</span></code> is just a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> which represents the position of the component’s anchor in
-relation to its parent; if the parent is a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, it is in relation to the viewport.</p>
-</section>
-<section id="size">
-<h3>Size<a class="headerlink" href="#size" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">size</span></code> of the component when the zoom level of the camera is 1.0 (no zoom, default).
-The <code class="docutils literal notranslate"><span class="pre">size</span></code> is <em>not</em> in relation to the parent of the component.</p>
-</section>
-<section id="scale">
-<h3>Scale<a class="headerlink" href="#scale" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">scale</span></code> is how much the component and its children should be scaled. Since it is represented
-by a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>, you can scale in a uniform way by changing <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> with the same amount, or in a
-non-uniform way, by change <code class="docutils literal notranslate"><span class="pre">x</span></code> or <code class="docutils literal notranslate"><span class="pre">y</span></code> by different amounts.</p>
-</section>
-<section id="angle">
-<h3>Angle<a class="headerlink" href="#angle" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">angle</span></code> is the rotation angle around the anchor, represented as a double in radians. It is
-relative to the parent’s angle.</p>
-</section>
-<section id="anchor">
-<h3>Anchor<a class="headerlink" href="#anchor" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">anchor</span></code> is where on the component that the position and rotation should be defined from (the
-default is <code class="docutils literal notranslate"><span class="pre">Anchor.topLeft</span></code>). So if you have the anchor set as <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code> the component’s
-position on the screen will be in the center of the component and if an <code class="docutils literal notranslate"><span class="pre">angle</span></code> is applied, it is
-rotated around the anchor, so in this case around the center of the component. You can think of it
-as the point within the component by which Flame “grabs” it.</p>
-</section>
-<section id="positioncomponent-children">
-<h3>PositionComponent children<a class="headerlink" href="#positioncomponent-children" title="Permalink to this headline">¶</a></h3>
-<p>All children of the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> will be transformed in relation to the parent, which means
-that the <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code> and <code class="docutils literal notranslate"><span class="pre">scale</span></code> will be relative to the parents state.
-So if you, for example, wanted to position a child 50 logical pixels above the center of the parent
-you would do this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">final</span> <span class="n">parent</span> <span class="o">=</span> <span class="n">PositionComponent</span><span class="p">(</span>
-  <span class="n">position</span><span class="p">:</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
-  <span class="n">size</span><span class="p">:</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span>
-  <span class="n">anchor</span><span class="p">:</span> <span class="n">Anchor</span><span class="o">.</span><span class="n">center</span><span class="p">,</span>
-<span class="p">);</span>
-<span class="n">final</span> <span class="n">child</span> <span class="o">=</span> <span class="n">PositionComponent</span><span class="p">(</span><span class="n">position</span><span class="p">:</span> <span class="n">Vector2</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mi">50</span><span class="p">));</span>
-<span class="n">parent</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">child</span><span class="p">);</span>
-</pre></div>
-</div>
-<p>Remember that most components that are rendered on the screen are <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, so
-this pattern can be used in for example <a class="reference internal" href="#spritecomponent"><span class="std std-doc">SpriteComponent</span></a> and <a class="reference internal" href="#spriteanimationcomponent"><span class="std std-doc">SpriteAnimationComponent</span></a> too.</p>
-</section>
-<section id="render-positioncomponent">
-<h3>Render PositionComponent<a class="headerlink" href="#render-positioncomponent" title="Permalink to this headline">¶</a></h3>
+<p>This class represent a single object on the screen, being a floating rectangle or a rotating sprite.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> has a <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">size</span></code> and <code class="docutils literal notranslate"><span class="pre">angle</span></code>, as well as some useful methods like
+<code class="docutils literal notranslate"><span class="pre">distance</span></code> and <code class="docutils literal notranslate"><span class="pre">angleBetween</span></code>.</p>
 <p>When implementing the <code class="docutils literal notranslate"><span class="pre">render</span></code> method for a component that extends <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> remember to
 render from the top left corner (0.0). Your render method should not handle where on the screen your
 component should be rendered. To handle where and how your component should be rendered use the
-<code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code> and <code class="docutils literal notranslate"><span class="pre">anchor</span></code> properties and Flame will automatically handle the rest for you.</p>
+<code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code> and <code class="docutils literal notranslate"><span class="pre">anchor</span></code> properties and flame will automatically handle the rest for you.</p>
+<p>If you really want to handle the canvas translations yourself you can just omit the
+<code class="docutils literal notranslate"><span class="pre">super.render(canvas)</span></code> line and suppress the warning, but for most use cases this is not
+recommended.</p>
 <p>If you want to know where on the screen the bounding box of the component is you can use the
 <code class="docutils literal notranslate"><span class="pre">toRect</span></code> method.</p>
 <p>In the event that you want to change the direction of your components rendering, you can also use
-<code class="docutils literal notranslate"><span class="pre">flipHorizontally()</span></code> and <code class="docutils literal notranslate"><span class="pre">flipVertically()</span></code> to flip anything drawn to canvas during <code class="docutils literal notranslate"><span class="pre">render(Canvas</span> <span class="pre">canvas)</span></code>,
-around the anchor point. These methods are available on all <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> objects, and are especially
-useful on <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> and <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code>.</p>
-<p>In case you want to flip a component around its center without having to change the anchor to <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code>,
-you can use <code class="docutils literal notranslate"><span class="pre">flipHorizontallyAroundCenter()</span></code> and <code class="docutils literal notranslate"><span class="pre">flipVerticallyAroundCenter()</span></code>.</p>
-</section>
+<code class="docutils literal notranslate"><span class="pre">renderFlipX</span></code> and <code class="docutils literal notranslate"><span class="pre">renderFlipY</span></code> to flip anything drawn to canvas during <code class="docutils literal notranslate"><span class="pre">render(Canvas</span> <span class="pre">canvas)</span></code>.
+This is available on all <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> objects, and is especially useful on <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code>
+and <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code>. For example set <code class="docutils literal notranslate"><span class="pre">component.renderFlipX</span> <span class="pre">=</span> <span class="pre">true</span></code> to mirror the
+horizontal rendering.</p>
 </section>
 <section id="spritecomponent">
 <h2>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this headline">¶</a></h2>
@@ -927,8 +680,8 @@ single animation, this component receives a Map of a generic type <code class="d
   <span class="n">running</span><span class="p">,</span>
 <span class="p">}</span>
 
-<span class="kd">final</span> <span class="n">running</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
-<span class="kd">final</span> <span class="n">idle</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">running</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omited */</span><span class="p">);</span>
+<span class="kd">final</span> <span class="n">idle</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omited */</span><span class="p">);</span>
 
 <span class="kd">final</span> <span class="n">robot</span> <span class="o">=</span> <span class="n">SpriteAnimationGroupComponent</span><span class="o">&lt;</span><span class="n">RobotState</span><span class="o">&gt;</span><span class="p">(</span>
   <span class="nl">animations:</span> <span class="p">{</span>
@@ -951,8 +704,8 @@ single animation, this component receives a Map of a generic type <code class="d
     <span class="kd">with</span> <span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">SpriteGroupExample</span><span class="o">&gt;</span><span class="p">,</span> <span class="n">Tappable</span> <span class="p">{</span>
   <span class="nd">@override</span>
   <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;?</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="kd">final</span> <span class="n">pressedSprite</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
-    <span class="kd">final</span> <span class="n">unpressedSprite</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="o">/*</span> <span class="n">omitted</span> <span class="o">/*</span><span class="p">);</span>
+    <span class="kd">final</span> <span class="n">pressedSprite</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="cm">/* omited */</span><span class="p">);</span>
+    <span class="kd">final</span> <span class="n">unpressedSprite</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="o">/*</span> <span class="n">omited</span> <span class="o">/*</span><span class="p">);</span>
 
     <span class="n">sprites</span> <span class="o">=</span> <span class="p">{</span>
       <span class="n">ButtonState</span><span class="p">.</span><span class="nl">pressed:</span> <span class="n">pressedSprite</span><span class="p">,</span>
@@ -962,7 +715,7 @@ single animation, this component receives a Map of a generic type <code class="d
     <span class="n">current</span> <span class="o">=</span> <span class="n">ButtonState</span><span class="p">.</span><span class="n">unpressed</span><span class="p">;</span>
   <span class="p">}</span>
 
-  <span class="c1">// tap methods handler omitted...</span>
+  <span class="c1">// tap methods handler omited...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1037,9 +790,9 @@ FlareController that can play multiple animations and control nodes.</p>
 </section>
 <section id="parallaxcomponent">
 <h2>ParallaxComponent<a class="headerlink" href="#parallaxcomponent" title="Permalink to this headline">¶</a></h2>
-<p>This <code class="docutils literal notranslate"><span class="pre">Component</span></code> can be used to render backgrounds with a depth feeling by drawing several
-transparent images on top of each other, where each image or animation (<code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code>) is
-moving with a different velocity.</p>
+<p>This <code class="docutils literal notranslate"><span class="pre">Component</span></code> can be used to render backgrounds with a depth feeling by drawing several transparent
+images on top of each other, where each image or animation (<code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code>) is moving with a
+different velocity.</p>
 <p>The rationale is that when you look at the horizon and moving, closer objects seem to move faster
 than distant ones.</p>
 <p>This component simulates this effect, making a more realistic background effect.</p>
@@ -1050,7 +803,7 @@ than distant ones.</p>
     <span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;bg.png&#39;</span><span class="p">),</span>
     <span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;trees.png&#39;</span><span class="p">),</span>
   <span class="p">]);</span>
-  <span class="n">add</span><span class="p">(</span><span class="n">parallaxComponent</span><span class="p">);</span>
+  <span class="n">add</span><span class="p">(</span><span class="n">parallax</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -1073,12 +826,13 @@ than distant ones.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This creates a static background. If you want a moving parallax (which is the whole point of a
-parallax), you can do it in a few different ways depending on how fine-grained you want to set the
-settings for each layer.</p>
-<p>They simplest way is to set the named optional parameters <code class="docutils literal notranslate"><span class="pre">baseVelocity</span></code> and
-<code class="docutils literal notranslate"><span class="pre">velocityMultiplierDelta</span></code> in the <code class="docutils literal notranslate"><span class="pre">load</span></code> helper function. For example if you want to move your
-background images along the X-axis with a faster speed the “closer” the image is:</p>
+<p>This creates a static background, if you want a moving parallax (which is the whole point of a
+parallax), you can do it in a few different ways depending on how fine grained you want to set the
+settings for each layer.
+They simplest way is to set the named optional parameters <code class="docutils literal notranslate"><span class="pre">baseVelocity</span></code> and
+<code class="docutils literal notranslate"><span class="pre">velocityMultiplierDelta</span></code> in the <code class="docutils literal notranslate"><span class="pre">load</span></code> helper function.</p>
+<p>For example if you want to move your background images along the X-axis with a faster speed the
+“closer” the image is:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">parallaxComponent</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">loadParallaxComponent</span><span class="p">(</span>
   <span class="n">_dataList</span><span class="p">,</span>
   <span class="nl">baseVelocity:</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">20</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
@@ -1093,11 +847,11 @@ game speeds up.</p>
 <span class="n">parallax</span><span class="p">.</span><span class="n">velocityMultiplierDelta</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">2.0</span><span class="p">,</span> <span class="m">1.0</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>By default, the images are aligned to the bottom left, repeated along the X-axis and scaled
+<p>By default the images are aligned to the bottom left, repeated along the X-axis and scaled
 proportionally so that the image covers the height of the screen. If you want to change this
-behavior, for example if you are not making a side-scrolling game, you can set the <code class="docutils literal notranslate"><span class="pre">repeat</span></code>,
-<code class="docutils literal notranslate"><span class="pre">alignment</span></code> and <code class="docutils literal notranslate"><span class="pre">fill</span></code> parameters for each <code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code> and add them to <code class="docutils literal notranslate"><span class="pre">ParallaxLayer</span></code>s that
-you then pass in to the <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code>’s constructor.</p>
+behavior, for example if you are not making a side scrolling game, you can set the <code class="docutils literal notranslate"><span class="pre">repeat</span></code>,
+<code class="docutils literal notranslate"><span class="pre">alignment</span></code> and <code class="docutils literal notranslate"><span class="pre">fill</span></code> parameters for each <code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code> and add them to <code class="docutils literal notranslate"><span class="pre">ParallaxLayer</span></code>s that you
+then pass in to the <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code>’s constructor.</p>
 <p>Advanced example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">images</span> <span class="o">=</span> <span class="p">[</span>
   <span class="n">loadParallaxImage</span><span class="p">(</span><span class="s1">&#39;stars.jpg&#39;</span><span class="p">,</span> <span class="nl">repeat:</span> <span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span> <span class="nl">alignment:</span> <span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span> <span class="nl">fill:</span> <span class="n">LayerFill</span><span class="p">.</span><span class="n">width</span><span class="p">),</span>
@@ -1125,105 +879,14 @@ height.</p></li>
 component (<code class="docutils literal notranslate"><span class="pre">game.add(parallaxComponent</span></code>).
 Also, don’t forget to add you images to the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file as assets or they wont be found.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Parallax</span></code> file contains an extension of the game which adds <code class="docutils literal notranslate"><span class="pre">loadParallax</span></code>, <code class="docutils literal notranslate"><span class="pre">loadParallaxLayer</span></code>
-, <code class="docutils literal notranslate"><span class="pre">loadParallaxImage</span></code> and <code class="docutils literal notranslate"><span class="pre">loadParallaxAnimation</span></code> so that it automatically uses your game’s image
-cache instead of the global one. The same goes for the <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code> file, but that provides
-<code class="docutils literal notranslate"><span class="pre">loadParallaxComponent</span></code>.</p>
+, <code class="docutils literal notranslate"><span class="pre">loadParallaxImage</span></code> and <code class="docutils literal notranslate"><span class="pre">loadParallaxAnimation</span></code> so that it automatically uses your game’s image cache instead of the global
+one. The same goes for the <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code> file, but that provides <code class="docutils literal notranslate"><span class="pre">loadParallaxComponent</span></code>.</p>
 <p>If you want a fullscreen <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code> simply omit the <code class="docutils literal notranslate"><span class="pre">size</span></code> argument and it will take the
 size of the game, it will also resize to fullscreen when the game changes size or orientation.</p>
-<p>Flame provides two kinds of <code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code>: <code class="docutils literal notranslate"><span class="pre">ParallaxImage</span></code> and <code class="docutils literal notranslate"><span class="pre">ParallaxAnimation</span></code>,
-<code class="docutils literal notranslate"><span class="pre">ParallaxImage</span></code> is a static image renderer and <code class="docutils literal notranslate"><span class="pre">ParallaxAnimation</span></code> is, as it’s name implies, an
-animation and frame based renderer.
+<p>Flame provides two kinds of <code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code>: <code class="docutils literal notranslate"><span class="pre">ParallaxImage</span></code> and <code class="docutils literal notranslate"><span class="pre">ParallaxAnimation</span></code>, <code class="docutils literal notranslate"><span class="pre">ParallaxImage</span></code> is a static image renderer and <code class="docutils literal notranslate"><span class="pre">ParallaxAnimation</span></code> is, as it’s name implies, an animation and frame based renderer.
 It is also possible to create custom renderers by extending the <code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code> class.</p>
 <p>Three example implementations can be found in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/parallax">examples directory</a>.</p>
-</section>
-<section id="shapecomponents">
-<h2>ShapeComponents<a class="headerlink" href="#shapecomponents" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">ShapeComponent</span></code> is a basic component that can be used if you want to draw geometrical shapes as
-components on the screen.  Since the <code class="docutils literal notranslate"><span class="pre">ShapeComponent</span></code> is a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s you can use effects
-on it. All <code class="docutils literal notranslate"><span class="pre">ShapeComponent</span></code>s take a <code class="docutils literal notranslate"><span class="pre">Paint</span></code> as an argument and then arguments to define
-the shape of the specific component, it also takes all the arguments that can be passed to the
-<code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p>
-<p>There are three implementations of <code class="docutils literal notranslate"><span class="pre">ShapeComponent</span></code>, which are the following:</p>
-<section id="circlecomponent">
-<h3>CircleComponent<a class="headerlink" href="#circlecomponent" title="Permalink to this headline">¶</a></h3>
-<p>A <code class="docutils literal notranslate"><span class="pre">CircleComponent</span></code> can be created only by defining its <code class="docutils literal notranslate"><span class="pre">radius</span></code>, but you most likely want to pass
-it a <code class="docutils literal notranslate"><span class="pre">position</span></code> and maybe <code class="docutils literal notranslate"><span class="pre">paint</span></code> (the default is white) too.</p>
-<p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">paint</span> <span class="o">=</span> <span class="n">BasicPalette</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">paint</span><span class="p">()..</span><span class="n">style</span> <span class="o">=</span> <span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span>
-<span class="kd">final</span> <span class="n">circle</span> <span class="o">=</span> <span class="n">CircleComponent</span><span class="p">(</span><span class="nl">radius:</span> <span class="m">200.0</span><span class="p">,</span> <span class="nl">position:</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">200</span><span class="p">),</span> <span class="nl">paint:</span> <span class="n">paint</span><span class="p">);</span>
-</pre></div>
-</div>
-</section>
-<section id="rectanglecomponent">
-<h3>RectangleComponent<a class="headerlink" href="#rectanglecomponent" title="Permalink to this headline">¶</a></h3>
-<p>A <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> can be created in two ways, depending on if it’s a square or not.
-To create a <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> that is 300 in width and 200 in height you can do the following:</p>
-<p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">paint</span> <span class="o">=</span> <span class="n">BasicPalette</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">paint</span><span class="p">()..</span><span class="n">style</span> <span class="o">=</span> <span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span>
-<span class="kd">final</span> <span class="n">rectangle</span> <span class="o">=</span> <span class="n">RectangleComponent</span><span class="p">(</span>
-  <span class="nl">size:</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">300.0</span><span class="p">,</span> <span class="m">200.0</span><span class="p">),</span>
-  <span class="nl">position:</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">200</span><span class="p">),</span>
-  <span class="nl">paint:</span> <span class="n">paint</span><span class="p">,</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-<p>To create a square you can instead use the slightly simpler named constructor
-<code class="docutils literal notranslate"><span class="pre">RectangleComponent.square</span></code>. This is an example of how to create a red square with width and height
-200:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">paint</span> <span class="o">=</span> <span class="n">BasicPalette</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">paint</span><span class="p">()..</span><span class="n">style</span> <span class="o">=</span> <span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span>
-<span class="kd">final</span> <span class="n">square</span> <span class="o">=</span> <span class="n">RectangleComponent</span><span class="p">.</span><span class="n">square</span><span class="p">(</span>
-  <span class="nl">size:</span> <span class="m">200.0</span><span class="p">,</span>
-  <span class="nl">position:</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">200</span><span class="p">),</span>
-  <span class="nl">paint:</span> <span class="n">paint</span><span class="p">,</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</section>
-<section id="polygoncomponent">
-<h3>PolygonComponent<a class="headerlink" href="#polygoncomponent" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">PolygonComponent</span></code> is the most complicated of the <code class="docutils literal notranslate"><span class="pre">ShapeComponent</span></code>s since you’ll have to define
-all the “corners” of your polygon. You can create the <code class="docutils literal notranslate"><span class="pre">PolygonComponent</span></code> in two different ways,
-either you use the default constructor which takes a list of <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> where each of them should be
-between -1.0 and 1.0 that describes the ration of the length from the center to the edge of the size
-of the component. So
-<code class="docutils literal notranslate"><span class="pre">[Vector2(1.0,</span> <span class="pre">1.0),</span> <span class="pre">Vector2(1.0,</span> <span class="pre">-1.0),</span> <span class="pre">Vector2(-1.0,</span> <span class="pre">-1.0),</span> <span class="pre">Vector2(-1.0,</span> <span class="pre">1.0)]</span></code>
-would describe a rectangle that fills the full size of the component. Remember to define the list in
-a counter clockwise manner (if you think in the screen coordinate system where the y-axis is
-flipped, otherwise it is clockwise).</p>
-<p>So to create a diamond shaped <code class="docutils literal notranslate"><span class="pre">PolygonComponent</span></code> which is slightly smaller than the defined size you
-would do this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">vertices</span> <span class="o">=</span> <span class="p">([</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span> <span class="m">0.9</span><span class="p">),</span>  <span class="c1">// Middle of top wall</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">0.9</span><span class="p">,</span> <span class="m">0.0</span><span class="p">),</span> <span class="c1">// Middle of left wall</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span> <span class="o">-</span><span class="m">0.9</span><span class="p">),</span> <span class="c1">// Middle of bottom wall</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">0.9</span><span class="p">,</span> <span class="m">0.0</span><span class="p">),</span>  <span class="c1">// Middle of right wall</span>
-<span class="p">]);</span>
-
-<span class="kd">final</span> <span class="n">diamond</span> <span class="o">=</span> <span class="n">PolygonComponent</span><span class="p">(</span>
-  <span class="nl">normalizedVertices:</span> <span class="n">vertices</span><span class="p">,</span>
-  <span class="nl">size:</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">200</span><span class="p">,</span> <span class="m">300</span><span class="p">),</span>
-  <span class="nl">position:</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">500</span><span class="p">),</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-<p>If you instead want to define your polygon from absolute points you can do that too with the
-<code class="docutils literal notranslate"><span class="pre">PolygonComponent.fromPoints</span></code> factory. When using that one you don’t have to define a <code class="docutils literal notranslate"><span class="pre">size</span></code> or a
-<code class="docutils literal notranslate"><span class="pre">position</span></code> either since it will be calculated for you, but if you decide to add those arguments
-anyways they will override what has been calculated from your list of vertices.</p>
-<p>Example (diamond shape again):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">vertices</span> <span class="o">=</span> <span class="p">([</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">100</span><span class="p">),</span>  <span class="c1">// Middle of top wall</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span> <span class="m">150</span><span class="p">),</span> <span class="c1">// Middle of left wall</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">200</span><span class="p">),</span> <span class="c1">// Middle of bottom wall</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">200</span><span class="p">,</span> <span class="m">150</span><span class="p">),</span>  <span class="c1">// Middle of right wall</span>
-<span class="p">]);</span>
-
-<span class="kd">final</span> <span class="n">diamond</span> <span class="o">=</span> <span class="n">PolygonComponent</span><span class="p">.</span><span class="n">fromPoints</span><span class="p">(</span><span class="n">vertices</span><span class="p">);</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</section>
 </section>
 <section id="spritebodycomponent">
 <h2>SpriteBodyComponent<a class="headerlink" href="#spritebodycomponent" title="Permalink to this headline">¶</a></h2>
@@ -1276,18 +939,6 @@ is expanded both ways.</p>
 panels, dialogs, borders.</p>
 <p>Check the example app
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/utils/nine_tile_box.dart">nine_tile_box</a>
-for details on how to use it.</p>
-</section>
-<section id="custompaintercomponent">
-<h2>CustomPainterComponent<a class="headerlink" href="#custompaintercomponent" title="Permalink to this headline">¶</a></h2>
-<p>A <code class="docutils literal notranslate"><span class="pre">CustomPainter</span></code> is a Flutter class used with the <code class="docutils literal notranslate"><span class="pre">CustomPaint</span></code> widget to render custom
-shapes inside a Flutter application.</p>
-<p>Flame provides a component that can render a <code class="docutils literal notranslate"><span class="pre">CustomPainter</span></code> called <code class="docutils literal notranslate"><span class="pre">CustomPainterComponent</span></code>, it
-receives a custom painter and renders it on the game canvas.</p>
-<p>This can be used for sharing custom rendering logic between your Flame game, and your Flutter
-widgets.</p>
-<p>Check the example app
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/custom_painter_component.dart">custom_painter_component</a>
 for details on how to use it.</p>
 </section>
 <section id="effects">

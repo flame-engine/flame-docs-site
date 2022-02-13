@@ -34,9 +34,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
-    <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -354,11 +351,6 @@
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pause-resuming-game-execution">
-   Pause/Resuming game execution
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#flutter-widgets-and-game-instances">
    Flutter Widgets and Game instances
   </a>
@@ -416,11 +408,6 @@
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pause-resuming-game-execution">
-   Pause/Resuming game execution
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#flutter-widgets-and-game-instances">
    Flutter Widgets and Game instances
   </a>
@@ -457,17 +444,14 @@ screen (it defaults to [0,0] like a regular <code class="docutils literal notran
 
   <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">onGameResize</span><span class="p">(</span><span class="n">Vector2</span> <span class="n">gameSize</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">onGameResize</span><span class="p">(</span><span class="n">gameSize</span><span class="p">);</span>
-    <span class="c1">// We don&#39;t need to set the position in the constructor, we can set it directly here since it will</span>
+    <span class="c1">// We don&#39;t need to set the position in the constructor, we can it directly here since it will</span>
     <span class="c1">// be called once before the first time it is rendered.</span>
     <span class="n">position</span> <span class="o">=</span> <span class="n">gameSize</span> <span class="o">/</span> <span class="m">2</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
-  <span class="nd">@override</span>
-  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="kd">await</span> <span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+  <span class="n">MyGame</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">add</span><span class="p">(</span><span class="n">MyCrate</span><span class="p">());</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -571,16 +555,6 @@ to the next state.</p></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is used by all of Flame’s <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementations.</p>
 </section>
-<section class="tex2jax_ignore mathjax_ignore" id="pause-resuming-game-execution">
-<h1>Pause/Resuming game execution<a class="headerlink" href="#pause-resuming-game-execution" title="Permalink to this headline">¶</a></h1>
-<p>A Flame <code class="docutils literal notranslate"><span class="pre">Game</span></code> can be paused and resumed in two ways:</p>
-<ul class="simple">
-<li><p>With the use of the <code class="docutils literal notranslate"><span class="pre">pauseEngine</span></code> and <code class="docutils literal notranslate"><span class="pre">resumeEngine</span></code> methods.</p></li>
-<li><p>By changing the <code class="docutils literal notranslate"><span class="pre">paused</span></code> attribute.</p></li>
-</ul>
-<p>When pausing a Flame <code class="docutils literal notranslate"><span class="pre">Game</span></code>, the <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is effectively paused, meaning that no updates or new
-renders will happen until it is resumed.</p>
-</section>
 <section class="tex2jax_ignore mathjax_ignore" id="flutter-widgets-and-game-instances">
 <h1>Flutter Widgets and Game instances<a class="headerlink" href="#flutter-widgets-and-game-instances" title="Permalink to this headline">¶</a></h1>
 <p>Since a Flame game can be wrapped in a widget, it is quite easy to use it alongside other Flutter
@@ -616,7 +590,7 @@ by setting a <code class="docutils literal notranslate"><span class="pre">overla
 <p>The order in which the overlays are declared in the <code class="docutils literal notranslate"><span class="pre">overlayBuilderMap</span></code> defines which order the
 overlays will be rendered.</p>
 <p>Here you can see a
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/system/overlays_example.dart">working example</a>
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/widgets/overlay.dart">working example</a>
 of this feature.</p>
 </section>
 

@@ -34,9 +34,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
-    <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -377,7 +374,7 @@
 <p>Flame provides the <code class="docutils literal notranslate"><span class="pre">FPSCounter</span></code> mixin for recording the fps; this mixin can be applied on any class
 that extends from <code class="docutils literal notranslate"><span class="pre">Game</span></code>. Once applied you can access the current fps by using the <code class="docutils literal notranslate"><span class="pre">fps</span></code> method,
 like shown in the example below.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">FPSCounter</span> <span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">Game</span> <span class="kd">with</span> <span class="n">FPSCounter</span> <span class="p">{</span>
   <span class="kd">static</span> <span class="kd">final</span> <span class="n">fpsTextConfig</span> <span class="o">=</span> <span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span> <span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span>
 
   <span class="nd">@override</span>

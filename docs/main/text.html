@@ -34,9 +34,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
-    <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -415,39 +412,29 @@ and create a custom way to render text.</p>
 </section>
 <section id="textpaint">
 <h2>TextPaint<a class="headerlink" href="#textpaint" title="Permalink to this headline">¶</a></h2>
-<p>A <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> is the built in implementation of text rendering in Flame, it is based on top of
-Flutter’s <code class="docutils literal notranslate"><span class="pre">TextPainter</span></code> class (hence the name), it can be configured by the style class <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>
-which contains all typographical information required to render text; i.e., font size and color,
-font family, etc.</p>
+<p>A Text Paint is the built in implementation of text rendering on Flame, it is based on top of
+Flutter’s <code class="docutils literal notranslate"><span class="pre">TextPainter</span></code> class (hence the name), it can be configured by its config class
+<code class="docutils literal notranslate"><span class="pre">TextPaintConfig</span></code> which contains all typographical information required to render text; i.e., font
+size and color, family, etc.</p>
 <p>Example usage:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">const</span> <span class="n">TextPaint</span> <span class="n">textPaint</span> <span class="o">=</span> <span class="n">TextPaint</span><span class="p">(</span>
-  <span class="nl">style:</span> <span class="n">TextStyle</span><span class="p">(</span>
+  <span class="nl">config:</span> <span class="n">TextPaintConfig</span><span class="p">(</span>
     <span class="nl">fontSize:</span> <span class="m">48.0</span><span class="p">,</span>
     <span class="nl">fontFamily:</span> <span class="s1">&#39;Awesome Font&#39;</span><span class="p">,</span>
   <span class="p">),</span>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>Note: there are several packages that contain the class <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>, make sure that you import
-either <code class="docutils literal notranslate"><span class="pre">package:flutter/material.dart</span></code> or <code class="docutils literal notranslate"><span class="pre">package:flutter/painting.dart</span></code> and if you also need to
-import <code class="docutils literal notranslate"><span class="pre">dart:ui</span></code> you need to import it like this (since that contains another class that is also
-named <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;dart:ui&#39;</span> <span class="k">hide</span> <span class="n">TextStyle</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>Some common properties of <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code> are the following (here is the
-<a class="reference external" href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">full list</a>):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">fontFamily</span></code>: a commonly available font, like Arial (default), or a custom font added in your
 pubspec (see <a class="reference external" href="https://flutter.io/custom-fonts/">here</a> how to do it).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fontSize</span></code>: font size, in pts (default <code class="docutils literal notranslate"><span class="pre">24.0</span></code>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">height</span></code>: height of text line, as a multiple of font size (default <code class="docutils literal notranslate"><span class="pre">null</span></code>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: the color, as a <code class="docutils literal notranslate"><span class="pre">ui.Color</span></code> (default white).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lineHeight</span></code>: height of text line, as a multiple of font size (default <code class="docutils literal notranslate"><span class="pre">null</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: the color, as a <code class="docutils literal notranslate"><span class="pre">ui.Color</span></code> (default black).</p></li>
 </ul>
 <p>For more information regarding colors and how to create then, see the
 <a class="reference internal" href="palette.html"><span class="doc std std-doc">Colors and the Palette</span></a> guide.</p>
-<p>After the creation of the <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> object you can use its <code class="docutils literal notranslate"><span class="pre">render</span></code> method to draw strings on
-a canvas:</p>
+<p>After the creation of the text paint you can use its <code class="docutils literal notranslate"><span class="pre">render</span></code> method to draw some string on a canvas:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">textPaint</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="s2">&quot;Flame is awesome&quot;</span><span class="p">,</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">10</span><span class="p">));</span>
 </pre></div>
 </div>
@@ -465,13 +452,12 @@ a canvas:</p>
 <h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this headline">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> is a simple component that renders a single line of text.</p>
 <p>Example usage:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">style</span> <span class="o">=</span> <span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span> <span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span>
-<span class="kd">final</span> <span class="n">regular</span> <span class="o">=</span> <span class="n">TextPaint</span><span class="p">(</span><span class="nl">style:</span> <span class="n">style</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">TextPaint</span> <span class="n">regular</span> <span class="o">=</span> <span class="n">TextPaint</span><span class="p">(</span><span class="nl">color:</span> <span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span>
 
 <span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
   <span class="nd">@override</span>
   <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">TextComponent</span><span class="p">(</span><span class="nl">text:</span> <span class="s1">&#39;Hello, Flame&#39;</span><span class="p">,</span> <span class="nl">textRenderer:</span> <span class="n">regular</span><span class="p">)</span>
+    <span class="n">add</span><span class="p">(</span><span class="n">TextComponent</span><span class="p">(</span><span class="s1">&#39;Hello, Flame&#39;</span><span class="p">,</span> <span class="nl">textRenderer:</span> <span class="n">regular</span><span class="p">)</span>
       <span class="p">..</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span>
       <span class="p">..</span><span class="n">x</span> <span class="o">=</span> <span class="n">size</span><span class="p">.</span><span class="n">width</span> <span class="o">/</span> <span class="m">2</span> <span class="c1">// size is a property from game</span>
       <span class="p">..</span><span class="n">y</span> <span class="o">=</span> <span class="m">32.0</span><span class="p">);</span>
@@ -489,7 +475,7 @@ text inside a bounding box, creating line breaks according to the provided box s
 <p>If you want to change the margins of the box use the <code class="docutils literal notranslate"><span class="pre">margins</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>.</p>
 <p>Example usage:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyTextBox</span> <span class="kd">extends</span> <span class="n">TextBoxComponent</span> <span class="p">{</span>
-  <span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span> <span class="n">text</span><span class="p">)</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">text:</span> <span class="n">text</span><span class="p">,</span> <span class="nl">textRenderer:</span> <span class="n">tiny</span><span class="p">,</span> <span class="nl">boxConfig:</span> <span class="n">TextBoxConfig</span><span class="p">(</span><span class="nl">timePerChar:</span> <span class="m">0.05</span><span class="p">));</span>
+  <span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span> <span class="n">text</span><span class="p">)</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="n">text</span><span class="p">,</span> <span class="nl">textRenderer:</span> <span class="n">tiny</span><span class="p">,</span> <span class="nl">boxConfig:</span> <span class="n">TextBoxConfig</span><span class="p">(</span><span class="nl">timePerChar:</span> <span class="m">0.05</span><span class="p">));</span>
 
   <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">drawBackground</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
@@ -497,9 +483,9 @@ text inside a bounding box, creating line breaks according to the provided box s
     <span class="n">c</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span> <span class="n">Paint</span><span class="p">()..</span><span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFF00FF</span><span class="p">));</span>
     <span class="n">c</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span>
         <span class="n">rect</span><span class="p">.</span><span class="n">deflate</span><span class="p">(</span><span class="n">boxConfig</span><span class="p">.</span><span class="n">margin</span><span class="p">),</span>
-        <span class="n">BasicPalette</span><span class="p">.</span><span class="n">black</span><span class="p">.</span><span class="n">Paint</span><span class="p">()</span>
-          <span class="p">..</span><span class="n">style</span> <span class="o">=</span> <span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">,</span>
-    <span class="p">);</span>
+        <span class="n">Paint</span><span class="p">()</span>
+          <span class="p">..</span><span class="n">color</span> <span class="o">=</span> <span class="n">BasicPalette</span><span class="p">.</span><span class="n">black</span><span class="p">.</span><span class="n">color</span>
+          <span class="p">..</span><span class="n">style</span> <span class="o">=</span> <span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>

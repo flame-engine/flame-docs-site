@@ -92,11 +92,11 @@ and horizontal drags, so not all of them can be used together.
 
 It is also not possible to mix advanced detectors (`MultiTouch*`) with basic detectors as they will
 *always win the gesture arena* and the basic detectors will never be triggered. So for example, you
-can use both `MultiTouchTapDetector` and `MultiTouchDragDetector` together, but if you try to use
+can use both `MultiTouchDragDetector` and `MultiTouchDragDetector` together, but if you try to use
 `MultiTouchTapDetector` and `PanDetector`, no events will be triggered for the latter.
 
 Flame's GestureApi is provided by Flutter's Gesture Widgets, including
-[GestureDetector widget](https://api.flutter.dev/flutter/widgets/GestureDetector-class.html),
+GestureDetector widget](https://api.flutter.dev/flutter/widgets/GestureDetector-class.html),
 [RawGestureDetector widget](https://api.flutter.dev/flutter/widgets/RawGestureDetector-class.html)
 and [MouseRegion widget](https://api.flutter.dev/flutter/widgets/MouseRegion-class.html), you can
 also read more about Flutter's gestures
@@ -147,14 +147,14 @@ class MyGame extends Game with TapDetector {
   // Other methods omitted
 
   @override
-  bool onTapDown(TapDownInfo info) {
-    print("Player tap down on ${info.eventPosition.game}");
+  bool onTapDown(TapDownInfo event) {
+    print("Player tap down on ${event.eventPosition.game}");
     return true;
   }
 
   @override
-  bool onTapUp(TapUpInfo info) {
-    print("Player tap up on ${info.eventPosition.game}");
+  bool onTapUp(TapUpInfo event) {
+    print("Player tap up on ${event.eventPosition.game}");
     return true;
   }
 }
@@ -165,7 +165,7 @@ You can also check more complete examples
 
 ## Tappable, Draggable and Hoverable components
 
-Any component derived from `Component` (most components) can add the `Tappable`, the
+Any component derived from `BaseComponent` (most components) can add the `Tappable`, the
 `Draggable`, and/or the `Hoverable` mixins to handle taps, drags and hovers on the component.
 
 All overridden methods return a boolean to control if the event should be passed down further along
@@ -179,13 +179,13 @@ children tree and then passed further down until a method returns `false`.
 
 ### Tappable components
 
-By adding the `HasTappables` mixin to your game, and using the mixin `Tappable` on your
+By adding the `HasTappableComponents` mixin to your game, and using the mixin `Tappable` on your
 components, you can override the following methods on your components:
 
 ```dart
 bool onTapCancel();
-bool onTapDown(TapDownInfo info);
-bool onTapUp(TapUpInfo info);
+bool onTapDown(TapDownInfo event);
+bool onTapUp(TapUpInfo event);
 ```
 
 Minimal component example:
@@ -198,13 +198,13 @@ class TappableComponent extends PositionComponent with Tappable {
   // update and render omitted
 
   @override
-  bool onTapUp(TapUpInfo info) {
+  bool onTapUp(TapUpInfo event) {
     print("tap up");
     return true;
   }
 
   @override
-  bool onTapDown(TapDownInfo info) {
+  bool onTapDown(TapDownInfo event) {
     print("tap down");
     return true;
   }
@@ -216,28 +216,28 @@ class TappableComponent extends PositionComponent with Tappable {
   }
 }
 
-class MyGame extends FlameGame with HasTappables {
+class MyGame extends FlameGame with HasTappableComponents {
   MyGame() {
     add(TappableComponent());
   }
 }
 ```
 
-**Note**: `HasTappables` uses an advanced gesture detector under the hood and as explained
+**Note**: `HasTappableComponents` uses an advanced gesture detector under the hood and as explained
 further up on this page it shouldn't be used alongside basic detectors.
 
 ### Draggable components
 
 Just like with `Tappable`, Flame offers a mixin for `Draggable`.
 
-By adding the `HasDraggables` mixin to your game, and by using the mixin `Draggable` on
+By adding the `HasDraggableComponents` mixin to your game, and by using the mixin `Draggable` on
 your components, they can override the simple methods that enable an easy to use drag api on your
 components.
 
 ```dart
-  bool onDragStart(int pointerId, DragStartInfo info);
-  bool onDragUpdate(int pointerId, DragUpdateInfo info);
-  bool onDragEnd(int pointerId, DragEndInfo info);
+  bool onDragStart(int pointerId, Vector2 startPosition);
+  bool onDragUpdate(int pointerId, DragUpdateInfo event);
+  bool onDragEnd(int pointerId, DragEndInfo event);
   bool onDragCancel(int pointerId);
 ```
 
@@ -246,11 +246,11 @@ between different simultaneous drags.
 
 The default implementation provided by `Draggable` will already check:
 
-- upon drag start, the component only receives the event if the position is within its bounds; keep
+ - upon drag start, the component only receives the event if the position is within its bounds; keep
  track of pointerId.
-- when handling updates/end/cancel, the component only receives the event if the pointerId was
+ - when handling updates/end/cancel, the component only receives the event if the pointerId was
  tracked (regardless of position).
-- on end/cancel, stop tracking pointerId.
+ - on end/cancel, stop tracking pointerId.
 
 Minimal component example (this example ignores pointerId so it wont work well if you try to
 multi-drag):
@@ -266,20 +266,20 @@ class DraggableComponent extends PositionComponent with Draggable {
   bool get isDragging => dragDeltaPosition != null;
 
   @override
-  bool onDragStart(int pointerId, DragStartInfo info) {
-    dragDeltaPosition = info.eventPosition.game - position;
+  bool onDragStart(int pointerId, Vector2 startPosition) {
+    dragDeltaPosition = startPosition - position;
     return false;
   }
 
   @override
-  bool onDragUpdate(int pointerId, DragUpdateInfo info) {
-    final localCoords = info.eventPosition.game;
+  bool onDragUpdate(int pointerId, DragUpdateInfo event) {
+    final localCoords = event.eventPosition.game;
     position = localCoords - dragDeltaPosition;
     return false;
   }
 
   @override
-  bool onDragEnd(int pointerId, DragEndInfo info) {
+  bool onDragEnd(int pointerId, DragEndInfo event) {
     dragDeltaPosition = null;
     return false;
   }
@@ -291,14 +291,14 @@ class DraggableComponent extends PositionComponent with Draggable {
   }
 }
 
-class MyGame extends FlameGame with HasDraggables {
+class MyGame extends FlameGame with HasDraggableComponents {
   MyGame() {
     add(DraggableComponent());
   }
 }
 ```
 
-**Note**: `HasDraggables` uses an advanced gesture detector under the hood and as explained
+**Note**: `HasDraggableComponents` uses an advanced gesture detector under the hood and as explained
 further up on this page, shouldn't be used alongside basic detectors.
 
 ### Hoverable components
@@ -306,33 +306,28 @@ further up on this page, shouldn't be used alongside basic detectors.
 Just like the others, this mixin allows for easy wiring of your component to listen to hover states
 and events.
 
-By adding the `HasHoverables` mixin to your base game, and by using the mixin `Hoverable` on
+By adding the `HasHoverableComponents` mixin to your base game, and by using the mixin `Hoverable` on
 your components, they get an `isHovered` field and a couple of methods (`onHoverStart`, `onHoverEnd`) that
 you can override if you want to listen to the events.
 
 ```dart
   bool isHovered = false;
-  bool onHoverEnter(PointerHoverInfo info) {
-    print("hover enter");
-    return true;
-  }
-  bool onHoverLeave(PointerHoverInfo info) {
-   print("hover leave");
-   return true;
-  }
+  void onHoverEnter(PointerHoverInfo event) {}
+  void onHoverLeave(PointerHoverInfo event) {}
 ```
 
 The provided event info is from the mouse move that triggered the action (entering or leaving).
 While the mouse movement is kept inside or outside, no events are fired and those mouse move events are
 not propagated. Only when the state is changed the handlers are triggered.
 
-## HasHitboxes
-
-The `HasHitboxes` mixin is used to make detection of gestures on top of your `PositionComponent`s 
-more accurate. Say that you have a fairly round rock as a `SpriteComponent` for example, then you 
-don't want to register input that is in the corner of the image where the rock is not displayed. 
-Then you can use the `HasHitboxes` mixin to define a more accurate polygon for which the input 
-should be within for the event to be counted on your component.
+## Hitbox
+The `Hitbox` mixin is used to make detection of gestures on top of your `PositionComponent`s more
+accurate. Say that you have a fairly round rock as a `SpriteComponent` for example, then you don't
+want to register input that is in the corner of the image where the rock is not displayed. Then you
+can use the `Hitbox` mixin to define a more accurate polygon for which the input should be within
+for the event to be counted on your component.
 
 An example of you to use it can be seen
 [here](https://github.com/flame-engine/flame/tree/main/examples/lib/stories/).
+
+

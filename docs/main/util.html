@@ -34,9 +34,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
-    <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -616,6 +613,10 @@ events.</p>
   <span class="kd">final</span> <span class="n">TextConfig</span> <span class="n">textConfig</span> <span class="o">=</span> <span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span> <span class="k">const</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">));</span>
   <span class="kd">final</span> <span class="n">countdown</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
 
+  <span class="n">MyGame</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">countdown</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+  <span class="p">}</span>
+
   <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">countdown</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
@@ -652,9 +653,10 @@ events.</p>
   <span class="n">MyGame</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">interval</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span>
       <span class="m">1</span><span class="p">,</span>
-      <span class="nl">onTick:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">elapsedSecs</span> <span class="o">+=</span> <span class="m">1</span><span class="p">,</span>
+      <span class="nl">callback:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">elapsedSecs</span> <span class="o">+=</span> <span class="m">1</span><span class="p">,</span>
       <span class="nl">repeat:</span> <span class="kc">true</span><span class="p">,</span>
     <span class="p">);</span>
+    <span class="n">interval</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
   <span class="p">}</span>
 
   <span class="nd">@override</span>
@@ -679,9 +681,12 @@ events.</p>
   <span class="n">MyFlameGame</span><span class="p">()</span> <span class="p">{</span>
     <span class="n">add</span><span class="p">(</span>
       <span class="n">TimerComponent</span><span class="p">(</span>
-        <span class="nl">period:</span> <span class="m">10</span><span class="p">,</span>
-        <span class="nl">repeat:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="nl">onTick:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="p">(</span><span class="s1">&#39;10 seconds elapsed&#39;</span><span class="p">),</span>
+        <span class="n">Timer</span><span class="p">(</span>
+          <span class="m">10</span><span class="p">,</span>
+          <span class="nl">callback:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="p">(</span><span class="s2">&quot;10 seconds elapsed&quot;</span><span class="p">),</span>
+          <span class="nl">repeat:</span> <span class="kc">true</span><span class="p">,</span>
+        <span class="p">)</span>
+        <span class="p">..</span><span class="n">start</span><span class="p">()</span>
       <span class="p">)</span>
     <span class="p">);</span>
   <span class="p">}</span>

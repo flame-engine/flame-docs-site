@@ -34,9 +34,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
-    <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -378,6 +375,15 @@
    SpriteSheet
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flame-images-decodeimagefrompixels">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Flame.images.decodeImageFromPixels()
+    </span>
+   </code>
+  </a>
+ </li>
 </ul>
 
             </nav>
@@ -455,6 +461,15 @@
    SpriteSheet
   </a>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flame-images-decodeimagefrompixels">
+   <code class="docutils literal notranslate">
+    <span class="pre">
+     Flame.images.decodeImageFromPixels()
+    </span>
+   </code>
+  </a>
+ </li>
 </ul>
 
                         </nav>
@@ -487,11 +502,6 @@ an <code class="docutils literal notranslate"><span class="pre">Image</span></co
 They return a <code class="docutils literal notranslate"><span class="pre">Future</span></code> for the loaded Image.</p>
 <p>To synchronously retrieve a previously cached image, the <code class="docutils literal notranslate"><span class="pre">fromCache</span></code> method can be used. If an image
 with that key was not previously loaded, it will throw an exception.</p>
-<p>To add an already loaded image to the cache, the <code class="docutils literal notranslate"><span class="pre">add</span></code> method can be used and you can set the key
-that the image should have in the cache.</p>
-<p>You can also use <code class="docutils literal notranslate"><span class="pre">ImageExtension.fromPixels()</span></code> to dynamically create an image during the game.</p>
-<p>For <code class="docutils literal notranslate"><span class="pre">clear</span></code> and <code class="docutils literal notranslate"><span class="pre">clearCache</span></code>, do note that <code class="docutils literal notranslate"><span class="pre">dispose</span></code> is called for each removed image from the
-cache, so make sure that you don’t use the image afterwards.</p>
 <section id="standalone-usage">
 <h3>Standalone usage<a class="headerlink" href="#standalone-usage" title="Permalink to this headline">¶</a></h3>
 <p>It can manually be used by instantiating it:</p>
@@ -786,6 +796,19 @@ a very simple example of how to use it:</p>
 </div>
 <p>You can see a full example of the <code class="docutils literal notranslate"><span class="pre">SpriteSheet</span></code> class
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/sprites/spritesheet.dart">here</a>.</p>
+</section>
+<section id="flame-images-decodeimagefrompixels">
+<h2><code class="docutils literal notranslate"><span class="pre">Flame.images.decodeImageFromPixels()</span></code><a class="headerlink" href="#flame-images-decodeimagefrompixels" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://api.flutter.dev/flutter/dart-ui/decodeImageFromPixels.html">dart-ui decodeImageFromPixels</a>
+currently does not support the web platform. So if you are looking for a way to manipulate pixel
+data on the web this method can be used as a replacement for <code class="docutils literal notranslate"><span class="pre">dart-ui</span> <span class="pre">decodeImageFromPixels</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Image</span> <span class="n">image</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">decodeImageFromPixels</span><span class="p">(</span>
+  <span class="n">data</span><span class="p">,</span> <span class="c1">// A Uint8List containing pixel data in the RGBA format.</span>
+  <span class="m">200</span><span class="p">,</span>
+  <span class="m">200</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
 </section>
 </section>
 

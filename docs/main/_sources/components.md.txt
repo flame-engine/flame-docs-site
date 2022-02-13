@@ -1,6 +1,6 @@
 # Components
 
-![Component tree](images/component_tree.png)
+![Components Diagram](images/diagram.png)
 
 This diagram might look intimidating, but don't worry, it is not as complex as it looks.
 
@@ -8,13 +8,13 @@ This diagram might look intimidating, but don't worry, it is not as complex as i
 All components inherit from the abstract class `Component`.
 
 If you want to skip reading about abstract classes you can jump directly to
-[](#positioncomponent).
+[PositionComponent](./components.md#PositionComponent).
 
 Every `Component` has a few methods that you can optionally implement, which are used by the
 `FlameGame` class. If you are not using `FlameGame`, you can use these methods on your own game loop
 if you wish.
 
-![Component Lifecycle Diagram](images/component_lifecycle.png)
+![Component Lifecycle Diagram](images/diagram.png)
 
 The `onGameResize` method is called whenever the screen is resized, and once in the beginning when
 the component is added to the game via the `add` method.
@@ -24,9 +24,8 @@ component before the next update loop. It will then no longer be rendered or upd
 `game.remove(Component c)` and `component.removeFromParent()` also can be used to remove components
 from its parent.
 
-The `respectCamera` variable can be overridden or set to `false` (defaults to `true`) to make the
-`FlameGame` ignore the `camera` for this component, making it static in relation to the viewport
-that is.
+The `isHUD` variable can be overridden or set to true (defaults to `false`) to make the `FlameGame`
+ignore the `camera` for this element, making it static in relation to the screen that is.
 Do note that this currently only works if the component is added directly to the root `FlameGame`.
 
 The `onRemove` method can be overridden to run code before the component is removed from the game,
@@ -46,7 +45,7 @@ lifetime. This method is executed after the initial "preparation" of the compone
 `onGameResize` and `onLoad`, but before the inclusion of the component in the parent's list of
 components.
 
-## Component
+## BaseComponent
 Usually if you are going to make your own component you want to extend `PositionComponent`, but if
 you want to be able to handle effects and child components but handle the positioning differently
 you can extend the `Component` directly.
@@ -84,140 +83,38 @@ class GameOverPanel extends PositionComponent with HasGameRef<MyGame> {
   @override
   void render(Canvas canvas) {
     if (visible) {
+      super.render(canvas);
     } // If not visible none of the children will be rendered
   }
 }
 ```
 
-### Querying child components
-
-The children that have been added to a component live in a `QueryableOrderedSet` called
-`children`. To query for a specific type of components in the set, the `query<T>()` function can be
-used. By default `strictMode` is `false` in the children set, but if you set it to true, then the
-queries will have to be registered with `children.register` before a query can be used.
-
-If you know in compile time that you later will run a query of a specific type it is recommended to
-register the query, no matter if the `strictMode` is set to `true` or `false`, since there are some
-performance benefits to gain from it. The `register` call is usually done in `onLoad`.
-
-Example:
-
-```dart
-Future<void> onLoad async {
-  await super.onLoad();
-  components.register<PositionComponent>();
-}
-```
-
-In the example above a query is registered for `PositionComponent`s, and an example of how to query
-the registered component type can be seen below.
-
-```dart
-void update(double dt) {
-  final allPositionComponents = components.query<PositionComponent>();
-}
-```
-
-### Positioning types
-If you want to create a HUD (Head-up display) or another component that isn't positioned in relation
-to the game coordinates, you can change the `PositionType` of the component.
-The default `PositionType` is `positionType = PositionType.game` and that can be changed to
-either `PositionType.viewport` or `PositionType.widget` depending on how you want to position
-the component.
-
- - `PositionType.game` (Default) - Respects camera and viewport.
- - `PositionType.viewport` - Respects viewport only (ignores camera).
- - `PositionType.widget` - Position in relation to the coordinate system of the Flutter game
-   widget (i.e. the raw canvas).
-
-Most of your components will probably be positioned according to `PositionType.game`, since you
-want them to respect the `Camera` and the `Viewport`. But quite often you want for example buttons
-and text to always show on the screen, no matter if you move the camera, then you want to use
-`PositionType.viewport`. In some rare cases you want to use `PositionType.widget` to position
-your widgets, when you don't want the component to respect the camera nor the viewport; this could
-for example be for controls or joysticks that would be unergonomic to use if they had to stay within
-the viewport.
-
-Do note that this setting is only respected if the component is added directly to the root
-`FlameGame` and not as a child component of another component.
-
 ## PositionComponent
 
-This class represent a positioned object on the screen, being a floating rectangle or a rotating
-sprite. It can also represent a group of positioned components if children are added to it.
+This class represent a single object on the screen, being a floating rectangle or a rotating sprite.
 
-The base of the `PositionComponent` is that it has a `position`, `size`, `scale`, `angle` and
-`anchor` which transforms how the component is rendered.
-
-### Position
-
-The `position` is just a `Vector2` which represents the position of the component's anchor in
-relation to its parent; if the parent is a `FlameGame`, it is in relation to the viewport.
-
-### Size
-
-The `size` of the component when the zoom level of the camera is 1.0 (no zoom, default).
-The `size` is *not* in relation to the parent of the component.
-
-### Scale
-
-The `scale` is how much the component and its children should be scaled. Since it is represented
-by a `Vector2`, you can scale in a uniform way by changing `x` and `y` with the same amount, or in a
-non-uniform way, by change `x` or `y` by different amounts.
-
-### Angle
-
-The `angle` is the rotation angle around the anchor, represented as a double in radians. It is
-relative to the parent's angle.
-
-### Anchor
-
-The `anchor` is where on the component that the position and rotation should be defined from (the
-default is `Anchor.topLeft`). So if you have the anchor set as `Anchor.center` the component's
-position on the screen will be in the center of the component and if an `angle` is applied, it is
-rotated around the anchor, so in this case around the center of the component. You can think of it
-as the point within the component by which Flame "grabs" it.
-
-### PositionComponent children
-
-All children of the `PositionComponent` will be transformed in relation to the parent, which means
-that the `position`, `angle` and `scale` will be relative to the parents state.
-So if you, for example, wanted to position a child 50 logical pixels above the center of the parent
-you would do this:
-
-```
-final parent = PositionComponent(
-  position: Vector2(100, 100),
-  size: Vector2(100, 100),
-  anchor: Anchor.center,
-);
-final child = PositionComponent(position: Vector2(0, -50));
-parent.add(child);
-```
-
-Remember that most components that are rendered on the screen are `PositionComponent`s, so
-this pattern can be used in for example [](#spritecomponent) and [](#spriteanimationcomponent) too.
-
-### Render PositionComponent
+A `PositionComponent` has a `position`, `size` and `angle`, as well as some useful methods like
+`distance` and `angleBetween`.
 
 When implementing the `render` method for a component that extends `PositionComponent` remember to
 render from the top left corner (0.0). Your render method should not handle where on the screen your
 component should be rendered. To handle where and how your component should be rendered use the
-`position`, `angle` and `anchor` properties and Flame will automatically handle the rest for you.
+`position`, `angle` and `anchor` properties and flame will automatically handle the rest for you.
+
+If you really want to handle the canvas translations yourself you can just omit the
+`super.render(canvas)` line and suppress the warning, but for most use cases this is not
+recommended.
 
 If you want to know where on the screen the bounding box of the component is you can use the
 `toRect` method.
 
 In the event that you want to change the direction of your components rendering, you can also use
-`flipHorizontally()` and `flipVertically()` to flip anything drawn to canvas during `render(Canvas canvas)`,
-around the anchor point. These methods are available on all `PositionComponent` objects, and are especially
-useful on `SpriteComponent` and `SpriteAnimationComponent`.
-
-In case you want to flip a component around its center without having to change the anchor to `Anchor.center`,
-you can use `flipHorizontallyAroundCenter()` and `flipVerticallyAroundCenter()`.
+`renderFlipX` and `renderFlipY` to flip anything drawn to canvas during `render(Canvas canvas)`.
+This is available on all `PositionComponent` objects, and is especially useful on `SpriteComponent`
+and `SpriteAnimationComponent`. For example set `component.renderFlipX = true` to mirror the
+horizontal rendering.
 
 ## SpriteComponent
-
 The most commonly used implementation of `PositionComponent` is `SpriteComponent`, and it can be
 created with a `Sprite`:
 
@@ -296,8 +193,8 @@ enum RobotState {
   running,
 }
 
-final running = await loadSpriteAnimation(/* omitted */);
-final idle = await loadSpriteAnimation(/* omitted */);
+final running = await loadSpriteAnimation(/* omited */);
+final idle = await loadSpriteAnimation(/* omited */);
 
 final robot = SpriteAnimationGroupComponent<RobotState>(
   animations: {
@@ -322,8 +219,8 @@ class ButtonComponent extends SpriteGroupComponent<ButtonState>
     with HasGameRef<SpriteGroupExample>, Tappable {
   @override
   Future<void>? onLoad() async {
-    final pressedSprite = await gameRef.loadSprite(/* omitted */);
-    final unpressedSprite = await gameRef.loadSprite(/* omitted /*);
+    final pressedSprite = await gameRef.loadSprite(/* omited */);
+    final unpressedSprite = await gameRef.loadSprite(/* omited /*);
 
     sprites = {
       ButtonState.pressed: pressedSprite,
@@ -333,7 +230,7 @@ class ButtonComponent extends SpriteGroupComponent<ButtonState>
     current = ButtonState.unpressed;
   }
 
-  // tap methods handler omitted...
+  // tap methods handler omited...
 }
 
 ```
@@ -415,9 +312,9 @@ For a working example, check the example in the
 
 ## ParallaxComponent
 
-This `Component` can be used to render backgrounds with a depth feeling by drawing several
-transparent images on top of each other, where each image or animation (`ParallaxRenderer`) is
-moving with a different velocity.
+This `Component` can be used to render backgrounds with a depth feeling by drawing several transparent
+images on top of each other, where each image or animation (`ParallaxRenderer`) is moving with a
+different velocity.
 
 The rationale is that when you look at the horizon and moving, closer objects seem to move faster
 than distant ones.
@@ -433,7 +330,7 @@ Future<void> onLoad() async {
     ParallaxImageData('bg.png'),
     ParallaxImageData('trees.png'),
   ]);
-  add(parallaxComponent);
+  add(parallax);
 }
 ```
 
@@ -458,13 +355,14 @@ class MyGame extends FlameGame {
 }
 ```
 
-This creates a static background. If you want a moving parallax (which is the whole point of a
-parallax), you can do it in a few different ways depending on how fine-grained you want to set the
+This creates a static background, if you want a moving parallax (which is the whole point of a
+parallax), you can do it in a few different ways depending on how fine grained you want to set the
 settings for each layer.
-
 They simplest way is to set the named optional parameters `baseVelocity` and
-`velocityMultiplierDelta` in the `load` helper function. For example if you want to move your 
-background images along the X-axis with a faster speed the "closer" the image is:
+`velocityMultiplierDelta` in the `load` helper function.
+
+For example if you want to move your background images along the X-axis with a faster speed the
+"closer" the image is:
 
 ```dart
 final parallaxComponent = await loadParallaxComponent(
@@ -483,11 +381,11 @@ parallax.baseSpeed = Vector2(100, 0);
 parallax.velocityMultiplierDelta = Vector2(2.0, 1.0);
 ```
 
-By default, the images are aligned to the bottom left, repeated along the X-axis and scaled
+By default the images are aligned to the bottom left, repeated along the X-axis and scaled
 proportionally so that the image covers the height of the screen. If you want to change this
-behavior, for example if you are not making a side-scrolling game, you can set the `repeat`,
-`alignment` and `fill` parameters for each `ParallaxRenderer` and add them to `ParallaxLayer`s that
-you then pass in to the `ParallaxComponent`'s constructor.
+behavior, for example if you are not making a side scrolling game, you can set the `repeat`,
+`alignment` and `fill` parameters for each `ParallaxRenderer` and add them to `ParallaxLayer`s that you
+then pass in to the `ParallaxComponent`'s constructor.
 
 Advanced example:
 ```dart
@@ -517,114 +415,17 @@ component (`game.add(parallaxComponent`).
 Also, don't forget to add you images to the `pubspec.yaml` file as assets or they wont be found.
 
 The `Parallax` file contains an extension of the game which adds `loadParallax`, `loadParallaxLayer`
-, `loadParallaxImage` and `loadParallaxAnimation` so that it automatically uses your game's image
-cache instead of the global one. The same goes for the `ParallaxComponent` file, but that provides
-`loadParallaxComponent`.
+, `loadParallaxImage` and `loadParallaxAnimation` so that it automatically uses your game's image cache instead of the global
+one. The same goes for the `ParallaxComponent` file, but that provides `loadParallaxComponent`.
 
 If you want a fullscreen `ParallaxComponent` simply omit the `size` argument and it will take the
 size of the game, it will also resize to fullscreen when the game changes size or orientation.
 
-Flame provides two kinds of `ParallaxRenderer`: `ParallaxImage` and `ParallaxAnimation`,
-`ParallaxImage` is a static image renderer and `ParallaxAnimation` is, as it's name implies, an
-animation and frame based renderer.
+Flame provides two kinds of `ParallaxRenderer`: `ParallaxImage` and `ParallaxAnimation`, `ParallaxImage` is a static image renderer and `ParallaxAnimation` is, as it's name implies, an animation and frame based renderer.
 It is also possible to create custom renderers by extending the `ParallaxRenderer` class.
 
 Three example implementations can be found in the
 [examples directory](https://github.com/flame-engine/flame/tree/main/examples/lib/stories/parallax).
-
-## ShapeComponents
-The `ShapeComponent` is a basic component that can be used if you want to draw geometrical shapes as
-components on the screen.  Since the `ShapeComponent` is a `PositionComponent`s you can use effects
-on it. All `ShapeComponent`s take a `Paint` as an argument and then arguments to define
-the shape of the specific component, it also takes all the arguments that can be passed to the
-`PositionComponent`.
-
-There are three implementations of `ShapeComponent`, which are the following:
-
-### CircleComponent
-A `CircleComponent` can be created only by defining its `radius`, but you most likely want to pass
-it a `position` and maybe `paint` (the default is white) too.
-
-Example:
-```dart
-final paint = BasicPalette.red.paint()..style = PaintingStyle.stroke;
-final circle = CircleComponent(radius: 200.0, position: Vector2(100, 200), paint: paint);
-```
-
-### RectangleComponent
-A `RectangleComponent` can be created in two ways, depending on if it's a square or not.
-To create a `RectangleComponent` that is 300 in width and 200 in height you can do the following:
-
-Example:
-```dart
-final paint = BasicPalette.red.paint()..style = PaintingStyle.stroke;
-final rectangle = RectangleComponent(
-  size: Vector2(300.0, 200.0),
-  position: Vector2(100, 200),
-  paint: paint,
-);
-```
-
-To create a square you can instead use the slightly simpler named constructor
-`RectangleComponent.square`. This is an example of how to create a red square with width and height
-200:
-
-```dart
-final paint = BasicPalette.red.paint()..style = PaintingStyle.stroke;
-final square = RectangleComponent.square(
-  size: 200.0,
-  position: Vector2(100, 200),
-  paint: paint,
-);
-```
-
-### PolygonComponent
-The `PolygonComponent` is the most complicated of the `ShapeComponent`s since you'll have to define
-all the "corners" of your polygon. You can create the `PolygonComponent` in two different ways,
-either you use the default constructor which takes a list of `Vector2` where each of them should be
-between -1.0 and 1.0 that describes the ration of the length from the center to the edge of the size
-of the component. So
-`[Vector2(1.0, 1.0), Vector2(1.0, -1.0), Vector2(-1.0, -1.0), Vector2(-1.0, 1.0)]`
-would describe a rectangle that fills the full size of the component. Remember to define the list in
-a counter clockwise manner (if you think in the screen coordinate system where the y-axis is
-flipped, otherwise it is clockwise).
-
-So to create a diamond shaped `PolygonComponent` which is slightly smaller than the defined size you
-would do this:
-
-```dart
-final vertices = ([
-  Vector2(0.0, 0.9),  // Middle of top wall
-  Vector2(-0.9, 0.0), // Middle of left wall
-  Vector2(0.0, -0.9), // Middle of bottom wall
-  Vector2(0.9, 0.0),  // Middle of right wall
-]);
-
-final diamond = PolygonComponent(
-  normalizedVertices: vertices,
-  size: Vector2(200, 300),
-  position: Vector2.all(500),
-)
-```
-
-If you instead want to define your polygon from absolute points you can do that too with the
-`PolygonComponent.fromPoints` factory. When using that one you don't have to define a `size` or a
-`position` either since it will be calculated for you, but if you decide to add those arguments
-anyways they will override what has been calculated from your list of vertices.
-
-Example (diamond shape again):
-
-```dart
-final vertices = ([
-  Vector2(100, 100),  // Middle of top wall
-  Vector2(50, 150), // Middle of left wall
-  Vector2(100, 200), // Middle of bottom wall
-  Vector2(200, 150),  // Middle of right wall
-]);
-
-final diamond = PolygonComponent.fromPoints(vertices);
-)
-```
 
 ## SpriteBodyComponent
 
@@ -674,7 +475,6 @@ Flame's Example app contains a more in-depth example, featuring how to parse coo
 selector. The code can be found
 [here](https://github.com/flame-engine/flame/blob/main/examples/lib/stories/tile_maps/isometric_tile_map.dart),
 and a live version can be seen [here](https://examples.flame-engine.org/#/Tile%20Maps_Isometric%20Tile%20Map).
-
 ## NineTileBoxComponent
 
 A Nine Tile Box is a rectangle drawn using a grid sprite.
@@ -690,21 +490,6 @@ panels, dialogs, borders.
 
 Check the example app
 [nine_tile_box](https://github.com/flame-engine/flame/blob/main/examples/lib/stories/utils/nine_tile_box.dart)
-for details on how to use it.
-
-## CustomPainterComponent
-
-A `CustomPainter` is a Flutter class used with the `CustomPaint` widget to render custom
-shapes inside a Flutter application.
-
-Flame provides a component that can render a `CustomPainter` called `CustomPainterComponent`, it
-receives a custom painter and renders it on the game canvas.
-
-This can be used for sharing custom rendering logic between your Flame game, and your Flutter
-widgets.
-
-Check the example app
-[custom_painter_component](https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/custom_painter_component.dart)
 for details on how to use it.
 
 ## Effects

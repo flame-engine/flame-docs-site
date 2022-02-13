@@ -34,9 +34,6 @@
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
     <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
-    <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -330,11 +327,6 @@
   <a class="reference internal nav-link" href="#flame-web">
    Flame web
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#deploy-your-game-to-github-pages">
-   Deploy your game to GitHub Pages
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#web-support">
@@ -372,11 +364,6 @@
   <a class="reference internal nav-link" href="#flame-web">
    Flame web
   </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#deploy-your-game-to-github-pages">
-   Deploy your game to GitHub Pages
-  </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#web-support">
@@ -410,52 +397,9 @@ don’t support them. This means that issues happening outside the stable channe
 renderer. This will increase performance on the web, as it will use the <code class="docutils literal notranslate"><span class="pre">canvas</span></code> element instead of
 separate DOM elements.</p>
 <p>To run your game using skia, use the following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flutter run -d chrome --web-renderer canvaskit
-</pre></div>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">flutter</span> <span class="pre">run</span> <span class="pre">-d</span> <span class="pre">chrome</span> <span class="pre">--web-renderer</span> <span class="pre">canvaskit</span></code></p>
 <p>To build the game for production, using skia, use the following:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flutter build web --release --web-renderer canvaskit
-</pre></div>
-</div>
-</section>
-<section id="deploy-your-game-to-github-pages">
-<h2>Deploy your game to GitHub Pages<a class="headerlink" href="#deploy-your-game-to-github-pages" title="Permalink to this headline">¶</a></h2>
-<p>One easy way to deploy your game online, is to use <a class="reference external" href="https://pages.github.com/">GitHub Pages</a>.
-It is a cool feature from GitHub, by which you can easily host web content from your repository.</p>
-<p>Here we will explain the easiest way to get your game hosted using GitHub pages.</p>
-<p>First thing, lets create the branch where your deployed files will live:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b gh-pages
-</pre></div>
-</div>
-<p>This branch can be created from <code class="docutils literal notranslate"><span class="pre">main</span></code> or any other place, it doesn’t matter much. After you push that
-branch go back to your <code class="docutils literal notranslate"><span class="pre">main</span></code> branch.</p>
-<p>Now you should add the <a class="reference external" href="https://github.com/bluefireteam/flutter-gh-pages">flutter-gh-pages</a>
-action to your repository, you can do that by creating a file <code class="docutils literal notranslate"><span class="pre">gh-pages.yaml</span></code> under the folder
-<code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code>.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gh-Pages</span><span class="w"></span>
-
-<span class="nt">on</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
-
-<span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
-
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v2</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subosito/flutter-action@v1</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bluefireteam/flutter-gh-pages@v7</span><span class="w"></span>
-<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">baseHref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/NAME_OF_YOUR_REPOSITORY/</span><span class="w"></span>
-<span class="w">          </span><span class="nt">webRenderer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">canvaskit</span><span class="w"></span>
-</pre></div>
-</div>
-<p>Be sure to change <code class="docutils literal notranslate"><span class="pre">NAME_OF_YOUR_REPOSITORY</span></code> to the name of your GitHub repository.</p>
-<p>Now, whenever you push something to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch, the action will run and update your
-deployed game.</p>
-<p>The game should be available at an URL like this:
-<code class="docutils literal notranslate"><span class="pre">https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">flutter</span> <span class="pre">build</span> <span class="pre">web</span> <span class="pre">--release</span> <span class="pre">--web-renderer</span> <span class="pre">canvaskit</span></code></p>
 <section id="web-support">
 <h3>Web support<a class="headerlink" href="#web-support" title="Permalink to this headline">¶</a></h3>
 <p>When using Flame on the web some methods may not work. For example <code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientation</span></code> and
