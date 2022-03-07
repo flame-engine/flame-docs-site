@@ -7,12 +7,14 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
   <script src="../_static/jquery.js"></script>
   <script src="../_static/underscore.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
   <script src="../_static/versions.js"></script>
@@ -88,6 +90,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Collision detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/keyboard-input.html">Keyboard input</a></li>
@@ -115,6 +118,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen.html">Oxygen</a></li>
@@ -134,6 +141,192 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="collision-detection">
 <h1>Collision detection<a class="headerlink" href="#collision-detection" title="Permalink to this headline">¶</a></h1>
+<p>Collision detection is needed in most games to detect and act upon two components intersecting each
+other. For example an arrow hitting an enemy or the player picking up a coin.</p>
+<p>In most collision detection systems you use something called hitboxes to create more precise
+bounding boxes of your components. In Flame the hitboxes are areas of the component that can react
+to collisions (and make <span class="xref myst">gesture input</span> more accurate.</p>
+<p>The collision detection system supports three different types of shapes that you can build hitboxes
+from, these shapes are Polygon, Rectangle and Circle. Multiple hitbox can be added to a component to
+form the area which can be used to either detect collisions or whether it contains a point or not,
+the latter is very useful for accurate gesture detection. The collision detection does not handle
+what should happen when two hitboxes collide, so it is up to the user to implement what will happen
+when for example two <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s have intersecting hitboxes.</p>
+<p>Do note that the built-in collision detection system does not take collisions between two hitboxes
+that overshoot each other into account, this could happen when they either move very fast or
+<code class="docutils literal notranslate"><span class="pre">update</span></code> being called with a large delta time (for example if your app is not in the foreground).
+This behaviour is called tunneling, if you want to read more about it.</p>
+<p>Also note that the collision detection system has a limitation that makes it not work properly if
+you have certain types of combinations of flips and scales of the ancestors of the hitboxes.</p>
+<section id="mixins">
+<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this headline">¶</a></h2>
+<section id="hascollisiondetection">
+<h3>HasCollisionDetection<a class="headerlink" href="#hascollisiondetection" title="Permalink to this headline">¶</a></h3>
+<p>If you want to use collision detection in your game you have to add the <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code>
+mixin to your game so that it can keep track of the components that can collide.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasCollisionDetection</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Now when you add <code class="docutils literal notranslate"><span class="pre">ShapeHitbox</span></code>s to components that are then added to the game, they will
+automatically be checked for collisions.</p>
+</section>
+<section id="collisioncallbacks">
+<h3>CollisionCallbacks<a class="headerlink" href="#collisioncallbacks" title="Permalink to this headline">¶</a></h3>
+<p>To react to a collision you should add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to your component.
+Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCollidable</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="kd">with</span> <span class="n">CollisionCallbacks</span> <span class="p">{</span>
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span> <span class="n">points</span><span class="p">,</span> <span class="n">PositionComponent</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">ScreenHitbox</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//...</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">YourOtherComponent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//...</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+  <span class="nd">@override</span>
+  <span class="kt">void</span> <span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">PositionComponent</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">ScreenHitbox</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//...</span>
+    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">YourOtherComponent</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">//...</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example we use Dart’s <code class="docutils literal notranslate"><span class="pre">is</span></code> keyword to check what kind of component we collided with. The set
+of points is where the edges of the hitboxes intersect.</p>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method will be called on both <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s if they have both
+implemented the <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method, and also on both hitboxes. The same goes for the
+<code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> and <code class="docutils literal notranslate"><span class="pre">onCollisionEnd</span></code> methods, which are called when two components and hitboxes
+starts or stops colliding with each other.</p>
+<p>When a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> (and hitbox) starts to collide with another <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
+both <code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> and <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> are called, so if you don’t need to do something specific
+when a collision starts you only need to override <code class="docutils literal notranslate"><span class="pre">onCollision</span></code>, and vice versa.</p>
+<p>If you want to check collisions with the screen edges, as we do in the example above, you can use
+the predefined <span class="xref myst">ScreenHitbox</span> class.</p>
+</section>
+</section>
+<section id="shapehitbox">
+<h2>ShapeHitbox<a class="headerlink" href="#shapehitbox" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">ShapeHitbox</span></code>s are normal components, so you add them to the component that you want to add
+hitboxes to just like any other component:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyComponent</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="p">{</span>
+  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+    <span class="n">add</span><span class="p">(</span><span class="n">RectangleHitbox</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you don’t add any arguments to the hitbox, like above, the hitbox will try to fill its parent as
+much as possible. Except for having the hitboxes trying to fill their parents, there are two ways to
+initiate hitboxes and it is with the normal constructor where you define the hitbox by itself, with
+a size and a position etc. The other way is to use the <code class="docutils literal notranslate"><span class="pre">relative</span></code> constructor which defines the
+hitbox in relation to the size of its intended parent.</p>
+<p>You can read more about how the different shapes are defined in the
+<span class="xref myst">ShapeComponents</span> section.</p>
+<p>Remember that you can add as many <code class="docutils literal notranslate"><span class="pre">ShapeHitbox</span></code>s as you want to your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> to make up
+more complex areas. For example a snowman with a hat could be represented by three <code class="docutils literal notranslate"><span class="pre">CircleHitbox</span></code>s
+and two <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code>s as its hat.</p>
+<p>A hitbox can be used either for collision detection or for making gesture detection more accurate
+on top of components, see more regarding the latter in the section about the
+<span class="xref myst">GestureHitboxes</span> mixin.</p>
+<section id="collidabletype">
+<h3>CollidableType<a class="headerlink" href="#collidabletype" title="Permalink to this headline">¶</a></h3>
+<p>The hitboxes have a field called <code class="docutils literal notranslate"><span class="pre">collidableType</span></code> which defines when a hitbox should collide with
+another. Usually you want to set as many hitboxes as possible to <code class="docutils literal notranslate"><span class="pre">CollidableType.passive</span></code> to make
+the collision detection more performant. By default the <code class="docutils literal notranslate"><span class="pre">CollidableType</span></code> is <code class="docutils literal notranslate"><span class="pre">active</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">CollidableType</span></code> enum contains the following values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">active</span></code> collides with other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s of type active or passive</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">passive</span></code> collides with other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s of type active</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inactive</span></code> will not collide with any other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s</p></li>
+</ul>
+<p>So if you have hitboxes that you don’t need to check collisions against each other you can mark
+them as passive by setting <code class="docutils literal notranslate"><span class="pre">collidableType</span> <span class="pre">=</span> <span class="pre">CollidableType.passive</span></code>, this could for example be
+ground components or maybe your enemies don’t need to check collisions between each other, then they
+could be marked as <code class="docutils literal notranslate"><span class="pre">passive</span></code> too.</p>
+<p>Imagine a game where there are a lot of bullets, that can’t collide with each other, flying towards
+the player, then the player would be set to <code class="docutils literal notranslate"><span class="pre">CollidableType.active</span></code> and the bullets would be set to
+<code class="docutils literal notranslate"><span class="pre">CollidableType.passive</span></code>.</p>
+<p>Then we have the <code class="docutils literal notranslate"><span class="pre">inactive</span></code> type which simply doesn’t get checked at all in the collision detection.
+This could be used for example if you have components outside of the screen that you don’t care
+about at the moment but that might later come back in to view so they are not completely removed
+from the game.</p>
+<p>These are just examples of how you could use these types, there will be a lot more use cases for
+them so don’t doubt to use them even if your use case isn’t listed here.</p>
+</section>
+<section id="polygonhitbox">
+<h3>PolygonHitbox<a class="headerlink" href="#polygonhitbox" title="Permalink to this headline">¶</a></h3>
+<p>It should be noted that if you want to use collision detection or <code class="docutils literal notranslate"><span class="pre">containsPoint</span></code> on the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>,
+the polygon needs to be convex. So always use convex polygons or you will most likely run into
+problems if you don’t really know what you are doing. It should also be noted that you should always
+define the vertices in your polygon in a counter-clockwise order.</p>
+<p>The other hitbox shapes don’t have any mandatory constructor, that is because they can have a
+default calculated from the size of the collidable that they are attached to, but since a
+polygon can be made in an infinite number of ways inside of a bounding box you have to add the
+definition in the constructor for this shape.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">PolygonHitbox</span></code> has the same constructors as the ()[#PolygonComponent], see that section for
+documentation regarding those.</p>
+</section>
+<section id="rectanglehitbox">
+<h3>RectangleHitbox<a class="headerlink" href="#rectanglehitbox" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code> has the same constructors as the ()[#RectangleComponent], see that section
+for documentation regarding those.</p>
+</section>
+<section id="circlehitbox">
+<h3>CircleHitbox<a class="headerlink" href="#circlehitbox" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">CircleHitbox</span></code> has the same constructors as the ()[#CircleComponent], see that section for
+documentation regarding those.</p>
+</section>
+</section>
+<section id="screenhitbox">
+<h2>ScreenHitbox<a class="headerlink" href="#screenhitbox" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code> is a component which represents the edges of your viewport/screen. If you add a
+<code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code> to your game your other components with hitboxes will be notified when they
+collide with the edges. It doesn’t take any arguments, it only depends on the <code class="docutils literal notranslate"><span class="pre">size</span></code> of the game
+that it is added to. To add it you can just do <code class="docutils literal notranslate"><span class="pre">add(ScreenHitbox())</span></code> in your game, if you don’t
+want the <code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code> itself to be notified when something collides with it. Since
+<code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code> has the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin you can add your own <code class="docutils literal notranslate"><span class="pre">onCollisionCallback</span></code>,
+<code class="docutils literal notranslate"><span class="pre">onStartCollisionCallback</span></code> and <code class="docutils literal notranslate"><span class="pre">onEndCollisionCallback</span></code> functions to that object if needed.</p>
+</section>
+<section id="compositehitbox">
+<h2>CompositeHitbox<a class="headerlink" href="#compositehitbox" title="Permalink to this headline">¶</a></h2>
+<p>In the <code class="docutils literal notranslate"><span class="pre">CompositeHitbox</span></code> you can add multiple hitboxes so that they emulate being one joined hitbox.</p>
+<p>If you want to form a hat for example you might want to use two [RectangleHitbox]s to follow that
+hat’s edges properly, then you can add those hitboxes to an instance of this class and react to
+collisions to the whole hat, instead of for just each hitbox separately.</p>
+</section>
+<section id="broad-phase">
+<h2>Broad phase<a class="headerlink" href="#broad-phase" title="Permalink to this headline">¶</a></h2>
+<p>Usually you don’t have to worry about the broad phase system that is used, so if the standard
+implementation is performant enough for you, you probably don’t have to read this section.</p>
+<p>A broad phase is the first step of collision detection where potential collisions are calculated.
+To calculate these potential collisions are a lot cheaper to calculate than to check the exact
+intersections from the directly and it removes the need to check all hitboxes against each other
+and therefore avoiding O(n²). The broad phase produces a set of potential collisions (a set of
+<code class="docutils literal notranslate"><span class="pre">CollisionProspect</span></code>s), this set is then used to check the exact intersections between hitboxes, this
+is sometimes called narrow phase.</p>
+<p>By default Flame’s collision detection is using a sweep and prune broadphase step, if your game
+requires another type of broadphase you can write your own broadphase by extending <code class="docutils literal notranslate"><span class="pre">Broadphase</span></code> and
+manually setting the collision detection system that should be used.</p>
+<p>For example if you have implemented a broadphase built on a quad tree instead of the standard
+sweep and prune, then you would do the following:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasCollisionDetection</span> <span class="p">{</span>
+  <span class="n">MyGame</span><span class="p">()</span> <span class="o">:</span> <span class="k">super</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">collisionDetection</span> <span class="o">=</span> 
+        <span class="n">StandardCollisionDetection</span><span class="p">(</span><span class="nl">broadphase:</span> <span class="n">QuadTreeBroadphase</span><span class="p">());</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="comparison-to-forge2d">
+<h2>Comparison to Forge2D<a class="headerlink" href="#comparison-to-forge2d" title="Permalink to this headline">¶</a></h2>
 <p>If you want to have a full-blown physics engine in your game we recommend that you use
 Forge2D by adding <a class="reference external" href="https://github.com/flame-engine/flame_forge2d">flame_forge2d</a> as a dependency.
 But if you have a simpler use-case and just want to check for collisions of components and improve
@@ -144,242 +337,36 @@ the accuracy of gestures, Flame’s built-in collision detection will serve you 
 <li><p>Interacting realistic forces</p></li>
 <li><p>Particle systems that can interact with other bodies</p></li>
 <li><p>Joints between bodies</p></li>
-<li><p>Many bodies at the same time (~50+ depends a bit on platform)</p></li>
 </ul>
 <p>It is a good idea to just use the Flame collision detection system if you on the other hand only
-need some of the following things (since it is slightly simpler to not involve Forge2D):</p>
+need some of the following things (since it is simpler to not involve Forge2D):</p>
 <ul class="simple">
-<li><p>The ability to act on when some of your components collide</p></li>
-<li><p>The ability to act on when your components collide with the screen boundaries</p></li>
+<li><p>The ability to act on some of your components colliding</p></li>
+<li><p>The ability to act on your components colliding with the screen boundaries</p></li>
 <li><p>Complex shapes to act as a hitbox for your component so that gestures will be more accurate</p></li>
 <li><p>Hitboxes that can tell what part of a component that collided with something</p></li>
 </ul>
-<p>The collision detection system supports three different types of shapes that you can build hitboxes
-from, these shapes are Polygon, Rectangle and Circle. A hitbox can be represented by many shapes to
-form the area which can be used to either detect collisions or whether it contains a point or not,
-the latter is very useful for accurate gesture detection. The collision detection does not handle
-what should happen when two hitboxes collide, so it is up to the user to implement what will happen
-when for example two position components have intersecting hitboxes.</p>
-<p>Do note that the built-in collision detection system does not take collisions between two hitboxes
-that overshoot each other into account, this could happen when they either move too fast or <code class="docutils literal notranslate"><span class="pre">update</span></code>
-being called with a large delta time (for example if your app is not in the foreground). This
-behaviour is called tunneling, if you want to read more about it.</p>
-<p>Also note that the collision detection system doesn’t work properly if you scale ancestors of the
-component that is <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>.</p>
-<section id="mixins">
-<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this headline">¶</a></h2>
-<section id="hashitboxes">
-<h3>HasHitboxes<a class="headerlink" href="#hashitboxes" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> mixin is mainly used for two things; to make detection of collisions with other
-hitboxes and to more accurately recognize gestures on top of your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s. Say that you
-have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you don’t want to register input
-that is in the corner of the image where the rock is not displayed, since an image is always
-rectangular. Then you can use the <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> mixin to define a more accurate polygon (or another
-shape) for which the input should be within for the event to be registered on your component.</p>
-<p>You can add new shapes to the <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> just like they are added in the below <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
-example.</p>
 </section>
-<section id="collidable">
-<h3>Collidable<a class="headerlink" href="#collidable" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> mixin is added to a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> that has a <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> and it is used for
-detecting collisions with other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s. If you do not add a shape to your <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code>
-component it will never collide with anything. If you want the component to have a default
-rectangular shape that fills the size of your component you can simply do
-<code class="docutils literal notranslate"><span class="pre">addHitbox(HitboxRectangle())</span></code>.</p>
-<p>To make your component collidable you would start off something like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCollidable</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="kd">with</span> <span class="n">HasHitboxes</span><span class="p">,</span> <span class="n">Collidable</span> <span class="p">{</span>
-  <span class="n">MyCollidable</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// This could also be done in onLoad instead of in the constructor</span>
-    <span class="kd">final</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">HitboxPolygon</span><span class="p">([</span>
-      <span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span>
-      <span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
-      <span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">),</span>
-      <span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
-    <span class="p">]);</span>
-    <span class="n">addHitbox</span><span class="p">(</span><span class="n">shape</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code> added to the <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> here is a diamond shape(◇).
-More about how the different shapes are defined in the <a class="reference internal" href="#shapes"><span class="std std-doc">Shapes</span></a> section.</p>
-<p>Remember that you can add as many <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code>s as you want to your <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> to make up more
-complex hitboxes. For example a snowman with a hat could be represented by three <code class="docutils literal notranslate"><span class="pre">HitboxCircle</span></code>s and
-a <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code> as its hat.</p>
-<p>To react to a collision you should override the <code class="docutils literal notranslate"><span class="pre">collisionCallback</span></code> in your component.
-Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCollidable</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="kd">with</span> <span class="n">HasHitboxes</span><span class="p">,</span> <span class="n">Collidable</span> <span class="p">{</span>
-  <span class="p">...</span>
-
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span> <span class="n">points</span><span class="p">,</span> <span class="n">Collidable</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">CollidableScreen</span><span class="p">)</span> <span class="p">{</span>
-      <span class="p">...</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">YourOtherCollidable</span><span class="p">)</span> <span class="p">{</span>
-      <span class="p">...</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">Collidable</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">CollidableScreen</span><span class="p">)</span> <span class="p">{</span>
-      <span class="p">...</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">YourOtherCollidable</span><span class="p">)</span> <span class="p">{</span>
-      <span class="p">...</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>In this example it can be seen how the Dart <code class="docutils literal notranslate"><span class="pre">is</span></code> keyword is used to check which other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
-that your component collided with. The set of points is where the edges of the hitboxes collided.
-Note that the <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method will be called on both collidable components if they
-have both implemented the <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method, and also on both shapes if they have that method
-implemented. The same goes for the <code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> and <code class="docutils literal notranslate"><span class="pre">onCollisionEnd</span></code> methods, which are
-called when two components or shapes starts or stops colliding with each other.</p>
-<p>When a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> (or <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code>) starts to collide with another <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> both
-<code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> and <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> are called, so if you don’t need to do something specific when
-a collision starts you only need to override <code class="docutils literal notranslate"><span class="pre">onCollision</span></code>, and vice versa.</p>
-<p>If you want to check collisions with the screen edges, as we do in the example above, you can use
-the predefined <a class="reference internal" href="#screencollidable"><span class="std std-doc">ScreenCollidable</span></a> class and since that one also is a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
-you can implement your own <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method for that class if needed.</p>
-<section id="collidabletype">
-<h4>CollidableType<a class="headerlink" href="#collidabletype" title="Permalink to this headline">¶</a></h4>
-<p>By default the <code class="docutils literal notranslate"><span class="pre">CollidableType</span></code> is <code class="docutils literal notranslate"><span class="pre">active</span></code> on your <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>, but there are two other types that
-you can set your collidable to too if you need to optimize the collision detection.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">CollidableType</span></code> enum contains the following values:</p>
+<section id="migration-from-the-collision-detection-system-in-v1-0">
+<h2>Migration from the collision detection system in v1.0<a class="headerlink" href="#migration-from-the-collision-detection-system-in-v1-0" title="Permalink to this headline">¶</a></h2>
+<p>The collision detection system introduced in v1.1 is easier to use, and much more efficient than the
+one that was in v1.0, but while making these improvements some breaking changes had to be made.</p>
+<p>There is no longer a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> mixin, instead your game automatically knows when a hitbox has
+been added to one of your components when the <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> mixin is added to your game.</p>
+<p>To receive the callbacks from collisions that your component is involved in you should add the
+<code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to your component, and then override the same methods as you did
+previously.</p>
+<p>Since the hitboxes now are <code class="docutils literal notranslate"><span class="pre">Component</span></code>s you add them to your component with <code class="docutils literal notranslate"><span class="pre">add</span></code> instead of
+<code class="docutils literal notranslate"><span class="pre">addHitbox</span></code> which was used previously.</p>
+<section id="name-changes">
+<h3>Name changes<a class="headerlink" href="#name-changes" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">active</span></code> collides with other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s of type active or passive</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">passive</span></code> collides with other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s of type active</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">inactive</span></code> will not collide with any other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HitboxCircle</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">CircleHitbox</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HitboxRectangle</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">PolygonHitbox</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Collidable</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> (Only needed when you want to receive the callbacks)</p></li>
 </ul>
-<p>So if you have collidables that you don’t need to check collisions against each other you can mark
-them as passive by setting <code class="docutils literal notranslate"><span class="pre">collidableType</span> <span class="pre">=</span> <span class="pre">CollidableType.passive</span></code>, this could for example be
-ground components or maybe your enemies don’t need to check collisions between each other, then they
-could be marked as passive too.</p>
-<p>Then we have the <code class="docutils literal notranslate"><span class="pre">inactive</span></code> type which simply doesn’t get checked at all in the collision detection.
-This could be used for example if you have components outside of the screen that you don’t care
-about at the moment but that might later come back in to view so they are not completely removed
-from the game.</p>
-<p>These are just examples of how you could use these types, there will be a lot more use cases for
-them so don’t doubt to use them even if your use case isn’t listed here.</p>
-</section>
-</section>
-<section id="hascollidables">
-<h3>HasCollidables<a class="headerlink" href="#hascollidables" title="Permalink to this headline">¶</a></h3>
-<p>If you want to use this collision detection in your game you have to add the <code class="docutils literal notranslate"><span class="pre">HasCollidables</span></code> mixin
-to your game so that the game knows that it should keep track of which components that can collide.</p>
-<p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasCollidables</span> <span class="p">{</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>Now when you add your <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> components to your game they will automatically be checked for
-collisions.</p>
-</section>
-<section id="screencollidable">
-<h3>ScreenCollidable<a class="headerlink" href="#screencollidable" title="Permalink to this headline">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> is not a mixin, but a pre-made collidable component which represents the edges of
-your game/screen. If you add a <code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> to your game your other collidables will be
-notified when they collide with the edges. It doesn’t take any arguments, it only depends on the
-<code class="docutils literal notranslate"><span class="pre">size</span></code> of the game that it is added to. To add it you can just do <code class="docutils literal notranslate"><span class="pre">add(ScreenCollidable())</span></code> in
-your game, if you don’t want the <code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> itself to be notified when something collides
-with it. If you so want it to be notified, then you need to extend it and implement the
-<code class="docutils literal notranslate"><span class="pre">collisionCallback</span></code> method for it.</p>
-</section>
-</section>
-<section id="shapes">
-<h2>Shapes<a class="headerlink" href="#shapes" title="Permalink to this headline">¶</a></h2>
-<section id="shape">
-<h3>Shape<a class="headerlink" href="#shape" title="Permalink to this headline">¶</a></h3>
-<p>A Shape is the base class for representing a scalable geometrical shape. The shapes have different
-ways of defining how they look, but they all have a size and angle that can be modified and the
-shape definition will scale or rotate the shape accordingly.</p>
-<p>There are currently three shapes: <a class="reference internal" href="#polygon"><span class="std std-doc">Polygon</span></a>, <a class="reference internal" href="#rectangle"><span class="std std-doc">Rectangle</span></a> and <a class="reference internal" href="#circle"><span class="std std-doc">Circle</span></a>.</p>
-</section>
-<section id="hitboxshape">
-<h3>HitboxShape<a class="headerlink" href="#hitboxshape" title="Permalink to this headline">¶</a></h3>
-<p>A <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code> is a <code class="docutils literal notranslate"><span class="pre">Shape</span></code> defined from the center position of the component that it is attached
-to and it has the same bounding size and angle as the component. You can set <code class="docutils literal notranslate"><span class="pre">localPosition</span></code> to have
-the position of the shape deviate from the center of the component. A <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code> is the type of
-shape that you add to your <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code>, or <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>. Usually these types of shapes are the
-only ones that you need to use.</p>
-<section id="hitboxpolygon">
-<h4>HitboxPolygon<a class="headerlink" href="#hitboxpolygon" title="Permalink to this headline">¶</a></h4>
-<p>It should be noted that if you want to use collision detection or <code class="docutils literal notranslate"><span class="pre">containsPoint</span></code> on the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>,
-the polygon needs to be convex. So always use convex polygons or you will most likely run into
-problems if you don’t really know what you are doing. It should also be noted that you should always
-define the vertices in your polygon in a clockwise order.</p>
-<p>In comparison to the normal <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>, there is only one way to create a <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code>, the only
-mandatory argument is a list of <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> which defines how your polygon should look, but not the
-size or position for it (since that sill be defined by the component that you attach it to).
-For example you could create a diamond like in the <a class="reference internal" href="#collidable"><span class="std std-doc">Collidable</span></a> example like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">HitboxPolygon</span><span class="p">([</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span>  <span class="c1">// Middle of top wall</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>  <span class="c1">// Middle of right wall</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">),</span> <span class="c1">// Middle of bottom wall</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="c1">// Middle of left wall</span>
-<span class="p">]);</span>
-</pre></div>
-</div>
-<p>The other hitbox shapes don’t have any mandatory constructor, but that is because they can have a
-sane default calculated from the size of the collidable that they are attached to, but since a
-polygon can be made in an infinite number of ways inside of a bounding box you have to add the
-definition in the constructor for this shape.</p>
-<p>The vectors in the example defines percentages of the length from the center to the edge of the
-screen in both x and y axis, so for our first item in our list (<code class="docutils literal notranslate"><span class="pre">Vector2(0,</span> <span class="pre">1)</span></code>) we are pointing on
-on the middle of the top wall of the bounding box, since the coordinate system here is defined from
-the center of the polygon.</p>
-<p><img alt="An example of how to define a polygon shape" src="../_images/polygon_shape.png" /></p>
-<p>In the image you can see how the polygon shape formed by the purple arrows is defined by the red
-arrows.</p>
-</section>
-<section id="hitboxrectangle">
-<h4>HitboxRectangle<a class="headerlink" href="#hitboxrectangle" title="Permalink to this headline">¶</a></h4>
-<p>A <code class="docutils literal notranslate"><span class="pre">HitboxRectangle</span></code> is really just a simplified Polygon, but it can be defined more easily.
-To create rectangle you add a <code class="docutils literal notranslate"><span class="pre">relation</span></code> in the constructor which defines the relationship between
-the length of the horizontal and vertical side and the size of the bounding box. To create a
-<code class="docutils literal notranslate"><span class="pre">HitboxRectangle</span></code> that has half of the width and the full height of the bounding box (<code class="docutils literal notranslate"><span class="pre">size</span></code>)) you
-do this: <code class="docutils literal notranslate"><span class="pre">HitboxRectangle(relation:</span> <span class="pre">Vector2(0.5,</span> <span class="pre">1.0));</span></code>.</p>
-<p>Once you have added the <code class="docutils literal notranslate"><span class="pre">HitboxRectangle</span></code> to a collidable component it will be sized and positioned
-in relation to that component. So if the size of your component is <code class="docutils literal notranslate"><span class="pre">Vector2(400,</span> <span class="pre">200)</span></code> and the
-relation argument is the same as above your rectangle would be placed in the middle of the component
-and be 200 pixels wide and 200 pixels tall.</p>
-</section>
-<section id="hitboxcircle">
-<h4>HitboxCircle<a class="headerlink" href="#hitboxcircle" title="Permalink to this headline">¶</a></h4>
-<p>When creating a <code class="docutils literal notranslate"><span class="pre">Circle</span></code> you can define how long the radius is in comparison to the shortest edge
-of the bounding box, this is the <code class="docutils literal notranslate"><span class="pre">definition</span></code> argument.</p>
-<p>So if you want to create a circle that is positioned as for example a head for your component that
-has the size <code class="docutils literal notranslate"><span class="pre">Vector2(100,</span> <span class="pre">400)</span></code> and you want the head to be half of the width and have its center
-on the top fourth of the component you would write something like this:</p>
-<p><code class="docutils literal notranslate"><span class="pre">HitboxCircle(definition:</span> <span class="pre">0.5)..relativePosition</span> <span class="pre">=</span> <span class="pre">Vector2(0,</span> <span class="pre">0.5)</span></code></p>
-</section>
-</section>
-<section id="normal-shapes">
-<h3>Normal Shapes<a class="headerlink" href="#normal-shapes" title="Permalink to this headline">¶</a></h3>
-<p>These shapes are meant as a tool for using geometrical shapes in a more general way than together
-with the collision detection system.</p>
-<section id="polygon">
-<h4>Polygon<a class="headerlink" href="#polygon" title="Permalink to this headline">¶</a></h4>
-<p>You can also create you <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> by giving it a list of points in the constructor.
-This list will be transformed into a polygon with a size, which can still be scaled and rotated.</p>
-</section>
-<section id="rectangle">
-<h4>Rectangle<a class="headerlink" href="#rectangle" title="Permalink to this headline">¶</a></h4>
-<p>Dart already has an excellent way to create rectangles and that class is called <code class="docutils literal notranslate"><span class="pre">Rect</span></code>, you can
-create a Flame <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> from a <code class="docutils literal notranslate"><span class="pre">Rect</span></code> by using the <code class="docutils literal notranslate"><span class="pre">Rectangle.fromRect</span></code> factory, and just like
-with the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> factory, your rectangle will be sized according to the <code class="docutils literal notranslate"><span class="pre">Rect</span></code> if you use this
-factory.</p>
-<p>You can also use the default constructor to build your rectangle from a position, size and angle.</p>
-</section>
-<section id="circle">
-<h4>Circle<a class="headerlink" href="#circle" title="Permalink to this headline">¶</a></h4>
-<p>If you know how long your circle’s position and/or how long the radius is going to be from the start
-you can use the optional arguments <code class="docutils literal notranslate"><span class="pre">radius</span></code> and <code class="docutils literal notranslate"><span class="pre">position</span></code> to set those, if the <code class="docutils literal notranslate"><span class="pre">radius</span></code> is set the
-<code class="docutils literal notranslate"><span class="pre">size</span></code> of the <code class="docutils literal notranslate"><span class="pre">Circle</span></code> will be automatically set too.</p>
-</section>
 </section>
 </section>
 <section id="examples">
@@ -424,21 +411,19 @@ you can use the optional arguments <code class="docutils literal notranslate"><s
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#mixins' class='list-group-item level-1'>Mixins</a>
-  <a href='#hashitboxes' class='list-group-item level-2'>HasHitboxes</a>
-  <a href='#collidable' class='list-group-item level-2'>Collidable</a>
-  <a href='#collidabletype' class='list-group-item level-3'>CollidableType</a>
-  <a href='#hascollidables' class='list-group-item level-2'>HasCollidables</a>
-  <a href='#screencollidable' class='list-group-item level-2'>ScreenCollidable</a>
-  <a href='#shapes' class='list-group-item level-1'>Shapes</a>
-  <a href='#shape' class='list-group-item level-2'>Shape</a>
-  <a href='#hitboxshape' class='list-group-item level-2'>HitboxShape</a>
-  <a href='#hitboxpolygon' class='list-group-item level-3'>HitboxPolygon</a>
-  <a href='#hitboxrectangle' class='list-group-item level-3'>HitboxRectangle</a>
-  <a href='#hitboxcircle' class='list-group-item level-3'>HitboxCircle</a>
-  <a href='#normal-shapes' class='list-group-item level-2'>Normal Shapes</a>
-  <a href='#polygon' class='list-group-item level-3'>Polygon</a>
-  <a href='#rectangle' class='list-group-item level-3'>Rectangle</a>
-  <a href='#circle' class='list-group-item level-3'>Circle</a>
+  <a href='#hascollisiondetection' class='list-group-item level-2'>HasCollisionDetection</a>
+  <a href='#collisioncallbacks' class='list-group-item level-2'>CollisionCallbacks</a>
+  <a href='#shapehitbox' class='list-group-item level-1'>ShapeHitbox</a>
+  <a href='#collidabletype' class='list-group-item level-2'>CollidableType</a>
+  <a href='#polygonhitbox' class='list-group-item level-2'>PolygonHitbox</a>
+  <a href='#rectanglehitbox' class='list-group-item level-2'>RectangleHitbox</a>
+  <a href='#circlehitbox' class='list-group-item level-2'>CircleHitbox</a>
+  <a href='#screenhitbox' class='list-group-item level-1'>ScreenHitbox</a>
+  <a href='#compositehitbox' class='list-group-item level-1'>CompositeHitbox</a>
+  <a href='#broad-phase' class='list-group-item level-1'>Broad phase</a>
+  <a href='#comparison-to-forge2d' class='list-group-item level-1'>Comparison to Forge2D</a>
+  <a href='#migration-from-the-collision-detection-system-in-v1-0' class='list-group-item level-1'>Migration from the collision detection system in v1.0</a>
+  <a href='#name-changes' class='list-group-item level-2'>Name changes</a>
   <a href='#examples' class='list-group-item level-1'>Examples</a>
 </div>
 

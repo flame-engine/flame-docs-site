@@ -7,12 +7,14 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
   <script src="../_static/jquery.js"></script>
   <script src="../_static/underscore.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
   <script src="../_static/versions.js"></script>
@@ -88,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame/collision_detection.html">Collision detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/effects.html">Effects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/camera_and_viewport.html">Camera &amp; Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/keyboard-input.html">Keyboard input</a></li>
@@ -113,6 +116,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../flame_audio/flame_audio.html">flame_audio</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="other_modules.html">Other Modules</a><ul class="current">
@@ -196,14 +203,14 @@ the current object, otherwise it will not be possible to detect collisions.
 Like this:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">bodyDef</span> <span class="o">=</span> <span class="n">BodyDef</span><span class="p">()</span>
   <span class="c1">// To be able to know which component that is involved in a collision</span>
-  <span class="p">..</span><span class="n">setUserData</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+  <span class="p">..</span><span class="n">userData</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Now you have to make an implementation of <code class="docutils literal notranslate"><span class="pre">ContactCallback</span></code> where you set which two types that it
 should react when they come in contact.
 If you have two <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>s named <code class="docutils literal notranslate"><span class="pre">Ball</span></code> and <code class="docutils literal notranslate"><span class="pre">Wall</span></code> and you want to do something when they come
 in contact, you could do something like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">BallWallCallback</span> <span class="kd">implements</span> <span class="n">ContactCallback</span><span class="o">&lt;</span><span class="n">Ball</span><span class="p">,</span> <span class="n">Wall</span><span class="o">&gt;</span> <span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">BallWallCallback</span> <span class="kd">extends</span> <span class="n">ContactCallback</span><span class="o">&lt;</span><span class="n">Ball</span><span class="p">,</span> <span class="n">Wall</span><span class="o">&gt;</span> <span class="p">{</span>
   <span class="n">BallWallCallback</span><span class="p">();</span>
 
   <span class="nd">@override</span>

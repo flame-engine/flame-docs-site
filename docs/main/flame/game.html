@@ -7,12 +7,14 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
   <script src="../_static/jquery.js"></script>
   <script src="../_static/underscore.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
   <script src="../_static/versions.js"></script>
@@ -88,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/keyboard-input.html">Keyboard input</a></li>
@@ -113,6 +116,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../flame_audio/flame_audio.html">flame_audio</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
@@ -146,18 +153,19 @@ screen (it defaults to [0,0] like a regular <code class="docutils literal notran
 <p>A <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> implementation example can be seen below:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCrate</span> <span class="kd">extends</span> <span class="n">SpriteComponent</span> <span class="p">{</span>
   <span class="c1">// creates a component that renders the crate.png sprite, with size 16 x 16</span>
-  <span class="n">MyCrate</span><span class="p">()</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">size:</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">));</span>
+  <span class="n">MyCrate</span><span class="p">()</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">size:</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span> <span class="nl">anchor:</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">);</span>
 
+  <span class="nd">@override</span>
   <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
     <span class="n">sprite</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;crate.png&#39;</span><span class="p">);</span>
-    <span class="n">anchor</span> <span class="o">=</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
   <span class="p">}</span>
 
   <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">onGameResize</span><span class="p">(</span><span class="n">Vector2</span> <span class="n">gameSize</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">super</span><span class="p">.</span><span class="n">onGameResize</span><span class="p">(</span><span class="n">gameSize</span><span class="p">);</span>
-    <span class="c1">// We don&#39;t need to set the position in the constructor, we can set it directly here since it will</span>
-    <span class="c1">// be called once before the first time it is rendered.</span>
+    <span class="c1">// We don&#39;t need to set the position in the constructor, we can set it </span>
+    <span class="c1">// directly here since it will be called once before the first time it </span>
+    <span class="c1">// is rendered.</span>
     <span class="n">position</span> <span class="o">=</span> <span class="n">gameSize</span> <span class="o">/</span> <span class="m">2</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -165,8 +173,7 @@ screen (it defaults to [0,0] like a regular <code class="docutils literal notran
 <span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
   <span class="nd">@override</span>
   <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="kd">await</span> <span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">MyCrate</span><span class="p">());</span>
+    <span class="kd">await</span> <span class="n">add</span><span class="p">(</span><span class="n">MyCrate</span><span class="p">());</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -218,14 +225,28 @@ the value of this variable is passed through to its components when they are add
 if you change the <code class="docutils literal notranslate"><span class="pre">debugMode</span></code> at runtime, it will not affect already added components by default.</p>
 <p>To read more about the <code class="docutils literal notranslate"><span class="pre">debugMode</span></code> on Flame, please refer to the <a class="reference internal" href="other/debug.html"><span class="doc std std-doc">Debug Docs</span></a></p>
 </section>
+<section id="singlegameinstance-mixin">
+<h2>SingleGameInstance mixin<a class="headerlink" href="#singlegameinstance-mixin" title="Permalink to this headline">¶</a></h2>
+<p>An optional mixin <code class="docutils literal notranslate"><span class="pre">SingleGameInstance</span></code> can be applied to your game if you are making a single-game
+application. This is a common scenario when building games: there is a single full-screen
+<code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> which hosts a single <code class="docutils literal notranslate"><span class="pre">Game</span></code> instance.</p>
+<p>Adding this mixin provides performance advantages in certain scenarios. In particular, a component’s
+<code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method is guaranteed to start when that component is added to its parent, even if the
+parent is not yet mounted itself. Consequently, <code class="docutils literal notranslate"><span class="pre">await</span></code>-ing on <code class="docutils literal notranslate"><span class="pre">parent.add(component)</span></code> is guaranteed
+to always finish loading the component.</p>
+<p>Using this mixin is simple:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">SingleGameInstance</span> <span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 <section id="low-level-game-api">
 <h2>Low-level Game API<a class="headerlink" href="#low-level-game-api" title="Permalink to this headline">¶</a></h2>
 <p><img alt="Game low-level API" src="../_images/game_mixin.png" /></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixin is a low-level API that can be used when you want to implement the functionality of
 how the game engine should be structured. <code class="docutils literal notranslate"><span class="pre">Game</span></code> does not implement any <code class="docutils literal notranslate"><span class="pre">update</span></code> or
 <code class="docutils literal notranslate"><span class="pre">render</span></code> function for example.</p>
-<p>As you can see in the image above you’ll have to use the <code class="docutils literal notranslate"><span class="pre">Loadable</span></code> and <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixins if you want to
-create your own game class, which is what is done with <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Loadable</span></code> mixin has the lifecycle methods <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>, <code class="docutils literal notranslate"><span class="pre">onMount</span></code> and <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> in it, which are
 called from the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> (or another parent) when the game is loaded + mounted, or removed.
 <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> is only called the first time the class is added to a parent, but <code class="docutils literal notranslate"><span class="pre">onMount</span></code> (which is
@@ -234,14 +255,14 @@ the class is removed from a parent.</p>
 <p><strong>Note</strong>: The <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixin allows for more freedom of how to implement things, but you are also
 missing out on all of the built-in features in Flame if you use it.</p>
 <p>An example of how a <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementation could look like:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGameSubClass</span> <span class="kd">with</span> <span class="n">Loadable</span><span class="p">,</span> <span class="n">Game</span> <span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGameSubClass</span> <span class="kd">with</span> <span class="n">Game</span> <span class="p">{</span>
   <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">render</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// ...</span>
   <span class="p">}</span>
 
   <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// ...</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -351,6 +372,7 @@ of this feature.</p>
   <a href='#lifecycle' class='list-group-item level-1'>Lifecycle</a>
   <a href='#changing-component-priorities-render-update-order' class='list-group-item level-1'>Changing component priorities (render/update order)</a>
   <a href='#debug-mode' class='list-group-item level-1'>Debug mode</a>
+  <a href='#singlegameinstance-mixin' class='list-group-item level-1'>SingleGameInstance mixin</a>
   <a href='#low-level-game-api' class='list-group-item level-1'>Low-level Game API</a>
   <a href='#game-loop' class='list-group-item level-1'>Game Loop</a>
   <a href='#pause-resuming-game-execution' class='list-group-item level-1'>Pause/Resuming game execution</a>

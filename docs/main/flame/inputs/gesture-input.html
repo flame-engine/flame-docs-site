@@ -7,12 +7,14 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
   <script src="../../_static/jquery.js"></script>
   <script src="../../_static/underscore.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
   <script src="../../_static/versions.js"></script>
@@ -88,6 +90,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../collision_detection.html">Collision detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../effects.html">Effects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../camera_and_viewport.html">Camera &amp; Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../camera_component.html">Camera component</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Inputs</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="keyboard-input.html">Keyboard input</a></li>
@@ -113,6 +116,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../../flame_audio/flame_audio.html">flame_audio</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame_audio/bgm.html">Background music</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
@@ -472,16 +479,21 @@ you can override if you want to listen to the events.</p>
 While the mouse movement is kept inside or outside, no events are fired and those mouse move events are
 not propagated. Only when the state is changed the handlers are triggered.</p>
 </section>
+<section id="gesturehitboxes">
+<h3>GestureHitboxes<a class="headerlink" href="#gesturehitboxes" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin is used to more accurately recognize gestures on top of your
+<code class="docutils literal notranslate"><span class="pre">Component</span></code>s. Say that you have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you
+don’t want to register input that is in the corner of the image where the rock is not displayed,
+since a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is rectangular by default. Then you can use the <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin
+to define a more accurate circle or polygon (or another shape) for which the input should be within
+for the event to be registered on your component.</p>
+<p>You can add new hitboxes to the component that has the <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin just like they are
+added in the below <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> example.</p>
+<p>More information about how to define hitboxes can be found in the hitbox section of the
+<span class="xref myst">collision detection</span> docs.</p>
+<p>An example of how to use it can be seen
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/gesture_hitboxes_example">here</a>.</p>
 </section>
-<section id="hashitboxes">
-<h2>HasHitboxes<a class="headerlink" href="#hashitboxes" title="Permalink to this headline">¶</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> mixin is used to make detection of gestures on top of your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s
-more accurate. Say that you have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you
-don’t want to register input that is in the corner of the image where the rock is not displayed.
-Then you can use the <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> mixin to define a more accurate polygon for which the input
-should be within for the event to be counted on your component.</p>
-<p>An example of you to use it can be seen
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/">here</a>.</p>
 </section>
 </section>
 
@@ -528,7 +540,7 @@ should be within for the event to be counted on your component.</p>
   <a href='#tappable-components' class='list-group-item level-2'>Tappable components</a>
   <a href='#draggable-components' class='list-group-item level-2'>Draggable components</a>
   <a href='#hoverable-components' class='list-group-item level-2'>Hoverable components</a>
-  <a href='#hashitboxes' class='list-group-item level-1'>HasHitboxes</a>
+  <a href='#gesturehitboxes' class='list-group-item level-2'>GestureHitboxes</a>
 </div>
 
     </div>
