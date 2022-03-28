@@ -33,7 +33,6 @@ function main {
 function generate {
   version=$1
   echo "Generating $version"
-  make clean
 
   cd $tmp_flame_src
   git checkout -f $version
@@ -47,6 +46,7 @@ function generate {
   fi
 
   cd $sphinx_dir
+  make clean
   echo "+ Generating for version $version..."
   pre_process $version
   pip install -r requirements.txt
