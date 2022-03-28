@@ -33,6 +33,7 @@ function main {
 function generate {
   version=$1
   echo "Generating $version"
+  make clean
 
   cd $tmp_flame_src
   git checkout -f $version
