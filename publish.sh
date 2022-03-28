@@ -24,6 +24,7 @@ function main {
   cp index_redirect.html docs/index.html
   cp index_redirect.html docs/404.html
   sed -i "s/FLAME_VERSION/$latest_version/g" docs/index.html
+  sed -i "s/FLAME_VERSION/$latest_version/g" docs/404.html
   git_push
 
   rm -rf $tmp_flame_src
