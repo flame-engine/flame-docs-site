@@ -8,8 +8,9 @@
 
     <title>Effects &#8212; Flame</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,24 +20,21 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=84ace793992934648b4de8eed757e5a2" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=1cee231a2b06fec83dfdf5e1f90e99acd3529254" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/versions.js"></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -49,7 +47,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -58,14 +70,10 @@
     <div class="container-xl">
       <div class="row">
           
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<div class="col-12 col-md-3 bd-sidebar site-navigation " id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -238,89 +246,180 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<!-- This is an invisible pixel that we watch to see if we've scrolled. -->
-<div class="sbt-scroll-pixel-helper"></div>
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            <div class="topbar-left">
-                
-                <label class="nav-toggle-button" for="__navigation">
-                    <div class="visually-hidden">Toggle navigation</div>
-                    <i class="fas fa-bars"></i>
-                </label>
-                
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
             </div>
             
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/effects.md.txt"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/flame-engine/flame"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/flame-engine/flame/edit/main/doc/effects.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
         </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/flame-engine/flame"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/flame-engine/flame/edit/main/doc/effects.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/effects.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#overview">
    Overview
@@ -555,12 +654,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Effects</h1>
@@ -811,11 +909,12 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="effects">
-<h1>Effects<a class="headerlink" href="#effects" title="Permalink to this headline">¶</a></h1>
+<h1>Effects<a class="headerlink" href="#effects" title="Permalink to this headline">#</a></h1>
 <p>An effect is a special component that can attach to another component in order to modify its
 properties or appearance.</p>
 <p>For example, suppose you are making a game with collectible power-up items. You want these power-ups
@@ -833,7 +932,7 @@ interesting item. And what’s more important, it didn’t result in an increase
 effects, once added, will work automatically, and then self-remove from the game tree when
 finished.</p>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">#</a></h2>
 <p>The function of an <code class="docutils literal notranslate"><span class="pre">Effect</span></code> is to effect a change over time in some component’s property. In order
 to achieve that, the <code class="docutils literal notranslate"><span class="pre">Effect</span></code> must know the initial value of the property, the final value, and how
 it should progress over time. The initial value is usually determined by an effect automatically,
@@ -874,9 +973,9 @@ the job of the effect controller is to map from the “physical” time, measure
 </ul>
 </section>
 <section id="built-in-effects">
-<h2>Built-in effects<a class="headerlink" href="#built-in-effects" title="Permalink to this headline">¶</a></h2>
+<h2>Built-in effects<a class="headerlink" href="#built-in-effects" title="Permalink to this headline">#</a></h2>
 <section id="effect">
-<h3><code class="docutils literal notranslate"><span class="pre">Effect</span></code><a class="headerlink" href="#effect" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Effect</span></code><a class="headerlink" href="#effect" title="Permalink to this headline">#</a></h3>
 <p>The base <code class="docutils literal notranslate"><span class="pre">Effect</span></code> class is not usable on its own (it is abstract), but it provides some common
 functionality inherited by all other effects. This includes:</p>
 <ul class="simple">
@@ -891,7 +990,7 @@ if you plan to reuse the effect after it is finished.</p></li>
 </ul>
 </section>
 <section id="moveeffect-by">
-<h3><code class="docutils literal notranslate"><span class="pre">MoveEffect.by</span></code><a class="headerlink" href="#moveeffect-by" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">MoveEffect.by</span></code><a class="headerlink" href="#moveeffect-by" title="Permalink to this headline">#</a></h3>
 <p>This effect applies to a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> and shifts it by a prescribed <code class="docutils literal notranslate"><span class="pre">offset</span></code> amount. This
 offset is relative to the current position of the target:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="o">-</span><span class="m">10</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">0.5</span><span class="p">));</span>
@@ -903,7 +1002,7 @@ will be <code class="docutils literal notranslate"><span class="pre">Vector2(250
 superposition of all the individual effects.</p>
 </section>
 <section id="moveeffect-to">
-<h3><code class="docutils literal notranslate"><span class="pre">MoveEffect.to</span></code><a class="headerlink" href="#moveeffect-to" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">MoveEffect.to</span></code><a class="headerlink" href="#moveeffect-to" title="Permalink to this headline">#</a></h3>
 <p>This effect moves a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> from its current position to the specified destination
 point in a straight line.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">MoveEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">500</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">3</span><span class="p">));</span>
@@ -912,7 +1011,7 @@ point in a straight line.</p>
 <p>It is possible, but not recommended to attach multiple such effects to the same component.</p>
 </section>
 <section id="movealongpatheffect">
-<h3><code class="docutils literal notranslate"><span class="pre">MoveAlongPathEffect</span></code><a class="headerlink" href="#movealongpatheffect" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">MoveAlongPathEffect</span></code><a class="headerlink" href="#movealongpatheffect" title="Permalink to this headline">#</a></h3>
 <p>This effect moves a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> along the specified path relative to the component’s
 current position. The path can have non-linear segments, but must be singly connected. It is
 recommended to start a path at <code class="docutils literal notranslate"><span class="pre">Vector2.zero()</span></code> in order to avoid sudden jumps in the component’s
@@ -931,7 +1030,7 @@ itself in the direction the curve is facing at each point. With this flag the ef
 the move- and the rotate- effect at the same time.</p>
 </section>
 <section id="rotateeffect-by">
-<h3><code class="docutils literal notranslate"><span class="pre">RotateEffect.by</span></code><a class="headerlink" href="#rotateeffect-by" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">RotateEffect.by</span></code><a class="headerlink" href="#rotateeffect-by" title="Permalink to this headline">#</a></h3>
 <p>Rotates the target clockwise by the specified angle relative to its current orientation. The angle
 is in radians. For example, the following effect will rotate the target 90º (=<a class="reference external" href="https://en.wikipedia.org/wiki/Tau_(mathematical_constant)">tau</a>/4 in radians)
 clockwise:</p>
@@ -940,7 +1039,7 @@ clockwise:</p>
 </div>
 </section>
 <section id="rotateeffect-to">
-<h3><code class="docutils literal notranslate"><span class="pre">RotateEffect.to</span></code><a class="headerlink" href="#rotateeffect-to" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">RotateEffect.to</span></code><a class="headerlink" href="#rotateeffect-to" title="Permalink to this headline">#</a></h3>
 <p>Rotates the target clockwise to the specified angle. For example, the following will rotate the
 target to look east (0º is north, 90º=<a class="reference external" href="https://en.wikipedia.org/wiki/Tau_(mathematical_constant)">tau</a>/4 east, 180º=tau/2 south, and 270º=tau*3/4 west):</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">RotateEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span> <span class="n">EffectController</span><span class="p">(</span><span class="m">2</span><span class="p">));</span>
@@ -948,7 +1047,7 @@ target to look east (0º is north, 90º=<a class="reference external" href="http
 </div>
 </section>
 <section id="scaleeffect-by">
-<h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.by</span></code><a class="headerlink" href="#scaleeffect-by" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.by</span></code><a class="headerlink" href="#scaleeffect-by" title="Permalink to this headline">#</a></h3>
 <p>This effect will change the target’s scale by the specified amount. For example, this will cause
 the component to grow 50% larger:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1.5</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="m">0.3</span><span class="p">));</span>
@@ -956,14 +1055,14 @@ the component to grow 50% larger:</p>
 </div>
 </section>
 <section id="scaleeffect-to">
-<h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.to</span></code><a class="headerlink" href="#scaleeffect-to" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.to</span></code><a class="headerlink" href="#scaleeffect-to" title="Permalink to this headline">#</a></h3>
 <p>This effect works similar to <code class="docutils literal notranslate"><span class="pre">ScaleEffect.by</span></code>, but sets the absolute value of the target’s scale.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">ScaleEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">(),</span> <span class="n">EffectController</span><span class="p">(</span><span class="m">0.5</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
 <section id="sizeeffect-by">
-<h3><code class="docutils literal notranslate"><span class="pre">SizeEffect.by</span></code><a class="headerlink" href="#sizeeffect-by" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">SizeEffect.by</span></code><a class="headerlink" href="#sizeeffect-by" title="Permalink to this headline">#</a></h3>
 <p>This effect will change the size of the target component, relative to its current size. For example,
 if the target has size <code class="docutils literal notranslate"><span class="pre">Vector2(100,</span> <span class="pre">100)</span></code>, then after the following effect is applied and runs its
 course, the new size will be <code class="docutils literal notranslate"><span class="pre">Vector2(120,</span> <span class="pre">50)</span></code>:</p>
@@ -978,14 +1077,14 @@ to its children, if it has any. An alternative to <code class="docutils literal 
 more generally and scales the children components too.</p>
 </section>
 <section id="sizeeffect-to">
-<h3><code class="docutils literal notranslate"><span class="pre">SizeEffect.to</span></code><a class="headerlink" href="#sizeeffect-to" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">SizeEffect.to</span></code><a class="headerlink" href="#sizeeffect-to" title="Permalink to this headline">#</a></h3>
 <p>Changes the size of the target component to the specified size. Target size cannot be negative:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">SizeEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">120</span><span class="p">,</span> <span class="m">120</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="m">1</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
 <section id="opacityeffect">
-<h3><code class="docutils literal notranslate"><span class="pre">OpacityEffect</span></code><a class="headerlink" href="#opacityeffect" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">OpacityEffect</span></code><a class="headerlink" href="#opacityeffect" title="Permalink to this headline">#</a></h3>
 <p>This effect will change over time the opacity of the target to the specified alpha-value. Currently
 this effect can only be applied to components that have a <code class="docutils literal notranslate"><span class="pre">HasPaint</span></code> mixin. If the target component
 uses multiple paints, the effect can target any individual color using the <code class="docutils literal notranslate"><span class="pre">paintId</span></code> parameter.</p>
@@ -997,7 +1096,7 @@ fully opaque. Convenience constructors <code class="docutils literal notranslate
 animate the target into full transparency / full visibility respectively.</p>
 </section>
 <section id="removeeffect">
-<h3><code class="docutils literal notranslate"><span class="pre">RemoveEffect</span></code><a class="headerlink" href="#removeeffect" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">RemoveEffect</span></code><a class="headerlink" href="#removeeffect" title="Permalink to this headline">#</a></h3>
 <p>This is a simple effect that can be attached to a component causing it to be removed from the game
 tree after the specified delay has passed:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">RemoveEffect</span><span class="p">(</span><span class="nl">delay:</span> <span class="m">10.0</span><span class="p">);</span>
@@ -1006,7 +1105,7 @@ tree after the specified delay has passed:</p>
 </section>
 </section>
 <section id="coloreffect">
-<h2>ColorEffect<a class="headerlink" href="#coloreffect" title="Permalink to this headline">¶</a></h2>
+<h2>ColorEffect<a class="headerlink" href="#coloreffect" title="Permalink to this headline">#</a></h2>
 <p>This effect will change the base color of the paint, causing the rendered component to be tinted by
 the provided color between a provided range.</p>
 <p>Usage example:</p>
@@ -1026,7 +1125,7 @@ effect can’t be mixed with other <code class="docutils literal notranslate"><s
 the last one will have effect.</p>
 </section>
 <section id="creating-new-effects">
-<h2>Creating new effects<a class="headerlink" href="#creating-new-effects" title="Permalink to this headline">¶</a></h2>
+<h2>Creating new effects<a class="headerlink" href="#creating-new-effects" title="Permalink to this headline">#</a></h2>
 <p>Although Flame provides a wide array of built-in effects, eventually you may find them to be
 insufficient. Luckily, creating new effects is very simple.</p>
 <p>Each effect extends the base <code class="docutils literal notranslate"><span class="pre">Effect</span></code> class, possibly via one of the more specialized abstract
@@ -1046,9 +1145,9 @@ that property to a fixed value. This way multiple effects would be able to act o
 without interfering with each other.</p>
 </section>
 <section id="effect-controllers">
-<h2>Effect controllers<a class="headerlink" href="#effect-controllers" title="Permalink to this headline">¶</a></h2>
+<h2>Effect controllers<a class="headerlink" href="#effect-controllers" title="Permalink to this headline">#</a></h2>
 <section id="effectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">EffectController</span></code><a class="headerlink" href="#effectcontroller" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">EffectController</span></code><a class="headerlink" href="#effectcontroller" title="Permalink to this headline">#</a></h3>
 <p>The base <code class="docutils literal notranslate"><span class="pre">EffectController</span></code> class provides a factory constructor capable of creating a variety of
 common controllers. The syntax of the constructor is the following:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">EffectController</span><span class="p">({</span>
@@ -1118,7 +1217,7 @@ example if the duration is random or infinite).</p></li>
 </ul>
 </section>
 <section id="lineareffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">LinearEffectController</span></code><a class="headerlink" href="#lineareffectcontroller" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">LinearEffectController</span></code><a class="headerlink" href="#lineareffectcontroller" title="Permalink to this headline">#</a></h3>
 <p>This is the simplest effect controller that grows linearly from 0 to 1 over the specified
 <code class="docutils literal notranslate"><span class="pre">duration</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">LinearEffectController</span><span class="p">(</span><span class="m">3</span><span class="p">);</span>
@@ -1126,7 +1225,7 @@ example if the duration is random or infinite).</p></li>
 </div>
 </section>
 <section id="reverselineareffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">ReverseLinearEffectController</span></code><a class="headerlink" href="#reverselineareffectcontroller" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">ReverseLinearEffectController</span></code><a class="headerlink" href="#reverselineareffectcontroller" title="Permalink to this headline">#</a></h3>
 <p>Similar to the <code class="docutils literal notranslate"><span class="pre">LinearEffectController</span></code>, but it goes in the opposite direction and grows linearly
 from 1 to 0 over the specified duration:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">ReverseLinearEffectController</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
@@ -1134,7 +1233,7 @@ from 1 to 0 over the specified duration:</p>
 </div>
 </section>
 <section id="curvedeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">CurvedEffectController</span></code><a class="headerlink" href="#curvedeffectcontroller" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">CurvedEffectController</span></code><a class="headerlink" href="#curvedeffectcontroller" title="Permalink to this headline">#</a></h3>
 <p>This effect controller grows non-linearly from 0 to 1 over the specified <code class="docutils literal notranslate"><span class="pre">duration</span></code> and following
 the provided <code class="docutils literal notranslate"><span class="pre">curve</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">CurvedEffectController</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="n">Curves</span><span class="p">.</span><span class="n">easeOut</span><span class="p">);</span>
@@ -1142,7 +1241,7 @@ the provided <code class="docutils literal notranslate"><span class="pre">curve<
 </div>
 </section>
 <section id="reversecurvedeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">ReverseCurvedEffectController</span></code><a class="headerlink" href="#reversecurvedeffectcontroller" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">ReverseCurvedEffectController</span></code><a class="headerlink" href="#reversecurvedeffectcontroller" title="Permalink to this headline">#</a></h3>
 <p>Similar to the <code class="docutils literal notranslate"><span class="pre">CurvedEffectController</span></code>, but the controller grows down from 1 to 0 following the
 provided <code class="docutils literal notranslate"><span class="pre">curve</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">ReverseCurvedEffectController</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span> <span class="n">Curves</span><span class="p">.</span><span class="n">bounceInOut</span><span class="p">);</span>
@@ -1150,7 +1249,7 @@ provided <code class="docutils literal notranslate"><span class="pre">curve</spa
 </div>
 </section>
 <section id="pauseeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">PauseEffectController</span></code><a class="headerlink" href="#pauseeffectcontroller" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">PauseEffectController</span></code><a class="headerlink" href="#pauseeffectcontroller" title="Permalink to this headline">#</a></h3>
 <p>This effect controller keeps the progress at a constant value for the specified time duration.
 Typically, the <code class="docutils literal notranslate"><span class="pre">progress</span></code> would be either 0 or 1:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">PauseEffectController</span><span class="p">(</span><span class="m">1.5</span><span class="p">,</span> <span class="nl">progress:</span> <span class="m">0</span><span class="p">);</span>
@@ -1158,7 +1257,7 @@ Typically, the <code class="docutils literal notranslate"><span class="pre">prog
 </div>
 </section>
 <section id="repeatedeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">RepeatedEffectController</span></code><a class="headerlink" href="#repeatedeffectcontroller" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">RepeatedEffectController</span></code><a class="headerlink" href="#repeatedeffectcontroller" title="Permalink to this headline">#</a></h3>
 <p>This is a composite effect controller. It takes another effect controller as a child, and repeats
 it multiple times, resetting before the start of each next cycle.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">RepeatedEffectController</span><span class="p">(</span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">1</span><span class="p">),</span> <span class="m">10</span><span class="p">);</span>
@@ -1168,14 +1267,14 @@ it multiple times, resetting before the start of each next cycle.</p>
 re-initialized with new random values on each iteration.</p>
 </section>
 <section id="infiniteeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">InfiniteEffectController</span></code><a class="headerlink" href="#infiniteeffectcontroller" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">InfiniteEffectController</span></code><a class="headerlink" href="#infiniteeffectcontroller" title="Permalink to this headline">#</a></h3>
 <p>Similar to the <code class="docutils literal notranslate"><span class="pre">RepeatedEffectController</span></code>, but repeats its child controller indefinitely.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">InfiniteEffectController</span><span class="p">(</span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">1</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
 <section id="sequenceeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">SequenceEffectController</span></code><a class="headerlink" href="#sequenceeffectcontroller" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">SequenceEffectController</span></code><a class="headerlink" href="#sequenceeffectcontroller" title="Permalink to this headline">#</a></h3>
 <p>Executes a sequence of effect controllers, one after another. The list of controllers cannot be
 empty.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">ec</span> <span class="o">=</span> <span class="n">SequenceEffectController</span><span class="p">([</span>
@@ -1187,7 +1286,7 @@ empty.</p>
 </div>
 </section>
 <section id="delayedeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">DelayedEffectController</span></code><a class="headerlink" href="#delayedeffectcontroller" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">DelayedEffectController</span></code><a class="headerlink" href="#delayedeffectcontroller" title="Permalink to this headline">#</a></h3>
 <p>Effect controller that executes its child controller after the prescribed <code class="docutils literal notranslate"><span class="pre">delay</span></code>. While the
 controller is executing the “delay” stage, the effect will be considered “not started”, i.e. its
 <code class="docutils literal notranslate"><span class="pre">.started</span></code> property will be returning <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
@@ -1197,7 +1296,7 @@ controller is executing the “delay” stage, the effect will be considered “
 </section>
 </section>
 <section id="see-also">
-<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this headline">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://examples.flame-engine.org/#/">Examples of various effects</a>.</p></li>
 </ul>
@@ -1207,9 +1306,11 @@ controller is executing the “delay” stage, the effect will be considered “
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="collision_detection.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -1225,24 +1326,28 @@ controller is executing the “delay” stage, the effect will be considered “
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Blue Fire Team<br/>
+  
+      &copy; Copyright 2021, Blue Fire Team.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Blue Fire Team<br/>
-    
-        &copy; Copyright 2021, Blue Fire Team.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

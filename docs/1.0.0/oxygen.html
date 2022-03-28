@@ -8,8 +8,9 @@
 
     <title>Oxygen &#8212; Flame</title>
     
-  <link href="_static/css/theme.css" rel="stylesheet">
-  <link href="_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -19,24 +20,21 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.css?digest=84ace793992934648b4de8eed757e5a2" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=1cee231a2b06fec83dfdf5e1f90e99acd3529254" type="text/css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-  <link rel="preload" as="script" href="_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx-book-theme.9d8b4a8b9bb19db25eeaddc40d639ba2.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script src="_static/versions.js"></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
-    <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -49,7 +47,21 @@
     <!-- Google Analytics -->
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -58,14 +70,10 @@
     <div class="container-xl">
       <div class="row">
           
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<div class="col-12 col-md-3 bd-sidebar site-navigation " id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -238,89 +246,180 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<!-- This is an invisible pixel that we watch to see if we've scrolled. -->
-<div class="sbt-scroll-pixel-helper"></div>
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            <div class="topbar-left">
-                
-                <label class="nav-toggle-button" for="__navigation">
-                    <div class="visually-hidden">Toggle navigation</div>
-                    <i class="fas fa-bars"></i>
-                </label>
-                
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
             </div>
             
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/oxygen.md.txt"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/flame-engine/flame"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/flame-engine/flame/edit/main/doc/oxygen.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
         </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
 
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/flame-engine/flame"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/flame-engine/flame/edit/main/doc/oxygen.md"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/oxygen.md.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.md</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#oxygengame-game-extension">
    OxygenGame (Game extension)
@@ -407,12 +506,11 @@
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>Oxygen</h1>
@@ -515,11 +613,12 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="oxygen">
-<h1>Oxygen<a class="headerlink" href="#oxygen" title="Permalink to this headline">¶</a></h1>
+<h1>Oxygen<a class="headerlink" href="#oxygen" title="Permalink to this headline">#</a></h1>
 <p>We (the Flame organization) built an ECS (Entity Component System) named Oxygen.</p>
 <p>If you want to use Oxygen specifically for Flame as a replacement for the
 FCS(Flame Component System) you should use our bridge library
@@ -533,7 +632,7 @@ in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_oxygen/example">Oxygen example</a>
 and in the <code class="docutils literal notranslate"><span class="pre">pub.dev</span></code> <a class="reference external" href="https://pub.dev/packages/flame_oxygen">installation instructions</a>.</p>
 <section id="oxygengame-game-extension">
-<h2>OxygenGame (Game extension)<a class="headerlink" href="#oxygengame-game-extension" title="Permalink to this headline">¶</a></h2>
+<h2>OxygenGame (Game extension)<a class="headerlink" href="#oxygengame-game-extension" title="Permalink to this headline">#</a></h2>
 <p>If you are going to use Oxygen in your project it can be a good idea to use the Oxygen specific
 extension of the <code class="docutils literal notranslate"><span class="pre">Game</span></code> class.</p>
 <p>It is called <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code> and it will give you full access to the Oxygen framework while also
@@ -548,7 +647,7 @@ default components on the entity. This is especially helpful when you are using 
 <a class="reference internal" href="#basesystem"><span class="std std-doc">BaseSystem</span></a> as your base.</p>
 </section>
 <section id="systems">
-<h2>Systems<a class="headerlink" href="#systems" title="Permalink to this headline">¶</a></h2>
+<h2>Systems<a class="headerlink" href="#systems" title="Permalink to this headline">#</a></h2>
 <p>Systems define the logic of your game. In FCS you normally would add your logic inside a component
 with Oxygen we use systems for that. Oxygen itself is completely platform agnostic, meaning it has
 no render loop. It only knows <code class="docutils literal notranslate"><span class="pre">execute</span></code>, which is a method equal to the <code class="docutils literal notranslate"><span class="pre">update</span></code> method in Flame.</p>
@@ -566,7 +665,7 @@ to subclass it to your own system. For more information see the
 <p>Systems can be registered to the world using the <code class="docutils literal notranslate"><span class="pre">world.registerSystem</span></code> method on
 <a class="reference internal" href="#oxygengame-game-extension"><span class="std std-doc">OxygenGame</span></a>.</p>
 <section id="mixin-gameref">
-<h3>mixin GameRef<a class="headerlink" href="#mixin-gameref" title="Permalink to this headline">¶</a></h3>
+<h3>mixin GameRef<a class="headerlink" href="#mixin-gameref" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameRef</span></code> mixin allows a system to become aware of the <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code> instance its attached to. This
 allows easy access to the methods on the game class.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">YourSystem</span> <span class="kd">extends</span> <span class="n">System</span> <span class="kd">with</span> <span class="n">GameRef</span><span class="o">&lt;</span><span class="n">YourGame</span><span class="o">&gt;</span> <span class="p">{</span>
@@ -581,7 +680,7 @@ allows easy access to the methods on the game class.</p>
 </div>
 </section>
 <section id="mixin-rendersystem">
-<h3>mixin RenderSystem<a class="headerlink" href="#mixin-rendersystem" title="Permalink to this headline">¶</a></h3>
+<h3>mixin RenderSystem<a class="headerlink" href="#mixin-rendersystem" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">RenderSystem</span></code> mixin allows a system to be registered for the render loop.
 By adding a <code class="docutils literal notranslate"><span class="pre">render</span></code> method to the system you get full access to the canvas as
 you normally would in Flame.</p>
@@ -603,7 +702,7 @@ you normally would in Flame.</p>
 </div>
 </section>
 <section id="mixin-updatesystem">
-<h3>mixin UpdateSystem<a class="headerlink" href="#mixin-updatesystem" title="Permalink to this headline">¶</a></h3>
+<h3>mixin UpdateSystem<a class="headerlink" href="#mixin-updatesystem" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">MixinSystem</span></code> mixin allows a system to be registered for the update loop.
 By adding a <code class="docutils literal notranslate"><span class="pre">update</span></code> method to the system you get full access to the delta time as you
 normally would in Flame.</p>
@@ -625,7 +724,7 @@ normally would in Flame.</p>
 </div>
 </section>
 <section id="basesystem">
-<h3>BaseSystem<a class="headerlink" href="#basesystem" title="Permalink to this headline">¶</a></h3>
+<h3>BaseSystem<a class="headerlink" href="#basesystem" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> is an abstract class whoms logic can be compared to the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
 from FCS. The <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> automatically filters all entities that have the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
 and <code class="docutils literal notranslate"><span class="pre">SizeComponent</span></code> from <code class="docutils literal notranslate"><span class="pre">flame_oxygen</span></code>. On top of that you can add your own filters by defining
@@ -657,7 +756,7 @@ canvas:</p>
 </div>
 </section>
 <section id="particlesystem">
-<h3>ParticleSystem<a class="headerlink" href="#particlesystem" title="Permalink to this headline">¶</a></h3>
+<h3>ParticleSystem<a class="headerlink" href="#particlesystem" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ParticleSystem</span></code> is a simple system that brings the Particle API from Flame to Oxygen. This
 allows you to use the <a class="reference internal" href="#particlecomponent"><span class="std std-doc">ParticleComponent</span></a> without having to worry about how
 it will render or when to update it. As most of that logic is already contained in the Particle
@@ -673,7 +772,7 @@ itself.</p>
 </section>
 </section>
 <section id="components">
-<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">#</a></h2>
 <p>Components in Oxygen are different than the ones from FCS mainly because instead of containing
 logic they only contain data. This data is then used in systems which in turn define the logic.</p>
 <p>To accomdate people who are switching from FCS to Oxygen we implemented a few components to help
@@ -683,7 +782,7 @@ functionality, they are often accompanied by predefined systems that you can use
 <p>Components can be registered to the world using the <code class="docutils literal notranslate"><span class="pre">world.registerComponent</span></code> method on
 <a class="reference internal" href="#oxygengame-game-extension"><span class="std std-doc">OxygenGame</span></a>.</p>
 <section id="positioncomponent">
-<h3>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this headline">¶</a></h3>
+<h3>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is as its name implies is a component that describe the position of an
 entity. And it is registered to the world by default.</p>
 <p>Creating a positioned entity using OxygenGame:</p>
@@ -700,7 +799,7 @@ entity. And it is registered to the world by default.</p>
 </div>
 </section>
 <section id="sizecomponent">
-<h3>SizeComponent<a class="headerlink" href="#sizecomponent" title="Permalink to this headline">¶</a></h3>
+<h3>SizeComponent<a class="headerlink" href="#sizecomponent" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">SizeComponent</span></code> is as its name implies is a component that describe the size of an entity.
 And it is registered to the world by default.</p>
 <p>Creating a sized entity using OxygenGame:</p>
@@ -717,7 +816,7 @@ And it is registered to the world by default.</p>
 </div>
 </section>
 <section id="anchorcomponent">
-<h3>AnchorComponent<a class="headerlink" href="#anchorcomponent" title="Permalink to this headline">¶</a></h3>
+<h3>AnchorComponent<a class="headerlink" href="#anchorcomponent" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">AnchorComponent</span></code> is as its name implies is a component that describe the anchor position of an
 entity. And it is registered to the world by default.</p>
 <p>This component is especially useful when you are using the <a class="reference internal" href="#basesystem"><span class="std std-doc">BaseSystem</span></a>. But can also
@@ -737,7 +836,7 @@ be used for your own anchoring logic.</p>
 </div>
 </section>
 <section id="anglecomponent">
-<h3>AngleComponent<a class="headerlink" href="#anglecomponent" title="Permalink to this headline">¶</a></h3>
+<h3>AngleComponent<a class="headerlink" href="#anglecomponent" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">AngleComponent</span></code> is as its name implies is a component that describe the angle of an entity.
 And it is registered to the world by default. The angle is in radians.</p>
 <p>This component is especially useful when you are using the <a class="reference internal" href="#basesystem"><span class="std std-doc">BaseSystem</span></a>. But can also
@@ -757,7 +856,7 @@ be used for your own angle logic.</p>
 </div>
 </section>
 <section id="flipcomponent">
-<h3>FlipComponent<a class="headerlink" href="#flipcomponent" title="Permalink to this headline">¶</a></h3>
+<h3>FlipComponent<a class="headerlink" href="#flipcomponent" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlipComponent</span></code> can be used to flip your rendering on either the X or Y axis. It is registered
 to the world by default.</p>
 <p>This component is especially useful when you are using the <a class="reference internal" href="#basesystem"><span class="std std-doc">BaseSystem</span></a>. But can also
@@ -777,7 +876,7 @@ be used for your own flipping logic.</p>
 </div>
 </section>
 <section id="spritecomponent">
-<h3>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this headline">¶</a></h3>
+<h3>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> is as its name implies is a component that describe the sprite of an entity.
 And it is registered to the world by default.</p>
 <p>This allows you to assigning a Sprite to an Entity.</p>
@@ -799,7 +898,7 @@ And it is registered to the world by default.</p>
 </div>
 </section>
 <section id="textcomponent">
-<h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this headline">¶</a></h3>
+<h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> is as its name implies is a component that adds a text component to an entity.
 And it is registered to the world by default.</p>
 <p>This allows you to add text to your entity, combined with the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> you can use it
@@ -828,7 +927,7 @@ as a text entity.</p>
 </div>
 </section>
 <section id="particlecomponent">
-<h3>ParticleComponent<a class="headerlink" href="#particlecomponent" title="Permalink to this headline">¶</a></h3>
+<h3>ParticleComponent<a class="headerlink" href="#particlecomponent" title="Permalink to this headline">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code> wraps a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> from Flame. Combined with the
 <a class="reference internal" href="#particlesystem"><span class="std std-doc">ParticleSystem</span></a> you can easily add particles to your game without having to
 worry about how to render a particle or when/how to update one.</p>
@@ -855,9 +954,11 @@ worry about how to render a particle or when/how to update one.</p>
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="forge2d.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -873,24 +974,28 @@ worry about how to render a particle or when/how to update one.</p>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By Blue Fire Team<br/>
+  
+      &copy; Copyright 2021, Blue Fire Team.<br/>
+</p>
+        </footer>
+    </div>
     
-      By Blue Fire Team<br/>
-    
-        &copy; Copyright 2021, Blue Fire Team.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>
