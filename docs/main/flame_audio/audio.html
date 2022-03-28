@@ -149,12 +149,12 @@
 <p>Playing audio is essential for any game, so we made it simple!</p>
 <p>First you have to add <a class="reference external" href="https://github.com/flame-engine/flame_audio">flame_audio</a> to your dependency
 list in your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">flame_audio</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">git</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="nt">url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://github.com/flame-engine/flame.git</span><span class="w"></span>
-<span class="w">      </span><span class="nt">ref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">main</span><span class="w"></span>
-<span class="w">      </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">packages/flame</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
+  <span class="nt">flame_audio</span><span class="p">:</span>
+    <span class="nt">git</span><span class="p">:</span>
+      <span class="nt">url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/flame-engine/flame.git</span>
+      <span class="nt">ref</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">main</span>
+      <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">packages/flame</span>
 </pre></div>
 </div>
 <p>The latest version can be found on <a class="reference external" href="https://pub.dev/packages/flame_audio/install">pub.dev</a>.</p>
@@ -163,10 +163,10 @@ list in your <code class="docutils literal notranslate"><span class="pre">pubspe
 <p>The default directory for <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> is <code class="docutils literal notranslate"><span class="pre">assets/audio</span></code> (which can be changed) and for <code class="docutils literal notranslate"><span class="pre">AudioPool</span></code>
 the default directory is <code class="docutils literal notranslate"><span class="pre">assets/audio/sfx</span></code>.</p>
 <p>For the examples below, your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file needs to contain something like this:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">assets</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/audio/explosion.mp3</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/audio/music.mp3</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span>
+  <span class="nt">assets</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">assets/audio/explosion.mp3</span>
+    <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">assets/audio/music.mp3</span>
 </pre></div>
 </div>
 <p>(The default directory for <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> is <code class="docutils literal notranslate"><span class="pre">assets/audio</span></code> (which can be changed) and for <code class="docutils literal notranslate"><span class="pre">AudioPool</span></code>

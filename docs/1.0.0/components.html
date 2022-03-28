@@ -8,9 +8,8 @@
 
     <title>Components &#8212; Flame</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -20,48 +19,34 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=1cee231a2b06fec83dfdf5e1f90e99acd3529254" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
-    <script src="_static/versions.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Supported Platforms" href="platforms.html" />
     <link rel="prev" title="FlameGame" href="game.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,10 +55,9 @@
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -89,7 +73,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
+        <p class="caption" role="heading">
  <span class="caption-text">
   Basic concepts
  </span>
@@ -131,7 +115,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Inputs
  </span>
@@ -153,7 +137,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Audio
  </span>
@@ -170,7 +154,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Rendering
  </span>
@@ -202,7 +186,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Other Modules
  </span>
@@ -246,527 +230,262 @@
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
             
-            <div class="navbar_extra_footer">
-            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/components.md.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/flame-engine/flame"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        <a class="edit-button" href="https://github.com/flame-engine/flame/edit/main/doc/components.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
             </div>
-            
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#component">
+   Component
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   Component
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#composability-of-components">
+     Composability of components
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#querying-child-components">
+     Querying child components
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#positioning-types">
+     Positioning types
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#positioncomponent">
+   PositionComponent
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#position">
+     Position
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#size">
+     Size
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#scale">
+     Scale
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#angle">
+     Angle
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#anchor">
+     Anchor
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#positioncomponent-children">
+     PositionComponent children
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#render-positioncomponent">
+     Render PositionComponent
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spritecomponent">
+   SpriteComponent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spriteanimationcomponent">
+   SpriteAnimationComponent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spriteanimationgroup">
+   SpriteAnimationGroup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spritegroup">
+   SpriteGroup
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#svgcomponent">
+   SvgComponent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flareactorcomponent">
+   FlareActorComponent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parallaxcomponent">
+   ParallaxComponent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#shapecomponents">
+   ShapeComponents
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#circlecomponent">
+     CircleComponent
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#rectanglecomponent">
+     RectangleComponent
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#polygoncomponent">
+     PolygonComponent
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spritebodycomponent">
+   SpriteBodyComponent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#tiledcomponent">
+   TiledComponent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#isometrictilemapcomponent">
+   IsometricTileMapComponent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ninetileboxcomponent">
+   NineTileBoxComponent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#custompaintercomponent">
+   CustomPainterComponent
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#effects">
+   Effects
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
-    <div id="rtd-footer-container"></div>
 </div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/flame-engine/flame"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/flame-engine/flame/edit/main/doc/components.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/components.md.txt"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
-</div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#component">
-   Component
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Component
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#composability-of-components">
-     Composability of components
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#querying-child-components">
-     Querying child components
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#positioning-types">
-     Positioning types
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#positioncomponent">
-   PositionComponent
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#position">
-     Position
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#size">
-     Size
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scale">
-     Scale
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#angle">
-     Angle
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#anchor">
-     Anchor
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#positioncomponent-children">
-     PositionComponent children
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#render-positioncomponent">
-     Render PositionComponent
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spritecomponent">
-   SpriteComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spriteanimationcomponent">
-   SpriteAnimationComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spriteanimationgroup">
-   SpriteAnimationGroup
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spritegroup">
-   SpriteGroup
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#svgcomponent">
-   SvgComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#flareactorcomponent">
-   FlareActorComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parallaxcomponent">
-   ParallaxComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shapecomponents">
-   ShapeComponents
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#circlecomponent">
-     CircleComponent
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rectanglecomponent">
-     RectangleComponent
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#polygoncomponent">
-     PolygonComponent
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spritebodycomponent">
-   SpriteBodyComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tiledcomponent">
-   TiledComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#isometrictilemapcomponent">
-   IsometricTileMapComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ninetileboxcomponent">
-   NineTileBoxComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#custompaintercomponent">
-   CustomPainterComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#effects">
-   Effects
-  </a>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Components</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#component">
-   Component
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#id1">
-   Component
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#composability-of-components">
-     Composability of components
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#querying-child-components">
-     Querying child components
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#positioning-types">
-     Positioning types
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#positioncomponent">
-   PositionComponent
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#position">
-     Position
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#size">
-     Size
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#scale">
-     Scale
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#angle">
-     Angle
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#anchor">
-     Anchor
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#positioncomponent-children">
-     PositionComponent children
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#render-positioncomponent">
-     Render PositionComponent
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spritecomponent">
-   SpriteComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spriteanimationcomponent">
-   SpriteAnimationComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spriteanimationgroup">
-   SpriteAnimationGroup
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spritegroup">
-   SpriteGroup
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#svgcomponent">
-   SvgComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#flareactorcomponent">
-   FlareActorComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#parallaxcomponent">
-   ParallaxComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shapecomponents">
-   ShapeComponents
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#circlecomponent">
-     CircleComponent
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rectanglecomponent">
-     RectangleComponent
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#polygoncomponent">
-     PolygonComponent
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spritebodycomponent">
-   SpriteBodyComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#tiledcomponent">
-   TiledComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#isometrictilemapcomponent">
-   IsometricTileMapComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#ninetileboxcomponent">
-   NineTileBoxComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#custompaintercomponent">
-   CustomPainterComponent
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#effects">
-   Effects
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
-                
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="components">
-<h1>Components<a class="headerlink" href="#components" title="Permalink to this headline">#</a></h1>
+<h1>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h1>
 <p><img alt="Component tree" src="_images/component_tree.png" /></p>
 <p>This diagram might look intimidating, but don’t worry, it is not as complex as it looks.</p>
 <section id="component">
-<h2>Component<a class="headerlink" href="#component" title="Permalink to this headline">#</a></h2>
+<h2>Component<a class="headerlink" href="#component" title="Permalink to this headline">¶</a></h2>
 <p>All components inherit from the abstract class <code class="docutils literal notranslate"><span class="pre">Component</span></code>.</p>
 <p>If you want to skip reading about abstract classes you can jump directly to
 <a class="reference internal" href="#positioncomponent"><span class="std std-doc">PositionComponent</span></a>.</p>
@@ -800,7 +519,7 @@ lifetime. This method is executed after the initial “preparation” of the com
 components.</p>
 </section>
 <section id="id1">
-<h2>Component<a class="headerlink" href="#id1" title="Permalink to this headline">#</a></h2>
+<h2>Component<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
 <p>Usually if you are going to make your own component you want to extend <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, but if
 you want to be able to handle effects and child components but handle the positioning differently
 you can extend the <code class="docutils literal notranslate"><span class="pre">Component</span></code> directly.</p>
@@ -808,7 +527,7 @@ you can extend the <code class="docutils literal notranslate"><span class="pre">
 <code class="docutils literal notranslate"><span class="pre">flame_forge2d</span></code> since those components doesn’t have their position in relation to the screen, but in
 relation to the Forge2D world.</p>
 <section id="composability-of-components">
-<h3>Composability of components<a class="headerlink" href="#composability-of-components" title="Permalink to this headline">#</a></h3>
+<h3>Composability of components<a class="headerlink" href="#composability-of-components" title="Permalink to this headline">¶</a></h3>
 <p>Sometimes it is useful to wrap other components inside of your component. For example by grouping
 visual components through a hierarchy. You can do this by adding child components to any component,
 for example <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.
@@ -840,7 +559,7 @@ children are rendered and updated with the same conditions.</p>
 </div>
 </section>
 <section id="querying-child-components">
-<h3>Querying child components<a class="headerlink" href="#querying-child-components" title="Permalink to this headline">#</a></h3>
+<h3>Querying child components<a class="headerlink" href="#querying-child-components" title="Permalink to this headline">¶</a></h3>
 <p>The children that have been added to a component live in the <code class="docutils literal notranslate"><span class="pre">QueryableOrderedSet</span></code> called
 <code class="docutils literal notranslate"><span class="pre">components</span></code>. To query for a specific type of components in the set, a query first has to be
 registered on the set, and then the <code class="docutils literal notranslate"><span class="pre">query</span></code> function can be run efficiently at any later point. The
@@ -861,7 +580,7 @@ the registered component type can be seen below.</p>
 </div>
 </section>
 <section id="positioning-types">
-<h3>Positioning types<a class="headerlink" href="#positioning-types" title="Permalink to this headline">#</a></h3>
+<h3>Positioning types<a class="headerlink" href="#positioning-types" title="Permalink to this headline">¶</a></h3>
 <p>If you want to create a HUD (Head-up display) or another component that isn’t positioned in relation
 to the game coordinates, you can change the <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> of the component.
 The default <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> is <code class="docutils literal notranslate"><span class="pre">positionType</span> <span class="pre">=</span> <span class="pre">PositionType.game</span></code> and that can be changed to
@@ -883,34 +602,34 @@ the viewport.</p>
 </section>
 </section>
 <section id="positioncomponent">
-<h2>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this headline">#</a></h2>
+<h2>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this headline">¶</a></h2>
 <p>This class represent a positioned object on the screen, being a floating rectangle or a rotating
 sprite. It can also represent a group of positioned components if children are added to it.</p>
 <p>The base of the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is that it has a <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">size</span></code>, <code class="docutils literal notranslate"><span class="pre">scale</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code> and
 <code class="docutils literal notranslate"><span class="pre">anchor</span></code> which transforms how the component is rendered.</p>
 <section id="position">
-<h3>Position<a class="headerlink" href="#position" title="Permalink to this headline">#</a></h3>
+<h3>Position<a class="headerlink" href="#position" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">position</span></code> is just a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> which represents the position of the component’s anchor in
 relation to its parent; if the parent is a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, it is in relation to the viewport.</p>
 </section>
 <section id="size">
-<h3>Size<a class="headerlink" href="#size" title="Permalink to this headline">#</a></h3>
+<h3>Size<a class="headerlink" href="#size" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">size</span></code> of the component when the zoom level of the camera is 1.0 (no zoom, default).
 The <code class="docutils literal notranslate"><span class="pre">size</span></code> is <em>not</em> in relation to the parent of the component.</p>
 </section>
 <section id="scale">
-<h3>Scale<a class="headerlink" href="#scale" title="Permalink to this headline">#</a></h3>
+<h3>Scale<a class="headerlink" href="#scale" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">scale</span></code> is how much the component and its children should be scaled. Since it is represented
 by a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>, you can scale in a uniform way by changing <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> with the same amount, or in a
 non-uniform way, by change <code class="docutils literal notranslate"><span class="pre">x</span></code> or <code class="docutils literal notranslate"><span class="pre">y</span></code> by different amounts.</p>
 </section>
 <section id="angle">
-<h3>Angle<a class="headerlink" href="#angle" title="Permalink to this headline">#</a></h3>
+<h3>Angle<a class="headerlink" href="#angle" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">angle</span></code> is the rotation angle around the anchor, represented as a double in radians. It is
 relative to the parent’s angle.</p>
 </section>
 <section id="anchor">
-<h3>Anchor<a class="headerlink" href="#anchor" title="Permalink to this headline">#</a></h3>
+<h3>Anchor<a class="headerlink" href="#anchor" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">anchor</span></code> is where on the component that the position and rotation should be defined from (the
 default is <code class="docutils literal notranslate"><span class="pre">Anchor.topLeft</span></code>). So if you have the anchor set as <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code> the component’s
 position on the screen will be in the center of the component and if an <code class="docutils literal notranslate"><span class="pre">angle</span></code> is applied, it is
@@ -918,7 +637,7 @@ rotated around the anchor, so in this case around the center of the component. Y
 as the point within the component by which Flame “grabs” it.</p>
 </section>
 <section id="positioncomponent-children">
-<h3>PositionComponent children<a class="headerlink" href="#positioncomponent-children" title="Permalink to this headline">#</a></h3>
+<h3>PositionComponent children<a class="headerlink" href="#positioncomponent-children" title="Permalink to this headline">¶</a></h3>
 <p>All children of the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> will be transformed in relation to the parent, which means
 that the <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code> and <code class="docutils literal notranslate"><span class="pre">scale</span></code> will be relative to the parents state.
 So if you, for example, wanted to position a child 50 logical pixels above the center of the parent
@@ -936,7 +655,7 @@ you would do this:</p>
 this pattern can be used in for example <a class="reference internal" href="#spritecomponent"><span class="std std-doc">SpriteComponent</span></a> and <a class="reference internal" href="#spriteanimationcomponent"><span class="std std-doc">SpriteAnimationComponent</span></a> too.</p>
 </section>
 <section id="render-positioncomponent">
-<h3>Render PositionComponent<a class="headerlink" href="#render-positioncomponent" title="Permalink to this headline">#</a></h3>
+<h3>Render PositionComponent<a class="headerlink" href="#render-positioncomponent" title="Permalink to this headline">¶</a></h3>
 <p>When implementing the <code class="docutils literal notranslate"><span class="pre">render</span></code> method for a component that extends <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> remember to
 render from the top left corner (0.0). Your render method should not handle where on the screen your
 component should be rendered. To handle where and how your component should be rendered use the
@@ -951,7 +670,7 @@ horizontal rendering.</p>
 </section>
 </section>
 <section id="spritecomponent">
-<h2>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this headline">#</a></h2>
+<h2>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this headline">¶</a></h2>
 <p>The most commonly used implementation of <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code>, and it can be
 created with a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;package:flame/components/component.dart&#39;</span><span class="p">;</span>
@@ -975,7 +694,7 @@ created with a <code class="docutils literal notranslate"><span class="pre">Spri
 </div>
 </section>
 <section id="spriteanimationcomponent">
-<h2>SpriteAnimationComponent<a class="headerlink" href="#spriteanimationcomponent" title="Permalink to this headline">#</a></h2>
+<h2>SpriteAnimationComponent<a class="headerlink" href="#spriteanimationcomponent" title="Permalink to this headline">¶</a></h2>
 <p>This class is used to represent a Component that has sprites that run in a single cyclic animation.</p>
 <p>This will create a simple three frame animation using 3 different images:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">sprites</span> <span class="o">=</span> <span class="p">[</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">,</span> <span class="m">2</span><span class="p">]</span>
@@ -1008,7 +727,7 @@ class (check more details on <a class="reference internal" href="images.html#ani
 animation object needs to be ticked to move the frames.</p>
 </section>
 <section id="spriteanimationgroup">
-<h2>SpriteAnimationGroup<a class="headerlink" href="#spriteanimationgroup" title="Permalink to this headline">#</a></h2>
+<h2>SpriteAnimationGroup<a class="headerlink" href="#spriteanimationgroup" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SpriteAnimationGroupComponent</span></code> is a simple wrapper around <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> which enables
 your component to hold several animations and change the current playing animation in runtime.</p>
 <p>Its use is very similar to the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> but instead of being initialized with a
@@ -1037,7 +756,7 @@ single animation, this component receives a Map of a generic type <code class="d
 </div>
 </section>
 <section id="spritegroup">
-<h2>SpriteGroup<a class="headerlink" href="#spritegroup" title="Permalink to this headline">#</a></h2>
+<h2>SpriteGroup<a class="headerlink" href="#spritegroup" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SpriteGroupComponent</span></code> is pretty similar to its animation counterpart, but especially for sprites.</p>
 <p>Example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">ButtonComponent</span> <span class="kd">extends</span> <span class="n">SpriteGroupComponent</span><span class="o">&lt;</span><span class="n">ButtonState</span><span class="o">&gt;</span>
@@ -1061,7 +780,7 @@ single animation, this component receives a Map of a generic type <code class="d
 </div>
 </section>
 <section id="svgcomponent">
-<h2>SvgComponent<a class="headerlink" href="#svgcomponent" title="Permalink to this headline">#</a></h2>
+<h2>SvgComponent<a class="headerlink" href="#svgcomponent" title="Permalink to this headline">¶</a></h2>
 <p><strong>Note</strong>: To use SVG with Flame, use the <a class="reference external" href="https://github.com/flame-engine/flame_svg"><code class="docutils literal notranslate"><span class="pre">flame_svg</span></code></a>
 package.</p>
 <p>This component uses an instance of <code class="docutils literal notranslate"><span class="pre">Svg</span></code> class to represent a Component that has a svg that is
@@ -1076,7 +795,7 @@ rendered in the game:</p>
 </div>
 </section>
 <section id="flareactorcomponent">
-<h2>FlareActorComponent<a class="headerlink" href="#flareactorcomponent" title="Permalink to this headline">#</a></h2>
+<h2>FlareActorComponent<a class="headerlink" href="#flareactorcomponent" title="Permalink to this headline">¶</a></h2>
 <p><strong>Note</strong>: The previous implementation of a Flare integration API using <code class="docutils literal notranslate"><span class="pre">FlareAnimation</span></code> and
 <code class="docutils literal notranslate"><span class="pre">FlareComponent</span></code> has been deprecated.</p>
 <p>To use Flare within Flame, use the <a class="reference external" href="https://github.com/flame-engine/flame_flare"><code class="docutils literal notranslate"><span class="pre">flame_flare</span></code></a>
@@ -1129,7 +848,7 @@ FlareController that can play multiple animations and control nodes.</p>
 <a class="reference external" href="https://github.com/flame-engine/flame_flare/tree/main/example">flame_flare repository</a>.</p>
 </section>
 <section id="parallaxcomponent">
-<h2>ParallaxComponent<a class="headerlink" href="#parallaxcomponent" title="Permalink to this headline">#</a></h2>
+<h2>ParallaxComponent<a class="headerlink" href="#parallaxcomponent" title="Permalink to this headline">¶</a></h2>
 <p>This <code class="docutils literal notranslate"><span class="pre">Component</span></code> can be used to render backgrounds with a depth feeling by drawing several
 transparent images on top of each other, where each image or animation (<code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code>) is
 moving with a different velocity.</p>
@@ -1231,7 +950,7 @@ It is also possible to create custom renderers by extending the <code class="doc
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/parallax">examples directory</a>.</p>
 </section>
 <section id="shapecomponents">
-<h2>ShapeComponents<a class="headerlink" href="#shapecomponents" title="Permalink to this headline">#</a></h2>
+<h2>ShapeComponents<a class="headerlink" href="#shapecomponents" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">ShapeComponent</span></code> is a basic component that can be used if you want to draw geometrical shapes as
 components on the screen.  Since the <code class="docutils literal notranslate"><span class="pre">ShapeComponent</span></code> is a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s you can use effects
 on it. All <code class="docutils literal notranslate"><span class="pre">ShapeComponent</span></code>s take a <code class="docutils literal notranslate"><span class="pre">Paint</span></code> as an argument and then arguments to define
@@ -1239,7 +958,7 @@ the shape of the specific component, it also takes all the arguments that can be
 <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p>
 <p>There are three implementations of <code class="docutils literal notranslate"><span class="pre">ShapeComponent</span></code>, which are the following:</p>
 <section id="circlecomponent">
-<h3>CircleComponent<a class="headerlink" href="#circlecomponent" title="Permalink to this headline">#</a></h3>
+<h3>CircleComponent<a class="headerlink" href="#circlecomponent" title="Permalink to this headline">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">CircleComponent</span></code> can be created only by defining its <code class="docutils literal notranslate"><span class="pre">radius</span></code>, but you most likely want to pass
 it a <code class="docutils literal notranslate"><span class="pre">position</span></code> and maybe <code class="docutils literal notranslate"><span class="pre">paint</span></code> (the default is white) too.</p>
 <p>Example:</p>
@@ -1249,7 +968,7 @@ it a <code class="docutils literal notranslate"><span class="pre">position</span
 </div>
 </section>
 <section id="rectanglecomponent">
-<h3>RectangleComponent<a class="headerlink" href="#rectanglecomponent" title="Permalink to this headline">#</a></h3>
+<h3>RectangleComponent<a class="headerlink" href="#rectanglecomponent" title="Permalink to this headline">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> can be created in two ways, depending on if it’s a square or not.
 To create a <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> that is 300 in width and 200 in height you can do the following:</p>
 <p>Example:</p>
@@ -1274,7 +993,7 @@ To create a <code class="docutils literal notranslate"><span class="pre">Rectang
 </div>
 </section>
 <section id="polygoncomponent">
-<h3>PolygonComponent<a class="headerlink" href="#polygoncomponent" title="Permalink to this headline">#</a></h3>
+<h3>PolygonComponent<a class="headerlink" href="#polygoncomponent" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">PolygonComponent</span></code> is the most complicated of the <code class="docutils literal notranslate"><span class="pre">ShapeComponent</span></code>s since you’ll have to define
 all the “corners” of your polygon. You can create the <code class="docutils literal notranslate"><span class="pre">PolygonComponent</span></code> in two different ways,
 either you use the default constructor which takes a list of <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> where each of them should be
@@ -1319,11 +1038,11 @@ anyways they will override what has been calculated from your list of vertices.<
 </section>
 </section>
 <section id="spritebodycomponent">
-<h2>SpriteBodyComponent<a class="headerlink" href="#spritebodycomponent" title="Permalink to this headline">#</a></h2>
+<h2>SpriteBodyComponent<a class="headerlink" href="#spritebodycomponent" title="Permalink to this headline">¶</a></h2>
 <p>See <a class="reference internal" href="forge2d.html#spritebodycomponent"><span class="std std-ref">SpriteBodyComponent</span></a> in the Forge2D documentation.</p>
 </section>
 <section id="tiledcomponent">
-<h2>TiledComponent<a class="headerlink" href="#tiledcomponent" title="Permalink to this headline">#</a></h2>
+<h2>TiledComponent<a class="headerlink" href="#tiledcomponent" title="Permalink to this headline">¶</a></h2>
 <p>Currently we have a very basic implementation of a Tiled component. This API uses the lib
 <a class="reference external" href="https://github.com/flame-engine/tiled.dart">tiled.dart</a> to parse map files and render visible
 layers.</p>
@@ -1331,7 +1050,7 @@ layers.</p>
 <a class="reference external" href="https://github.com/flame-engine/flame_tiled/tree/main/example">here</a>.</p>
 </section>
 <section id="isometrictilemapcomponent">
-<h2>IsometricTileMapComponent<a class="headerlink" href="#isometrictilemapcomponent" title="Permalink to this headline">#</a></h2>
+<h2>IsometricTileMapComponent<a class="headerlink" href="#isometrictilemapcomponent" title="Permalink to this headline">¶</a></h2>
 <p>This component allows you to render an isometric map based on a cartesian matrix of blocks and an
 isometric tileset.</p>
 <p>A simple example on how to use it:</p>
@@ -1359,7 +1078,7 @@ selector. The code can be found
 and a live version can be seen <a class="reference external" href="https://examples.flame-engine.org/#/Tile%20Maps_Isometric%20Tile%20Map">here</a>.</p>
 </section>
 <section id="ninetileboxcomponent">
-<h2>NineTileBoxComponent<a class="headerlink" href="#ninetileboxcomponent" title="Permalink to this headline">#</a></h2>
+<h2>NineTileBoxComponent<a class="headerlink" href="#ninetileboxcomponent" title="Permalink to this headline">¶</a></h2>
 <p>A Nine Tile Box is a rectangle drawn using a grid sprite.</p>
 <p>The grid sprite is a 3x3 grid and with 9 blocks, representing the 4 corners, the 4 sides and the
 middle.</p>
@@ -1372,7 +1091,7 @@ panels, dialogs, borders.</p>
 for details on how to use it.</p>
 </section>
 <section id="custompaintercomponent">
-<h2>CustomPainterComponent<a class="headerlink" href="#custompaintercomponent" title="Permalink to this headline">#</a></h2>
+<h2>CustomPainterComponent<a class="headerlink" href="#custompaintercomponent" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">CustomPainter</span></code> is a Flutter class used with the <code class="docutils literal notranslate"><span class="pre">CustomPaint</span></code> widget to render custom
 shapes inside a Flutter application.</p>
 <p>Flame provides a component that can render a <code class="docutils literal notranslate"><span class="pre">CustomPainter</span></code> called <code class="docutils literal notranslate"><span class="pre">CustomPainterComponent</span></code>, it
@@ -1384,7 +1103,7 @@ widgets.</p>
 for details on how to use it.</p>
 </section>
 <section id="effects">
-<h2>Effects<a class="headerlink" href="#effects" title="Permalink to this headline">#</a></h2>
+<h2>Effects<a class="headerlink" href="#effects" title="Permalink to this headline">¶</a></h2>
 <p>Flame provides a set of effects that can be applied to a certain type of components, these effects
 can be used to animate some properties of your components, like position or dimensions.
 You can check the list of those effects <a class="reference internal" href="effects.html"><span class="doc std std-doc">here</span></a>.</p>
@@ -1395,48 +1114,54 @@ You can check the list of those effects <a class="reference internal" href="effe
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="game.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">FlameGame</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="platforms.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Supported Platforms</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Blue Fire Team<br/>
-  
-      &copy; Copyright 2021, Blue Fire Team.<br/>
-</p>
-        </footer>
-    </div>
+        
+            
+
+
+
+<div class='prev-next-bottom'>
     
+    <div id="prev">
+        <a class="left-prev" href="game.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">FlameGame</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="platforms.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Supported Platforms</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Blue Fire Team<br/>
+        
+            &copy; Copyright 2021, Blue Fire Team.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-
+  
   </body>
 </html>

@@ -8,9 +8,8 @@
 
     <title>Particles &#8212; Flame</title>
     
-  <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="_static/css/theme.css" rel="stylesheet" />
+  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
 
     
   <link rel="stylesheet"
@@ -20,48 +19,34 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
+    
+      
+
+    
     <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=1cee231a2b06fec83dfdf5e1f90e99acd3529254" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css" />
     
-  <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
 
     <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
     <script src="_static/jquery.js"></script>
     <script src="_static/underscore.js"></script>
     <script src="_static/doctools.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
-    <script src="_static/versions.js"></script>
+    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
     <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
     <script>mermaid.initialize({startOnLoad:true});</script>
+    <script src="_static/versions.js"></script>
     <link rel="shortcut icon" href="_static/favicon.ico"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Layers" href="layers.html" />
     <link rel="prev" title="Palette" href="palette.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="None">
-    
-
-    <!-- Google Analytics -->
+    <meta name="docsearch:language" content="en" />
     
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
-
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
     
     <div class="container-fluid" id="banner"></div>
 
@@ -70,10 +55,9 @@
     <div class="container-xl">
       <div class="row">
           
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="index.html">
       
         <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
@@ -89,7 +73,7 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
+        <p class="caption" role="heading">
  <span class="caption-text">
   Basic concepts
  </span>
@@ -131,7 +115,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Inputs
  </span>
@@ -153,7 +137,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Audio
  </span>
@@ -170,7 +154,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Rendering
  </span>
@@ -202,7 +186,7 @@
   </a>
  </li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
+<p class="caption" role="heading">
  <span class="caption-text">
   Other Modules
  </span>
@@ -246,331 +230,162 @@
 </ul>
 
     </div>
-</nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
             
-            <div class="navbar_extra_footer">
-            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/particles.md.txt"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.md</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
+    <div class="dropdown-buttons sourcebuttons">
+        <a class="repository-button"
+            href="https://github.com/flame-engine/flame"><button type="button" class="btn btn-secondary topbarbtn"
+                data-toggle="tooltip" data-placement="left" title="Source repository"><i
+                    class="fab fa-github"></i>repository</button></a>
+        
+        <a class="edit-button" href="https://github.com/flame-engine/flame/edit/main/doc/particles.md"><button
+                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
+                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
+    </div>
+</div>
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+
+<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+        title="Fullscreen mode"><i
+            class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+            <div class="tocsection onthispage pt-5 pb-3">
+                <i class="fas fa-list"></i> Contents
             </div>
-            
+            <nav id="bd-toc-nav" aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#lifecycle">
+   Lifecycle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#built-in-particles">
+   Built-in particles
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#movingparticle">
+   MovingParticle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#acceleratedparticle">
+   AcceleratedParticle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#circleparticle">
+   CircleParticle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#spriteparticle">
+   SpriteParticle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#imageparticle">
+   ImageParticle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#animationparticle">
+   AnimationParticle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#componentparticle">
+   ComponentParticle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#flareparticle">
+   FlareParticle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#computedparticle">
+   ComputedParticle
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#nesting-behavior">
+   Nesting behavior
+  </a>
+ </li>
+</ul>
+
+            </nav>
         </div>
     </div>
-    <div id="rtd-footer-container"></div>
 </div>
-
-
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
         
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-expand"></i>
-  </span>
-
-</button>
-
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/flame-engine/flame"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/flame-engine/flame/edit/main/doc/particles.md"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
-  </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="_sources/particles.md.txt"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.md</span>
-</a>
-
-      </li>
-      
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-<label for="__page-toc"
-  class="headerbtn headerbtn-page-toc"
-  
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-list"></i>
-  </span>
-
-</label>
-
-    </div>
-</div>
-
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-    <div class="tocsection onthispage pt-5 pb-3">
-        <i class="fas fa-list"></i> Contents
-    </div>
-    <nav id="bd-toc-nav" aria-label="Page">
-        <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lifecycle">
-   Lifecycle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#built-in-particles">
-   Built-in particles
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#movingparticle">
-   MovingParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#acceleratedparticle">
-   AcceleratedParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#circleparticle">
-   CircleParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spriteparticle">
-   SpriteParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#imageparticle">
-   ImageParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#animationparticle">
-   AnimationParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#componentparticle">
-   ComponentParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#flareparticle">
-   FlareParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#computedparticle">
-   ComputedParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nesting-behavior">
-   Nesting behavior
-  </a>
- </li>
-</ul>
-
-    </nav>
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Particles</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                        <div>
-                            <h2> Contents </h2>
-                        </div>
-                        <nav aria-label="Page">
-                            <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#lifecycle">
-   Lifecycle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#built-in-particles">
-   Built-in particles
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#movingparticle">
-   MovingParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#acceleratedparticle">
-   AcceleratedParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#circleparticle">
-   CircleParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#spriteparticle">
-   SpriteParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#imageparticle">
-   ImageParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#animationparticle">
-   AnimationParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#componentparticle">
-   ComponentParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#flareparticle">
-   FlareParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#computedparticle">
-   ComputedParticle
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#nesting-behavior">
-   Nesting behavior
-  </a>
- </li>
-</ul>
-
-                        </nav>
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
-                
               <div>
                 
   <section class="tex2jax_ignore mathjax_ignore" id="particles">
-<h1>Particles<a class="headerlink" href="#particles" title="Permalink to this headline">#</a></h1>
+<h1>Particles<a class="headerlink" href="#particles" title="Permalink to this headline">¶</a></h1>
 <p>Flame offers a basic, yet robust and extendable particle system. The core concept of this system is
 the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> class, which is very similar in its behavior to the <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code>.</p>
 <p>The most basic usage of a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> with <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> would look as following:</p>
@@ -669,7 +484,7 @@ needed.</p>
 <p>You can find more examples of how to use different built-in particles in various combinations
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/particles_example.dart">here</a>.</p>
 <section id="lifecycle">
-<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline">#</a></h2>
+<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline">¶</a></h2>
 <p>A behavior common to all <code class="docutils literal notranslate"><span class="pre">Particle</span></code>s is that all of them accept a <code class="docutils literal notranslate"><span class="pre">lifespan</span></code> argument. This value is
 used to make the <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code> remove itself once its internal <code class="docutils literal notranslate"><span class="pre">Particle</span></code> has reached the end
 of its life. Time within the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> itself is tracked using the Flame <code class="docutils literal notranslate"><span class="pre">Timer</span></code> class. It can be
@@ -702,7 +517,7 @@ as the <code class="docutils literal notranslate"><span class="pre">value</span>
 the nesting behaviors.</p>
 </section>
 <section id="built-in-particles">
-<h2>Built-in particles<a class="headerlink" href="#built-in-particles" title="Permalink to this headline">#</a></h2>
+<h2>Built-in particles<a class="headerlink" href="#built-in-particles" title="Permalink to this headline">¶</a></h2>
 <p>Flame ships with a few built-in <code class="docutils literal notranslate"><span class="pre">Particle</span></code> behaviors:</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">TranslatedParticle</span></code> translates its <code class="docutils literal notranslate"><span class="pre">child</span></code> by given <code class="docutils literal notranslate"><span class="pre">Vector2</span></code></p></li>
@@ -739,7 +554,7 @@ layer.</p>
 </div>
 </section>
 <section id="movingparticle">
-<h2>MovingParticle<a class="headerlink" href="#movingparticle" title="Permalink to this headline">#</a></h2>
+<h2>MovingParticle<a class="headerlink" href="#movingparticle" title="Permalink to this headline">¶</a></h2>
 <p>Moves the child <code class="docutils literal notranslate"><span class="pre">Particle</span></code> between the <code class="docutils literal notranslate"><span class="pre">from</span></code> and <code class="docutils literal notranslate"><span class="pre">to</span></code> <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>s during its lifespan. Supports
 <code class="docutils literal notranslate"><span class="pre">Curve</span></code> via <code class="docutils literal notranslate"><span class="pre">CurvedParticle</span></code>.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
@@ -759,7 +574,7 @@ layer.</p>
 </div>
 </section>
 <section id="acceleratedparticle">
-<h2>AcceleratedParticle<a class="headerlink" href="#acceleratedparticle" title="Permalink to this headline">#</a></h2>
+<h2>AcceleratedParticle<a class="headerlink" href="#acceleratedparticle" title="Permalink to this headline">¶</a></h2>
 <p>A basic physics particle which allows you to specify its initial <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">speed</span></code> and
 <code class="docutils literal notranslate"><span class="pre">acceleration</span></code> and lets the <code class="docutils literal notranslate"><span class="pre">update</span></code> cycle do the rest. All three are specified as <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>s, which
 you can think of as vectors. It works especially well for physics-based “bursts”, but it is not
@@ -788,7 +603,7 @@ move a child <code class="docutils literal notranslate"><span class="pre">Partic
 </div>
 </section>
 <section id="circleparticle">
-<h2>CircleParticle<a class="headerlink" href="#circleparticle" title="Permalink to this headline">#</a></h2>
+<h2>CircleParticle<a class="headerlink" href="#circleparticle" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">Particle</span></code> which renders a circle with given <code class="docutils literal notranslate"><span class="pre">Paint</span></code> at the zero offset of passed <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>. Use in
 conjunction with <code class="docutils literal notranslate"><span class="pre">TranslatedParticle</span></code>, <code class="docutils literal notranslate"><span class="pre">MovingParticle</span></code> or <code class="docutils literal notranslate"><span class="pre">AcceleratedParticle</span></code> in order to achieve
 desired positioning.</p>
@@ -804,7 +619,7 @@ desired positioning.</p>
 </div>
 </section>
 <section id="spriteparticle">
-<h2>SpriteParticle<a class="headerlink" href="#spriteparticle" title="Permalink to this headline">#</a></h2>
+<h2>SpriteParticle<a class="headerlink" href="#spriteparticle" title="Permalink to this headline">¶</a></h2>
 <p>Allows you to embed a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> into your particle effects.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
   <span class="n">ParticleComponent</span><span class="p">(</span>
@@ -818,7 +633,7 @@ desired positioning.</p>
 </div>
 </section>
 <section id="imageparticle">
-<h2>ImageParticle<a class="headerlink" href="#imageparticle" title="Permalink to this headline">#</a></h2>
+<h2>ImageParticle<a class="headerlink" href="#imageparticle" title="Permalink to this headline">¶</a></h2>
 <p>Renders given <code class="docutils literal notranslate"><span class="pre">dart:ui</span></code> image within the particle tree.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// During game initialisation</span>
 <span class="kd">await</span> <span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">loadAll</span><span class="p">(</span><span class="k">const</span> <span class="p">[</span>
@@ -842,7 +657,7 @@ desired positioning.</p>
 </div>
 </section>
 <section id="animationparticle">
-<h2>AnimationParticle<a class="headerlink" href="#animationparticle" title="Permalink to this headline">#</a></h2>
+<h2>AnimationParticle<a class="headerlink" href="#animationparticle" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">Particle</span></code> which embeds an <code class="docutils literal notranslate"><span class="pre">Animation</span></code>. By default, aligns the <code class="docutils literal notranslate"><span class="pre">Animation</span></code>’s <code class="docutils literal notranslate"><span class="pre">stepTime</span></code> so that
 it’s fully played during the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> lifespan. It’s possible to override this behavior with the
 <code class="docutils literal notranslate"><span class="pre">alignAnimationTime</span></code> argument.</p>
@@ -862,7 +677,7 @@ it’s fully played during the <code class="docutils literal notranslate"><span 
 </div>
 </section>
 <section id="componentparticle">
-<h2>ComponentParticle<a class="headerlink" href="#componentparticle" title="Permalink to this headline">#</a></h2>
+<h2>ComponentParticle<a class="headerlink" href="#componentparticle" title="Permalink to this headline">¶</a></h2>
 <p>This <code class="docutils literal notranslate"><span class="pre">Particle</span></code> allows you to embed a <code class="docutils literal notranslate"><span class="pre">Component</span></code> within the particle effects. The <code class="docutils literal notranslate"><span class="pre">Component</span></code> could
 have its own <code class="docutils literal notranslate"><span class="pre">update</span></code> lifecycle and could be reused across different effect trees. If the only thing
 you need is to add some dynamics to an instance of a certain <code class="docutils literal notranslate"><span class="pre">Component</span></code>, please consider adding it
@@ -893,7 +708,7 @@ to the <code class="docutils literal notranslate"><span class="pre">game</span><
 </div>
 </section>
 <section id="flareparticle">
-<h2>FlareParticle<a class="headerlink" href="#flareparticle" title="Permalink to this headline">#</a></h2>
+<h2>FlareParticle<a class="headerlink" href="#flareparticle" title="Permalink to this headline">¶</a></h2>
 <p>To use Flare within Flame, use the <a class="reference external" href="https://github.com/flame-engine/flame_flare"><code class="docutils literal notranslate"><span class="pre">flame_flare</span></code></a>
 package.</p>
 <p>It will provide a class called <code class="docutils literal notranslate"><span class="pre">FlareParticle</span></code> that is a container for <code class="docutils literal notranslate"><span class="pre">FlareActorAnimation</span></code>, it
@@ -916,7 +731,7 @@ propagates the <code class="docutils literal notranslate"><span class="pre">upda
 </div>
 </section>
 <section id="computedparticle">
-<h2>ComputedParticle<a class="headerlink" href="#computedparticle" title="Permalink to this headline">#</a></h2>
+<h2>ComputedParticle<a class="headerlink" href="#computedparticle" title="Permalink to this headline">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">Particle</span></code> which could help you when:</p>
 <ul class="simple">
 <li><p>Default behavior is not enough</p></li>
@@ -946,7 +761,7 @@ on each frame to perform necessary computations and render something to the <cod
 </div>
 </section>
 <section id="nesting-behavior">
-<h2>Nesting behavior<a class="headerlink" href="#nesting-behavior" title="Permalink to this headline">#</a></h2>
+<h2>Nesting behavior<a class="headerlink" href="#nesting-behavior" title="Permalink to this headline">¶</a></h2>
 <p>Flame’s implementation of particles follows the same pattern of extreme composition as Flutter
 widgets. That is achieved by encapsulating small pieces of behavior in every particle and then
 nesting these behaviors together to achieve the desired visual effect.</p>
@@ -987,48 +802,54 @@ randomly positioning its child during each frame:</p>
 
               </div>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="palette.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Palette</p>
-        </div>
-    </a>
-    <a class='right-next' id="next-link" href="layers.html" title="next page">
-    <div class="prev-next-info">
-        <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Layers</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
-    </a>
-</div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
-  
-    By Blue Fire Team<br/>
-  
-      &copy; Copyright 2021, Blue Fire Team.<br/>
-</p>
-        </footer>
-    </div>
+        
+            
+
+
+
+<div class='prev-next-bottom'>
     
+    <div id="prev">
+        <a class="left-prev" href="palette.html" title="previous page">
+            <i class="prevnext-label fas fa-angle-left"></i>
+            <div class="prevnext-info">
+                <p class="prevnext-label">previous</p>
+                <p class="prevnext-title">Palette</p>
+            </div>
+        </a>
+    </div>
+     <div id="next">
+        <a class="right-next" href="layers.html" title="next page">
+            <div class="prevnext-info">
+                <p class="prevnext-label">next</p>
+                <p class="prevnext-title">Layers</p>
+            </div>
+            <i class="prevnext-label fas fa-angle-right"></i>
+        </a>
+     </div>
+
 </div>
+        
+        </div>
+    </div>
+    <footer class="footer">
+    <div class="container">
+      <p>
+        
+          By Blue Fire Team<br/>
+        
+            &copy; Copyright 2021, Blue Fire Team.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
 
 
       </div>
     </div>
   
-  <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-
+  
   </body>
 </html>
