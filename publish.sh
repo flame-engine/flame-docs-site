@@ -35,6 +35,7 @@ function generate {
   version=$1
 
   echo "Generating $version"
+  export PUBLISH_PATH=$version
 
   cd $tmp_flame_src
   git checkout -f $version
