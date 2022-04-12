@@ -123,6 +123,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="klondike.html">Klondike</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="step2.html">2. Scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tbc.html">[To be continued]...</a></li>
 </ul>
 </li>
 </ul>
@@ -170,7 +172,7 @@ shown below:</p>
 <p>Here you can see both the general layout of the game, as well as names of
 various objects. These names are the <a class="reference external" href="https://en.wikipedia.org/wiki/Solitaire_terminology">standard terminology</a> for solitaire games.
 Which is really lucky, because normally figuring out good names for various
-classes is a quite challenging task.</p>
+classes is quite a challenging task.</p>
 <p>Looking at this sketch, we can already imagine the high-level structure of the
 game. Obviously, there will be a <code class="docutils literal notranslate"><span class="pre">Card</span></code> class, but also the <code class="docutils literal notranslate"><span class="pre">Stock</span></code> class, the
 <code class="docutils literal notranslate"><span class="pre">Waste</span></code> class, a <code class="docutils literal notranslate"><span class="pre">Tableau</span></code> containing seven <code class="docutils literal notranslate"><span class="pre">Pile</span></code>s, and 4 <code class="docutils literal notranslate"><span class="pre">Foundation</span></code>s. There
@@ -184,29 +186,29 @@ includes images, sprites, animations, sounds, textures, data files, and so on.
 In such a simple game as Klondike we won’t need lots of fancy graphics, but
 still some sprites will be needed in order to draw the cards.</p>
 <p>In order to prepare the graphic assets, I first took a physical playing card and
-measured it to be 63mm × 88mm, which is the ratio of approximately <code class="docutils literal notranslate"><span class="pre">1.4</span></code>. Thus,
-I decided that my in-game cards should be rendered at 1000×1400 pixels, and I
-should draw all my images with this scale in mind.</p>
+measured it to be 63mm × 88mm, which is the ratio of approximately <code class="docutils literal notranslate"><span class="pre">10:14</span></code>.
+Thus, I decided that my in-game cards should be rendered at 1000×1400 pixels,
+and I should draw all my images with this scale in mind.</p>
 <p>Note that the exact pixel dimensions are somewhat irrelevant here, since the
 images will in the end be scaled up or down, according to the device’s actual
 resolution. Here I’m using probably a bigger resolution than necessary for
 phones, but it would also work nicely for larger devices like an iPad.</p>
-<p>And now, without further ado, the graphic assets for the Klondike game (don’t
-judge too harshly, I’m not an artist):</p>
+<p>And now, without further ado, here’s my graphic asset for the Klondike game
+(I’m not an artist, so don’t judge too harshly):</p>
 <p><img alt="" src="../../_images/klondike-sprites.png" /></p>
 <p>Right-click the image, choose “Save as…”, and store it in the <code class="docutils literal notranslate"><span class="pre">assets/images</span></code>
-folder of the project. At this point our project structure looks like this
+folder of the project. At this point our project’s structure looks like this
 (there are other files too, of course, but these are the important ones):</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>klondike/
-├─assets/
-│ └─images/
-│   └─klondike-sprites.png
-├─lib/
-│  └─main.dart
-└─pubspec.yaml
+ ├─assets/
+ │  └─images/
+ │     └─klondike-sprites.png
+ ├─lib/
+ │  └─main.dart
+ └─pubspec.yaml
 </pre></div>
 </div>
-<p>By the way, this kind of file is called the <em>spritesheet</em>: it’s just a
+<p>By the way, this kind of file is called the <strong>spritesheet</strong>: it’s just a
 collection of multiple independent images in a single file. We are using a
 spritesheet here for the simple reason that loading a single large image is
 faster than many small images. In addition, rendering sprites that were
@@ -217,8 +219,14 @@ optimize multiple such drawing commands into a single <code class="docutils lite
 <li><p>Numerals 2, 3, 4, …, K, A. In theory, we could have rendered these in the
 game as text strings, but then we would need to also include a font as an
 asset – seems simpler to just have them as images instead.</p></li>
-<li><p>Suit marks: ♠, ♥, ♦, ♣. Again, we could have used Unicode characters for
-these, but images are much easier to position precisely.</p></li>
+<li><p>Suit marks: ♥, ♦, ♣, ♠. Again, we could have used Unicode characters for
+these, but images are much easier to position precisely.</p>
+<ul>
+<li><p>In case you’re wondering why these are yellow/blue instead of red/black
+– turns out, black symbols don’t look very nice on a dark background,
+so I had to adjust the color scheme.</p></li>
+</ul>
+</li>
 <li><p>Flame logo, for use on the backs of the cards.</p></li>
 <li><p>Pictures of a Jack, a Queen, and a King. Normally there would be four times
 more of these, with a different character for each suite, but I got too

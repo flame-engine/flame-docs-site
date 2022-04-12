@@ -29,7 +29,7 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="Other Modules" href="../../other_modules/other_modules.html" />
+  <link rel="next" title="Cards" href="step3.html" />
   <link rel="prev" title="1. Preparation" href="step1.html" />
 </head>
 
@@ -123,6 +123,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="klondike.html">Klondike</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="step1.html">1. Preparation</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">2. Scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tbc.html">[To be continued]...</a></li>
 </ul>
 </li>
 </ul>
@@ -146,12 +148,12 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="scaffolding">
 <h1>2. Scaffolding<a class="headerlink" href="#scaffolding" title="Permalink to this headline">¶</a></h1>
-<p>In this section we will use broad strokes in order to outline the main elements
-of the game. This includes the main game class, and the general layout.</p>
+<p>In this section we will use broad strokes to outline the main elements of the
+game. This includes the main game class, and the general layout.</p>
 <section id="klondikegame">
 <h2>KlondikeGame<a class="headerlink" href="#klondikegame" title="Permalink to this headline">¶</a></h2>
-<p>In Flame universe, the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class is the cornerstone of any game. This
-class runs the game loop, dispatches events, owns all the components that
+<p>In Flame universe, the <strong>FlameGame</strong> class is the cornerstone of most games.
+This class runs the game loop, dispatches events, owns all the components that
 comprise the game (the component tree), and usually also serves as the central
 repository for the game’s state.</p>
 <p>So, create a new file called <code class="docutils literal notranslate"><span class="pre">klondike_game.dart</span></code> inside the <code class="docutils literal notranslate"><span class="pre">lib/</span></code> folder, and
@@ -161,7 +163,7 @@ declare the <code class="docutils literal notranslate"><span class="pre">Klondik
 <span class="kd">class</span> <span class="nc">KlondikeGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
   <span class="nd">@override</span>
   <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="kd">await</span> <span class="n">Images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;klondike-sprites.png&#39;</span><span class="p">);</span>
+    <span class="kd">await</span> <span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;klondike-sprites.png&#39;</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -173,6 +175,25 @@ Currently, the only thing that <code class="docutils literal notranslate"><span 
 into the game; but we will be adding more soon. Any image or other resource that
 you want to use in the game needs to be loaded first, which is a relatively slow
 I/O operation, hence the need for <code class="docutils literal notranslate"><span class="pre">await</span></code> keyword.</p>
+<p>I am loading the image into the global <code class="docutils literal notranslate"><span class="pre">Flame.images</span></code> cache here. An alternative
+approach is to load it into the <code class="docutils literal notranslate"><span class="pre">Game.images</span></code> cache instead, but then it would
+have been more difficult to access that image from other classes.</p>
+<p>Also note that I am <code class="docutils literal notranslate"><span class="pre">await</span></code>ing the image to finish loading before initializing
+anything else in the game. This is for convenience: it means that by the time
+all other components are initialized, they can assume the spritesheet is already
+loaded. We can even add a helper function to extract a sprite from the common
+spritesheet:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Sprite</span> <span class="n">klondikeSprite</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">,</span> <span class="kt">double</span> <span class="n">width</span><span class="p">,</span> <span class="kt">double</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">Sprite</span><span class="p">(</span>
+    <span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;klondike-sprites.png&#39;</span><span class="p">),</span>
+    <span class="nl">srcPosition:</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span>
+    <span class="nl">srcSize:</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This helper function won’t be needed in this chapter, but will be used
+extensively in the next.</p>
 <p>Let’s incorporate this class into the project so that it isn’t orphaned. Open
 the <code class="docutils literal notranslate"><span class="pre">main.dart</span></code> find the line which says <code class="docutils literal notranslate"><span class="pre">final</span> <span class="pre">game</span> <span class="pre">=</span> <span class="pre">FlameGame();</span></code> and replace
 the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> with <code class="docutils literal notranslate"><span class="pre">KlondikeGame</span></code>. You will need to import the class too.
@@ -204,6 +225,7 @@ file write</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 
 <span class="kd">class</span> <span class="nc">Stock</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="p">{</span>
+  <span class="nd">@override</span>
   <span class="kt">bool</span> <span class="kd">get</span> <span class="n">debugMode</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
@@ -212,10 +234,27 @@ file write</p>
 that has a position and size). We also turn on the debug mode for this class so
 that we can see it on the screen even though we don’t have any rendering logic
 yet.</p>
-<p>Likewise, create three more files <code class="docutils literal notranslate"><span class="pre">components/foundation.dart</span></code>,
-<code class="docutils literal notranslate"><span class="pre">components/pile.dart</span></code>, and <code class="docutils literal notranslate"><span class="pre">components/waste.dart</span></code>. For now all four classes
-will have exactly the same logic inside, we’ll be adding more functionality into
-those classes in subsequent chapters.</p>
+<p>Likewise, create three more classes <code class="docutils literal notranslate"><span class="pre">Foundation</span></code>, <code class="docutils literal notranslate"><span class="pre">Pile</span></code> and <code class="docutils literal notranslate"><span class="pre">Waste</span></code>, each in
+its corresponding file. For now all four classes will have exactly the same
+logic inside, we’ll be adding more functionality into those classes in
+subsequent chapters.</p>
+<p>At this moment the directory structure of your game should look like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>klondike/
+ ├─assets/
+ │  └─images/
+ │     └─klondike-sprites.png
+ ├─lib/
+ │  ├─components/
+ │  │  ├─foundation.dart
+ │  │  ├─pile.dart
+ │  │  ├─stock.dart
+ │  │  └─waste.dart
+ │  ├─klondike_game.dart
+ │  └─main.dart
+ ├─analysis_options.yaml
+ └─pubspec.yaml
+</pre></div>
+</div>
 </section>
 <section id="game-structure">
 <h2>Game structure<a class="headerlink" href="#game-structure" title="Permalink to this headline">¶</a></h2>
@@ -224,7 +263,7 @@ time to make a decision about the high-level structure of the game.</p>
 <p>There exist multiple approaches here, which differ in their complexity,
 extendability, and overall philosophy. The approach that we will be taking in
 this tutorial is based on using the <a class="reference internal" href="../../flame/camera_component.html#world"><span class="std std-doc">World</span></a> component, together with a <a class="reference internal" href="../../flame/camera_component.html#cameracomponent"><span class="std std-doc">Camera</span></a>.</p>
-<p>The idea behind this approach is the following: imagine that your game world
+<p>The idea behind this approach is the following: imagine that your game <strong>world</strong>
 exists independently from the device, that it exists already in our heads, and
 on the sketch, even though we haven’t done any coding yet. This world will have
 a certain size, and each element in the world will have certain coordinates. It
@@ -234,9 +273,9 @@ independently from the device, and its dimensions likewise do not depend on the
 pixel resolution of the screen.</p>
 <p>All elements that are part of the world will be added to the <code class="docutils literal notranslate"><span class="pre">World</span></code> component,
 and the <code class="docutils literal notranslate"><span class="pre">World</span></code> component will be then added to the game.</p>
-<p>The second part of the overall structure is a camera (<code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code>). The
-purpose of the camera is to be able to look at the world, to make sure that it
-renders at the right size on the screen of the user’s device.</p>
+<p>The second part of the overall structure is a <strong>camera</strong> (<code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code>).
+The purpose of the camera is to be able to look at the world, to make sure that
+it renders at the right size on the screen of the user’s device.</p>
 <p>Thus, the overall structure of the component tree will look approximately like
 this:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>KlondikeGame
@@ -248,6 +287,12 @@ this:</p>
  └─ CameraComponent
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <strong>Camera</strong> system described in this tutorial is different from the
+“official” camera available as a property of the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class. The latter
+may become deprecated in the future.</p>
+</div>
 <p>For this game I’ve been drawing my image assets having in mind the dimension of
 a single card at 1000×1400 pixels. So, this will serve as the reference size for
 determining the overall layout. Another important measurement that affects the
@@ -257,93 +302,88 @@ variable <code class="docutils literal notranslate"><span class="pre">cardGap</s
 the vertical and horizontal inter-card distance will be the same, and the
 minimum padding between the cards and the edges of the screen will also be equal
 to <code class="docutils literal notranslate"><span class="pre">cardGap</span></code>.</p>
-<p>Alright, let’s put all this together and implement our <code class="docutils literal notranslate"><span class="pre">KlondikeGame</span></code> class:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">KlondikeGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
-  <span class="kd">final</span> <span class="kt">double</span> <span class="n">cardGap</span> <span class="o">=</span> <span class="m">175.0</span><span class="p">;</span>
-  <span class="kd">final</span> <span class="kt">double</span> <span class="n">cardWidth</span> <span class="o">=</span> <span class="m">1000.0</span><span class="p">;</span>
-  <span class="kd">final</span> <span class="kt">double</span> <span class="n">cardHeight</span> <span class="o">=</span> <span class="m">1400.0</span><span class="p">;</span>
-
-  <span class="nd">@override</span>
-  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="kd">await</span> <span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;klondike-sprites.png&#39;</span><span class="p">);</span>
-
-    <span class="kd">final</span> <span class="n">stock</span> <span class="o">=</span> <span class="n">Stock</span><span class="p">()</span>
-      <span class="p">..</span><span class="n">size</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span><span class="p">,</span> <span class="n">cardHeight</span><span class="p">)</span>
+<p>Alright, let’s put all this together and implement our <code class="docutils literal notranslate"><span class="pre">KlondikeGame</span></code> class.</p>
+<p>First, we declare several global constants which describe the dimensions of a
+card and the distance between cards. We declare them as constants because we are
+not planning to change these values during the game:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="kd">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">cardWidth</span> <span class="o">=</span> <span class="m">1000.0</span><span class="p">;</span>
+  <span class="kd">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">cardHeight</span> <span class="o">=</span> <span class="m">1400.0</span><span class="p">;</span>
+  <span class="kd">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">cardGap</span> <span class="o">=</span> <span class="m">175.0</span><span class="p">;</span>
+  <span class="kd">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">cardRadius</span> <span class="o">=</span> <span class="m">100.0</span><span class="p">;</span>
+  <span class="kd">static</span> <span class="kd">final</span> <span class="n">Vector2</span> <span class="n">cardSize</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span><span class="p">,</span> <span class="n">cardHeight</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Next, we will create a <code class="docutils literal notranslate"><span class="pre">Stock</span></code> component, the <code class="docutils literal notranslate"><span class="pre">Waste</span></code>, four <code class="docutils literal notranslate"><span class="pre">Foundation</span></code>s and
+seven <code class="docutils literal notranslate"><span class="pre">Pile</span></code>s, setting their sizes and positions in the world. The positions
+are calculated using simple arithmetics. This should all happen inside the
+<code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method, after loading the spritesheet:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>    <span class="kd">final</span> <span class="n">stock</span> <span class="o">=</span> <span class="n">Stock</span><span class="p">()</span>
+      <span class="p">..</span><span class="n">size</span> <span class="o">=</span> <span class="n">cardSize</span>
       <span class="p">..</span><span class="n">position</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardGap</span><span class="p">,</span> <span class="n">cardGap</span><span class="p">);</span>
     <span class="kd">final</span> <span class="n">waste</span> <span class="o">=</span> <span class="n">Waste</span><span class="p">()</span>
-      <span class="p">..</span><span class="n">size</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span> <span class="o">*</span> <span class="m">1.5</span><span class="p">,</span> <span class="n">cardHeight</span><span class="p">)</span>
+      <span class="p">..</span><span class="n">size</span> <span class="o">=</span> <span class="n">cardSize</span>
       <span class="p">..</span><span class="n">position</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span> <span class="o">+</span> <span class="m">2</span> <span class="o">*</span> <span class="n">cardGap</span><span class="p">,</span> <span class="n">cardGap</span><span class="p">);</span>
     <span class="kd">final</span> <span class="n">foundations</span> <span class="o">=</span> <span class="n">List</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
       <span class="m">4</span><span class="p">,</span>
       <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">Foundation</span><span class="p">()</span>
-        <span class="p">..</span><span class="n">size</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span><span class="p">,</span> <span class="n">cardHeight</span><span class="p">)</span>
+        <span class="p">..</span><span class="n">size</span> <span class="o">=</span> <span class="n">cardSize</span>
         <span class="p">..</span><span class="n">position</span> <span class="o">=</span>
             <span class="n">Vector2</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="m">3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">cardWidth</span> <span class="o">+</span> <span class="n">cardGap</span><span class="p">)</span> <span class="o">+</span> <span class="n">cardGap</span><span class="p">,</span> <span class="n">cardGap</span><span class="p">),</span>
     <span class="p">);</span>
     <span class="kd">final</span> <span class="n">piles</span> <span class="o">=</span> <span class="n">List</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
       <span class="m">7</span><span class="p">,</span>
       <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">Pile</span><span class="p">()</span>
-        <span class="p">..</span><span class="n">size</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span><span class="p">,</span> <span class="n">cardHeight</span><span class="p">)</span>
+        <span class="p">..</span><span class="n">size</span> <span class="o">=</span> <span class="n">cardSize</span>
         <span class="p">..</span><span class="n">position</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span>
           <span class="n">cardGap</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">cardWidth</span> <span class="o">+</span> <span class="n">cardGap</span><span class="p">),</span>
           <span class="n">cardHeight</span> <span class="o">+</span> <span class="m">2</span> <span class="o">*</span> <span class="n">cardGap</span><span class="p">,</span>
         <span class="p">),</span>
     <span class="p">);</span>
-
-    <span class="kd">final</span> <span class="n">world</span> <span class="o">=</span> <span class="n">World</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>Then we create the main <code class="docutils literal notranslate"><span class="pre">World</span></code> component, add to it all the components that
+we just created, and finally add the <code class="docutils literal notranslate"><span class="pre">world</span></code> to the game.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>    <span class="kd">final</span> <span class="n">world</span> <span class="o">=</span> <span class="n">World</span><span class="p">()</span>
       <span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">stock</span><span class="p">)</span>
       <span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">waste</span><span class="p">)</span>
       <span class="p">..</span><span class="n">addAll</span><span class="p">(</span><span class="n">foundations</span><span class="p">)</span>
       <span class="p">..</span><span class="n">addAll</span><span class="p">(</span><span class="n">piles</span><span class="p">);</span>
     <span class="n">add</span><span class="p">(</span><span class="n">world</span><span class="p">);</span>
-
-    <span class="kd">final</span> <span class="n">camera</span> <span class="o">=</span> <span class="n">CameraComponent</span><span class="p">(</span><span class="nl">world:</span> <span class="n">world</span><span class="p">)</span>
-      <span class="p">..</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">visibleGameSize</span> <span class="o">=</span>
-          <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span> <span class="o">*</span> <span class="m">7</span> <span class="o">+</span> <span class="n">cardGap</span> <span class="o">*</span> <span class="m">8</span><span class="p">,</span> <span class="m">4</span> <span class="o">*</span> <span class="n">cardHeight</span> <span class="o">+</span> <span class="m">3</span> <span class="o">*</span> <span class="n">cardGap</span><span class="p">)</span>
-      <span class="p">..</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span> <span class="o">*</span> <span class="m">3.5</span> <span class="o">+</span> <span class="n">cardGap</span> <span class="o">*</span> <span class="m">4</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
-      <span class="p">..</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">;</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">camera</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
 </pre></div>
 </div>
-<p>Let’s review what’s happening here:</p>
-<ul>
-<li><p>First, we declare constants <code class="docutils literal notranslate"><span class="pre">cardWidth</span></code>, <code class="docutils literal notranslate"><span class="pre">cardHeight</span></code>, and <code class="docutils literal notranslate"><span class="pre">cardGap</span></code> which
-describe the size of a card and the distance between cards.</p></li>
-<li><p>Then, there is the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method that we have had before. It starts with
-loading the main image asset, as before (though we are not using it yet).</p></li>
-<li><p>After that, we create components <code class="docutils literal notranslate"><span class="pre">stock</span></code>, <code class="docutils literal notranslate"><span class="pre">waste</span></code>, etc., setting their size
-and position in the world. The positions are calculated using simple
-arithmetics.</p></li>
-<li><p>Then we create the main <code class="docutils literal notranslate"><span class="pre">World</span></code> component, add to it all the components
-that we just created, and finally add the <code class="docutils literal notranslate"><span class="pre">world</span></code> to the game.</p></li>
-<li><p>Lastly, we create a camera object to look at the <code class="docutils literal notranslate"><span class="pre">world</span></code>. Internally, the
-camera consists of two parts: a viewport and a viewfinder. The default
-viewport is <code class="docutils literal notranslate"><span class="pre">MaxViewport</span></code>, which takes up the entire available screen size –
-this is exactly what we need for our game, so no need to change anything. The
-viewfinder, on the other hand, needs to be set up to properly take into
-account the dimensions of the underlying world.</p>
-<ul>
-<li><p>We want the entire card layout to be visible on the screen without the
-need to scroll. In order to accomplish this, we specify that we want the
-entire world size (which is <code class="docutils literal notranslate"><span class="pre">7*cardWidth</span> <span class="pre">+</span> <span class="pre">8*cardGap</span></code> by
-<code class="docutils literal notranslate"><span class="pre">4*cardHeight</span> <span class="pre">+</span> <span class="pre">3*cardGap</span></code>) to be able to fit into the screen. The
-<code class="docutils literal notranslate"><span class="pre">.visibleGameSize</span></code> setting ensures that no matter the size of the device,
-the zoom level will be adjusted such that the specified chunk of the game
-world will be visible.</p>
-<ul class="simple">
-<li><p>The game size calculation is obtained like this: there are 7 cards in
-the tableau and 6 gaps between them, add 2 more “gaps” to account for
-padding, and you get the width of <code class="docutils literal notranslate"><span class="pre">7*cardWidth</span> <span class="pre">+</span> <span class="pre">8*cardGap</span></code>.
-Vertically, there are two rows of cards, but in the bottom row we
-need some extra space to be able to display a tall pile – by my
-rough estimate, thrice the height of a card is sufficient for this –
-which gives the total height of the game world as
-<code class="docutils literal notranslate"><span class="pre">4*cardHeight</span> <span class="pre">+</span> <span class="pre">3*cardGap</span></code>.</p></li>
-</ul>
-</li>
-<li><p>Next, we specify which part of the world will be in the “center” of the
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>You may be wondering when you need to <code class="docutils literal notranslate"><span class="pre">await</span></code> the result of <code class="docutils literal notranslate"><span class="pre">add()</span></code>, and when
+you don’t. The short answer is: usually you don’t need to wait, but if you want
+to, then it won’t hurt either.</p>
+<p>If you check the documentation for <code class="docutils literal notranslate"><span class="pre">.add()</span></code> method, you’ll see that the returned
+future only waits until the component is finished loading, not until it is
+actually mounted to the game. As such, you only have to wait for the future from
+<code class="docutils literal notranslate"><span class="pre">.add()</span></code> if your logic requires that the component is fully loaded before it can
+proceed. This is not very common.</p>
+<p>If you don’t <code class="docutils literal notranslate"><span class="pre">await</span></code> the future from <code class="docutils literal notranslate"><span class="pre">.add()</span></code>, then the component will be added
+to the game anyways, and in the same amount of time.</p>
+</div>
+<p>Lastly, we create a camera object to look at the <code class="docutils literal notranslate"><span class="pre">world</span></code>. Internally, the camera
+consists of two parts: a <strong>viewport</strong> and a <strong>viewfinder</strong>. The default viewport
+is <code class="docutils literal notranslate"><span class="pre">MaxViewport</span></code>, which takes up the entire available screen size – this is
+exactly what we need for our game, so no need to change anything. The
+viewfinder, on the other hand, needs to be set up to properly take the
+dimensions of the underlying world into account.</p>
+<p>We want the entire card layout to be visible on the screen without the need to
+scroll. In order to accomplish this, we specify that we want the entire world
+size (which is <code class="docutils literal notranslate"><span class="pre">7*cardWidth</span> <span class="pre">+</span> <span class="pre">8*cardGap</span></code> by <code class="docutils literal notranslate"><span class="pre">4*cardHeight</span> <span class="pre">+</span> <span class="pre">3*cardGap</span></code>) to be
+able to fit into the screen. The <code class="docutils literal notranslate"><span class="pre">.visibleGameSize</span></code> setting ensures that no
+matter the size of the device, the zoom level will be adjusted such that the
+specified chunk of the game world will be visible.</p>
+<p>The game size calculation is obtained like this: there are 7 cards in the
+tableau and 6 gaps between them, add 2 more “gaps” to account for padding, and
+you get the width of <code class="docutils literal notranslate"><span class="pre">7*cardWidth</span> <span class="pre">+</span> <span class="pre">8*cardGap</span></code>. Vertically, there are two rows
+of cards, but in the bottom row we need some extra space to be able to display
+a tall pile – by my rough estimate, thrice the height of a card is sufficient
+for this – which gives the total height of the game world as
+<code class="docutils literal notranslate"><span class="pre">4*cardHeight</span> <span class="pre">+</span> <span class="pre">3*cardGap</span></code>.</p>
+<p>Next, we specify which part of the world will be in the “center” of the
 viewport. In this case I specify that the “center” of the viewport should
 be at the top center of the screen, and the corresponding point within
 the game world is at coordinates <code class="docutils literal notranslate"><span class="pre">[(7*cardWidth</span> <span class="pre">+</span> <span class="pre">8*cardGap)/2,</span> <span class="pre">0]</span></code>.</p>
@@ -352,29 +392,147 @@ because of how we want it to respond if the game size becomes too wide or
 too tall: in case of too wide we want it to be centered on the screen,
 but if the screen is too tall, we want the content to be aligned at the
 top.</p>
-</li>
-</ul>
-</li>
-<li><p>As a side note, you may be wondering when you need to <code class="docutils literal notranslate"><span class="pre">await</span></code> the result
-of <code class="docutils literal notranslate"><span class="pre">add()</span></code>, and when you don’t.</p>
-<p>The short answer is: usually you don’t need to wait, but if you want to, then
-it won’t hurt either.</p>
-<p>If you check the documentation for <code class="docutils literal notranslate"><span class="pre">.add()</span></code> method, you’ll see that the
-returned future only waits until the component is finished loading, not until
-it is actually mounted to the game. As such, you only have to wait for the
-future from <code class="docutils literal notranslate"><span class="pre">.add()</span></code> if your logic requires that the component is fully
-loaded before it can proceed. This is not very common.</p>
-<p>If you don’t <code class="docutils literal notranslate"><span class="pre">await</span></code> the future from <code class="docutils literal notranslate"><span class="pre">.add()</span></code>, then the component will be
-added to the game anyways, and in the same amount of time.</p>
-</li>
-</ul>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>    <span class="kd">final</span> <span class="n">camera</span> <span class="o">=</span> <span class="n">CameraComponent</span><span class="p">(</span><span class="nl">world:</span> <span class="n">world</span><span class="p">)</span>
+      <span class="p">..</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">visibleGameSize</span> <span class="o">=</span>
+          <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span> <span class="o">*</span> <span class="m">7</span> <span class="o">+</span> <span class="n">cardGap</span> <span class="o">*</span> <span class="m">8</span><span class="p">,</span> <span class="m">4</span> <span class="o">*</span> <span class="n">cardHeight</span> <span class="o">+</span> <span class="m">3</span> <span class="o">*</span> <span class="n">cardGap</span><span class="p">)</span>
+      <span class="p">..</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span> <span class="o">*</span> <span class="m">3.5</span> <span class="o">+</span> <span class="n">cardGap</span> <span class="o">*</span> <span class="m">4</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+      <span class="p">..</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">;</span>
+    <span class="n">add</span><span class="p">(</span><span class="n">camera</span><span class="p">);</span>
+</pre></div>
+</div>
 <p>If you run the game now, you should see the placeholders for where the various
 components will be. If you are running the game in the browser, try resizing the
 window and see how the game responds to this.</p>
-<p>And this is it with this step – we’ve created the basic game structure upon
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/tutorials-klondike-app/index.html?step2&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-klondike-app-source">
+<div class="filename docutils container">
+components/foundation.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span> <span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="kd">class</span> <span class="nc">Foundation</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="p">{</span>
+<span class="linenos">4</span>  <span class="nd">@override</span>
+<span class="linenos">5</span>  <span class="kt">bool</span> <span class="kd">get</span> <span class="n">debugMode</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">6</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="filename docutils container">
+components/pile.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span> <span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="kd">class</span> <span class="nc">Pile</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="p">{</span>
+<span class="linenos">4</span>  <span class="nd">@override</span>
+<span class="linenos">5</span>  <span class="kt">bool</span> <span class="kd">get</span> <span class="n">debugMode</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">6</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="filename docutils container">
+components/stock.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span> <span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="kd">class</span> <span class="nc">Stock</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="p">{</span>
+<span class="linenos">4</span>  <span class="nd">@override</span>
+<span class="linenos">5</span>  <span class="kt">bool</span> <span class="kd">get</span> <span class="n">debugMode</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">6</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="filename docutils container">
+components/waste.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span> <span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="linenos">2</span>
+<span class="linenos">3</span><span class="kd">class</span> <span class="nc">Waste</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="p">{</span>
+<span class="linenos">4</span>  <span class="nd">@override</span>
+<span class="linenos">5</span>  <span class="kt">bool</span> <span class="kd">get</span> <span class="n">debugMode</span> <span class="o">=&gt;</span> <span class="kc">true</span><span class="p">;</span>
+<span class="linenos">6</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="filename docutils container">
+klondike_game.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span> <span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span> <span class="s1">&#39;package:flame/experimental.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span> <span class="s1">&#39;package:flame/flame.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span> <span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="k">import</span> <span class="s1">&#39;components/foundation.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="k">import</span> <span class="s1">&#39;components/pile.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="k">import</span> <span class="s1">&#39;components/stock.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="k">import</span> <span class="s1">&#39;components/waste.dart&#39;</span><span class="p">;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="kd">class</span> <span class="nc">KlondikeGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
+<span class="linenos">12</span>  <span class="kd">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">cardGap</span> <span class="o">=</span> <span class="m">175.0</span><span class="p">;</span>
+<span class="linenos">13</span>  <span class="kd">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">cardWidth</span> <span class="o">=</span> <span class="m">1000.0</span><span class="p">;</span>
+<span class="linenos">14</span>  <span class="kd">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">cardHeight</span> <span class="o">=</span> <span class="m">1400.0</span><span class="p">;</span>
+<span class="linenos">15</span>  <span class="kd">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">cardRadius</span> <span class="o">=</span> <span class="m">100.0</span><span class="p">;</span>
+<span class="linenos">16</span>  <span class="kd">static</span> <span class="kd">final</span> <span class="n">Vector2</span> <span class="n">cardSize</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span><span class="p">,</span> <span class="n">cardHeight</span><span class="p">);</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>  <span class="nd">@override</span>
+<span class="linenos">19</span>  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+<span class="linenos">20</span>    <span class="kd">await</span> <span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;klondike-sprites.png&#39;</span><span class="p">);</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>    <span class="kd">final</span> <span class="n">stock</span> <span class="o">=</span> <span class="n">Stock</span><span class="p">()</span>
+<span class="linenos">23</span>      <span class="p">..</span><span class="n">size</span> <span class="o">=</span> <span class="n">cardSize</span>
+<span class="linenos">24</span>      <span class="p">..</span><span class="n">position</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardGap</span><span class="p">,</span> <span class="n">cardGap</span><span class="p">);</span>
+<span class="linenos">25</span>    <span class="kd">final</span> <span class="n">waste</span> <span class="o">=</span> <span class="n">Waste</span><span class="p">()</span>
+<span class="linenos">26</span>      <span class="p">..</span><span class="n">size</span> <span class="o">=</span> <span class="n">cardSize</span>
+<span class="linenos">27</span>      <span class="p">..</span><span class="n">position</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span> <span class="o">+</span> <span class="m">2</span> <span class="o">*</span> <span class="n">cardGap</span><span class="p">,</span> <span class="n">cardGap</span><span class="p">);</span>
+<span class="linenos">28</span>    <span class="kd">final</span> <span class="n">foundations</span> <span class="o">=</span> <span class="n">List</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
+<span class="linenos">29</span>      <span class="m">4</span><span class="p">,</span>
+<span class="linenos">30</span>      <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">Foundation</span><span class="p">()</span>
+<span class="linenos">31</span>        <span class="p">..</span><span class="n">size</span> <span class="o">=</span> <span class="n">cardSize</span>
+<span class="linenos">32</span>        <span class="p">..</span><span class="n">position</span> <span class="o">=</span>
+<span class="linenos">33</span>            <span class="n">Vector2</span><span class="p">((</span><span class="n">i</span> <span class="o">+</span> <span class="m">3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">cardWidth</span> <span class="o">+</span> <span class="n">cardGap</span><span class="p">)</span> <span class="o">+</span> <span class="n">cardGap</span><span class="p">,</span> <span class="n">cardGap</span><span class="p">),</span>
+<span class="linenos">34</span>    <span class="p">);</span>
+<span class="linenos">35</span>    <span class="kd">final</span> <span class="n">piles</span> <span class="o">=</span> <span class="n">List</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
+<span class="linenos">36</span>      <span class="m">7</span><span class="p">,</span>
+<span class="linenos">37</span>      <span class="p">(</span><span class="n">i</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">Pile</span><span class="p">()</span>
+<span class="linenos">38</span>        <span class="p">..</span><span class="n">size</span> <span class="o">=</span> <span class="n">cardSize</span>
+<span class="linenos">39</span>        <span class="p">..</span><span class="n">position</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span>
+<span class="linenos">40</span>          <span class="n">cardGap</span> <span class="o">+</span> <span class="n">i</span> <span class="o">*</span> <span class="p">(</span><span class="n">cardWidth</span> <span class="o">+</span> <span class="n">cardGap</span><span class="p">),</span>
+<span class="linenos">41</span>          <span class="n">cardHeight</span> <span class="o">+</span> <span class="m">2</span> <span class="o">*</span> <span class="n">cardGap</span><span class="p">,</span>
+<span class="linenos">42</span>        <span class="p">),</span>
+<span class="linenos">43</span>    <span class="p">);</span>
+<span class="linenos">44</span>
+<span class="linenos">45</span>    <span class="kd">final</span> <span class="n">world</span> <span class="o">=</span> <span class="n">World</span><span class="p">()</span>
+<span class="linenos">46</span>      <span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">stock</span><span class="p">)</span>
+<span class="linenos">47</span>      <span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">waste</span><span class="p">)</span>
+<span class="linenos">48</span>      <span class="p">..</span><span class="n">addAll</span><span class="p">(</span><span class="n">foundations</span><span class="p">)</span>
+<span class="linenos">49</span>      <span class="p">..</span><span class="n">addAll</span><span class="p">(</span><span class="n">piles</span><span class="p">);</span>
+<span class="linenos">50</span>    <span class="n">add</span><span class="p">(</span><span class="n">world</span><span class="p">);</span>
+<span class="linenos">51</span>
+<span class="linenos">52</span>    <span class="kd">final</span> <span class="n">camera</span> <span class="o">=</span> <span class="n">CameraComponent</span><span class="p">(</span><span class="nl">world:</span> <span class="n">world</span><span class="p">)</span>
+<span class="linenos">53</span>      <span class="p">..</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">visibleGameSize</span> <span class="o">=</span>
+<span class="linenos">54</span>          <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span> <span class="o">*</span> <span class="m">7</span> <span class="o">+</span> <span class="n">cardGap</span> <span class="o">*</span> <span class="m">8</span><span class="p">,</span> <span class="m">4</span> <span class="o">*</span> <span class="n">cardHeight</span> <span class="o">+</span> <span class="m">3</span> <span class="o">*</span> <span class="n">cardGap</span><span class="p">)</span>
+<span class="linenos">55</span>      <span class="p">..</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">position</span> <span class="o">=</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span> <span class="o">*</span> <span class="m">3.5</span> <span class="o">+</span> <span class="n">cardGap</span> <span class="o">*</span> <span class="m">4</span><span class="p">,</span> <span class="m">0</span><span class="p">)</span>
+<span class="linenos">56</span>      <span class="p">..</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span> <span class="o">=</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">;</span>
+<span class="linenos">57</span>    <span class="n">add</span><span class="p">(</span><span class="n">camera</span><span class="p">);</span>
+<span class="linenos">58</span>  <span class="p">}</span>
+<span class="linenos">59</span><span class="p">}</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="n">Sprite</span> <span class="n">klondikeSprite</span><span class="p">(</span><span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">,</span> <span class="kt">double</span> <span class="n">width</span><span class="p">,</span> <span class="kt">double</span> <span class="n">height</span><span class="p">)</span> <span class="p">{</span>
+<span class="linenos">62</span>  <span class="k">return</span> <span class="n">Sprite</span><span class="p">(</span>
+<span class="linenos">63</span>    <span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;klondike-sprites.png&#39;</span><span class="p">),</span>
+<span class="linenos">64</span>    <span class="nl">srcPosition:</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">),</span>
+<span class="linenos">65</span>    <span class="nl">srcSize:</span> <span class="n">Vector2</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
+<span class="linenos">66</span>  <span class="p">);</span>
+<span class="linenos">67</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="filename docutils container">
+main.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span> <span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="linenos">2</span><span class="k">import</span> <span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span>
+<span class="linenos">3</span>
+<span class="linenos">4</span><span class="k">import</span> <span class="s1">&#39;klondike_game.dart&#39;</span><span class="p">;</span>
+<span class="linenos">5</span>
+<span class="linenos">6</span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="linenos">7</span>  <span class="kd">final</span> <span class="n">game</span> <span class="o">=</span> <span class="n">KlondikeGame</span><span class="p">();</span>
+<span class="linenos">8</span>  <span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span> <span class="n">game</span><span class="p">));</span>
+<span class="linenos">9</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;tutorials-klondike-app-source&quot;)">Code</button><p>And this is it with this step – we’ve created the basic game structure upon
 which everything else will be built. In the next step, we’ll learn how to render
 the card objects, which are the most important visual objects in this game.</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/tutorials-klondike-app/index.html?step2&quot;)">Run</button></section>
+</section>
 </section>
 
 
@@ -392,10 +550,10 @@ the card objects, which are the most important visual objects in this game.</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="../../other_modules/other_modules.html" title="next page">
+      <a class="right-next" id="next-link" href="step3.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Other Modules</p>
+          <p class="prev-next-title">Cards</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
