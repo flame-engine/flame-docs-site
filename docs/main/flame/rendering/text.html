@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../flame.html">flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game_widget.html">GameWidget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/tap-events.html">Tap events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
@@ -130,7 +136,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/splash_screen.html">Splash screen</a></li>
@@ -181,7 +186,7 @@ named <code class="docutils literal notranslate"><span class="pre">TextStyle</sp
 <a class="reference external" href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">full list</a>):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">fontFamily</span></code>: a commonly available font, like Arial (default), or a custom font added in your
-pubspec (see <a class="reference external" href="https://flutter.io/custom-fonts/">here</a> how to do it).</p></li>
+pubspec (see <a class="reference external" href="https://docs.flutter.dev/cookbook/design/fonts">here</a> how to do it).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fontSize</span></code>: font size, in pts (default <code class="docutils literal notranslate"><span class="pre">24.0</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">height</span></code>: height of text line, as a multiple of font size (default <code class="docutils literal notranslate"><span class="pre">null</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: the color, as a <code class="docutils literal notranslate"><span class="pre">ui.Color</span></code> (default white).</p></li>
@@ -227,27 +232,32 @@ a canvas:</p>
 <p><code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> is very similar to <code class="docutils literal notranslate"><span class="pre">TextComponent</span></code>, but as its name suggest it is used to render
 text inside a bounding box, creating line breaks according to the provided box size.</p>
 <p>You can decide if the box should grow as the text is written or if it should be static by the
-<code class="docutils literal notranslate"><span class="pre">growingBox</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>.</p>
+<code class="docutils literal notranslate"><span class="pre">growingBox</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>. A static box could either have a fixed size (setting
+the <code class="docutils literal notranslate"><span class="pre">size</span></code> property of the <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code>), or to automatically shrink to fit the text content.</p>
+<p>In addition, the <code class="docutils literal notranslate"><span class="pre">align</span></code> property allows you to control the the horizontal and vertical alignment
+of the text content. For example, setting <code class="docutils literal notranslate"><span class="pre">align</span></code> to <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code> will center the text within
+its bounding box both vertically and horizontally.</p>
 <p>If you want to change the margins of the box use the <code class="docutils literal notranslate"><span class="pre">margins</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>.</p>
 <p>Example usage:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyTextBox</span> <span class="kd">extends</span> <span class="n">TextBoxComponent</span> <span class="p">{</span>
-  <span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span> <span class="n">text</span><span class="p">)</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">text:</span> <span class="n">text</span><span class="p">,</span> <span class="nl">textRenderer:</span> <span class="n">tiny</span><span class="p">,</span> <span class="nl">boxConfig:</span> <span class="n">TextBoxConfig</span><span class="p">(</span><span class="nl">timePerChar:</span> <span class="m">0.05</span><span class="p">));</span>
+  <span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span> <span class="n">text</span><span class="p">)</span>
+    <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">text:</span> <span class="n">text</span><span class="p">,</span> <span class="nl">textRenderer:</span> <span class="n">tiny</span><span class="p">,</span> <span class="nl">boxConfig:</span> <span class="n">TextBoxConfig</span><span class="p">(</span><span class="nl">timePerChar:</span> <span class="m">0.05</span><span class="p">));</span>
+
+  <span class="kd">final</span> <span class="n">bgPaint</span> <span class="o">=</span> <span class="n">Paint</span><span class="p">()..</span><span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFF00FF</span><span class="p">);</span>
+  <span class="kd">final</span> <span class="n">borderPaint</span> <span class="o">=</span> <span class="n">Paint</span><span class="p">()..</span><span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFF000000</span><span class="p">)..</span><span class="n">style</span> <span class="o">=</span> <span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span>
 
   <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">drawBackground</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">c</span><span class="p">)</span> <span class="p">{</span>
+  <span class="kt">void</span> <span class="n">render</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">Rect</span> <span class="n">rect</span> <span class="o">=</span> <span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">);</span>
-    <span class="n">c</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span> <span class="n">Paint</span><span class="p">()..</span><span class="n">color</span> <span class="o">=</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFF00FF</span><span class="p">));</span>
-    <span class="n">c</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span>
-        <span class="n">rect</span><span class="p">.</span><span class="n">deflate</span><span class="p">(</span><span class="n">boxConfig</span><span class="p">.</span><span class="n">margin</span><span class="p">),</span>
-        <span class="n">BasicPalette</span><span class="p">.</span><span class="n">black</span><span class="p">.</span><span class="n">Paint</span><span class="p">()</span>
-          <span class="p">..</span><span class="n">style</span> <span class="o">=</span> <span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">,</span>
-    <span class="p">);</span>
+    <span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span> <span class="n">bgPaint</span><span class="p">);</span>
+    <span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">deflate</span><span class="p">(</span><span class="n">boxConfig</span><span class="p">.</span><span class="n">margin</span><span class="p">),</span> <span class="n">borderPaint</span><span class="p">);</span>
+    <span class="k">super</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>Both components are showcased in an example
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/rendering/text.dart">here</a></p>
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/text_example.dart">here</a></p>
 </section>
 </section>
 </section>

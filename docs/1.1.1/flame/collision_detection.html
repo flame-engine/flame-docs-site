@@ -13,6 +13,7 @@
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
   <script src="../_static/jquery.js"></script>
   <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -147,7 +148,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="collision-detection">
-<h1>Collision detection<a class="headerlink" href="#collision-detection" title="Permalink to this headline">¶</a></h1>
+<h1>Collision detection<a class="headerlink" href="#collision-detection" title="Permalink to this heading">¶</a></h1>
 <p>Collision detection is needed in most games to detect and act upon two components intersecting each
 other. For example an arrow hitting an enemy or the player picking up a coin.</p>
 <p>In most collision detection systems you use something called hitboxes to create more precise
@@ -166,43 +167,43 @@ This behaviour is called tunneling, if you want to read more about it.</p>
 <p>Also note that the collision detection system has a limitation that makes it not work properly if
 you have certain types of combinations of flips and scales of the ancestors of the hitboxes.</p>
 <section id="mixins">
-<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this headline">¶</a></h2>
+<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this heading">¶</a></h2>
 <section id="hascollisiondetection">
-<h3>HasCollisionDetection<a class="headerlink" href="#hascollisiondetection" title="Permalink to this headline">¶</a></h3>
+<h3>HasCollisionDetection<a class="headerlink" href="#hascollisiondetection" title="Permalink to this heading">¶</a></h3>
 <p>If you want to use collision detection in your game you have to add the <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code>
 mixin to your game so that it can keep track of the components that can collide.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasCollisionDetection</span> <span class="p">{</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Now when you add <code class="docutils literal notranslate"><span class="pre">ShapeHitbox</span></code>s to components that are then added to the game, they will
 automatically be checked for collisions.</p>
 </section>
 <section id="collisioncallbacks">
-<h3>CollisionCallbacks<a class="headerlink" href="#collisioncallbacks" title="Permalink to this headline">¶</a></h3>
+<h3>CollisionCallbacks<a class="headerlink" href="#collisioncallbacks" title="Permalink to this heading">¶</a></h3>
 <p>To react to a collision you should add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to your component.
 Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCollidable</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="kd">with</span> <span class="n">CollisionCallbacks</span> <span class="p">{</span>
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span> <span class="n">points</span><span class="p">,</span> <span class="n">PositionComponent</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">ScreenHitbox</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">//...</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">YourOtherComponent</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">//...</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCollidable</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">ScreenHitbox</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">//...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">YourOtherComponent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">//...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">PositionComponent</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">ScreenHitbox</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">//...</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">YourOtherComponent</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">//...</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">ScreenHitbox</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">//...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">YourOtherComponent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">//...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In this example we use Dart’s <code class="docutils literal notranslate"><span class="pre">is</span></code> keyword to check what kind of component we collided with. The set
@@ -219,14 +220,14 @@ the predefined <a class="reference internal" href="#screenhitbox"><span class="s
 </section>
 </section>
 <section id="shapehitbox">
-<h2>ShapeHitbox<a class="headerlink" href="#shapehitbox" title="Permalink to this headline">¶</a></h2>
+<h2>ShapeHitbox<a class="headerlink" href="#shapehitbox" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">ShapeHitbox</span></code>s are normal components, so you add them to the component that you want to add
 hitboxes to just like any other component:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyComponent</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="p">{</span>
-  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">RectangleHitbox</span><span class="p">());</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RectangleHitbox</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>If you don’t add any arguments to the hitbox, like above, the hitbox will try to fill its parent as
@@ -243,7 +244,7 @@ and two <code class="docutils literal notranslate"><span class="pre">RectangleHi
 on top of components, see more regarding the latter in the section about the
 <a class="reference internal" href="inputs/gesture-input.html#gesturehitboxes"><span class="std std-doc">GestureHitboxes</span></a> mixin.</p>
 <section id="collisiontype">
-<h3>CollisionType<a class="headerlink" href="#collisiontype" title="Permalink to this headline">¶</a></h3>
+<h3>CollisionType<a class="headerlink" href="#collisiontype" title="Permalink to this heading">¶</a></h3>
 <p>The hitboxes have a field called <code class="docutils literal notranslate"><span class="pre">collisionType</span></code> which defines when a hitbox should collide with
 another. Usually you want to set as many hitboxes as possible to <code class="docutils literal notranslate"><span class="pre">CollisionType.passive</span></code> to make
 the collision detection more performant. By default the <code class="docutils literal notranslate"><span class="pre">CollisionType</span></code> is <code class="docutils literal notranslate"><span class="pre">active</span></code>.</p>
@@ -268,7 +269,7 @@ from the game.</p>
 them so don’t doubt to use them even if your use case isn’t listed here.</p>
 </section>
 <section id="polygonhitbox">
-<h3>PolygonHitbox<a class="headerlink" href="#polygonhitbox" title="Permalink to this headline">¶</a></h3>
+<h3>PolygonHitbox<a class="headerlink" href="#polygonhitbox" title="Permalink to this heading">¶</a></h3>
 <p>It should be noted that if you want to use collision detection or <code class="docutils literal notranslate"><span class="pre">containsPoint</span></code> on the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>,
 the polygon needs to be convex. So always use convex polygons or you will most likely run into
 problems if you don’t really know what you are doing. It should also be noted that you should always
@@ -281,18 +282,18 @@ definition in the constructor for this shape.</p>
 section for documentation regarding those.</p>
 </section>
 <section id="rectanglehitbox">
-<h3>RectangleHitbox<a class="headerlink" href="#rectanglehitbox" title="Permalink to this headline">¶</a></h3>
+<h3>RectangleHitbox<a class="headerlink" href="#rectanglehitbox" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code> has the same constructors as the <a class="reference internal" href="components.html#rectanglecomponent"><span class="std std-doc">RectangleComponent</span></a>, see
 that section for documentation regarding those.</p>
 </section>
 <section id="circlehitbox">
-<h3>CircleHitbox<a class="headerlink" href="#circlehitbox" title="Permalink to this headline">¶</a></h3>
+<h3>CircleHitbox<a class="headerlink" href="#circlehitbox" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">CircleHitbox</span></code> has the same constructors as the <a class="reference internal" href="components.html#circlecomponent"><span class="std std-doc">CircleComponent</span></a>, see that
 section for documentation regarding those.</p>
 </section>
 </section>
 <section id="screenhitbox">
-<h2>ScreenHitbox<a class="headerlink" href="#screenhitbox" title="Permalink to this headline">¶</a></h2>
+<h2>ScreenHitbox<a class="headerlink" href="#screenhitbox" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code> is a component which represents the edges of your viewport/screen. If you add a
 <code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code> to your game your other components with hitboxes will be notified when they
 collide with the edges. It doesn’t take any arguments, it only depends on the <code class="docutils literal notranslate"><span class="pre">size</span></code> of the game
@@ -302,14 +303,14 @@ want the <code class="docutils literal notranslate"><span class="pre">ScreenHitb
 <code class="docutils literal notranslate"><span class="pre">onStartCollisionCallback</span></code> and <code class="docutils literal notranslate"><span class="pre">onEndCollisionCallback</span></code> functions to that object if needed.</p>
 </section>
 <section id="compositehitbox">
-<h2>CompositeHitbox<a class="headerlink" href="#compositehitbox" title="Permalink to this headline">¶</a></h2>
+<h2>CompositeHitbox<a class="headerlink" href="#compositehitbox" title="Permalink to this heading">¶</a></h2>
 <p>In the <code class="docutils literal notranslate"><span class="pre">CompositeHitbox</span></code> you can add multiple hitboxes so that they emulate being one joined hitbox.</p>
 <p>If you want to form a hat for example you might want to use two <a class="reference internal" href="#rectanglehitbox"><span class="std std-doc">RectangleHitbox</span></a>s to follow that
 hat’s edges properly, then you can add those hitboxes to an instance of this class and react to
 collisions to the whole hat, instead of for just each hitbox separately.</p>
 </section>
 <section id="broad-phase">
-<h2>Broad phase<a class="headerlink" href="#broad-phase" title="Permalink to this headline">¶</a></h2>
+<h2>Broad phase<a class="headerlink" href="#broad-phase" title="Permalink to this heading">¶</a></h2>
 <p>Usually you don’t have to worry about the broad phase system that is used, so if the standard
 implementation is performant enough for you, you probably don’t have to read this section.</p>
 <p>A broad phase is the first step of collision detection where potential collisions are calculated.
@@ -323,17 +324,17 @@ requires another type of broadphase you can write your own broadphase by extendi
 manually setting the collision detection system that should be used.</p>
 <p>For example if you have implemented a broadphase built on a quad tree instead of the standard
 sweep and prune, then you would do the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasCollisionDetection</span> <span class="p">{</span>
-  <span class="n">MyGame</span><span class="p">()</span> <span class="o">:</span> <span class="k">super</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">collisionDetection</span> <span class="o">=</span> 
-        <span class="n">StandardCollisionDetection</span><span class="p">(</span><span class="nl">broadphase:</span> <span class="n">QuadTreeBroadphase</span><span class="p">());</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">collisionDetection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
+<span class="w">        </span><span class="n">StandardCollisionDetection</span><span class="p">(</span><span class="nl">broadphase:</span><span class="w"> </span><span class="n">QuadTreeBroadphase</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="comparison-to-forge2d">
-<h2>Comparison to Forge2D<a class="headerlink" href="#comparison-to-forge2d" title="Permalink to this headline">¶</a></h2>
+<h2>Comparison to Forge2D<a class="headerlink" href="#comparison-to-forge2d" title="Permalink to this heading">¶</a></h2>
 <p>If you want to have a full-blown physics engine in your game we recommend that you use
 Forge2D by adding <a class="reference external" href="https://github.com/flame-engine/flame_forge2d">flame_forge2d</a> as a dependency.
 But if you have a simpler use-case and just want to check for collisions of components and improve
@@ -355,7 +356,7 @@ need some of the following things (since it is simpler to not involve Forge2D):<
 </ul>
 </section>
 <section id="migration-from-the-collision-detection-system-in-v1-0">
-<h2>Migration from the collision detection system in v1.0<a class="headerlink" href="#migration-from-the-collision-detection-system-in-v1-0" title="Permalink to this headline">¶</a></h2>
+<h2>Migration from the collision detection system in v1.0<a class="headerlink" href="#migration-from-the-collision-detection-system-in-v1-0" title="Permalink to this heading">¶</a></h2>
 <p>The collision detection system introduced in v1.1 is easier to use, and much more efficient than the
 one that was in v1.0, but while making these improvements some breaking changes had to be made.</p>
 <p>There is no longer a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> mixin, instead your game automatically knows when a hitbox has
@@ -366,7 +367,7 @@ previously.</p>
 <p>Since the hitboxes now are <code class="docutils literal notranslate"><span class="pre">Component</span></code>s you add them to your component with <code class="docutils literal notranslate"><span class="pre">add</span></code> instead of
 <code class="docutils literal notranslate"><span class="pre">addHitbox</span></code> which was used previously.</p>
 <section id="name-changes">
-<h3>Name changes<a class="headerlink" href="#name-changes" title="Permalink to this headline">¶</a></h3>
+<h3>Name changes<a class="headerlink" href="#name-changes" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">HitboxCircle</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">CircleHitbox</span></code></p></li>
@@ -379,7 +380,7 @@ previously.</p>
 </section>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Circles">https://examples.flame-engine.org/#/Collision Detection_Circles</a></p></li>
 <li><p><a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Multiple%20shapes">https://examples.flame-engine.org/#/Collision Detection_Multiple shapes</a></p></li>

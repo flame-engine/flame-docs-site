@@ -29,8 +29,8 @@
   <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="Oxygen" href="oxygen.html" />
-  <link rel="prev" title="Other Modules" href="other_modules.html" />
+  <link rel="next" title="Tutorials" href="../tutorials/tutorials.html" />
+  <link rel="prev" title="flame_forge2d" href="flame_forge2d.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../flame/flame.html">flame</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../flame/structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/game_widget.html">GameWidget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame/camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/tap-events.html">Tap events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1 current"><a class="reference internal" href="flame_forge2d.html">flame_forge2d</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
@@ -129,11 +135,10 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="other_modules.html">Other Modules</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Forge2D</a></li>
-<li class="toctree-l2"><a class="reference internal" href="oxygen.html">Oxygen</a></li>
-<li class="toctree-l2"><a class="reference internal" href="tiled.html">Tiled</a></li>
-<li class="toctree-l2"><a class="reference internal" href="splash_screen.html">Splash screen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen.html">Oxygen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other_modules/tiled.html">Tiled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
 </ul>
 </li>
 </ul>
@@ -198,48 +203,47 @@ not according to the coordinate system of Forge2D (where the Y-axis is flipped).
 </section>
 <section id="contact-callbacks">
 <h2>Contact callbacks<a class="headerlink" href="#contact-callbacks" title="Permalink to this headline">¶</a></h2>
-<p>If you are using <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> you can take advantage of its way of handling contacts between two
-<code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>s.</p>
-<p>When creating the body definition for your <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> make sure that you set the userdata to
-the current object, otherwise it will not be possible to detect collisions.
-Like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">bodyDef</span> <span class="o">=</span> <span class="n">BodyDef</span><span class="p">()</span>
-  <span class="c1">// To be able to know which component that is involved in a collision</span>
-  <span class="p">..</span><span class="n">userData</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>Now you have to make an implementation of <code class="docutils literal notranslate"><span class="pre">ContactCallback</span></code> where you set which two types that it
-should react when they come in contact.
-If you have two <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>s named <code class="docutils literal notranslate"><span class="pre">Ball</span></code> and <code class="docutils literal notranslate"><span class="pre">Wall</span></code> and you want to do something when they come
-in contact, you could do something like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">BallWallCallback</span> <span class="kd">extends</span> <span class="n">ContactCallback</span><span class="o">&lt;</span><span class="n">Ball</span><span class="p">,</span> <span class="n">Wall</span><span class="o">&gt;</span> <span class="p">{</span>
-  <span class="n">BallWallCallback</span><span class="p">();</span>
-
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">begin</span><span class="p">(</span><span class="n">Ball</span> <span class="n">ball</span><span class="p">,</span> <span class="n">Wall</span> <span class="n">wall</span><span class="p">,</span> <span class="n">Contact</span> <span class="n">contact</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">wall</span><span class="p">.</span><span class="n">remove</span><span class="p">();</span>
+<p><code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> provides a simple out of the box solution to propagate contact events.</p>
+<p>Contact events occur whenever two <code class="docutils literal notranslate"><span class="pre">Fixture</span></code>s meet each other. These events allows listening when
+these <code class="docutils literal notranslate"><span class="pre">Fixture</span></code>s begin to come in contact (<code class="docutils literal notranslate"><span class="pre">beginContact</span></code>) and cease being in contact
+(<code class="docutils literal notranslate"><span class="pre">endContact</span></code>).</p>
+<p>There are multiple ways to listen to these events. One common way is to use the <code class="docutils literal notranslate"><span class="pre">ContactCallbacks</span></code>
+class as a mixin in the <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> where you are interested in these events.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Ball</span> <span class="kd">extends</span> <span class="n">BodyComponent</span> <span class="kd">with</span> <span class="n">ContactCallbacks</span> <span class="p">{</span>
+  <span class="p">...</span>
+  <span class="kt">void</span> <span class="n">beginContact</span><span class="p">(</span><span class="kt">Object</span> <span class="n">other</span><span class="p">,</span> <span class="n">Contact</span> <span class="n">contact</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">Wall</span><span class="p">)</span> <span class="p">{</span>
+      <span class="c1">// Do something here.</span>
+    <span class="p">}</span>
   <span class="p">}</span>
-
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">end</span><span class="p">(</span><span class="n">Ball</span> <span class="n">ball</span><span class="p">,</span> <span class="n">Wall</span> <span class="n">wall</span><span class="p">,</span> <span class="n">Contact</span> <span class="n">contact</span><span class="p">)</span> <span class="p">{}</span>
+  <span class="p">...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>and then you simply add <code class="docutils literal notranslate"><span class="pre">BallWallCallback</span></code> to your <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">Forge2DGame</span> <span class="p">{</span>
-  <span class="n">MyGame</span><span class="p">(</span><span class="n">Forge2DComponent</span> <span class="n">box</span><span class="p">)</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="n">box</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">addContactCallback</span><span class="p">(</span><span class="n">BallWallCallback</span><span class="p">());</span>
+<p>In order for the above to work, the <code class="docutils literal notranslate"><span class="pre">Ball</span></code>’s <code class="docutils literal notranslate"><span class="pre">body.userData</span></code> or contacting <code class="docutils literal notranslate"><span class="pre">fixture.userData</span></code> must be
+set to a <code class="docutils literal notranslate"><span class="pre">ContactCallback</span></code>. And if <code class="docutils literal notranslate"><span class="pre">Wall</span></code> is a <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> its <code class="docutils literal notranslate"><span class="pre">body.userData</span></code> or contacting
+<code class="docutils literal notranslate"><span class="pre">fixture.userData</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">Wall</span></code>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">userData</span></code> is <code class="docutils literal notranslate"><span class="pre">null</span></code> the contact events are ignored, it is <code class="docutils literal notranslate"><span class="pre">null</span></code> by default.</p>
+<p>A convenient way of setting <code class="docutils literal notranslate"><span class="pre">userData</span></code> is to assign it when creating the body. For example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">Ball</span> <span class="kd">extends</span> <span class="n">BodyComponent</span> <span class="kd">with</span> <span class="n">ContactCallbacks</span> <span class="p">{</span>
+  <span class="p">...</span>
+
+  <span class="nd">@override</span>
+  <span class="n">Body</span> <span class="n">createBody</span><span class="p">()</span> <span class="p">{</span>
+    <span class="p">...</span>
+    <span class="kd">final</span> <span class="n">bodyDef</span> <span class="o">=</span> <span class="n">BodyDef</span><span class="p">(</span>
+      <span class="n">userData</span> <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
+    <span class="p">);</span>
+    <span class="p">...</span>
   <span class="p">}</span>
+
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Every time <code class="docutils literal notranslate"><span class="pre">Ball</span></code> and <code class="docutils literal notranslate"><span class="pre">Wall</span></code> gets in contact <code class="docutils literal notranslate"><span class="pre">begin</span></code> will be called, and once the objects stop being
-in contact <code class="docutils literal notranslate"><span class="pre">end</span></code> will be called.</p>
-<p>If you want an object to interact with all other bodies, put <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> as the one of the
-parameters of your <code class="docutils literal notranslate"><span class="pre">ContactCallback</span></code> like this:</p>
-<p><code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">BallAnythingCallback</span> <span class="pre">implements</span> <span class="pre">ContactCallback&lt;Ball,</span> <span class="pre">BodyComponent&gt;</span> <span class="pre">...</span></code></p>
+<p>Every time <code class="docutils literal notranslate"><span class="pre">Ball</span></code> and <code class="docutils literal notranslate"><span class="pre">Wall</span></code> begin to come in contact <code class="docutils literal notranslate"><span class="pre">beginContact</span></code> will be called, and once the
+fixtures cease being in contact, <code class="docutils literal notranslate"><span class="pre">endContact</span></code> will be called.</p>
 <p>An implementation example can be seen in the
-<a class="reference external" href="https://github.com/flame-engine/flame_forge2d/blob/main/example">Flame Forge2D example</a>.</p>
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/utils/balls.dart">Flame Forge2D example</a>.</p>
 <section id="forge2dcamera-followbodycomponent">
 <h3>Forge2DCamera.followBodyComponent<a class="headerlink" href="#forge2dcamera-followbodycomponent" title="Permalink to this headline">¶</a></h3>
 <p>Just like with normal <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s you can make the <code class="docutils literal notranslate"><span class="pre">Forge2DCamera</span></code> follow <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>s
@@ -257,18 +261,18 @@ stop following a <code class="docutils literal notranslate"><span class="pre">Bo
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="other_modules.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="flame_forge2d.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Other Modules</p>
+          <p class="prev-next-title">flame_forge2d</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="oxygen.html" title="next page">
+      <a class="right-next" id="next-link" href="../tutorials/tutorials.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Oxygen</p>
+          <p class="prev-next-title">Tutorials</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>

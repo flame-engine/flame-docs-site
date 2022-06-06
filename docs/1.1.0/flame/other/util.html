@@ -13,6 +13,7 @@
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
   <script src="../../_static/jquery.js"></script>
   <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -145,21 +146,21 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="util">
-<h1>Util<a class="headerlink" href="#util" title="Permalink to this headline">¶</a></h1>
+<h1>Util<a class="headerlink" href="#util" title="Permalink to this heading">¶</a></h1>
 <p>On this page you can find documentation for some utility classes and methods.</p>
 <section id="device-class">
-<h2>Device Class<a class="headerlink" href="#device-class" title="Permalink to this headline">¶</a></h2>
+<h2>Device Class<a class="headerlink" href="#device-class" title="Permalink to this heading">¶</a></h2>
 <p>This class can be accessed from <code class="docutils literal notranslate"><span class="pre">Flame.device</span></code> and it has some methods that can be used to control
 the state of the device, for instance you can change the screen orientation and set whether the
 application should be fullscreen or not.</p>
 <section id="flame-device-fullscreen">
-<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.fullScreen()</span></code><a class="headerlink" href="#flame-device-fullscreen" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.fullScreen()</span></code><a class="headerlink" href="#flame-device-fullscreen" title="Permalink to this heading">¶</a></h3>
 <p>When called, this disables all <code class="docutils literal notranslate"><span class="pre">SystemUiOverlay</span></code> making the app full screen.
 When called in the main method, it makes your app full screen (no top nor bottom bars).</p>
 <p><strong>Note:</strong> It has no effect when called on the web.</p>
 </section>
 <section id="flame-device-setlandscape">
-<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setLandscape()</span></code><a class="headerlink" href="#flame-device-setlandscape" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setLandscape()</span></code><a class="headerlink" href="#flame-device-setlandscape" title="Permalink to this heading">¶</a></h3>
 <p>This method sets the orientation of the whole application (effectively, also the game) to landscape
 and depending on operating system and device setting, should allow both left and right landscape
 orientations. To set the app orientation to landscape on a specific direction, use either
@@ -167,7 +168,7 @@ orientations. To set the app orientation to landscape on a specific direction, u
 <p><strong>Note:</strong> It has no effect when called on the web.</p>
 </section>
 <section id="flame-device-setportrait">
-<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setPortrait()</span></code><a class="headerlink" href="#flame-device-setportrait" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setPortrait()</span></code><a class="headerlink" href="#flame-device-setportrait" title="Permalink to this heading">¶</a></h3>
 <p>This method sets the orientation of the whole application (effectively, also the game) to portrait
 and depending on operating system and device setting, it should allow for both up and down portrait
 orientations. To set the app orientation to portrait for a specific direction, use either
@@ -175,7 +176,7 @@ orientations. To set the app orientation to portrait for a specific direction, u
 <p><strong>Note:</strong> It has no effect when called on the web.</p>
 </section>
 <section id="flame-device-setorientation-and-flame-device-setorientations">
-<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientation()</span></code> and <code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientations()</span></code><a class="headerlink" href="#flame-device-setorientation-and-flame-device-setorientations" title="Permalink to this headline">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientation()</span></code> and <code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientations()</span></code><a class="headerlink" href="#flame-device-setorientation-and-flame-device-setorientations" title="Permalink to this heading">¶</a></h3>
 <p>If a finer control of the allowed orientations is required (without having to deal with
 <code class="docutils literal notranslate"><span class="pre">SystemChrome</span></code> directly), <code class="docutils literal notranslate"><span class="pre">setOrientation</span></code> (accepts a single <code class="docutils literal notranslate"><span class="pre">DeviceOrientation</span></code> as a parameter) and
 <code class="docutils literal notranslate"><span class="pre">setOrientations</span></code> (accepts a <code class="docutils literal notranslate"><span class="pre">List&lt;DeviceOrientation&gt;</span></code> for possible orientations) can be used.</p>
@@ -183,101 +184,101 @@ orientations. To set the app orientation to portrait for a specific direction, u
 </section>
 </section>
 <section id="timer">
-<h2>Timer<a class="headerlink" href="#timer" title="Permalink to this headline">¶</a></h2>
+<h2>Timer<a class="headerlink" href="#timer" title="Permalink to this heading">¶</a></h2>
 <p>Flame provides a simple utility class to help you handle countdowns and timer state changes like
 events.</p>
 <p>Countdown example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">import</span> <span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span> <span class="s1">&#39;package:flame/text_config.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span> <span class="s1">&#39;package:flame/timer.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span> <span class="s1">&#39;package:flame/vector2.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/text_config.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/timer.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/vector2.dart&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">Game</span> <span class="p">{</span>
-  <span class="kd">final</span> <span class="n">TextConfig</span> <span class="n">textConfig</span> <span class="o">=</span> <span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span> <span class="k">const</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">));</span>
-  <span class="kd">final</span> <span class="n">countdown</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">TextConfig</span><span class="w"> </span><span class="n">textConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">countdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Timer</span><span class="p">(</span><span class="m">2</span><span class="p">);</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">countdown</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">countdown</span><span class="p">.</span><span class="n">finished</span><span class="p">)</span> <span class="p">{</span>
-      <span class="c1">// Prefer the timer callback, but this is better in some cases</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">countdown</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">countdown</span><span class="p">.</span><span class="n">finished</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Prefer the timer callback, but this is better in some cases</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">render</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">textConfig</span><span class="p">.</span><span class="n">render</span><span class="p">(</span>
-      <span class="n">canvas</span><span class="p">,</span>
-      <span class="s2">&quot;Countdown: </span><span class="si">${</span><span class="n">countdown</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
-      <span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">100</span><span class="p">),</span>
-    <span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">textConfig</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">canvas</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="s2">&quot;Countdown: </span><span class="si">${</span><span class="n">countdown</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Interval example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="k">import</span> <span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span> <span class="s1">&#39;package:flame/text_config.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span> <span class="s1">&#39;package:flame/timer.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span> <span class="s1">&#39;package:flame/vector2.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/text_config.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/timer.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/vector2.dart&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">Game</span> <span class="p">{</span>
-  <span class="kd">final</span> <span class="n">TextConfig</span> <span class="n">textConfig</span> <span class="o">=</span> <span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span> <span class="k">const</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">));</span>
-  <span class="n">Timer</span> <span class="n">interval</span><span class="p">;</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">TextConfig</span><span class="w"> </span><span class="n">textConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">Timer</span><span class="w"> </span><span class="n">interval</span><span class="p">;</span><span class="w"></span>
 
-  <span class="kt">int</span> <span class="n">elapsedSecs</span> <span class="o">=</span> <span class="m">0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">elapsedSecs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"></span>
 
-  <span class="n">MyGame</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">interval</span> <span class="o">=</span> <span class="n">Timer</span><span class="p">(</span>
-      <span class="m">1</span><span class="p">,</span>
-      <span class="nl">onTick:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">elapsedSecs</span> <span class="o">+=</span> <span class="m">1</span><span class="p">,</span>
-      <span class="nl">repeat:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">interval</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Timer</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="m">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nl">onTick:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">elapsedSecs</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nl">repeat:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">interval</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">interval</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">render</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">textConfig</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="s2">&quot;Elapsed time: </span><span class="si">$</span><span class="n">elapsedSecs</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="m">150</span><span class="p">));</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">textConfig</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Elapsed time: </span><span class="si">$</span><span class="n">elapsedSecs</span><span class="s2">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">Timer</span></code> instances can also be used inside a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> game by using the <code class="docutils literal notranslate"><span class="pre">TimerComponent</span></code> class.</p>
 <p><code class="docutils literal notranslate"><span class="pre">TimerComponent</span></code> example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;package:flame/timer.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span> <span class="s1">&#39;package:flame/components/timer_component.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span> <span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/timer.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components/timer_component.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="kd">class</span> <span class="nc">MyFlameGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
-  <span class="n">MyFlameGame</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">add</span><span class="p">(</span>
-      <span class="n">TimerComponent</span><span class="p">(</span>
-        <span class="nl">period:</span> <span class="m">10</span><span class="p">,</span>
-        <span class="nl">repeat:</span> <span class="kc">true</span><span class="p">,</span>
-        <span class="nl">onTick:</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">print</span><span class="p">(</span><span class="s1">&#39;10 seconds elapsed&#39;</span><span class="p">),</span>
-      <span class="p">)</span>
-    <span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyFlameGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">MyFlameGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">TimerComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nl">period:</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nl">repeat:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nl">onTick:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;10 seconds elapsed&#39;</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="extensions">
-<h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this headline">¶</a></h2>
+<h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this heading">¶</a></h2>
 <p>Flame bundles a collection of utility extensions, these extensions are meant to help the developer
 with shortcuts and conversion methods, here you can find the summary of those extensions.</p>
 <p>They can all be imported from <code class="docutils literal notranslate"><span class="pre">package:flame/extensions.dart</span></code></p>
 <section id="canvas">
-<h3>Canvas<a class="headerlink" href="#canvas" title="Permalink to this headline">¶</a></h3>
+<h3>Canvas<a class="headerlink" href="#canvas" title="Permalink to this heading">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">scaleVector</span></code>: Just like <code class="docutils literal notranslate"><span class="pre">canvas</span> <span class="pre">scale</span></code> method, but takes a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> as an argument.</p></li>
@@ -289,7 +290,7 @@ functions to easily manipulate coordinates to render things on the correct place
 </ul>
 </section>
 <section id="color">
-<h3>Color<a class="headerlink" href="#color" title="Permalink to this headline">¶</a></h3>
+<h3>Color<a class="headerlink" href="#color" title="Permalink to this heading">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">darken</span></code>: Darken the shade of the color by an amount between 0 to 1.</p></li>
@@ -302,7 +303,7 @@ functions to easily manipulate coordinates to render things on the correct place
 </ul>
 </section>
 <section id="image">
-<h3>Image<a class="headerlink" href="#image" title="Permalink to this headline">¶</a></h3>
+<h3>Image<a class="headerlink" href="#image" title="Permalink to this heading">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pixelsInUint8</span></code>: Retrieves the pixel data as a <code class="docutils literal notranslate"><span class="pre">Uint8List</span></code>, in the <code class="docutils literal notranslate"><span class="pre">ImageByteFormat.rawRgba</span></code>
@@ -314,7 +315,7 @@ pixel format, for the image.</p></li>
 </ul>
 </section>
 <section id="offset">
-<h3>Offset<a class="headerlink" href="#offset" title="Permalink to this headline">¶</a></h3>
+<h3>Offset<a class="headerlink" href="#offset" title="Permalink to this heading">¶</a></h3>
 <p>Methods;</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">toVector2</span></code>; Creates an <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> from the <code class="docutils literal notranslate"><span class="pre">Offset</span></code>.</p></li>
@@ -324,7 +325,7 @@ pixel format, for the image.</p></li>
 </ul>
 </section>
 <section id="rect">
-<h3>Rect<a class="headerlink" href="#rect" title="Permalink to this headline">¶</a></h3>
+<h3>Rect<a class="headerlink" href="#rect" title="Permalink to this heading">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">toOffset</span></code>: Creates an <code class="docutils literal notranslate"><span class="pre">Offset</span></code> from the <code class="docutils literal notranslate"><span class="pre">Rect</span></code>.</p></li>
@@ -344,14 +345,14 @@ pixel format, for the image.</p></li>
 </ul>
 </section>
 <section id="math-rectangle">
-<h3>math.Rectangle<a class="headerlink" href="#math-rectangle" title="Permalink to this headline">¶</a></h3>
+<h3>math.Rectangle<a class="headerlink" href="#math-rectangle" title="Permalink to this heading">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">toRect</span></code>: Converts this math <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> into an ui <code class="docutils literal notranslate"><span class="pre">Rect</span></code>.</p></li>
 </ul>
 </section>
 <section id="size">
-<h3>Size<a class="headerlink" href="#size" title="Permalink to this headline">¶</a></h3>
+<h3>Size<a class="headerlink" href="#size" title="Permalink to this heading">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">toVector2</span></code>; Creates an <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> from the <code class="docutils literal notranslate"><span class="pre">Size</span></code>.</p></li>
@@ -361,7 +362,7 @@ pixel format, for the image.</p></li>
 </ul>
 </section>
 <section id="vector2">
-<h3>Vector2<a class="headerlink" href="#vector2" title="Permalink to this headline">¶</a></h3>
+<h3>Vector2<a class="headerlink" href="#vector2" title="Permalink to this heading">¶</a></h3>
 <p>This class comes from the <code class="docutils literal notranslate"><span class="pre">vector_math</span></code> package and we have some useful extension methods on top of
 what is offered by that package.</p>
 <p>Methods:</p>
@@ -390,7 +391,7 @@ right.</p></li>
 </ul>
 </section>
 <section id="matrix4">
-<h3>Matrix4<a class="headerlink" href="#matrix4" title="Permalink to this headline">¶</a></h3>
+<h3>Matrix4<a class="headerlink" href="#matrix4" title="Permalink to this heading">¶</a></h3>
 <p>This class comes from the <code class="docutils literal notranslate"><span class="pre">vector_math</span></code> package. We have created a few extension methods on top
 of what is already offered by <code class="docutils literal notranslate"><span class="pre">vector_math</span></code>.</p>
 <p>Methods:</p>

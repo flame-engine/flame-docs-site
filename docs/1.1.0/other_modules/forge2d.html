@@ -13,6 +13,7 @@
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
   <script src="../_static/jquery.js"></script>
   <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -145,7 +146,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="forge2d">
-<h1>Forge2D<a class="headerlink" href="#forge2d" title="Permalink to this headline">¶</a></h1>
+<h1>Forge2D<a class="headerlink" href="#forge2d" title="Permalink to this heading">¶</a></h1>
 <p>We (the Flame organization) maintain a ported version of the Box2D physics engine and our version
 is called Forge2D.</p>
 <p>If you want to use Forge2D specifically for Flame you should use our bridge library
@@ -157,7 +158,7 @@ in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d/example">Forge2D example</a>
 and in the pub.dev <a class="reference external" href="https://pub.dev/packages/flame_forge2d">installation instructions</a>.</p>
 <section id="forge2dgame">
-<h2>Forge2DGame<a class="headerlink" href="#forge2dgame" title="Permalink to this headline">¶</a></h2>
+<h2>Forge2DGame<a class="headerlink" href="#forge2dgame" title="Permalink to this heading">¶</a></h2>
 <p>If you are going to use Forge2D in your project it can be a good idea to use the Forge2D specific
 <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class, <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>.</p>
 <p>It is called <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> and it will control the adding and removal of Forge2D’s <code class="docutils literal notranslate"><span class="pre">BodyComponents</span></code>
@@ -177,7 +178,7 @@ physics engine to properly update every child.</p>
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d/example">examples folder</a>.</p>
 </section>
 <section id="bodycomponent">
-<h2>BodyComponent<a class="headerlink" href="#bodycomponent" title="Permalink to this headline">¶</a></h2>
+<h2>BodyComponent<a class="headerlink" href="#bodycomponent" title="Permalink to this heading">¶</a></h2>
 <p>If you don’t need to have a sprite on top of your body you should use the plain <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>, for
 example if you want a circle, rectangle or polygon but only painted with a Flutter <code class="docutils literal notranslate"><span class="pre">Paint</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> is by default having <code class="docutils literal notranslate"><span class="pre">debugMode</span> <span class="pre">=</span> <span class="pre">true</span></code>, since otherwise it wouldn’t show
@@ -186,7 +187,7 @@ turn it off you can either override <code class="docutils literal notranslate"><
 component constructor.</p>
 </section>
 <section id="spritebodycomponent">
-<h2>SpriteBodyComponent<a class="headerlink" href="#spritebodycomponent" title="Permalink to this headline">¶</a></h2>
+<h2>SpriteBodyComponent<a class="headerlink" href="#spritebodycomponent" title="Permalink to this heading">¶</a></h2>
 <div class="admonition-deprecated admonition">
 <p class="admonition-title">Deprecated</p>
 <p>Add a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> to a <a class="reference internal" href="#bodycomponent"><span class="std std-doc">BodyComponent</span></a> instead. Will be removed in 0.10.0</p>
@@ -196,7 +197,7 @@ component constructor.</p>
 body.</p>
 </section>
 <section id="positionbodycomponent">
-<h2>PositionBodyComponent<a class="headerlink" href="#positionbodycomponent" title="Permalink to this headline">¶</a></h2>
+<h2>PositionBodyComponent<a class="headerlink" href="#positionbodycomponent" title="Permalink to this heading">¶</a></h2>
 <div class="admonition-deprecated admonition">
 <p class="admonition-title">Deprecated</p>
 <p>Add children to a <a class="reference internal" href="#bodycomponent"><span class="std std-doc">BodyComponent</span></a> instead. Will be removed in 0.10.0</p>
@@ -208,40 +209,40 @@ will, just like with the <code class="docutils literal notranslate"><span class=
 component so that it follows the underlying <code class="docutils literal notranslate"><span class="pre">Body</span></code>.</p>
 </section>
 <section id="contact-callbacks">
-<h2>Contact callbacks<a class="headerlink" href="#contact-callbacks" title="Permalink to this headline">¶</a></h2>
+<h2>Contact callbacks<a class="headerlink" href="#contact-callbacks" title="Permalink to this heading">¶</a></h2>
 <p>If you are using <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> you can take advantage of its way of handling contacts between two
 <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>s.</p>
 <p>When creating the body definition for your <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> make sure that you set the userdata to
 the current object, otherwise it will not be possible to detect collisions.
 Like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">bodyDef</span> <span class="o">=</span> <span class="n">BodyDef</span><span class="p">()</span>
-  <span class="c1">// To be able to know which component that is involved in a collision</span>
-  <span class="p">..</span><span class="n">userData</span> <span class="o">=</span> <span class="k">this</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">bodyDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BodyDef</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// To be able to know which component that is involved in a collision</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">userData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Now you have to make an implementation of <code class="docutils literal notranslate"><span class="pre">ContactCallback</span></code> where you set which two types that it
 should react when they come in contact.
 If you have two <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>s named <code class="docutils literal notranslate"><span class="pre">Ball</span></code> and <code class="docutils literal notranslate"><span class="pre">Wall</span></code> and you want to do something when they come
 in contact, you could do something like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">BallWallCallback</span> <span class="kd">extends</span> <span class="n">ContactCallback</span><span class="o">&lt;</span><span class="n">Ball</span><span class="p">,</span> <span class="n">Wall</span><span class="o">&gt;</span> <span class="p">{</span>
-  <span class="n">BallWallCallback</span><span class="p">();</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">BallWallCallback</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ContactCallback</span><span class="o">&lt;</span><span class="n">Ball</span><span class="p">,</span><span class="w"> </span><span class="n">Wall</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">BallWallCallback</span><span class="p">();</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">begin</span><span class="p">(</span><span class="n">Ball</span> <span class="n">ball</span><span class="p">,</span> <span class="n">Wall</span> <span class="n">wall</span><span class="p">,</span> <span class="n">Contact</span> <span class="n">contact</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">wall</span><span class="p">.</span><span class="n">remove</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">begin</span><span class="p">(</span><span class="n">Ball</span><span class="w"> </span><span class="n">ball</span><span class="p">,</span><span class="w"> </span><span class="n">Wall</span><span class="w"> </span><span class="n">wall</span><span class="p">,</span><span class="w"> </span><span class="n">Contact</span><span class="w"> </span><span class="n">contact</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">wall</span><span class="p">.</span><span class="n">remove</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">end</span><span class="p">(</span><span class="n">Ball</span> <span class="n">ball</span><span class="p">,</span> <span class="n">Wall</span> <span class="n">wall</span><span class="p">,</span> <span class="n">Contact</span> <span class="n">contact</span><span class="p">)</span> <span class="p">{}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">end</span><span class="p">(</span><span class="n">Ball</span><span class="w"> </span><span class="n">ball</span><span class="p">,</span><span class="w"> </span><span class="n">Wall</span><span class="w"> </span><span class="n">wall</span><span class="p">,</span><span class="w"> </span><span class="n">Contact</span><span class="w"> </span><span class="n">contact</span><span class="p">)</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>and then you simply add <code class="docutils literal notranslate"><span class="pre">BallWallCallback</span></code> to your <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">Forge2DGame</span> <span class="p">{</span>
-  <span class="n">MyGame</span><span class="p">(</span><span class="n">Forge2DComponent</span> <span class="n">box</span><span class="p">)</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="n">box</span><span class="p">)</span> <span class="p">{</span>
-    <span class="n">addContactCallback</span><span class="p">(</span><span class="n">BallWallCallback</span><span class="p">());</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Forge2DGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">MyGame</span><span class="p">(</span><span class="n">Forge2DComponent</span><span class="w"> </span><span class="n">box</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="n">box</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">addContactCallback</span><span class="p">(</span><span class="n">BallWallCallback</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Every time <code class="docutils literal notranslate"><span class="pre">Ball</span></code> and <code class="docutils literal notranslate"><span class="pre">Wall</span></code> gets in contact <code class="docutils literal notranslate"><span class="pre">begin</span></code> will be called, and once the objects stop being
@@ -253,7 +254,7 @@ parameters of your <code class="docutils literal notranslate"><span class="pre">
 <a class="reference external" href="https://github.com/flame-engine/flame_forge2d/blob/main/example">Flame Forge2D example</a>.</p>
 </section>
 <section id="viewport-and-camera">
-<h2>Viewport and Camera<a class="headerlink" href="#viewport-and-camera" title="Permalink to this headline">¶</a></h2>
+<h2>Viewport and Camera<a class="headerlink" href="#viewport-and-camera" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> is using its own implementation of the normal Flame <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> and <code class="docutils literal notranslate"><span class="pre">Camera</span></code>, which can
 be read more about <a class="reference internal" href="../flame/camera_and_viewport.html"><span class="doc std std-doc">here</span></a>.</p>
 <p>If you see your screen as a window and the outside as the Forge2D world, then the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> is the
@@ -263,7 +264,7 @@ your screen.</p>
 you want to follow one of your components around in the Forge2D world, or know where in the world
 a point on the screen is or vice versa.</p>
 <section id="forge2dcamera-followbodycomponent">
-<h3>Forge2DCamera.followBodyComponent<a class="headerlink" href="#forge2dcamera-followbodycomponent" title="Permalink to this headline">¶</a></h3>
+<h3>Forge2DCamera.followBodyComponent<a class="headerlink" href="#forge2dcamera-followbodycomponent" title="Permalink to this heading">¶</a></h3>
 <p>Just like with normal <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s you can make the <code class="docutils literal notranslate"><span class="pre">Forge2DCamera</span></code> follow <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>s
 by calling <code class="docutils literal notranslate"><span class="pre">camera.followBodyComponent(...)</span></code> which works the same as
 <a class="reference internal" href="../flame/camera_and_viewport.html#camera-followcomponent"><span class="std std-doc">camera.followComponent</span></a>. When you want to

@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="flame.html">flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game_widget.html">GameWidget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game loop</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputs/tap-events.html">Tap events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
@@ -130,7 +136,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
@@ -152,12 +157,24 @@
 <p>This diagram might look intimidating, but don’t worry, it is not as complex as it looks.</p>
 <section id="component">
 <h2>Component<a class="headerlink" href="#component" title="Permalink to this headline">¶</a></h2>
-<p>All components inherit from the abstract class <code class="docutils literal notranslate"><span class="pre">Component</span></code>.</p>
-<p>If you want to skip reading about abstract classes you can jump directly to
-<a class="reference internal" href="#positioncomponent"><span class="std std-doc">PositionComponent</span></a>.</p>
+<p>All components inherit from the abstract class <code class="docutils literal notranslate"><span class="pre">Component</span></code> and all components can have other
+<code class="docutils literal notranslate"><span class="pre">Component</span></code>s as children. This is the base of what we call the Flame Component System, or FCS for
+short.</p>
+<p>Children can be added either with the <code class="docutils literal notranslate"><span class="pre">add(Component</span> <span class="pre">c)</span></code> method or directly in the constructor.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="kd">final</span> <span class="n">component1</span> <span class="o">=</span> <span class="n">Component</span><span class="p">(</span><span class="nl">children:</span> <span class="p">[</span><span class="n">Component</span><span class="p">(),</span> <span class="n">Component</span><span class="p">()]);</span>
+  <span class="kd">final</span> <span class="n">component2</span> <span class="o">=</span> <span class="n">Component</span><span class="p">();</span>
+  <span class="n">component2</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Component</span><span class="p">());</span>
+  <span class="n">component2</span><span class="p">.</span><span class="n">addAll</span><span class="p">([</span><span class="n">Component</span><span class="p">(),</span> <span class="n">Component</span><span class="p">()]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Component()</span></code> here could of course be any subclass of <code class="docutils literal notranslate"><span class="pre">Component</span></code>.</p>
 <p>Every <code class="docutils literal notranslate"><span class="pre">Component</span></code> has a few methods that you can optionally implement, which are used by the
-<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class. If you are not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, you can use these methods on your own game loop
-if you wish.</p>
+<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class.</p>
+<section id="component-lifecycle">
+<h3>Component lifecycle<a class="headerlink" href="#component-lifecycle" title="Permalink to this headline">¶</a></h3>
 <p><img alt="Component Lifecycle Diagram" src="../_images/component_lifecycle.png" /></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> method is called whenever the screen is resized, and once in the beginning when
 the component is added to the game via the <code class="docutils literal notranslate"><span class="pre">add</span></code> method.</p>
@@ -180,6 +197,7 @@ on the rest of the game engine).</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">isMounted</span></code>: Returns a bool with the current mounted state</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">mounted</span></code>: Returns a future that will complete once the component has finished mounting</p></li>
 </ul>
+</section>
 <section id="priority">
 <h3>Priority<a class="headerlink" href="#priority" title="Permalink to this headline">¶</a></h3>
 <p>In Flame the order components are rendered (and updated) in is called <code class="docutils literal notranslate"><span class="pre">priority</span></code>, this is sometimes
@@ -264,7 +282,7 @@ constructor. This approach more closely resembles the standard Flutter API:</p>
         <span class="nl">children:</span> <span class="p">[</span>
           <span class="n">HighScoreDisplay</span><span class="p">(),</span>
           <span class="n">HitPointsDisplay</span><span class="p">(),</span>
-          <span class="n">FpsCounter</span><span class="p">(),</span>
+          <span class="n">FpsComponent</span><span class="p">(),</span>
         <span class="p">],</span>
       <span class="p">),</span>
     <span class="p">);</span>
@@ -279,6 +297,23 @@ after.</p>
 available eventually: after they are loaded and mounted. We can only assure
 that they will appear in the children list in the same order as they were
 scheduled for addition.</p>
+</section>
+<section id="ensuring-a-component-has-a-given-parent">
+<h3>Ensuring a component has a given parent<a class="headerlink" href="#ensuring-a-component-has-a-given-parent" title="Permalink to this headline">¶</a></h3>
+<p>When a component requires to be added to a specific parent type the
+<code class="docutils literal notranslate"><span class="pre">ParentIsA</span></code> mixin can be used to enforce a strongly typed parent.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyComponent</span> <span class="kd">extends</span> <span class="n">Component</span> <span class="kd">with</span> <span class="n">ParentIsA</span><span class="o">&lt;</span><span class="n">MyParentComponent</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+    <span class="c1">// parent is of type MyParentComponent</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">parent</span><span class="p">.</span><span class="n">myValue</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you try to add <code class="docutils literal notranslate"><span class="pre">MyComponent</span></code> to a parent that is not <code class="docutils literal notranslate"><span class="pre">MyParentComponent</span></code>,
+an assertion error will be thrown.</p>
 </section>
 <section id="querying-child-components">
 <h3>Querying child components<a class="headerlink" href="#querying-child-components" title="Permalink to this headline">¶</a></h3>
@@ -301,6 +336,29 @@ the registered component type can be seen below.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
 <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
   <span class="kd">final</span> <span class="n">allPositionComponents</span> <span class="o">=</span> <span class="n">children</span><span class="p">.</span><span class="n">query</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="querying-components-at-a-specific-point-on-the-screen">
+<h3>Querying components at a specific point on the screen<a class="headerlink" href="#querying-components-at-a-specific-point-on-the-screen" title="Permalink to this headline">¶</a></h3>
+<p>The method <code class="docutils literal notranslate"><span class="pre">componentsAtPoint()</span></code> allows you to check which components were rendered at some point
+on the screen. The returned value is an iterable of components, but you can also obtain the
+coordinates of the initial point in each component’s local coordinate space by providing a writable
+<code class="docutils literal notranslate"><span class="pre">List&lt;Vector2&gt;</span></code> as a second parameter.</p>
+<p>The iterable retrieves the components in the front-to-back order, i.e. first the components in the
+front, followed by the components in the back.</p>
+<p>This method can only return components that implement the method <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code>. The
+<code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> (which is the base class for many components in Flame) provides such an
+implementation. However, if you’re defining a custom class that derives from <code class="docutils literal notranslate"><span class="pre">Component</span></code>, you’d have
+to implement the <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code> method yourself.</p>
+<p>Here is an example of how <code class="docutils literal notranslate"><span class="pre">componentsAtPoint()</span></code> can be used:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span> <span class="n">info</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">game</span><span class="p">.</span><span class="n">componentsAtPoint</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">widget</span><span class="p">).</span><span class="n">forEach</span><span class="p">((</span><span class="n">component</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">component</span> <span class="k">is</span> <span class="n">DropTarget</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">component</span><span class="p">.</span><span class="n">highlight</span><span class="p">();</span>
+    <span class="p">}</span>
+  <span class="p">});</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -457,11 +515,48 @@ class (check more details on <a class="reference internal" href="rendering/image
 </div>
 <p>If you are not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, don’t forget this component needs to be updated, because the
 animation object needs to be ticked to move the frames.</p>
+<p>To listen when the animation is done (when it reaches the last frame and is not looping) you can
+use <code class="docutils literal notranslate"><span class="pre">animation.completed</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">await</span> <span class="n">animation</span><span class="p">.</span><span class="n">completed</span><span class="p">;</span>
+
+<span class="n">doSomething</span><span class="p">();</span>
+
+<span class="c1">// or alternatively</span>
+
+<span class="n">animation</span><span class="p">.</span><span class="n">completed</span><span class="p">.</span><span class="n">whenComplete</span><span class="p">(</span><span class="n">doSomething</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Additionally, this component also has the following optional event callbacks:  <code class="docutils literal notranslate"><span class="pre">onStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onFrame</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">onComplete</span></code>. To listen to these events, you can do the following:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">animation</span> <span class="o">=</span>
+    <span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">([</span><span class="n">sprite</span><span class="p">],</span> <span class="nl">stepTime:</span> <span class="m">1</span><span class="p">,</span> <span class="nl">loop:</span> <span class="kc">false</span><span class="p">)</span>
+      <span class="p">..</span><span class="n">onStart</span> <span class="o">=</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Do something on start.</span>
+      <span class="p">};</span>
+
+<span class="kd">final</span> <span class="n">animation</span> <span class="o">=</span>
+    <span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">([</span><span class="n">sprite</span><span class="p">],</span> <span class="nl">stepTime:</span> <span class="m">1</span><span class="p">,</span> <span class="nl">loop:</span> <span class="kc">false</span><span class="p">)</span>
+      <span class="p">..</span><span class="n">onComplete</span> <span class="o">=</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// Do something on completion.</span>
+      <span class="p">};</span>
+
+<span class="kd">final</span> <span class="n">animation</span> <span class="o">=</span>
+    <span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">([</span><span class="n">sprite</span><span class="p">],</span> <span class="nl">stepTime:</span> <span class="m">1</span><span class="p">,</span> <span class="nl">loop:</span> <span class="kc">false</span><span class="p">)</span>
+      <span class="p">..</span><span class="n">onFrame</span> <span class="o">=</span> <span class="p">(</span><span class="n">index</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">index</span> <span class="o">==</span> <span class="m">1</span><span class="p">)</span> <span class="p">{</span>
+          <span class="c1">// Do something for the second frame.</span>
+        <span class="p">}</span>
+      <span class="p">};</span>
+</pre></div>
+</div>
 </section>
 <section id="spriteanimationgroup">
 <h2>SpriteAnimationGroup<a class="headerlink" href="#spriteanimationgroup" title="Permalink to this headline">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SpriteAnimationGroupComponent</span></code> is a simple wrapper around <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> which enables
-your component to hold several animations and change the current playing animation in runtime.</p>
+your component to hold several animations and change the current playing animation at runtime. Since
+this component is just a wrapper, the event listeners can be implemented as described in
+<a class="reference internal" href="#spriteanimationcomponent"><span class="std std-doc">SpriteAnimationComponent</span></a>.</p>
 <p>Its use is very similar to the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> but instead of being initialized with a
 single animation, this component receives a Map of a generic type <code class="docutils literal notranslate"><span class="pre">T</span></code> as key and a
 <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code> as value, and the current animation.</p>
@@ -577,7 +672,7 @@ FlareController that can play multiple animations and control nodes.</p>
 </div>
 <p>You can also change the current playing animation by using the <code class="docutils literal notranslate"><span class="pre">updateAnimation</span></code> method.</p>
 <p>For a working example, check the example in the
-<a class="reference external" href="https://github.com/flame-engine/flame_flare/tree/main/example">flame_flare repository</a>.</p>
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_flare/example">flame_flare repository</a>.</p>
 </section>
 <section id="parallaxcomponent">
 <h2>ParallaxComponent<a class="headerlink" href="#parallaxcomponent" title="Permalink to this headline">¶</a></h2>
@@ -599,7 +694,7 @@ than distant ones.</p>
 </pre></div>
 </div>
 <p>A ParallaxComponent can also “load itself” by implementing the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyParallaxComponent</span> <span class="kd">extends</span> <span class="n">ParallaxComponent</span> <span class="kd">with</span> <span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span> <span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyParallaxComponent</span> <span class="kd">extends</span> <span class="n">ParallaxComponent</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span> <span class="p">{</span>
   <span class="nd">@override</span>
   <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
     <span class="n">parallax</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">gameRef</span><span class="p">.</span><span class="n">loadParallax</span><span class="p">([</span>
@@ -809,10 +904,6 @@ radius is in comparison to the shortest edge of the of the bounding box defined 
 </div>
 </section>
 </section>
-<section id="spritebodycomponent">
-<h2>SpriteBodyComponent<a class="headerlink" href="#spritebodycomponent" title="Permalink to this headline">¶</a></h2>
-<p>See <span class="xref myst">SpriteBodyComponent</span> in the Forge2D documentation.</p>
-</section>
 <section id="tiledcomponent">
 <h2>TiledComponent<a class="headerlink" href="#tiledcomponent" title="Permalink to this headline">¶</a></h2>
 <p>Currently we have a very basic implementation of a Tiled component. This API uses the lib
@@ -846,8 +937,8 @@ the height colored in the darker tone:</p>
 <p><img alt="An example of a isometric map with selector" src="../_images/isometric.png" /></p>
 <p>Flame’s Example app contains a more in-depth example, featuring how to parse coordinates to make a
 selector. The code can be found
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/tile_maps/isometric_tile_map.dart">here</a>,
-and a live version can be seen <a class="reference external" href="https://examples.flame-engine.org/#/Tile%20Maps_Isometric%20Tile%20Map">here</a>.</p>
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/isometric_tile_map_example.dart">here</a>,
+and a live version can be seen <a class="reference external" href="https://examples.flame-engine.org/#/Rendering_Isometric%20Tile%20Map">here</a>.</p>
 </section>
 <section id="ninetileboxcomponent">
 <h2>NineTileBoxComponent<a class="headerlink" href="#ninetileboxcomponent" title="Permalink to this headline">¶</a></h2>
@@ -859,7 +950,7 @@ is expanded both ways.</p>
 <p>Using this, you can get a box/rectangle that expands well to any sizes. This is useful for making
 panels, dialogs, borders.</p>
 <p>Check the example app
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/utils/nine_tile_box.dart">nine_tile_box</a>
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/nine_tile_box_example.dart">nine_tile_box</a>
 for details on how to use it.</p>
 </section>
 <section id="custompaintercomponent">
@@ -871,7 +962,7 @@ receives a custom painter and renders it on the game canvas.</p>
 <p>This can be used for sharing custom rendering logic between your Flame game, and your Flutter
 widgets.</p>
 <p>Check the example app
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/custom_painter_component.dart">custom_painter_component</a>
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/custom_painter_example.dart">custom_painter_component</a>
 for details on how to use it.</p>
 </section>
 <section id="effects">
@@ -879,7 +970,7 @@ for details on how to use it.</p>
 <p>Flame provides a set of effects that can be applied to a certain type of components, these effects
 can be used to animate some properties of your components, like position or dimensions.
 You can check the list of those effects <a class="reference internal" href="effects.html"><span class="doc std std-doc">here</span></a>.</p>
-<p>Examples of the running effects can be found <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/effects">here</a>;</p>
+<p>Examples of the running effects can be found <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/effects">here</a>;</p>
 </section>
 </section>
 
@@ -914,9 +1005,12 @@ You can check the list of those effects <a class="reference internal" href="effe
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#component' class='list-group-item level-1'>Component</a>
+  <a href='#component-lifecycle' class='list-group-item level-2'>Component lifecycle</a>
   <a href='#priority' class='list-group-item level-2'>Priority</a>
   <a href='#composability-of-components' class='list-group-item level-2'>Composability of components</a>
+  <a href='#ensuring-a-component-has-a-given-parent' class='list-group-item level-2'>Ensuring a component has a given parent</a>
   <a href='#querying-child-components' class='list-group-item level-2'>Querying child components</a>
+  <a href='#querying-components-at-a-specific-point-on-the-screen' class='list-group-item level-2'>Querying components at a specific point on the screen</a>
   <a href='#positiontype' class='list-group-item level-2'>PositionType</a>
   <a href='#positioncomponent' class='list-group-item level-1'>PositionComponent</a>
   <a href='#position' class='list-group-item level-2'>Position</a>
@@ -937,7 +1031,6 @@ You can check the list of those effects <a class="reference internal" href="effe
   <a href='#polygoncomponent' class='list-group-item level-2'>PolygonComponent</a>
   <a href='#rectanglecomponent' class='list-group-item level-2'>RectangleComponent</a>
   <a href='#circlecomponent' class='list-group-item level-2'>CircleComponent</a>
-  <a href='#spritebodycomponent' class='list-group-item level-1'>SpriteBodyComponent</a>
   <a href='#tiledcomponent' class='list-group-item level-1'>TiledComponent</a>
   <a href='#isometrictilemapcomponent' class='list-group-item level-1'>IsometricTileMapComponent</a>
   <a href='#ninetileboxcomponent' class='list-group-item level-1'>NineTileBoxComponent</a>

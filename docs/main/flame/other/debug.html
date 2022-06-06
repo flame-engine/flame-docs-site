@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../flame.html">flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game_widget.html">GameWidget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/tap-events.html">Tap events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
@@ -130,7 +136,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/splash_screen.html">Splash screen</a></li>
@@ -148,24 +153,6 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="debug-features">
 <h1>Debug features<a class="headerlink" href="#debug-features" title="Permalink to this headline">¶</a></h1>
-<section id="fps-counter">
-<h2>FPS counter<a class="headerlink" href="#fps-counter" title="Permalink to this headline">¶</a></h2>
-<p>Flame provides the <code class="docutils literal notranslate"><span class="pre">FPSCounter</span></code> mixin for recording the fps; this mixin can be applied on any class
-that extends from <code class="docutils literal notranslate"><span class="pre">Game</span></code>. Once applied you can access the current fps by using the <code class="docutils literal notranslate"><span class="pre">fps</span></code> method,
-like shown in the example below.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">FPSCounter</span> <span class="p">{</span>
-  <span class="kd">static</span> <span class="kd">final</span> <span class="n">fpsTextConfig</span> <span class="o">=</span> <span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span> <span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span>
-
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">render</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span>
-    <span class="kd">final</span> <span class="n">fpsCount</span> <span class="o">=</span> <span class="n">fps</span><span class="p">(</span><span class="m">120</span><span class="p">);</span> <span class="c1">// The average FPS for the last 120 microseconds.</span>
-    <span class="n">fpsTextConfig</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span> <span class="n">fpsCount</span><span class="p">.</span><span class="n">toString</span><span class="p">(),</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">50</span><span class="p">));</span>
-  <span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
 <section id="flamegame-features">
 <h2>FlameGame features<a class="headerlink" href="#flamegame-features" title="Permalink to this headline">¶</a></h2>
 <p>Flame provides some debugging features for the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class. These features are enabled when
@@ -175,6 +162,25 @@ have their positions written on the screen. This way, you can visually verify th
 boundaries and positions.</p>
 <p>To see a working example of the debugging features of the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, check this
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/components/debug_example.dart">example</a>.</p>
+</section>
+<section id="fps">
+<h2>FPS<a class="headerlink" href="#fps" title="Permalink to this headline">¶</a></h2>
+<p>The FPS reported from Flame might be a bit lower than what is reported from for example the Flutter
+DevTools, depending on which platform you are targeting. The source of truth for how many FPS your
+game is running in should be the FPS that we are reporting, since that is what our game loop is
+bound by.</p>
+<section id="fpscomponent">
+<h3>FpsComponent<a class="headerlink" href="#fpscomponent" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">FpsComponent</span></code> can be added to anywhere in the component tree and will keep track of how many
+FPS that the game is currently rendering in. If you want to display this as text in the game, use
+the <a class="reference internal" href="#fpstextcomponent"><span class="std std-doc">FpsTextComponent</span></a>.</p>
+</section>
+<section id="fpstextcomponent">
+<h3>FpsTextComponent<a class="headerlink" href="#fpstextcomponent" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">FpsTextComponent</span></code> is simply a <a class="reference internal" href="../rendering/text.html#textcomponent"><span class="std std-doc">TextComponent</span></a> that wraps an
+<a class="reference internal" href="../rendering/text.html#textcomponent"><span class="std std-doc">TextComponent</span></a>, since you most commonly want to show the current FPS
+somewhere when you the <a class="reference internal" href="#fpscomponent"><span class="std std-doc">FpsComponent</span></a> is used.</p>
+</section>
 </section>
 </section>
 
@@ -208,8 +214,10 @@ boundaries and positions.</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
-  <a href='#fps-counter' class='list-group-item level-1'>FPS counter</a>
   <a href='#flamegame-features' class='list-group-item level-1'>FlameGame features</a>
+  <a href='#fps' class='list-group-item level-1'>FPS</a>
+  <a href='#fpscomponent' class='list-group-item level-2'>FpsComponent</a>
+  <a href='#fpstextcomponent' class='list-group-item level-2'>FpsTextComponent</a>
 </div>
 
     </div>

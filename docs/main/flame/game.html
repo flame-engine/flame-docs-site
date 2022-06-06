@@ -30,7 +30,7 @@
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
   <link rel="next" title="Components" href="components.html" />
-  <link rel="prev" title="Structure" href="structure.html" />
+  <link rel="prev" title="GameWidget" href="game_widget.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="flame.html">flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game_widget.html">GameWidget</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputs/tap-events.html">Tap events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
@@ -130,7 +136,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
@@ -148,32 +153,21 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="flamegame">
 <h1>FlameGame<a class="headerlink" href="#flamegame" title="Permalink to this headline">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is the most basic and most commonly used <code class="docutils literal notranslate"><span class="pre">Game</span></code> class in Flame.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class implements a <code class="docutils literal notranslate"><span class="pre">Component</span></code> based <code class="docutils literal notranslate"><span class="pre">Game</span></code>. Basically it has a list of <code class="docutils literal notranslate"><span class="pre">Component</span></code>s
-and passes the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> calls to all <code class="docutils literal notranslate"><span class="pre">Component</span></code>s that have been added to the game.</p>
+<p><code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is the most most commonly used <code class="docutils literal notranslate"><span class="pre">Game</span></code> class in Flame.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class implements a <code class="docutils literal notranslate"><span class="pre">Component</span></code> based <code class="docutils literal notranslate"><span class="pre">Game</span></code>. Basically it has a tree of <code class="docutils literal notranslate"><span class="pre">Component</span></code>s
+and calls the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> methods of all <code class="docutils literal notranslate"><span class="pre">Component</span></code>s that have been added to the game.</p>
 <p>We refer to this component based system as the Flame Component System, FCS for short.</p>
-<p>Every time the game needs to be resized, for example when the orientation is changed,
-<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> will call all of the <code class="docutils literal notranslate"><span class="pre">Component</span></code>s <code class="docutils literal notranslate"><span class="pre">resize</span></code> methods and it will also pass this information
-to the camera and viewport.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">FlameGame.camera</span></code> controls which point in the coordinate space should be the top-left of the
-screen (it defaults to [0,0] like a regular <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>).</p>
-<p>A <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> implementation example can be seen below:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCrate</span> <span class="kd">extends</span> <span class="n">SpriteComponent</span> <span class="p">{</span>
-  <span class="c1">// creates a component that renders the crate.png sprite, with size 16 x 16</span>
-  <span class="n">MyCrate</span><span class="p">()</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">size:</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span> <span class="nl">anchor:</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">);</span>
+<p>Components can be added to the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> directly in the constructor with the named <code class="docutils literal notranslate"><span class="pre">children</span></code>
+argument, or from anywhere else with the <code class="docutils literal notranslate"><span class="pre">add</span></code>/<code class="docutils literal notranslate"><span class="pre">addAll</span></code> methods.</p>
+<p>A simple <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> implementation which adds two components, one in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and one directly in
+the constructor can look like this:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">/// A component that renders the crate sprite, with a 16 x 16 size.</span>
+<span class="kd">class</span> <span class="nc">MyCrate</span> <span class="kd">extends</span> <span class="n">SpriteComponent</span> <span class="p">{</span>
+  <span class="n">MyCrate</span><span class="p">()</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">size:</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">));</span>
 
   <span class="nd">@override</span>
   <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
     <span class="n">sprite</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;crate.png&#39;</span><span class="p">);</span>
-  <span class="p">}</span>
-
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">onGameResize</span><span class="p">(</span><span class="n">Vector2</span> <span class="n">gameSize</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">onGameResize</span><span class="p">(</span><span class="n">gameSize</span><span class="p">);</span>
-    <span class="c1">// We don&#39;t need to set the position in the constructor, we can set it </span>
-    <span class="c1">// directly here since it will be called once before the first time it </span>
-    <span class="c1">// is rendered.</span>
-    <span class="n">position</span> <span class="o">=</span> <span class="n">gameSize</span> <span class="o">/</span> <span class="m">2</span><span class="p">;</span>
   <span class="p">}</span>
 <span class="p">}</span>
 
@@ -185,7 +179,7 @@ screen (it defaults to [0,0] like a regular <code class="docutils literal notran
 <span class="p">}</span>
 
 <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">final</span> <span class="n">myGame</span> <span class="o">=</span> <span class="n">MyGame</span><span class="p">();</span>
+  <span class="kd">final</span> <span class="n">myGame</span> <span class="o">=</span> <span class="n">MyGame</span><span class="p">(</span><span class="nl">children:</span> <span class="p">[</span><span class="n">MyCrate</span><span class="p">]);</span>
   <span class="n">runApp</span><span class="p">(</span>
     <span class="n">GameWidget</span><span class="p">(</span>
       <span class="nl">game:</span> <span class="n">myGame</span><span class="p">,</span>
@@ -201,8 +195,14 @@ it is done in the example above.</p>
 <p>To remove components from the list on a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> the <code class="docutils literal notranslate"><span class="pre">remove</span></code> or <code class="docutils literal notranslate"><span class="pre">removeAll</span></code> methods can be used.
 The first can be used if you just want to remove one component, and the second can be used when you
 want to remove a list of components.</p>
-<p>Any component on which the <code class="docutils literal notranslate"><span class="pre">remove()</span></code> method has been called will also be removed. You can do this
-simply by doing <code class="docutils literal notranslate"><span class="pre">yourComponent.remove();</span></code>.</p>
+<section id="resizing">
+<h2>Resizing<a class="headerlink" href="#resizing" title="Permalink to this headline">¶</a></h2>
+<p>Every time the game needs to be resized, for example when the orientation is changed,
+<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> will call all of the <code class="docutils literal notranslate"><span class="pre">Component</span></code>s <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> methods and it will also pass this
+information to the camera and viewport.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">FlameGame.camera</span></code> controls which point in the coordinate space should be the top-left of the
+screen (it defaults to [0,0] like a regular <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>).</p>
+</section>
 <section id="lifecycle">
 <h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline">¶</a></h2>
 <p><img alt="Game Lifecycle Diagram" src="../_images/component_lifecycle.png" /></p>
@@ -318,11 +318,15 @@ easy to create things like a pause menu or an inventory screen for example.</p>
 overlay to be shown or hidden, respectively, via a <code class="docutils literal notranslate"><span class="pre">String</span></code> argument that identifies the overlay.
 After that it can be specified which widgets represent each overlay in the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> declaration
 by setting a <code class="docutils literal notranslate"><span class="pre">overlayBuilderMap</span></code>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Inside the game methods:</span>
-<span class="kd">final</span> <span class="n">pauseOverlayIdentifier</span> <span class="o">=</span> <span class="s1">&#39;PauseMenu&#39;</span><span class="p">;</span>
-
-<span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span> <span class="c1">// Marks &#39;PauseMenu&#39; to be rendered.</span>
-<span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span> <span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// Inside the game methods:</span>
+  <span class="kd">final</span> <span class="n">pauseOverlayIdentifier</span> <span class="o">=</span> <span class="s1">&#39;PauseMenu&#39;</span><span class="p">;</span>
+  
+  <span class="c1">// Marks &#39;PauseMenu&#39; to be rendered.</span>
+  <span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
+  <span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span>
+  <span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// On the widget declaration</span>
@@ -354,11 +358,11 @@ by setting a <code class="docutils literal notranslate"><span class="pre">overla
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="structure.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="game_widget.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Structure</p>
+          <p class="prev-next-title">GameWidget</p>
         </div>
       </a>
       <div class='expander'></div>
@@ -377,6 +381,7 @@ by setting a <code class="docutils literal notranslate"><span class="pre">overla
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#resizing' class='list-group-item level-1'>Resizing</a>
   <a href='#lifecycle' class='list-group-item level-1'>Lifecycle</a>
   <a href='#debug-mode' class='list-group-item level-1'>Debug mode</a>
   <a href='#change-background-color' class='list-group-item level-1'>Change background color</a>

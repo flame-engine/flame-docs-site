@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../flame.html">flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game_widget.html">GameWidget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/tap-events.html">Tap events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
@@ -130,7 +136,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/splash_screen.html">Splash screen</a></li>
@@ -279,7 +284,7 @@ parameter <code class="docutils literal notranslate"><span class="pre">overrideP
 render call.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Sprite</span></code>s can also be used as widgets, to do so just use <code class="docutils literal notranslate"><span class="pre">SpriteWidget</span></code> class.</p>
 <p>A complete example using sprite as widgets can be found
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/widget/sprite_widget.dart">here</a>.</p>
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/sprite_widget_example.dart">here</a>.</p>
 </section>
 <section id="spritebatch">
 <h2>SpriteBatch<a class="headerlink" href="#spritebatch" title="Permalink to this headline">¶</a></h2>
@@ -290,7 +295,7 @@ image, in addition to transforms (position, scale and rotation) and optional col
 <p>You render it with a <code class="docutils literal notranslate"><span class="pre">Canvas</span></code> and an optional <code class="docutils literal notranslate"><span class="pre">Paint</span></code>, <code class="docutils literal notranslate"><span class="pre">BlendMode</span></code> and <code class="docutils literal notranslate"><span class="pre">CullRect</span></code>.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">SpriteBatchComponent</span></code> is also available for your convenience.</p>
 <p>See the examples
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/sprites/spritebatch.dart">here</a>.</p>
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/sprites/spritebatch_example.dart">here</a>.</p>
 </section>
 <section id="imagecomposition">
 <h2>ImageComposition<a class="headerlink" href="#imagecomposition" title="Permalink to this headline">¶</a></h2>
@@ -403,11 +408,13 @@ and the former ticks the internal clock to update the frames.</p>
 <p>Animations are normally used inside <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code>s, but custom components with several
 Animations can be created as well.</p>
 <p>A complete example of using animations as widgets can be found
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/widgets/sprite_animation_widget.dart">here</a>.</p>
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/sprite_animation_widget_example.dart">here</a>.</p>
 </section>
 <section id="flareanimation">
 <h2>FlareAnimation<a class="headerlink" href="#flareanimation" title="Permalink to this headline">¶</a></h2>
-<p>Flame provides a simple wrapper of <a class="reference external" href="https://rive.app/#LearnMore">Flare</a> animations so you can use
+<p>Do note that Flare is discontinued and <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_rive">Rive</a>
+is preferred.</p>
+<p>Flame provides a simple wrapper of <a class="reference external" href="https://flare.rive.app/">Flare</a> animations so you can use
 them in Flame games.</p>
 <p>Check the following snippet on how to use this wrapper:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">Game</span> <span class="p">{</span>
@@ -447,7 +454,7 @@ them in Flame games.</p>
 <p>FlareAnimations are normally used inside <code class="docutils literal notranslate"><span class="pre">FlareComponent</span></code>s, that way <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> will handle calling
 <code class="docutils literal notranslate"><span class="pre">render</span></code> and <code class="docutils literal notranslate"><span class="pre">update</span></code> automatically.</p>
 <p>You can see a full example of how to use Flare together with Flame in the example
-<a class="reference external" href="https://github.com/flame-engine/flame_flare/tree/main/example">here</a>.</p>
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_flare/example">here</a>.</p>
 </section>
 <section id="spritesheet">
 <h2>SpriteSheet<a class="headerlink" href="#spritesheet" title="Permalink to this headline">¶</a></h2>
@@ -471,7 +478,7 @@ a very simple example of how to use it:</p>
 </pre></div>
 </div>
 <p>You can see a full example of the <code class="docutils literal notranslate"><span class="pre">SpriteSheet</span></code> class
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/sprites/spritesheet.dart">here</a>.</p>
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/sprites/spritesheet_example.dart">here</a>.</p>
 </section>
 </section>
 

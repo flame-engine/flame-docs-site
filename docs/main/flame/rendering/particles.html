@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../flame.html">flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game_widget.html">GameWidget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/tap-events.html">Tap events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
@@ -130,7 +136,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/splash_screen.html">Splash screen</a></li>
@@ -292,7 +297,7 @@ the nesting behaviors.</p>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">FlareParticle</span></code> renders Flare animation within a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> effect</p></li>
 </ul>
 <p>More examples of how to use these behaviors together are available
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/utils/particles.dart">here</a>.
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/particles_example.dart">here</a>.
 All the implementations are available in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame/lib/src/particles">particles</a> folder
 on the Flame repository.</p>
@@ -471,8 +476,8 @@ to the <code class="docutils literal notranslate"><span class="pre">game</span><
 </section>
 <section id="flareparticle">
 <h2>FlareParticle<a class="headerlink" href="#flareparticle" title="Permalink to this headline">¶</a></h2>
-<p>To use Flare within Flame, use the <a class="reference external" href="https://github.com/flame-engine/flame_flare"><code class="docutils literal notranslate"><span class="pre">flame_flare</span></code></a>
-package.</p>
+<p>To use Flare within Flame, use the
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_flare"><code class="docutils literal notranslate"><span class="pre">flame_flare</span></code></a> package.</p>
 <p>It will provide a class called <code class="docutils literal notranslate"><span class="pre">FlareParticle</span></code> that is a container for <code class="docutils literal notranslate"><span class="pre">FlareActorAnimation</span></code>, it
 propagates the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> methods to its child.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;package:flame_flare/flame_flare.dart&#39;</span><span class="p">;</span>

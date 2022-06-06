@@ -7,14 +7,30 @@ This diagram might look intimidating, but don't worry, it is not as complex as i
 
 ## Component
 
-All components inherit from the abstract class `Component`.
+All components inherit from the abstract class `Component` and all components can have other
+`Component`s as children. This is the base of what we call the Flame Component System, or FCS for
+short.
 
-If you want to skip reading about abstract classes you can jump directly to
-[](#positioncomponent).
+Children can be added either with the `add(Component c)` method or directly in the constructor.
+
+Example:
+
+```dart
+void main() {
+  final component1 = Component(children: [Component(), Component()]);
+  final component2 = Component();
+  component2.add(Component());
+  component2.addAll([Component(), Component()]);
+}
+```
+
+The `Component()` here could of course be any subclass of `Component`.
 
 Every `Component` has a few methods that you can optionally implement, which are used by the
-`FlameGame` class. If you are not using `FlameGame`, you can use these methods on your own game loop
-if you wish.
+`FlameGame` class. 
+
+
+### Component lifecycle
 
 ![Component Lifecycle Diagram](../images/component_lifecycle.png)
 
@@ -37,10 +53,12 @@ If the parent is not mounted yet, then this method will wait in a queue (this wi
 on the rest of the game engine).
 
 A component lifecycle state can be checked by a series of getters:
+
  - `isLoaded`: Returns a bool with the current loaded state
  - `loaded`: Returns a future that will complete once the component has finished loading
  - `isMounted`: Returns a bool with the current mounted state
  - `mounted`: Returns a future that will complete once the component has finished mounting
+
 
 ### Priority
 
@@ -141,7 +159,7 @@ class MyGame extends FlameGame {
         children: [
           HighScoreDisplay(),
           HitPointsDisplay(),
-          FpsCounter(),
+          FpsComponent(),
         ],
       ),
     );
@@ -157,6 +175,27 @@ Note that the children added via either methods are only guaranteed to be
 available eventually: after they are loaded and mounted. We can only assure
 that they will appear in the children list in the same order as they were
 scheduled for addition.
+
+
+### Ensuring a component has a given parent
+
+When a component requires to be added to a specific parent type the
+`ParentIsA` mixin can be used to enforce a strongly typed parent.
+
+Example:
+
+```dart
+class MyComponent extends Component with ParentIsA<MyParentComponent> {
+  @override
+  Future<void> onLoad() async {
+    // parent is of type MyParentComponent
+    print(parent.myValue);
+  }
+}
+```
+
+If you try to add `MyComponent` to a parent that is not `MyParentComponent`,
+an assertion error will be thrown.
 
 
 ### Querying child components
@@ -186,6 +225,33 @@ the registered component type can be seen below.
 @override
 void update(double dt) {
   final allPositionComponents = children.query<PositionComponent>();
+}
+```
+
+
+### Querying components at a specific point on the screen
+
+The method `componentsAtPoint()` allows you to check which components were rendered at some point
+on the screen. The returned value is an iterable of components, but you can also obtain the
+coordinates of the initial point in each component's local coordinate space by providing a writable
+`List<Vector2>` as a second parameter.
+
+The iterable retrieves the components in the front-to-back order, i.e. first the components in the
+front, followed by the components in the back.
+
+This method can only return components that implement the method `containsLocalPoint()`. The
+`PositionComponent` (which is the base class for many components in Flame) provides such an
+implementation. However, if you're defining a custom class that derives from `Component`, you'd have
+to implement the `containsLocalPoint()` method yourself.
+
+Here is an example of how `componentsAtPoint()` can be used:
+```dart
+void onDragUpdate(DragUpdateInfo info) {
+  game.componentsAtPoint(info.widget).forEach((component) {
+    if (component is DropTarget) {
+      component.highlight();
+    }
+  });
 }
 ```
 
@@ -364,11 +430,52 @@ this.player = SpriteAnimationComponent.fromFrameData(
 If you are not using `FlameGame`, don't forget this component needs to be updated, because the
 animation object needs to be ticked to move the frames.
 
+To listen when the animation is done (when it reaches the last frame and is not looping) you can
+use `animation.completed`.
+
+Example:
+
+```dart
+await animation.completed;
+
+doSomething();
+
+// or alternatively
+
+animation.completed.whenComplete(doSomething);
+```
+
+Additionally, this component also has the following optional event callbacks:  `onStart`, `onFrame`,
+and `onComplete`. To listen to these events, you can do the following:
+
+```dart
+final animation =
+    SpriteAnimation.spriteList([sprite], stepTime: 1, loop: false)
+      ..onStart = () {
+        // Do something on start.
+      };
+
+final animation =
+    SpriteAnimation.spriteList([sprite], stepTime: 1, loop: false)
+      ..onComplete = () {
+        // Do something on completion.
+      };
+
+final animation =
+    SpriteAnimation.spriteList([sprite], stepTime: 1, loop: false)
+      ..onFrame = (index) {
+        if (index == 1) {
+          // Do something for the second frame.
+        }
+      };
+```
 
 ## SpriteAnimationGroup
 
 `SpriteAnimationGroupComponent` is a simple wrapper around `SpriteAnimationComponent` which enables
-your component to hold several animations and change the current playing animation in runtime.
+your component to hold several animations and change the current playing animation at runtime. Since
+this component is just a wrapper, the event listeners can be implemented as described in
+[](#spriteanimationcomponent).
 
 Its use is very similar to the `SpriteAnimationComponent` but instead of being initialized with a
 single animation, this component receives a Map of a generic type `T` as key and a
@@ -499,7 +606,7 @@ controller.rightHandNode.rotation = math.pi;
 You can also change the current playing animation by using the `updateAnimation` method.
 
 For a working example, check the example in the
-[flame_flare repository](https://github.com/flame-engine/flame_flare/tree/main/example).
+[flame_flare repository](https://github.com/flame-engine/flame/tree/main/packages/flame_flare/example).
 
 
 ## ParallaxComponent
@@ -529,7 +636,7 @@ Future<void> onLoad() async {
 A ParallaxComponent can also "load itself" by implementing the `onLoad` method:
 
 ```dart
-class MyParallaxComponent extends ParallaxComponent with HasGameRef<MyGame> {
+class MyParallaxComponent extends ParallaxComponent<MyGame> {
   @override
   Future<void> onLoad() async {
     parallax = await gameRef.loadParallax([
@@ -778,11 +885,6 @@ void main() {
 ```
 
 
-## SpriteBodyComponent
-
-See [SpriteBodyComponent](../other_modules/forge2d.md#spritebodycomponent) in the Forge2D documentation.
-
-
 ## TiledComponent
 
 Currently we have a very basic implementation of a Tiled component. This API uses the lib
@@ -826,8 +928,8 @@ This is an example of how a quarter-length map looks like:
 
 Flame's Example app contains a more in-depth example, featuring how to parse coordinates to make a
 selector. The code can be found
-[here](https://github.com/flame-engine/flame/blob/main/examples/lib/stories/tile_maps/isometric_tile_map.dart),
-and a live version can be seen [here](https://examples.flame-engine.org/#/Tile%20Maps_Isometric%20Tile%20Map).
+[here](https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/isometric_tile_map_example.dart),
+and a live version can be seen [here](https://examples.flame-engine.org/#/Rendering_Isometric%20Tile%20Map).
 
 
 ## NineTileBoxComponent
@@ -844,7 +946,7 @@ Using this, you can get a box/rectangle that expands well to any sizes. This is 
 panels, dialogs, borders.
 
 Check the example app
-[nine_tile_box](https://github.com/flame-engine/flame/blob/main/examples/lib/stories/utils/nine_tile_box.dart)
+[nine_tile_box](https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/nine_tile_box_example.dart)
 for details on how to use it.
 
 
@@ -860,7 +962,7 @@ This can be used for sharing custom rendering logic between your Flame game, and
 widgets.
 
 Check the example app
-[custom_painter_component](https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/custom_painter_component.dart)
+[custom_painter_component](https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/custom_painter_example.dart)
 for details on how to use it.
 
 
@@ -870,4 +972,4 @@ Flame provides a set of effects that can be applied to a certain type of compone
 can be used to animate some properties of your components, like position or dimensions.
 You can check the list of those effects [here](effects.md).
 
-Examples of the running effects can be found [here](https://github.com/flame-engine/flame/blob/main/examples/lib/stories/effects);
+Examples of the running effects can be found [here](https://github.com/flame-engine/flame/tree/main/examples/lib/stories/effects);

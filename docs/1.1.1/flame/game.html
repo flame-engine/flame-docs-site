@@ -13,6 +13,7 @@
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
   <script src="../_static/jquery.js"></script>
   <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -147,7 +148,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="flamegame">
-<h1>FlameGame<a class="headerlink" href="#flamegame" title="Permalink to this headline">¶</a></h1>
+<h1>FlameGame<a class="headerlink" href="#flamegame" title="Permalink to this heading">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is the most basic and most commonly used <code class="docutils literal notranslate"><span class="pre">Game</span></code> class in Flame.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class implements a <code class="docutils literal notranslate"><span class="pre">Component</span></code> based <code class="docutils literal notranslate"><span class="pre">Game</span></code>. Basically it has a list of <code class="docutils literal notranslate"><span class="pre">Component</span></code>s
 and passes the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> calls to all <code class="docutils literal notranslate"><span class="pre">Component</span></code>s that have been added to the game.</p>
@@ -158,40 +159,40 @@ to the camera and viewport.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame.camera</span></code> controls which point in the coordinate space should be the top-left of the
 screen (it defaults to [0,0] like a regular <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>).</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> implementation example can be seen below:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCrate</span> <span class="kd">extends</span> <span class="n">SpriteComponent</span> <span class="p">{</span>
-  <span class="c1">// creates a component that renders the crate.png sprite, with size 16 x 16</span>
-  <span class="n">MyCrate</span><span class="p">()</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">size:</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span> <span class="nl">anchor:</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCrate</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// creates a component that renders the crate.png sprite, with size 16 x 16</span><span class="w"></span>
+<span class="w">  </span><span class="n">MyCrate</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span><span class="w"> </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">);</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="n">sprite</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;crate.png&#39;</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;crate.png&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">onGameResize</span><span class="p">(</span><span class="n">Vector2</span> <span class="n">gameSize</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">onGameResize</span><span class="p">(</span><span class="n">gameSize</span><span class="p">);</span>
-    <span class="c1">// We don&#39;t need to set the position in the constructor, we can set it </span>
-    <span class="c1">// directly here since it will be called once before the first time it </span>
-    <span class="c1">// is rendered.</span>
-    <span class="n">position</span> <span class="o">=</span> <span class="n">gameSize</span> <span class="o">/</span> <span class="m">2</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onGameResize</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">gameSize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onGameResize</span><span class="p">(</span><span class="n">gameSize</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// We don&#39;t need to set the position in the constructor, we can set it </span><span class="w"></span>
+<span class="w">    </span><span class="c1">// directly here since it will be called once before the first time it </span><span class="w"></span>
+<span class="w">    </span><span class="c1">// is rendered.</span><span class="w"></span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gameSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
-  <span class="nd">@override</span>
-  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="kd">await</span> <span class="n">add</span><span class="p">(</span><span class="n">MyCrate</span><span class="p">());</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">MyCrate</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">final</span> <span class="n">myGame</span> <span class="o">=</span> <span class="n">MyGame</span><span class="p">();</span>
-  <span class="n">runApp</span><span class="p">(</span>
-    <span class="n">GameWidget</span><span class="p">(</span>
-      <span class="nl">game:</span> <span class="n">myGame</span><span class="p">,</span>
-    <span class="p">),</span>
-  <span class="p">);</span>
-<span class="p">}</span>
+<span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">myGame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">GameWidget</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nl">game:</span><span class="w"> </span><span class="n">myGame</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p><strong>Note:</strong> If you instantiate your game in a build method your game will be rebuilt every time the
@@ -204,7 +205,7 @@ want to remove a list of components.</p>
 <p>Any component on which the <code class="docutils literal notranslate"><span class="pre">remove()</span></code> method has been called will also be removed. You can do this
 simply by doing <code class="docutils literal notranslate"><span class="pre">yourComponent.remove();</span></code>.</p>
 <section id="lifecycle">
-<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline">¶</a></h2>
+<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this heading">¶</a></h2>
 <p><img alt="Game Lifecycle Diagram" src="../_images/component_lifecycle.png" /></p>
 <p>When a game first is added to a Flutter widget tree the following lifecycle methods will be called
 in order: <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>, <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and <code class="docutils literal notranslate"><span class="pre">onMount</span></code>. After that it goes on to call <code class="docutils literal notranslate"><span class="pre">update</span></code> and
@@ -213,7 +214,7 @@ Once the <code class="docutils literal notranslate"><span class="pre">GameWidget
 component is removed from the component tree.</p>
 </section>
 <section id="debug-mode">
-<h2>Debug mode<a class="headerlink" href="#debug-mode" title="Permalink to this headline">¶</a></h2>
+<h2>Debug mode<a class="headerlink" href="#debug-mode" title="Permalink to this heading">¶</a></h2>
 <p>Flame’s <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class provides a variable called <code class="docutils literal notranslate"><span class="pre">debugMode</span></code>, which by default is <code class="docutils literal notranslate"><span class="pre">false</span></code>. It can
 however, be set to <code class="docutils literal notranslate"><span class="pre">true</span></code> to enable debug features for the components of the game. <strong>Be aware</strong> that
 the value of this variable is passed through to its components when they are added to the game, so
@@ -221,21 +222,21 @@ if you change the <code class="docutils literal notranslate"><span class="pre">d
 <p>To read more about the <code class="docutils literal notranslate"><span class="pre">debugMode</span></code> on Flame, please refer to the <a class="reference internal" href="other/debug.html"><span class="doc std std-doc">Debug Docs</span></a></p>
 </section>
 <section id="change-background-color">
-<h2>Change background color<a class="headerlink" href="#change-background-color" title="Permalink to this headline">¶</a></h2>
+<h2>Change background color<a class="headerlink" href="#change-background-color" title="Permalink to this heading">¶</a></h2>
 <p>To change the background color of your <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> you have to override <code class="docutils literal notranslate"><span class="pre">backgroundColor()</span></code>.</p>
 <p>In the following example the background color is set to be fully transparent, so that you can see
 the widgets that are behind the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>. The default it opaque black.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
-  <span class="nd">@override</span>
-  <span class="n">Color</span> <span class="n">backgroundColor</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="k">const</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0x00000000</span><span class="p">);</span>
-<span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Color</span><span class="w"> </span><span class="n">backgroundColor</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0x00000000</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Note that the background color can’t change dynamically while the game is running, but you could
 just draw a background that covers the whole canvas if you would want it to change dynamically.</p>
 </section>
 <section id="singlegameinstance-mixin">
-<h2>SingleGameInstance mixin<a class="headerlink" href="#singlegameinstance-mixin" title="Permalink to this headline">¶</a></h2>
+<h2>SingleGameInstance mixin<a class="headerlink" href="#singlegameinstance-mixin" title="Permalink to this heading">¶</a></h2>
 <p>An optional mixin <code class="docutils literal notranslate"><span class="pre">SingleGameInstance</span></code> can be applied to your game if you are making a single-game
 application. This is a common scenario when building games: there is a single full-screen
 <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> which hosts a single <code class="docutils literal notranslate"><span class="pre">Game</span></code> instance.</p>
@@ -244,14 +245,14 @@ application. This is a common scenario when building games: there is a single fu
 parent is not yet mounted itself. Consequently, <code class="docutils literal notranslate"><span class="pre">await</span></code>-ing on <code class="docutils literal notranslate"><span class="pre">parent.add(component)</span></code> is guaranteed
 to always finish loading the component.</p>
 <p>Using this mixin is simple:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">SingleGameInstance</span> <span class="p">{</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">SingleGameInstance</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="low-level-game-api">
-<h2>Low-level Game API<a class="headerlink" href="#low-level-game-api" title="Permalink to this headline">¶</a></h2>
+<h2>Low-level Game API<a class="headerlink" href="#low-level-game-api" title="Permalink to this heading">¶</a></h2>
 <p><img alt="Game low-level API" src="../_images/game_mixin.png" /></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixin is a low-level API that can be used when you want to implement the functionality of
 how the game engine should be structured. <code class="docutils literal notranslate"><span class="pre">Game</span></code> does not implement any <code class="docutils literal notranslate"><span class="pre">update</span></code> or
@@ -264,31 +265,31 @@ the class is removed from a parent.</p>
 <p><strong>Note</strong>: The <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixin allows for more freedom of how to implement things, but you are also
 missing out on all of the built-in features in Flame if you use it.</p>
 <p>An example of how a <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementation could look like:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGameSubClass</span> <span class="kd">with</span> <span class="n">Game</span> <span class="p">{</span>
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">render</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// ...</span>
-  <span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGameSubClass</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// ...</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">final</span> <span class="n">myGame</span> <span class="o">=</span> <span class="n">MyGameSubClass</span><span class="p">();</span>
-  <span class="n">runApp</span><span class="p">(</span>
-    <span class="n">GameWidget</span><span class="p">(</span>
-      <span class="nl">game:</span> <span class="n">myGame</span><span class="p">,</span>
-    <span class="p">)</span>
-  <span class="p">);</span>
-<span class="p">}</span>
+<span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">myGame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGameSubClass</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">GameWidget</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nl">game:</span><span class="w"> </span><span class="n">myGame</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="game-loop">
-<h2>Game Loop<a class="headerlink" href="#game-loop" title="Permalink to this headline">¶</a></h2>
+<h2>Game Loop<a class="headerlink" href="#game-loop" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> module is a simple abstraction over the game loop concept. Basically most games are
 built upon two methods:</p>
 <ul class="simple">
@@ -299,7 +300,7 @@ to the next state.</p></li>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is used by all of Flame’s <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementations.</p>
 </section>
 <section id="pause-resuming-game-execution">
-<h2>Pause/Resuming game execution<a class="headerlink" href="#pause-resuming-game-execution" title="Permalink to this headline">¶</a></h2>
+<h2>Pause/Resuming game execution<a class="headerlink" href="#pause-resuming-game-execution" title="Permalink to this heading">¶</a></h2>
 <p>A Flame <code class="docutils literal notranslate"><span class="pre">Game</span></code> can be paused and resumed in two ways:</p>
 <ul class="simple">
 <li><p>With the use of the <code class="docutils literal notranslate"><span class="pre">pauseEngine</span></code> and <code class="docutils literal notranslate"><span class="pre">resumeEngine</span></code> methods.</p></li>
@@ -309,7 +310,7 @@ to the next state.</p></li>
 renders will happen until it is resumed.</p>
 </section>
 <section id="flutter-widgets-and-game-instances">
-<h2>Flutter Widgets and Game instances<a class="headerlink" href="#flutter-widgets-and-game-instances" title="Permalink to this headline">¶</a></h2>
+<h2>Flutter Widgets and Game instances<a class="headerlink" href="#flutter-widgets-and-game-instances" title="Permalink to this heading">¶</a></h2>
 <p>Since a Flame game can be wrapped in a widget, it is quite easy to use it alongside other Flutter
 widgets. But still, there is the Widgets Overlay API that makes things even easier.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Game.overlays</span></code> enables any Flutter widget to be shown on top of a game instance, this makes it very
@@ -318,26 +319,26 @@ easy to create things like a pause menu or an inventory screen for example.</p>
 overlay to be shown or hidden, respectively, via a <code class="docutils literal notranslate"><span class="pre">String</span></code> argument that identifies the overlay.
 After that it can be specified which widgets represent each overlay in the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> declaration
 by setting a <code class="docutils literal notranslate"><span class="pre">overlayBuilderMap</span></code>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Inside the game methods:</span>
-<span class="kd">final</span> <span class="n">pauseOverlayIdentifier</span> <span class="o">=</span> <span class="s1">&#39;PauseMenu&#39;</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Inside the game methods:</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">pauseOverlayIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PauseMenu&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span> <span class="c1">// Marks &#39;PauseMenu&#39; to be rendered.</span>
-<span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span> <span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span>
+<span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span><span class="w"> </span><span class="c1">// Marks &#39;PauseMenu&#39; to be rendered.</span><span class="w"></span>
+<span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span><span class="w"> </span><span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span><span class="w"></span>
 </pre></div>
 </div>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// On the widget declaration</span>
-<span class="kd">final</span> <span class="n">game</span> <span class="o">=</span> <span class="n">MyGame</span><span class="p">();</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// On the widget declaration</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span><span class="w"></span>
 
-<span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="n">GameWidget</span><span class="p">(</span>
-    <span class="nl">game:</span> <span class="n">game</span><span class="p">,</span>
-    <span class="nl">overlayBuilderMap:</span> <span class="p">{</span>
-      <span class="s1">&#39;PauseMenu&#39;</span><span class="o">:</span> <span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">,</span> <span class="n">MyGame</span> <span class="n">game</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">Text</span><span class="p">(</span><span class="s1">&#39;A pause menu&#39;</span><span class="p">);</span>
-      <span class="p">},</span>
-    <span class="p">},</span>
-  <span class="p">);</span>
-<span class="p">}</span>
+<span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">overlayBuilderMap:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="s1">&#39;PauseMenu&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;A pause menu&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The order of rendering for an overlay is determined by the order of the keys in the

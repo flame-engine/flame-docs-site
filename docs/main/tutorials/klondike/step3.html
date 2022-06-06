@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../flame/flame.html">flame</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">GameWidget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame/camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap-events.html">Tap events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="klondike.html">Klondike</a><ul class="current">
@@ -130,7 +136,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/splash_screen.html">Splash screen</a></li>
@@ -593,9 +598,9 @@ components/card.dart</div>
 <span class="linenos">  2</span><span class="k">import</span> <span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
 <span class="linenos">  3</span>
 <span class="linenos">  4</span><span class="k">import</span> <span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
-<span class="linenos">  5</span><span class="k">import</span> <span class="s1">&#39;../klondike_game.dart&#39;</span><span class="p">;</span>
-<span class="linenos">  6</span><span class="k">import</span> <span class="s1">&#39;../rank.dart&#39;</span><span class="p">;</span>
-<span class="linenos">  7</span><span class="k">import</span> <span class="s1">&#39;../suit.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  5</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step3/klondike_game.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  6</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step3/rank.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  7</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step3/suit.dart&#39;</span><span class="p">;</span>
 <span class="linenos">  8</span>
 <span class="linenos">  9</span><span class="kd">class</span> <span class="nc">Card</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="p">{</span>
 <span class="linenos"> 10</span>  <span class="n">Card</span><span class="p">(</span><span class="kt">int</span> <span class="n">intRank</span><span class="p">,</span> <span class="kt">int</span> <span class="n">intSuit</span><span class="p">)</span>
@@ -849,11 +854,11 @@ klondike_game.dart</div>
 <span class="linenos"> 5</span><span class="k">import</span> <span class="s1">&#39;package:flame/flame.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 6</span><span class="k">import</span> <span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 7</span>
-<span class="linenos"> 8</span><span class="k">import</span> <span class="s1">&#39;components/card.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 9</span><span class="k">import</span> <span class="s1">&#39;components/foundation.dart&#39;</span><span class="p">;</span>
-<span class="linenos">10</span><span class="k">import</span> <span class="s1">&#39;components/pile.dart&#39;</span><span class="p">;</span>
-<span class="linenos">11</span><span class="k">import</span> <span class="s1">&#39;components/stock.dart&#39;</span><span class="p">;</span>
-<span class="linenos">12</span><span class="k">import</span> <span class="s1">&#39;components/waste.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step3/components/card.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step3/components/foundation.dart&#39;</span><span class="p">;</span>
+<span class="linenos">10</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step3/components/pile.dart&#39;</span><span class="p">;</span>
+<span class="linenos">11</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step3/components/stock.dart&#39;</span><span class="p">;</span>
+<span class="linenos">12</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step3/components/waste.dart&#39;</span><span class="p">;</span>
 <span class="linenos">13</span>
 <span class="linenos">14</span><span class="kd">class</span> <span class="nc">KlondikeGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
 <span class="linenos">15</span>  <span class="kd">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">cardGap</span> <span class="o">=</span> <span class="m">175.0</span><span class="p">;</span>
@@ -932,7 +937,7 @@ main.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span> <span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 <span class="linenos">2</span><span class="k">import</span> <span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span>
 <span class="linenos">3</span>
-<span class="linenos">4</span><span class="k">import</span> <span class="s1">&#39;klondike_game.dart&#39;</span><span class="p">;</span>
+<span class="linenos">4</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step3/klondike_game.dart&#39;</span><span class="p">;</span>
 <span class="linenos">5</span>
 <span class="linenos">6</span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
 <span class="linenos">7</span>  <span class="kd">final</span> <span class="n">game</span> <span class="o">=</span> <span class="n">KlondikeGame</span><span class="p">();</span>
@@ -944,81 +949,87 @@ main.dart</div>
 rank.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span> <span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 2</span><span class="k">import</span> <span class="s1">&#39;package:flutter/foundation.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 3</span><span class="k">import</span> <span class="s1">&#39;klondike_game.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step3/klondike_game.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 4</span>
 <span class="linenos"> 5</span><span class="nd">@immutable</span>
 <span class="linenos"> 6</span><span class="kd">class</span> <span class="nc">Rank</span> <span class="p">{</span>
 <span class="linenos"> 7</span>  <span class="kd">factory</span> <span class="n">Rank</span><span class="p">.</span><span class="n">fromInt</span><span class="p">(</span><span class="kt">int</span> <span class="n">value</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 8</span>    <span class="k">assert</span><span class="p">(</span><span class="n">value</span> <span class="o">&gt;=</span> <span class="m">1</span> <span class="o">&amp;&amp;</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="m">13</span><span class="p">);</span>
-<span class="linenos"> 9</span>    <span class="k">return</span> <span class="n">_singletons</span><span class="p">[</span><span class="n">value</span> <span class="o">-</span> <span class="m">1</span><span class="p">];</span>
-<span class="linenos">10</span>  <span class="p">}</span>
-<span class="linenos">11</span>
-<span class="linenos">12</span>  <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span>
-<span class="linenos">13</span>    <span class="k">this</span><span class="p">.</span><span class="n">value</span><span class="p">,</span>
-<span class="linenos">14</span>    <span class="k">this</span><span class="p">.</span><span class="n">label</span><span class="p">,</span>
-<span class="linenos">15</span>    <span class="kt">double</span> <span class="n">x1</span><span class="p">,</span>
-<span class="linenos">16</span>    <span class="kt">double</span> <span class="n">y1</span><span class="p">,</span>
-<span class="linenos">17</span>    <span class="kt">double</span> <span class="n">x2</span><span class="p">,</span>
-<span class="linenos">18</span>    <span class="kt">double</span> <span class="n">y2</span><span class="p">,</span>
-<span class="linenos">19</span>    <span class="kt">double</span> <span class="n">w</span><span class="p">,</span>
-<span class="linenos">20</span>    <span class="kt">double</span> <span class="n">h</span><span class="p">,</span>
-<span class="linenos">21</span>  <span class="p">)</span>   <span class="o">:</span> <span class="n">redSprite</span> <span class="o">=</span> <span class="n">klondikeSprite</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span>
-<span class="linenos">22</span>        <span class="n">blackSprite</span> <span class="o">=</span> <span class="n">klondikeSprite</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>
-<span class="linenos">23</span>
-<span class="linenos">24</span>  <span class="kd">final</span> <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
-<span class="linenos">25</span>  <span class="kd">final</span> <span class="kt">String</span> <span class="n">label</span><span class="p">;</span>
-<span class="linenos">26</span>  <span class="kd">final</span> <span class="n">Sprite</span> <span class="n">redSprite</span><span class="p">;</span>
-<span class="linenos">27</span>  <span class="kd">final</span> <span class="n">Sprite</span> <span class="n">blackSprite</span><span class="p">;</span>
-<span class="linenos">28</span>
-<span class="linenos">29</span>  <span class="kd">static</span> <span class="kd">late</span> <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Rank</span><span class="o">&gt;</span> <span class="n">_singletons</span> <span class="o">=</span> <span class="p">[</span>
-<span class="linenos">30</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="m">335</span><span class="p">,</span> <span class="m">164</span><span class="p">,</span> <span class="m">789</span><span class="p">,</span> <span class="m">161</span><span class="p">,</span> <span class="m">120</span><span class="p">,</span> <span class="m">129</span><span class="p">),</span>
-<span class="linenos">31</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="m">20</span><span class="p">,</span> <span class="m">19</span><span class="p">,</span> <span class="m">15</span><span class="p">,</span> <span class="m">322</span><span class="p">,</span> <span class="m">83</span><span class="p">,</span> <span class="m">125</span><span class="p">),</span>
-<span class="linenos">32</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="m">122</span><span class="p">,</span> <span class="m">19</span><span class="p">,</span> <span class="m">117</span><span class="p">,</span> <span class="m">322</span><span class="p">,</span> <span class="m">80</span><span class="p">,</span> <span class="m">127</span><span class="p">),</span>
-<span class="linenos">33</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="m">213</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">208</span><span class="p">,</span> <span class="m">315</span><span class="p">,</span> <span class="m">93</span><span class="p">,</span> <span class="m">132</span><span class="p">),</span>
-<span class="linenos">34</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="m">314</span><span class="p">,</span> <span class="m">21</span><span class="p">,</span> <span class="m">309</span><span class="p">,</span> <span class="m">324</span><span class="p">,</span> <span class="m">85</span><span class="p">,</span> <span class="m">125</span><span class="p">),</span>
-<span class="linenos">35</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="m">419</span><span class="p">,</span> <span class="m">17</span><span class="p">,</span> <span class="m">414</span><span class="p">,</span> <span class="m">320</span><span class="p">,</span> <span class="m">84</span><span class="p">,</span> <span class="m">129</span><span class="p">),</span>
-<span class="linenos">36</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">7</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span> <span class="m">509</span><span class="p">,</span> <span class="m">21</span><span class="p">,</span> <span class="m">505</span><span class="p">,</span> <span class="m">324</span><span class="p">,</span> <span class="m">92</span><span class="p">,</span> <span class="m">128</span><span class="p">),</span>
-<span class="linenos">37</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">8</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">,</span> <span class="m">612</span><span class="p">,</span> <span class="m">19</span><span class="p">,</span> <span class="m">607</span><span class="p">,</span> <span class="m">322</span><span class="p">,</span> <span class="m">78</span><span class="p">,</span> <span class="m">127</span><span class="p">),</span>
-<span class="linenos">38</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">9</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="m">709</span><span class="p">,</span> <span class="m">19</span><span class="p">,</span> <span class="m">704</span><span class="p">,</span> <span class="m">322</span><span class="p">,</span> <span class="m">84</span><span class="p">,</span> <span class="m">130</span><span class="p">),</span>
-<span class="linenos">39</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="m">810</span><span class="p">,</span> <span class="m">20</span><span class="p">,</span> <span class="m">805</span><span class="p">,</span> <span class="m">322</span><span class="p">,</span> <span class="m">137</span><span class="p">,</span> <span class="m">127</span><span class="p">),</span>
-<span class="linenos">40</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">11</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="m">15</span><span class="p">,</span> <span class="m">170</span><span class="p">,</span> <span class="m">469</span><span class="p">,</span> <span class="m">167</span><span class="p">,</span> <span class="m">56</span><span class="p">,</span> <span class="m">126</span><span class="p">),</span>
-<span class="linenos">41</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">12</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">,</span> <span class="m">92</span><span class="p">,</span> <span class="m">168</span><span class="p">,</span> <span class="m">547</span><span class="p">,</span> <span class="m">165</span><span class="p">,</span> <span class="m">132</span><span class="p">,</span> <span class="m">128</span><span class="p">),</span>
-<span class="linenos">42</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">13</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="m">243</span><span class="p">,</span> <span class="m">170</span><span class="p">,</span> <span class="m">696</span><span class="p">,</span> <span class="m">167</span><span class="p">,</span> <span class="m">92</span><span class="p">,</span> <span class="m">123</span><span class="p">),</span>
-<span class="linenos">43</span>  <span class="p">];</span>
-<span class="linenos">44</span><span class="p">}</span>
+<span class="linenos"> 8</span>    <span class="k">assert</span><span class="p">(</span>
+<span class="linenos"> 9</span>      <span class="n">value</span> <span class="o">&gt;=</span> <span class="m">1</span> <span class="o">&amp;&amp;</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="m">13</span><span class="p">,</span>
+<span class="linenos">10</span>      <span class="s1">&#39;value is outside of the bounds of what a rank can be&#39;</span><span class="p">,</span>
+<span class="linenos">11</span>    <span class="p">);</span>
+<span class="linenos">12</span>    <span class="k">return</span> <span class="n">_singletons</span><span class="p">[</span><span class="n">value</span> <span class="o">-</span> <span class="m">1</span><span class="p">];</span>
+<span class="linenos">13</span>  <span class="p">}</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span>  <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span>
+<span class="linenos">16</span>    <span class="k">this</span><span class="p">.</span><span class="n">value</span><span class="p">,</span>
+<span class="linenos">17</span>    <span class="k">this</span><span class="p">.</span><span class="n">label</span><span class="p">,</span>
+<span class="linenos">18</span>    <span class="kt">double</span> <span class="n">x1</span><span class="p">,</span>
+<span class="linenos">19</span>    <span class="kt">double</span> <span class="n">y1</span><span class="p">,</span>
+<span class="linenos">20</span>    <span class="kt">double</span> <span class="n">x2</span><span class="p">,</span>
+<span class="linenos">21</span>    <span class="kt">double</span> <span class="n">y2</span><span class="p">,</span>
+<span class="linenos">22</span>    <span class="kt">double</span> <span class="n">w</span><span class="p">,</span>
+<span class="linenos">23</span>    <span class="kt">double</span> <span class="n">h</span><span class="p">,</span>
+<span class="linenos">24</span>  <span class="p">)</span>   <span class="o">:</span> <span class="n">redSprite</span> <span class="o">=</span> <span class="n">klondikeSprite</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span>
+<span class="linenos">25</span>        <span class="n">blackSprite</span> <span class="o">=</span> <span class="n">klondikeSprite</span><span class="p">(</span><span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span>  <span class="kd">final</span> <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+<span class="linenos">28</span>  <span class="kd">final</span> <span class="kt">String</span> <span class="n">label</span><span class="p">;</span>
+<span class="linenos">29</span>  <span class="kd">final</span> <span class="n">Sprite</span> <span class="n">redSprite</span><span class="p">;</span>
+<span class="linenos">30</span>  <span class="kd">final</span> <span class="n">Sprite</span> <span class="n">blackSprite</span><span class="p">;</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span>  <span class="kd">static</span> <span class="kd">late</span> <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Rank</span><span class="o">&gt;</span> <span class="n">_singletons</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">33</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="s1">&#39;A&#39;</span><span class="p">,</span> <span class="m">335</span><span class="p">,</span> <span class="m">164</span><span class="p">,</span> <span class="m">789</span><span class="p">,</span> <span class="m">161</span><span class="p">,</span> <span class="m">120</span><span class="p">,</span> <span class="m">129</span><span class="p">),</span>
+<span class="linenos">34</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="s1">&#39;2&#39;</span><span class="p">,</span> <span class="m">20</span><span class="p">,</span> <span class="m">19</span><span class="p">,</span> <span class="m">15</span><span class="p">,</span> <span class="m">322</span><span class="p">,</span> <span class="m">83</span><span class="p">,</span> <span class="m">125</span><span class="p">),</span>
+<span class="linenos">35</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="s1">&#39;3&#39;</span><span class="p">,</span> <span class="m">122</span><span class="p">,</span> <span class="m">19</span><span class="p">,</span> <span class="m">117</span><span class="p">,</span> <span class="m">322</span><span class="p">,</span> <span class="m">80</span><span class="p">,</span> <span class="m">127</span><span class="p">),</span>
+<span class="linenos">36</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">4</span><span class="p">,</span> <span class="s1">&#39;4&#39;</span><span class="p">,</span> <span class="m">213</span><span class="p">,</span> <span class="m">12</span><span class="p">,</span> <span class="m">208</span><span class="p">,</span> <span class="m">315</span><span class="p">,</span> <span class="m">93</span><span class="p">,</span> <span class="m">132</span><span class="p">),</span>
+<span class="linenos">37</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">5</span><span class="p">,</span> <span class="s1">&#39;5&#39;</span><span class="p">,</span> <span class="m">314</span><span class="p">,</span> <span class="m">21</span><span class="p">,</span> <span class="m">309</span><span class="p">,</span> <span class="m">324</span><span class="p">,</span> <span class="m">85</span><span class="p">,</span> <span class="m">125</span><span class="p">),</span>
+<span class="linenos">38</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">6</span><span class="p">,</span> <span class="s1">&#39;6&#39;</span><span class="p">,</span> <span class="m">419</span><span class="p">,</span> <span class="m">17</span><span class="p">,</span> <span class="m">414</span><span class="p">,</span> <span class="m">320</span><span class="p">,</span> <span class="m">84</span><span class="p">,</span> <span class="m">129</span><span class="p">),</span>
+<span class="linenos">39</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">7</span><span class="p">,</span> <span class="s1">&#39;7&#39;</span><span class="p">,</span> <span class="m">509</span><span class="p">,</span> <span class="m">21</span><span class="p">,</span> <span class="m">505</span><span class="p">,</span> <span class="m">324</span><span class="p">,</span> <span class="m">92</span><span class="p">,</span> <span class="m">128</span><span class="p">),</span>
+<span class="linenos">40</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">8</span><span class="p">,</span> <span class="s1">&#39;8&#39;</span><span class="p">,</span> <span class="m">612</span><span class="p">,</span> <span class="m">19</span><span class="p">,</span> <span class="m">607</span><span class="p">,</span> <span class="m">322</span><span class="p">,</span> <span class="m">78</span><span class="p">,</span> <span class="m">127</span><span class="p">),</span>
+<span class="linenos">41</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">9</span><span class="p">,</span> <span class="s1">&#39;9&#39;</span><span class="p">,</span> <span class="m">709</span><span class="p">,</span> <span class="m">19</span><span class="p">,</span> <span class="m">704</span><span class="p">,</span> <span class="m">322</span><span class="p">,</span> <span class="m">84</span><span class="p">,</span> <span class="m">130</span><span class="p">),</span>
+<span class="linenos">42</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">10</span><span class="p">,</span> <span class="s1">&#39;10&#39;</span><span class="p">,</span> <span class="m">810</span><span class="p">,</span> <span class="m">20</span><span class="p">,</span> <span class="m">805</span><span class="p">,</span> <span class="m">322</span><span class="p">,</span> <span class="m">137</span><span class="p">,</span> <span class="m">127</span><span class="p">),</span>
+<span class="linenos">43</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">11</span><span class="p">,</span> <span class="s1">&#39;J&#39;</span><span class="p">,</span> <span class="m">15</span><span class="p">,</span> <span class="m">170</span><span class="p">,</span> <span class="m">469</span><span class="p">,</span> <span class="m">167</span><span class="p">,</span> <span class="m">56</span><span class="p">,</span> <span class="m">126</span><span class="p">),</span>
+<span class="linenos">44</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">12</span><span class="p">,</span> <span class="s1">&#39;Q&#39;</span><span class="p">,</span> <span class="m">92</span><span class="p">,</span> <span class="m">168</span><span class="p">,</span> <span class="m">547</span><span class="p">,</span> <span class="m">165</span><span class="p">,</span> <span class="m">132</span><span class="p">,</span> <span class="m">128</span><span class="p">),</span>
+<span class="linenos">45</span>    <span class="n">Rank</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">13</span><span class="p">,</span> <span class="s1">&#39;K&#39;</span><span class="p">,</span> <span class="m">243</span><span class="p">,</span> <span class="m">170</span><span class="p">,</span> <span class="m">696</span><span class="p">,</span> <span class="m">167</span><span class="p">,</span> <span class="m">92</span><span class="p">,</span> <span class="m">123</span><span class="p">),</span>
+<span class="linenos">46</span>  <span class="p">];</span>
+<span class="linenos">47</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="filename docutils container">
 suit.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span> <span class="s1">&#39;package:flame/sprite.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 2</span><span class="k">import</span> <span class="s1">&#39;package:flutter/foundation.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 3</span><span class="k">import</span> <span class="s1">&#39;klondike_game.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step3/klondike_game.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 4</span>
 <span class="linenos"> 5</span><span class="nd">@immutable</span>
 <span class="linenos"> 6</span><span class="kd">class</span> <span class="nc">Suit</span> <span class="p">{</span>
 <span class="linenos"> 7</span>  <span class="kd">factory</span> <span class="n">Suit</span><span class="p">.</span><span class="n">fromInt</span><span class="p">(</span><span class="kt">int</span> <span class="n">index</span><span class="p">)</span> <span class="p">{</span>
-<span class="linenos"> 8</span>    <span class="k">assert</span><span class="p">(</span><span class="n">index</span> <span class="o">&gt;=</span> <span class="m">0</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">&lt;=</span> <span class="m">3</span><span class="p">);</span>
-<span class="linenos"> 9</span>    <span class="k">return</span> <span class="n">_singletons</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
-<span class="linenos">10</span>  <span class="p">}</span>
-<span class="linenos">11</span>
-<span class="linenos">12</span>  <span class="n">Suit</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">label</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">,</span> <span class="kt">double</span> <span class="n">w</span><span class="p">,</span> <span class="kt">double</span> <span class="n">h</span><span class="p">)</span>
-<span class="linenos">13</span>      <span class="o">:</span> <span class="n">sprite</span> <span class="o">=</span> <span class="n">klondikeSprite</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>
+<span class="linenos"> 8</span>    <span class="k">assert</span><span class="p">(</span>
+<span class="linenos"> 9</span>      <span class="n">index</span> <span class="o">&gt;=</span> <span class="m">0</span> <span class="o">&amp;&amp;</span> <span class="n">index</span> <span class="o">&lt;=</span> <span class="m">3</span><span class="p">,</span>
+<span class="linenos">10</span>      <span class="s1">&#39;index is outside of the bounds of what a suit can be&#39;</span><span class="p">,</span>
+<span class="linenos">11</span>    <span class="p">);</span>
+<span class="linenos">12</span>    <span class="k">return</span> <span class="n">_singletons</span><span class="p">[</span><span class="n">index</span><span class="p">];</span>
+<span class="linenos">13</span>  <span class="p">}</span>
 <span class="linenos">14</span>
-<span class="linenos">15</span>  <span class="kd">final</span> <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
-<span class="linenos">16</span>  <span class="kd">final</span> <span class="kt">String</span> <span class="n">label</span><span class="p">;</span>
-<span class="linenos">17</span>  <span class="kd">final</span> <span class="n">Sprite</span> <span class="n">sprite</span><span class="p">;</span>
-<span class="linenos">18</span>
-<span class="linenos">19</span>  <span class="kd">static</span> <span class="kd">late</span> <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Suit</span><span class="o">&gt;</span> <span class="n">_singletons</span> <span class="o">=</span> <span class="p">[</span>
-<span class="linenos">20</span>    <span class="n">Suit</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="s1">&#39;♥&#39;</span><span class="p">,</span> <span class="m">1176</span><span class="p">,</span> <span class="m">17</span><span class="p">,</span> <span class="m">172</span><span class="p">,</span> <span class="m">183</span><span class="p">),</span>
-<span class="linenos">21</span>    <span class="n">Suit</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="s1">&#39;♦&#39;</span><span class="p">,</span> <span class="m">973</span><span class="p">,</span> <span class="m">14</span><span class="p">,</span> <span class="m">177</span><span class="p">,</span> <span class="m">182</span><span class="p">),</span>
-<span class="linenos">22</span>    <span class="n">Suit</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="s1">&#39;♣&#39;</span><span class="p">,</span> <span class="m">974</span><span class="p">,</span> <span class="m">226</span><span class="p">,</span> <span class="m">184</span><span class="p">,</span> <span class="m">172</span><span class="p">),</span>
-<span class="linenos">23</span>    <span class="n">Suit</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="s1">&#39;♠&#39;</span><span class="p">,</span> <span class="m">1178</span><span class="p">,</span> <span class="m">220</span><span class="p">,</span> <span class="m">176</span><span class="p">,</span> <span class="m">182</span><span class="p">),</span>
-<span class="linenos">24</span>  <span class="p">];</span>
-<span class="linenos">25</span>
-<span class="linenos">26</span>  <span class="c1">/// Hearts and Diamonds are red, while Clubs and Spades are black.</span>
-<span class="linenos">27</span>  <span class="kt">bool</span> <span class="kd">get</span> <span class="n">isRed</span> <span class="o">=&gt;</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="m">1</span><span class="p">;</span>
-<span class="linenos">28</span>  <span class="kt">bool</span> <span class="kd">get</span> <span class="n">isBlack</span> <span class="o">=&gt;</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="m">2</span><span class="p">;</span>
-<span class="linenos">29</span><span class="p">}</span>
+<span class="linenos">15</span>  <span class="n">Suit</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">value</span><span class="p">,</span> <span class="k">this</span><span class="p">.</span><span class="n">label</span><span class="p">,</span> <span class="kt">double</span> <span class="n">x</span><span class="p">,</span> <span class="kt">double</span> <span class="n">y</span><span class="p">,</span> <span class="kt">double</span> <span class="n">w</span><span class="p">,</span> <span class="kt">double</span> <span class="n">h</span><span class="p">)</span>
+<span class="linenos">16</span>      <span class="o">:</span> <span class="n">sprite</span> <span class="o">=</span> <span class="n">klondikeSprite</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">);</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span>  <span class="kd">final</span> <span class="kt">int</span> <span class="n">value</span><span class="p">;</span>
+<span class="linenos">19</span>  <span class="kd">final</span> <span class="kt">String</span> <span class="n">label</span><span class="p">;</span>
+<span class="linenos">20</span>  <span class="kd">final</span> <span class="n">Sprite</span> <span class="n">sprite</span><span class="p">;</span>
+<span class="linenos">21</span>
+<span class="linenos">22</span>  <span class="kd">static</span> <span class="kd">late</span> <span class="kd">final</span> <span class="n">List</span><span class="o">&lt;</span><span class="n">Suit</span><span class="o">&gt;</span> <span class="n">_singletons</span> <span class="o">=</span> <span class="p">[</span>
+<span class="linenos">23</span>    <span class="n">Suit</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="s1">&#39;♥&#39;</span><span class="p">,</span> <span class="m">1176</span><span class="p">,</span> <span class="m">17</span><span class="p">,</span> <span class="m">172</span><span class="p">,</span> <span class="m">183</span><span class="p">),</span>
+<span class="linenos">24</span>    <span class="n">Suit</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="s1">&#39;♦&#39;</span><span class="p">,</span> <span class="m">973</span><span class="p">,</span> <span class="m">14</span><span class="p">,</span> <span class="m">177</span><span class="p">,</span> <span class="m">182</span><span class="p">),</span>
+<span class="linenos">25</span>    <span class="n">Suit</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">2</span><span class="p">,</span> <span class="s1">&#39;♣&#39;</span><span class="p">,</span> <span class="m">974</span><span class="p">,</span> <span class="m">226</span><span class="p">,</span> <span class="m">184</span><span class="p">,</span> <span class="m">172</span><span class="p">),</span>
+<span class="linenos">26</span>    <span class="n">Suit</span><span class="p">.</span><span class="n">_</span><span class="p">(</span><span class="m">3</span><span class="p">,</span> <span class="s1">&#39;♠&#39;</span><span class="p">,</span> <span class="m">1178</span><span class="p">,</span> <span class="m">220</span><span class="p">,</span> <span class="m">176</span><span class="p">,</span> <span class="m">182</span><span class="p">),</span>
+<span class="linenos">27</span>  <span class="p">];</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span>  <span class="c1">/// Hearts and Diamonds are red, while Clubs and Spades are black.</span>
+<span class="linenos">30</span>  <span class="kt">bool</span> <span class="kd">get</span> <span class="n">isRed</span> <span class="o">=&gt;</span> <span class="n">value</span> <span class="o">&lt;=</span> <span class="m">1</span><span class="p">;</span>
+<span class="linenos">31</span>  <span class="kt">bool</span> <span class="kd">get</span> <span class="n">isBlack</span> <span class="o">=&gt;</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="m">2</span><span class="p">;</span>
+<span class="linenos">32</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>

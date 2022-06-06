@@ -13,6 +13,7 @@
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
   <script src="../_static/jquery.js"></script>
   <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -145,7 +146,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="oxygen">
-<h1>Oxygen<a class="headerlink" href="#oxygen" title="Permalink to this headline">¶</a></h1>
+<h1>Oxygen<a class="headerlink" href="#oxygen" title="Permalink to this heading">¶</a></h1>
 <p>We (the Flame organization) built an ECS (Entity Component System) named Oxygen.</p>
 <p>If you want to use Oxygen specifically for Flame as a replacement for the
 FCS(Flame Component System) you should use our bridge library
@@ -159,7 +160,7 @@ in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_oxygen/example">Oxygen example</a>
 and in the <code class="docutils literal notranslate"><span class="pre">pub.dev</span></code> <a class="reference external" href="https://pub.dev/packages/flame_oxygen">installation instructions</a>.</p>
 <section id="oxygengame-game-extension">
-<h2>OxygenGame (Game extension)<a class="headerlink" href="#oxygengame-game-extension" title="Permalink to this headline">¶</a></h2>
+<h2>OxygenGame (Game extension)<a class="headerlink" href="#oxygengame-game-extension" title="Permalink to this heading">¶</a></h2>
 <p>If you are going to use Oxygen in your project it can be a good idea to use the Oxygen specific
 extension of the <code class="docutils literal notranslate"><span class="pre">Game</span></code> class.</p>
 <p>It is called <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code> and it will give you full access to the Oxygen framework while also
@@ -174,7 +175,7 @@ default components on the entity. This is especially helpful when you are using 
 <a class="reference internal" href="#basesystem"><span class="std std-doc">BaseSystem</span></a> as your base.</p>
 </section>
 <section id="systems">
-<h2>Systems<a class="headerlink" href="#systems" title="Permalink to this headline">¶</a></h2>
+<h2>Systems<a class="headerlink" href="#systems" title="Permalink to this heading">¶</a></h2>
 <p>Systems define the logic of your game. In FCS you normally would add your logic inside a component
 with Oxygen we use systems for that. Oxygen itself is completely platform agnostic, meaning it has
 no render loop. It only knows <code class="docutils literal notranslate"><span class="pre">execute</span></code>, which is a method equal to the <code class="docutils literal notranslate"><span class="pre">update</span></code> method in Flame.</p>
@@ -192,66 +193,66 @@ to subclass it to your own system. For more information see the
 <p>Systems can be registered to the world using the <code class="docutils literal notranslate"><span class="pre">world.registerSystem</span></code> method on
 <a class="reference internal" href="#oxygengame-game-extension"><span class="std std-doc">OxygenGame</span></a>.</p>
 <section id="mixin-gameref">
-<h3>mixin GameRef<a class="headerlink" href="#mixin-gameref" title="Permalink to this headline">¶</a></h3>
+<h3>mixin GameRef<a class="headerlink" href="#mixin-gameref" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameRef</span></code> mixin allows a system to become aware of the <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code> instance its attached to. This
 allows easy access to the methods on the game class.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">YourSystem</span> <span class="kd">extends</span> <span class="n">System</span> <span class="kd">with</span> <span class="n">GameRef</span><span class="o">&lt;</span><span class="n">YourGame</span><span class="o">&gt;</span> <span class="p">{</span>
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// Access to game using the .game propery</span>
-  <span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">YourSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">GameRef</span><span class="o">&lt;</span><span class="n">YourGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Access to game using the .game propery</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="c1">// ...</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="mixin-rendersystem">
-<h3>mixin RenderSystem<a class="headerlink" href="#mixin-rendersystem" title="Permalink to this headline">¶</a></h3>
+<h3>mixin RenderSystem<a class="headerlink" href="#mixin-rendersystem" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">RenderSystem</span></code> mixin allows a system to be registered for the render loop.
 By adding a <code class="docutils literal notranslate"><span class="pre">render</span></code> method to the system you get full access to the canvas as
 you normally would in Flame.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SimpleRenderSystem</span> <span class="kd">extends</span> <span class="n">System</span> <span class="kd">with</span> <span class="n">RenderSystem</span> <span class="p">{</span>
-  <span class="n">Query</span><span class="o">?</span> <span class="n">_query</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SimpleRenderSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">RenderSystem</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Query</span><span class="o">?</span><span class="w"> </span><span class="n">_query</span><span class="p">;</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">_query</span> <span class="o">=</span> <span class="n">createQuery</span><span class="p">([</span><span class="cm">/* Your filters */</span><span class="p">]);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">_query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createQuery</span><span class="p">([</span><span class="cm">/* Your filters */</span><span class="p">]);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="kt">void</span> <span class="n">render</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">final</span> <span class="n">entity</span> <span class="k">in</span> <span class="n">_query</span><span class="o">?</span><span class="p">.</span><span class="n">entities</span> <span class="o">??</span> <span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span><span class="p">[])</span> <span class="p">{</span>
-      <span class="c1">// Render entity based on components</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">_query</span><span class="o">?</span><span class="p">.</span><span class="n">entities</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Render entity based on components</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="mixin-updatesystem">
-<h3>mixin UpdateSystem<a class="headerlink" href="#mixin-updatesystem" title="Permalink to this headline">¶</a></h3>
+<h3>mixin UpdateSystem<a class="headerlink" href="#mixin-updatesystem" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">MixinSystem</span></code> mixin allows a system to be registered for the update loop.
 By adding a <code class="docutils literal notranslate"><span class="pre">update</span></code> method to the system you get full access to the delta time as you
 normally would in Flame.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SimpleUpdateSystem</span> <span class="kd">extends</span> <span class="n">System</span> <span class="kd">with</span> <span class="n">UpdateSystem</span> <span class="p">{</span>
-  <span class="n">Query</span><span class="o">?</span> <span class="n">_query</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SimpleUpdateSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">UpdateSystem</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Query</span><span class="o">?</span><span class="w"> </span><span class="n">_query</span><span class="p">;</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">init</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">_query</span> <span class="o">=</span> <span class="n">createQuery</span><span class="p">([</span><span class="cm">/* Your filters */</span><span class="p">]);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">_query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createQuery</span><span class="p">([</span><span class="cm">/* Your filters */</span><span class="p">]);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">for</span> <span class="p">(</span><span class="kd">final</span> <span class="n">entity</span> <span class="k">in</span> <span class="n">_query</span><span class="o">?</span><span class="p">.</span><span class="n">entities</span> <span class="o">??</span> <span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span><span class="p">[])</span> <span class="p">{</span>
-      <span class="c1">// Update components values</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">_query</span><span class="o">?</span><span class="p">.</span><span class="n">entities</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Update components values</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="basesystem">
-<h3>BaseSystem<a class="headerlink" href="#basesystem" title="Permalink to this headline">¶</a></h3>
+<h3>BaseSystem<a class="headerlink" href="#basesystem" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> is an abstract class whoms logic can be compared to the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
 from FCS. The <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> automatically filters all entities that have the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
 and <code class="docutils literal notranslate"><span class="pre">SizeComponent</span></code> from <code class="docutils literal notranslate"><span class="pre">flame_oxygen</span></code>. On top of that you can add your own filters by defining
@@ -270,28 +271,28 @@ canvas:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">AnchorComponent</span></code> (optional, defaults to <code class="docutils literal notranslate"><span class="pre">Anchor.topLeft</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">AngleComponent</span></code> (optional, defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
 </ul>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">SimpleBaseSystem</span> <span class="kd">extends</span> <span class="n">BaseSystem</span> <span class="p">{</span>
-  <span class="nd">@override</span>
-  <span class="n">List</span><span class="o">&lt;</span><span class="n">Filter</span><span class="o">&lt;</span><span class="n">Component</span><span class="o">&gt;&gt;</span> <span class="kd">get</span> <span class="n">filters</span> <span class="o">=&gt;</span> <span class="p">[];</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SimpleBaseSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BaseSystem</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Filter</span><span class="o">&lt;</span><span class="n">Component</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">filters</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[];</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">renderEntity</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">,</span> <span class="n">Entity</span> <span class="n">entity</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// The canvas is translated, rotated and fully prepared for rendering.</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">renderEntity</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">Entity</span><span class="w"> </span><span class="n">entity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// The canvas is translated, rotated and fully prepared for rendering.</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="particlesystem">
-<h3>ParticleSystem<a class="headerlink" href="#particlesystem" title="Permalink to this headline">¶</a></h3>
+<h3>ParticleSystem<a class="headerlink" href="#particlesystem" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ParticleSystem</span></code> is a simple system that brings the Particle API from Flame to Oxygen. This
 allows you to use the <a class="reference internal" href="#particlecomponent"><span class="std std-doc">ParticleComponent</span></a> without having to worry about how
 it will render or when to update it. As most of that logic is already contained in the Particle
 itself.</p>
 <p>Simply register the <code class="docutils literal notranslate"><span class="pre">ParticleSystem</span></code> and the <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code> to your world like so:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">registerSystem</span><span class="p">(</span><span class="n">ParticleSystem</span><span class="p">());</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">registerSystem</span><span class="p">(</span><span class="n">ParticleSystem</span><span class="p">());</span><span class="w"></span>
 
-<span class="n">world</span><span class="p">.</span><span class="n">registerComponent</span><span class="o">&lt;</span><span class="n">ParticleComponent</span><span class="p">,</span> <span class="n">Particle</span><span class="o">&gt;</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="n">ParticleComponent</span><span class="p">);</span>
+<span class="n">world</span><span class="p">.</span><span class="n">registerComponent</span><span class="o">&lt;</span><span class="n">ParticleComponent</span><span class="p">,</span><span class="w"> </span><span class="n">Particle</span><span class="o">&gt;</span><span class="p">(()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ParticleComponent</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>You can now create a new entity with a <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code>. For more info about that see the
@@ -299,7 +300,7 @@ itself.</p>
 </section>
 </section>
 <section id="components">
-<h2>Components<a class="headerlink" href="#components" title="Permalink to this headline">¶</a></h2>
+<h2>Components<a class="headerlink" href="#components" title="Permalink to this heading">¶</a></h2>
 <p>Components in Oxygen are different than the ones from FCS mainly because instead of containing
 logic they only contain data. This data is then used in systems which in turn define the logic.</p>
 <p>To accomdate people who are switching from FCS to Oxygen we implemented a few components to help
@@ -309,169 +310,169 @@ functionality, they are often accompanied by predefined systems that you can use
 <p>Components can be registered to the world using the <code class="docutils literal notranslate"><span class="pre">world.registerComponent</span></code> method on
 <a class="reference internal" href="#oxygengame-game-extension"><span class="std std-doc">OxygenGame</span></a>.</p>
 <section id="positioncomponent">
-<h3>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this headline">¶</a></h3>
+<h3>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is as its name implies is a component that describe the position of an
 entity. And it is registered to the world by default.</p>
 <p>Creating a positioned entity using OxygenGame:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span>
-  <span class="nl">position:</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">100</span><span class="p">),</span>
-  <span class="nl">size:</span> <span class="c1">// ...</span>
-<span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Creating a positioned entity using the World:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span>
-  <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="p">,</span> <span class="n">Vector2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">100</span><span class="p">));</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">));</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="sizecomponent">
-<h3>SizeComponent<a class="headerlink" href="#sizecomponent" title="Permalink to this headline">¶</a></h3>
+<h3>SizeComponent<a class="headerlink" href="#sizecomponent" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">SizeComponent</span></code> is as its name implies is a component that describe the size of an entity.
 And it is registered to the world by default.</p>
 <p>Creating a sized entity using OxygenGame:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span>
-  <span class="nl">position:</span> <span class="c1">// ...</span>
-  <span class="nl">size:</span> <span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span> <span class="m">50</span><span class="p">),</span>
-<span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Creating a sized entity using the World:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span>
-  <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">SizeComponent</span><span class="p">,</span> <span class="n">Vector2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span> <span class="m">50</span><span class="p">));</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">SizeComponent</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">));</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="anchorcomponent">
-<h3>AnchorComponent<a class="headerlink" href="#anchorcomponent" title="Permalink to this headline">¶</a></h3>
+<h3>AnchorComponent<a class="headerlink" href="#anchorcomponent" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">AnchorComponent</span></code> is as its name implies is a component that describe the anchor position of an
 entity. And it is registered to the world by default.</p>
 <p>This component is especially useful when you are using the <a class="reference internal" href="#basesystem"><span class="std std-doc">BaseSystem</span></a>. But can also
 be used for your own anchoring logic.</p>
 <p>Creating an anchored entity using OxygenGame:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span>
-  <span class="nl">position:</span> <span class="c1">// ...</span>
-  <span class="nl">size:</span> <span class="c1">// ...</span>
-  <span class="nl">anchor:</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Creating an anchored entity using the World:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span>
-  <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">AnchorComponent</span><span class="p">,</span> <span class="n">Anchor</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">AnchorComponent</span><span class="p">,</span><span class="w"> </span><span class="n">Anchor</span><span class="o">&gt;</span><span class="p">(</span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="anglecomponent">
-<h3>AngleComponent<a class="headerlink" href="#anglecomponent" title="Permalink to this headline">¶</a></h3>
+<h3>AngleComponent<a class="headerlink" href="#anglecomponent" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">AngleComponent</span></code> is as its name implies is a component that describe the angle of an entity.
 And it is registered to the world by default. The angle is in radians.</p>
 <p>This component is especially useful when you are using the <a class="reference internal" href="#basesystem"><span class="std std-doc">BaseSystem</span></a>. But can also
 be used for your own angle logic.</p>
 <p>Creating an angled entity using OxygenGame:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span>
-  <span class="nl">position:</span> <span class="c1">// ...</span>
-  <span class="nl">size:</span> <span class="c1">// ...</span>
-  <span class="nl">angle:</span> <span class="m">1.570796</span><span class="p">,</span>
-<span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="nl">angle:</span><span class="w"> </span><span class="m">1.570796</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Creating an angled entity using the World:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span>
-  <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">AngleComponent</span><span class="p">,</span> <span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="m">1.570796</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">AngleComponent</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="m">1.570796</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="flipcomponent">
-<h3>FlipComponent<a class="headerlink" href="#flipcomponent" title="Permalink to this headline">¶</a></h3>
+<h3>FlipComponent<a class="headerlink" href="#flipcomponent" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlipComponent</span></code> can be used to flip your rendering on either the X or Y axis. It is registered
 to the world by default.</p>
 <p>This component is especially useful when you are using the <a class="reference internal" href="#basesystem"><span class="std std-doc">BaseSystem</span></a>. But can also
 be used for your own flipping logic.</p>
 <p>Creating an entity that is flipped on it’s X axis using OxygenGame:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span>
-  <span class="nl">position:</span> <span class="c1">// ...</span>
-  <span class="nl">size:</span> <span class="c1">// ...</span>
-  <span class="nl">flipX:</span> <span class="kc">true</span>
-<span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="nl">flipX:</span><span class="w"> </span><span class="kc">true</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Creating an entity that is flipped on it’s X axis using the World:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span>
-  <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">FlipComponent</span><span class="p">,</span> <span class="n">FlipInit</span><span class="o">&gt;</span><span class="p">(</span><span class="n">FlipInit</span><span class="p">(</span><span class="nl">flipX:</span> <span class="kc">true</span><span class="p">));</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">FlipComponent</span><span class="p">,</span><span class="w"> </span><span class="n">FlipInit</span><span class="o">&gt;</span><span class="p">(</span><span class="n">FlipInit</span><span class="p">(</span><span class="nl">flipX:</span><span class="w"> </span><span class="kc">true</span><span class="p">));</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="spritecomponent">
-<h3>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this headline">¶</a></h3>
+<h3>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> is as its name implies is a component that describe the sprite of an entity.
 And it is registered to the world by default.</p>
 <p>This allows you to assigning a Sprite to an Entity.</p>
 <p>Creating an entity with a sprite using OxygenGame:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span>
-  <span class="nl">position:</span> <span class="c1">// ...</span>
-  <span class="nl">size:</span> <span class="c1">// ...</span>
-<span class="p">)..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">SpriteComponent</span><span class="p">,</span> <span class="n">SpriteInit</span><span class="o">&gt;</span><span class="p">(</span>
-  <span class="n">SpriteInit</span><span class="p">(</span><span class="kd">await</span> <span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;pizza.png&#39;</span><span class="p">)),</span>
-<span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">)..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">SpriteComponent</span><span class="p">,</span><span class="w"> </span><span class="n">SpriteInit</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">SpriteInit</span><span class="p">(</span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;pizza.png&#39;</span><span class="p">)),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Creating an entity with a sprite using World:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span>
-  <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">SpriteComponent</span><span class="p">,</span> <span class="n">SpriteInit</span><span class="o">&gt;</span><span class="p">(</span>
-    <span class="n">SpriteInit</span><span class="p">(</span><span class="kd">await</span> <span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;pizza.png&#39;</span><span class="p">)),</span>
-  <span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">SpriteComponent</span><span class="p">,</span><span class="w"> </span><span class="n">SpriteInit</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">SpriteInit</span><span class="p">(</span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;pizza.png&#39;</span><span class="p">)),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="textcomponent">
-<h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this headline">¶</a></h3>
+<h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> is as its name implies is a component that adds a text component to an entity.
 And it is registered to the world by default.</p>
 <p>This allows you to add text to your entity, combined with the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> you can use it
 as a text entity.</p>
 <p>Creating an entity with text using OxygenGame:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span>
-  <span class="nl">position:</span> <span class="c1">// ...</span>
-  <span class="nl">size:</span> <span class="c1">// ...</span>
-<span class="p">)..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">TextComponent</span><span class="p">,</span> <span class="n">TextInit</span><span class="o">&gt;</span><span class="p">(</span>
-  <span class="n">TextInit</span><span class="p">(</span>
-    <span class="s1">&#39;Your text&#39;</span><span class="p">,</span>
-    <span class="nl">config:</span> <span class="k">const</span> <span class="n">TextPaintConfig</span><span class="p">(),</span>
-  <span class="p">),</span>
-<span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">)..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">TextComponent</span><span class="p">,</span><span class="w"> </span><span class="n">TextInit</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">TextInit</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;Your text&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">config:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">TextPaintConfig</span><span class="p">(),</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Creating an entity with text using World:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span>
-  <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">TextComponent</span><span class="p">,</span> <span class="n">TextInit</span><span class="o">&gt;</span><span class="p">(</span>
-    <span class="n">TextInit</span><span class="p">(</span>
-      <span class="s1">&#39;Your text&#39;</span><span class="p">,</span>
-      <span class="nl">config:</span> <span class="k">const</span> <span class="n">TextPaintConfig</span><span class="p">(),</span>
-    <span class="p">),</span>
-  <span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">TextComponent</span><span class="p">,</span><span class="w"> </span><span class="n">TextInit</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">TextInit</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="s1">&#39;Your text&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nl">config:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">TextPaintConfig</span><span class="p">(),</span><span class="w"></span>
+<span class="w">    </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="particlecomponent">
-<h3>ParticleComponent<a class="headerlink" href="#particlecomponent" title="Permalink to this headline">¶</a></h3>
+<h3>ParticleComponent<a class="headerlink" href="#particlecomponent" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code> wraps a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> from Flame. Combined with the
 <a class="reference internal" href="#particlesystem"><span class="std std-doc">ParticleSystem</span></a> you can easily add particles to your game without having to
 worry about how to render a particle or when/how to update one.</p>
 <p>Creating an entity with a particle using OxygenGame:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span>
-  <span class="nl">position:</span> <span class="c1">// ...</span>
-  <span class="nl">size:</span> <span class="c1">// ...</span>
-<span class="p">)..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">ParticleComponent</span><span class="p">,</span> <span class="n">Particle</span><span class="o">&gt;</span><span class="p">(</span>
-  <span class="c1">// Your Particle.</span>
-<span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">createEntity</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">)..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">ParticleComponent</span><span class="p">,</span><span class="w"> </span><span class="n">Particle</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Your Particle.</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Creating an entity with a particle using World:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span>
-  <span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">ParticleComponent</span><span class="p">,</span> <span class="n">Particle</span><span class="o">&gt;</span><span class="p">(</span>
-    <span class="c1">// Your Particle.</span>
-  <span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">createEntity</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="o">&lt;</span><span class="n">ParticleComponent</span><span class="p">,</span><span class="w"> </span><span class="n">Particle</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Your Particle.</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

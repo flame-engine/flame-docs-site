@@ -13,6 +13,7 @@
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
   <script src="../_static/jquery.js"></script>
   <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -145,16 +146,16 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="structure">
-<h1>Structure<a class="headerlink" href="#structure" title="Permalink to this headline">¶</a></h1>
+<h1>Structure<a class="headerlink" href="#structure" title="Permalink to this heading">¶</a></h1>
 <p>Flame has a proposed structure for your project that includes the standard Flutter <code class="docutils literal notranslate"><span class="pre">assets</span></code>
 directory in addition to two children: <code class="docutils literal notranslate"><span class="pre">audio</span></code> and <code class="docutils literal notranslate"><span class="pre">images</span></code>.</p>
 <p>If using the following example code:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">FlameAudio</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span><span class="w"></span>
 
-  <span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
-  <span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;enemy.png&#39;</span><span class="p">);</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;enemy.png&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The file structure Flame would expect to find the files in would be:</p>

@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../flame/flame.html">flame</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">GameWidget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame/camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap-events.html">Tap events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="klondike.html">Klondike</a><ul class="current">
@@ -130,7 +136,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/splash_screen.html">Splash screen</a></li>
@@ -451,10 +456,10 @@ klondike_game.dart</div>
 <span class="linenos"> 3</span><span class="k">import</span> <span class="s1">&#39;package:flame/flame.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 4</span><span class="k">import</span> <span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="k">import</span> <span class="s1">&#39;components/foundation.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 7</span><span class="k">import</span> <span class="s1">&#39;components/pile.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 8</span><span class="k">import</span> <span class="s1">&#39;components/stock.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 9</span><span class="k">import</span> <span class="s1">&#39;components/waste.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step2/components/foundation.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step2/components/pile.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step2/components/stock.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step2/components/waste.dart&#39;</span><span class="p">;</span>
 <span class="linenos">10</span>
 <span class="linenos">11</span><span class="kd">class</span> <span class="nc">KlondikeGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
 <span class="linenos">12</span>  <span class="kd">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">cardGap</span> <span class="o">=</span> <span class="m">175.0</span><span class="p">;</span>
@@ -520,7 +525,7 @@ main.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span> <span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 <span class="linenos">2</span><span class="k">import</span> <span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span>
 <span class="linenos">3</span>
-<span class="linenos">4</span><span class="k">import</span> <span class="s1">&#39;klondike_game.dart&#39;</span><span class="p">;</span>
+<span class="linenos">4</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step2/klondike_game.dart&#39;</span><span class="p">;</span>
 <span class="linenos">5</span>
 <span class="linenos">6</span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
 <span class="linenos">7</span>  <span class="kd">final</span> <span class="n">game</span> <span class="o">=</span> <span class="n">KlondikeGame</span><span class="p">();</span>

@@ -13,6 +13,7 @@
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
   <script src="../_static/jquery.js"></script>
   <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -145,17 +146,17 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="supported-platforms">
-<h1>Supported Platforms<a class="headerlink" href="#supported-platforms" title="Permalink to this headline">¶</a></h1>
+<h1>Supported Platforms<a class="headerlink" href="#supported-platforms" title="Permalink to this heading">¶</a></h1>
 <p>Since Flame runs on top of Flutter, so its supported platforms depend on which platforms that are
 supported by Flutter.</p>
 <p>At the moment, Flame supports both mobile and web.</p>
 <section id="flutter-channels">
-<h2>Flutter channels<a class="headerlink" href="#flutter-channels" title="Permalink to this headline">¶</a></h2>
+<h2>Flutter channels<a class="headerlink" href="#flutter-channels" title="Permalink to this heading">¶</a></h2>
 <p>Flame keeps it support on the stable channel. The dev, beta and master channel should work, but we
 don’t support them. This means that issues happening outside the stable channel are not a priority.</p>
 </section>
 <section id="flame-web">
-<h2>Flame web<a class="headerlink" href="#flame-web" title="Permalink to this headline">¶</a></h2>
+<h2>Flame web<a class="headerlink" href="#flame-web" title="Permalink to this heading">¶</a></h2>
 <p>To use Flame on web you need to make sure your game is using the CanvasKit/<a class="reference external" href="https://skia.org/">Skia</a>
 renderer. This will increase performance on the web, as it will use the <code class="docutils literal notranslate"><span class="pre">canvas</span></code> element instead of
 separate DOM elements.</p>
@@ -169,7 +170,7 @@ separate DOM elements.</p>
 </div>
 </section>
 <section id="deploy-your-game-to-github-pages">
-<h2>Deploy your game to GitHub Pages<a class="headerlink" href="#deploy-your-game-to-github-pages" title="Permalink to this headline">¶</a></h2>
+<h2>Deploy your game to GitHub Pages<a class="headerlink" href="#deploy-your-game-to-github-pages" title="Permalink to this heading">¶</a></h2>
 <p>One easy way to deploy your game online, is to use <a class="reference external" href="https://pages.github.com/">GitHub Pages</a>.
 It is a cool feature from GitHub, by which you can easily host web content from your repository.</p>
 <p>Here we will explain the easiest way to get your game hosted using GitHub pages.</p>
@@ -207,7 +208,7 @@ deployed game.</p>
 <p>The game should be available at an URL like this:
 <code class="docutils literal notranslate"><span class="pre">https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/</span></code></p>
 <section id="web-support">
-<h3>Web support<a class="headerlink" href="#web-support" title="Permalink to this headline">¶</a></h3>
+<h3>Web support<a class="headerlink" href="#web-support" title="Permalink to this heading">¶</a></h3>
 <p>When using Flame on the web some methods may not work. For example <code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientation</span></code> and
 <code class="docutils literal notranslate"><span class="pre">Flame.device.fullScreen</span></code> won’t work on web, they can be called, but nothing will happen.</p>
 <p>Another example: pre caching audio using <code class="docutils literal notranslate"><span class="pre">flame_audio</span></code> package also doesn’t work due to Audioplayers

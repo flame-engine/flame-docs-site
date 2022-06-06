@@ -13,6 +13,7 @@
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
   <script src="../../_static/jquery.js"></script>
   <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -145,7 +146,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="widgets">
-<h1>Widgets<a class="headerlink" href="#widgets" title="Permalink to this headline">¶</a></h1>
+<h1>Widgets<a class="headerlink" href="#widgets" title="Permalink to this heading">¶</a></h1>
 <p>One advantage when developing games with Flutter is the ability to use Flutter’s extensive toolset
 for building UIs, Flame tries to expand on that by introducing widgets that are made with games in
 mind.</p>
@@ -154,7 +155,7 @@ mind.</p>
 <a class="reference external" href="https://github.com/erickzanardo/dashbook">Dashbook</a> sandbox
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/widgets">here</a></p>
 <section id="nine-tile-box">
-<h2>Nine Tile Box<a class="headerlink" href="#nine-tile-box" title="Permalink to this headline">¶</a></h2>
+<h2>Nine Tile Box<a class="headerlink" href="#nine-tile-box" title="Permalink to this heading">¶</a></h2>
 <p>A Nine Tile Box is a rectangle drawn using a grid sprite.</p>
 <p>The grid sprite is a 3x3 grid and with 9 blocks, representing the 4 corners, the 4 sides and the
 middle.</p>
@@ -165,57 +166,57 @@ implemented as a component in the <code class="docutils literal notranslate"><sp
 to your <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>. To get to know more about this, check the component docs
 <a class="reference internal" href="../components.html#ninetileboxcomponent"><span class="std std-doc">here</span></a>.</p>
 <p>Here you can find an example of how to use it (without using the <code class="docutils literal notranslate"><span class="pre">NineTileBoxComponent</span></code>):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;package:flame/widgets/nine_tile_box.dart&#39;</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/widgets/nine_tile_box.dart&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">NineTileBox</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span>
-    <span class="nl">image:</span> <span class="n">image</span><span class="p">,</span> <span class="c1">// dart:ui image instance</span>
-    <span class="nl">tileSize:</span> <span class="m">16</span><span class="p">,</span> <span class="c1">// The width/height of the tile on your grid image</span>
-    <span class="nl">destTileSize:</span> <span class="m">50</span><span class="p">,</span> <span class="c1">// The dimensions to be used when drawing the tile on the canvas</span>
-    <span class="nl">child:</span> <span class="n">SomeWidget</span><span class="p">(),</span> <span class="c1">// Any Flutter widget</span>
-<span class="p">)</span>
+<span class="n">NineTileBox</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">image:</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="c1">// dart:ui image instance</span><span class="w"></span>
+<span class="w">    </span><span class="nl">tileSize:</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="c1">// The width/height of the tile on your grid image</span><span class="w"></span>
+<span class="w">    </span><span class="nl">destTileSize:</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="c1">// The dimensions to be used when drawing the tile on the canvas</span><span class="w"></span>
+<span class="w">    </span><span class="nl">child:</span><span class="w"> </span><span class="n">SomeWidget</span><span class="p">(),</span><span class="w"> </span><span class="c1">// Any Flutter widget</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="spritebutton">
-<h2>SpriteButton<a class="headerlink" href="#spritebutton" title="Permalink to this headline">¶</a></h2>
+<h2>SpriteButton<a class="headerlink" href="#spritebutton" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SpriteButton</span></code> is a simple widget that creates a button based on Flame sprites. This can be very
 useful when trying to create non-default looking buttons. For example when it is easier for you to
 achieve your wanted look by drawing the button in a graphics editor, instead of making it directly
 in Flutter.</p>
 <p>How to use it:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpriteButton</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span>
-    <span class="nl">onPressed:</span> <span class="p">()</span> <span class="p">{</span>
-      <span class="n">print</span><span class="p">(</span><span class="s1">&#39;Pressed&#39;</span><span class="p">);</span>
-    <span class="p">},</span>
-    <span class="nl">label:</span> <span class="k">const</span> <span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Sprite Button&#39;</span><span class="p">,</span> <span class="nl">style:</span> <span class="k">const</span> <span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span> <span class="k">const</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFF5D275D</span><span class="p">))),</span>
-    <span class="nl">sprite:</span> <span class="n">_spriteButton</span><span class="p">,</span>
-    <span class="nl">pressedSprite:</span> <span class="n">_pressedSprite</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpriteButton</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">onPressed:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;Pressed&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nl">label:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Sprite Button&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">style:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF5D275D</span><span class="p">))),</span><span class="w"></span>
+<span class="w">    </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">_spriteButton</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">pressedSprite:</span><span class="w"> </span><span class="n">_pressedSprite</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="spritewidget">
-<h2>SpriteWidget<a class="headerlink" href="#spritewidget" title="Permalink to this headline">¶</a></h2>
+<h2>SpriteWidget<a class="headerlink" href="#spritewidget" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SpriteWidget</span></code> is a widget used to display a <a class="reference internal" href="../rendering/images.html#sprite"><span class="std std-doc">Sprite</span></a> inside a widget
 tree.</p>
 <p>This is how to use it:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpriteWidget</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span>
-    <span class="nl">sprite:</span> <span class="n">yourSprite</span><span class="p">,</span>
-    <span class="nl">anchor:</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpriteWidget</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">yourSprite</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="spriteanimationwidget">
-<h2>SpriteAnimationWidget<a class="headerlink" href="#spriteanimationwidget" title="Permalink to this headline">¶</a></h2>
+<h2>SpriteAnimationWidget<a class="headerlink" href="#spriteanimationwidget" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SpriteAnimationWidget</span></code> is a widget used to display <a class="reference internal" href="../rendering/images.html#animation"><span class="std std-doc">SpriteAnimations</span></a> inside
 a widget tree.</p>
 <p>This is how to use it:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpriteAnimationWidget</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span>
-    <span class="nl">animation:</span> <span class="n">_animation</span><span class="p">,</span>
-    <span class="nl">playing:</span> <span class="kc">true</span><span class="p">,</span>
-    <span class="nl">anchor:</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="p">)</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpriteAnimationWidget</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">animation:</span><span class="w"> </span><span class="n">_animation</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">playing:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

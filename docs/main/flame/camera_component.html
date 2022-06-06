@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="flame.html">flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game_widget.html">GameWidget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputs/tap-events.html">Tap events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
@@ -130,7 +136,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
@@ -234,6 +239,35 @@ of the camera, controlled by the viewfinder’s <code class="docutils literal no
 were part of the world (but on top). It is more useful to add behavioral
 components to the viewfinder, for example <a class="reference internal" href="effects.html"><span class="doc std std-doc">Effects</span></a> or other controllers.</p>
 </section>
+<section id="camera-controls">
+<h2>Camera controls<a class="headerlink" href="#camera-controls" title="Permalink to this headline">¶</a></h2>
+<p>There are several ways to modify camera’s settings at runtime:</p>
+<ol class="simple">
+<li><p>Do it manually. You can always override the <code class="docutils literal notranslate"><span class="pre">CameraComponent.update()</span></code>
+method (or the same method on the viewfinder or viewport) and within it
+change the viewfinder’s position or zoom as you see fit. This approach may
+be viable in some circumstances, but in general it is not recommended.</p></li>
+<li><p>Apply effects and/or behaviors to the camera’s <code class="docutils literal notranslate"><span class="pre">Viewfinder</span></code> or <code class="docutils literal notranslate"><span class="pre">Viewport</span></code>.
+The effects and behaviors are special kinds of components whose purpose is
+to modify over time some property of a component that they attach to.</p></li>
+<li><p>Use special camera functions such as <code class="docutils literal notranslate"><span class="pre">follow()</span></code> and <code class="docutils literal notranslate"><span class="pre">moveTo()</span></code>. Under the
+hood, this approach uses the same effects/behaviors as in (2).</p></li>
+</ol>
+<p>Camera has several methods for controlling its behavior:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Camera.follow()</span></code> will force the camera to follow the provided target.
+Optionally you can limit the maximum speed of movement of the camera, or
+allow it to move horizontally/vertically only.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Camera.stop()</span></code> will undo the effect of the previous call and stop the camera
+at its current position.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Camera.moveTo()</span></code> can be used to move the camera to the designated point on
+the world map. If the camera was already following another component or
+moving towards another point, those behaviors would be automatically
+cancelled.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Camera.setBounds()</span></code> allows you to add limits to where the camera is allowed to go. These limits
+are in the form of a <code class="docutils literal notranslate"><span class="pre">Shape</span></code>, which is commonly a rectangle, but can also be any other shape.</p></li>
+</ul>
+</section>
 <section id="comparison-to-the-traditional-camera">
 <h2>Comparison to the traditional camera<a class="headerlink" href="#comparison-to-the-traditional-camera" title="Permalink to this headline">¶</a></h2>
 <p>Compared to the normal <a class="reference internal" href="camera_and_viewport.html"><span class="doc std std-doc">Camera</span></a>, the <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code>
@@ -245,13 +279,12 @@ has several advantages and drawbacks.</p>
 <li><p>Switching camera from one world to another can happen instantaneously,
 without having to unmount one world and then mount another;</p></li>
 <li><p>Support rotation of the world view;</p></li>
-<li><p>(NYI) Effects can be applied either to the viewport, or to the viewfinder;</p></li>
-<li><p>(NYI) More flexible camera controllers.</p></li>
+<li><p>Effects can be applied either to the viewport, or to the viewfinder;</p></li>
+<li><p>More flexible camera controllers.</p></li>
 </ul>
-<p>Cons (we are planning to eliminate these in the near future):</p>
+<p>Cons:</p>
 <ul class="simple">
-<li><p>Camera controls are not yet implemented;</p></li>
-<li><p>Events propagation may not always work correctly.</p></li>
+<li><p>Only tap events are currently supported.</p></li>
 </ul>
 </section>
 </section>
@@ -290,6 +323,7 @@ without having to unmount one world and then mount another;</p></li>
   <a href='#cameracomponent' class='list-group-item level-1'>CameraComponent</a>
   <a href='#viewport' class='list-group-item level-1'>Viewport</a>
   <a href='#viewfinder' class='list-group-item level-1'>Viewfinder</a>
+  <a href='#camera-controls' class='list-group-item level-1'>Camera controls</a>
   <a href='#comparison-to-the-traditional-camera' class='list-group-item level-1'>Comparison to the traditional camera</a>
 </div>
 

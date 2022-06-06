@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="flame.html">flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game_widget.html">GameWidget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputs/tap-events.html">Tap events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
@@ -130,7 +136,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
@@ -183,6 +188,8 @@ the final value is provided by the user explicitly, and progression over time is
 <li><p><a class="reference internal" href="#scaleeffect-to"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">ScaleEffect.to</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#sizeeffect-by"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">SizeEffect.by</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#sizeeffect-to"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">SizeEffect.to</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#anchorbyeffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">AnchorByEffect</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#anchortoeffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">AnchorToEffect</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#opacityeffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">OpacityEffect</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#coloreffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">ColorEffect</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#sequenceeffect"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">SequenceEffect</span></code></span></a></p></li>
@@ -225,7 +232,7 @@ check whether the effect is currently paused using <code class="docutils literal
 <li><p>Property <code class="docutils literal notranslate"><span class="pre">removeOnFinish</span></code> (which is true by default) will cause the effect component to be
 removed from the game tree and garbage-collected once the effect completes. Set this to false
 if you plan to reuse the effect after it is finished.</p></li>
-<li><p>Optional user-provided <code class="docutils literal notranslate"><span class="pre">onFinishCallback</span></code>, which will be invoked when the effect has just
+<li><p>Optional user-provided <code class="docutils literal notranslate"><span class="pre">onComplete</span></code>, which will be invoked when the effect has just
 completed its execution but before it is removed from the game.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">reset()</span></code> method reverts the effect to its original state, allowing it to run once again.</p></li>
 </ul>
@@ -258,7 +265,7 @@ current position. The path can have non-linear segments, but must be singly conn
 recommended to start a path at <code class="docutils literal notranslate"><span class="pre">Vector2.zero()</span></code> in order to avoid sudden jumps in the component’s
 position.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">MoveAlongPathEffect</span><span class="p">(</span>
-  <span class="n">Path</span><span class="p">()</span> <span class="p">..</span><span class="n">quadraticBezierTo</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">50</span><span class="p">,</span> <span class="o">-</span><span class="m">50</span><span class="p">),</span>
+  <span class="n">Path</span><span class="p">()..</span><span class="n">quadraticBezierTo</span><span class="p">(</span><span class="m">100</span><span class="p">,</span> <span class="m">0</span><span class="p">,</span> <span class="m">50</span><span class="p">,</span> <span class="o">-</span><span class="m">50</span><span class="p">),</span>
   <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">1.5</span><span class="p">),</span>
 <span class="p">);</span>
 </pre></div>
@@ -312,15 +319,33 @@ course, the new size will be <code class="docutils literal notranslate"><span cl
 </div>
 <p>The size of a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> cannot be negative. If an effect attempts to set the size to a
 negative value, the size will be clamped at zero.</p>
-<p>Note that for this effect to work, the target component must take its own <code class="docutils literal notranslate"><span class="pre">size</span></code> into account when
-rendering, and not all of them do. In addition, changing the size of a component does not propagate
-to its children, if it has any. An alternative to <code class="docutils literal notranslate"><span class="pre">SizeEffect</span></code> is the <code class="docutils literal notranslate"><span class="pre">ScaleEffect</span></code>, which works
-more generally and scales the children components too.</p>
+<p>Note that for this effect to work, the target component must implement the <code class="docutils literal notranslate"><span class="pre">SizeProvider</span></code> interface
+and take its <code class="docutils literal notranslate"><span class="pre">size</span></code> into account when rendering. Only few of the built-in components implement this
+API, but you can always make your own component work with size effects by adding
+<code class="docutils literal notranslate"><span class="pre">implements</span> <span class="pre">SizeEffect</span></code> to the class declaration.</p>
+<p>An alternative to <code class="docutils literal notranslate"><span class="pre">SizeEffect</span></code> is the <code class="docutils literal notranslate"><span class="pre">ScaleEffect</span></code>, which works more generally and scales both the
+target component and its children.</p>
 </section>
 <section id="sizeeffect-to">
 <h3><code class="docutils literal notranslate"><span class="pre">SizeEffect.to</span></code><a class="headerlink" href="#sizeeffect-to" title="Permalink to this headline">¶</a></h3>
 <p>Changes the size of the target component to the specified size. Target size cannot be negative:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">SizeEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">120</span><span class="p">,</span> <span class="m">120</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span> <span class="m">1</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+<section id="anchorbyeffect">
+<h3><code class="docutils literal notranslate"><span class="pre">AnchorByEffect</span></code><a class="headerlink" href="#anchorbyeffect" title="Permalink to this headline">¶</a></h3>
+<p>Changes the location of the target’s anchor by the specified offset. This effect can also be created
+using <code class="docutils literal notranslate"><span class="pre">AnchorEffect.by()</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">AnchorByEffect</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span> <span class="m">0.1</span><span class="p">),</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span> <span class="m">1</span><span class="p">));</span>
+</pre></div>
+</div>
+</section>
+<section id="anchortoeffect">
+<h3><code class="docutils literal notranslate"><span class="pre">AnchorToEffect</span></code><a class="headerlink" href="#anchortoeffect" title="Permalink to this headline">¶</a></h3>
+<p>Changes the location of the target’s anchor. This effect can also be created using
+<code class="docutils literal notranslate"><span class="pre">AnchorEffect.to()</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">effect</span> <span class="o">=</span> <span class="n">AnchorToEffect</span><span class="p">(</span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span> <span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span> <span class="m">1</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
@@ -613,7 +638,7 @@ by the standard alternating <code class="docutils literal notranslate"><span cla
 <section id="see-also">
 <h2>See also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://examples.flame-engine.org/#/">Examples of various effects</a>.</p></li>
+<li><p><a class="reference external" href="https://examples.flame-engine.org/">Examples of various effects</a>.</p></li>
 </ul>
 </section>
 </section>
@@ -660,6 +685,8 @@ by the standard alternating <code class="docutils literal notranslate"><span cla
   <a href='#scaleeffect-to' class='list-group-item level-2'>ScaleEffect.to</a>
   <a href='#sizeeffect-by' class='list-group-item level-2'>SizeEffect.by</a>
   <a href='#sizeeffect-to' class='list-group-item level-2'>SizeEffect.to</a>
+  <a href='#anchorbyeffect' class='list-group-item level-2'>AnchorByEffect</a>
+  <a href='#anchortoeffect' class='list-group-item level-2'>AnchorToEffect</a>
   <a href='#opacityeffect' class='list-group-item level-2'>OpacityEffect</a>
   <a href='#sequenceeffect' class='list-group-item level-2'>SequenceEffect</a>
   <a href='#removeeffect' class='list-group-item level-2'>RemoveEffect</a>

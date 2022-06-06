@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../flame/flame.html">flame</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../flame/structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/game_widget.html">GameWidget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame/camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/tap-events.html">Tap events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Bare Flame game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="klondike/klondike.html">Klondike</a><ul>
@@ -130,7 +136,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
@@ -148,34 +153,37 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="bare-flame-game">
 <h1>Bare Flame game<a class="headerlink" href="#bare-flame-game" title="Permalink to this headline">¶</a></h1>
-<p>This tutorial assumes that you already have <a class="reference external" href="https://docs.flutter.dev/get-started/install">Flutter</a>, <a class="reference external" href="https://git-scm.com/downloads">git</a>, and
-<a class="reference external" href="https://developer.android.com/studio">Android Studio</a> on your computer (all of these programs are free); and that
-you have basic familiarity with using the command line. Android Studio is not
-a strict requirement, you can use other IDEs too, such as <a class="reference external" href="https://code.visualstudio.com/download">Visual Studio Code</a>.</p>
+<p>This tutorial assumes that you have basic familiarity with using the command line, and the
+following programs on your computer (all of them are free):</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.flutter.dev/get-started/install">Flutter</a>, version 2.10.0 or above;</p></li>
+<li><p><a class="reference external" href="https://developer.android.com/studio">Android Studio</a>, or any other IDE, for example <a class="reference external" href="https://code.visualstudio.com/download">Visual Studio Code</a>;</p></li>
+<li><p><a class="reference external" href="https://git-scm.com/downloads">git</a> (optional), in order to save your project on GitHub.</p></li>
+</ul>
 <section id="check-flutter-installation">
 <h2>1. Check flutter installation<a class="headerlink" href="#check-flutter-installation" title="Permalink to this headline">¶</a></h2>
 <p>First, let’s verify that your Flutter SDK was installed correctly and is
 accessible from the command line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flutter doctor
-<span class="go">[✓] Flutter (Channel stable, 2.8.0, on macOS 12.2 21D49 darwin-x64, locale en)</span>
+<span class="go">[✓] Flutter (Channel stable, 2.10.0, on macOS 12.3.1 21E258 darwin-x64, locale en)</span>
 <span class="go">[✓] Android toolchain - develop for Android devices (Android SDK version 31.0.0)</span>
 <span class="go">[✓] Xcode - develop for iOS and macOS (Xcode 13.1)</span>
 <span class="go">[✓] Chrome - develop for the web</span>
 <span class="go">[✓] Android Studio (version 2020.3)</span>
 <span class="go">[✓] Connected device (1 available)</span>
+<span class="go">[✓] HTTP Host Availability</span>
 </pre></div>
 </div>
 <p>Your output will be slightly different, but the important thing is to verify
-that no errors are reported, and that your Flutter version is <strong>2.5.0</strong> or
-above.</p>
+that no errors are reported, and that your Flutter version is at least <strong>2.10.0</strong>.</p>
 </section>
 <section id="create-project-directory">
 <h2>2. Create project directory<a class="headerlink" href="#create-project-directory" title="Permalink to this headline">¶</a></h2>
 <p>Now you need to come up with a name for your project. The name can only use
 lowercase latin letters, digits, and underscores. It must also be a valid Dart
 identifier (thus, for example, it cannot be a keyword).</p>
-<p>In this tutorial I’m going to call my project <strong>syzygy</strong>, which is a totally
-real not-made-up word.</p>
+<p>In this tutorial we’re going to call the project <strong>syzygy</strong>, which is a totally
+real non-made-up word.</p>
 <p>Create the directory for your new project:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir -p ~/projects/syzygy
 <span class="gp">$ </span><span class="nb">cd</span> ~/projects/syzygy
@@ -220,17 +228,18 @@ game, so we should get rid of it.</p>
 <p>First, open the file <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> and replace it with the following code
 (adjusting the <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">description</span></code> to match your project):</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">syzygy</span>
-<span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Syzygy flame game</span>
+<span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Syzygy Flame game</span>
 <span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0</span>
 <span class="nt">publish_to</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">none</span>
 
 <span class="nt">environment</span><span class="p">:</span>
-  <span class="nt">sdk</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">^2.15.0</span>
+  <span class="nt">sdk</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">^2.16.0</span>
+  <span class="nt">flutter</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">^2.10.0</span>
 
 <span class="nt">dependencies</span><span class="p">:</span>
   <span class="nt">flutter</span><span class="p">:</span>
     <span class="nt">sdk</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">flutter</span>
-  <span class="nt">flame</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">^1.0.0</span>
+  <span class="nt">flame</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">^1.1.0</span>
 </pre></div>
 </div>
 <p>After that, press the <code class="docutils literal notranslate"><span class="pre">[Pub</span> <span class="pre">get]</span></code> button at the top of the window; or
@@ -249,7 +258,7 @@ file.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Lastly, remove file <code class="docutils literal notranslate"><span class="pre">test/widget_test.dart</span></code> completely.</p>
+<p>Lastly, remove the file <code class="docutils literal notranslate"><span class="pre">test/widget_test.dart</span></code> completely.</p>
 </section>
 <section id="run-the-project">
 <h2>6. Run the project<a class="headerlink" href="#run-the-project" title="Permalink to this headline">¶</a></h2>

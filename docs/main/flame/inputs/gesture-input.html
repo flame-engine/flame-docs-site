@@ -30,7 +30,7 @@
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
   <link rel="next" title="Keyboard Input" href="keyboard-input.html" />
-  <link rel="prev" title="Inputs" href="inputs.html" />
+  <link rel="prev" title="Tap events" href="tap-events.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -84,6 +84,7 @@
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../flame.html">flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game_widget.html">GameWidget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
@@ -92,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../camera_component.html">Camera component</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Inputs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tap-events.html">Tap events</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="other-inputs.html">Other inputs</a></li>
@@ -118,6 +120,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame_audio/bgm.html">Background music</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
@@ -130,7 +136,6 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d.html">Forge2D</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/splash_screen.html">Splash screen</a></li>
@@ -166,6 +171,7 @@ of these <code class="docutils literal notranslate"><span class="pre">mixin</spa
   <span class="o">-</span> <span class="n">onTap</span>
   <span class="o">-</span> <span class="n">onTapCancel</span>
   <span class="o">-</span> <span class="n">onTapDown</span>
+  <span class="o">-</span> <span class="n">onLongTapDown</span>
   <span class="o">-</span> <span class="n">onTapUp</span>
 
 <span class="o">-</span> <span class="n">SecondaryTapDetector</span>
@@ -339,7 +345,7 @@ transformations, this will be equal to the <code class="docutils literal notrans
 </pre></div>
 </div>
 <p>You can also check more complete examples
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/controls/">here</a>.</p>
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/">here</a>.</p>
 </section>
 <section id="tappable-draggable-and-hoverable-components">
 <h2>Tappable, Draggable and Hoverable components<a class="headerlink" href="#tappable-draggable-and-hoverable-components" title="Permalink to this headline">¶</a></h2>
@@ -358,6 +364,7 @@ children tree and then passed further down until a method returns <code class="d
 components, you can override the following methods on your components:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span> <span class="n">onTapCancel</span><span class="p">();</span>
 <span class="kt">bool</span> <span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span> <span class="n">info</span><span class="p">);</span>
+<span class="kt">bool</span> <span class="n">onLongTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span> <span class="n">info</span><span class="p">);</span>
 <span class="kt">bool</span> <span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpInfo</span> <span class="n">info</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -406,19 +413,22 @@ be applied to <code class="docutils literal notranslate"><span class="pre">onTap
   <span class="kt">bool</span> <span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span> <span class="n">info</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">info</span><span class="p">.</span><span class="n">handled</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>
     <span class="k">return</span> <span class="kc">true</span><span class="p">;</span>
-  <span class="p">}</span> 
+  <span class="p">}</span>
 <span class="p">}</span>
 
 <span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasTappables</span> <span class="p">{</span>
   <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">onTapDown</span><span class="p">(</span><span class="kt">int</span> <span class="n">pointerId</span><span class="p">,</span> <span class="n">TapDownInfo</span> <span class="n">info</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">handled</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">handled</span><span class="p">)</span> <span class="p">{</span>
       <span class="c1">// Do something if a child handled the event</span>
     <span class="p">}</span>
   <span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>The event <code class="docutils literal notranslate"><span class="pre">onLongTapDown</span></code> will be triggered on a component after the user “holds” it for a certain
+minimum amount of time. By default, that time is 300ms, but it can be adjusted by overriding the
+<code class="docutils literal notranslate"><span class="pre">longTapDelay</span></code> field of the <code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> mixin.</p>
 </section>
 <section id="draggable-components">
 <h3>Draggable components<a class="headerlink" href="#draggable-components" title="Permalink to this headline">¶</a></h3>
@@ -569,7 +579,7 @@ added in the below <code class="docutils literal notranslate"><span class="pre">
 <p>More information about how to define hitboxes can be found in the hitbox section of the
 <a class="reference internal" href="../collision_detection.html#shapehitbox"><span class="std std-doc">collision detection</span></a> docs.</p>
 <p>An example of how to use it can be seen
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/gesture_hitboxes_example">here</a>.</p>
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/gesture_hitboxes_example.dart">here</a>.</p>
 </section>
 </section>
 </section>
@@ -581,11 +591,11 @@ added in the below <code class="docutils literal notranslate"><span class="pre">
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="inputs.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="tap-events.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Inputs</p>
+          <p class="prev-next-title">Tap events</p>
         </div>
       </a>
       <div class='expander'></div>

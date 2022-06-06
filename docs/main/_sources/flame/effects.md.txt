@@ -40,6 +40,8 @@ There are multiple effects provided by Flame, and you can also
 - [`ScaleEffect.to`](#scaleeffectto)
 - [`SizeEffect.by`](#sizeeffectby)
 - [`SizeEffect.to`](#sizeeffectto)
+- [`AnchorByEffect`](#anchorbyeffect)
+- [`AnchorToEffect`](#anchortoeffect)
 - [`OpacityEffect`](#opacityeffect)
 - [`ColorEffect`](#coloreffect)
 - [`SequenceEffect`](#sequenceeffect)
@@ -85,7 +87,7 @@ functionality inherited by all other effects. This includes:
     removed from the game tree and garbage-collected once the effect completes. Set this to false
     if you plan to reuse the effect after it is finished.
 
-  - Optional user-provided `onFinishCallback`, which will be invoked when the effect has just
+  - Optional user-provided `onComplete`, which will be invoked when the effect has just
     completed its execution but before it is removed from the game.
 
   - The `reset()` method reverts the effect to its original state, allowing it to run once again.
@@ -128,7 +130,7 @@ position.
 
 ```dart
 final effect = MoveAlongPathEffect(
-  Path() ..quadraticBezierTo(100, 0, 50, -50),
+  Path()..quadraticBezierTo(100, 0, 50, -50),
   EffectController(duration: 1.5),
 );
 ```
@@ -195,10 +197,13 @@ final effect = SizeEffect.by(Vector2(20, -50), EffectController(duration: 1));
 The size of a `PositionComponent` cannot be negative. If an effect attempts to set the size to a
 negative value, the size will be clamped at zero.
 
-Note that for this effect to work, the target component must take its own `size` into account when
-rendering, and not all of them do. In addition, changing the size of a component does not propagate
-to its children, if it has any. An alternative to `SizeEffect` is the `ScaleEffect`, which works
-more generally and scales the children components too.
+Note that for this effect to work, the target component must implement the `SizeProvider` interface
+and take its `size` into account when rendering. Only few of the built-in components implement this
+API, but you can always make your own component work with size effects by adding
+`implements SizeEffect` to the class declaration.
+
+An alternative to `SizeEffect` is the `ScaleEffect`, which works more generally and scales both the
+target component and its children.
 
 
 ### `SizeEffect.to`
@@ -207,6 +212,26 @@ Changes the size of the target component to the specified size. Target size cann
 
 ```dart
 final effect = SizeEffect.to(Vector2(120, 120), EffectController(duration: 1));
+```
+
+
+### `AnchorByEffect`
+
+Changes the location of the target's anchor by the specified offset. This effect can also be created
+using `AnchorEffect.by()`.
+
+```dart
+final effect = AnchorByEffect(Vector2(0.1, 0.1), EffectController(speed: 1));
+```
+
+
+### `AnchorToEffect`
+
+Changes the location of the target's anchor. This effect can also be created using
+`AnchorEffect.to()`.
+
+```dart
+final effect = AnchorToEffect(Anchor.center, EffectController(speed: 1));
 ```
 
 
@@ -561,7 +586,7 @@ final ec = ZigzagEffectController(period: 2);
 
 ## See also
 
-* [Examples of various effects](https://examples.flame-engine.org/#/).
+* [Examples of various effects](https://examples.flame-engine.org/).
 
 
 [tau]: https://en.wikipedia.org/wiki/Tau_(mathematical_constant)
