@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Gesture Input &#8212; Flame</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
+  <!-- Scripts -->
+  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+  <script src="../../_static/jquery.js"></script>
+  <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/flutter_app.js"></script>
+  <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
+  <script src="../../_static/versions.js"></script>
+  <!--script src="searchindex.js" defer></script-->
+  <!-- Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../_static/fontawesome/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../_static/fontawesome/fa-solid-900.woff2">
+  <link rel="stylesheet" href="../../_static/fontawesome/all.min.css">
+  <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" />
+  <link rel="next" title="Keyboard Input" href="keyboard-input.html" />
+  <link rel="prev" title="Tap events" href="tap-events.html" />
+</head>
+
+<body data-spy="scroll" data-target="#toc-local" data-offset="80">
+
+<div class="top-bar">
+  <button id="menu-button" class="btn" title="Toggle menu"><i class="fa fa-bars"></i></button>
+  <script type="text/javascript">
+    jQuery(function(){
+      $("#menu-button").click(function() {
+        $(this).toggleClass("active");
+        $(".sidebar-left-area").toggleClass("active");
+      });
+    });
+  </script>
+
+  <a href="../../index.html" class="logo_image">
+    <img src="../../_static/logo_flame.png">
+  </a>
+
+  <div class="highlight-box" role="alert" style="display:none">
+    <div>
+      <div class="title">highlighted:</div>
+      <div class="content" id="highlight-content"></div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Dismiss">×</button>
+  </div>
+  <div class="expander"></div>
+
+  <div class="versions-placeholder"></div>
+  <a href="https://discord.com/channels/509714518008528896/516639688581316629" id="discord-button"
+     class="btn" title="Flame Discord channel">
+    <i class="fab fa-discord"></i>
+  </a>
+  <a href="https://github.com/flame-engine/flame/" id="github-button" class="btn"
+     title="GitHub repository">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+
+<div class="sidebar-left-area">
+  <div class="sidebar-left-bg"></div>
+  <div class="sidebar-left">
+    <div class="searchbox" role="search">
+      <form id="search-form" action="../../search.html" method="get">
+        <i class="icon fa fa-search"></i>
+        <input type="search" class="form-control" id="search-input" name="q"
+               placeholder="Search the docs..." autocomplete="off" />
+      </form>
+    </div>
+    <div class="nav-left" role="navigation" aria-label="Main">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../flame.html">flame</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game_widget.html">GameWidget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game.html">Game loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collision_detection.html">Collision detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../camera_and_viewport.html">Camera &amp; Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../camera_component.html">Camera component</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Inputs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tap-events.html">Tap events</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Gesture input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keyboard-input.html">Keyboard input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="other-inputs.html">Other inputs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/images.html">Images, sprites and animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/text.html">Text rendering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/palette.html">Colors and palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/particles.html">Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/layers.html">Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../other/other.html">Other</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../other/debug.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../other/util.html">Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../other/widgets.html">Widgets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../flame_audio/flame_audio.html">flame_audio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_audio/audio.html">General audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_audio/bgm.html">Background music</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/tbc.html">[To be continued]...</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen.html">Oxygen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/tiled.html">Tiled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/splash_screen.html">Splash screen</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="main-area">
+  <div class="document-wrapper">
+    <div class="document" role="main">
+      
+  <section class="tex2jax_ignore mathjax_ignore" id="gesture-input">
+<h1>Gesture Input<a class="headerlink" href="#gesture-input" title="Permalink to this heading">¶</a></h1>
+<p>This includes documentation for gesture inputs, which is, mouse and touch pointers.</p>
+<p>For other input documents, see also:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="keyboard-input.html"><span class="doc std std-doc">Keyboard Input</span></a>: for keystrokes</p></li>
+<li><p><a class="reference internal" href="other-inputs.html"><span class="doc std std-doc">Other Inputs</span></a>: For joysticks, game pads, etc.</p></li>
+</ul>
+<section id="intro">
+<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this heading">¶</a></h2>
+<p>Inside <code class="docutils literal notranslate"><span class="pre">package:flame/gestures.dart</span></code> you can find a whole set of <code class="docutils literal notranslate"><span class="pre">mixin</span></code>s which can be included on
+your game class instance to be able to receive touch input events. Below you can see the full list
+of these <code class="docutils literal notranslate"><span class="pre">mixin</span></code>s and its methods:</p>
+</section>
+<section id="touch-and-mouse-detectors">
+<h2>Touch and mouse detectors<a class="headerlink" href="#touch-and-mouse-detectors" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">TapDetector</span>
+  <span class="o">-</span> <span class="n">onTap</span>
+  <span class="o">-</span> <span class="n">onTapCancel</span>
+  <span class="o">-</span> <span class="n">onTapDown</span>
+  <span class="o">-</span> <span class="n">onLongTapDown</span>
+  <span class="o">-</span> <span class="n">onTapUp</span>
+
+<span class="o">-</span> <span class="n">SecondaryTapDetector</span>
+  <span class="o">-</span> <span class="n">onSecondaryTapDown</span>
+  <span class="o">-</span> <span class="n">onSecondaryTapUp</span>
+  <span class="o">-</span> <span class="n">onSecondaryTapCancel</span>
+
+<span class="o">-</span> <span class="n">DoubleTapDetector</span>
+  <span class="o">-</span> <span class="n">onDoubleTap</span>
+
+<span class="o">-</span> <span class="n">LongPressDetector</span>
+  <span class="o">-</span> <span class="n">onLongPress</span>
+  <span class="o">-</span> <span class="n">onLongPressStart</span>
+  <span class="o">-</span> <span class="n">onLongPressMoveUpdate</span>
+  <span class="o">-</span> <span class="n">onLongPressUp</span>
+  <span class="o">-</span> <span class="n">onLongPressEnd</span>
+
+<span class="o">-</span> <span class="n">VerticalDragDetector</span>
+  <span class="o">-</span> <span class="n">onVerticalDragDown</span>
+  <span class="o">-</span> <span class="n">onVerticalDragStart</span>
+  <span class="o">-</span> <span class="n">onVerticalDragUpdate</span>
+  <span class="o">-</span> <span class="n">onVerticalDragEnd</span>
+  <span class="o">-</span> <span class="n">onVerticalDragCancel</span>
+
+<span class="o">-</span> <span class="n">HorizontalDragDetector</span>
+  <span class="o">-</span> <span class="n">onHorizontalDragDown</span>
+  <span class="o">-</span> <span class="n">onHorizontalDragStart</span>
+  <span class="o">-</span> <span class="n">onHorizontalDragUpdate</span>
+  <span class="o">-</span> <span class="n">onHorizontalDragEnd</span>
+  <span class="o">-</span> <span class="n">onHorizontalDragCancel</span>
+
+<span class="o">-</span> <span class="n">ForcePressDetector</span>
+  <span class="o">-</span> <span class="n">onForcePressStart</span>
+  <span class="o">-</span> <span class="n">onForcePressPeak</span>
+  <span class="o">-</span> <span class="n">onForcePressUpdate</span>
+  <span class="o">-</span> <span class="n">onForcePressEnd</span>
+
+<span class="o">-</span> <span class="n">PanDetector</span>
+  <span class="o">-</span> <span class="n">onPanDown</span>
+  <span class="o">-</span> <span class="n">onPanStart</span>
+  <span class="o">-</span> <span class="n">onPanUpdate</span>
+  <span class="o">-</span> <span class="n">onPanEnd</span>
+  <span class="o">-</span> <span class="n">onPanCancel</span>
+
+<span class="o">-</span> <span class="n">ScaleDetector</span>
+  <span class="o">-</span> <span class="n">onScaleStart</span>
+  <span class="o">-</span> <span class="n">onScaleUpdate</span>
+  <span class="o">-</span> <span class="n">onScaleEnd</span>
+
+ <span class="o">-</span> <span class="n">MultiTouchTapDetector</span>
+  <span class="o">-</span> <span class="n">onTap</span>
+  <span class="o">-</span> <span class="n">onTapCancel</span>
+  <span class="o">-</span> <span class="n">onTapDown</span>
+  <span class="o">-</span> <span class="n">onTapUp</span>
+
+ <span class="o">-</span> <span class="n">MultiTouchDragDetector</span>
+  <span class="o">-</span> <span class="n">onReceiveDrag</span>
+</pre></div>
+</div>
+<p>Mouse only events</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">-</span> <span class="n">MouseMovementDetector</span>
+  <span class="o">-</span> <span class="n">onMouseMove</span>
+ <span class="o">-</span> <span class="n">ScrollDetector</span>
+  <span class="o">-</span> <span class="n">onScroll</span>
+</pre></div>
+</div>
+<p>It is not possible to mix advanced detectors (<code class="docutils literal notranslate"><span class="pre">MultiTouch*</span></code>) with basic detectors of the same
+kind, since the advanced detectors will <em>always win the gesture arena</em> and the basic detectors will
+never be triggered. So for example, you can’t use both <code class="docutils literal notranslate"><span class="pre">MultiTouchTapDetector</span></code> and <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code>
+together, since no events will be triggered for the latter (there is also an assertion for this).</p>
+<p>Flame’s GestureApi is provided by Flutter’s Gesture Widgets, including
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html">GestureDetector widget</a>,
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/RawGestureDetector-class.html">RawGestureDetector widget</a>
+and <a class="reference external" href="https://api.flutter.dev/flutter/widgets/MouseRegion-class.html">MouseRegion widget</a>, you can
+also read more about Flutter’s gestures
+<a class="reference external" href="https://api.flutter.dev/flutter/gestures/gestures-library.html">here</a>.</p>
+</section>
+<section id="pandetector-and-scaledetector">
+<h2>PanDetector and ScaleDetector<a class="headerlink" href="#pandetector-and-scaledetector" title="Permalink to this heading">¶</a></h2>
+<p>If you add a <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> together with a <code class="docutils literal notranslate"><span class="pre">ScaleDetector</span></code> you will be prompted with a quite
+cryptic assertion from Flutter that says:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Having</span> <span class="n">both</span> <span class="n">a</span> <span class="n">pan</span> <span class="n">gesture</span> <span class="n">recognizer</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">scale</span> <span class="n">gesture</span> <span class="n">recognizer</span> <span class="ow">is</span> <span class="n">redundant</span><span class="p">;</span> <span class="n">scale</span> <span class="ow">is</span> <span class="n">a</span>
+<span class="n">superset</span> <span class="n">of</span> <span class="n">pan</span><span class="o">.</span>
+
+<span class="n">Just</span> <span class="n">use</span> <span class="n">the</span> <span class="n">scale</span> <span class="n">gesture</span> <span class="n">recognizer</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>This might seem strange, but <code class="docutils literal notranslate"><span class="pre">onScaleUpdate</span></code> is not only triggered when the scale should be changed,
+but for all pan/drag events too. So if you need to use both of those detectors you’ll have to handle
+both of their logic inside <code class="docutils literal notranslate"><span class="pre">onScaleUpdate</span></code> (+<code class="docutils literal notranslate"><span class="pre">onScaleStart</span></code> and <code class="docutils literal notranslate"><span class="pre">onScaleEnd</span></code>).</p>
+<p>For example you could do something like this if you want to move the camera on pan events and zoom
+on scale events:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">startZoom</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleStart</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">startZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleUpdate</span><span class="p">(</span><span class="n">ScaleUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">currentScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">info</span><span class="p">.</span><span class="n">scale</span><span class="p">.</span><span class="n">global</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">currentScale</span><span class="p">.</span><span class="n">isIdentity</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">camera</span><span class="p">.</span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startZoom</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">currentScale</span><span class="p">.</span><span class="n">y</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">camera</span><span class="p">.</span><span class="n">translateBy</span><span class="p">(</span><span class="o">-</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">game</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">camera</span><span class="p">.</span><span class="n">snap</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In the example above the pan events are handled with <code class="docutils literal notranslate"><span class="pre">info.delta</span></code> and the scale events with
+<code class="docutils literal notranslate"><span class="pre">info.scale</span></code>, although they are theoretically both from underlying scale events.</p>
+<p>This can also be seen in the
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/camera_and_viewport/zoom_example.dart">zoom example</a>.</p>
+</section>
+<section id="mouse-cursor">
+<h2>Mouse cursor<a class="headerlink" href="#mouse-cursor" title="Permalink to this heading">¶</a></h2>
+<p>It is also possible to change the current mouse cursor displayed on the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> region. To do
+so the following code can be used inside the <code class="docutils literal notranslate"><span class="pre">Game</span></code> class</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">mouseCursor</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SystemMouseCursors</span><span class="p">.</span><span class="n">move</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To already initialize the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> with a custom cursor, the <code class="docutils literal notranslate"><span class="pre">mouseCursor</span></code> property can be used</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">GameWidget</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nl">game:</span><span class="w"> </span><span class="n">MouseCursorGame</span><span class="p">(),</span><span class="w"></span>
+<span class="w">  </span><span class="nl">mouseCursor:</span><span class="w"> </span><span class="n">SystemMouseCursors</span><span class="p">.</span><span class="n">move</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="event-coordinate-system">
+<h2>Event coordinate system<a class="headerlink" href="#event-coordinate-system" title="Permalink to this heading">¶</a></h2>
+<p>On events that have positions, like for example <code class="docutils literal notranslate"><span class="pre">Tap*</span></code> or <code class="docutils literal notranslate"><span class="pre">Drag</span></code>, you will notice that the <code class="docutils literal notranslate"><span class="pre">eventPosition</span></code>
+attribute includes 3 fields: <code class="docutils literal notranslate"><span class="pre">game</span></code>, <code class="docutils literal notranslate"><span class="pre">widget</span></code> and <code class="docutils literal notranslate"><span class="pre">global</span></code>. Below you will find a brief explanation
+about each one of them.</p>
+<section id="global">
+<h3>global<a class="headerlink" href="#global" title="Permalink to this heading">¶</a></h3>
+<p>The position where the event occurred considering the entire screen, same as
+<code class="docutils literal notranslate"><span class="pre">globalPosition</span></code> in Flutter’s native events.</p>
+</section>
+<section id="widget">
+<h3>widget<a class="headerlink" href="#widget" title="Permalink to this heading">¶</a></h3>
+<p>The position where the event occurred relative to the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> position and size
+, same as <code class="docutils literal notranslate"><span class="pre">localPosition</span></code> in Flutter’s native events.</p>
+</section>
+<section id="game">
+<h3>game<a class="headerlink" href="#game" title="Permalink to this heading">¶</a></h3>
+<p>The position where the event ocurred relative to the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> and with any
+transformations that the game applied to the game (e.g. camera). If the game doesn’t have any
+transformations, this will be equal to the <code class="docutils literal notranslate"><span class="pre">widget</span></code> attribute.</p>
+</section>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapDetector</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Other methods omitted</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Player tap down on </span><span class="si">${</span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Player tap up on </span><span class="si">${</span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>You can also check more complete examples
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/">here</a>.</p>
+</section>
+<section id="tappable-draggable-and-hoverable-components">
+<h2>Tappable, Draggable and Hoverable components<a class="headerlink" href="#tappable-draggable-and-hoverable-components" title="Permalink to this heading">¶</a></h2>
+<p>Any component derived from <code class="docutils literal notranslate"><span class="pre">Component</span></code> (most components) can add the <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>, the
+<code class="docutils literal notranslate"><span class="pre">Draggable</span></code>, and/or the <code class="docutils literal notranslate"><span class="pre">Hoverable</span></code> mixins to handle taps, drags and hovers on the component.</p>
+<p>All overridden methods return a boolean to control if the event should be passed down further along
+to components underneath it. So say that you only want your top visible component to receive a tap
+and not the ones underneath it, then your <code class="docutils literal notranslate"><span class="pre">onTapDown</span></code>, <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code> and <code class="docutils literal notranslate"><span class="pre">onTapCancel</span></code> implementations
+should return <code class="docutils literal notranslate"><span class="pre">false</span></code> and if you want the event to go through more of the components underneath then
+you should return <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+<p>The same applies if your component has children, then the event is first sent to the leaves in the
+children tree and then passed further down until a method returns <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<section id="tappable-components">
+<h3>Tappable components<a class="headerlink" href="#tappable-components" title="Permalink to this heading">¶</a></h3>
+<p>By adding the <code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> mixin to your game, and using the mixin <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> on your
+components, you can override the following methods on your components:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">onTapCancel</span><span class="p">();</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">info</span><span class="p">);</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">onLongTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">info</span><span class="p">);</span><span class="w"></span>
+<span class="kt">bool</span><span class="w"> </span><span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpInfo</span><span class="w"> </span><span class="n">info</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Minimal component example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">TappableComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Tappable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// update and render omitted</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;tap up&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;tap down&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onTapCancel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;tap cancel&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTappables</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">TappableComponent</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><strong>Note</strong>: <code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> uses an advanced gesture detector under the hood and as explained
+further up on this page it shouldn’t be used alongside basic detectors.</p>
+<p>To recognize whether a <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> added to the game handled an event, the <code class="docutils literal notranslate"><span class="pre">handled</span></code> field can be set
+to true in the event can be checked in the corresponding method in the game class, or further down
+the chain if you let the event continue to propagate.</p>
+<p>In the following example it can be seen how it is used with <code class="docutils literal notranslate"><span class="pre">onTapDown</span></code>, the same technique can also
+be applied to <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Tappable</span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">info</span><span class="p">.</span><span class="n">handled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTappables</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pointerId</span><span class="p">,</span><span class="w"> </span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">handled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Do something if a child handled the event</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The event <code class="docutils literal notranslate"><span class="pre">onLongTapDown</span></code> will be triggered on a component after the user “holds” it for a certain
+minimum amount of time. By default, that time is 300ms, but it can be adjusted by overriding the
+<code class="docutils literal notranslate"><span class="pre">longTapDelay</span></code> field of the <code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> mixin.</p>
+</section>
+<section id="draggable-components">
+<h3>Draggable components<a class="headerlink" href="#draggable-components" title="Permalink to this heading">¶</a></h3>
+<p>Just like with <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>, Flame offers a mixin for <code class="docutils literal notranslate"><span class="pre">Draggable</span></code>.</p>
+<p>By adding the <code class="docutils literal notranslate"><span class="pre">HasDraggables</span></code> mixin to your game, and by using the mixin <code class="docutils literal notranslate"><span class="pre">Draggable</span></code> on
+your components, they can override the simple methods that enable an easy to use drag api on your
+components.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onDragStart</span><span class="p">(</span><span class="n">DragStartInfo</span><span class="w"> </span><span class="n">info</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndInfo</span><span class="w"> </span><span class="n">info</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onDragCancel</span><span class="p">();</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that all events take a uniquely generated pointer id so you can, if desired, distinguish
+between different simultaneous drags.</p>
+<p>The default implementation provided by <code class="docutils literal notranslate"><span class="pre">Draggable</span></code> will already check:</p>
+<ul class="simple">
+<li><p>upon drag start, the component only receives the event if the position is within its bounds; keep
+track of pointerId.</p></li>
+<li><p>when handling updates/end/cancel, the component only receives the event if the pointerId was
+tracked (regardless of position).</p></li>
+<li><p>on end/cancel, stop tracking pointerId.</p></li>
+</ul>
+<p>Minimal component example (this example ignores pointerId so it wont work well if you try to
+multi-drag):</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">DraggableComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Draggable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// update and render omitted</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Vector2</span><span class="o">?</span><span class="w"> </span><span class="n">dragDeltaPosition</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">isDragging</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">dragDeltaPosition</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onDragStart</span><span class="p">(</span><span class="n">DragStartInfo</span><span class="w"> </span><span class="n">startPosition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">dragDeltaPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startPosition</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">position</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isDragging</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">localCoords</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">localCoords</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">dragDeltaPosition</span><span class="o">!</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndInfo</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">dragDeltaPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onDragCancel</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">dragDeltaPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasDraggables</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">DraggableComponent</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To recognize whether a <code class="docutils literal notranslate"><span class="pre">Draggable</span></code> added to the game handled an event, the <code class="docutils literal notranslate"><span class="pre">handled</span></code> field can be
+set to true in the event can be checked in the corresponding method in the game class, or further
+down the chain if you let the event continue to propagate.</p>
+<p>In the following example it can be seen how it is used with <code class="docutils literal notranslate"><span class="pre">onDragStart</span></code>, the same technique can
+also be applied to <code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code> and <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Draggable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w"> </span><span class="nd">@override</span><span class="w"></span>
+<span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">onDragStart</span><span class="p">(</span><span class="n">DragStartInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">info</span><span class="p">.</span><span class="n">handled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasDraggables</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragStart</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pointerId</span><span class="p">,</span><span class="w"> </span><span class="n">DragStartInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">handled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Do something if a child handled the event</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="hoverable-components">
+<h3>Hoverable components<a class="headerlink" href="#hoverable-components" title="Permalink to this heading">¶</a></h3>
+<p>Just like the others, this mixin allows for easy wiring of your component to listen to hover states
+and events.</p>
+<p>By adding the <code class="docutils literal notranslate"><span class="pre">HasHoverables</span></code> mixin to your base game, and by using the mixin <code class="docutils literal notranslate"><span class="pre">Hoverable</span></code> on
+your components, they get an <code class="docutils literal notranslate"><span class="pre">isHovered</span></code> field and a couple of methods (<code class="docutils literal notranslate"><span class="pre">onHoverStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onHoverEnd</span></code>) that
+you can override if you want to listen to the events.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">isHovered</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onHoverEnter</span><span class="p">(</span><span class="n">PointerHoverInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;hover enter&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onHoverLeave</span><span class="p">(</span><span class="n">PointerHoverInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;hover leave&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The provided event info is from the mouse move that triggered the action (entering or leaving).
+While the mouse movement is kept inside or outside, no events are fired and those mouse move events are
+not propagated. Only when the state is changed the handlers are triggered.</p>
+<p>To recognize whether a <code class="docutils literal notranslate"><span class="pre">Hoverable</span></code> added to the game handled an event, the <code class="docutils literal notranslate"><span class="pre">handled</span></code> field can be
+set to true in the event can be checked in the corresponding method in the game class, or further
+down the chain if you let the event continue to propagate.</p>
+<p>In the following example it can be seen how it is used with <code class="docutils literal notranslate"><span class="pre">onHoverEnter</span></code>, the same technique can
+also be applied to <code class="docutils literal notranslate"><span class="pre">onHoverLeave</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Hoverable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onHoverEnter</span><span class="p">(</span><span class="n">PointerHoverInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">info</span><span class="p">.</span><span class="n">handled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasHoverables</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onHoverEnter</span><span class="p">(</span><span class="n">PointerHoverInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">handled</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Do something if a child handled the event</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="gesturehitboxes">
+<h3>GestureHitboxes<a class="headerlink" href="#gesturehitboxes" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin is used to more accurately recognize gestures on top of your
+<code class="docutils literal notranslate"><span class="pre">Component</span></code>s. Say that you have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you
+don’t want to register input that is in the corner of the image where the rock is not displayed,
+since a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is rectangular by default. Then you can use the <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin
+to define a more accurate circle or polygon (or another shape) for which the input should be within
+for the event to be registered on your component.</p>
+<p>You can add new hitboxes to the component that has the <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin just like they are
+added in the below <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> example.</p>
+<p>More information about how to define hitboxes can be found in the hitbox section of the
+<a class="reference internal" href="../collision_detection.html#shapehitbox"><span class="std std-doc">collision detection</span></a> docs.</p>
+<p>An example of how to use it can be seen
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/gesture_hitboxes_example.dart">here</a>.</p>
+</section>
+</section>
+</section>
+
+
+    </div>
+    <div class="copyright">
+      The content on this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 License</a>,
+      and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
+    </div>
+    <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="tap-events.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">Tap events</p>
+        </div>
+      </a>
+      <div class='expander'></div>
+      <a class="right-next" id="next-link" href="keyboard-input.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">Keyboard Input</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-right">
+    
+    <div class="nav-right" role="navigation" aria-label="table of contents">
+      <div id='toc-local' class='list-group'>
+ <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#intro' class='list-group-item level-1'>Intro</a>
+  <a href='#touch-and-mouse-detectors' class='list-group-item level-1'>Touch and mouse detectors</a>
+  <a href='#pandetector-and-scaledetector' class='list-group-item level-1'>PanDetector and ScaleDetector</a>
+  <a href='#mouse-cursor' class='list-group-item level-1'>Mouse cursor</a>
+  <a href='#event-coordinate-system' class='list-group-item level-1'>Event coordinate system</a>
+  <a href='#global' class='list-group-item level-2'>global</a>
+  <a href='#widget' class='list-group-item level-2'>widget</a>
+  <a href='#game' class='list-group-item level-2'>game</a>
+  <a href='#example' class='list-group-item level-1'>Example</a>
+  <a href='#tappable-draggable-and-hoverable-components' class='list-group-item level-1'>Tappable, Draggable and Hoverable components</a>
+  <a href='#tappable-components' class='list-group-item level-2'>Tappable components</a>
+  <a href='#draggable-components' class='list-group-item level-2'>Draggable components</a>
+  <a href='#hoverable-components' class='list-group-item level-2'>Hoverable components</a>
+  <a href='#gesturehitboxes' class='list-group-item level-2'>GestureHitboxes</a>
+</div>
+
+    </div>
+  </div>
+
+  <div class="expander"></div>
+</div>
+
+
+
+
+</body>
+</html>

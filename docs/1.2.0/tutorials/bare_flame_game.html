@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Bare Flame game &#8212; Flame</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
+  <!-- Scripts -->
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/flutter_app.js"></script>
+  <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
+  <script src="../_static/versions.js"></script>
+  <!--script src="searchindex.js" defer></script-->
+  <!-- Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/fontawesome/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/fontawesome/fa-solid-900.woff2">
+  <link rel="stylesheet" href="../_static/fontawesome/all.min.css">
+  <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="Klondike game tutorial" href="klondike/klondike.html" />
+  <link rel="prev" title="Tutorials" href="tutorials.html" />
+</head>
+
+<body data-spy="scroll" data-target="#toc-local" data-offset="80">
+
+<div class="top-bar">
+  <button id="menu-button" class="btn" title="Toggle menu"><i class="fa fa-bars"></i></button>
+  <script type="text/javascript">
+    jQuery(function(){
+      $("#menu-button").click(function() {
+        $(this).toggleClass("active");
+        $(".sidebar-left-area").toggleClass("active");
+      });
+    });
+  </script>
+
+  <a href="../index.html" class="logo_image">
+    <img src="../_static/logo_flame.png">
+  </a>
+
+  <div class="highlight-box" role="alert" style="display:none">
+    <div>
+      <div class="title">highlighted:</div>
+      <div class="content" id="highlight-content"></div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Dismiss">×</button>
+  </div>
+  <div class="expander"></div>
+
+  <div class="versions-placeholder"></div>
+  <a href="https://discord.com/channels/509714518008528896/516639688581316629" id="discord-button"
+     class="btn" title="Flame Discord channel">
+    <i class="fab fa-discord"></i>
+  </a>
+  <a href="https://github.com/flame-engine/flame/" id="github-button" class="btn"
+     title="GitHub repository">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+
+<div class="sidebar-left-area">
+  <div class="sidebar-left-bg"></div>
+  <div class="sidebar-left">
+    <div class="searchbox" role="search">
+      <form id="search-form" action="../search.html" method="get">
+        <i class="icon fa fa-search"></i>
+        <input type="search" class="form-control" id="search-input" name="q"
+               placeholder="Search the docs..." autocomplete="off" />
+      </form>
+    </div>
+    <div class="nav-left" role="navigation" aria-label="Main">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../flame/flame.html">flame</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../flame/structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/game_widget.html">GameWidget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/game.html">Game loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/platforms.html">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/collision_detection.html">Collision detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/camera_and_viewport.html">Camera &amp; Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/camera_component.html">Camera component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/tap-events.html">Tap events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/gesture-input.html">Gesture input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/keyboard-input.html">Keyboard input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/other-inputs.html">Other inputs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame/rendering/images.html">Images, sprites and animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/rendering/text.html">Text rendering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/rendering/palette.html">Colors and palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/rendering/particles.html">Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/rendering/layers.html">Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/other/other.html">Other</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame/other/debug.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/other/util.html">Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/other/widgets.html">Widgets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../flame_audio/flame_audio.html">flame_audio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../flame_audio/audio.html">General audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="klondike/klondike.html">Klondike</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="klondike/step1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klondike/step2.html">2. Scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klondike/step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="klondike/tbc.html">[To be continued]...</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen.html">Oxygen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other_modules/tiled.html">Tiled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="main-area">
+  <div class="document-wrapper">
+    <div class="document" role="main">
+      
+  <section class="tex2jax_ignore mathjax_ignore" id="bare-flame-game">
+<h1>Bare Flame game<a class="headerlink" href="#bare-flame-game" title="Permalink to this heading">¶</a></h1>
+<p>This tutorial assumes that you have basic familiarity with using the command line, and the
+following programs on your computer (all of them are free):</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://docs.flutter.dev/get-started/install">Flutter</a>, version 2.10.0 or above;</p></li>
+<li><p><a class="reference external" href="https://developer.android.com/studio">Android Studio</a>, or any other IDE, for example <a class="reference external" href="https://code.visualstudio.com/download">Visual Studio Code</a>;</p></li>
+<li><p><a class="reference external" href="https://git-scm.com/downloads">git</a> (optional), in order to save your project on GitHub.</p></li>
+</ul>
+<section id="check-flutter-installation">
+<h2>1. Check flutter installation<a class="headerlink" href="#check-flutter-installation" title="Permalink to this heading">¶</a></h2>
+<p>First, let’s verify that your Flutter SDK was installed correctly and is
+accessible from the command line:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flutter doctor
+<span class="go">[✓] Flutter (Channel stable, 2.10.0, on macOS 12.3.1 21E258 darwin-x64, locale en)</span>
+<span class="go">[✓] Android toolchain - develop for Android devices (Android SDK version 31.0.0)</span>
+<span class="go">[✓] Xcode - develop for iOS and macOS (Xcode 13.1)</span>
+<span class="go">[✓] Chrome - develop for the web</span>
+<span class="go">[✓] Android Studio (version 2020.3)</span>
+<span class="go">[✓] Connected device (1 available)</span>
+<span class="go">[✓] HTTP Host Availability</span>
+</pre></div>
+</div>
+<p>Your output will be slightly different, but the important thing is to verify
+that no errors are reported, and that your Flutter version is at least <strong>2.10.0</strong>.</p>
+</section>
+<section id="create-project-directory">
+<h2>2. Create project directory<a class="headerlink" href="#create-project-directory" title="Permalink to this heading">¶</a></h2>
+<p>Now you need to come up with a name for your project. The name can only use
+lowercase latin letters, digits, and underscores. It must also be a valid Dart
+identifier (thus, for example, it cannot be a keyword).</p>
+<p>In this tutorial we’re going to call the project <strong>syzygy</strong>, which is a totally
+real non-made-up word.</p>
+<p>Create the directory for your new project:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir -p ~/projects/syzygy
+<span class="gp">$ </span><span class="nb">cd</span> ~/projects/syzygy
+</pre></div>
+</div>
+</section>
+<section id="initialize-empty-flutter-project">
+<h2>3. Initialize empty Flutter project<a class="headerlink" href="#initialize-empty-flutter-project" title="Permalink to this heading">¶</a></h2>
+<p>In order to turn this barren directory into an actual Flutter project, run the
+following command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flutter create .
+</pre></div>
+</div>
+<p>(I have omitted the output for brevity, but there will be lots of output).</p>
+<p>You can verify that the project files were created successfully:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ls
+<span class="go">README.md               android/   lib/           pubspec.yaml   test/</span>
+<span class="go">analysis_options.yaml   ios/       pubspec.lock   syzygy.iml     web/</span>
+</pre></div>
+</div>
+</section>
+<section id="open-the-project-in-android-studio">
+<h2>4. Open the project in Android Studio<a class="headerlink" href="#open-the-project-in-android-studio" title="Permalink to this heading">¶</a></h2>
+<p>Launch Android Studio, then in the project selection window choose <code class="docutils literal notranslate"><span class="pre">[Open]</span></code>
+and navigate to your project directory. With any luck, the project will now
+look like this:</p>
+<p><img alt="" src="../_images/android-studio-screenshot-1.webp" /></p>
+<p>If you see only the <code class="docutils literal notranslate"><span class="pre">main.dart</span></code> file but not the side panel, then click the
+vertical <code class="docutils literal notranslate"><span class="pre">[Project]</span></code> button at the left edge of the window.</p>
+<p>Before we proceed, let’s fix the view in the left panel. Locate the button
+in the top left corner that says <code class="docutils literal notranslate"><span class="pre">[Android]</span></code> in the screenshot. In this
+dropdown select the first option “Project”. Your project window should now
+look like this:</p>
+<p><img alt="" src="../_images/android-studio-screenshot-2.webp" /></p>
+<p>The important part is that you should be able to see all files in your
+project directory.</p>
+</section>
+<section id="clean-up-the-project-files">
+<h2>5. Clean up the project files<a class="headerlink" href="#clean-up-the-project-files" title="Permalink to this heading">¶</a></h2>
+<p>The default project created by Flutter is not very useful for making a Flame
+game, so we should get rid of it.</p>
+<p>First, open the file <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> and replace it with the following code
+(adjusting the <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">description</span></code> to match your project):</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">syzygy</span><span class="w"></span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Syzygy Flame game</span><span class="w"></span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0</span><span class="w"></span>
+<span class="nt">publish_to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span><span class="w"></span>
+
+<span class="nt">environment</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">sdk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^2.16.0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">flutter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^2.10.0</span><span class="w"></span>
+
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">flutter</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">sdk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flutter</span><span class="w"></span>
+<span class="w">  </span><span class="nt">flame</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^1.1.0</span><span class="w"></span>
+</pre></div>
+</div>
+<p>After that, press the <code class="docutils literal notranslate"><span class="pre">[Pub</span> <span class="pre">get]</span></code> button at the top of the window; or
+alternatively you could run command <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">pub</span> <span class="pre">get</span></code> from the terminal. This
+will “apply” the changes in <code class="docutils literal notranslate"><span class="pre">pubspec</span></code> file to your project, in particular it
+will download the Flame library which we have declared as a dependency. In the
+future, you should run <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">pub</span> <span class="pre">get</span></code> whenever you make changes to this
+file.</p>
+<p>Now, open file <code class="docutils literal notranslate"><span class="pre">lib/main.dart</span></code> and replace its content with the following:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span><span class="w"></span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Lastly, remove the file <code class="docutils literal notranslate"><span class="pre">test/widget_test.dart</span></code> completely.</p>
+</section>
+<section id="run-the-project">
+<h2>6. Run the project<a class="headerlink" href="#run-the-project" title="Permalink to this heading">¶</a></h2>
+<p>Let’s verify that everything is working as intended, and the project can run.</p>
+<p>In the menu bar at the top of the window find a dropdown that says <code class="docutils literal notranslate"><span class="pre">&lt;no</span> <span class="pre">device</span> <span class="pre">selected&gt;</span></code>. In that dropdown choose <code class="docutils literal notranslate"><span class="pre">&lt;Chrome</span> <span class="pre">(web)&gt;</span></code> instead.</p>
+<p>After that open the <code class="docutils literal notranslate"><span class="pre">main.dart</span></code> file and press the green arrow next to the
+<code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">main()</span></code> function in line 4. Select <code class="docutils literal notranslate"><span class="pre">[Run</span> <span class="pre">main.dart]</span></code> from the menu.</p>
+<p>This should open a new Chrome window (which may take 10-30 seconds) and run
+your project in that window. For now it will simply show a black screen, which
+is expected because we created the game in its simplest blank configuration.</p>
+</section>
+<section id="sync-to-github">
+<h2>7. Sync to GitHub<a class="headerlink" href="#sync-to-github" title="Permalink to this heading">¶</a></h2>
+<p>The last step is to upload your project to GitHub. This is not required, but
+strongly recommended as it will serve as a backup for your code. This step
+assumes that you already have a GitHub account.</p>
+<p>Log into your GitHub account, select <code class="docutils literal notranslate"><span class="pre">[Your</span> <span class="pre">repositories]</span></code> from your profile
+dropdown, and press the green <code class="docutils literal notranslate"><span class="pre">[New]</span></code> button. In the form enter repository
+name the same as your project name; select type “private”; and opt out of
+adding initial files like README, license and gitignore.</p>
+<p>Now go to your project’s directory in the terminal and execute the following
+commands (make sure to replace the URL with the link to the repository that
+you just created):</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git init
+<span class="gp">$ </span>git add --all
+<span class="gp">$ </span>git commit -m <span class="s1">&#39;Initial commit&#39;</span>
+<span class="gp">$ </span>git remote add origin https://github.com/your-github-username/syzygy.git
+<span class="gp">$ </span>git branch -M main
+<span class="gp">$ </span>git push -u origin main
+</pre></div>
+</div>
+<p>At this point if you go to your repository page on GitHub, you shall see that
+all your project files are there.</p>
+</section>
+<section id="done">
+<h2>8. Done<a class="headerlink" href="#done" title="Permalink to this heading">¶</a></h2>
+<p>That’s it! By this point you have</p>
+<ul class="simple">
+<li><p>Created an initial blank state Flame project;</p></li>
+<li><p>Set up the Android Studio IDE for that project;</p></li>
+<li><p>Created a GitHub repository for the project.</p></li>
+</ul>
+<p>Happy coding!</p>
+</section>
+</section>
+
+
+    </div>
+    <div class="copyright">
+      The content on this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 License</a>,
+      and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
+    </div>
+    <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="tutorials.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">Tutorials</p>
+        </div>
+      </a>
+      <div class='expander'></div>
+      <a class="right-next" id="next-link" href="klondike/klondike.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">Klondike game tutorial</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-right">
+    
+    <div class="nav-right" role="navigation" aria-label="table of contents">
+      <div id='toc-local' class='list-group'>
+ <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#check-flutter-installation' class='list-group-item level-1'>1. Check flutter installation</a>
+  <a href='#create-project-directory' class='list-group-item level-1'>2. Create project directory</a>
+  <a href='#initialize-empty-flutter-project' class='list-group-item level-1'>3. Initialize empty Flutter project</a>
+  <a href='#open-the-project-in-android-studio' class='list-group-item level-1'>4. Open the project in Android Studio</a>
+  <a href='#clean-up-the-project-files' class='list-group-item level-1'>5. Clean up the project files</a>
+  <a href='#run-the-project' class='list-group-item level-1'>6. Run the project</a>
+  <a href='#sync-to-github' class='list-group-item level-1'>7. Sync to GitHub</a>
+  <a href='#done' class='list-group-item level-1'>8. Done</a>
+</div>
+
+    </div>
+  </div>
+
+  <div class="expander"></div>
+</div>
+
+
+
+
+</body>
+</html>

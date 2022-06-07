@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Tiled &#8212; Flame</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
+  <!-- Scripts -->
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/flutter_app.js"></script>
+  <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
+  <script src="../_static/versions.js"></script>
+  <!--script src="searchindex.js" defer></script-->
+  <!-- Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/fontawesome/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/fontawesome/fa-solid-900.woff2">
+  <link rel="stylesheet" href="../_static/fontawesome/all.min.css">
+  <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="Splash screen" href="splash_screen.html" />
+  <link rel="prev" title="Oxygen" href="oxygen.html" />
+</head>
+
+<body data-spy="scroll" data-target="#toc-local" data-offset="80">
+
+<div class="top-bar">
+  <button id="menu-button" class="btn" title="Toggle menu"><i class="fa fa-bars"></i></button>
+  <script type="text/javascript">
+    jQuery(function(){
+      $("#menu-button").click(function() {
+        $(this).toggleClass("active");
+        $(".sidebar-left-area").toggleClass("active");
+      });
+    });
+  </script>
+
+  <a href="../index.html" class="logo_image">
+    <img src="../_static/logo_flame.png">
+  </a>
+
+  <div class="highlight-box" role="alert" style="display:none">
+    <div>
+      <div class="title">highlighted:</div>
+      <div class="content" id="highlight-content"></div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Dismiss">×</button>
+  </div>
+  <div class="expander"></div>
+
+  <div class="versions-placeholder"></div>
+  <a href="https://discord.com/channels/509714518008528896/516639688581316629" id="discord-button"
+     class="btn" title="Flame Discord channel">
+    <i class="fab fa-discord"></i>
+  </a>
+  <a href="https://github.com/flame-engine/flame/" id="github-button" class="btn"
+     title="GitHub repository">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+
+<div class="sidebar-left-area">
+  <div class="sidebar-left-bg"></div>
+  <div class="sidebar-left">
+    <div class="searchbox" role="search">
+      <form id="search-form" action="../search.html" method="get">
+        <i class="icon fa fa-search"></i>
+        <input type="search" class="form-control" id="search-input" name="q"
+               placeholder="Search the docs..." autocomplete="off" />
+      </form>
+    </div>
+    <div class="nav-left" role="navigation" aria-label="Main">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../flame/flame.html">flame</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../flame/structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/game_widget.html">GameWidget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/game.html">Game loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/platforms.html">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/collision_detection.html">Collision detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/camera_and_viewport.html">Camera &amp; Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/camera_component.html">Camera component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/tap-events.html">Tap events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/gesture-input.html">Gesture input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/keyboard-input.html">Keyboard input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/other-inputs.html">Other inputs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame/rendering/images.html">Images, sprites and animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/rendering/text.html">Text rendering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/rendering/palette.html">Colors and palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/rendering/particles.html">Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/rendering/layers.html">Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/other/other.html">Other</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame/other/debug.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/other/util.html">Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/other/widgets.html">Widgets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../flame_audio/flame_audio.html">flame_audio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../flame_audio/audio.html">General audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step2.html">2. Scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/tbc.html">[To be continued]...</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="other_modules.html">Other Modules</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="oxygen.html">Oxygen</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tiled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="splash_screen.html">Splash screen</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="main-area">
+  <div class="document-wrapper">
+    <div class="document" role="main">
+      
+  <section class="tex2jax_ignore mathjax_ignore" id="tiled">
+<h1>Tiled<a class="headerlink" href="#tiled" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="https://www.mapeditor.org/">Tiled</a> is an great tool to design levels and maps.</p>
+<p>Flame provides a package (<a class="reference external" href="https://github.com/flame-engine/flame_tiled">flame_tiled</a>) which bundles
+a <a class="reference external" href="https://pub.dev/packages/tiled">dart package</a> that allows you to parse tmx (xml) files and access
+the tiles, objects and everything in there.</p>
+<p>Flame also provides a simple <code class="docutils literal notranslate"><span class="pre">Tiled</span></code> class and its component wrapper <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code>, for the map
+rendering, which renders the tiles on the screen and supports rotations and flips.</p>
+<p>At its simplest, layers can be retrieved from a Tilemap by invoking:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">getLayer</span><span class="o">&lt;</span><span class="n">ObjectGroup</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myObjectGroupLayer&quot;</span><span class="p">);</span>
+<span class="n">getLayer</span><span class="o">&lt;</span><span class="n">ImageLayer</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myImageLayer&quot;</span><span class="p">);</span>
+<span class="n">getLayer</span><span class="o">&lt;</span><span class="n">TileLayer</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myTileLayer&quot;</span><span class="p">);</span>
+<span class="n">getLayer</span><span class="o">&lt;</span><span class="n">Group</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myGroupLayer&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>These methods will either return the requested layer type or null if it does not exist.</p>
+<p>Other advanced features are not yet supported, but you can easily read the objects and other
+features of the tmx and add custom behaviour (eg regions for triggers and walking areas, custom
+animated objects).</p>
+<p>You can check a working example
+<a class="reference external" href="https://github.com/flame-engine/flame_tiled/tree/main/example">here</a>.</p>
+</section>
+
+
+    </div>
+    <div class="copyright">
+      The content on this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 License</a>,
+      and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
+    </div>
+    <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="oxygen.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">Oxygen</p>
+        </div>
+      </a>
+      <div class='expander'></div>
+      <a class="right-next" id="next-link" href="splash_screen.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">Splash screen</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-right">
+    
+    <div class="nav-right" role="navigation" aria-label="table of contents">
+      <div id='toc-local' class='list-group'>
+ <div class='header'><i class='fa fa-list'></i> Contents</div>
+</div>
+
+    </div>
+  </div>
+
+  <div class="expander"></div>
+</div>
+
+
+
+
+</body>
+</html>
