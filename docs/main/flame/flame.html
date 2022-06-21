@@ -94,6 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/tap-events.html">Tap events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs/drag-events.html">Drag events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../flame_audio/flame_audio.html">flame_audio</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_audio/audio_pool.html">AudioPool</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
@@ -141,6 +143,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -154,6 +160,165 @@
   <section class="tex2jax_ignore mathjax_ignore" id="flame">
 <h1>flame<a class="headerlink" href="#flame" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="structure.html">File structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="game_widget.html">GameWidget</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="game_widget.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="game.html">Game loop</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="game.html#resizing">Resizing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#lifecycle">Lifecycle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#debug-mode">Debug mode</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#change-background-color">Change background color</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#singlegameinstance-mixin">SingleGameInstance mixin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#low-level-game-api">Low-level Game API</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#game-loop">Game Loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#pause-resuming-game-execution">Pause/Resuming game execution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game.html#flutter-widgets-and-game-instances">Flutter Widgets and Game instances</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="components.html">Components</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="components.html#component">Component</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="components.html#component-lifecycle">Component lifecycle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#priority">Priority</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#composability-of-components">Composability of components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#ensuring-a-component-has-a-given-parent">Ensuring a component has a given parent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#ensuring-a-component-has-a-given-ancestor">Ensuring a component has a given ancestor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#querying-child-components">Querying child components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#querying-components-at-a-specific-point-on-the-screen">Querying components at a specific point on the screen</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#positiontype">PositionType</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#positioncomponent">PositionComponent</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="components.html#position">Position</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#size">Size</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#scale">Scale</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#angle">Angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#anchor">Anchor</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#positioncomponent-children">PositionComponent children</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#render-positioncomponent">Render PositionComponent</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#spritecomponent">SpriteComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#spriteanimationcomponent">SpriteAnimationComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#spriteanimationgroup">SpriteAnimationGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#spritegroup">SpriteGroup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#svgcomponent">SvgComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#flareactorcomponent">FlareActorComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#parallaxcomponent">ParallaxComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#shapecomponents">ShapeComponents</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="components.html#polygoncomponent">PolygonComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#rectanglecomponent">RectangleComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#circlecomponent">CircleComponent</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#tiledcomponent">TiledComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#isometrictilemapcomponent">IsometricTileMapComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#ninetileboxcomponent">NineTileBoxComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#custompaintercomponent">CustomPainterComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#effects">Effects</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="platforms.html">Platforms</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="platforms.html#flutter-channels">Flutter channels</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platforms.html#flame-web">Flame web</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platforms.html#deploy-your-game-to-github-pages">Deploy your game to GitHub Pages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="platforms.html#web-support">Web support</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="collision_detection.html">Collision detection</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html#mixins">Mixins</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="collision_detection.html#hascollisiondetection">HasCollisionDetection</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collision_detection.html#collisioncallbacks">CollisionCallbacks</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html#shapehitbox">ShapeHitbox</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="collision_detection.html#collisiontype">CollisionType</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collision_detection.html#polygonhitbox">PolygonHitbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collision_detection.html#rectanglehitbox">RectangleHitbox</a></li>
+<li class="toctree-l3"><a class="reference internal" href="collision_detection.html#circlehitbox">CircleHitbox</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html#screenhitbox">ScreenHitbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html#compositehitbox">CompositeHitbox</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html#broad-phase">Broad phase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html#comparison-to-forge2d">Comparison to Forge2D</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html#migration-from-the-collision-detection-system-in-v1-0">Migration from the collision detection system in v1.0</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="collision_detection.html#name-changes">Name changes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="effects.html">Effects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="effects.html#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="effects.html#built-in-effects">Built-in effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#effect"><code class="docutils literal notranslate"><span class="pre">Effect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#movebyeffect"><code class="docutils literal notranslate"><span class="pre">MoveByEffect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#movetoeffect"><code class="docutils literal notranslate"><span class="pre">MoveToEffect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#movealongpatheffect"><code class="docutils literal notranslate"><span class="pre">MoveAlongPathEffect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#rotateeffect-by"><code class="docutils literal notranslate"><span class="pre">RotateEffect.by</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#rotateeffect-to"><code class="docutils literal notranslate"><span class="pre">RotateEffect.to</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#scaleeffect-by"><code class="docutils literal notranslate"><span class="pre">ScaleEffect.by</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#scaleeffect-to"><code class="docutils literal notranslate"><span class="pre">ScaleEffect.to</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#sizeeffect-by"><code class="docutils literal notranslate"><span class="pre">SizeEffect.by</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#sizeeffect-to"><code class="docutils literal notranslate"><span class="pre">SizeEffect.to</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#anchorbyeffect"><code class="docutils literal notranslate"><span class="pre">AnchorByEffect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#anchortoeffect"><code class="docutils literal notranslate"><span class="pre">AnchorToEffect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#opacityeffect"><code class="docutils literal notranslate"><span class="pre">OpacityEffect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#sequenceeffect"><code class="docutils literal notranslate"><span class="pre">SequenceEffect</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#removeeffect"><code class="docutils literal notranslate"><span class="pre">RemoveEffect</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="effects.html#coloreffect">ColorEffect</a></li>
+<li class="toctree-l2"><a class="reference internal" href="effects.html#creating-new-effects">Creating new effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="effects.html#effect-controllers">Effect controllers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#effectcontroller"><code class="docutils literal notranslate"><span class="pre">EffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#lineareffectcontroller"><code class="docutils literal notranslate"><span class="pre">LinearEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#reverselineareffectcontroller"><code class="docutils literal notranslate"><span class="pre">ReverseLinearEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#curvedeffectcontroller"><code class="docutils literal notranslate"><span class="pre">CurvedEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#reversecurvedeffectcontroller"><code class="docutils literal notranslate"><span class="pre">ReverseCurvedEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#pauseeffectcontroller"><code class="docutils literal notranslate"><span class="pre">PauseEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#repeatedeffectcontroller"><code class="docutils literal notranslate"><span class="pre">RepeatedEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#infiniteeffectcontroller"><code class="docutils literal notranslate"><span class="pre">InfiniteEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#sequenceeffectcontroller"><code class="docutils literal notranslate"><span class="pre">SequenceEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#speedeffectcontroller"><code class="docutils literal notranslate"><span class="pre">SpeedEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#delayedeffectcontroller"><code class="docutils literal notranslate"><span class="pre">DelayedEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#noiseeffectcontroller"><code class="docutils literal notranslate"><span class="pre">NoiseEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#randomeffectcontroller"><code class="docutils literal notranslate"><span class="pre">RandomEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#sineeffectcontroller"><code class="docutils literal notranslate"><span class="pre">SineEffectController</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects.html#zigzageffectcontroller"><code class="docutils literal notranslate"><span class="pre">ZigzagEffectController</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="effects.html#see-also">See also</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html#viewport">Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html#camera">Camera</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="camera_and_viewport.html#camera-followvector2">Camera.followVector2</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera_and_viewport.html#camera-followcomponent">Camera.followComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="camera_and_viewport.html#using-the-camera-with-the-game-class">Using the camera with the Game class</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="camera_component.html">Camera component</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="camera_component.html#world">World</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_component.html#cameracomponent">CameraComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_component.html#viewport">Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_component.html#viewfinder">Viewfinder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_component.html#camera-controls">Camera controls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_component.html#comparison-to-the-traditional-camera">Comparison to the traditional camera</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="inputs/inputs.html">Inputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rendering/rendering.html">Rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other/other.html">Other</a></li>
+</ul>
 </div>
 </section>
 

@@ -94,6 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/tap-events.html">Tap events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs/drag-events.html">Drag events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../flame_audio/flame_audio.html">flame_audio</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_audio/audio_pool.html">AudioPool</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
@@ -139,6 +141,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -313,6 +319,24 @@ scheduled for addition.</p>
 </pre></div>
 </div>
 <p>If you try to add <code class="docutils literal notranslate"><span class="pre">MyComponent</span></code> to a parent that is not <code class="docutils literal notranslate"><span class="pre">MyParentComponent</span></code>,
+an assertion error will be thrown.</p>
+</section>
+<section id="ensuring-a-component-has-a-given-ancestor">
+<h3>Ensuring a component has a given ancestor<a class="headerlink" href="#ensuring-a-component-has-a-given-ancestor" title="Permalink to this headline">¶</a></h3>
+<p>When a component requires to have a specific ancestor type somewhere in the
+component tree, <code class="docutils literal notranslate"><span class="pre">HasAncestor</span></code> mixin can be used to enforce that relationship.</p>
+<p>The mixin exposes the <code class="docutils literal notranslate"><span class="pre">ancestor</span></code> field that will be of the given type.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyComponent</span> <span class="kd">extends</span> <span class="n">Component</span> <span class="kd">with</span> <span class="n">HasAncestor</span><span class="o">&lt;</span><span class="n">MyAncestorComponent</span><span class="o">&gt;</span> <span class="p">{</span>
+  <span class="nd">@override</span>
+  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
+    <span class="c1">// ancestor is of type MyAncestorComponent.</span>
+    <span class="n">print</span><span class="p">(</span><span class="n">ancestor</span><span class="p">.</span><span class="n">myValue</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you try to add <code class="docutils literal notranslate"><span class="pre">MyComponent</span></code> to a tree that does not contain <code class="docutils literal notranslate"><span class="pre">MyAncestorComponent</span></code>,
 an assertion error will be thrown.</p>
 </section>
 <section id="querying-child-components">
@@ -1009,6 +1033,7 @@ You can check the list of those effects <a class="reference internal" href="effe
   <a href='#priority' class='list-group-item level-2'>Priority</a>
   <a href='#composability-of-components' class='list-group-item level-2'>Composability of components</a>
   <a href='#ensuring-a-component-has-a-given-parent' class='list-group-item level-2'>Ensuring a component has a given parent</a>
+  <a href='#ensuring-a-component-has-a-given-ancestor' class='list-group-item level-2'>Ensuring a component has a given ancestor</a>
   <a href='#querying-child-components' class='list-group-item level-2'>Querying child components</a>
   <a href='#querying-components-at-a-specific-point-on-the-screen' class='list-group-item level-2'>Querying components at a specific point on the screen</a>
   <a href='#positiontype' class='list-group-item level-2'>PositionType</a>

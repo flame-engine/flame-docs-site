@@ -94,6 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame/camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/tap-events.html">Tap events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/drag-events.html">Drag events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +119,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="flame_audio.html">flame_audio</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">General audio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bgm.html">Background music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audio_pool.html">AudioPool</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
@@ -141,6 +143,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -153,7 +159,7 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="audio">
 <h1>Audio<a class="headerlink" href="#audio" title="Permalink to this headline">¶</a></h1>
-<p>Playing audio is essential for any game, so we made it simple!</p>
+<p>Playing audio is essential for most games, so we made it simple!</p>
 <p>First you have to add <a class="reference external" href="https://github.com/flame-engine/flame_audio">flame_audio</a> to your dependency
 list in your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
@@ -165,10 +171,9 @@ list in your <code class="docutils literal notranslate"><span class="pre">pubspe
 </pre></div>
 </div>
 <p>The latest version can be found on <a class="reference external" href="https://pub.dev/packages/flame_audio/install">pub.dev</a>.</p>
-<p>After installing the <code class="docutils literal notranslate"><span class="pre">flame_audio</span></code> package you can add audio files in the assets section of your
+<p>After installing the <code class="docutils literal notranslate"><span class="pre">flame_audio</span></code> package, you can add audio files in the assets section of your
 <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file. Make sure that the audio files exists in the paths that you provide.</p>
-<p>The default directory for <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> is <code class="docutils literal notranslate"><span class="pre">assets/audio</span></code> (which can be changed) and for <code class="docutils literal notranslate"><span class="pre">AudioPool</span></code>
-the default directory is <code class="docutils literal notranslate"><span class="pre">assets/audio/sfx</span></code>.</p>
+<p>The default directory for <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> is <code class="docutils literal notranslate"><span class="pre">assets/audio</span></code> (which can be changed by providing your own instance of <code class="docutils literal notranslate"><span class="pre">AudioCache</span></code>).</p>
 <p>For the examples below, your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file needs to contain something like this:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span>
   <span class="nt">assets</span><span class="p">:</span>
@@ -176,8 +181,6 @@ the default directory is <code class="docutils literal notranslate"><span class=
     <span class="p p-Indicator">-</span> <span class="l l-Scalar l-Scalar-Plain">assets/audio/music.mp3</span>
 </pre></div>
 </div>
-<p>(The default directory for <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> is <code class="docutils literal notranslate"><span class="pre">assets/audio</span></code> (which can be changed) and for <code class="docutils literal notranslate"><span class="pre">AudioPool</span></code>
-the default directory is <code class="docutils literal notranslate"><span class="pre">assets/audio/sfx</span></code>.)</p>
 <p>Then you have the following methods at your disposal:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;package:flame_audio/flame_audio.dart&#39;</span><span class="p">;</span>
 
@@ -206,11 +209,23 @@ rate drop, and the looped audio will have a small gap between iterations.</p>
 <p>You can use <a class="reference internal" href="bgm.html"><span class="doc std std-doc">the <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class</span></a> (via <code class="docutils literal notranslate"><span class="pre">FlameAudio.bgm</span></code>) to play looping background music
 tracks. The <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class lets Flame automatically manage the pausing and resuming of background music
 tracks when the game is backgrounded or comes back to the foreground.</p>
+<p>You can use <a class="reference internal" href="audio_pool.html"><span class="doc std std-doc">the <code class="docutils literal notranslate"><span class="pre">AudioPool</span></code> class</span></a> if you want to fire quick sound effects in a very
+efficient manner. <code class="docutils literal notranslate"><span class="pre">AudioPool</span></code> will keep a pool of <code class="docutils literal notranslate"><span class="pre">AudioPlayer</span></code>s preloaded with a given sound, and
+allow you to play them very fast in quick succession.</p>
 <p>Some file formats that work across devices and that we recommend are: MP3, OGG and WAV.</p>
 <p>This bridge library (flame_audio) uses <a class="reference external" href="https://github.com/bluefireteam/audioplayers">audioplayers</a>
 in order to allow for playing multiple sounds simultaneously (crucial in a game). You can check the
 link for a more in-depth explanation.</p>
-<p>Finally, you can pre-load your audios. Audios need to be stored in the memory the first time they
+<p>Both on <code class="docutils literal notranslate"><span class="pre">play</span></code> and <code class="docutils literal notranslate"><span class="pre">loop</span></code> you can pass an additional optional double parameter, the <code class="docutils literal notranslate"><span class="pre">volume</span></code>
+(defaults to <code class="docutils literal notranslate"><span class="pre">1.0</span></code>).</p>
+<p>Both the <code class="docutils literal notranslate"><span class="pre">play</span></code> and <code class="docutils literal notranslate"><span class="pre">loop</span></code> methods return an instance of an <code class="docutils literal notranslate"><span class="pre">AudioPlayer</span></code> from the
+<a class="reference external" href="https://github.com/bluefireteam/audioplayers">audioplayers</a> lib, that allows you to stop, pause and
+configure other parameters.</p>
+<p>In fact you can always use <code class="docutils literal notranslate"><span class="pre">AudioPlayer</span></code>s directly to gain full control over how your audio is played
+– the <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> class is just a wrapper for common functionality.</p>
+<section id="caching">
+<h2>Caching<a class="headerlink" href="#caching" title="Permalink to this headline">¶</a></h2>
+<p>You can pre-load your assets. Audios need to be stored in the memory the first time they
 are requested; therefore, the first time you play each mp3 you might get a delay. In order to
 pre-load your audios, just use:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">await</span> <span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span>
@@ -218,7 +233,7 @@ pre-load your audios, just use:</p>
 </div>
 <p>You can load all your audios in the beginning in your game’s <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method so that they always
 play smoothly. To load multiple audio files, use the <code class="docutils literal notranslate"><span class="pre">loadAll</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">await</span> <span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;music.mp3&#39;</span><span class="p">])</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">await</span> <span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">,</span> <span class="s1">&#39;music.mp3&#39;</span><span class="p">]);</span>
 </pre></div>
 </div>
 <p>Finally, you can use the <code class="docutils literal notranslate"><span class="pre">clear</span></code> method to remove a file that has been loaded into the cache:</p>
@@ -228,12 +243,7 @@ play smoothly. To load multiple audio files, use the <code class="docutils liter
 <p>There is also a <code class="docutils literal notranslate"><span class="pre">clearCache</span></code> method, that clears the whole cache.</p>
 <p>This might be useful if, for instance, your game has multiple levels and each has a different
 set of sounds and music.</p>
-<p>Both load methods return a <code class="docutils literal notranslate"><span class="pre">Future</span></code> for the <code class="docutils literal notranslate"><span class="pre">File</span></code>s loaded.</p>
-<p>Both on <code class="docutils literal notranslate"><span class="pre">play</span></code> and <code class="docutils literal notranslate"><span class="pre">loop</span></code> you can pass an additional optional double parameter, the <code class="docutils literal notranslate"><span class="pre">volume</span></code>
-(defaults to <code class="docutils literal notranslate"><span class="pre">1.0</span></code>).</p>
-<p>Both the <code class="docutils literal notranslate"><span class="pre">play</span></code> and <code class="docutils literal notranslate"><span class="pre">loop</span></code> methods return an instance of an <code class="docutils literal notranslate"><span class="pre">AudioPlayer</span></code> from the
-<a class="reference external" href="https://github.com/bluefireteam/audioplayers">audioplayers</a> lib, that allows you to stop, pause and
-configure other parameters.</p>
+</section>
 </section>
 
 
@@ -266,6 +276,7 @@ configure other parameters.</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#caching' class='list-group-item level-1'>Caching</a>
 </div>
 
     </div>

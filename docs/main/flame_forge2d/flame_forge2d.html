@@ -30,7 +30,7 @@
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
   <link rel="next" title="Forge2D" href="forge2d.html" />
-  <link rel="prev" title="Looping Background Music" href="../flame_audio/bgm.html" />
+  <link rel="prev" title="AudioPool" href="../flame_audio/audio_pool.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -94,6 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame/camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/tap-events.html">Tap events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/drag-events.html">Drag events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../flame_audio/flame_audio.html">flame_audio</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_audio/audio_pool.html">AudioPool</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">flame_forge2d</a><ul>
@@ -141,6 +143,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -154,6 +160,17 @@
   <section class="tex2jax_ignore mathjax_ignore" id="flame-forge2d">
 <h1>flame_forge2d<a class="headerlink" href="#flame-forge2d" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="forge2d.html">Overview</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="forge2d.html#forge2dgame">Forge2DGame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forge2d.html#bodycomponent">BodyComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forge2d.html#contact-callbacks">Contact callbacks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="forge2d.html#forge2dcamera-followbodycomponent">Forge2DCamera.followBodyComponent</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
 </div>
 </section>
 
@@ -164,11 +181,11 @@
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="../flame_audio/bgm.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="../flame_audio/audio_pool.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Looping Background Music</p>
+          <p class="prev-next-title">AudioPool</p>
         </div>
       </a>
       <div class='expander'></div>

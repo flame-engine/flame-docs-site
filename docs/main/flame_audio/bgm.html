@@ -29,7 +29,7 @@
   <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="flame_forge2d" href="../flame_forge2d/flame_forge2d.html" />
+  <link rel="next" title="AudioPool" href="audio_pool.html" />
   <link rel="prev" title="Audio" href="audio.html" />
 </head>
 
@@ -94,6 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame/camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/tap-events.html">Tap events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame/inputs/drag-events.html">Drag events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +119,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="flame_audio.html">flame_audio</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="audio.html">General audio</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Background music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="audio_pool.html">AudioPool</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
@@ -141,6 +143,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -153,22 +159,11 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="looping-background-music">
 <h1>Looping Background Music<a class="headerlink" href="#looping-background-music" title="Permalink to this headline">¶</a></h1>
-<p>With the <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class you can manage looping of background music tracks with regards to application
+<p>With the <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class, you can manage looping of background music tracks with regards to application
 (or game) lifecycle state changes.</p>
 <p>When the application is terminated, or sent to background, <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> will automatically pause
 the currently playing music track. Similarly, when the application is resumed, <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> will resume the
 background music. Manually pausing and resuming your tracks is also supported.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class is handled by the <a class="reference external" href="https://github.com/flame-engine/flame_audio">flame_audio</a> library
-so you first have to add that to your dependency list in your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
-  <span class="nt">flame_audio</span><span class="p">:</span>
-    <span class="nt">git</span><span class="p">:</span>
-      <span class="nt">url</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https://github.com/flame-engine/flame.git</span>
-      <span class="nt">ref</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">main</span>
-      <span class="nt">path</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">packages/flame</span>
-</pre></div>
-</div>
-<p>The latest version can be found on <a class="reference external" href="https://pub.dev/packages/flame_audio/install">pub.dev</a>.</p>
 <p>For this class to function properly, the observer must be registered by calling the following:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">initialize</span><span class="p">();</span>
 </pre></div>
@@ -187,26 +182,16 @@ running, use the <code class="docutils literal notranslate"><span class="pre">di
 <span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;adventure-track.mp3&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p><strong>Note:</strong> The <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class will always use the static instance of <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> for storing cached
-music files.</p>
 <p>You must have an appropriate folder structure and add the files to the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file, as
 explained in <a class="reference internal" href="audio.html"><span class="doc std std-doc">Flame Audio documentation</span></a>.</p>
 <section id="caching-music-files">
 <h2>Caching music files<a class="headerlink" href="#caching-music-files" title="Permalink to this headline">¶</a></h2>
-<p>The following functions can be used to preload (and unload) music files into the cache. These
-functions are just aliases for the ones in <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> with the same names.</p>
-<p>Again, please refer to the <a class="reference internal" href="audio.html"><span class="doc std std-doc">Flame Audio documentation</span></a> if you need more info.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;package:flame_audio/flame_audio.dart&#39;</span><span class="p">;</span>
-
-<span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;adventure-track.mp3&#39;</span><span class="p">);</span>
-<span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span>
-  <span class="s1">&#39;menu.mp3&#39;</span><span class="p">,</span>
-  <span class="s1">&#39;dungeon.mp3&#39;</span><span class="p">,</span>
-<span class="p">]);</span>
-<span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="s1">&#39;adventure-track.mp3&#39;</span><span class="p">);</span>
-<span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">clearCache</span><span class="p">();</span>
-</pre></div>
-</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class will use the static instance of <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> for storing cached
+music files by default.</p>
+<p>So in order to pre-load music, you can use the same recommendations from the
+<a class="reference internal" href="audio.html"><span class="doc std std-doc">Flame Audio documentation</span></a>.</p>
+<p>You can optionally create your own <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> instances with different backing <code class="docutils literal notranslate"><span class="pre">AudioCache</span></code>s,
+if you so desire.</p>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">¶</a></h2>
@@ -216,10 +201,10 @@ functions are just aliases for the ones in <code class="docutils literal notrans
 music file to be played (following the Flame Audio folder structure requirements).</p>
 <p>You can pass an additional optional <code class="docutils literal notranslate"><span class="pre">double</span></code> parameter which is the <code class="docutils literal notranslate"><span class="pre">volume</span></code> (defaults to <code class="docutils literal notranslate"><span class="pre">1.0</span></code>).</p>
 <p>Examples:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;bgm/boss-fight/level-382.mp3&#39;</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;music/boss-fight/level-382.mp3&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;bgm/world-map.mp3&#39;</span><span class="p">,</span> <span class="nl">volume:</span> <span class="p">.</span><span class="m">25</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;music/world-map.mp3&#39;</span><span class="p">,</span> <span class="nl">volume:</span> <span class="p">.</span><span class="m">25</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -261,10 +246,10 @@ app/game.</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="../flame_forge2d/flame_forge2d.html" title="next page">
+      <a class="right-next" id="next-link" href="audio_pool.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">flame_forge2d</p>
+          <p class="prev-next-title">AudioPool</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>

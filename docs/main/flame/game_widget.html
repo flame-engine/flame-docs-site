@@ -94,6 +94,7 @@
 <li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/tap-events.html">Tap events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs/drag-events.html">Drag events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/other-inputs.html">Other inputs</a></li>
@@ -118,6 +119,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../flame_audio/flame_audio.html">flame_audio</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_audio/audio_pool.html">AudioPool</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
@@ -139,6 +141,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/splash_screen.html">Splash screen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -189,7 +195,7 @@ widget tree.</p>
   <span class="p">}</span>
 
   <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span> <span class="n">_game</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -198,7 +204,7 @@ widget tree.</p>
 <p>In a <code class="docutils literal notranslate"><span class="pre">StatelessWidget</span></code> with the <code class="docutils literal notranslate"><span class="pre">gameFactory</span></code> argument:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGamePage</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="p">{</span>
   <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">return</span> <span class="n">GameWidget</span><span class="p">.</span><span class="n">controlled</span><span class="p">(</span><span class="nl">gameFactory:</span> <span class="n">MyGame</span><span class="p">.</span><span class="k">new</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>

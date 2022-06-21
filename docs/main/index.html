@@ -93,6 +93,7 @@
 <li class="toctree-l2"><a class="reference internal" href="flame/camera_component.html">Camera component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="flame/inputs/tap-events.html">Tap events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/inputs/drag-events.html">Drag events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="flame/inputs/gesture-input.html">Gesture input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="flame/inputs/keyboard-input.html">Keyboard input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="flame/inputs/other-inputs.html">Other inputs</a></li>
@@ -117,6 +118,7 @@
 <li class="toctree-l1"><a class="reference internal" href="flame_audio/flame_audio.html">flame_audio</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flame_audio/bgm.html">Background music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flame_audio/audio_pool.html">AudioPool</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
@@ -138,6 +140,10 @@
 <li class="toctree-l2"><a class="reference internal" href="other_modules/oxygen.html">Oxygen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="other_modules/tiled.html">Tiled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="other_modules/splash_screen.html">Splash screen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="development/documentation.html">Documentation</a></li>
 </ul>
 </li>
 </ul>
@@ -222,7 +228,7 @@ simpler multiplayer experiences.</p></li>
 <p>Flame doesn’t bundle any helpers to load assets from an external source (external storage or online
 sources).</p>
 <p>But most of Flame’s API can be loaded from concrete asset instances, for examples, <code class="docutils literal notranslate"><span class="pre">Sprite</span></code>s can be
-created from <code class="docutils literal notranslate"><span class="pre">dart:ui</span></code>s <code class="docutils literal notranslate"><span class="pre">Image</span></code> instaces, so the user can write custom code to load images from
+created from <code class="docutils literal notranslate"><span class="pre">dart:ui</span></code>s <code class="docutils literal notranslate"><span class="pre">Image</span></code> instances, so the user can write custom code to load images from
 anywhere they need, and then load it into Flame’s classes.</p>
 <p>Here are some suggestions for http client packages:</p>
 <ul class="simple">
