@@ -13,6 +13,7 @@
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
   <script src="../../_static/jquery.js"></script>
   <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -158,7 +159,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="layers">
-<h1>Layers<a class="headerlink" href="#layers" title="Permalink to this headline">¶</a></h1>
+<h1>Layers<a class="headerlink" href="#layers" title="Permalink to this heading">¶</a></h1>
 <p>Layers allow you to group rendering by context, as well as allow you to pre-render things. This
 enables, for example, rendering parts of your game that don’t change much in memory, like a
 background. By doing this, you’ll free processing power for more dynamic content that needs to be
@@ -169,7 +170,7 @@ rendered every game tick.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">PreRenderedLayer</span></code>: For things that are static.</p></li>
 </ul>
 <section id="dynamiclayer">
-<h2>DynamicLayer<a class="headerlink" href="#dynamiclayer" title="Permalink to this headline">¶</a></h2>
+<h2>DynamicLayer<a class="headerlink" href="#dynamiclayer" title="Permalink to this heading">¶</a></h2>
 <p>Dynamic layers are layers that are rendered every time that they are drawn on the canvas. As the
 name suggests, it is meant for dynamic content and is most useful for grouping rendering of objects
 that have the same context.</p>
@@ -204,7 +205,7 @@ that have the same context.</p>
 </div>
 </section>
 <section id="prerenderedlayer">
-<h2>PreRenderedLayer<a class="headerlink" href="#prerenderedlayer" title="Permalink to this headline">¶</a></h2>
+<h2>PreRenderedLayer<a class="headerlink" href="#prerenderedlayer" title="Permalink to this heading">¶</a></h2>
 <p>Pre-rendered layers are rendered only once, cached in memory and then just
 replicated on the game canvas afterwards. They are useful for caching content that doesn’t change
 during the game, like a background for example.</p>
@@ -235,7 +236,7 @@ during the game, like a background for example.</p>
 </div>
 </section>
 <section id="layer-processors">
-<h2>Layer Processors<a class="headerlink" href="#layer-processors" title="Permalink to this headline">¶</a></h2>
+<h2>Layer Processors<a class="headerlink" href="#layer-processors" title="Permalink to this heading">¶</a></h2>
 <p>Flame also provides a way to add processors on your layer, which are ways to add effects on the
 entire layer. At the moment, out of the box, only the <code class="docutils literal notranslate"><span class="pre">ShadowProcessor</span></code> is available, this processor
 renders a back drop shadow on your layer.</p>

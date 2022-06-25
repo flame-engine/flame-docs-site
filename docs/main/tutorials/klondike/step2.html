@@ -13,6 +13,7 @@
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
   <script src="../../_static/jquery.js"></script>
   <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -158,11 +159,11 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="scaffolding">
-<h1>2. Scaffolding<a class="headerlink" href="#scaffolding" title="Permalink to this headline">¶</a></h1>
+<h1>2. Scaffolding<a class="headerlink" href="#scaffolding" title="Permalink to this heading">¶</a></h1>
 <p>In this section we will use broad strokes to outline the main elements of the
 game. This includes the main game class, and the general layout.</p>
 <section id="klondikegame">
-<h2>KlondikeGame<a class="headerlink" href="#klondikegame" title="Permalink to this headline">¶</a></h2>
+<h2>KlondikeGame<a class="headerlink" href="#klondikegame" title="Permalink to this heading">¶</a></h2>
 <p>In Flame universe, the <strong>FlameGame</strong> class is the cornerstone of most games.
 This class runs the game loop, dispatches events, owns all the components that
 comprise the game (the component tree), and usually also serves as the central
@@ -221,7 +222,7 @@ After all is done, the file should look like this:</p>
 </div>
 </section>
 <section id="other-classes">
-<h2>Other classes<a class="headerlink" href="#other-classes" title="Permalink to this headline">¶</a></h2>
+<h2>Other classes<a class="headerlink" href="#other-classes" title="Permalink to this heading">¶</a></h2>
 <p>So far we have the main <code class="docutils literal notranslate"><span class="pre">KlondikeGame</span></code> class, and now we need to create objects
 that we will add to the game. In Flame these objects are called <em>components</em>,
 and when added to the game they form a “game component tree”. All entities that
@@ -268,7 +269,7 @@ subsequent chapters.</p>
 </div>
 </section>
 <section id="game-structure">
-<h2>Game structure<a class="headerlink" href="#game-structure" title="Permalink to this headline">¶</a></h2>
+<h2>Game structure<a class="headerlink" href="#game-structure" title="Permalink to this heading">¶</a></h2>
 <p>Once we have some basic components, they need to be added to the game. It is
 time to make a decision about the high-level structure of the game.</p>
 <p>There exist multiple approaches here, which differ in their complexity,

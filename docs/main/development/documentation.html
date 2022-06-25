@@ -13,6 +13,7 @@
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
   <script src="../_static/jquery.js"></script>
   <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -157,17 +158,17 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="documentation-site">
-<h1>Documentation Site<a class="headerlink" href="#documentation-site" title="Permalink to this headline">¶</a></h1>
+<h1>Documentation Site<a class="headerlink" href="#documentation-site" title="Permalink to this heading">¶</a></h1>
 <p>Flame’s documentation is written in <strong>Markdown</strong>. It is then rendered into HTML with the help of
 the <a class="reference external" href="https://www.sphinx-doc.org/en/master/">Sphinx</a> engine and its <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">MyST</a> plugin. The rendered files are then manually (but with the help
 of a script) published to <a class="reference external" href="https://github.com/flame-engine/flame-docs-site">flame-docs-site</a>, where the site is served via <a class="reference external" href="https://pages.github.com/">GitHub Pages</a>.</p>
 <section id="markdown">
-<h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this headline">¶</a></h2>
+<h2>Markdown<a class="headerlink" href="#markdown" title="Permalink to this heading">¶</a></h2>
 <p>The main documentation site is written in Markdown. We assume that you’re already familiar with the
 basics of the Markdown syntax (if not, there are plenty of guides on the Internet). Instead, this
 section will focus on the Markdown extensions that are enabled in our build system.</p>
 <section id="table-of-contents">
-<h3>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this headline">¶</a></h3>
+<h3>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h3>
 <p>The table of contents for the site must be created manually. This is done using special <code class="docutils literal notranslate"><span class="pre">{toctree}</span></code>
 blocks, one per each subdirectory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{toctree}
@@ -182,7 +183,7 @@ Second Topic   &lt;topic2.md&gt;
 the toctrees – otherwise you will see a warning during the build that the document is orphaned.</p>
 </section>
 <section id="admonitions">
-<h3>Admonitions<a class="headerlink" href="#admonitions" title="Permalink to this headline">¶</a></h3>
+<h3>Admonitions<a class="headerlink" href="#admonitions" title="Permalink to this heading">¶</a></h3>
 <p>Admonitions are emphasized blocks of text with a distinct appearance. They are created using the
 triple-backticks syntax:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{note}
@@ -217,7 +218,7 @@ Also check out this cool thingy.
 </div>
 </section>
 <section id="deprecations">
-<h3>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this headline">¶</a></h3>
+<h3>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this heading">¶</a></h3>
 <p>The special <code class="docutils literal notranslate"><span class="pre">{deprecated}</span></code> block can be used to mark some part of documentation or syntax as being
 deprecated. This block requires specifying the version when the deprecation has occurred</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{deprecated} v1.3.0
@@ -232,7 +233,7 @@ Please use this **other** thing instead.
 </div>
 </section>
 <section id="live-examples">
-<h3>Live examples<a class="headerlink" href="#live-examples" title="Permalink to this headline">¶</a></h3>
+<h3>Live examples<a class="headerlink" href="#live-examples" title="Permalink to this heading">¶</a></h3>
 <p>Our documentation site includes a custom-built <strong>flutter-app</strong> directive which allows creating
 Flutter widgets and embedding them alongside with the overall documentation content.</p>
 <p>In Markdown, the code for inserting an embed looks like this:</p>
@@ -265,7 +266,7 @@ apps. Using both “widget” and “popup” modes at the same time is not reco
 </section>
 </section>
 <section id="building-documentation-locally">
-<h2>Building documentation locally<a class="headerlink" href="#building-documentation-locally" title="Permalink to this headline">¶</a></h2>
+<h2>Building documentation locally<a class="headerlink" href="#building-documentation-locally" title="Permalink to this heading">¶</a></h2>
 <p>Building the documentation site on your own computer is fairly simple. All you need is the
 following:</p>
 <ol>

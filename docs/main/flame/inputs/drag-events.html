@@ -13,6 +13,7 @@
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
   <script src="../../_static/jquery.js"></script>
   <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -158,7 +159,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="drag-events">
-<h1>Drag events<a class="headerlink" href="#drag-events" title="Permalink to this headline">¶</a></h1>
+<h1>Drag events<a class="headerlink" href="#drag-events" title="Permalink to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This document describes a new experimental API. The more traditional approach
@@ -199,14 +200,14 @@ allows Flame to know whether the event occurred within the component or not.</p>
 </li>
 </ol>
 <section id="demo">
-<h2>Demo<a class="headerlink" href="#demo" title="Permalink to this headline">¶</a></h2>
+<h2>Demo<a class="headerlink" href="#demo" title="Permalink to this heading">¶</a></h2>
 <p>In this example you can use drag gestures to either drag star-like shapes across the screen, or to
 draw curves inside the pink rectangle.</p>
 </section>
 <section id="drag-anatomy">
-<h2>Drag anatomy<a class="headerlink" href="#drag-anatomy" title="Permalink to this headline">¶</a></h2>
+<h2>Drag anatomy<a class="headerlink" href="#drag-anatomy" title="Permalink to this heading">¶</a></h2>
 <section id="ondragstart">
-<h3>onDragStart<a class="headerlink" href="#ondragstart" title="Permalink to this headline">¶</a></h3>
+<h3>onDragStart<a class="headerlink" href="#ondragstart" title="Permalink to this heading">¶</a></h3>
 <p>This is the first event that occurs in a drag sequence. Usually, the event will be delivered to the
 topmost component at the point of touch with the <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixin. However, by setting the flag
 <code class="docutils literal notranslate"><span class="pre">event.continuePropagation</span></code> to true, you can allow the event to propagate to the components below.</p>
@@ -219,7 +220,7 @@ local coordinate system.</p>
 events as well.</p>
 </section>
 <section id="ondragupdate">
-<h3>onDragUpdate<a class="headerlink" href="#ondragupdate" title="Permalink to this headline">¶</a></h3>
+<h3>onDragUpdate<a class="headerlink" href="#ondragupdate" title="Permalink to this heading">¶</a></h3>
 <p>This event is fired continuously as user drags their finger across the screen. It will not fire if
 the user is holding their finger still.</p>
 <p>The default implementation delivers this event to all the components that received the previous
@@ -235,20 +236,20 @@ start.</p>
 used, for example, to compute the speed of the movement.</p>
 </section>
 <section id="ondragend">
-<h3>onDragEnd<a class="headerlink" href="#ondragend" title="Permalink to this headline">¶</a></h3>
+<h3>onDragEnd<a class="headerlink" href="#ondragend" title="Permalink to this heading">¶</a></h3>
 <p>This event is fired when the user lifts their finger and thus stops the drag gesture. There is no
 position associated with this event.</p>
 </section>
 <section id="ondragcancel">
-<h3>onDragCancel<a class="headerlink" href="#ondragcancel" title="Permalink to this headline">¶</a></h3>
+<h3>onDragCancel<a class="headerlink" href="#ondragcancel" title="Permalink to this heading">¶</a></h3>
 <p>The precise semantics when this event occurs is not clear, so we provide a default implementation
 which simply converts this event into an <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code>.</p>
 </section>
 </section>
 <section id="mixins">
-<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this headline">¶</a></h2>
+<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this heading">¶</a></h2>
 <section id="hasdraggablecomponents">
-<h3>HasDraggableComponents<a class="headerlink" href="#hasdraggablecomponents" title="Permalink to this headline">¶</a></h3>
+<h3>HasDraggableComponents<a class="headerlink" href="#hasdraggablecomponents" title="Permalink to this heading">¶</a></h3>
 <p>This mixin is used on a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> in order to ensure that drag events coming from Flutter reach
 their target <code class="docutils literal notranslate"><span class="pre">Component</span></code>s. This mixin <strong>must</strong> be added if you have any components with the
 <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixin.</p>
@@ -269,7 +270,7 @@ game level:</p>
 </div>
 </section>
 <section id="dragcallbacks">
-<h3>DragCallbacks<a class="headerlink" href="#dragcallbacks" title="Permalink to this headline">¶</a></h3>
+<h3>DragCallbacks<a class="headerlink" href="#dragcallbacks" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixin can be added to any <code class="docutils literal notranslate"><span class="pre">Component</span></code> in order for that component to start
 receiving drag events.</p>
 <p>This mixin adds methods <code class="docutils literal notranslate"><span class="pre">onDragStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code>, <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code>, and <code class="docutils literal notranslate"><span class="pre">onDragCancel</span></code> to the
@@ -308,7 +309,7 @@ ancestors have all implemented the <code class="docutils literal notranslate"><s
 </div>
 </section>
 <section id="hasdraggablesbridge">
-<h3>HasDraggablesBridge<a class="headerlink" href="#hasdraggablesbridge" title="Permalink to this headline">¶</a></h3>
+<h3>HasDraggablesBridge<a class="headerlink" href="#hasdraggablesbridge" title="Permalink to this heading">¶</a></h3>
 <p>This marker mixin can be used to indicate that the game has both the “new-style” components that
 use the <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixin, and the “old-style” components that use the <code class="docutils literal notranslate"><span class="pre">Draggable</span></code> mixin. In
 effect, every drag event will be propagated twice through the system: first trying to reach the

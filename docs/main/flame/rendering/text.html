@@ -13,6 +13,7 @@
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
   <script src="../../_static/jquery.js"></script>
   <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -158,16 +159,16 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="text-rendering">
-<h1>Text Rendering<a class="headerlink" href="#text-rendering" title="Permalink to this headline">¶</a></h1>
+<h1>Text Rendering<a class="headerlink" href="#text-rendering" title="Permalink to this heading">¶</a></h1>
 <p>Flame has some dedicated classes to help you render text.</p>
 <section id="textrenderer">
-<h2>TextRenderer<a class="headerlink" href="#textrenderer" title="Permalink to this headline">¶</a></h2>
+<h2>TextRenderer<a class="headerlink" href="#textrenderer" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">TextRenderer</span></code> is the abstract class used by Flame to render text. Flame provides one
 implementation for this called <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> but anyone can implement this abstraction
 and create a custom way to render text.</p>
 </section>
 <section id="textpaint">
-<h2>TextPaint<a class="headerlink" href="#textpaint" title="Permalink to this headline">¶</a></h2>
+<h2>TextPaint<a class="headerlink" href="#textpaint" title="Permalink to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> is the built in implementation of text rendering in Flame, it is based on top of
 Flutter’s <code class="docutils literal notranslate"><span class="pre">TextPainter</span></code> class (hence the name), it can be configured by the style class <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>
 which contains all typographical information required to render text; i.e., font size and color,
@@ -211,11 +212,11 @@ a canvas:</p>
 </div>
 </section>
 <section id="text-components">
-<h2>Text Components<a class="headerlink" href="#text-components" title="Permalink to this headline">¶</a></h2>
+<h2>Text Components<a class="headerlink" href="#text-components" title="Permalink to this heading">¶</a></h2>
 <p>Flame provides two text components that make it even easier to render text in your game:
 <code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> and <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code>.</p>
 <section id="textcomponent">
-<h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this headline">¶</a></h3>
+<h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> is a simple component that renders a single line of text.</p>
 <p>Example usage:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span> <span class="n">style</span> <span class="o">=</span> <span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span> <span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span>
@@ -234,7 +235,7 @@ a canvas:</p>
 </div>
 </section>
 <section id="textboxcomponent">
-<h3>TextBoxComponent<a class="headerlink" href="#textboxcomponent" title="Permalink to this headline">¶</a></h3>
+<h3>TextBoxComponent<a class="headerlink" href="#textboxcomponent" title="Permalink to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> is very similar to <code class="docutils literal notranslate"><span class="pre">TextComponent</span></code>, but as its name suggest it is used to render
 text inside a bounding box, creating line breaks according to the provided box size.</p>
 <p>You can decide if the box should grow as the text is written or if it should be static by the

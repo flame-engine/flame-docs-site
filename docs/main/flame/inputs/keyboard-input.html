@@ -13,6 +13,7 @@
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
   <script src="../../_static/jquery.js"></script>
   <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -158,7 +159,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="keyboard-input">
-<h1>Keyboard Input<a class="headerlink" href="#keyboard-input" title="Permalink to this headline">¶</a></h1>
+<h1>Keyboard Input<a class="headerlink" href="#keyboard-input" title="Permalink to this heading">¶</a></h1>
 <p>This includes documentation for keyboard inputs.</p>
 <p>For other input documents, see also:</p>
 <ul class="simple">
@@ -166,14 +167,14 @@
 <li><p><a class="reference internal" href="other-inputs.html"><span class="doc std std-doc">Other Inputs</span></a>: For joysticks, game pads, etc.</p></li>
 </ul>
 <section id="intro">
-<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h2>
+<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this heading">¶</a></h2>
 <p>The keyboard API on flame relies on the
 <a class="reference external" href="https://api.flutter.dev/flutter/widgets/Focus-class.html">Flutter’s Focus widget</a>.</p>
 <p>To customize focus behavior, see <a class="reference internal" href="#controlling-focus"><span class="std std-doc">Controlling focus</span></a>.</p>
 <p>There are two ways a game can react to key strokes; at the game level and at a component level.
 For each we have a mixin that can me added to a <code class="docutils literal notranslate"><span class="pre">Game</span></code> or <code class="docutils literal notranslate"><span class="pre">Component</span></code> class.</p>
 <section id="receive-keyboard-events-in-a-game-level">
-<h3>Receive keyboard events in a game level<a class="headerlink" href="#receive-keyboard-events-in-a-game-level" title="Permalink to this headline">¶</a></h3>
+<h3>Receive keyboard events in a game level<a class="headerlink" href="#receive-keyboard-events-in-a-game-level" title="Permalink to this heading">¶</a></h3>
 <p>To make a <code class="docutils literal notranslate"><span class="pre">Game</span></code> sub class sensitive to key stroke, mix it with <code class="docutils literal notranslate"><span class="pre">KeyboardEvents</span></code>.</p>
 <p>After that, it will be possible to override an <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> method.</p>
 <p>This method receives two parameters, first the
@@ -217,7 +218,7 @@ skip any other handler widget and will straight up play the alert sound.</p>
 </div>
 </section>
 <section id="receive-keyboard-events-in-a-component-level">
-<h3>Receive keyboard events in a component level<a class="headerlink" href="#receive-keyboard-events-in-a-component-level" title="Permalink to this headline">¶</a></h3>
+<h3>Receive keyboard events in a component level<a class="headerlink" href="#receive-keyboard-events-in-a-component-level" title="Permalink to this heading">¶</a></h3>
 <p>To receive keyboard events directly in components, there is the mixin <code class="docutils literal notranslate"><span class="pre">KeyboardHandler</span></code>.</p>
 <p>Similarly to <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> and <code class="docutils literal notranslate"><span class="pre">Draggable</span></code>, <code class="docutils literal notranslate"><span class="pre">KeyboardHandler</span></code> can be mixed into any subclass of
 <code class="docutils literal notranslate"><span class="pre">Component</span></code>.</p>
@@ -258,7 +259,7 @@ then the following code could be used to bind those methods to key events:</p>
 </div>
 </section>
 <section id="controlling-focus">
-<h3>Controlling focus<a class="headerlink" href="#controlling-focus" title="Permalink to this headline">¶</a></h3>
+<h3>Controlling focus<a class="headerlink" href="#controlling-focus" title="Permalink to this heading">¶</a></h3>
 <p>On the widget level, it is possible to use the
 <a class="reference external" href="https://api.flutter.dev/flutter/widgets/FocusNode-class.html"><code class="docutils literal notranslate"><span class="pre">FocusNode</span></code></a> API to control whether
 the game is focused or not.</p>

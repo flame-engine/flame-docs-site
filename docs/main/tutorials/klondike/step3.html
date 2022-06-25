@@ -13,6 +13,7 @@
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
   <script src="../../_static/jquery.js"></script>
   <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -158,7 +159,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="cards">
-<h1>Cards<a class="headerlink" href="#cards" title="Permalink to this headline">¶</a></h1>
+<h1>Cards<a class="headerlink" href="#cards" title="Permalink to this heading">¶</a></h1>
 <p>In this chapter we will begin implementing the most visible component in the
 game – the <strong>Card</strong> component, which corresponds to a single real-life card.
 There will be 52 <code class="docutils literal notranslate"><span class="pre">Card</span></code> objects in the game.</p>
@@ -177,7 +178,7 @@ to the given rank. For suits, we need to know whether two suits are of different
 colors, and also produce a text label and a sprite. Given these requirements,
 I decided to represent both <code class="docutils literal notranslate"><span class="pre">Rank</span></code> and <code class="docutils literal notranslate"><span class="pre">Suit</span></code> as classes.</p>
 <section id="suit">
-<h2>Suit<a class="headerlink" href="#suit" title="Permalink to this headline">¶</a></h2>
+<h2>Suit<a class="headerlink" href="#suit" title="Permalink to this heading">¶</a></h2>
 <p>Create file <code class="docutils literal notranslate"><span class="pre">suit.dart</span></code> and declare an <code class="docutils literal notranslate"><span class="pre">&#64;immutable</span> <span class="pre">class</span> <span class="pre">Suit</span></code> there, with no
 parent. The <code class="docutils literal notranslate"><span class="pre">&#64;immutable</span></code> annotation here is just a hint for us that the objects
 of this class should not be modified after creation.</p>
@@ -231,7 +232,7 @@ into columns by alternating colors.</p>
 </div>
 </section>
 <section id="rank">
-<h2>Rank<a class="headerlink" href="#rank" title="Permalink to this headline">¶</a></h2>
+<h2>Rank<a class="headerlink" href="#rank" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Rank</span></code> class is very similar to <code class="docutils literal notranslate"><span class="pre">Suit</span></code>. The main difference is that <code class="docutils literal notranslate"><span class="pre">Rank</span></code>
 contains two sprites instead of one, separately for ranks of “red” and “black”
 colors. The full code for the <code class="docutils literal notranslate"><span class="pre">Rank</span></code> class is as follows:</p>
@@ -283,7 +284,7 @@ colors. The full code for the <code class="docutils literal notranslate"><span c
 </div>
 </section>
 <section id="card-component">
-<h2>Card component<a class="headerlink" href="#card-component" title="Permalink to this headline">¶</a></h2>
+<h2>Card component<a class="headerlink" href="#card-component" title="Permalink to this heading">¶</a></h2>
 <p>Now that we have the <code class="docutils literal notranslate"><span class="pre">Rank</span></code> and the <code class="docutils literal notranslate"><span class="pre">Suit</span></code> classes, we can finally start
 implementing the <strong>Card</strong> component. Create file <code class="docutils literal notranslate"><span class="pre">components/card.dart</span></code> and
 declare the <code class="docutils literal notranslate"><span class="pre">Card</span></code> class extending from the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>:</p>
@@ -336,7 +337,7 @@ the bottom of the <code class="docutils literal notranslate"><span class="pre">o
 <p>This snippet is a temporary code – we will remove it in the next chapter –
 but for now it lays down 28 random cards on the table, most of them facing up.</p>
 <section id="rendering">
-<h3>Rendering<a class="headerlink" href="#rendering" title="Permalink to this headline">¶</a></h3>
+<h3>Rendering<a class="headerlink" href="#rendering" title="Permalink to this heading">¶</a></h3>
 <p>In order to be able to see a card, we need to implement its <code class="docutils literal notranslate"><span class="pre">render()</span></code> method.
 Since the card has two distinct states – face up or down – we will
 implement rendering for these two states separately. Add the following methods
@@ -356,7 +357,7 @@ into the <code class="docutils literal notranslate"><span class="pre">Card</span
 </div>
 </section>
 <section id="renderback">
-<h3>renderBack()<a class="headerlink" href="#renderback" title="Permalink to this headline">¶</a></h3>
+<h3>renderBack()<a class="headerlink" href="#renderback" title="Permalink to this heading">¶</a></h3>
 <p>Since rendering the back of a card is simpler, we will do it first.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">render()</span></code> method of a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> operates in a local coordinate
 system, which means we don’t need to worry about where the card is located on
@@ -401,7 +402,7 @@ all 52 card objects, so we might as well save some resources by having them
 initialized only once.</p>
 </section>
 <section id="renderfront">
-<h3>renderFront()<a class="headerlink" href="#renderfront" title="Permalink to this headline">¶</a></h3>
+<h3>renderFront()<a class="headerlink" href="#renderfront" title="Permalink to this heading">¶</a></h3>
 <p>When rendering the face of a card, we will follow the standard card design: the
 rank and the suit in two opposite corners, plus the number of pips equal to the
 rank value. The court cards (jack, queen, king) will have special images in the

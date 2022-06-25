@@ -13,6 +13,7 @@
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
   <script src="../../_static/jquery.js"></script>
   <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -158,9 +159,9 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="debug-features">
-<h1>Debug features<a class="headerlink" href="#debug-features" title="Permalink to this headline">¶</a></h1>
+<h1>Debug features<a class="headerlink" href="#debug-features" title="Permalink to this heading">¶</a></h1>
 <section id="flamegame-features">
-<h2>FlameGame features<a class="headerlink" href="#flamegame-features" title="Permalink to this headline">¶</a></h2>
+<h2>FlameGame features<a class="headerlink" href="#flamegame-features" title="Permalink to this heading">¶</a></h2>
 <p>Flame provides some debugging features for the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class. These features are enabled when
 the <code class="docutils literal notranslate"><span class="pre">debugMode</span></code> property is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> (or overridden to be <code class="docutils literal notranslate"><span class="pre">true</span></code>).
 When <code class="docutils literal notranslate"><span class="pre">debugMode</span></code> is enabled, each <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> will be rendered with their bounding size, and
@@ -170,19 +171,19 @@ boundaries and positions.</p>
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/components/debug_example.dart">example</a>.</p>
 </section>
 <section id="fps">
-<h2>FPS<a class="headerlink" href="#fps" title="Permalink to this headline">¶</a></h2>
+<h2>FPS<a class="headerlink" href="#fps" title="Permalink to this heading">¶</a></h2>
 <p>The FPS reported from Flame might be a bit lower than what is reported from for example the Flutter
 DevTools, depending on which platform you are targeting. The source of truth for how many FPS your
 game is running in should be the FPS that we are reporting, since that is what our game loop is
 bound by.</p>
 <section id="fpscomponent">
-<h3>FpsComponent<a class="headerlink" href="#fpscomponent" title="Permalink to this headline">¶</a></h3>
+<h3>FpsComponent<a class="headerlink" href="#fpscomponent" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">FpsComponent</span></code> can be added to anywhere in the component tree and will keep track of how many
 FPS that the game is currently rendering in. If you want to display this as text in the game, use
 the <a class="reference internal" href="#fpstextcomponent"><span class="std std-doc">FpsTextComponent</span></a>.</p>
 </section>
 <section id="fpstextcomponent">
-<h3>FpsTextComponent<a class="headerlink" href="#fpstextcomponent" title="Permalink to this headline">¶</a></h3>
+<h3>FpsTextComponent<a class="headerlink" href="#fpstextcomponent" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">FpsTextComponent</span></code> is simply a <a class="reference internal" href="../rendering/text.html#textcomponent"><span class="std std-doc">TextComponent</span></a> that wraps an
 <a class="reference internal" href="../rendering/text.html#textcomponent"><span class="std std-doc">TextComponent</span></a>, since you most commonly want to show the current FPS
 somewhere when you the <a class="reference internal" href="#fpscomponent"><span class="std std-doc">FpsComponent</span></a> is used.</p>

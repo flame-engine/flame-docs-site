@@ -13,6 +13,7 @@
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
   <script src="../_static/jquery.js"></script>
   <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
@@ -158,7 +159,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="forge2d">
-<h1>Forge2D<a class="headerlink" href="#forge2d" title="Permalink to this headline">¶</a></h1>
+<h1>Forge2D<a class="headerlink" href="#forge2d" title="Permalink to this heading">¶</a></h1>
 <p>We (the Flame organization) maintain a ported version of the Box2D physics engine and our version
 is called Forge2D.</p>
 <p>If you want to use Forge2D specifically for Flame you should use our bridge library
@@ -170,7 +171,7 @@ in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d/example">Forge2D example</a>
 and in the pub.dev <a class="reference external" href="https://pub.dev/packages/flame_forge2d">installation instructions</a>.</p>
 <section id="forge2dgame">
-<h2>Forge2DGame<a class="headerlink" href="#forge2dgame" title="Permalink to this headline">¶</a></h2>
+<h2>Forge2DGame<a class="headerlink" href="#forge2dgame" title="Permalink to this heading">¶</a></h2>
 <p>If you are going to use Forge2D in your project it can be a good idea to use the Forge2D specific
 <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class, <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>.</p>
 <p>It is called <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> and it will control the adding and removal of Forge2D’s <code class="docutils literal notranslate"><span class="pre">BodyComponents</span></code>
@@ -195,7 +196,7 @@ the constructor of the <code class="docutils literal notranslate"><span class="p
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d/example">examples folder</a>.</p>
 </section>
 <section id="bodycomponent">
-<h2>BodyComponent<a class="headerlink" href="#bodycomponent" title="Permalink to this headline">¶</a></h2>
+<h2>BodyComponent<a class="headerlink" href="#bodycomponent" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> is a wrapped for the <code class="docutils literal notranslate"><span class="pre">Forge2D</span></code> body, which is the body that the physics engine
 is interacting with. To create a <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> you need to override <code class="docutils literal notranslate"><span class="pre">createBody()</span></code> and create and
 return your created body.</p>
@@ -208,7 +209,7 @@ useful if you want to add for example animations or other components on top of y
 not according to the coordinate system of Forge2D (where the Y-axis is flipped).</p>
 </section>
 <section id="contact-callbacks">
-<h2>Contact callbacks<a class="headerlink" href="#contact-callbacks" title="Permalink to this headline">¶</a></h2>
+<h2>Contact callbacks<a class="headerlink" href="#contact-callbacks" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> provides a simple out of the box solution to propagate contact events.</p>
 <p>Contact events occur whenever two <code class="docutils literal notranslate"><span class="pre">Fixture</span></code>s meet each other. These events allows listening when
 these <code class="docutils literal notranslate"><span class="pre">Fixture</span></code>s begin to come in contact (<code class="docutils literal notranslate"><span class="pre">beginContact</span></code>) and cease being in contact
@@ -251,7 +252,7 @@ fixtures cease being in contact, <code class="docutils literal notranslate"><spa
 <p>An implementation example can be seen in the
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/utils/balls.dart">Flame Forge2D example</a>.</p>
 <section id="forge2dcamera-followbodycomponent">
-<h3>Forge2DCamera.followBodyComponent<a class="headerlink" href="#forge2dcamera-followbodycomponent" title="Permalink to this headline">¶</a></h3>
+<h3>Forge2DCamera.followBodyComponent<a class="headerlink" href="#forge2dcamera-followbodycomponent" title="Permalink to this heading">¶</a></h3>
 <p>Just like with normal <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s you can make the <code class="docutils literal notranslate"><span class="pre">Forge2DCamera</span></code> follow <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>s
 by calling <code class="docutils literal notranslate"><span class="pre">camera.followBodyComponent(...)</span></code> which works the same as
 <a class="reference internal" href="../flame/camera_and_viewport.html#camera-followcomponent"><span class="std std-doc">camera.followComponent</span></a>. When you want to
