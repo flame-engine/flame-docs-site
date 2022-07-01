@@ -39,6 +39,8 @@ function generate {
 
   cd $tmp_flame_src
   git checkout -f $version
+  rm -rf doc/_sphinx || echo "Not removing non-existing _sphinx directory"
+  cp -r ../_sphinx doc/
 
   sphinx_dir="doc/_sphinx"
 
