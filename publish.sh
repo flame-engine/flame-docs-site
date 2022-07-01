@@ -47,7 +47,7 @@ function generate {
     return
   fi
 
-  melos bootstrap
+  melos bootstrap || echo "Melos bootstrapping failed, trying without"
   cd $sphinx_dir
   echo "+ Generating for version $version..."
   pre_process $version
