@@ -39,16 +39,15 @@ function generate {
 
   cd $tmp_flame_src
   git checkout -f $version
-  cd ..
 
-  sphinx_dir="$tmp_flame_src/doc/_sphinx"
+  sphinx_dir="doc/_sphinx"
 
   if [ ! -d $sphinx_dir ]; then
     echo "+ Skipping version $version as it does not support sphinx yet"
     return
   fi
-  melos bootstrap
 
+  melos bootstrap
   cd $sphinx_dir
   echo "+ Generating for version $version..."
   pre_process $version
