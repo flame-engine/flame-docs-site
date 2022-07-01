@@ -133,6 +133,7 @@
 <li class="toctree-l3"><a class="reference internal" href="step1.html">1. Preparation</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">2. Scaffolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step4.html">4. Gameplay</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tbc.html">[To be continued]...</a></li>
 </ul>
 </li>
@@ -463,10 +464,10 @@ klondike_game.dart</div>
 <span class="linenos"> 3</span><span class="k">import</span> <span class="s1">&#39;package:flame/flame.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 4</span><span class="k">import</span> <span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 5</span>
-<span class="linenos"> 6</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step2/components/foundation.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 7</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step2/components/pile.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 8</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step2/components/stock.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 9</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step2/components/waste.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span> <span class="s1">&#39;components/foundation.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="k">import</span> <span class="s1">&#39;components/pile.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="k">import</span> <span class="s1">&#39;components/stock.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="k">import</span> <span class="s1">&#39;components/waste.dart&#39;</span><span class="p">;</span>
 <span class="linenos">10</span>
 <span class="linenos">11</span><span class="kd">class</span> <span class="nc">KlondikeGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
 <span class="linenos">12</span>  <span class="kd">static</span> <span class="k">const</span> <span class="kt">double</span> <span class="n">cardGap</span> <span class="o">=</span> <span class="m">175.0</span><span class="p">;</span>
@@ -532,7 +533,7 @@ main.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="k">import</span> <span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 <span class="linenos">2</span><span class="k">import</span> <span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span>
 <span class="linenos">3</span>
-<span class="linenos">4</span><span class="k">import</span> <span class="s1">&#39;package:klondike/step2/klondike_game.dart&#39;</span><span class="p">;</span>
+<span class="linenos">4</span><span class="k">import</span> <span class="s1">&#39;klondike_game.dart&#39;</span><span class="p">;</span>
 <span class="linenos">5</span>
 <span class="linenos">6</span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
 <span class="linenos">7</span>  <span class="kd">final</span> <span class="n">game</span> <span class="o">=</span> <span class="n">KlondikeGame</span><span class="p">();</span>

@@ -133,6 +133,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step2.html">2. Scaffolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step4.html">4. Gameplay</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/tbc.html">[To be continued]...</a></li>
 </ul>
 </li>
@@ -195,10 +196,13 @@ the constructor can look like this:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p><strong>Note:</strong> If you instantiate your game in a build method your game will be rebuilt every time the
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you instantiate your game in a build method your game will be rebuilt every time the
 Flutter tree gets rebuilt, which usually is more often than you’d like. To avoid this, you can
 instead create an instance of your game first and reference it within your widget structure, like
 it is done in the example above.</p>
+</div>
 <p>To remove components from the list on a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> the <code class="docutils literal notranslate"><span class="pre">remove</span></code> or <code class="docutils literal notranslate"><span class="pre">removeAll</span></code> methods can be used.
 The first can be used if you just want to remove one component, and the second can be used when you
 want to remove a list of components.</p>
@@ -260,7 +264,7 @@ to always finish loading the component.</p>
 <section id="low-level-game-api">
 <h2>Low-level Game API<a class="headerlink" href="#low-level-game-api" title="Permalink to this heading">¶</a></h2>
 <p><img alt="Game low-level API" src="../_images/game_mixin.png" /></p>
-<p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixin is a low-level API that can be used when you want to implement the functionality of
+<p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> class is a low-level API that can be used when you want to implement the functionality of
 how the game engine should be structured. <code class="docutils literal notranslate"><span class="pre">Game</span></code> does not implement any <code class="docutils literal notranslate"><span class="pre">update</span></code> or
 <code class="docutils literal notranslate"><span class="pre">render</span></code> function for example.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Loadable</span></code> mixin has the lifecycle methods <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>, <code class="docutils literal notranslate"><span class="pre">onMount</span></code> and <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> in it, which are
@@ -268,10 +272,13 @@ called from the <code class="docutils literal notranslate"><span class="pre">Gam
 <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> is only called the first time the class is added to a parent, but <code class="docutils literal notranslate"><span class="pre">onMount</span></code> (which is
 called after <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>) is called every time it is added to a new parent. <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> is called when
 the class is removed from a parent.</p>
-<p><strong>Note</strong>: The <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixin allows for more freedom of how to implement things, but you are also
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> class allows for more freedom of how to implement things, but you are also
 missing out on all of the built-in features in Flame if you use it.</p>
+</div>
 <p>An example of how a <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementation could look like:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGameSubClass</span> <span class="kd">with</span> <span class="n">Game</span> <span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGameSubClass</span> <span class="kd">extends</span> <span class="n">Game</span> <span class="p">{</span>
   <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">render</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">)</span> <span class="p">{</span>
     <span class="c1">// ...</span>
@@ -283,7 +290,7 @@ missing out on all of the built-in features in Flame if you use it.</p>
   <span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+<span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="kd">final</span> <span class="n">myGame</span> <span class="o">=</span> <span class="n">MyGameSubClass</span><span class="p">();</span>
   <span class="n">runApp</span><span class="p">(</span>
     <span class="n">GameWidget</span><span class="p">(</span>
@@ -328,7 +335,7 @@ by setting a <code class="docutils literal notranslate"><span class="pre">overla
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
   <span class="c1">// Inside the game methods:</span>
   <span class="kd">final</span> <span class="n">pauseOverlayIdentifier</span> <span class="o">=</span> <span class="s1">&#39;PauseMenu&#39;</span><span class="p">;</span>
-  
+
   <span class="c1">// Marks &#39;PauseMenu&#39; to be rendered.</span>
   <span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
   <span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span>

@@ -133,6 +133,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step2.html">2. Scaffolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step4.html">4. Gameplay</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/tbc.html">[To be continued]...</a></li>
 </ul>
 </li>
@@ -276,7 +277,7 @@ anchor to center.</p>
        <span class="nl">anchor:</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
      <span class="p">);</span>
      <span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
-     
+
      <span class="n">camera</span><span class="p">.</span><span class="n">followComponent</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
   <span class="p">}</span>
 <span class="p">}</span>
@@ -288,20 +289,22 @@ anchor to center.</p>
 <p>If you are not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, but instead are using the <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixin, then you need to manage
 calling certain camera methods yourself. Let’s say we have the following game structure, and we
 want to add the camera functionality:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">YourGame</span> <span class="kd">with</span> <span class="n">Game</span> <span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">YourGame</span> <span class="kd">extends</span> <span class="n">Game</span> <span class="p">{</span>
   <span class="n">Camera</span><span class="o">?</span> <span class="n">camera</span><span class="p">;</span>
 
+  <span class="nd">@override</span>
   <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{}</span>
 
+  <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">render</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">)</span> <span class="p">{}</span>
 
+  <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>We first create a new camera instance on load and assign our game as the reference:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="c1">// ...</span>
-  
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="nd">@override</span>
   <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
     <span class="n">camera</span> <span class="o">=</span> <span class="n">Camera</span><span class="p">();</span>
 
@@ -313,16 +316,13 @@ want to add the camera functionality:</p>
 
     <span class="c1">// Rest of your on load code.</span>
   <span class="p">}</span>
-
-  <span class="c1">// ...</span>
 </pre></div>
 </div>
 <p>The camera can also be made aware of which position to follow, this is an optional feature as you
-can also use the camare for just moving,snapping or shaking.</p>
+can also use the camera for just moving,snapping or shaking.</p>
 <p>To do this the <code class="docutils literal notranslate"><span class="pre">Camera</span></code> class provides multiple methods for it but let’s showcase the simplest one
 and that is the <code class="docutils literal notranslate"><span class="pre">followVector2</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="c1">// Somewhere in your code.</span>
-
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="c1">// Somewhere in your code:</span>
   <span class="n">camera</span><span class="o">?</span><span class="p">.</span><span class="n">followVector2</span><span class="p">(</span>
     <span class="n">yourPositionToFollow</span><span class="p">,</span>
     <span class="nl">worldBounds:</span> <span class="n">yourWorldBounds</span><span class="p">,</span> <span class="c1">// Optional to pass, it will overwrite the previous bounds.</span>
@@ -331,28 +331,22 @@ and that is the <code class="docutils literal notranslate"><span class="pre">fol
 </div>
 <p>Now that the camera is created and it is aware of both the world bounds and the position it should
 follow, it can be used to translate the canvas in the render method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="c1">// ...</span>
-
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">render</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">camera</span><span class="o">?</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span> <span class="c1">// This will apply the camera transformation.</span>
 
     <span class="c1">// Rest of your rendering code.</span>
   <span class="p">}</span>
-
-  <span class="c1">// ...</span>
 </pre></div>
 </div>
 <p>The only thing left to do is to call the <code class="docutils literal notranslate"><span class="pre">update</span></code> method on the <code class="docutils literal notranslate"><span class="pre">Camera</span></code> so it can smoothly follow
 your given position:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="c1">// ...</span>
-
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>  <span class="nd">@override</span>
   <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
     <span class="n">camera</span><span class="o">?</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 
     <span class="c1">// Rest of your update code.</span>
   <span class="p">}</span>
-
-  <span class="c1">// ...</span>
 </pre></div>
 </div>
 </section>
