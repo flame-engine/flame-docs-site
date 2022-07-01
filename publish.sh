@@ -47,6 +47,7 @@ function generate {
     echo "+ Skipping version $version as it does not support sphinx yet"
     return
   fi
+  melos bootstrap
 
   cd $sphinx_dir
   echo "+ Generating for version $version..."
