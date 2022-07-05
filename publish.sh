@@ -11,6 +11,7 @@ function main {
   git clone https://github.com/flame-engine/flame.git $tmp_flame_src
 
   cd $tmp_flame_src
+  cp -r doc/_sphinx ..
   # This sorts the list in a semantic versioning fashion
   list=$(git tag | tr - \~ | sort -V | tr \~ - | grep '^1' | grep -v '-' | tac)
   latest_version=$(head -n 1 <<< $list)
@@ -39,6 +40,8 @@ function generate {
 
   cd $tmp_flame_src
   git checkout -f $version
+  rm -rf doc/_sphinx
+  cp -r ../_sphinx doc/
 
   sphinx_dir="doc/_sphinx"
 
