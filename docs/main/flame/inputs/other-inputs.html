@@ -173,70 +173,70 @@
 To use this feature, you need to create a <code class="docutils literal notranslate"><span class="pre">JoystickComponent</span></code>, configure it the way you want, and
 add it to your game.</p>
 <p>Check this example to get a better understanding:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasDraggables</span> <span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasDraggables</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-  <span class="n">MyGame</span><span class="p">()</span> <span class="p">{</span>
-    <span class="n">joystick</span><span class="p">.</span><span class="n">addObserver</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">joystick</span><span class="p">);</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">joystick</span><span class="p">.</span><span class="n">addObserver</span><span class="p">(</span><span class="n">player</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">joystick</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-    <span class="kd">final</span> <span class="n">image</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;joystick.png&#39;</span><span class="p">);</span>
-    <span class="kd">final</span> <span class="n">sheet</span> <span class="o">=</span> <span class="n">SpriteSheet</span><span class="p">.</span><span class="n">fromColumnsAndRows</span><span class="p">(</span>
-      <span class="nl">image:</span> <span class="n">image</span><span class="p">,</span>
-      <span class="nl">columns:</span> <span class="m">6</span><span class="p">,</span>
-      <span class="nl">rows:</span> <span class="m">1</span><span class="p">,</span>
-    <span class="p">);</span>
-    <span class="kd">final</span> <span class="n">joystick</span> <span class="o">=</span> <span class="n">JoystickComponent</span><span class="p">(</span>
-      <span class="nl">knob:</span> <span class="n">SpriteComponent</span><span class="p">(</span>
-        <span class="nl">sprite:</span> <span class="n">sheet</span><span class="p">.</span><span class="n">getSpriteById</span><span class="p">(</span><span class="m">1</span><span class="p">),</span>
-        <span class="nl">size:</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span>
-      <span class="p">),</span>
-      <span class="nl">background:</span> <span class="n">SpriteComponent</span><span class="p">(</span>
-        <span class="nl">sprite:</span> <span class="n">sheet</span><span class="p">.</span><span class="n">getSpriteById</span><span class="p">(</span><span class="m">0</span><span class="p">),</span>
-        <span class="nl">size:</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">150</span><span class="p">),</span>
-      <span class="p">),</span>
-      <span class="nl">margin:</span> <span class="k">const</span> <span class="n">EdgeInsets</span><span class="p">.</span><span class="n">only</span><span class="p">(</span><span class="nl">left:</span> <span class="m">40</span><span class="p">,</span> <span class="nl">bottom:</span> <span class="m">40</span><span class="p">),</span>
-    <span class="p">);</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;joystick.png&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">sheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteSheet</span><span class="p">.</span><span class="n">fromColumnsAndRows</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nl">image:</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nl">columns:</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="nl">rows:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">joystick</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">JoystickComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nl">knob:</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">sheet</span><span class="p">.</span><span class="n">getSpriteById</span><span class="p">(</span><span class="m">1</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="nl">background:</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">sheet</span><span class="p">.</span><span class="n">getSpriteById</span><span class="p">(</span><span class="m">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">150</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="nl">margin:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">only</span><span class="p">(</span><span class="nl">left:</span><span class="w"> </span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="nl">bottom:</span><span class="w"> </span><span class="m">40</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
 
-    <span class="kd">final</span> <span class="n">player</span> <span class="o">=</span> <span class="n">Player</span><span class="p">(</span><span class="n">joystick</span><span class="p">);</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">joystick</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Player</span><span class="p">(</span><span class="n">joystick</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">joystick</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kd">class</span> <span class="nc">JoystickPlayer</span> <span class="kd">extends</span> <span class="n">SpriteComponent</span> <span class="kd">with</span> <span class="n">HasGameRef</span> <span class="p">{</span>
-  <span class="c1">/// Pixels/s</span>
-  <span class="kt">double</span> <span class="n">maxSpeed</span> <span class="o">=</span> <span class="m">300.0</span><span class="p">;</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">JoystickPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// Pixels/s</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">maxSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300.0</span><span class="p">;</span><span class="w"></span>
 
-  <span class="kd">final</span> <span class="n">JoystickComponent</span> <span class="n">joystick</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">JoystickComponent</span><span class="w"> </span><span class="n">joystick</span><span class="p">;</span><span class="w"></span>
 
-  <span class="n">JoystickPlayer</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">joystick</span><span class="p">)</span>
-      <span class="o">:</span> <span class="k">super</span><span class="p">(</span>
-          <span class="nl">size:</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100.0</span><span class="p">),</span>
-        <span class="p">)</span> <span class="p">{</span>
-    <span class="n">anchor</span> <span class="o">=</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="n">JoystickPlayer</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">joystick</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="w"></span>
+<span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100.0</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-    <span class="n">sprite</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;layers/player.png&#39;</span><span class="p">);</span>
-    <span class="n">position</span> <span class="o">=</span> <span class="n">gameRef</span><span class="p">.</span><span class="n">size</span> <span class="o">/</span> <span class="m">2</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;layers/player.png&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">dt</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">direction</span> <span class="o">!=</span> <span class="n">JoystickDirection</span><span class="p">.</span><span class="n">idle</span><span class="p">)</span> <span class="p">{</span>
-      <span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">velocity</span> <span class="o">*</span> <span class="n">maxSpeed</span> <span class="o">*</span> <span class="n">dt</span><span class="p">);</span>
-      <span class="n">angle</span> <span class="o">=</span> <span class="n">joystick</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">screenAngle</span><span class="p">();</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">direction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">JoystickDirection</span><span class="p">.</span><span class="n">idle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">maxSpeed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">screenAngle</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>So in this example, we create the classes <code class="docutils literal notranslate"><span class="pre">MyGame</span></code> and <code class="docutils literal notranslate"><span class="pre">Player</span></code>. <code class="docutils literal notranslate"><span class="pre">MyGame</span></code> creates a joystick which is

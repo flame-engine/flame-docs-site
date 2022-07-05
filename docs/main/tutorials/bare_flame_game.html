@@ -235,19 +235,19 @@ project directory.</p>
 game, so we should get rid of it.</p>
 <p>First, open the file <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> and replace it with the following code
 (adjusting the <code class="docutils literal notranslate"><span class="pre">name</span></code> and <code class="docutils literal notranslate"><span class="pre">description</span></code> to match your project):</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">syzygy</span>
-<span class="nt">description</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">Syzygy Flame game</span>
-<span class="nt">version</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.0.0</span>
-<span class="nt">publish_to</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">none</span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">syzygy</span><span class="w"></span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Syzygy Flame game</span><span class="w"></span>
+<span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.0.0</span><span class="w"></span>
+<span class="nt">publish_to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span><span class="w"></span>
 
-<span class="nt">environment</span><span class="p">:</span>
-  <span class="nt">sdk</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">^2.16.0</span>
-  <span class="nt">flutter</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">^2.10.0</span>
+<span class="nt">environment</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">sdk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^2.16.0</span><span class="w"></span>
+<span class="w">  </span><span class="nt">flutter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^2.10.0</span><span class="w"></span>
 
-<span class="nt">dependencies</span><span class="p">:</span>
-  <span class="nt">flutter</span><span class="p">:</span>
-    <span class="nt">sdk</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">flutter</span>
-  <span class="nt">flame</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">^1.1.0</span>
+<span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
+<span class="w">  </span><span class="nt">flutter</span><span class="p">:</span><span class="w"></span>
+<span class="w">    </span><span class="nt">sdk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">flutter</span><span class="w"></span>
+<span class="w">  </span><span class="nt">flame</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^1.1.0</span><span class="w"></span>
 </pre></div>
 </div>
 <p>After that, press the <code class="docutils literal notranslate"><span class="pre">[Pub</span> <span class="pre">get]</span></code> button at the top of the window; or
@@ -257,13 +257,13 @@ will download the Flame library which we have declared as a dependency. In the
 future, you should run <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">pub</span> <span class="pre">get</span></code> whenever you make changes to this
 file.</p>
 <p>Now, open file <code class="docutils literal notranslate"><span class="pre">lib/main.dart</span></code> and replace its content with the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span> <span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span> <span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">final</span> <span class="n">game</span> <span class="o">=</span> <span class="n">FlameGame</span><span class="p">();</span>
-  <span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span> <span class="n">game</span><span class="p">));</span>
-<span class="p">}</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Lastly, remove the file <code class="docutils literal notranslate"><span class="pre">test/widget_test.dart</span></code> completely.</p>

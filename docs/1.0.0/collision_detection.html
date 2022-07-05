@@ -1,426 +1,141 @@
-
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Collision detection &#8212; Flame</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="_static/flutter_app.css" />
+  <link rel="stylesheet" type="text/css" href="_static/flames.css" />
+  <!-- Scripts -->
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/flutter_app.js"></script>
+  <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
+  <script src="_static/versions.js"></script>
+  <!--script src="searchindex.js" defer></script-->
+  <!-- Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="_static/fontawesome/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="_static/fontawesome/fa-solid-900.woff2">
+  <link rel="stylesheet" href="_static/fontawesome/all.min.css">
+  <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Effects" href="effects.html" />
+  <link rel="prev" title="Supported Platforms" href="platforms.html" />
+</head>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<body data-spy="scroll" data-target="#toc-local" data-offset="80">
 
-    <title>Collision detection &#8212; Flame</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+<div class="top-bar">
+  <button id="menu-button" class="btn" title="Toggle menu"><i class="fa fa-bars"></i></button>
+  <script type="text/javascript">
+    jQuery(function(){
+      $("#menu-button").click(function() {
+        $(this).toggleClass("active");
+        $(".sidebar-left-area").toggleClass("active");
+      });
+    });
+  </script>
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    
-      
-
-    
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
-
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
-    <script src="_static/versions.js"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Effects" href="effects.html" />
-    <link rel="prev" title="Supported Platforms" href="platforms.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
-  </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
-      <img src="_static/logo_flame.png" class="logo" alt="logo">
-      
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p class="caption" role="heading">
- <span class="caption-text">
-  Basic concepts
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="structure.html">
-   File structure
+  <a href="index.html" class="logo_image">
+    <img src="_static/logo_flame.png">
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="game.html">
-   FlameGame
+
+  <div class="highlight-box" role="alert" style="display:none">
+    <div>
+      <div class="title">highlighted:</div>
+      <div class="content" id="highlight-content"></div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Dismiss">×</button>
+  </div>
+  <div class="expander"></div>
+
+  <div class="versions-placeholder"></div>
+  <a href="https://discord.com/channels/509714518008528896/516639688581316629" id="discord-button"
+     class="btn" title="Flame Discord channel">
+    <i class="fab fa-discord"></i>
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="components.html">
-   Components
+  <a href="https://github.com/flame-engine/flame/" id="github-button" class="btn"
+     title="GitHub repository">
+    <i class="fab fa-github"></i>
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="platforms.html">
-   Platforms
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Collision detection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="effects.html">
-   Effects
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="camera_and_viewport.html">
-   Camera &amp; Viewport
-  </a>
- </li>
+</div>
+
+<div class="sidebar-left-area">
+  <div class="sidebar-left-bg"></div>
+  <div class="sidebar-left">
+    <div class="searchbox" role="search">
+      <form id="search-form" action="search.html" method="get">
+        <i class="icon fa fa-search"></i>
+        <input type="search" class="form-control" id="search-input" name="q"
+               placeholder="Search the docs..." autocomplete="off" />
+      </form>
+    </div>
+    <div class="nav-left" role="navigation" aria-label="Main">
+      <p class="caption" role="heading"><span class="caption-text">Basic concepts</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="structure.html">File structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="game.html">FlameGame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="game.html#low-level-game-api">Low-level Game API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="game.html#gameloop">GameLoop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="game.html#pause-resuming-game-execution">Pause/Resuming game execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="game.html#flutter-widgets-and-game-instances">Flutter Widgets and Game instances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components.html">Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="platforms.html">Platforms</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Collision detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="effects.html">Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Inputs
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="gesture-input.html">
-   Gesture input
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="keyboard-input.html">
-   Keyboard input
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="other-inputs.html">
-   Other inputs
-  </a>
- </li>
+<p class="caption" role="heading"><span class="caption-text">Inputs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gesture-input.html">Gesture input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="keyboard-input.html">Keyboard input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-inputs.html">Other inputs</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Audio
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="audio.html">
-   General audio
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bgm.html">
-   Background music
-  </a>
- </li>
+<p class="caption" role="heading"><span class="caption-text">Audio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="audio.html">General audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bgm.html">Background music</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Rendering
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="images.html">
-   Images, sprites and animations
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="text.html">
-   Text rendering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="palette.html">
-   Colors and palette
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="particles.html">
-   Particles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="layers.html">
-   Layers
-  </a>
- </li>
+<p class="caption" role="heading"><span class="caption-text">Rendering</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="images.html">Images, sprites and animations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="palette.html">Colors and palette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="particles.html">Particles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layers.html">Layers</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Other Modules
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="util.html">
-   Util
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="widgets.html">
-   Widgets
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="forge2d.html">
-   Forge2D
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="oxygen.html">
-   Oxygen
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="tiled.html">
-   Tiled
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="debug.html">
-   Debugging
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="splash_screen.html">
-   Splash screen
-  </a>
- </li>
+<p class="caption" role="heading"><span class="caption-text">Other Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets.html">Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forge2d.html">Forge2D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oxygen.html">Oxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tiled.html">Tiled</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splash_screen.html">Splash screen</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+  </div>
 </div>
 
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/collision_detection.md.txt"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/flame-engine/flame"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/flame-engine/flame/edit/main/doc/collision_detection.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#mixins">
-   Mixins
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hashitboxes">
-     HasHitboxes
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#collidable">
-     Collidable
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#collidabletype">
-       CollidableType
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hascollidables">
-     HasCollidables
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#screencollidable">
-     ScreenCollidable
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#shapes">
-   Shapes
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#shape">
-     Shape
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#hitboxshape">
-     HitboxShape
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#hitboxpolygon">
-       HitboxPolygon
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#hitboxrectangle">
-       HitboxRectangle
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#hitboxcircle">
-       HitboxCircle
-      </a>
-     </li>
-    </ul>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#normal-shapes">
-     Normal Shapes
-    </a>
-    <ul class="nav section-nav flex-column">
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#polygon">
-       Polygon
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#rectangle">
-       Rectangle
-      </a>
-     </li>
-     <li class="toc-h4 nav-item toc-entry">
-      <a class="reference internal nav-link" href="#circle">
-       Circle
-      </a>
-     </li>
-    </ul>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#examples">
-   Examples
-  </a>
- </li>
-</ul>
-
-            </nav>
-        </div>
-    </div>
-</div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
+<div class="main-area">
+  <div class="document-wrapper">
+    <div class="document" role="main">
+      
   <section class="tex2jax_ignore mathjax_ignore" id="collision-detection">
-<h1>Collision detection<a class="headerlink" href="#collision-detection" title="Permalink to this headline">¶</a></h1>
+<h1>Collision detection<a class="headerlink" href="#collision-detection" title="Permalink to this heading">¶</a></h1>
 <p>If you want to have a full-blown physics engine in your game we recommend that you use
 Forge2D by adding <a class="reference external" href="https://github.com/flame-engine/flame_forge2d">flame_forge2d</a> as a dependency.
 But if you have a simpler use-case and just want to check for collisions of components and improve
@@ -454,9 +169,9 @@ behaviour is called tunneling, if you want to read more about it.</p>
 <p>Also note that the collision detection system doesn’t work properly if you scale ancestors of the
 component that is <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>.</p>
 <section id="mixins">
-<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this headline">¶</a></h2>
+<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this heading">¶</a></h2>
 <section id="hashitboxes">
-<h3>HasHitboxes<a class="headerlink" href="#hashitboxes" title="Permalink to this headline">¶</a></h3>
+<h3>HasHitboxes<a class="headerlink" href="#hashitboxes" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> mixin is mainly used for two things; to make detection of collisions with other
 hitboxes and to more accurately recognize gestures on top of your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s. Say that you
 have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you don’t want to register input
@@ -467,25 +182,25 @@ shape) for which the input should be within for the event to be registered on yo
 example.</p>
 </section>
 <section id="collidable">
-<h3>Collidable<a class="headerlink" href="#collidable" title="Permalink to this headline">¶</a></h3>
+<h3>Collidable<a class="headerlink" href="#collidable" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> mixin is added to a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> that has a <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> and it is used for
 detecting collisions with other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s. If you do not add a shape to your <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code>
 component it will never collide with anything. If you want the component to have a default
 rectangular shape that fills the size of your component you can simply do
 <code class="docutils literal notranslate"><span class="pre">addHitbox(HitboxRectangle())</span></code>.</p>
 <p>To make your component collidable you would start off something like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCollidable</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="kd">with</span> <span class="n">HasHitboxes</span><span class="p">,</span> <span class="n">Collidable</span> <span class="p">{</span>
-  <span class="n">MyCollidable</span><span class="p">()</span> <span class="p">{</span>
-    <span class="c1">// This could also be done in onLoad instead of in the constructor</span>
-    <span class="kd">final</span> <span class="n">shape</span> <span class="o">=</span> <span class="n">HitboxPolygon</span><span class="p">([</span>
-      <span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span>
-      <span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
-      <span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">),</span>
-      <span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>
-    <span class="p">]);</span>
-    <span class="n">addHitbox</span><span class="p">(</span><span class="n">shape</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCollidable</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasHitboxes</span><span class="p">,</span><span class="w"> </span><span class="n">Collidable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">MyCollidable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// This could also be done in onLoad instead of in the constructor</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HitboxPolygon</span><span class="p">([</span><span class="w"></span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="p">]);</span><span class="w"></span>
+<span class="w">    </span><span class="n">addHitbox</span><span class="p">(</span><span class="n">shape</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code> added to the <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> here is a diamond shape(◇).
@@ -495,27 +210,27 @@ complex hitboxes. For example a snowman with a hat could be represented by three
 a <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code> as its hat.</p>
 <p>To react to a collision you should override the <code class="docutils literal notranslate"><span class="pre">collisionCallback</span></code> in your component.
 Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCollidable</span> <span class="kd">extends</span> <span class="n">PositionComponent</span> <span class="kd">with</span> <span class="n">HasHitboxes</span><span class="p">,</span> <span class="n">Collidable</span> <span class="p">{</span>
-  <span class="p">...</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCollidable</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasHitboxes</span><span class="p">,</span><span class="w"> </span><span class="n">Collidable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span> <span class="n">points</span><span class="p">,</span> <span class="n">Collidable</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">CollidableScreen</span><span class="p">)</span> <span class="p">{</span>
-      <span class="p">...</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">YourOtherCollidable</span><span class="p">)</span> <span class="p">{</span>
-      <span class="p">...</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">Collidable</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">CollidableScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">YourOtherCollidable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">Collidable</span> <span class="n">other</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">CollidableScreen</span><span class="p">)</span> <span class="p">{</span>
-      <span class="p">...</span>
-    <span class="p">}</span> <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">other</span> <span class="k">is</span> <span class="n">YourOtherCollidable</span><span class="p">)</span> <span class="p">{</span>
-      <span class="p">...</span>
-    <span class="p">}</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">Collidable</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">CollidableScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">YourOtherCollidable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In this example it can be seen how the Dart <code class="docutils literal notranslate"><span class="pre">is</span></code> keyword is used to check which other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
@@ -528,7 +243,7 @@ shapes that were previously colliding no longer colliding with each other.</p>
 the predefined <a class="reference internal" href="#screencollidable"><span class="std std-doc">ScreenCollidable</span></a> class and since that one also is a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
 you can implement your own <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method for that class if needed.</p>
 <section id="collidabletype">
-<h4>CollidableType<a class="headerlink" href="#collidabletype" title="Permalink to this headline">¶</a></h4>
+<h4>CollidableType<a class="headerlink" href="#collidabletype" title="Permalink to this heading">¶</a></h4>
 <p>By default the <code class="docutils literal notranslate"><span class="pre">CollidableType</span></code> is <code class="docutils literal notranslate"><span class="pre">active</span></code> on your <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>, but there are two other types that
 you can set your collidable to too if you need to optimize the collision detection.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">CollidableType</span></code> enum contains the following values:</p>
@@ -550,20 +265,20 @@ them so don’t doubt to use them even if your use case isn’t listed here.</p>
 </section>
 </section>
 <section id="hascollidables">
-<h3>HasCollidables<a class="headerlink" href="#hascollidables" title="Permalink to this headline">¶</a></h3>
+<h3>HasCollidables<a class="headerlink" href="#hascollidables" title="Permalink to this heading">¶</a></h3>
 <p>If you want to use this collision detection in your game you have to add the <code class="docutils literal notranslate"><span class="pre">HasCollidables</span></code> mixin
 to your game so that the game knows that it should keep track of which components that can collide.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">HasCollidables</span> <span class="p">{</span>
-  <span class="c1">// ...</span>
-<span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollidables</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Now when you add your <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> components to your game they will automatically be checked for
 collisions.</p>
 </section>
 <section id="screencollidable">
-<h3>ScreenCollidable<a class="headerlink" href="#screencollidable" title="Permalink to this headline">¶</a></h3>
+<h3>ScreenCollidable<a class="headerlink" href="#screencollidable" title="Permalink to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> is not a mixin, but a pre-made collidable component which represents the edges of
 your game/screen. If you add a <code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> to your game your other collidables will be
 notified when they collide with the edges. It doesn’t take any arguments, it only depends on the
@@ -574,23 +289,23 @@ with it. If you so want it to be notified, then you need to extend it and implem
 </section>
 </section>
 <section id="shapes">
-<h2>Shapes<a class="headerlink" href="#shapes" title="Permalink to this headline">¶</a></h2>
+<h2>Shapes<a class="headerlink" href="#shapes" title="Permalink to this heading">¶</a></h2>
 <section id="shape">
-<h3>Shape<a class="headerlink" href="#shape" title="Permalink to this headline">¶</a></h3>
+<h3>Shape<a class="headerlink" href="#shape" title="Permalink to this heading">¶</a></h3>
 <p>A Shape is the base class for representing a scalable geometrical shape. The shapes have different
 ways of defining how they look, but they all have a size and angle that can be modified and the
 shape definition will scale or rotate the shape accordingly.</p>
 <p>There are currently three shapes: <a class="reference internal" href="#polygon"><span class="std std-doc">Polygon</span></a>, <a class="reference internal" href="#rectangle"><span class="std std-doc">Rectangle</span></a> and <a class="reference internal" href="#circle"><span class="std std-doc">Circle</span></a>.</p>
 </section>
 <section id="hitboxshape">
-<h3>HitboxShape<a class="headerlink" href="#hitboxshape" title="Permalink to this headline">¶</a></h3>
+<h3>HitboxShape<a class="headerlink" href="#hitboxshape" title="Permalink to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code> is a <code class="docutils literal notranslate"><span class="pre">Shape</span></code> defined from the center position of the component that it is attached
 to and it has the same bounding size and angle as the component. You can set <code class="docutils literal notranslate"><span class="pre">localPosition</span></code> to have
 the position of the shape deviate from the center of the component. A <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code> is the type of
 shape that you add to your <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code>, or <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>. Usually these types of shapes are the
 only ones that you need to use.</p>
 <section id="hitboxpolygon">
-<h4>HitboxPolygon<a class="headerlink" href="#hitboxpolygon" title="Permalink to this headline">¶</a></h4>
+<h4>HitboxPolygon<a class="headerlink" href="#hitboxpolygon" title="Permalink to this heading">¶</a></h4>
 <p>It should be noted that if you want to use collision detection or <code class="docutils literal notranslate"><span class="pre">containsPoint</span></code> on the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>,
 the polygon needs to be convex. So always use convex polygons or you will most likely run into
 problems if you don’t really know what you are doing. It should also be noted that you should always
@@ -599,12 +314,12 @@ define the vertices in your polygon in a clockwise order.</p>
 mandatory argument is a list of <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> which defines how your polygon should look, but not the
 size or position for it (since that sill be defined by the component that you attach it to).
 For example you could create a diamond like in the <a class="reference internal" href="#collidable"><span class="std std-doc">Collidable</span></a> example like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">HitboxPolygon</span><span class="p">([</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="m">1</span><span class="p">),</span>  <span class="c1">// Middle of top wall</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span>  <span class="c1">// Middle of right wall</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span> <span class="o">-</span><span class="m">1</span><span class="p">),</span> <span class="c1">// Middle of bottom wall</span>
-  <span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">,</span> <span class="m">0</span><span class="p">),</span> <span class="c1">// Middle of left wall</span>
-<span class="p">]);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">HitboxPolygon</span><span class="p">([</span><span class="w"></span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of top wall</span><span class="w"></span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of right wall</span><span class="w"></span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of bottom wall</span><span class="w"></span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of left wall</span><span class="w"></span>
+<span class="p">]);</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The other hitbox shapes don’t have any mandatory constructor, but that is because they can have a
@@ -620,7 +335,7 @@ the center of the polygon.</p>
 arrows.</p>
 </section>
 <section id="hitboxrectangle">
-<h4>HitboxRectangle<a class="headerlink" href="#hitboxrectangle" title="Permalink to this headline">¶</a></h4>
+<h4>HitboxRectangle<a class="headerlink" href="#hitboxrectangle" title="Permalink to this heading">¶</a></h4>
 <p>A <code class="docutils literal notranslate"><span class="pre">HitboxRectangle</span></code> is really just a simplified Polygon, but it can be defined more easily.
 To create rectangle you add a <code class="docutils literal notranslate"><span class="pre">relation</span></code> in the constructor which defines the relationship between
 the length of the horizontal and vertical side and the size of the bounding box. To create a
@@ -632,7 +347,7 @@ relation argument is the same as above your rectangle would be placed in the mid
 and be 200 pixels wide and 200 pixels tall.</p>
 </section>
 <section id="hitboxcircle">
-<h4>HitboxCircle<a class="headerlink" href="#hitboxcircle" title="Permalink to this headline">¶</a></h4>
+<h4>HitboxCircle<a class="headerlink" href="#hitboxcircle" title="Permalink to this heading">¶</a></h4>
 <p>When creating a <code class="docutils literal notranslate"><span class="pre">Circle</span></code> you can define how long the radius is in comparison to the shortest edge
 of the bounding box, this is the <code class="docutils literal notranslate"><span class="pre">definition</span></code> argument.</p>
 <p>So if you want to create a circle that is positioned as for example a head for your component that
@@ -642,16 +357,16 @@ on the top fourth of the component you would write something like this:</p>
 </section>
 </section>
 <section id="normal-shapes">
-<h3>Normal Shapes<a class="headerlink" href="#normal-shapes" title="Permalink to this headline">¶</a></h3>
+<h3>Normal Shapes<a class="headerlink" href="#normal-shapes" title="Permalink to this heading">¶</a></h3>
 <p>These shapes are meant as a tool for using geometrical shapes in a more general way than together
 with the collision detection system.</p>
 <section id="polygon">
-<h4>Polygon<a class="headerlink" href="#polygon" title="Permalink to this headline">¶</a></h4>
+<h4>Polygon<a class="headerlink" href="#polygon" title="Permalink to this heading">¶</a></h4>
 <p>You can also create you <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> by giving it a list of points in the constructor.
 This list will be transformed into a polygon with a size, which can still be scaled and rotated.</p>
 </section>
 <section id="rectangle">
-<h4>Rectangle<a class="headerlink" href="#rectangle" title="Permalink to this headline">¶</a></h4>
+<h4>Rectangle<a class="headerlink" href="#rectangle" title="Permalink to this heading">¶</a></h4>
 <p>Dart already has an excellent way to create rectangles and that class is called <code class="docutils literal notranslate"><span class="pre">Rect</span></code>, you can
 create a Flame <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> from a <code class="docutils literal notranslate"><span class="pre">Rect</span></code> by using the <code class="docutils literal notranslate"><span class="pre">Rectangle.fromRect</span></code> factory, and just like
 with the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> factory, your rectangle will be sized according to the <code class="docutils literal notranslate"><span class="pre">Rect</span></code> if you use this
@@ -659,7 +374,7 @@ factory.</p>
 <p>You can also use the default constructor to build your rectangle from a position, size and angle.</p>
 </section>
 <section id="circle">
-<h4>Circle<a class="headerlink" href="#circle" title="Permalink to this headline">¶</a></h4>
+<h4>Circle<a class="headerlink" href="#circle" title="Permalink to this heading">¶</a></h4>
 <p>If you know how long your circle’s position and/or how long the radius is going to be from the start
 you can use the optional arguments <code class="docutils literal notranslate"><span class="pre">radius</span></code> and <code class="docutils literal notranslate"><span class="pre">position</span></code> to set those, if the <code class="docutils literal notranslate"><span class="pre">radius</span></code> is set the
 <code class="docutils literal notranslate"><span class="pre">size</span></code> of the <code class="docutils literal notranslate"><span class="pre">Circle</span></code> will be automatically set too.</p>
@@ -667,7 +382,7 @@ you can use the optional arguments <code class="docutils literal notranslate"><s
 </section>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Circles">https://examples.flame-engine.org/#/Collision Detection_Circles</a></p></li>
 <li><p><a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Multiple%20shapes">https://examples.flame-engine.org/#/Collision Detection_Multiple shapes</a></p></li>
@@ -678,56 +393,62 @@ you can use the optional arguments <code class="docutils literal notranslate"><s
 </section>
 
 
-              </div>
-              
-        
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="platforms.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Supported Platforms</p>
-            </div>
-        </a>
     </div>
-     <div id="next">
-        <a class="right-next" href="effects.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Effects</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
+    <div class="copyright">
+      The content on this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 License</a>,
+      and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
+    </div>
+    <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="platforms.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">Supported Platforms</p>
         </div>
+      </a>
+      <div class='expander'></div>
+      <a class="right-next" id="next-link" href="effects.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">Effects</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Blue Fire Team<br/>
-        
-            &copy; Copyright 2021, Blue Fire Team.<br/>
-      </p>
+  </div>
+
+  <div class="sidebar-right">
+    
+    <div class="nav-right" role="navigation" aria-label="table of contents">
+      <div id='toc-local' class='list-group'>
+ <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#mixins' class='list-group-item level-1'>Mixins</a>
+  <a href='#hashitboxes' class='list-group-item level-2'>HasHitboxes</a>
+  <a href='#collidable' class='list-group-item level-2'>Collidable</a>
+  <a href='#collidabletype' class='list-group-item level-3'>CollidableType</a>
+  <a href='#hascollidables' class='list-group-item level-2'>HasCollidables</a>
+  <a href='#screencollidable' class='list-group-item level-2'>ScreenCollidable</a>
+  <a href='#shapes' class='list-group-item level-1'>Shapes</a>
+  <a href='#shape' class='list-group-item level-2'>Shape</a>
+  <a href='#hitboxshape' class='list-group-item level-2'>HitboxShape</a>
+  <a href='#hitboxpolygon' class='list-group-item level-3'>HitboxPolygon</a>
+  <a href='#hitboxrectangle' class='list-group-item level-3'>HitboxRectangle</a>
+  <a href='#hitboxcircle' class='list-group-item level-3'>HitboxCircle</a>
+  <a href='#normal-shapes' class='list-group-item level-2'>Normal Shapes</a>
+  <a href='#polygon' class='list-group-item level-3'>Polygon</a>
+  <a href='#rectangle' class='list-group-item level-3'>Rectangle</a>
+  <a href='#circle' class='list-group-item level-3'>Circle</a>
+  <a href='#examples' class='list-group-item level-1'>Examples</a>
+</div>
+
     </div>
-  </footer>
-</main>
+  </div>
+
+  <div class="expander"></div>
+</div>
 
 
-      </div>
-    </div>
-  
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-  
-  </body>
+
+</body>
 </html>

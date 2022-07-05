@@ -169,47 +169,47 @@ widget tree.</p>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <p>Directly in <code class="docutils literal notranslate"><span class="pre">runApp</span></code>, with either:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">final</span> <span class="n">game</span> <span class="o">=</span> <span class="n">MyGame</span><span class="p">();</span>
-  <span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span> <span class="n">game</span><span class="p">));</span>
-<span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Or:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">.</span><span class="n">controlled</span><span class="p">(</span><span class="nl">gameFactory:</span> <span class="n">MyGame</span><span class="p">.</span><span class="k">new</span><span class="p">));</span>
-<span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">.</span><span class="n">controlled</span><span class="p">(</span><span class="nl">gameFactory:</span><span class="w"> </span><span class="n">MyGame</span><span class="p">.</span><span class="k">new</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In a <code class="docutils literal notranslate"><span class="pre">StatefulWidget</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGamePage</span> <span class="kd">extends</span> <span class="n">StatefulWidget</span> <span class="p">{</span>
-  <span class="nd">@override</span>
-  <span class="n">State</span> <span class="n">createState</span><span class="p">()</span> <span class="o">=&gt;</span> <span class="n">_MyGamePageState</span><span class="p">();</span>
-<span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGamePage</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatefulWidget</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="n">createState</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_MyGamePageState</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kd">class</span> <span class="nc">_MyGamePageState</span> <span class="kd">extends</span> <span class="n">State</span><span class="o">&lt;</span><span class="n">MyGamePage</span><span class="o">&gt;</span> <span class="p">{</span>
-  <span class="kd">late</span> <span class="kd">final</span> <span class="n">MyGame</span> <span class="n">_game</span><span class="p">;</span>
-  
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">initState</span><span class="p">()</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span>
-    <span class="n">_game</span> <span class="o">=</span> <span class="n">MyGame</span><span class="p">();</span>
-  <span class="p">}</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">_MyGamePageState</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">State</span><span class="o">&lt;</span><span class="n">MyGamePage</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">MyGame</span><span class="w"> </span><span class="n">_game</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initState</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">_game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span> <span class="n">_game</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">_game</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>In a <code class="docutils literal notranslate"><span class="pre">StatelessWidget</span></code> with the <code class="docutils literal notranslate"><span class="pre">gameFactory</span></code> argument:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGamePage</span> <span class="kd">extends</span> <span class="n">StatelessWidget</span> <span class="p">{</span>
-  <span class="nd">@override</span>
-  <span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="n">GameWidget</span><span class="p">.</span><span class="n">controlled</span><span class="p">(</span><span class="nl">gameFactory:</span> <span class="n">MyGame</span><span class="p">.</span><span class="k">new</span><span class="p">);</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGamePage</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatelessWidget</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">.</span><span class="n">controlled</span><span class="p">(</span><span class="nl">gameFactory:</span><span class="w"> </span><span class="n">MyGame</span><span class="p">.</span><span class="k">new</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Do note that if the <code class="docutils literal notranslate"><span class="pre">GameWidget.controlled</span></code> constructor is used, the <code class="docutils literal notranslate"><span class="pre">GameWidget.game</span></code> field will

@@ -75,6 +75,10 @@ p + ul {
   margin-top: -0.5em;
 }
 
+ul.simple p + ul, ol.simple p + ul {
+  margin-top: 0;
+}
+
 ul ul.simple p {
   margin-bottom: 1em;
 }
@@ -478,6 +482,12 @@ div.document {
   padding: var(--document-padding);
 }
 
+div.document::after { /* clearfix */
+  content: '';
+  display: block;
+  clear: both;
+}
+
 div.copyright {
   font-size: 12px;
   margin-top: 3px;
@@ -493,6 +503,7 @@ div.document h1 {
 }
 
 div.document h2 {
+  color: #ddd;
   font-size: 1.5em;
   margin: 1.5em 0 .5em 0;
 }

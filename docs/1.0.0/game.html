@@ -1,373 +1,141 @@
-
 <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>FlameGame &#8212; Flame</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="_static/flutter_app.css" />
+  <link rel="stylesheet" type="text/css" href="_static/flames.css" />
+  <!-- Scripts -->
+  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+  <script src="_static/jquery.js"></script>
+  <script src="_static/underscore.js"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="_static/doctools.js"></script>
+  <script src="_static/flutter_app.js"></script>
+  <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
+  <script src="_static/versions.js"></script>
+  <!--script src="searchindex.js" defer></script-->
+  <!-- Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="_static/fontawesome/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="_static/fontawesome/fa-solid-900.woff2">
+  <link rel="stylesheet" href="_static/fontawesome/all.min.css">
+  <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <link rel="index" title="Index" href="genindex.html" />
+  <link rel="search" title="Search" href="search.html" />
+  <link rel="next" title="Components" href="components.html" />
+  <link rel="prev" title="Structure" href="structure.html" />
+</head>
 
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+<body data-spy="scroll" data-target="#toc-local" data-offset="80">
 
-    <title>FlameGame &#8212; Flame</title>
-    
-  <link href="_static/css/theme.css" rel="stylesheet" />
-  <link href="_static/css/index.c5995385ac14fb8791e8eb36b4908be2.css" rel="stylesheet" />
+<div class="top-bar">
+  <button id="menu-button" class="btn" title="Toggle menu"><i class="fa fa-bars"></i></button>
+  <script type="text/javascript">
+    jQuery(function(){
+      $("#menu-button").click(function() {
+        $(this).toggleClass("active");
+        $(".sidebar-left-area").toggleClass("active");
+      });
+    });
+  </script>
 
-    
-  <link rel="stylesheet"
-    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
-
-    
-      
-
-    
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-book-theme.e2363ea40746bee74734a24ffefccd78.css" />
-    <link rel="stylesheet" type="text/css" href="_static/custom.css" />
-    
-  <link rel="preload" as="script" href="_static/js/index.1c5a1a01449ed65a7b51.js">
-
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx-book-theme.12a9622fbb08dcb3a2a40b2c02b83a57.js"></script>
-    <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
-    <script>mermaid.initialize({startOnLoad:true});</script>
-    <script src="_static/versions.js"></script>
-    <link rel="shortcut icon" href="_static/favicon.ico"/>
-    <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Components" href="components.html" />
-    <link rel="prev" title="Structure" href="structure.html" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-    
-  </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
-    <div class="container-fluid" id="banner"></div>
-
-    
-
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="index.html">
-      
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
-        
-      
-      
-      <img src="_static/logo_flame.png" class="logo" alt="logo">
-      
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p class="caption" role="heading">
- <span class="caption-text">
-  Basic concepts
- </span>
-</p>
-<ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="structure.html">
-   File structure
+  <a href="index.html" class="logo_image">
+    <img src="_static/logo_flame.png">
   </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   FlameGame
+
+  <div class="highlight-box" role="alert" style="display:none">
+    <div>
+      <div class="title">highlighted:</div>
+      <div class="content" id="highlight-content"></div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Dismiss">×</button>
+  </div>
+  <div class="expander"></div>
+
+  <div class="versions-placeholder"></div>
+  <a href="https://discord.com/channels/509714518008528896/516639688581316629" id="discord-button"
+     class="btn" title="Flame Discord channel">
+    <i class="fab fa-discord"></i>
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="components.html">
-   Components
+  <a href="https://github.com/flame-engine/flame/" id="github-button" class="btn"
+     title="GitHub repository">
+    <i class="fab fa-github"></i>
   </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="platforms.html">
-   Platforms
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="collision_detection.html">
-   Collision detection
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="effects.html">
-   Effects
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="camera_and_viewport.html">
-   Camera &amp; Viewport
-  </a>
- </li>
+</div>
+
+<div class="sidebar-left-area">
+  <div class="sidebar-left-bg"></div>
+  <div class="sidebar-left">
+    <div class="searchbox" role="search">
+      <form id="search-form" action="search.html" method="get">
+        <i class="icon fa fa-search"></i>
+        <input type="search" class="form-control" id="search-input" name="q"
+               placeholder="Search the docs..." autocomplete="off" />
+      </form>
+    </div>
+    <div class="nav-left" role="navigation" aria-label="Main">
+      <p class="caption" role="heading"><span class="caption-text">Basic concepts</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="structure.html">File structure</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FlameGame</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#low-level-game-api">Low-level Game API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#gameloop">GameLoop</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#pause-resuming-game-execution">Pause/Resuming game execution</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#flutter-widgets-and-game-instances">Flutter Widgets and Game instances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="components.html">Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="platforms.html">Platforms</a></li>
+<li class="toctree-l1"><a class="reference internal" href="collision_detection.html">Collision detection</a></li>
+<li class="toctree-l1"><a class="reference internal" href="effects.html">Effects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Inputs
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="gesture-input.html">
-   Gesture input
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="keyboard-input.html">
-   Keyboard input
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="other-inputs.html">
-   Other inputs
-  </a>
- </li>
+<p class="caption" role="heading"><span class="caption-text">Inputs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="gesture-input.html">Gesture input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="keyboard-input.html">Keyboard input</a></li>
+<li class="toctree-l1"><a class="reference internal" href="other-inputs.html">Other inputs</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Audio
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="audio.html">
-   General audio
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="bgm.html">
-   Background music
-  </a>
- </li>
+<p class="caption" role="heading"><span class="caption-text">Audio</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="audio.html">General audio</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bgm.html">Background music</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Rendering
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="images.html">
-   Images, sprites and animations
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="text.html">
-   Text rendering
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="palette.html">
-   Colors and palette
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="particles.html">
-   Particles
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="layers.html">
-   Layers
-  </a>
- </li>
+<p class="caption" role="heading"><span class="caption-text">Rendering</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="images.html">Images, sprites and animations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="text.html">Text rendering</a></li>
+<li class="toctree-l1"><a class="reference internal" href="palette.html">Colors and palette</a></li>
+<li class="toctree-l1"><a class="reference internal" href="particles.html">Particles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layers.html">Layers</a></li>
 </ul>
-<p class="caption" role="heading">
- <span class="caption-text">
-  Other Modules
- </span>
-</p>
-<ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="util.html">
-   Util
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="widgets.html">
-   Widgets
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="forge2d.html">
-   Forge2D
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="oxygen.html">
-   Oxygen
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="tiled.html">
-   Tiled
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="debug.html">
-   Debugging
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="splash_screen.html">
-   Splash screen
-  </a>
- </li>
+<p class="caption" role="heading"><span class="caption-text">Other Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="util.html">Util</a></li>
+<li class="toctree-l1"><a class="reference internal" href="widgets.html">Widgets</a></li>
+<li class="toctree-l1"><a class="reference internal" href="forge2d.html">Forge2D</a></li>
+<li class="toctree-l1"><a class="reference internal" href="oxygen.html">Oxygen</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tiled.html">Tiled</a></li>
+<li class="toctree-l1"><a class="reference internal" href="debug.html">Debugging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="splash_screen.html">Splash screen</a></li>
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+  </div>
 </div>
 
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="_sources/game.md.txt"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.md</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/flame-engine/flame"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        
-        <a class="edit-button" href="https://github.com/flame-engine/flame/edit/main/doc/game.md"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
-            </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#">
-   FlameGame
-  </a>
-  <ul class="visible nav section-nav flex-column">
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#lifecycle">
-     Lifecycle
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#changing-component-priorities-render-update-order">
-     Changing component priorities (render/update order)
-    </a>
-   </li>
-   <li class="toc-h2 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#debug-mode">
-     Debug mode
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#low-level-game-api">
-   Low-level Game API
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gameloop">
-   GameLoop
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#pause-resuming-game-execution">
-   Pause/Resuming game execution
-  </a>
- </li>
- <li class="toc-h1 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#flutter-widgets-and-game-instances">
-   Flutter Widgets and Game instances
-  </a>
- </li>
-</ul>
-
-            </nav>
-        </div>
-    </div>
-</div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
-                
+<div class="main-area">
+  <div class="document-wrapper">
+    <div class="document" role="main">
+      
   <section class="tex2jax_ignore mathjax_ignore" id="flamegame">
-<h1>FlameGame<a class="headerlink" href="#flamegame" title="Permalink to this headline">¶</a></h1>
+<h1>FlameGame<a class="headerlink" href="#flamegame" title="Permalink to this heading">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is the most basic and most commonly used <code class="docutils literal notranslate"><span class="pre">Game</span></code> class in Flame.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class implements a <code class="docutils literal notranslate"><span class="pre">Component</span></code> based <code class="docutils literal notranslate"><span class="pre">Game</span></code>. Basically it has a list of <code class="docutils literal notranslate"><span class="pre">Component</span></code>s
 and passes the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> calls to all <code class="docutils literal notranslate"><span class="pre">Component</span></code>s that have been added to the game.</p>
@@ -378,40 +146,40 @@ to the camera and viewport.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame.camera</span></code> controls which point in the coordinate space should be the top-left of the
 screen (it defaults to [0,0] like a regular <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>).</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> implementation example can be seen below:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyCrate</span> <span class="kd">extends</span> <span class="n">SpriteComponent</span> <span class="p">{</span>
-  <span class="c1">// creates a component that renders the crate.png sprite, with size 16 x 16</span>
-  <span class="n">MyCrate</span><span class="p">()</span> <span class="o">:</span> <span class="k">super</span><span class="p">(</span><span class="nl">size:</span> <span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">));</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCrate</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// creates a component that renders the crate.png sprite, with size 16 x 16</span><span class="w"></span>
+<span class="w">  </span><span class="n">MyCrate</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">));</span><span class="w"></span>
 
-  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="n">sprite</span> <span class="o">=</span> <span class="kd">await</span> <span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;crate.png&#39;</span><span class="p">);</span>
-    <span class="n">anchor</span> <span class="o">=</span> <span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
-  <span class="p">}</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;crate.png&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">onGameResize</span><span class="p">(</span><span class="n">Vector2</span> <span class="n">gameSize</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">super</span><span class="p">.</span><span class="n">onGameResize</span><span class="p">(</span><span class="n">gameSize</span><span class="p">);</span>
-    <span class="c1">// We don&#39;t need to set the position in the constructor, we can set it directly here since it will</span>
-    <span class="c1">// be called once before the first time it is rendered.</span>
-    <span class="n">position</span> <span class="o">=</span> <span class="n">gameSize</span> <span class="o">/</span> <span class="m">2</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onGameResize</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">gameSize</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onGameResize</span><span class="p">(</span><span class="n">gameSize</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// We don&#39;t need to set the position in the constructor, we can set it directly here since it will</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// be called once before the first time it is rendered.</span><span class="w"></span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gameSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="p">{</span>
-  <span class="nd">@override</span>
-  <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span> <span class="n">onLoad</span><span class="p">()</span> <span class="kd">async</span> <span class="p">{</span>
-    <span class="kd">await</span> <span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-    <span class="n">add</span><span class="p">(</span><span class="n">MyCrate</span><span class="p">());</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">MyCrate</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">final</span> <span class="n">myGame</span> <span class="o">=</span> <span class="n">MyGame</span><span class="p">();</span>
-  <span class="n">runApp</span><span class="p">(</span>
-    <span class="n">GameWidget</span><span class="p">(</span>
-      <span class="nl">game:</span> <span class="n">myGame</span><span class="p">,</span>
-    <span class="p">),</span>
-  <span class="p">);</span>
-<span class="p">}</span>
+<span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">myGame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">GameWidget</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nl">game:</span><span class="w"> </span><span class="n">myGame</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p><strong>Note:</strong> If you instantiate your game in a build method your game will be rebuilt every time the
@@ -424,7 +192,7 @@ want to remove a list of components.</p>
 <p>Any component on which the <code class="docutils literal notranslate"><span class="pre">remove()</span></code> method has been called will also be removed. You can do this
 simply by doing <code class="docutils literal notranslate"><span class="pre">yourComponent.remove();</span></code>.</p>
 <section id="lifecycle">
-<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this headline">¶</a></h2>
+<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this heading">¶</a></h2>
 <p><img alt="Game Lifecycle Diagram" src="_images/component_lifecycle.png" /></p>
 <p>When a game first is added to a Flutter widget tree the following lifecycle methods will be called
 in order: <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>, <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and <code class="docutils literal notranslate"><span class="pre">onMount</span></code>. After that it goes on to call <code class="docutils literal notranslate"><span class="pre">update</span></code> and
@@ -433,7 +201,7 @@ Once the <code class="docutils literal notranslate"><span class="pre">GameWidget
 component is removed from the component tree.</p>
 </section>
 <section id="changing-component-priorities-render-update-order">
-<h2>Changing component priorities (render/update order)<a class="headerlink" href="#changing-component-priorities-render-update-order" title="Permalink to this headline">¶</a></h2>
+<h2>Changing component priorities (render/update order)<a class="headerlink" href="#changing-component-priorities-render-update-order" title="Permalink to this heading">¶</a></h2>
 <p>To update a component with a new priority you have to call either <code class="docutils literal notranslate"><span class="pre">FlameGame.changePriority</span></code>, or
 <code class="docutils literal notranslate"><span class="pre">FlameGame.changePriorities</span></code> if you want to change the priorities of many components at once.
 This design is due to the fact that the components doesn’t always have access to the component list and
@@ -445,7 +213,7 @@ the screen since it will be rendered on top of any components with lower priorit
 before it.</p>
 </section>
 <section id="debug-mode">
-<h2>Debug mode<a class="headerlink" href="#debug-mode" title="Permalink to this headline">¶</a></h2>
+<h2>Debug mode<a class="headerlink" href="#debug-mode" title="Permalink to this heading">¶</a></h2>
 <p>Flame’s <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class provides a variable called <code class="docutils literal notranslate"><span class="pre">debugMode</span></code>, which by default is <code class="docutils literal notranslate"><span class="pre">false</span></code>. It can
 however, be set to <code class="docutils literal notranslate"><span class="pre">true</span></code> to enable debug features for the components of the game. <strong>Be aware</strong> that
 the value of this variable is passed through to its components when they are added to the game, so
@@ -454,7 +222,7 @@ if you change the <code class="docutils literal notranslate"><span class="pre">d
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="low-level-game-api">
-<h1>Low-level Game API<a class="headerlink" href="#low-level-game-api" title="Permalink to this headline">¶</a></h1>
+<h1>Low-level Game API<a class="headerlink" href="#low-level-game-api" title="Permalink to this heading">¶</a></h1>
 <p><img alt="Game low-level API" src="_images/game_mixin.png" /></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixin is a low-level API that can be used when you want to implement the functionality of
 how the game engine should be structured. <code class="docutils literal notranslate"><span class="pre">Game</span></code> does not implement any <code class="docutils literal notranslate"><span class="pre">update</span></code> or
@@ -469,31 +237,31 @@ the class is removed from a parent.</p>
 <p><strong>Note</strong>: The <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixin allows for more freedom of how to implement things, but you are also
 missing out on all of the built-in features in Flame if you use it.</p>
 <p>An example of how a <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementation could look like:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGameSubClass</span> <span class="kd">with</span> <span class="n">Loadable</span><span class="p">,</span> <span class="n">Game</span> <span class="p">{</span>
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">render</span><span class="p">(</span><span class="n">Canvas</span> <span class="n">canvas</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// ...</span>
-  <span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGameSubClass</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Loadable</span><span class="p">,</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
 
-  <span class="nd">@override</span>
-  <span class="kt">void</span> <span class="n">update</span><span class="p">(</span><span class="kt">double</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
-    <span class="c1">// ...</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 
-<span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="kd">final</span> <span class="n">myGame</span> <span class="o">=</span> <span class="n">MyGameSubClass</span><span class="p">();</span>
-  <span class="n">runApp</span><span class="p">(</span>
-    <span class="n">GameWidget</span><span class="p">(</span>
-      <span class="nl">game:</span> <span class="n">myGame</span><span class="p">,</span>
-    <span class="p">)</span>
-  <span class="p">);</span>
-<span class="p">}</span>
+<span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">myGame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGameSubClass</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">GameWidget</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nl">game:</span><span class="w"> </span><span class="n">myGame</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="gameloop">
-<h1>GameLoop<a class="headerlink" href="#gameloop" title="Permalink to this headline">¶</a></h1>
+<h1>GameLoop<a class="headerlink" href="#gameloop" title="Permalink to this heading">¶</a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> module is a simple abstraction over the game loop concept. Basically most games are
 built upon two methods:</p>
 <ul class="simple">
@@ -504,7 +272,7 @@ to the next state.</p></li>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is used by all of Flame’s <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementations.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="pause-resuming-game-execution">
-<h1>Pause/Resuming game execution<a class="headerlink" href="#pause-resuming-game-execution" title="Permalink to this headline">¶</a></h1>
+<h1>Pause/Resuming game execution<a class="headerlink" href="#pause-resuming-game-execution" title="Permalink to this heading">¶</a></h1>
 <p>A Flame <code class="docutils literal notranslate"><span class="pre">Game</span></code> can be paused and resumed in two ways:</p>
 <ul class="simple">
 <li><p>With the use of the <code class="docutils literal notranslate"><span class="pre">pauseEngine</span></code> and <code class="docutils literal notranslate"><span class="pre">resumeEngine</span></code> methods.</p></li>
@@ -514,7 +282,7 @@ to the next state.</p></li>
 renders will happen until it is resumed.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="flutter-widgets-and-game-instances">
-<h1>Flutter Widgets and Game instances<a class="headerlink" href="#flutter-widgets-and-game-instances" title="Permalink to this headline">¶</a></h1>
+<h1>Flutter Widgets and Game instances<a class="headerlink" href="#flutter-widgets-and-game-instances" title="Permalink to this heading">¶</a></h1>
 <p>Since a Flame game can be wrapped in a widget, it is quite easy to use it alongside other Flutter
 widgets. But still, there is the Widgets Overlay API that makes things even easier.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Game.overlays</span></code> enables any Flutter widget to be shown on top of a game instance, this makes it very
@@ -523,26 +291,26 @@ easy to create things like a pause menu or an inventory screen for example.</p>
 overlay to be shown or hidden, respectively, via a <code class="docutils literal notranslate"><span class="pre">String</span></code> argument that identifies the overlay.
 After that it can be specified which widgets represent each overlay in the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> declaration
 by setting a <code class="docutils literal notranslate"><span class="pre">overlayBuilderMap</span></code>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Inside the game methods:</span>
-<span class="kd">final</span> <span class="n">pauseOverlayIdentifier</span> <span class="o">=</span> <span class="s1">&#39;PauseMenu&#39;</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Inside the game methods:</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">pauseOverlayIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PauseMenu&#39;</span><span class="p">;</span><span class="w"></span>
 
-<span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span> <span class="c1">// Marks &#39;PauseMenu&#39; to be rendered.</span>
-<span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span> <span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span>
+<span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span><span class="w"> </span><span class="c1">// Marks &#39;PauseMenu&#39; to be rendered.</span><span class="w"></span>
+<span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span><span class="w"> </span><span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span><span class="w"></span>
 </pre></div>
 </div>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// On the widget declaration</span>
-<span class="kd">final</span> <span class="n">game</span> <span class="o">=</span> <span class="n">MyGame</span><span class="p">();</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// On the widget declaration</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span><span class="w"></span>
 
-<span class="n">Widget</span> <span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span> <span class="n">context</span><span class="p">)</span> <span class="p">{</span>
-  <span class="k">return</span> <span class="n">GameWidget</span><span class="p">(</span>
-    <span class="nl">game:</span> <span class="n">game</span><span class="p">,</span>
-    <span class="nl">overlayBuilderMap:</span> <span class="p">{</span>
-      <span class="s1">&#39;PauseMenu&#39;</span><span class="o">:</span> <span class="p">(</span><span class="n">ctx</span><span class="p">)</span> <span class="p">{</span>
-        <span class="k">return</span> <span class="n">Text</span><span class="p">(</span><span class="s1">&#39;A pause menu&#39;</span><span class="p">);</span>
-      <span class="p">},</span>
-    <span class="p">},</span>
-  <span class="p">);</span>
-<span class="p">}</span>
+<span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">overlayBuilderMap:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="s1">&#39;PauseMenu&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">ctx</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;A pause menu&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>The order in which the overlays are declared in the <code class="docutils literal notranslate"><span class="pre">overlayBuilderMap</span></code> defines which order the
@@ -553,56 +321,42 @@ of this feature.</p>
 </section>
 
 
-              </div>
-              
-        
-            
-
-
-
-<div class='prev-next-bottom'>
-    
-    <div id="prev">
-        <a class="left-prev" href="structure.html" title="previous page">
-            <i class="prevnext-label fas fa-angle-left"></i>
-            <div class="prevnext-info">
-                <p class="prevnext-label">previous</p>
-                <p class="prevnext-title">Structure</p>
-            </div>
-        </a>
     </div>
-     <div id="next">
-        <a class="right-next" href="components.html" title="next page">
-            <div class="prevnext-info">
-                <p class="prevnext-label">next</p>
-                <p class="prevnext-title">Components</p>
-            </div>
-            <i class="prevnext-label fas fa-angle-right"></i>
-        </a>
-     </div>
-
-</div>
-        
+    <div class="copyright">
+      The content on this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 License</a>,
+      and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
+    </div>
+    <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="structure.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">Structure</p>
         </div>
+      </a>
+      <div class='expander'></div>
+      <a class="right-next" id="next-link" href="components.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">Components</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
     </div>
-    <footer class="footer">
-    <div class="container">
-      <p>
-        
-          By Blue Fire Team<br/>
-        
-            &copy; Copyright 2021, Blue Fire Team.<br/>
-      </p>
+  </div>
+
+  <div class="sidebar-right">
+    
+    <div class="nav-right" role="navigation" aria-label="table of contents">
+      <system_message level="3" source="/home/runner/work/flame-docs-site/flame-docs-site/_flame-src/doc/game.md" type="ERROR"><paragraph>More than one <h1> title on the page</paragraph></system_message>
     </div>
-  </footer>
-</main>
+  </div>
+
+  <div class="expander"></div>
+</div>
 
 
-      </div>
-    </div>
-  
-  <script src="_static/js/index.1c5a1a01449ed65a7b51.js"></script>
 
-  
-  </body>
+
+</body>
 </html>

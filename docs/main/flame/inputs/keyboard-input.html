@@ -192,29 +192,29 @@ will trigger <code class="docutils literal notranslate"><span class="pre">System
 <p><code class="docutils literal notranslate"><span class="pre">KeyEventResult.skipRemainingHandlers</span></code> is very similar to <code class="docutils literal notranslate"><span class="pre">.ignored</span></code>, apart from the fact that will
 skip any other handler widget and will straight up play the alert sound.</p>
 <p>Minimal example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span> <span class="nc">MyGame</span> <span class="kd">extends</span> <span class="n">FlameGame</span> <span class="kd">with</span> <span class="n">KeyboardEvents</span> <span class="p">{</span>
-  <span class="c1">// ...</span>
-  <span class="nd">@override</span>
-  <span class="n">KeyEventResult</span> <span class="n">onKeyEvent</span><span class="p">(</span>
-    <span class="n">RawKeyEvent</span> <span class="n">event</span><span class="p">,</span>
-    <span class="n">Set</span><span class="o">&lt;</span><span class="n">LogicalKeyboardKey</span><span class="o">&gt;</span> <span class="n">keysPressed</span><span class="p">,</span>
-  <span class="p">)</span> <span class="p">{</span>
-    <span class="kd">final</span> <span class="n">isKeyDown</span> <span class="o">=</span> <span class="n">event</span> <span class="k">is</span> <span class="n">RawKeyDownEvent</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardEvents</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">KeyEventResult</span><span class="w"> </span><span class="n">onKeyEvent</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">RawKeyEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">LogicalKeyboardKey</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">isKeyDown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">RawKeyDownEvent</span><span class="p">;</span><span class="w"></span>
 
-    <span class="kd">final</span> <span class="n">isSpace</span> <span class="o">=</span> <span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">space</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">isSpace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">space</span><span class="p">);</span><span class="w"></span>
 
-    <span class="k">if</span> <span class="p">(</span><span class="n">isSpace</span> <span class="o">&amp;&amp;</span> <span class="n">isKeyDown</span><span class="p">)</span> <span class="p">{</span>
-      <span class="k">if</span> <span class="p">(</span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">altLeft</span><span class="p">)</span> <span class="o">||</span>
-          <span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">altRight</span><span class="p">))</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="n">shootHarder</span><span class="p">();</span>
-      <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
-        <span class="k">this</span><span class="p">.</span><span class="n">shoot</span><span class="p">();</span>
-      <span class="p">}</span>
-      <span class="k">return</span> <span class="n">KeyEventResult</span><span class="p">.</span><span class="n">handled</span><span class="p">;</span>
-    <span class="p">}</span>
-    <span class="k">return</span> <span class="n">KeyEventResult</span><span class="p">.</span><span class="n">ignored</span><span class="p">;</span>
-  <span class="p">}</span>
-<span class="p">}</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isSpace</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isKeyDown</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">altLeft</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
+<span class="w">          </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">altRight</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="n">shootHarder</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="n">shoot</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">KeyEventResult</span><span class="p">.</span><span class="n">handled</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">KeyEventResult</span><span class="p">.</span><span class="n">ignored</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -240,22 +240,22 @@ to handle keyboard events. Like any other component, it can be added as a child 
 or another <code class="docutils literal notranslate"><span class="pre">Component</span></code>:</p>
 <p>For example, imagine a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> which has methods to move on the X and Y axis,
 then the following code could be used to bind those methods to key events:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span>
-  <span class="n">KeyboardListenerComponent</span><span class="p">(</span>
-    <span class="nl">keyUp:</span> <span class="p">{</span>
-      <span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyA:</span> <span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
-      <span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyD:</span> <span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
-      <span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyW:</span> <span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
-      <span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyS:</span> <span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
-    <span class="p">},</span>
-    <span class="nl">keyDown:</span> <span class="p">{</span>
-      <span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyA:</span> <span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
-      <span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyD:</span> <span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
-      <span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyW:</span> <span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
-      <span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyS:</span> <span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span> <span class="p">{</span> <span class="p">...</span> <span class="p">},</span>
-    <span class="p">},</span>
-  <span class="p">),</span>
-<span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">KeyboardListenerComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">keyUp:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyA:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyD:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyW:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyS:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nl">keyDown:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyA:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyD:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyW:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyS:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
