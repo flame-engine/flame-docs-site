@@ -19,6 +19,7 @@
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
   <script src="../../_static/versions.js"></script>
+  <script src="../../_static/menu-expand.js"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -44,6 +45,26 @@
         $(this).toggleClass("active");
         $(".sidebar-left-area").toggleClass("active");
       });
+
+      $('div.nav-left li > a:not(:only-child)').wrap('<div class=submenu></div>');
+      $('div.nav-left div.submenu').prepend('<a class=arrow>&nbsp;</a>');
+      $('div.nav-left div.submenu > a.arrow')
+        .click(function() {
+          $(this.parentElement.parentElement).toggleClass('current');
+        });
+
+      // This function ensures that when navigating to internal targets within the page (such as
+      // a section header), those targets will be visible to the user and not obscured by the menu
+      // bar at the top of the page.
+      function scrollToHashTarget() {
+        if (location.hash !== location.oldHash) {
+          window.scrollBy(0, -60);
+          location.oldHash = location.hash;
+        }
+      }
+      window.location.oldHash = '';
+      window.addEventListener('hashchange', scrollToHashTarget);
+      scrollToHashTarget();
     });
   </script>
 
@@ -255,8 +276,7 @@ starts making the circle. The thickness of the circle will be proportional to th
 tap: after <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code> the circle’s stroke width will no longer grow. There will be a thin white
 stripe at the moment the <code class="docutils literal notranslate"><span class="pre">onLongTapDown</span></code> fires. Lastly, the circle will implode and disappear if
 you cause the <code class="docutils literal notranslate"><span class="pre">onTapCancel</span></code> event by moving the finger.</p>
-<iframe class="flutter-app-iframe" src="/1.2.0/_static/apps/flame-examples/index.html?tap_events">
-</iframe><div class="flutter-app-code docutils container" id="flame-examples-source">
+<iframe class="flutter-app-iframe" src="/1.2.0/_static/apps/flame-examples/index.html?tap_events"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-tap_events">
 <div class="filename docutils container">
 tap_events.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:math&#39;</span><span class="p">;</span><span class="w"></span>
@@ -387,7 +407,7 @@ tap_events.dart</div>
 </pre></div>
 </div>
 </div>
-<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source&quot;)">Code</button></section>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-tap_events&quot;)">Code</button></section>
 </section>
 <section id="mixins">
 <h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this heading">¶</a></h2>
