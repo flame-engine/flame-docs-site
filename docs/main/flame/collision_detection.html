@@ -107,6 +107,7 @@
 <li class="toctree-l1 current"><a class="reference internal" href="flame.html">flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="structure.html">File structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game_widget.html">GameWidget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
@@ -367,6 +368,121 @@ sweep and prune, then you would do the following:</p>
 </pre></div>
 </div>
 </section>
+<section id="ray-casting-and-ray-tracing">
+<h2>Ray casting and Ray tracing<a class="headerlink" href="#ray-casting-and-ray-tracing" title="Permalink to this heading">¶</a></h2>
+<p>Ray casting and ray tracing are methods for sending out rays from a point in your game and
+being able to see what these rays collide with and how they reflect after hitting
+something.</p>
+<section id="ray-casting">
+<h3>Ray casting<a class="headerlink" href="#ray-casting" title="Permalink to this heading">¶</a></h3>
+<p>Ray casting is the operation of casting out one or more rays from a point and see if they hit
+anything, in Flame’s case, hitboxes.</p>
+<p>We provide two methods for doing so, <code class="docutils literal notranslate"><span class="pre">raycast</span></code> and <code class="docutils literal notranslate"><span class="pre">raycastAll</span></code>. The first one just casts out
+a single ray and gets back a result with information about what and where the ray hit, and some
+extra information like the distance, the normal and the reflection ray. The second one, <code class="docutils literal notranslate"><span class="pre">raycastAll</span></code>,
+works similarly but sends out multiple rays uniformly around the origin, or within an angle
+centered at the origin.</p>
+<p>To use the ray casting functionality you have to have the <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> mixin on your
+game. After you have added that you can call <code class="docutils literal notranslate"><span class="pre">collisionDetection.raycast(...)</span></code> on your game class.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">ray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ray2</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nl">origin:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="nl">direction:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collisionDetection</span><span class="p">.</span><span class="n">raycast</span><span class="p">(</span><span class="n">ray</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In this example one can see that the <code class="docutils literal notranslate"><span class="pre">Ray2</span></code> class is being used, this class defines a ray from an
+origin position and a direction (which are both defined by <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>s). This particular ray starts
+from <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">100</span></code> and shoots a ray straight to the right.</p>
+<p>The result from this operation will either be <code class="docutils literal notranslate"><span class="pre">null</span></code> if the ray didn’t hit anything, or a
+<code class="docutils literal notranslate"><span class="pre">RaycastResult</span></code> which contains:</p>
+<ul class="simple">
+<li><p>Which hitbox the ray hit</p></li>
+<li><p>The intersection point of the collision</p></li>
+<li><p>The reflection ray, i.e. how the ray would reflect on the hitbox that it hix</p></li>
+<li><p>The normal of the collision, i.e. a vector perpendicular to the face of the hitbox that it hits</p></li>
+</ul>
+<p>If you are concerned about performance you can pre create a <code class="docutils literal notranslate"><span class="pre">RaycastResult</span></code> object that you send in
+to the method with the <code class="docutils literal notranslate"><span class="pre">out</span></code> argument, this will make it possible for the method to reuse this
+object instead of creating a new one for each iteration. This can be good if you do a lot of
+ray casting in your <code class="docutils literal notranslate"><span class="pre">update</span></code> methods.</p>
+<section id="raycastall">
+<h4>raycastAll<a class="headerlink" href="#raycastall" title="Permalink to this heading">¶</a></h4>
+<p>Sometimes you want to send out rays in all, or a limited range, of directions from an origin. This
+can have a lot of applications, for example you could calculate the field of view of a player or
+enemy, or it can also be used to create light sources.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collisionDetection</span><span class="p">.</span><span class="n">raycastAll</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">origin</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="nl">numberOfRays:</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In this example we would send out 100 rays from (200, 200) uniformingly spread in all directions.</p>
+<p>If you want to limit the directions you can use the <code class="docutils literal notranslate"><span class="pre">startAngle</span></code> and the <code class="docutils literal notranslate"><span class="pre">sweepAngle</span></code> arguments.
+Where the <code class="docutils literal notranslate"><span class="pre">startAngle</span></code> (counting from straight up) is where the rays will start and then the rays
+will end at <code class="docutils literal notranslate"><span class="pre">startAngle</span> <span class="pre">+</span> <span class="pre">sweepAngle</span></code>.</p>
+<p>If you are concerned about performance you can re-use the <code class="docutils literal notranslate"><span class="pre">RaycastResult</span></code> objects that are created
+by the function by sending them in as a list with the <code class="docutils literal notranslate"><span class="pre">out</span></code> argument.</p>
+</section>
+</section>
+<section id="ray-tracing">
+<h3>Ray tracing<a class="headerlink" href="#ray-tracing" title="Permalink to this heading">¶</a></h3>
+<p>Ray tracing is similar to ray casting, but instead of just checking what the ray hits you can
+continue to trace the ray and see what its reflection ray (the ray bouncing off the hitbox) will
+hit and then what that casted reflection ray’s reflection ray will hit and so on, until you decide
+that you have traced the ray for long enough. If you imagine how a pool ball would bounce on a pool
+table for example, that information could be retrieved with the help of ray tracing.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">ray</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ray2</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nl">origin:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="nl">direction:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)..</span><span class="n">normalize</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collisionDetection</span><span class="p">.</span><span class="n">raytrace</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">ray</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="nl">maxDepth:</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">results</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">result</span><span class="p">.</span><span class="n">intersectionPoint</span><span class="p">.</span><span class="n">distanceTo</span><span class="p">(</span><span class="n">ray</span><span class="p">.</span><span class="n">origin</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">300</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In the example above we send out a ray from (0, 100) diagonally down to the right and we say that we
+want it the bounce on at most 100 hitboxes, it doesn’t necessarily have to get 100 results since at
+some point one of the reflection rays might not hit a hitbox and then the method is done.</p>
+<p>The method is lazy, which means that it will only do the calculations that you ask for, so you have
+to loop through the iterable that it returns to get the results, or do <code class="docutils literal notranslate"><span class="pre">toList()</span></code> to directly
+calculate all the results.</p>
+<p>In the for-loop it can be seen how this can be used, in that loop we check whether the current
+reflection rays intersection point (where the previous ray hit the hitbox) is further away than 300
+pixels from the origin of the starting ray, and if it is we don’t care about the rest of the results
+(and then they don’t have to be calculated either).</p>
+<p>If you are concerned about performance you can re-use the <code class="docutils literal notranslate"><span class="pre">RaycastResult</span></code> objects that are created
+by the function by sending them in as a list with the <code class="docutils literal notranslate"><span class="pre">out</span></code> argument.</p>
+</section>
+</section>
 <section id="comparison-to-forge2d">
 <h2>Comparison to Forge2D<a class="headerlink" href="#comparison-to-forge2d" title="Permalink to this heading">¶</a></h2>
 <p>If you want to have a full-blown physics engine in your game we recommend that you use
@@ -465,6 +581,10 @@ previously.</p>
   <a href='#screenhitbox' class='list-group-item level-1'>ScreenHitbox</a>
   <a href='#compositehitbox' class='list-group-item level-1'>CompositeHitbox</a>
   <a href='#broad-phase' class='list-group-item level-1'>Broad phase</a>
+  <a href='#ray-casting-and-ray-tracing' class='list-group-item level-1'>Ray casting and Ray tracing</a>
+  <a href='#ray-casting' class='list-group-item level-2'>Ray casting</a>
+  <a href='#raycastall' class='list-group-item level-3'>raycastAll</a>
+  <a href='#ray-tracing' class='list-group-item level-2'>Ray tracing</a>
   <a href='#comparison-to-forge2d' class='list-group-item level-1'>Comparison to Forge2D</a>
   <a href='#migration-from-the-collision-detection-system-in-v1-0' class='list-group-item level-1'>Migration from the collision detection system in v1.0</a>
   <a href='#name-changes' class='list-group-item level-2'>Name changes</a>
