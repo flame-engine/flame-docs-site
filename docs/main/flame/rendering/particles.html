@@ -332,9 +332,9 @@ the nesting behaviors.</p>
 All the implementations are available in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame/lib/src/particles">particles</a> folder
 on the Flame repository.</p>
-<p>Simply translates the underlying <code class="docutils literal notranslate"><span class="pre">Particle</span></code> to a specified <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> within the rendering <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>.
-Does not change or alter its position, consider using <code class="docutils literal notranslate"><span class="pre">MovingParticle</span></code> or <code class="docutils literal notranslate"><span class="pre">AcceleratedParticle</span></code>
-where change of position is required.</p>
+</section>
+<section id="translatedparticle">
+<h2>TranslatedParticle<a class="headerlink" href="#translatedparticle" title="Permalink to this heading">¶</a></h2>
 <p>Simply translates the underlying <code class="docutils literal notranslate"><span class="pre">Particle</span></code> to a specified <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> within the rendering <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>.
 Does not change or alter its position, consider using <code class="docutils literal notranslate"><span class="pre">MovingParticle</span></code> or <code class="docutils literal notranslate"><span class="pre">AcceleratedParticle</span></code>
 where change of position is required. Same effect could be achieved by translating the <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>
@@ -629,6 +629,7 @@ randomly positioning its child during each frame:</p>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#lifecycle' class='list-group-item level-1'>Lifecycle</a>
   <a href='#built-in-particles' class='list-group-item level-1'>Built-in particles</a>
+  <a href='#translatedparticle' class='list-group-item level-1'>TranslatedParticle</a>
   <a href='#movingparticle' class='list-group-item level-1'>MovingParticle</a>
   <a href='#acceleratedparticle' class='list-group-item level-1'>AcceleratedParticle</a>
   <a href='#circleparticle' class='list-group-item level-1'>CircleParticle</a>

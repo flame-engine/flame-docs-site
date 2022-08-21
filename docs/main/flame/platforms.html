@@ -244,6 +244,19 @@ action to your repository, you can do that by creating a file <code class="docut
 deployed game.</p>
 <p>The game should be available at an URL like this:
 <code class="docutils literal notranslate"><span class="pre">https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/</span></code></p>
+</section>
+<section id="deploy-your-game-to-itch-io">
+<h2>Deploy your game to <a class="reference external" href="http://itch.io">itch.io</a><a class="headerlink" href="#deploy-your-game-to-itch-io" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>Create a web build, either from your IDE or by running <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">build</span> <span class="pre">web</span></code>
+(If it complains about <code class="docutils literal notranslate"><span class="pre">Missing</span> <span class="pre">index.html</span></code> run <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">create</span> <span class="pre">.</span> <span class="pre">--platforms=web</span></code>)</p></li>
+<li><p>Go into <code class="docutils literal notranslate"><span class="pre">index.html</span></code> and remove the line that says <code class="docutils literal notranslate"><span class="pre">&lt;base</span> <span class="pre">href=&quot;/&quot;&gt;</span></code></p></li>
+<li><p>zip the <code class="docutils literal notranslate"><span class="pre">web</span></code> folder and upload to <a class="reference external" href="http://itch.io">itch.io</a></p></li>
+</ol>
+<p>If you are submitting your game to a game jam, remember to make it public and submit it on the
+game jam page too (many get confused by this).</p>
+<p>Further instructions can be found on
+(<a class="reference external" href="http://itch.io">itch.io</a>)[<a class="reference external" href="https://itch.io/docs/creators/html5#getting-started/zip-file">https://itch.io/docs/creators/html5#getting-started/zip-file</a>].</p>
 <section id="web-support">
 <h3>Web support<a class="headerlink" href="#web-support" title="Permalink to this heading">¶</a></h3>
 <p>When using Flame on the web some methods may not work. For example <code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientation</span></code> and
@@ -295,6 +308,7 @@ the web.</p>
   <a href='#flutter-channels' class='list-group-item level-1'>Flutter channels</a>
   <a href='#flame-web' class='list-group-item level-1'>Flame web</a>
   <a href='#deploy-your-game-to-github-pages' class='list-group-item level-1'>Deploy your game to GitHub Pages</a>
+  <a href='#deploy-your-game-to-itch-io' class='list-group-item level-1'>Deploy your game to itch.io</a>
   <a href='#web-support' class='list-group-item level-2'>Web support</a>
 </div>
 
