@@ -373,6 +373,10 @@ sweep and prune, then you would do the following:</p>
 <p>Ray casting and ray tracing are methods for sending out rays from a point in your game and
 being able to see what these rays collide with and how they reflect after hitting
 something.</p>
+<p>For all of the following methods, if there are any hitboxes that you wish to ignore, you can add the
+<code class="docutils literal notranslate"><span class="pre">ignoreHitboxes</span></code> argument which is a list of the hitboxes that you wish to disregard for the call.
+This can be quite useful for example if you are casting rays from within a hitbox, which could be on
+your player or NPC; or if you don’t want a ray to bounce off a <code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code>.</p>
 <section id="ray-casting">
 <h3>Ray casting<a class="headerlink" href="#ray-casting" title="Permalink to this heading">¶</a></h3>
 <p>Ray casting is the operation of casting out one or more rays from a point and see if they hit

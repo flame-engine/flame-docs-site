@@ -231,8 +231,9 @@ on the rest of the game engine).</p>
 </section>
 <section id="priority">
 <h3>Priority<a class="headerlink" href="#priority" title="Permalink to this heading">¶</a></h3>
-<p>In Flame the order components are rendered (and updated) in is called <code class="docutils literal notranslate"><span class="pre">priority</span></code>, this is sometimes
-referred to as <code class="docutils literal notranslate"><span class="pre">z-index</span></code> in other languages and frameworks. The higher the <code class="docutils literal notranslate"><span class="pre">priority</span></code> is set to, the
+<p>In Flame every <code class="docutils literal notranslate"><span class="pre">Component</span></code> has the <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">priority</span></code> property, which determines
+that component’s sorting order within its parent’s children, this is sometimes referred to
+as <code class="docutils literal notranslate"><span class="pre">z-index</span></code> in other languages and frameworks. The higher the <code class="docutils literal notranslate"><span class="pre">priority</span></code> is set to, the
 closer the component will appear on the screen, since it will be rendered on top of any components
 with lower priority that were rendered before it.</p>
 <p>If you add two components and set one of them to priority 1 for example, then that component will be
