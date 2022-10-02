@@ -187,8 +187,66 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="components">
 <h1>Components<a class="headerlink" href="#components" title="Permalink to this heading">¶</a></h1>
-<p><img alt="Component tree" src="../_images/component_tree.png" /></p>
-<p>This diagram might look intimidating, but don’t worry, it is not as complex as it looks.</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>%%{init: { &#39;theme&#39;: &#39;dark&#39; } }%%
+  graph TD  
+
+    %% Node Color %%
+    classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
+    classDef default fill:#282828,stroke:#F6BE00;
+    
+    %% Nodes %%
+
+    z(Abstract Class):::yellow
+    x(Normal Class)
+
+</pre></div>
+</div>
+<div class="mermaid">
+            %%{init: { 'theme': 'dark'  } }%%
+
+graph TD
+    %% Node Color %%
+    classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
+    classDef default fill:#282828,stroke:#F6BE00;
+    
+    %% Nodes %%
+       
+    Component[Component]
+    TimerComponent(TimerComponent &lt;br/&gt;ParticleComponent &lt;br&gt;SpriteBatchComponent)
+    Effects(&quot;Effects &lt;br/&gt; (See the effects section)&quot;):::yellow
+    FlameGame(Flame Game)
+    PositionComponent(PositionComponent)
+   
+    SpriteComponent(&quot;SpriteComponent  &lt;br/&gt; SpriteGroupComponent 
+    &lt;br/&gt; SpriteAnimationComponent &lt;br/&gt; 
+    SpriteAnimationGroupComponent &lt;br/&gt; ParallaxComponent 
+    &lt;br/&gt; IsoMetricTileMapComponent&quot;)
+    
+    HudMarginComponent(HudMarginComponent)
+    HudButtonComponent(HudButtonComponent  &lt;br/&gt; JoystickComponent)
+    
+    ButtonComponent(&quot;ButtonComponent &lt;br/&gt; CustomPainterComponent 
+    &lt;br/&gt; ShapeComponent &lt;br/&gt; SpriteButtonComponent 
+    &lt;br/&gt; TextComponent &lt;br/&gt; TextBoxComponent 
+    &lt;br/&gt; NineTileBoxComponent&quot;)
+    
+    Loadable(&quot;Loadable (Mixin)&quot;):::yellow
+    
+    %% Flow %%
+    Component --&gt; TimerComponent
+    Component --&gt; Effects
+    Component --&gt; PositionComponent
+    Component --&gt; FlameGame
+   
+    Loadable --&gt; FlameGame
+    PositionComponent --&gt; SpriteComponent
+    PositionComponent --&gt; HudMarginComponent
+    PositionComponent --&gt; ButtonComponent
+    HudMarginComponent --&gt; HudButtonComponent
+    
+    %% Link Color %%
+    linkStyle 4 stroke:black,stroke-width:2px,color: black;
+        </div><p>This diagram might look intimidating, but don’t worry, it is not as complex as it looks.</p>
 <section id="component">
 <h2>Component<a class="headerlink" href="#component" title="Permalink to this heading">¶</a></h2>
 <p>All components inherit from the abstract class <code class="docutils literal notranslate"><span class="pre">Component</span></code> and all components can have other
@@ -209,8 +267,47 @@ short.</p>
 <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class.</p>
 <section id="component-lifecycle">
 <h3>Component lifecycle<a class="headerlink" href="#component-lifecycle" title="Permalink to this heading">¶</a></h3>
-<p><img alt="Component Lifecycle Diagram" src="../_images/component_lifecycle.png" /></p>
-<p>The <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> method is called whenever the screen is resized, and once in the beginning when
+<div class="mermaid">
+            %%{init: { 'theme': 'dark' } }%%
+  
+  graph TD  
+
+   %% Node Color %%
+   classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
+   classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
+
+   %% Nodes  %%
+   x(Runs every time)
+   z(Runs Once):::yellow
+
+        </div><div class="mermaid">
+            %%{init: { 'theme': 'dark' } }%%
+  graph LR
+  
+   %% Node Color %%
+   classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
+   classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
+
+    %% Nodes %%
+    
+    A(onGameResize)
+    B(onLoad):::yellow
+    C(onMount)
+    D(Update)
+    E(Render)
+    F(onRemove)
+
+    %% Flow %%
+ 
+    A--&gt;B
+    B--&gt;C
+    C--&gt;D
+    D--&gt;E
+    E--&gt;D
+    D--&gt;F
+    F-- if Added new parent .-&gt;A
+    
+        </div><p>The <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> method is called whenever the screen is resized, and once in the beginning when
 the component is added to the game via the <code class="docutils literal notranslate"><span class="pre">add</span></code> method.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> method can be overridden to run code before the component is removed from the game,
 it is only run once even if the component is removed both by using the parents remove method and

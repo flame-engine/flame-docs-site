@@ -242,8 +242,47 @@ screen (it defaults to [0,0] like a regular <code class="docutils literal notran
 </section>
 <section id="lifecycle">
 <h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this heading">¶</a></h2>
-<p><img alt="Game Lifecycle Diagram" src="../_images/component_lifecycle.png" /></p>
-<p>When a game first is added to a Flutter widget tree the following lifecycle methods will be called
+<div class="mermaid">
+            %%{init: { 'theme': 'dark' } }%%
+  
+  graph TD  
+
+   %% Node Color %%
+   classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
+   classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
+
+   %% Nodes  %%
+   x(Runs every time)
+   z(Runs Once):::yellow
+
+        </div><div class="mermaid">
+            %%{init: { 'theme': 'dark' } }%%
+  graph LR
+  
+   %% Node Color %%
+   classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
+   classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
+
+    %% Nodes %%
+    
+    A(onGameResize)
+    B(onLoad):::yellow
+    C(onMount)
+    D(Update)
+    E(Render)
+    F(onRemove)
+
+    %% Flow %%
+ 
+    A--&gt;B
+    B--&gt;C
+    C--&gt;D
+    D--&gt;E
+    E--&gt;D
+    D--&gt;F
+    F-- if Added new parent .-&gt;A
+    
+        </div><p>When a game first is added to a Flutter widget tree the following lifecycle methods will be called
 in order: <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>, <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and <code class="docutils literal notranslate"><span class="pre">onMount</span></code>. After that it goes on to call <code class="docutils literal notranslate"><span class="pre">update</span></code> and
 <code class="docutils literal notranslate"><span class="pre">render</span></code> back and forth every tick, until the widget is removed from the tree.
 Once the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> is removed from the tree, <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> is called, just like when a normal
@@ -289,8 +328,50 @@ to always finish loading the component.</p>
 </section>
 <section id="low-level-game-api">
 <h2>Low-level Game API<a class="headerlink" href="#low-level-game-api" title="Permalink to this heading">¶</a></h2>
-<p><img alt="Game low-level API" src="../_images/game_mixin.png" /></p>
-<p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> class is a low-level API that can be used when you want to implement the functionality of
+<div class="mermaid">
+            %%{init: { 'theme': 'dark' } }%%
+  graph TD  
+  
+    %% Node Color %%
+    classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
+    classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
+ 
+    %% Nodes  %%
+    
+    z(Mixin):::yellow
+    x(Normal Class)
+        </div><div class="mermaid">
+            %%{init: { 'theme': 'dark' } }%%
+  
+  graph BT  
+
+    %% Node Color %%
+    classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
+    classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
+ 
+    %% Nodes  %%
+    
+    A(OxygenGame)
+    B(Loadable):::yellow
+    C(Game):::yellow
+    D(FlameGame)
+    E(Component)
+    F(Other Components)
+    G(GameWidget)
+
+    %% Flow  %%
+
+    A-- With .-&gt;B
+    A-- With .-&gt;C
+    G-- Wants .-&gt;C
+    C-- On .-&gt;B
+    E-- With .-&gt;B
+
+    D-- Extends .-&gt;E
+    F-- Extends .-&gt;E
+
+    D-- With .-&gt;C
+        </div><p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> class is a low-level API that can be used when you want to implement the functionality of
 how the game engine should be structured. <code class="docutils literal notranslate"><span class="pre">Game</span></code> does not implement any <code class="docutils literal notranslate"><span class="pre">update</span></code> or
 <code class="docutils literal notranslate"><span class="pre">render</span></code> function for example.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Loadable</span></code> mixin has the lifecycle methods <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>, <code class="docutils literal notranslate"><span class="pre">onMount</span></code> and <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> in it, which are
