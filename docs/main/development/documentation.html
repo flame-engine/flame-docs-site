@@ -441,6 +441,11 @@ is to either run <strong>melos doc-build-live</strong> or run your own local htt
 <p>Then you can open the site at <code class="docutils literal notranslate"><span class="pre">http://localhost:8000/</span></code>.</p>
 <p>If you ever run the <strong>melos doc-clean</strong> or the <strong>make clean</strong> command, the server will need to be
 restarted, because the clean command deletes the entire <code class="docutils literal notranslate"><span class="pre">html</span></code> directory.</p>
+<div class="highlight-note notranslate"><div class="highlight"><pre><span></span>Avoid having spaces in the paths to the docs since that will keep you from
+building the project due to
+[this bug](https://github.com/ipython/ipython/pull/13765).
+</pre></div>
+</div>
 </section>
 </section>
 

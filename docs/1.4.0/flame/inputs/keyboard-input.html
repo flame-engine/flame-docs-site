@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Keyboard Input &#8212; Flame</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
+  <!-- Scripts -->
+  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+  <script src="../../_static/jquery.js"></script>
+  <script src="../../_static/underscore.js"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
+  <script src="../../_static/flutter_app.js"></script>
+  <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
+  <script src="../../_static/versions.js"></script>
+  <script src="../../_static/menu-expand.js"></script>
+  <!--script src="searchindex.js" defer></script-->
+  <!-- Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../_static/fontawesome/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../_static/fontawesome/fa-solid-900.woff2">
+  <link rel="stylesheet" href="../../_static/fontawesome/all.min.css">
+  <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" />
+  <link rel="next" title="Other inputs" href="other-inputs.html" />
+  <link rel="prev" title="Gesture Input" href="gesture-input.html" />
+</head>
+
+<body data-spy="scroll" data-target="#toc-local" data-offset="80">
+
+<div class="top-bar">
+  <button id="menu-button" class="btn" title="Toggle menu"><i class="fa fa-bars"></i></button>
+  <script type="text/javascript">
+    jQuery(function(){
+      $("#menu-button").click(function() {
+        $(this).toggleClass("active");
+        $(".sidebar-left-area").toggleClass("active");
+      });
+
+      $('div.nav-left li > a:not(:only-child)').wrap('<div class=submenu></div>');
+      $('div.nav-left div.submenu').prepend('<a class=arrow>&nbsp;</a>');
+      $('div.nav-left div.submenu > a.arrow')
+        .click(function() {
+          $(this.parentElement.parentElement).toggleClass('current');
+        });
+
+      // This function ensures that when navigating to internal targets within the page (such as
+      // a section header), those targets will be visible to the user and not obscured by the menu
+      // bar at the top of the page.
+      function scrollToHashTarget() {
+        if (location.hash !== location.oldHash) {
+          window.scrollBy(0, -60);
+          location.oldHash = location.hash;
+        }
+      }
+      window.location.oldHash = '';
+      window.addEventListener('hashchange', scrollToHashTarget);
+      scrollToHashTarget();
+    });
+  </script>
+
+  <a href="../../index.html" class="logo_image">
+    <img src="../../_static/logo_flame.png">
+  </a>
+
+  <div class="highlight-box" role="alert" style="display:none">
+    <div>
+      <div class="title">highlighted:</div>
+      <div class="content" id="highlight-content"></div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Dismiss">×</button>
+  </div>
+  <div class="expander"></div>
+
+  <div class="versions-placeholder"></div>
+  <a href="https://discord.com/channels/509714518008528896/516639688581316629" id="discord-button"
+     class="btn" title="Flame Discord channel">
+    <i class="fab fa-discord"></i>
+  </a>
+  <a href="https://github.com/flame-engine/flame/" id="github-button" class="btn"
+     title="GitHub repository">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+
+<div class="sidebar-left-area">
+  <div class="sidebar-left-bg"></div>
+  <div class="sidebar-left">
+    <div class="searchbox" role="search">
+      <form id="search-form" action="../../search.html" method="get">
+        <i class="icon fa fa-search"></i>
+        <input type="search" class="form-control" id="search-input" name="q"
+               placeholder="Search the docs..." autocomplete="off" />
+      </form>
+    </div>
+    <div class="nav-left" role="navigation" aria-label="Main">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../flame.html">flame</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../structure.html">File structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game_widget.html">GameWidget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../router.html">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game.html">Game loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collision_detection.html">Collision detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../camera_and_viewport.html">Camera &amp; Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../camera_component.html">Camera component</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Inputs</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="tap-events.html">Tap events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="drag-events.html">Drag events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="gesture-input.html">Gesture input</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Keyboard input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="other-inputs.html">Other inputs</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/images.html">Images, sprites and animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/text.html">Text rendering</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/palette.html">Colors and palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/particles.html">Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/decorators.html">Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/layers.html">Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../other/other.html">Other</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../other/debug.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../other/util.html">Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../other/widgets.html">Widgets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../flame_audio/flame_audio.html">flame_audio</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_audio/audio.html">General audio</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_audio/bgm.html">Background music</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_audio/audio_pool.html">AudioPool</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step4.html">4. Gameplay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/tbc.html">[To be continued]...</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen.html">Oxygen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/tiled.html">Tiled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/splash_screen.html">Splash screen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/testing_guide.html">Tests Guide</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="main-area">
+  <div class="document-wrapper">
+    <div class="document" role="main">
+      
+  <section class="tex2jax_ignore mathjax_ignore" id="keyboard-input">
+<h1>Keyboard Input<a class="headerlink" href="#keyboard-input" title="Permalink to this heading">¶</a></h1>
+<p>This includes documentation for keyboard inputs.</p>
+<p>For other input documents, see also:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="gesture-input.html"><span class="doc std std-doc">Gesture Input</span></a>: for mouse and touch pointer gestures</p></li>
+<li><p><a class="reference internal" href="other-inputs.html"><span class="doc std std-doc">Other Inputs</span></a>: For joysticks, game pads, etc.</p></li>
+</ul>
+<section id="intro">
+<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this heading">¶</a></h2>
+<p>The keyboard API on flame relies on the
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/Focus-class.html">Flutter’s Focus widget</a>.</p>
+<p>To customize focus behavior, see <a class="reference internal" href="#controlling-focus"><span class="std std-doc">Controlling focus</span></a>.</p>
+<p>There are two ways a game can react to key strokes; at the game level and at a component level.
+For each we have a mixin that can me added to a <code class="docutils literal notranslate"><span class="pre">Game</span></code> or <code class="docutils literal notranslate"><span class="pre">Component</span></code> class.</p>
+<section id="receive-keyboard-events-in-a-game-level">
+<h3>Receive keyboard events in a game level<a class="headerlink" href="#receive-keyboard-events-in-a-game-level" title="Permalink to this heading">¶</a></h3>
+<p>To make a <code class="docutils literal notranslate"><span class="pre">Game</span></code> sub class sensitive to key stroke, mix it with <code class="docutils literal notranslate"><span class="pre">KeyboardEvents</span></code>.</p>
+<p>After that, it will be possible to override an <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> method.</p>
+<p>This method receives two parameters, first the
+<a class="reference external" href="https://api.flutter.dev/flutter/services/RawKeyEvent-class.html"><code class="docutils literal notranslate"><span class="pre">RawKeyEvent</span></code></a>
+that triggers the callback in the first place. The second is a set of the currently pressed
+<a class="reference external" href="https://api.flutter.dev/flutter/services/LogicalKeyboardKey-class.html"><code class="docutils literal notranslate"><span class="pre">LogicalKeyboardKey</span></code></a>.</p>
+<p>The return value is a
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/KeyEventResult.html"><code class="docutils literal notranslate"><span class="pre">KeyEventResult</span></code></a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">KeyEventResult.handled</span></code> will tell the framework that the key stroke was resolved inside of Flame
+and skip any other keyboard handler widgets apart of <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">KeyEventResult.ignored</span></code> will tell the framework to keep testing this event in any other keyboard
+handler widget apart of <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>. If the event is not resolved by any handler, the framework
+will trigger <code class="docutils literal notranslate"><span class="pre">SystemSoundType.alert</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">KeyEventResult.skipRemainingHandlers</span></code> is very similar to <code class="docutils literal notranslate"><span class="pre">.ignored</span></code>, apart from the fact that will
+skip any other handler widget and will straight up play the alert sound.</p>
+<p>Minimal example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardEvents</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">KeyEventResult</span><span class="w"> </span><span class="n">onKeyEvent</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">RawKeyEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">LogicalKeyboardKey</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">isKeyDown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">RawKeyDownEvent</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">isSpace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">space</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isSpace</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">isKeyDown</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">altLeft</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
+<span class="w">          </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">altRight</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="n">shootHarder</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">this</span><span class="p">.</span><span class="n">shoot</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="n">KeyEventResult</span><span class="p">.</span><span class="n">handled</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">KeyEventResult</span><span class="p">.</span><span class="n">ignored</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="receive-keyboard-events-in-a-component-level">
+<h3>Receive keyboard events in a component level<a class="headerlink" href="#receive-keyboard-events-in-a-component-level" title="Permalink to this heading">¶</a></h3>
+<p>To receive keyboard events directly in components, there is the mixin <code class="docutils literal notranslate"><span class="pre">KeyboardHandler</span></code>.</p>
+<p>Similarly to <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> and <code class="docutils literal notranslate"><span class="pre">Draggable</span></code>, <code class="docutils literal notranslate"><span class="pre">KeyboardHandler</span></code> can be mixed into any subclass of
+<code class="docutils literal notranslate"><span class="pre">Component</span></code>.</p>
+<p>KeyboardHandlers must only be added to games that are mixed with <code class="docutils literal notranslate"><span class="pre">HasKeyboardHandlerComponents</span></code>.</p>
+<blockquote>
+<div><p>⚠️ Note: If <code class="docutils literal notranslate"><span class="pre">HasKeyboardHandlerComponents</span></code> is used, you must remove <code class="docutils literal notranslate"><span class="pre">KeyboardEvents</span></code>
+from the game mixin list to avoid conflicts.</p>
+</div></blockquote>
+<p>After applying <code class="docutils literal notranslate"><span class="pre">KeyboardHandler</span></code>, it will be possible to override an <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> method.</p>
+<p>This method receives two parameters. First the
+<a class="reference external" href="https://api.flutter.dev/flutter/services/RawKeyEvent-class.html"><code class="docutils literal notranslate"><span class="pre">RawKeyEvent</span></code></a>
+that triggered the callback in the first place. The second is a set of the currently pressed
+<a class="reference external" href="https://api.flutter.dev/flutter/services/LogicalKeyboardKey-class.html"><code class="docutils literal notranslate"><span class="pre">LogicalKeyboardKey</span></code></a>s.</p>
+<p>The returned value should be <code class="docutils literal notranslate"><span class="pre">true</span></code> to allow the continuous propagation of the key event among other
+components. To not allow any other component to receive the event, return <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<p>Flame also provides a default implementation called <code class="docutils literal notranslate"><span class="pre">KeyboardListenerComponent</span></code> which can be used
+to handle keyboard events. Like any other component, it can be added as a child to a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>
+or another <code class="docutils literal notranslate"><span class="pre">Component</span></code>:</p>
+<p>For example, imagine a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> which has methods to move on the X and Y axis,
+then the following code could be used to bind those methods to key events:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">KeyboardListenerComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">keyUp:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyA:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyD:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyW:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyS:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="nl">keyDown:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyA:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyD:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyW:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">      </span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="nl">keyS:</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">},</span><span class="w"></span>
+<span class="w">    </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="controlling-focus">
+<h3>Controlling focus<a class="headerlink" href="#controlling-focus" title="Permalink to this heading">¶</a></h3>
+<p>On the widget level, it is possible to use the
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/FocusNode-class.html"><code class="docutils literal notranslate"><span class="pre">FocusNode</span></code></a> API to control whether
+the game is focused or not.</p>
+<p><code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> has an optional <code class="docutils literal notranslate"><span class="pre">focusNode</span></code> parameter that allow its focus to be controlled externally.</p>
+<p>By default <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> has its <code class="docutils literal notranslate"><span class="pre">autofocus</span></code> set to true, which means it will get focused once it is
+mounted. To override that behavior, set <code class="docutils literal notranslate"><span class="pre">autofocus</span></code> to false.</p>
+<p>For a more complete example see
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/keyboard_example.dart">here</a>.</p>
+</section>
+</section>
+</section>
+
+
+    </div>
+    <div class="copyright">
+      The content on this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 License</a>,
+      and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
+    </div>
+    <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="gesture-input.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">Gesture Input</p>
+        </div>
+      </a>
+      <div class='expander'></div>
+      <a class="right-next" id="next-link" href="other-inputs.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">Other inputs</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-right">
+    
+    <div class="nav-right" role="navigation" aria-label="table of contents">
+      <div id='toc-local' class='list-group'>
+ <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#intro' class='list-group-item level-1'>Intro</a>
+  <a href='#receive-keyboard-events-in-a-game-level' class='list-group-item level-2'>Receive keyboard events in a game level</a>
+  <a href='#receive-keyboard-events-in-a-component-level' class='list-group-item level-2'>Receive keyboard events in a component level</a>
+  <a href='#controlling-focus' class='list-group-item level-2'>Controlling focus</a>
+</div>
+
+    </div>
+  </div>
+
+  <div class="expander"></div>
+</div>
+
+
+
+
+</body>
+</html>
