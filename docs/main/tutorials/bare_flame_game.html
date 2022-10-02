@@ -15,6 +15,7 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -216,8 +219,8 @@ identifier (thus, for example, it cannot be a keyword).</p>
 <p>In this tutorial we’re going to call the project <strong>syzygy</strong>, which is a totally
 real non-made-up word.</p>
 <p>Create the directory for your new project:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>mkdir -p ~/projects/syzygy
-<span class="gp">$ </span><span class="nb">cd</span> ~/projects/syzygy
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir -p ~/projects/syzygy</span>
+<span class="go">cd ~/projects/syzygy</span>
 </pre></div>
 </div>
 </section>
@@ -225,7 +228,7 @@ real non-made-up word.</p>
 <h2>3. Initialize empty Flutter project<a class="headerlink" href="#initialize-empty-flutter-project" title="Permalink to this heading">¶</a></h2>
 <p>In order to turn this barren directory into an actual Flutter project, run the
 following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flutter create .
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">flutter create .</span>
 </pre></div>
 </div>
 <p>(I have omitted the output for brevity, but there will be lots of output).</p>
@@ -241,14 +244,14 @@ following command:</p>
 <p>Launch Android Studio, then in the project selection window choose <code class="docutils literal notranslate"><span class="pre">[Open]</span></code>
 and navigate to your project directory. With any luck, the project will now
 look like this:</p>
-<p><img alt="" src="../_images/android-studio-screenshot-1.webp" /></p>
+<p><img alt="Project in Android Studio" src="../_images/android-studio-screenshot-1.webp" /></p>
 <p>If you see only the <code class="docutils literal notranslate"><span class="pre">main.dart</span></code> file but not the side panel, then click the
 vertical <code class="docutils literal notranslate"><span class="pre">[Project]</span></code> button at the left edge of the window.</p>
 <p>Before we proceed, let’s fix the view in the left panel. Locate the button
 in the top left corner that says <code class="docutils literal notranslate"><span class="pre">[Android]</span></code> in the screenshot. In this
 dropdown select the first option “Project”. Your project window should now
 look like this:</p>
-<p><img alt="" src="../_images/android-studio-screenshot-2.webp" /></p>
+<p><img alt="Project in Android Studio" src="../_images/android-studio-screenshot-2.webp" /></p>
 <p>The important part is that you should be able to see all files in your
 project directory.</p>
 </section>
@@ -313,12 +316,12 @@ adding initial files like README, license and gitignore.</p>
 <p>Now go to your project’s directory in the terminal and execute the following
 commands (make sure to replace the URL with the link to the repository that
 you just created):</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git init
-<span class="gp">$ </span>git add --all
-<span class="gp">$ </span>git commit -m <span class="s1">&#39;Initial commit&#39;</span>
-<span class="gp">$ </span>git remote add origin https://github.com/your-github-username/syzygy.git
-<span class="gp">$ </span>git branch -M main
-<span class="gp">$ </span>git push -u origin main
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git init</span>
+<span class="go">git add --all</span>
+<span class="go">git commit -m &#39;Initial commit&#39;</span>
+<span class="go">git remote add origin https://github.com/your-github-username/syzygy.git</span>
+<span class="go">git branch -M main</span>
+<span class="go">git push -u origin main</span>
 </pre></div>
 </div>
 <p>At this point if you go to your repository page on GitHub, you shall see that

@@ -15,6 +15,7 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -32,7 +33,7 @@
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
   <link rel="next" title="Structure" href="structure.html" />
-  <link rel="prev" title="Getting Started!" href="../index.html" />
+  <link rel="prev" title="Getting Started" href="../index.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -226,6 +229,7 @@
 <li class="toctree-l3"><a class="reference internal" href="components.html#size">Size</a></li>
 <li class="toctree-l3"><a class="reference internal" href="components.html#scale">Scale</a></li>
 <li class="toctree-l3"><a class="reference internal" href="components.html#angle">Angle</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components.html#native-angle">Native Angle</a></li>
 <li class="toctree-l3"><a class="reference internal" href="components.html#anchor">Anchor</a></li>
 <li class="toctree-l3"><a class="reference internal" href="components.html#positioncomponent-children">PositionComponent children</a></li>
 <li class="toctree-l3"><a class="reference internal" href="components.html#render-positioncomponent">Render PositionComponent</a></li>
@@ -244,10 +248,14 @@
 <li class="toctree-l3"><a class="reference internal" href="components.html#circlecomponent">CircleComponent</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="components.html#tiledcomponent">TiledComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#tiledcomponent">TiledComponent</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="components.html#tilestack">TileStack</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="components.html#isometrictilemapcomponent">IsometricTileMapComponent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="components.html#ninetileboxcomponent">NineTileBoxComponent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="components.html#custompaintercomponent">CustomPainterComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html#clipcomponent">ClipComponent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="components.html#effects">Effects</a></li>
 </ul>
 </li>
@@ -277,6 +285,7 @@
 <li class="toctree-l2"><a class="reference internal" href="collision_detection.html#screenhitbox">ScreenHitbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collision_detection.html#compositehitbox">CompositeHitbox</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collision_detection.html#broad-phase">Broad phase</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html#quad-tree-broad-phase">Quad Tree broad phase</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collision_detection.html#ray-casting-and-ray-tracing">Ray casting and Ray tracing</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="collision_detection.html#ray-casting">Ray casting</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="collision_detection.html#raycastall">raycastAll</a></li>
@@ -373,7 +382,7 @@
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Getting Started!</p>
+          <p class="prev-next-title">Getting Started</p>
         </div>
       </a>
       <div class='expander'></div>

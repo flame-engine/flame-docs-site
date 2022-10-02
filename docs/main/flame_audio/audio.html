@@ -15,6 +15,7 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -198,7 +201,8 @@ list in your <code class="docutils literal notranslate"><span class="pre">pubspe
 <p>The latest version can be found on <a class="reference external" href="https://pub.dev/packages/flame_audio/install">pub.dev</a>.</p>
 <p>After installing the <code class="docutils literal notranslate"><span class="pre">flame_audio</span></code> package, you can add audio files in the assets section of your
 <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file. Make sure that the audio files exists in the paths that you provide.</p>
-<p>The default directory for <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> is <code class="docutils literal notranslate"><span class="pre">assets/audio</span></code> (which can be changed by providing your own instance of <code class="docutils literal notranslate"><span class="pre">AudioCache</span></code>).</p>
+<p>The default directory for <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> is <code class="docutils literal notranslate"><span class="pre">assets/audio</span></code> (which can be changed by providing your own
+instance of <code class="docutils literal notranslate"><span class="pre">AudioCache</span></code>).</p>
 <p>For the examples below, your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file needs to contain something like this:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span><span class="w"></span>
 <span class="w">  </span><span class="nt">assets</span><span class="p">:</span><span class="w"></span>
@@ -221,7 +225,8 @@ list in your <code class="docutils literal notranslate"><span class="pre">pubspe
 <span class="c1">// For looping a longer audio file</span><span class="w"></span>
 <span class="n">FlameAudio</span><span class="p">.</span><span class="n">loopLongAudio</span><span class="p">(</span><span class="s1">&#39;music.mp3&#39;</span><span class="p">);</span><span class="w"></span>
 
-<span class="c1">// For background music that should be paused/played when the pausing/resuming the game</span><span class="w"></span>
+<span class="c1">// For background music that should be paused/played when the pausing/resuming</span><span class="w"></span>
+<span class="c1">// the game</span><span class="w"></span>
 <span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;music.mp3&#39;</span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>

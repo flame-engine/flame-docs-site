@@ -15,6 +15,7 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -348,7 +351,8 @@ and that is the <code class="docutils literal notranslate"><span class="pre">fol
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">// Somewhere in your code:</span><span class="w"></span>
 <span class="w">  </span><span class="n">camera</span><span class="o">?</span><span class="p">.</span><span class="n">followVector2</span><span class="p">(</span><span class="w"></span>
 <span class="w">    </span><span class="n">yourPositionToFollow</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nl">worldBounds:</span><span class="w"> </span><span class="n">yourWorldBounds</span><span class="p">,</span><span class="w"> </span><span class="c1">// Optional to pass, it will overwrite the previous bounds.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Optional to pass, it will overwrite the previous bounds.</span><span class="w"></span>
+<span class="w">    </span><span class="nl">worldBounds:</span><span class="w"> </span><span class="n">yourWorldBounds</span><span class="p">,</span><span class="w"></span>
 <span class="w">  </span><span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
@@ -356,7 +360,8 @@ and that is the <code class="docutils literal notranslate"><span class="pre">fol
 follow, it can be used to translate the canvas in the render method:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span><span class="w"></span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">camera</span><span class="o">?</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span><span class="w"> </span><span class="c1">// This will apply the camera transformation.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// This will apply the camera transformation.</span><span class="w"></span>
+<span class="w">    </span><span class="n">camera</span><span class="o">?</span><span class="p">.</span><span class="n">apply</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Rest of your rendering code.</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>

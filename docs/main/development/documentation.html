@@ -15,6 +15,7 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -31,6 +32,7 @@
   <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="Flame Style Guide" href="style_guide.html" />
   <link rel="prev" title="Development" href="development.html" />
 </head>
 
@@ -169,6 +171,8 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="development.html">Development</a><ul class="current">
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -195,14 +199,6 @@ section will focus on the Markdown extensions that are enabled in our build syst
 <h3>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h3>
 <p>The table of contents for the site must be created manually. This is done using special <code class="docutils literal notranslate"><span class="pre">{toctree}</span></code>
 blocks, one per each subdirectory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{toctree}
-:hidden:
-
-First Topic    &lt;topic1.md&gt;
-Second Topic   &lt;topic2.md&gt;
-```
-</pre></div>
-</div>
 <p>When adding new documents into the documentation site, make sure that they are mentioned in one of
 the toctrees – otherwise you will see a warning during the build that the document is orphaned.</p>
 </section>
@@ -210,20 +206,6 @@ the toctrees – otherwise you will see a warning during the build that the docu
 <h3>Admonitions<a class="headerlink" href="#admonitions" title="Permalink to this heading">¶</a></h3>
 <p>Admonitions are emphasized blocks of text with a distinct appearance. They are created using the
 triple-backticks syntax:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{note}
-Please note this very important caveat.
-```
-```{warning}
-Don&#39;t look down, or you will encounter an error.
-```
-```{error}
-I told you so.
-```
-```{seealso}
-Also check out this cool thingy.
-```
-</pre></div>
-</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Please note this very important caveat.</p>
@@ -245,12 +227,6 @@ Also check out this cool thingy.
 <h3>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this heading">¶</a></h3>
 <p>The special <code class="docutils literal notranslate"><span class="pre">{deprecated}</span></code> block can be used to mark some part of documentation or syntax as being
 deprecated. This block requires specifying the version when the deprecation has occurred</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{deprecated} v1.3.0
-
-Please use this **other** thing instead.
-```
-</pre></div>
-</div>
 <p>Which would be rendered like this:</p>
 <div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version v1.3.0: </span>Please use this <strong>other</strong> thing instead.</p>
@@ -261,13 +237,6 @@ Please use this **other** thing instead.
 <p>Our documentation site includes a custom-built <strong>flutter-app</strong> directive which allows creating
 Flutter widgets and embedding them alongside with the overall documentation content.</p>
 <p>In Markdown, the code for inserting an embed looks like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```{flutter-app}
-:sources: ../flame/examples
-:page: tap_events
-:show: widget code popup
-```
-</pre></div>
-</div>
 <p>Here’s what the different options mean:</p>
 <ul>
 <li><p><strong>sources</strong>: specifies the name of the root directory where the Flutter code that you wish to run
@@ -437,7 +406,7 @@ following:</p>
 <li><p>A set of python <strong>modules</strong> listed in the <code class="docutils literal notranslate"><span class="pre">doc/_sphinx/requirements.txt</span></code> file;</p>
 <ul>
 <li><p>The easiest way to install these is to run</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install -r doc/_sphinx/requirements.txt
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install -r doc/_sphinx/requirements.txt</span>
 </pre></div>
 </div>
 </li>
@@ -445,28 +414,33 @@ following:</p>
 </li>
 </ol>
 <p>Once these prerequisites are met, you can build the documentation by switching to the <code class="docutils literal notranslate"><span class="pre">doc/_sphinx</span></code>
-directory and running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">cd</span> doc/_sphinx
-<span class="gp">$ </span>make html
+directory and running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>, or use the built-in Melos target:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">melos doc-build</span>
 </pre></div>
 </div>
-<p>The <strong>make html</strong> command here renders the documentation site into HTML. This command needs to be
-re-run every time you make changes to any of the documents. Luckily, it is smart enough to only
+<p>The <strong>melos doc-build</strong> command here renders the documentation site into HTML. This command needs to
+be re-run every time you make changes to any of the documents. Luckily, it is smart enough to only
 rebuild the documents that have changed since the previous run, so usually a rebuild takes only
 a second or two.</p>
-<p>There are other make commands that you may find occasionally useful too: <strong>make clean</strong> removes all
-cached generated files (in case the system gets stuck in a bad state); and <strong>make linkcheck</strong> to
-check whether there are any broken links in the documentation.</p>
+<p>If you want to automatically recompile the docs every time there is a change to one of the files
+you can use the <strong>melos doc-build-live</strong> command, which will also serve and open your default
+browser with the docs.</p>
+<p>There are other make commands that you may find occasionally useful too:</p>
+<ul class="simple">
+<li><p><strong>melos doc-clean</strong> removes all cached generated files (in case the system gets stuck in a bad
+state).</p></li>
+<li><p><strong>melos doc-linkcheck</strong> to check whether there are any broken links in the documentation.</p></li>
+</ul>
 <p>The generated html files will be in the <code class="docutils literal notranslate"><span class="pre">doc/_build/html</span></code> directory, you can view them directly
 by opening the file <code class="docutils literal notranslate"><span class="pre">doc/_build/html/index.html</span></code> in your browser. The only drawback is that the
 browser won’t allow any dynamic content in a file opened from a local drive. The solution to this
-is to run your own local http server:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>python -m http.server <span class="m">8000</span> --directory doc/_build/html
+is to either run <strong>melos doc-build-live</strong> or run your own local http server:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m http.server 8000 --directory doc/_build/html</span>
 </pre></div>
 </div>
 <p>Then you can open the site at <code class="docutils literal notranslate"><span class="pre">http://localhost:8000/</span></code>.</p>
-<p>If you ever run the <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> command, the server will need to be restarted, because the clean
-command deletes the entire <code class="docutils literal notranslate"><span class="pre">html</span></code> directory.</p>
+<p>If you ever run the <strong>melos doc-clean</strong> or the <strong>make clean</strong> command, the server will need to be
+restarted, because the clean command deletes the entire <code class="docutils literal notranslate"><span class="pre">html</span></code> directory.</p>
 </section>
 </section>
 
@@ -485,6 +459,13 @@ command deletes the entire <code class="docutils literal notranslate"><span clas
         </div>
       </a>
       <div class='expander'></div>
+      <a class="right-next" id="next-link" href="style_guide.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">Flame Style Guide</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
     </div>
   </div>
 

@@ -15,6 +15,7 @@
   <script src="../../_static/underscore.js"></script>
   <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -220,7 +223,9 @@ needed.</p>
 
 <span class="c1">// Composition.</span><span class="w"></span>
 <span class="c1">//</span><span class="w"></span>
-<span class="c1">// Defining a particle effect as a set of nested behaviors from top to bottom, one within another:</span><span class="w"></span>
+<span class="c1">// Defining a particle effect as a set of nested behaviors from top to bottom,</span><span class="w"></span>
+<span class="c1">// one within another:</span><span class="w"></span>
+<span class="c1">//</span><span class="w"></span>
 <span class="c1">// ParticleSystemComponent</span><span class="w"></span>
 <span class="c1">//   &gt; ComposedParticle</span><span class="w"></span>
 <span class="c1">//     &gt; AcceleratedParticle</span><span class="w"></span>
@@ -540,7 +545,8 @@ propagates the <code class="docutils literal notranslate"><span class="pre">upda
 on each frame to perform necessary computations and render something to the <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
 <span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// Renders a circle which gradually changes its color and size during the particle lifespan.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Renders a circle which gradually changes its color and size during the</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// particle lifespan.</span><span class="w"></span>
 <span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">ComputedParticle</span><span class="p">(</span><span class="w"></span>
 <span class="w">      </span><span class="nl">renderer:</span><span class="w"> </span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">particle</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawCircle</span><span class="p">(</span><span class="w"></span>
 <span class="w">        </span><span class="n">Offset</span><span class="p">.</span><span class="n">zero</span><span class="p">,</span><span class="w"></span>

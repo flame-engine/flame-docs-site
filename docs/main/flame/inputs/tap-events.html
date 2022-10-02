@@ -15,6 +15,7 @@
   <script src="../../_static/underscore.js"></script>
   <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -506,7 +509,7 @@ one by one, verifying that your game continues to work at every step.</p>
 <p>If you have an existing game that uses <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>/<code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> mixins, then this section will
 describe how to transition to the new API described in this document. Here’s what you need to do:</p>
 <ol class="arabic simple">
-<li><p>Replace the <code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> mixin on your game with the pair of mixins <code class="docutils literal notranslate"><span class="pre">HasTappableComponents,</span> <span class="pre">HasTappablesBridge</span></code>. Verify that your game continues to run as before.</p></li>
+<li><p>Replace the <code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> mixin on your game with the pair of mixins <code class="docutils literal notranslate"><span class="pre">HasTappableComponents,</span>&#160; <span class="pre">HasTappablesBridge</span></code>. Verify that your game continues to run as before.</p></li>
 <li><p>Pick any of your components that uses <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>, and replace that mixin with <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code>.
 The methods <code class="docutils literal notranslate"><span class="pre">onTapDown</span></code>, <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code>, <code class="docutils literal notranslate"><span class="pre">onTapCancel</span></code> and <code class="docutils literal notranslate"><span class="pre">onLongTapDown</span></code> will need to be adjusted
 for the new API:</p>

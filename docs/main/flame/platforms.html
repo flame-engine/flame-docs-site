@@ -15,6 +15,7 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -198,11 +201,11 @@ don’t support them. This means that issues happening outside the stable channe
 renderer. This will increase performance on the web, as it will use the <code class="docutils literal notranslate"><span class="pre">canvas</span></code> element instead of
 separate DOM elements.</p>
 <p>To run your game using skia, use the following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flutter run -d chrome --web-renderer canvaskit
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">flutter run -d chrome --web-renderer canvaskit</span>
 </pre></div>
 </div>
 <p>To build the game for production, using skia, use the following:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flutter build web --release --web-renderer canvaskit
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">flutter build web --release --web-renderer canvaskit</span>
 </pre></div>
 </div>
 </section>
@@ -257,7 +260,7 @@ deployed game.</p>
 <p>If you are submitting your game to a game jam, remember to make it public and submit it on the
 game jam page too (many get confused by this).</p>
 <p>Further instructions can be found on
-(<a class="reference external" href="http://itch.io">itch.io</a>)[<a class="reference external" href="https://itch.io/docs/creators/html5#getting-started/zip-file">https://itch.io/docs/creators/html5#getting-started/zip-file</a>].</p>
+<a class="reference external" href="https://itch.io/docs/creators/html5#getting-started/zip-file">itch.io</a>.</p>
 <section id="web-support">
 <h3>Web support<a class="headerlink" href="#web-support" title="Permalink to this heading">¶</a></h3>
 <p>When using Flame on the web some methods may not work. For example <code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientation</span></code> and

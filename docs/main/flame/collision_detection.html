@@ -15,6 +15,7 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -252,6 +255,11 @@ both <code class="docutils literal notranslate"><span class="pre">onCollisionSta
 when a collision starts you only need to override <code class="docutils literal notranslate"><span class="pre">onCollision</span></code>, and vice versa.</p>
 <p>If you want to check collisions with the screen edges, as we do in the example above, you can use
 the predefined <a class="reference internal" href="#screenhitbox"><span class="std std-doc">ScreenHitbox</span></a> class.</p>
+<p>By default all hitboxes are hollow, this means that one hitbox can be fully enclosed by another
+hitbox without triggering a collision. If you want to set your hitboxes to be solid you can set
+<code class="docutils literal notranslate"><span class="pre">isSolid</span> <span class="pre">=</span> <span class="pre">true</span></code>. A hollow hitbox inside of a solid hitbox will trigger a collision, but not the
+other way around. If there are no intersections with the edges on a solid hitbox the center
+position is instead returned.</p>
 </section>
 </section>
 <section id="shapehitbox">
@@ -346,23 +354,101 @@ collisions to the whole hat, instead of for just each hitbox separately.</p>
 </section>
 <section id="broad-phase">
 <h2>Broad phase<a class="headerlink" href="#broad-phase" title="Permalink to this heading">¶</a></h2>
-<p>Usually you don’t have to worry about the broad phase system that is used, so if the standard
-implementation is performant enough for you, you probably don’t have to read this section.</p>
+<p>If your game field is small and do not have a lot of collidable components - you don’t have to
+worry about the broad phase system that is used, so if the standard implementation is performant
+enough for you, you probably don’t have to read this section.</p>
 <p>A broad phase is the first step of collision detection where potential collisions are calculated.
 To calculate these potential collisions are a lot cheaper to calculate than to check the exact
-intersections from the directly and it removes the need to check all hitboxes against each other
-and therefore avoiding O(n²). The broad phase produces a set of potential collisions (a set of
+intersections directly and it removes the need to check all hitboxes against each other and
+therefore avoiding O(n²). The broad phase produces a set of potential collisions (a set of
 <code class="docutils literal notranslate"><span class="pre">CollisionProspect</span></code>s), this set is then used to check the exact intersections between hitboxes, this
 is sometimes called narrow phase.</p>
 <p>By default Flame’s collision detection is using a sweep and prune broadphase step, if your game
 requires another type of broadphase you can write your own broadphase by extending <code class="docutils literal notranslate"><span class="pre">Broadphase</span></code> and
 manually setting the collision detection system that should be used.</p>
-<p>For example if you have implemented a broadphase built on a quad tree instead of the standard
+<p>For example if you have implemented a broadphase built on a magic algorithm instead of the standard
 sweep and prune, then you would do the following:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">collisionDetection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>
-<span class="w">        </span><span class="n">StandardCollisionDetection</span><span class="p">(</span><span class="nl">broadphase:</span><span class="w"> </span><span class="n">QuadTreeBroadphase</span><span class="p">());</span><span class="w"></span>
+<span class="w">    </span><span class="n">collisionDetection</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">        </span><span class="n">StandardCollisionDetection</span><span class="p">(</span><span class="nl">broadphase:</span><span class="w"> </span><span class="n">MagicAlgorithmBroadphase</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="quad-tree-broad-phase">
+<h2>Quad Tree broad phase<a class="headerlink" href="#quad-tree-broad-phase" title="Permalink to this heading">¶</a></h2>
+<p>If your game field is large and the game contains a lot of collidable
+components (more than a hundred), standard sweep and prune can
+become inefficient. If it does, you can try to use the quad tree broad phase.
+To do this, add the <code class="docutils literal notranslate"><span class="pre">HasQuadTreeCollisionDetection</span></code> mixin to your game instead of
+<code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> and call the <code class="docutils literal notranslate"><span class="pre">initializeCollisionDetection</span></code> function on game load:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasQuadTreeCollisionDetection</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">initializeCollisionDetection</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nl">mapDimensions:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">mapWidth</span><span class="p">,</span><span class="w"> </span><span class="n">mapHeight</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="nl">minimumDistance:</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>When calling <code class="docutils literal notranslate"><span class="pre">initializeCollisionDetection</span></code> you should pass it the correct map dimensions, to make
+the quad tree algorithm to work properly. There are also additional parameters to make the system
+more efficient:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">minimumDistance</span></code>: minimum distance between objects to consider them as possibly colliding.
+If <code class="docutils literal notranslate"><span class="pre">null</span></code> - the check is disabled, it is default behavior</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxObjects</span></code>: maximum objects count in one quadrant. Default to 25.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxDepth</span></code>: - maximum nesting levels inside quadrant. Default to 10</p></li>
+</ul>
+<p>If you use the quad tree system, you can make it even more efficient by implementing the
+<code class="docutils literal notranslate"><span class="pre">onComponentTypeCheck</span></code> function of the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin in your components. It is useful if
+you need to prevent collisions of items of different types. The result of the calculation is cached so
+you should not check any dynamic parameters here, the function is intended to be used as a pure
+type checker:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Bullet</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onComponentTypeCheck</span><span class="p">(</span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Water</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// do NOT collide with Player or Water</span><span class="w"></span>
+<span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onComponentTypeCheck</span><span class="p">(</span><span class="n">other</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Removes the component when it comes in contact with a Brick.</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Neither Player nor Water would be passed to this function</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// because these classes are filtered out by [onComponentTypeCheck]</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// in an earlier stage.</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Brick</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionStart</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>After intensive gameplay a map could become over-clusterized with a lot of empty quadrants.
+Run <code class="docutils literal notranslate"><span class="pre">QuadTree.optimize()</span></code> to perform a cleanup of empty quadrants:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">QuadTreeExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"></span>
+<span class="w">        </span><span class="kd">with</span><span class="w"> </span><span class="n">HasQuadTreeCollisionDetection</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">/// A function called when intensive gameplay session is over</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// It also might be scheduled, but no need to run it on every update.</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// Use right interval depending on your game circumstances</span><span class="w"></span>
+<span class="w">  </span><span class="n">onGameIdle</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">(</span><span class="n">collisionDetection</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">QuadTreeCollisionDetection</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">quadBroadphase</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">tree</span><span class="w"></span>
+<span class="w">            </span><span class="p">.</span><span class="n">optimize</span><span class="p">();</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
@@ -370,9 +456,8 @@ sweep and prune, then you would do the following:</p>
 </section>
 <section id="ray-casting-and-ray-tracing">
 <h2>Ray casting and Ray tracing<a class="headerlink" href="#ray-casting-and-ray-tracing" title="Permalink to this heading">¶</a></h2>
-<p>Ray casting and ray tracing are methods for sending out rays from a point in your game and
-being able to see what these rays collide with and how they reflect after hitting
-something.</p>
+<p>Ray casting and ray tracing are methods for sending out rays from a point in your game and being
+able to see what these rays collide with and how they reflect after hitting something.</p>
 <p>For all of the following methods, if there are any hitboxes that you wish to ignore, you can add the
 <code class="docutils literal notranslate"><span class="pre">ignoreHitboxes</span></code> argument which is a list of the hitboxes that you wish to disregard for the call.
 This can be quite useful for example if you are casting rays from within a hitbox, which could be on
@@ -536,10 +621,10 @@ previously.</p>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Collidable%20AnimationComponent">https://examples.flame-engine.org/#/Collision Detection_Collidable AnimationComponent</a></p></li>
-<li><p><a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Circles">https://examples.flame-engine.org/#/Collision Detection_Circles</a></p></li>
-<li><p><a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Multiple%20shapes">https://examples.flame-engine.org/#/Collision Detection_Multiple shapes</a></p></li>
-<li><p><a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collision_detection">https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collision_detection</a></p></li>
+<li><p>[<a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Collidable%20AnimationComponent">https://examples.flame-engine.org/#/Collision Detection_Collidable AnimationComponent</a>]</p></li>
+<li><p>[<a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Circles">https://examples.flame-engine.org/#/Collision Detection_Circles</a>]</p></li>
+<li><p>[<a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Multiple%20shapes">https://examples.flame-engine.org/#/Collision Detection_Multiple shapes</a>]</p></li>
+<li><p>[<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collision_detection">https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collision_detection</a>]</p></li>
 </ul>
 </section>
 </section>
@@ -585,6 +670,7 @@ previously.</p>
   <a href='#screenhitbox' class='list-group-item level-1'>ScreenHitbox</a>
   <a href='#compositehitbox' class='list-group-item level-1'>CompositeHitbox</a>
   <a href='#broad-phase' class='list-group-item level-1'>Broad phase</a>
+  <a href='#quad-tree-broad-phase' class='list-group-item level-1'>Quad Tree broad phase</a>
   <a href='#ray-casting-and-ray-tracing' class='list-group-item level-1'>Ray casting and Ray tracing</a>
   <a href='#ray-casting' class='list-group-item level-2'>Ray casting</a>
   <a href='#raycastall' class='list-group-item level-3'>raycastAll</a>

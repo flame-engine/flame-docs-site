@@ -15,6 +15,7 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -471,44 +474,50 @@ common controllers. The syntax of the constructor is the following:</p>
 <span class="w">    </span><span class="kt">int</span><span class="o">?</span><span class="w"> </span><span class="n">repeatCount</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="kt">bool</span><span class="w"> </span><span class="n">infinite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">startDelay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">VoidCallback</span><span class="o">?</span><span class="w"> </span><span class="n">onMax</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">VoidCallback</span><span class="o">?</span><span class="w"> </span><span class="n">onMin</span><span class="p">,</span><span class="w"></span>
 <span class="p">});</span><span class="w"></span>
 </pre></div>
 </div>
 <ul>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">duration</span></code></strong> – the length of the main part of the effect, i.e. how long it should take to go
+<li><p><em><code class="docutils literal notranslate"><span class="pre">duration</span></code></em> – the length of the main part of the effect, i.e. how long it should take to go
 from 0 to 100%. This parameter cannot be negative, but can be zero. If this is the only parameter
 specified then the effect will grow linearly over the <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">curve</span></code></strong> – if given, creates a non-linear effect that grows from 0 to 100% according to the
+<li><p><em><code class="docutils literal notranslate"><span class="pre">curve</span></code></em> – if given, creates a non-linear effect that grows from 0 to 100% according to the
 provided <a class="reference external" href="https://api.flutter.dev/flutter/animation/Curves-class.html">curve</a>.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">reverseDuration</span></code></strong> – if provided, adds an additional step to the controller: after the effect
+<li><p><em><code class="docutils literal notranslate"><span class="pre">reverseDuration</span></code></em> – if provided, adds an additional step to the controller: after the effect
 has grown from 0 to 100% over the <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds, it will then go backwards from 100% to 0
 over the <code class="docutils literal notranslate"><span class="pre">reverseDuration</span></code> seconds. In addition, the effect will complete at progress level of 0
 (normally the effect completes at progress 1).</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">reverseCurve</span></code></strong> – the curve to be used during the “reverse” step of the effect. If not given,
+<li><p><em><code class="docutils literal notranslate"><span class="pre">reverseCurve</span></code></em> – the curve to be used during the “reverse” step of the effect. If not given,
 this will default to <code class="docutils literal notranslate"><span class="pre">curve.flipped</span></code>.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">alternate</span></code></strong> – setting this to true is equivalent to specifying the <code class="docutils literal notranslate"><span class="pre">reverseDuration</span></code> equal
+<li><p><em><code class="docutils literal notranslate"><span class="pre">alternate</span></code></em> – setting this to true is equivalent to specifying the <code class="docutils literal notranslate"><span class="pre">reverseDuration</span></code> equal
 to the <code class="docutils literal notranslate"><span class="pre">duration</span></code>. If the <code class="docutils literal notranslate"><span class="pre">reverseDuration</span></code> is already set, this flag has no effect.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">atMaxDuration</span></code></strong> – if non-zero, this inserts a pause after the effect reaches its max
+<li><p><em><code class="docutils literal notranslate"><span class="pre">atMaxDuration</span></code></em> – if non-zero, this inserts a pause after the effect reaches its max
 progress and before the reverse stage. During this time the effect is kept at 100% progress. If
 there is no reverse stage, then this will simply be a pause before the effect is marked as
 completed.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">atMinDuration</span></code></strong> – if non-zero, this inserts a pause after the reaches its lowest progress
+<li><p><em><code class="docutils literal notranslate"><span class="pre">atMinDuration</span></code></em> – if non-zero, this inserts a pause after the reaches its lowest progress
 (0) at the end of the reverse stage. During this time, the effect’s progress is at 0%. If there
 is no reverse stage, then this pause will still be inserted after the “at-max” pause if it’s
 present, or after the forward stage otherwise. In addition, the effect will now complete at
 progress level of 0.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">repeatCount</span></code></strong> – if greater than one, it will cause the effect to repeat itself the prescribed
+<li><p><em><code class="docutils literal notranslate"><span class="pre">repeatCount</span></code></em> – if greater than one, it will cause the effect to repeat itself the prescribed
 number of times. Each iteration will consists of the forward stage, pause at max, reverse stage,
 then pause at min (skipping those that were not specified).</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">infinite</span></code></strong> – if true, the effect will repeat infinitely and never reach completion. This is
+<li><p><em><code class="docutils literal notranslate"><span class="pre">infinite</span></code></em> – if true, the effect will repeat infinitely and never reach completion. This is
 equivalent to as if <code class="docutils literal notranslate"><span class="pre">repeatCount</span></code> was set to infinity.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">startDelay</span></code></strong> – an additional wait time inserted before the beginning of the effect. This
+<li><p><em><code class="docutils literal notranslate"><span class="pre">startDelay</span></code></em> – an additional wait time inserted before the beginning of the effect. This
 wait time is executed only once, even if the effect is repeating. During this time the effect’s
 <code class="docutils literal notranslate"><span class="pre">.started</span></code> property returns false. The effect’s <code class="docutils literal notranslate"><span class="pre">onStart()</span></code> callback will be executed at the end
 of this waiting period.</p>
 <p>Using this parameter is the simplest way to create a chain of effects that execute one after
 another (or with an overlap).</p>
 </li>
+<li><p><em><code class="docutils literal notranslate"><span class="pre">onMax</span></code></em> – callback function which will be invoked right after reaching its max progress and
+before the optional pause and reverse stage.</p></li>
+<li><p><em><code class="docutils literal notranslate"><span class="pre">onMin</span></code></em> – callback function which will be invoked right after reaching its lowest progress
+at the end of the reverse stage and before the optional pause and forward stage.</p></li>
 </ul>
 <p>The effect controller returned by this factory constructor will be composited of multiple simpler
 effect controllers described further below. If this constructor proves to be too limited for your

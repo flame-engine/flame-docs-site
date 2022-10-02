@@ -15,6 +15,7 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -464,6 +467,44 @@ non-uniform way, by change <code class="docutils literal notranslate"><span clas
 <p>The <code class="docutils literal notranslate"><span class="pre">angle</span></code> is the rotation angle around the anchor, represented as a double in radians. It is
 relative to the parent’s angle.</p>
 </section>
+<section id="native-angle">
+<h3>Native Angle<a class="headerlink" href="#native-angle" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">nativeAngle</span></code> is an angle in radians, measured clockwise, representing the default orientation
+of the component. It can be used to define the direction in which the component is facing when
+<a class="reference internal" href="#angle"><span class="std std-doc">angle</span></a> is zero.</p>
+<p>It is specially helpful when making a sprite based component look at a specific target. If the
+original image of the sprite is not facing in the up/north direction, the calculated angle to make
+the component look at the target will need some offset to make it look correct. For such cases,
+<code class="docutils literal notranslate"><span class="pre">nativeAngle</span></code> can be used to let the component know what direction the original image is faces.</p>
+<p>An example could be a bullet image pointing in east direction. In this case <code class="docutils literal notranslate"><span class="pre">nativeAngle</span></code> can be set
+to pi/2 radians. Following are some common directions and their corresponding native angle values.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Direction</p></th>
+<th class="head"><p>Native Angle</p></th>
+<th class="head"><p>In degrees</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Up/North</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Down/South</p></td>
+<td><p>pi or -pi</p></td>
+<td><p>180 or -180</p></td>
+</tr>
+<tr class="row-even"><td><p>Left/West</p></td>
+<td><p>-pi/2</p></td>
+<td><p>-90</p></td>
+</tr>
+<tr class="row-odd"><td><p>Right/East</p></td>
+<td><p>pi/2</p></td>
+<td><p>90</p></td>
+</tr>
+</tbody>
+</table>
+</section>
 <section id="anchor">
 <h3>Anchor<a class="headerlink" href="#anchor" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">anchor</span></code> is where on the component that the position and rotation should be defined from (the
@@ -524,10 +565,14 @@ created with a <code class="docutils literal notranslate"><span class="pre">Spri
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">128.0</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">sprite</span><span class="p">);</span><span class="w"></span>
 
-<span class="w">    </span><span class="c1">// screen coordinates</span><span class="w"></span>
-<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="c1">// Vector2(0.0, 0.0) by default, can also be set in the constructor</span><span class="w"></span>
-<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="c1">// 0 by default, can also be set in the constructor</span><span class="w"></span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span><span class="w"> </span><span class="c1">// Adds the component</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Vector2(0.0, 0.0) by default, can also be set in the constructor</span><span class="w"></span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// 0 by default, can also be set in the constructor</span><span class="w"></span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Adds the component</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
@@ -789,11 +834,33 @@ behavior, for example if you are not making a side-scrolling game, you can set t
 you then pass in to the <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code>’s constructor.</p>
 <p>Advanced example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">images</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="s1">&#39;stars.jpg&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span><span class="w"> </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">width</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="s1">&#39;planets.jpg&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeatY</span><span class="p">,</span><span class="w"> </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">bottomLeft</span><span class="p">,</span><span class="w"> </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">none</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="s1">&#39;dust.jpg&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeatX</span><span class="p">,</span><span class="w"> </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">topRight</span><span class="p">,</span><span class="w"> </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">height</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;stars.jpg&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">width</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;planets.jpg&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeatY</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">bottomLeft</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">none</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;dust.jpg&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeatX</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">topRight</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">height</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
 <span class="p">];</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">map</span><span class="p">((</span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ParallaxLayer</span><span class="p">(</span><span class="kd">await</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="nl">velocityMultiplier:</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2.0</span><span class="p">));</span><span class="w"></span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ParallaxLayer</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">velocityMultiplier:</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">)</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+
 <span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ParallaxComponent</span><span class="p">.</span><span class="n">fromParallax</span><span class="p">(</span><span class="w"></span>
 <span class="w">  </span><span class="n">Parallax</span><span class="p">(</span><span class="w"></span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">layers</span><span class="p">),</span><span class="w"></span>
@@ -956,19 +1023,59 @@ radius is in comparison to the shortest edge of the of the bounding box defined 
 </section>
 <section id="tiledcomponent">
 <h2>TiledComponent<a class="headerlink" href="#tiledcomponent" title="Permalink to this heading">¶</a></h2>
-<p>Currently we have a very basic implementation of a Tiled component. This API uses the lib
-<a class="reference external" href="https://github.com/flame-engine/tiled.dart">tiled.dart</a> to parse map files and render visible
-layers.</p>
+<p>Tiled is a free and open source, full-featured level and map editor for your platformer or
+RPG game. Currently we have an “in progress” implementation of a Tiled component. This API
+uses the lib <a class="reference external" href="https://github.com/flame-engine/tiled.dart">tiled.dart</a> to parse map files and
+render visible layers using the performant <code class="docutils literal notranslate"><span class="pre">SpriteBatch</span></code> for each layer.</p>
+<p>Supported map types include: Orthogonal, Isometric, Hexagonal, and Staggered.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Orthogonal</p></th>
+<th class="head text-center"><p>Hexagonal</p></th>
+<th class="head text-center"><p>Isomorphic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><img alt="An example of an orthogonal map" src="../_images/orthogonal.png" /></p></td>
+<td class="text-center"><p><img alt="An example of hexagonal map" src="../_images/pointy_hex_even.png" /></p></td>
+<td class="text-center"><p><img alt="An example of isomorphic map" src="../_images/tile_stack_single_move.png" /></p></td>
+</tr>
+</tbody>
+</table>
 <p>An example of how to use the API can be found
 <a class="reference external" href="https://github.com/flame-engine/flame_tiled/tree/main/example">here</a>.</p>
+<section id="tilestack">
+<h3>TileStack<a class="headerlink" href="#tilestack" title="Permalink to this heading">¶</a></h3>
+<p>Once a <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code> is loaded, you can select any column of (x,y) tiles in a <code class="docutils literal notranslate"><span class="pre">tileStack</span></code> to
+then add animation. Removing the stack will not remove the tiles from the map.</p>
+<blockquote>
+<div><p><strong>Note</strong>: This currently only supports position based effects.</p>
+</div></blockquote>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="n">tileMap</span><span class="p">.</span><span class="n">tileStack</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nl">named:</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;floor_under&#39;</span><span class="p">});</span><span class="w"></span>
+<span class="w">    </span><span class="n">stack</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">SequenceEffect</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">Vector2</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">NoiseEffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nl">frequency:</span><span class="w"> </span><span class="m">20</span><span class="p">),</span><span class="w"></span>
+<span class="w">          </span><span class="p">),</span><span class="w"></span>
+<span class="w">          </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">(),</span><span class="w"> </span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">2</span><span class="p">)),</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="p">)..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">stack</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">(),</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">map</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">stack</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="isometrictilemapcomponent">
 <h2>IsometricTileMapComponent<a class="headerlink" href="#isometrictilemapcomponent" title="Permalink to this heading">¶</a></h2>
 <p>This component allows you to render an isometric map based on a cartesian matrix of blocks and an
 isometric tileset.</p>
 <p>A simple example on how to use it:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Creates a tileset, the block ids are automatically assigned sequentially starting at 0,</span><span class="w"></span>
-<span class="c1">// from left to right and then top to bottom.</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Creates a tileset, the block ids are automatically assigned sequentially</span><span class="w"></span>
+<span class="c1">// starting at 0, from left to right and then top to bottom.</span><span class="w"></span>
 <span class="kd">final</span><span class="w"> </span><span class="n">tilesetImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;tileset.png&#39;</span><span class="p">);</span><span class="w"></span>
 <span class="kd">final</span><span class="w"> </span><span class="n">tileset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IsometricTileset</span><span class="p">(</span><span class="n">tilesetImage</span><span class="p">,</span><span class="w"> </span><span class="m">32</span><span class="p">);</span><span class="w"></span>
 <span class="c1">// Each element is a block id, -1 means nothing</span><span class="w"></span>
@@ -1013,6 +1120,24 @@ receives a custom painter and renders it on the game canvas.</p>
 widgets.</p>
 <p>Check the example app
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/custom_painter_example.dart">custom_painter_component</a>
+for details on how to use it.</p>
+</section>
+<section id="clipcomponent">
+<h2>ClipComponent<a class="headerlink" href="#clipcomponent" title="Permalink to this heading">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code> is a component that will clip the canvas to its size and shape. This means that
+if the component itself or any child of the <code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code> renders outside of the
+<code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code>’s boundaries, the part that is not inside the area will not be shown.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code> receives a builder function that should return the <code class="docutils literal notranslate"><span class="pre">Shape</span></code> that will define the
+clipped area, based on its size.</p>
+<p>To make it easier to use that component, there are three factories that offers common shapes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ClipComponent.rectangle</span></code>: Clips the area in the form a rectangle based on its size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ClipComponent.circle</span></code>: Clips the area in the form of a circle based on its size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ClipComponent.polygon</span></code>:  Clips the area in the form of a polygon based on the points received
+in the constructor.</p></li>
+</ul>
+<p>Check the example app
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/components/clip_component_example.dart">clip_component</a>
 for details on how to use it.</p>
 </section>
 <section id="effects">
@@ -1068,6 +1193,7 @@ You can check the list of those effects <a class="reference internal" href="effe
   <a href='#size' class='list-group-item level-2'>Size</a>
   <a href='#scale' class='list-group-item level-2'>Scale</a>
   <a href='#angle' class='list-group-item level-2'>Angle</a>
+  <a href='#native-angle' class='list-group-item level-2'>Native Angle</a>
   <a href='#anchor' class='list-group-item level-2'>Anchor</a>
   <a href='#positioncomponent-children' class='list-group-item level-2'>PositionComponent children</a>
   <a href='#render-positioncomponent' class='list-group-item level-2'>Render PositionComponent</a>
@@ -1083,9 +1209,11 @@ You can check the list of those effects <a class="reference internal" href="effe
   <a href='#rectanglecomponent' class='list-group-item level-2'>RectangleComponent</a>
   <a href='#circlecomponent' class='list-group-item level-2'>CircleComponent</a>
   <a href='#tiledcomponent' class='list-group-item level-1'>TiledComponent</a>
+  <a href='#tilestack' class='list-group-item level-2'>TileStack</a>
   <a href='#isometrictilemapcomponent' class='list-group-item level-1'>IsometricTileMapComponent</a>
   <a href='#ninetileboxcomponent' class='list-group-item level-1'>NineTileBoxComponent</a>
   <a href='#custompaintercomponent' class='list-group-item level-1'>CustomPainterComponent</a>
+  <a href='#clipcomponent' class='list-group-item level-1'>ClipComponent</a>
   <a href='#effects' class='list-group-item level-1'>Effects</a>
 </div>
 

@@ -15,6 +15,7 @@
   <script src="../../_static/underscore.js"></script>
   <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -295,7 +298,8 @@ screen even if the camera for the game moves around. You can also use this compo
 setting <code class="docutils literal notranslate"><span class="pre">hudButtonComponent.respectCamera</span> <span class="pre">=</span> <span class="pre">true;</span></code>.</p>
 <p>If you want to act upon the button being pressed (which would be the common thing to do) and released,
 you can either pass in callback functions as the <code class="docutils literal notranslate"><span class="pre">onPressed</span></code> and <code class="docutils literal notranslate"><span class="pre">onReleased</span></code> arguments, or you can
-extend the component and override <code class="docutils literal notranslate"><span class="pre">onTapDown</span></code>, <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code> and/or <code class="docutils literal notranslate"><span class="pre">onTapCancel</span></code> and implement your logic there.</p>
+extend the component and override <code class="docutils literal notranslate"><span class="pre">onTapDown</span></code>, <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code> and/or <code class="docutils literal notranslate"><span class="pre">onTapCancel</span></code> and implement your
+logic there.</p>
 </section>
 <section id="spritebuttoncomponent">
 <h2>SpriteButtonComponent<a class="headerlink" href="#spritebuttoncomponent" title="Permalink to this heading">¶</a></h2>

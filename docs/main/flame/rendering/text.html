@@ -15,6 +15,7 @@
   <script src="../../_static/underscore.js"></script>
   <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -271,8 +274,11 @@ its bounding box both vertically and horizontally.</p>
 <p>If you want to change the margins of the box use the <code class="docutils literal notranslate"><span class="pre">margins</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>.</p>
 <p>Example usage:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyTextBox</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">TextBoxComponent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">text:</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"> </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">tiny</span><span class="p">,</span><span class="w"> </span><span class="nl">boxConfig:</span><span class="w"> </span><span class="n">TextBoxConfig</span><span class="p">(</span><span class="nl">timePerChar:</span><span class="w"> </span><span class="m">0.05</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">text:</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">tiny</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">boxConfig:</span><span class="w"> </span><span class="n">TextBoxConfig</span><span class="p">(</span><span class="nl">timePerChar:</span><span class="w"> </span><span class="m">0.05</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
 
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">bgPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFF00FF</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">borderPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF000000</span><span class="p">)..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span><span class="w"></span>

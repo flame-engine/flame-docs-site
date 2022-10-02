@@ -15,6 +15,7 @@
   <script src="../../_static/underscore.js"></script>
   <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -198,80 +201,80 @@ of these <code class="docutils literal notranslate"><span class="pre">mixin</spa
 </section>
 <section id="touch-and-mouse-detectors">
 <h2>Touch and mouse detectors<a class="headerlink" href="#touch-and-mouse-detectors" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">TapDetector</span>
-  <span class="o">-</span> <span class="n">onTap</span>
-  <span class="o">-</span> <span class="n">onTapCancel</span>
-  <span class="o">-</span> <span class="n">onTapDown</span>
-  <span class="o">-</span> <span class="n">onLongTapDown</span>
-  <span class="o">-</span> <span class="n">onTapUp</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>- TapDetector
+  - onTap
+  - onTapCancel
+  - onTapDown
+  - onLongTapDown
+  - onTapUp
 
-<span class="o">-</span> <span class="n">SecondaryTapDetector</span>
-  <span class="o">-</span> <span class="n">onSecondaryTapDown</span>
-  <span class="o">-</span> <span class="n">onSecondaryTapUp</span>
-  <span class="o">-</span> <span class="n">onSecondaryTapCancel</span>
+- SecondaryTapDetector
+  - onSecondaryTapDown
+  - onSecondaryTapUp
+  - onSecondaryTapCancel
 
-<span class="o">-</span> <span class="n">TertiaryTapDetector</span>
-  <span class="o">-</span> <span class="n">onTertiaryTapDown</span>
-  <span class="o">-</span> <span class="n">onTertiaryTapUp</span>
-  <span class="o">-</span> <span class="n">onTertiaryTapCancel</span>
+- TertiaryTapDetector
+  - onTertiaryTapDown
+  - onTertiaryTapUp
+  - onTertiaryTapCancel
 
-<span class="o">-</span> <span class="n">DoubleTapDetector</span>
-  <span class="o">-</span> <span class="n">onDoubleTap</span>
+- DoubleTapDetector
+  - onDoubleTap
 
-<span class="o">-</span> <span class="n">LongPressDetector</span>
-  <span class="o">-</span> <span class="n">onLongPress</span>
-  <span class="o">-</span> <span class="n">onLongPressStart</span>
-  <span class="o">-</span> <span class="n">onLongPressMoveUpdate</span>
-  <span class="o">-</span> <span class="n">onLongPressUp</span>
-  <span class="o">-</span> <span class="n">onLongPressEnd</span>
+- LongPressDetector
+  - onLongPress
+  - onLongPressStart
+  - onLongPressMoveUpdate
+  - onLongPressUp
+  - onLongPressEnd
 
-<span class="o">-</span> <span class="n">VerticalDragDetector</span>
-  <span class="o">-</span> <span class="n">onVerticalDragDown</span>
-  <span class="o">-</span> <span class="n">onVerticalDragStart</span>
-  <span class="o">-</span> <span class="n">onVerticalDragUpdate</span>
-  <span class="o">-</span> <span class="n">onVerticalDragEnd</span>
-  <span class="o">-</span> <span class="n">onVerticalDragCancel</span>
+- VerticalDragDetector
+  - onVerticalDragDown
+  - onVerticalDragStart
+  - onVerticalDragUpdate
+  - onVerticalDragEnd
+  - onVerticalDragCancel
 
-<span class="o">-</span> <span class="n">HorizontalDragDetector</span>
-  <span class="o">-</span> <span class="n">onHorizontalDragDown</span>
-  <span class="o">-</span> <span class="n">onHorizontalDragStart</span>
-  <span class="o">-</span> <span class="n">onHorizontalDragUpdate</span>
-  <span class="o">-</span> <span class="n">onHorizontalDragEnd</span>
-  <span class="o">-</span> <span class="n">onHorizontalDragCancel</span>
+- HorizontalDragDetector
+  - onHorizontalDragDown
+  - onHorizontalDragStart
+  - onHorizontalDragUpdate
+  - onHorizontalDragEnd
+  - onHorizontalDragCancel
 
-<span class="o">-</span> <span class="n">ForcePressDetector</span>
-  <span class="o">-</span> <span class="n">onForcePressStart</span>
-  <span class="o">-</span> <span class="n">onForcePressPeak</span>
-  <span class="o">-</span> <span class="n">onForcePressUpdate</span>
-  <span class="o">-</span> <span class="n">onForcePressEnd</span>
+- ForcePressDetector
+  - onForcePressStart
+  - onForcePressPeak
+  - onForcePressUpdate
+  - onForcePressEnd
 
-<span class="o">-</span> <span class="n">PanDetector</span>
-  <span class="o">-</span> <span class="n">onPanDown</span>
-  <span class="o">-</span> <span class="n">onPanStart</span>
-  <span class="o">-</span> <span class="n">onPanUpdate</span>
-  <span class="o">-</span> <span class="n">onPanEnd</span>
-  <span class="o">-</span> <span class="n">onPanCancel</span>
+- PanDetector
+  - onPanDown
+  - onPanStart
+  - onPanUpdate
+  - onPanEnd
+  - onPanCancel
 
-<span class="o">-</span> <span class="n">ScaleDetector</span>
-  <span class="o">-</span> <span class="n">onScaleStart</span>
-  <span class="o">-</span> <span class="n">onScaleUpdate</span>
-  <span class="o">-</span> <span class="n">onScaleEnd</span>
+- ScaleDetector
+  - onScaleStart
+  - onScaleUpdate
+  - onScaleEnd
 
- <span class="o">-</span> <span class="n">MultiTouchTapDetector</span>
-  <span class="o">-</span> <span class="n">onTap</span>
-  <span class="o">-</span> <span class="n">onTapCancel</span>
-  <span class="o">-</span> <span class="n">onTapDown</span>
-  <span class="o">-</span> <span class="n">onTapUp</span>
+ - MultiTouchTapDetector
+  - onTap
+  - onTapCancel
+  - onTapDown
+  - onTapUp
 
- <span class="o">-</span> <span class="n">MultiTouchDragDetector</span>
-  <span class="o">-</span> <span class="n">onReceiveDrag</span>
+ - MultiTouchDragDetector
+  - onReceiveDrag
 </pre></div>
 </div>
 <p>Mouse only events</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">-</span> <span class="n">MouseMovementDetector</span>
-  <span class="o">-</span> <span class="n">onMouseMove</span>
- <span class="o">-</span> <span class="n">ScrollDetector</span>
-  <span class="o">-</span> <span class="n">onScroll</span>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> - MouseMovementDetector
+  - onMouseMove
+ - ScrollDetector
+  - onScroll
 </pre></div>
 </div>
 <p>It is not possible to mix advanced detectors (<code class="docutils literal notranslate"><span class="pre">MultiTouch*</span></code>) with basic detectors of the same
@@ -289,11 +292,11 @@ also read more about Flutter’s gestures
 <h2>PanDetector and ScaleDetector<a class="headerlink" href="#pandetector-and-scaledetector" title="Permalink to this heading">¶</a></h2>
 <p>If you add a <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> together with a <code class="docutils literal notranslate"><span class="pre">ScaleDetector</span></code> you will be prompted with a quite
 cryptic assertion from Flutter that says:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Having</span> <span class="n">both</span> <span class="n">a</span> <span class="n">pan</span> <span class="n">gesture</span> <span class="n">recognizer</span> <span class="ow">and</span> <span class="n">a</span> <span class="n">scale</span> <span class="n">gesture</span> <span class="n">recognizer</span> <span class="ow">is</span> <span class="n">redundant</span><span class="p">;</span> <span class="n">scale</span> <span class="ow">is</span> <span class="n">a</span>
-<span class="n">superset</span> <span class="n">of</span> <span class="n">pan</span><span class="o">.</span>
-
-<span class="n">Just</span> <span class="n">use</span> <span class="n">the</span> <span class="n">scale</span> <span class="n">gesture</span> <span class="n">recognizer</span><span class="o">.</span>
-</pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Having both a pan gesture recognizer and a scale gesture recognizer is
+redundant; scale is a superset of pan.</p>
+<p>Just use the scale gesture recognizer.</p>
 </div>
 <p>This might seem strange, but <code class="docutils literal notranslate"><span class="pre">onScaleUpdate</span></code> is not only triggered when the scale should be changed,
 but for all pan/drag events too. So if you need to use both of those detectors you’ll have to handle
@@ -562,8 +565,8 @@ also be applied to <code class="docutils literal notranslate"><span class="pre">
 <p>Just like the others, this mixin allows for easy wiring of your component to listen to hover states
 and events.</p>
 <p>By adding the <code class="docutils literal notranslate"><span class="pre">HasHoverables</span></code> mixin to your base game, and by using the mixin <code class="docutils literal notranslate"><span class="pre">Hoverable</span></code> on
-your components, they get an <code class="docutils literal notranslate"><span class="pre">isHovered</span></code> field and a couple of methods (<code class="docutils literal notranslate"><span class="pre">onHoverStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onHoverEnd</span></code>) that
-you can override if you want to listen to the events.</p>
+your components, they get an <code class="docutils literal notranslate"><span class="pre">isHovered</span></code> field and a couple of methods (<code class="docutils literal notranslate"><span class="pre">onHoverStart</span></code>,
+<code class="docutils literal notranslate"><span class="pre">onHoverEnd</span></code>) that you can override if you want to listen to the events.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">isHovered</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onHoverEnter</span><span class="p">(</span><span class="n">PointerHoverInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;hover enter&quot;</span><span class="p">);</span><span class="w"></span>

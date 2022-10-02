@@ -15,6 +15,7 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -170,6 +171,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
 </ul>
@@ -231,8 +234,8 @@ to subclass it to your own system. For more information see the
 <a class="reference internal" href="#oxygengame-game-extension"><span class="std std-doc">OxygenGame</span></a>.</p>
 <section id="mixin-gameref">
 <h3>mixin GameRef<a class="headerlink" href="#mixin-gameref" title="Permalink to this heading">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">GameRef</span></code> mixin allows a system to become aware of the <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code> instance its attached to. This
-allows easy access to the methods on the game class.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">GameRef</span></code> mixin allows a system to become aware of the <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code> instance its attached to.
+This allows easy access to the methods on the game class.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">YourSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">GameRef</span><span class="o">&lt;</span><span class="n">YourGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
