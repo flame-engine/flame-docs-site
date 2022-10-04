@@ -15,7 +15,6 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -33,7 +32,7 @@
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
   <link rel="next" title="Camera and Viewport" href="camera_and_viewport.html" />
-  <link rel="prev" title="Collision detection" href="collision_detection.html" />
+  <link rel="prev" title="Collision Detection" href="collision_detection.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -112,7 +111,7 @@
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Effects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera component</a></li>
@@ -332,14 +331,116 @@ target to look east (0º is north, 90º=<a class="reference external" href="http
 <h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.by</span></code><a class="headerlink" href="#scaleeffect-by" title="Permalink to this heading">¶</a></h3>
 <p>This effect will change the target’s scale by the specified amount. For example, this will cause
 the component to grow 50% larger:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1.5</span><span class="p">),</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.3</span><span class="p">));</span><span class="w"></span>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?scale_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-scale_by_effect">
+<div class="filename docutils container">
+scale_by_effect.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/experimental.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kd">class</span><span class="w"> </span><span class="nc">ScaleByEffectGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTappableComponents</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">flower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flower</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="m">60</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">flower</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hold</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">          </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">        </span><span class="n">hold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">reverse</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">          </span><span class="n">flower</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">            </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">              </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1.5</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.3</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">              </span><span class="nl">onComplete:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">          </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">          </span><span class="n">flower</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">            </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">              </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">1.5</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">31</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.3</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">32</span><span class="w">              </span><span class="nl">onComplete:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">34</span><span class="w">          </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">35</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">36</span><span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="linenos">37</span><span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">38</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">flower</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">39</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">40</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-scale_by_effect&quot;)">Code</button></div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1.5</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.3</span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="scaleeffect-to">
 <h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.to</span></code><a class="headerlink" href="#scaleeffect-to" title="Permalink to this heading">¶</a></h3>
 <p>This effect works similar to <code class="docutils literal notranslate"><span class="pre">ScaleEffect.by</span></code>, but sets the absolute value of the target’s scale.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">(),</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.5</span><span class="p">));</span><span class="w"></span>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?scale_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-scale_to_effect">
+<div class="filename docutils container">
+scale_to_effect.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/experimental.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kd">class</span><span class="w"> </span><span class="nc">ScaleToEffectGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTappableComponents</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">flower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flower</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="m">60</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">flower</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hold</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">          </span><span class="k">return</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">        </span><span class="n">hold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reverse</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">reverse</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">          </span><span class="n">flower</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">            </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">              </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">0.5</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">              </span><span class="nl">onComplete:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">          </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">          </span><span class="n">flower</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">            </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">              </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">31</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">32</span><span class="w">              </span><span class="nl">onComplete:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">hold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">34</span><span class="w">          </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">35</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">36</span><span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="linenos">37</span><span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">38</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">flower</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">39</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">40</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-scale_to_effect&quot;)">Code</button></div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">0.5</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -371,7 +472,51 @@ target component and its children.</p>
 <h3><code class="docutils literal notranslate"><span class="pre">AnchorByEffect</span></code><a class="headerlink" href="#anchorbyeffect" title="Permalink to this heading">¶</a></h3>
 <p>Changes the location of the target’s anchor by the specified offset. This effect can also be created
 using <code class="docutils literal notranslate"><span class="pre">AnchorEffect.by()</span></code>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnchorByEffect</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">),</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">));</span><span class="w"></span>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?anchor_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor_by_effect">
+<div class="filename docutils container">
+anchor_by_effect.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/experimental.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kd">class</span><span class="w"> </span><span class="nc">AnchorByEffectGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTappableComponents</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">flower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flower</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="m">60</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">flower</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">reset</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">          </span><span class="n">flower</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">            </span><span class="n">AnchorByEffect</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">              </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">          </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">          </span><span class="n">flower</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">            </span><span class="n">AnchorByEffect</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">              </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">0.5</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">          </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">31</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">flower</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">32</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">33</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-anchor_by_effect&quot;)">Code</button></div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnchorByEffect</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">),</span><span class="w"> </span>
+<span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -379,7 +524,51 @@ using <code class="docutils literal notranslate"><span class="pre">AnchorEffect.
 <h3><code class="docutils literal notranslate"><span class="pre">AnchorToEffect</span></code><a class="headerlink" href="#anchortoeffect" title="Permalink to this heading">¶</a></h3>
 <p>Changes the location of the target’s anchor. This effect can also be created using
 <code class="docutils literal notranslate"><span class="pre">AnchorEffect.to()</span></code>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnchorToEffect</span><span class="p">(</span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">));</span><span class="w"></span>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?anchor_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor_to_effect">
+<div class="filename docutils container">
+anchor_to_effect.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/experimental.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 6</span>
+<span class="linenos"> 7</span><span class="kd">class</span><span class="w"> </span><span class="nc">AnchorToEffectGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTappableComponents</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">flower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flower</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="m">60</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">flower</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">flower</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">          </span><span class="n">flower</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">            </span><span class="n">AnchorToEffect</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">              </span><span class="n">Anchor</span><span class="p">.</span><span class="n">bottomLeft</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">          </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">          </span><span class="n">flower</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">            </span><span class="n">AnchorToEffect</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">              </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">          </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">31</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">flower</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">32</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">33</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-anchor_to_effect&quot;)">Code</button></div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnchorToEffect</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -694,7 +883,7 @@ by the standard alternating <code class="docutils literal notranslate"><span cla
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Collision detection</p>
+          <p class="prev-next-title">Collision Detection</p>
         </div>
       </a>
       <div class='expander'></div>

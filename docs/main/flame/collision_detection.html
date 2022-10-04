@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Collision detection &#8212; Flame</title>
+  <title>Collision Detection &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
@@ -15,7 +15,6 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -112,7 +111,7 @@
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Collision detection</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera component</a></li>
@@ -186,7 +185,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="collision-detection">
-<h1>Collision detection<a class="headerlink" href="#collision-detection" title="Permalink to this heading">¶</a></h1>
+<h1>Collision Detection<a class="headerlink" href="#collision-detection" title="Permalink to this heading">¶</a></h1>
 <p>Collision detection is needed in most games to detect and act upon two components intersecting each
 other. For example an arrow hitting an enemy or the player picking up a coin.</p>
 <p>In most collision detection systems you use something called hitboxes to create more precise
@@ -223,6 +222,88 @@ automatically be checked for collisions.</p>
 <h3>CollisionCallbacks<a class="headerlink" href="#collisioncallbacks" title="Permalink to this heading">¶</a></h3>
 <p>To react to a collision you should add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to your component.
 Example:</p>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?collision_detection" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-collision_detection">
+<div class="filename docutils container">
+collision_detection.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/experimental.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="w"> </span><span class="k">hide</span><span class="w"> </span><span class="n">Image</span><span class="p">,</span><span class="w"> </span><span class="n">Draggable</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="kd">class</span><span class="w"> </span><span class="nc">CollisionDetectionGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="p">,</span><span class="w"> </span><span class="n">HasTappableComponents</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">emberPlayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">20</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">40</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">emberPlayer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">        </span><span class="n">emberPlayer</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">          </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">            </span><span class="n">Vector2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">20</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">            </span><span class="n">EffectController</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">              </span><span class="nl">duration:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">              </span><span class="nl">reverseDuration:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">              </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">              </span><span class="nl">curve:</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOut</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">          </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">        </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">emberPlayer</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">31</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RectangleCollidable</span><span class="p">(</span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">));</span><span class="w"></span>
+<span class="linenos">32</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">33</span><span class="p">}</span><span class="w"></span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="kd">class</span><span class="w"> </span><span class="nc">RectangleCollidable</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">36</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">_collisionStartColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">amber</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">37</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">_defaultColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">cyan</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">38</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">ShapeHitbox</span><span class="w"> </span><span class="n">hitbox</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="w">  </span><span class="n">RectangleCollidable</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">position</span><span class="p">)</span><span class="w"></span>
+<span class="linenos">41</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">42</span><span class="w">          </span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">43</span><span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">50</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">44</span><span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">45</span><span class="w">        </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">46</span>
+<span class="linenos">47</span><span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="linenos">48</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">49</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">defaultPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">50</span><span class="w">      </span><span class="p">..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_defaultColor</span><span class="w"></span>
+<span class="linenos">51</span><span class="w">      </span><span class="p">..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">52</span><span class="w">    </span><span class="n">hitbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RectangleHitbox</span><span class="p">()</span><span class="w"></span>
+<span class="linenos">53</span><span class="w">      </span><span class="p">..</span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">defaultPaint</span><span class="w"></span>
+<span class="linenos">54</span><span class="w">      </span><span class="p">..</span><span class="n">renderShape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">55</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">hitbox</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">56</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">57</span>
+<span class="linenos">58</span><span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="linenos">59</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">60</span><span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">61</span><span class="w">    </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">62</span><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">63</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionStart</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">64</span><span class="w">    </span><span class="n">hitbox</span><span class="p">.</span><span class="n">paint</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_collisionStartColor</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">65</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">66</span>
+<span class="linenos">67</span><span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="linenos">68</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">69</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">other</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">70</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isColliding</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">71</span><span class="w">      </span><span class="n">hitbox</span><span class="p">.</span><span class="n">paint</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_defaultColor</span><span class="p">;</span><span class="w"></span>
+<span class="linenos">72</span><span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">73</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">74</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-collision_detection&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCollidable</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>

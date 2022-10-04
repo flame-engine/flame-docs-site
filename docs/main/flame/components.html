@@ -15,7 +15,6 @@
   <script src="../_static/underscore.js"></script>
   <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -112,7 +111,7 @@
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game loop</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera component</a></li>
@@ -372,7 +371,7 @@ for example <code class="docutils literal notranslate"><span class="pre">Positio
 <p>When you have child components on a component every time the parent is updated and rendered, all the
 children are rendered and updated with the same conditions.</p>
 <p>Example of usage, where visibility of two components are handled by a wrapper:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">GameOverPanel</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">GameOverPanel</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Image</span><span class="w"> </span><span class="n">spriteImage</span><span class="p">;</span><span class="w"></span>
 
@@ -661,10 +660,10 @@ created with a <code class="docutils literal notranslate"><span class="pre">Spri
 
 <span class="w">    </span><span class="c1">// Vector2(0.0, 0.0) by default, can also be set in the constructor</span><span class="w"></span>
 <span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span>
+
 <span class="w">    </span><span class="c1">// 0 by default, can also be set in the constructor</span><span class="w"></span>
 <span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span>
+
 <span class="w">    </span><span class="c1">// Adds the component</span><span class="w"></span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
@@ -929,7 +928,7 @@ you then pass in to the <code class="docutils literal notranslate"><span class="
 <p>Advanced example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">images</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
 <span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="s1">&#39;stars.jpg&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="s1">&#39;stars.jpg&#39;</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">width</span><span class="p">,</span><span class="w"></span>

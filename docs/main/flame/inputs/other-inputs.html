@@ -15,7 +15,6 @@
   <script src="../../_static/underscore.js"></script>
   <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -112,7 +111,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../game.html">Game loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../collision_detection.html">Collision detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../effects.html">Effects</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../camera_component.html">Camera component</a></li>
@@ -235,28 +234,25 @@ add it to your game.</p>
 <span class="p">}</span><span class="w"></span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">JoystickPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">JoystickPlayer</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">joystick</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100.0</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="p">);</span><span class="w"></span>
+
 <span class="w">  </span><span class="c1">/// Pixels/s</span><span class="w"></span>
 <span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">maxSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">300.0</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">JoystickComponent</span><span class="w"> </span><span class="n">joystick</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">  </span><span class="n">JoystickPlayer</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">joystick</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="w"></span>
-<span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100.0</span><span class="p">),</span><span class="w"></span>
-<span class="w">        </span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span><span class="w"></span>
 <span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;layers/player.png&#39;</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">direction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">JoystickDirection</span><span class="p">.</span><span class="n">idle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">      </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">maxSpeed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
 <span class="w">      </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">screenAngle</span><span class="p">();</span><span class="w"></span>
