@@ -70,8 +70,7 @@
 
   <a href="../index.html" class="logo_image">
     <img src="../_static/logo_flame.png">
-  </a>
-
+  </a>  
   <div class="highlight-box" role="alert" style="display:none">
     <div>
       <div class="title">highlighted:</div>
@@ -172,6 +171,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/latest/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
 </ul>
@@ -317,6 +321,10 @@ you should not initialize <code class="docutils literal notranslate"><span class
 throughout the component’s lifetime. This method will only run if the parent is already mounted.
 If the parent is not mounted yet, then this method will wait in a queue (this will have no effect
 on the rest of the game engine).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">onChildrenChanged</span></code> method can be overridden if it’s needed to detect changes in a parent’s
+children. This method is called whenever a child is added to or removed from a parent (this includes
+if a child is changing its parent). Its parameters contain the targeting child and the type of
+change it went through (<code class="docutils literal notranslate"><span class="pre">added</span></code> or <code class="docutils literal notranslate"><span class="pre">removed</span></code>).</p>
 <p>A component lifecycle state can be checked by a series of getters:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">isLoaded</span></code>: Returns a bool with the current loaded state</p></li>

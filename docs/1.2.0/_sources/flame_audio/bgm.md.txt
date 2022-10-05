@@ -12,7 +12,7 @@ so you first have to add that to your dependency list in your `pubspec.yaml` fil
 
 ```yaml
 dependencies:
-  flame_audio: 1.2.0
+  flame_audio: <VERSION>
 ```
 
 The latest version can be found on [pub.dev](https://pub.dev/packages/flame_audio/install).

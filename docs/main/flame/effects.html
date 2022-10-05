@@ -70,8 +70,7 @@
 
   <a href="../index.html" class="logo_image">
     <img src="../_static/logo_flame.png">
-  </a>
-
+  </a>  
   <div class="highlight-box" role="alert" style="display:none">
     <div>
       <div class="title">highlighted:</div>
@@ -172,6 +171,11 @@
 <li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/latest/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
 </ul>
@@ -590,10 +594,71 @@ animate the target into full transparency / full visibility respectively.</p>
 may have different types.</p>
 <p>The sequence effect can also be alternating (the sequence will first run forward, and then
 backward); and also repeat a certain predetermined number of times, or infinitely.</p>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?sequence_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-sequence_effect">
+<div class="filename docutils container">
+sequence_effect.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/experimental.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kd">class</span><span class="w"> </span><span class="nc">SequenceEffectGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTappableComponents</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">flower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flower</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">10</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="m">40</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">11</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"></span>
+<span class="linenos">12</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">flower</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="linenos">13</span><span class="w">        </span><span class="n">flower</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">14</span><span class="w">          </span><span class="n">SequenceEffect</span><span class="p">([</span><span class="w"></span>
+<span class="linenos">15</span><span class="w">            </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">16</span><span class="w">              </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1.5</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">17</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="nl">alternate:</span><span class="w"> </span><span class="kc">true</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">18</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">19</span><span class="w">            </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">20</span><span class="w">              </span><span class="n">Vector2</span><span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">50</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">21</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">22</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">23</span><span class="w">            </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">24</span><span class="w">              </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">25</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">26</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">27</span><span class="w">            </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
+<span class="linenos">28</span><span class="w">              </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(.</span><span class="m">75</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">29</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="nl">alternate:</span><span class="w"> </span><span class="kc">true</span><span class="p">),</span><span class="w"></span>
+<span class="linenos">30</span><span class="w">            </span><span class="p">),</span><span class="w"></span>
+<span class="linenos">31</span><span class="w">          </span><span class="p">]),</span><span class="w"></span>
+<span class="linenos">32</span><span class="w">        </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">33</span><span class="w">      </span><span class="p">},</span><span class="w"></span>
+<span class="linenos">34</span><span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="linenos">35</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">flower</span><span class="p">);</span><span class="w"></span>
+<span class="linenos">36</span><span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="linenos">37</span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-sequence_effect&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SequenceEffect</span><span class="p">([</span><span class="w"></span>
-<span class="w">  </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span><span class="nl">alternate:</span><span class="w"> </span><span class="kc">true</span><span class="p">)),</span><span class="w"></span>
-<span class="w">  </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">50</span><span class="p">),</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.5</span><span class="p">)),</span><span class="w"></span>
-<span class="w">  </span><span class="n">OpacityEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.3</span><span class="p">)),</span><span class="w"></span>
+<span class="w">  </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1.5</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">EffectController</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="nl">alternate:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2</span><span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">50</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">EffectController</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">OpacityEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="m">0</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="n">EffectController</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
 <span class="w">  </span><span class="n">RemoveEffect</span><span class="p">(),</span><span class="w"></span>
 <span class="p">]);</span><span class="w"></span>
 </pre></div>

@@ -70,8 +70,7 @@
 
   <a href="../index.html" class="logo_image">
     <img src="../_static/logo_flame.png">
-  </a>
-
+  </a>  
   <div class="highlight-box" role="alert" style="display:none">
     <div>
       <div class="title">highlighted:</div>
@@ -174,6 +173,11 @@
 <li class="toctree-l2"><a class="reference internal" href="testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/latest/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
+</ul>
+</li>
 </ul>
 
     </div>
@@ -198,6 +202,14 @@ section will focus on the Markdown extensions that are enabled in our build syst
 <h3>Table of contents<a class="headerlink" href="#table-of-contents" title="Permalink to this heading">¶</a></h3>
 <p>The table of contents for the site must be created manually. This is done using special <code class="docutils literal notranslate"><span class="pre">{toctree}</span></code>
 blocks, one per each subdirectory:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{toctree}
+:hidden:
+
+First Topic    &lt;topic1.md&gt;
+Second Topic   &lt;topic2.md&gt;
+```
+</pre></div>
+</div>
 <p>When adding new documents into the documentation site, make sure that they are mentioned in one of
 the toctrees – otherwise you will see a warning during the build that the document is orphaned.</p>
 </section>
@@ -205,6 +217,20 @@ the toctrees – otherwise you will see a warning during the build that the docu
 <h3>Admonitions<a class="headerlink" href="#admonitions" title="Permalink to this heading">¶</a></h3>
 <p>Admonitions are emphasized blocks of text with a distinct appearance. They are created using the
 triple-backticks syntax:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{note}
+Please note this very important caveat.
+<span class="sb">```</span>
+<span class="sb">```{warning}</span>
+<span class="sb">Don&#39;t look down, or you will encounter an error.</span>
+<span class="sb">```</span>
+```{error}
+I told you so.
+<span class="sb">```</span>
+<span class="sb">```{seealso}</span>
+<span class="sb">Also check out this cool thingy.</span>
+<span class="sb">```</span>
+</pre></div>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Please note this very important caveat.</p>
@@ -226,6 +252,12 @@ triple-backticks syntax:</p>
 <h3>Deprecations<a class="headerlink" href="#deprecations" title="Permalink to this heading">¶</a></h3>
 <p>The special <code class="docutils literal notranslate"><span class="pre">{deprecated}</span></code> block can be used to mark some part of documentation or syntax as being
 deprecated. This block requires specifying the version when the deprecation has occurred</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{deprecated} v1.3.0
+
+Please use this <span class="gs">**other**</span> thing instead.
+```
+</pre></div>
+</div>
 <p>Which would be rendered like this:</p>
 <div class="deprecated">
 <p><span class="versionmodified deprecated">Deprecated since version v1.3.0: </span>Please use this <strong>other</strong> thing instead.</p>
@@ -236,6 +268,13 @@ deprecated. This block requires specifying the version when the deprecation has 
 <p>Our documentation site includes a custom-built <strong>flutter-app</strong> directive which allows creating
 Flutter widgets and embedding them alongside with the overall documentation content.</p>
 <p>In Markdown, the code for inserting an embed looks like this:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>```{flutter-app}
+:sources: ../flame/examples
+:page: tap_events
+:show: widget code popup
+```
+</pre></div>
+</div>
 <p>Here’s what the different options mean:</p>
 <ul>
 <li><p><strong>sources</strong>: specifies the name of the root directory where the Flutter code that you wish to run
@@ -440,10 +479,11 @@ is to either run <strong>melos doc-build-live</strong> or run your own local htt
 <p>Then you can open the site at <code class="docutils literal notranslate"><span class="pre">http://localhost:8000/</span></code>.</p>
 <p>If you ever run the <strong>melos doc-clean</strong> or the <strong>make clean</strong> command, the server will need to be
 restarted, because the clean command deletes the entire <code class="docutils literal notranslate"><span class="pre">html</span></code> directory.</p>
-<div class="highlight-note notranslate"><div class="highlight"><pre><span></span>Avoid having spaces in the paths to the docs since that will keep you from
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Avoid having spaces in the paths to the docs since that will keep you from
 building the project due to
-[this bug](https://github.com/ipython/ipython/pull/13765).
-</pre></div>
+<a class="reference external" href="https://github.com/ipython/ipython/pull/13765">this bug</a>.</p>
 </div>
 </section>
 </section>
