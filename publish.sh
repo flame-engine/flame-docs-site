@@ -71,8 +71,11 @@ function pre_process {
     find . -name "resources.md" -exec sed -i "s/--VERSION--/latest/" {} \;
     find . -name "*.md" -exec sed -i "/--VERSION--.*/a $output" {} \;
     find . -name "*.md" -exec sed -i "s/ --VERSION--//" {} \;
+    find . -name "*.md" -exec sed -i "/<VERSION>.*/a $output" {} \;
+    find . -name "*.md" -exec sed -i "s/ <VERSION>//" {} \;
   else
     find . -name "*.md" -exec sed -i "s/--VERSION--/$version/" {} \;
+    find . -name "*.md" -exec sed -i "s/<VERSION>/$version/" {} \;
   fi
   cd _sphinx
 }
