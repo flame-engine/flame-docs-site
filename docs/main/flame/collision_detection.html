@@ -168,6 +168,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/contributing.html">Contributing</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
@@ -556,6 +557,9 @@ a single ray and gets back a result with information about what and where the ra
 extra information like the distance, the normal and the reflection ray. The second one, <code class="docutils literal notranslate"><span class="pre">raycastAll</span></code>,
 works similarly but sends out multiple rays uniformly around the origin, or within an angle
 centered at the origin.</p>
+<p>By default, <code class="docutils literal notranslate"><span class="pre">raycast</span></code> and <code class="docutils literal notranslate"><span class="pre">raycastAll</span></code> scan for the nearest hit irrespective of how far it lies from
+the ray origin. But in some use cases, it might be interesting to find hits only within a certain
+range. For such cases, an optional <code class="docutils literal notranslate"><span class="pre">maxDistance</span></code> can be provided.</p>
 <p>To use the ray casting functionality you have to have the <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> mixin on your
 game. After you have added that you can call <code class="docutils literal notranslate"><span class="pre">collisionDetection.raycast(...)</span></code> on your game class.</p>
 <p>Example:</p>
