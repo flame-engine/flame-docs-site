@@ -149,6 +149,10 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame_forge2d/forge2d.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../flame_tiled/flame_tiled.html">flame_tiled</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../flame_tiled/layers.html">Layers</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
@@ -452,8 +456,8 @@ following:</p>
 </ul>
 </li>
 </ol>
-<p>Once these prerequisites are met, you can build the documentation by switching to the <code class="docutils literal notranslate"><span class="pre">doc/_sphinx</span></code>
-directory and running <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code>, or use the built-in Melos target:</p>
+<p>Once these prerequisites are met, you can build the documentation by using the built-in Melos
+target:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">melos doc-build</span>
 </pre></div>
 </div>
@@ -462,8 +466,15 @@ be re-run every time you make changes to any of the documents. Luckily, it is sm
 rebuild the documents that have changed since the previous run, so usually a rebuild takes only
 a second or two.</p>
 <p>If you want to automatically recompile the docs every time there is a change to one of the files
-you can use the <strong>melos doc-build-live</strong> command, which will also serve and open your default
+you can use the the built-in Melos target below, which will also serve and open your default
 browser with the docs.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">melos doc-serve</span>
+</pre></div>
+</div>
+<p>When using the <strong>melos doc-serve</strong> command, the <strong>melos doc-build</strong> is only needed when
+there are changes to the sphinx theme. This is because the serve command both automatically
+compiles the docs on changes and also hosts them locally. The docs are served at
+<code class="docutils literal notranslate"><span class="pre">http://localhost:8000/</span></code> by default.</p>
 <p>There are other make commands that you may find occasionally useful too:</p>
 <ul class="simple">
 <li><p><strong>melos doc-clean</strong> removes all cached generated files (in case the system gets stuck in a bad
@@ -473,13 +484,9 @@ state).</p></li>
 <p>The generated html files will be in the <code class="docutils literal notranslate"><span class="pre">doc/_build/html</span></code> directory, you can view them directly
 by opening the file <code class="docutils literal notranslate"><span class="pre">doc/_build/html/index.html</span></code> in your browser. The only drawback is that the
 browser won’t allow any dynamic content in a file opened from a local drive. The solution to this
-is to either run <strong>melos doc-build-live</strong> or run your own local http server:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -m http.server 8000 --directory doc/_build/html</span>
-</pre></div>
-</div>
-<p>Then you can open the site at <code class="docutils literal notranslate"><span class="pre">http://localhost:8000/</span></code>.</p>
-<p>If you ever run the <strong>melos doc-clean</strong> or the <strong>make clean</strong> command, the server will need to be
-restarted, because the clean command deletes the entire <code class="docutils literal notranslate"><span class="pre">html</span></code> directory.</p>
+is to run <strong>melos doc-serve</strong>.</p>
+<p>If you ever run the <strong>melos doc-clean</strong> command, the server will need to be restarted, because the
+clean command deletes the entire <code class="docutils literal notranslate"><span class="pre">html</span></code> directory.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Avoid having spaces in the paths to the docs since that will keep you from

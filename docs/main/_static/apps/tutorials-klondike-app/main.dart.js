@@ -24657,10 +24657,16 @@ A.Bv.prototype={
 $1(a){if(a.a===this.a.c)return!0
 return!1},
 $S:122}
-A.A2.prototype={}
-A.ov.prototype={}
-A.A3.prototype={}
-A.A4.prototype={}
+A.A2.prototype={
+i(a){return"DragCancelEvent(pointerId: "+this.c+")"}}
+A.ov.prototype={
+i(a){return"DragEndEvent(pointerId: "+this.c+", velocity: "+this.d.i(0)+")"}}
+A.A3.prototype={
+i(a){var s=this
+return"DragStartEvent(canvasPosition: "+s.c.i(0)+", devicePosition: "+s.d.i(0)+", pointedId: "+s.w+", deviceKind: "+s.x.i(0)+")"}}
+A.A4.prototype={
+i(a){var s=this
+return"DragUpdateEvent(devicePosition: "+s.d.i(0)+", canvasPosition: "+s.c.i(0)+", delta: "+s.y.i(0)+", pointerId: "+s.w+", timestamp: "+s.x.i(0)+")"}}
 A.AC.prototype={}
 A.E7.prototype={
 iD(a,b,c,d){var s,r,q,p=this
@@ -24670,9 +24676,14 @@ b.$1(q)
 if(!p.b){B.b.B($.i2)
 break}}},
 rh(a,b,c){return this.iD(!1,a,b,c)}}
-A.rz.prototype={}
-A.HM.prototype={}
-A.HN.prototype={}
+A.rz.prototype={
+i(a){return"TapCancelEvent(pointerId: "+this.c+")"}}
+A.HM.prototype={
+i(a){var s=this
+return"TapDownEvent(canvasPosition: "+s.c.i(0)+", devicePosition: "+s.d.i(0)+", pointerId: "+s.w+", deviceKind: "+s.x.i(0)+")"}}
+A.HN.prototype={
+i(a){var s=this
+return"TapUpEvent(canvasPosition: "+s.c.i(0)+", devicePosition: "+s.d.i(0)+", pointerId: "+s.w+", deviceKind: "+s.x.i(0)+")"}}
 A.cJ.prototype={
 gt(a){return A.ak(this.a,this.b,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a,B.a)},
 n(a,b){if(b==null)return!1

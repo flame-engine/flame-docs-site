@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Resources &#8212; Flame</title>
+  <title>Layers &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
@@ -31,7 +31,8 @@
   <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="prev" title="Writing tests" href="../development/testing_guide.html" />
+  <link rel="next" title="Tutorials" href="../tutorials/tutorials.html" />
+  <link rel="prev" title="flame_tiled" href="flame_tiled.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -148,8 +149,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame_forge2d/forge2d.html">Overview</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../flame_tiled/flame_tiled.html">flame_tiled</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../flame_tiled/layers.html">Layers</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="flame_tiled.html">flame_tiled</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Layers</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
@@ -177,7 +178,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Resources</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
 <li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/latest/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
@@ -192,14 +193,67 @@
   <div class="document-wrapper">
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="resources">
-<h1>Resources<a class="headerlink" href="#resources" title="Permalink to this heading">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference external" href="https://pub.dev/documentation/flame/latest/">Flame API</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
-</ul>
+  <section class="tex2jax_ignore mathjax_ignore" id="layers">
+<h1>Layers<a class="headerlink" href="#layers" title="Permalink to this heading">¶</a></h1>
+<p>At its simplest, layers can be retrieved from a Tilemap by invoking:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">getLayer</span><span class="o">&lt;</span><span class="n">ObjectGroup</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myObjectGroupLayer&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">getLayer</span><span class="o">&lt;</span><span class="n">ImageLayer</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myImageLayer&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">getLayer</span><span class="o">&lt;</span><span class="n">TileLayer</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myTileLayer&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="n">getLayer</span><span class="o">&lt;</span><span class="n">Group</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myGroupLayer&quot;</span><span class="p">);</span><span class="w"></span>
+</pre></div>
 </div>
+<p>These methods will either return the requested layer type or null if it does not exist.</p>
+<section id="layer-properties">
+<h2>Layer properties<a class="headerlink" href="#layer-properties" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Property</p></th>
+<th class="head"><p>Supported?</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Visible</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p>Opacity</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p>Tint color</p></td>
+<td><p>❌</p></td>
+</tr>
+<tr class="row-odd"><td><p>Horizontal offset</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p>Horizontal offset</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-odd"><td><p>Parallax Factor</p></td>
+<td><p>✅</p></td>
+</tr>
+<tr class="row-even"><td><p>Custom properties</p></td>
+<td><p>✅</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="tiles-properties">
+<h2>Tiles properties<a class="headerlink" href="#tiles-properties" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Tiles can have custom properties accessible at <code class="docutils literal notranslate"><span class="pre">tile.properties</span></code>.</p></li>
+<li><p>Tiles can have a custom <code class="docutils literal notranslate"><span class="pre">type</span></code> (or <code class="docutils literal notranslate"><span class="pre">class</span></code> starting in Tiled v1.9) accessible at <code class="docutils literal notranslate"><span class="pre">tile.type</span></code>.</p></li>
+</ul>
+</section>
+<section id="other-features">
+<h2>Other features<a class="headerlink" href="#other-features" title="Permalink to this heading">¶</a></h2>
+<p>Other advanced features are not yet supported, but you can easily read the objects and other
+features of the TMX and add custom behavior (eg regions for triggers and walking areas, custom
+animated objects).</p>
+</section>
+<section id="full-example">
+<h2>Full Example<a class="headerlink" href="#full-example" title="Permalink to this heading">¶</a></h2>
+<p>You can check a working example
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_tiled/example">here</a>.</p>
+</section>
 </section>
 
 
@@ -209,14 +263,21 @@
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="../development/testing_guide.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="flame_tiled.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Writing tests</p>
+          <p class="prev-next-title">flame_tiled</p>
         </div>
       </a>
       <div class='expander'></div>
+      <a class="right-next" id="next-link" href="../tutorials/tutorials.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">Tutorials</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
     </div>
   </div>
 
@@ -225,6 +286,10 @@
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#layer-properties' class='list-group-item level-1'>Layer properties</a>
+  <a href='#tiles-properties' class='list-group-item level-1'>Tiles properties</a>
+  <a href='#other-features' class='list-group-item level-1'>Other features</a>
+  <a href='#full-example' class='list-group-item level-1'>Full Example</a>
 </div>
 
     </div>
