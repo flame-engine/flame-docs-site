@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -162,7 +163,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../flame_rive/flame_rive.html">flame_rive</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../flame_rive/flame_rive.html">flame_rive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_rive/rive.html">Overview</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_splash_screen/flame_splash_screen.html">flame_splash_screen</a></li>
@@ -192,6 +194,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step3.html">3. Cards</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step4.html">4. Gameplay</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/tbc.html">[To be continued]...</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/platformer/platformer.html">Ember Quest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_2.html">2. Start Coding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_3.html">3. Building the World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_4.html">4. Adding the Remaining Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
 </ul>
 </li>
 </ul>
@@ -230,36 +242,16 @@
 <p>These methods will either return the requested layer type or null if it does not exist.</p>
 <section id="layer-properties">
 <h2>Layer properties<a class="headerlink" href="#layer-properties" title="Permalink to this heading">¶</a></h2>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Property</p></th>
-<th class="head"><p>Supported?</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Visible</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p>Opacity</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p>Tint color</p></td>
-<td><p>❌</p></td>
-</tr>
-<tr class="row-odd"><td><p>Horizontal offset</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p>Horizontal offset</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-odd"><td><p>Parallax Factor</p></td>
-<td><p>✅</p></td>
-</tr>
-<tr class="row-even"><td><p>Custom properties</p></td>
-<td><p>✅</p></td>
-</tr>
-</tbody>
-</table>
+<p>The following Tiled properties are supported:</p>
+<ul class="contains-task-list simple">
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Visible</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Opacity</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" disabled="disabled" type="checkbox"> Tint color</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Horizontal offset</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Vertical offset</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Parallax factor</p></li>
+<li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Custom properties</p></li>
+</ul>
 </section>
 <section id="tiles-properties">
 <h2>Tiles properties<a class="headerlink" href="#tiles-properties" title="Permalink to this heading">¶</a></h2>

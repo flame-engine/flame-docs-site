@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
   <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -162,7 +163,8 @@
 <li class="toctree-l2"><a class="reference internal" href="flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="flame_rive/flame_rive.html">flame_rive</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="flame_rive/flame_rive.html">flame_rive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flame_rive/rive.html">Overview</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="flame_splash_screen/flame_splash_screen.html">flame_splash_screen</a></li>
@@ -194,6 +196,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/tbc.html">[To be continued]...</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/platformer/platformer.html">Ember Quest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_2.html">2. Start Coding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_3.html">3. Building the World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_4.html">4. Adding the Remaining Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
@@ -220,27 +232,60 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="bridge-packages">
 <h1>Bridge Packages<a class="headerlink" href="#bridge-packages" title="Permalink to this heading">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="flame_audio/flame_audio.html"><span class="doc std std-doc">flame_audio</span></a> for
-<a class="reference external" href="https://github.com/bluefireteam/audioplayers">AudioPlayers</a>: Play multiple audio files
-simultaneously.</p></li>
-<li><p><a class="reference internal" href="flame_bloc/flame_bloc.html"><span class="doc std std-doc">flame_bloc</span></a> for
-<a class="reference external" href="https://github.com/felangel/bloc">Bloc</a>: A predictable state management library.</p></li>
-<li><p><a class="reference internal" href="flame_fire_atlas/flame_fire_atlas.html"><span class="doc std std-doc">flame_fire_atlas</span></a> for
-<a class="reference external" href="https://github.com/flame-engine/fire-atlas">FireAtlas</a>: Create texture atlases for games.</p></li>
-<li><p><a class="reference internal" href="flame_forge2d/flame_forge2d.html"><span class="doc std std-doc">flame_forge2d</span></a> for
-<a class="reference external" href="https://github.com/flame-engine/forge2d">Forge2D</a>: A Box2D physics engine.</p></li>
-<li><p><a class="reference internal" href="flame_oxygen/flame_oxygen.html"><span class="doc std std-doc">flame_oxygen</span></a>: Replace FCS with the Oxygen Entity Component
-System.</p></li>
-<li><p><a class="reference internal" href="flame_rive/flame_rive.html"><span class="doc std std-doc">flame_rive</span></a> for
-<a class="reference external" href="https://rive.app/">Rive</a>: Create interactive animations.</p></li>
-<li><p><a class="reference internal" href="flame_splash_screen/flame_splash_screen.html"><span class="doc std std-doc">flame_splash_screen</span></a> - Add the “Powered by
-Flame” splash screen.</p></li>
-<li><p><a class="reference internal" href="flame_svg/flame_svg.html"><span class="doc std std-doc">flame_svg</span></a> for
-<a class="reference external" href="https://github.com/dnfield/flutter_svg">flutter_svg</a>: Draw SVG files in Flutter.</p></li>
-<li><p><a class="reference internal" href="flame_tiled/flame_tiled.html"><span class="doc std std-doc">flame_tiled</span></a> for
-<a class="reference external" href="https://www.mapeditor.org/">Tiled</a>: 2D tilemap level editor.</p></li>
-</ul>
+<div class="package docutils container">
+<p><a class="reference internal" href="flame_audio/flame_audio.html"><span class="doc std std-doc">flame_audio</span></a></p>
+<div class="docutils container">
+<p>Play multiple audio files simultaneously (bridge package for <a class="reference external" href="https://github.com/bluefireteam/audioplayers">AudioPlayers</a>).</p>
+</div>
+</div>
+<div class="package docutils container">
+<p><a class="reference internal" href="flame_bloc/flame_bloc.html"><span class="doc std std-doc">flame_bloc</span></a></p>
+<div class="docutils container">
+<p>A predictable state management library (bridge package for <a class="reference external" href="https://github.com/felangel/bloc">Bloc</a>).</p>
+</div>
+</div>
+<div class="package docutils container">
+<p><a class="reference internal" href="flame_fire_atlas/flame_fire_atlas.html"><span class="doc std std-doc">flame_fire_atlas</span></a></p>
+<div class="docutils container">
+<p>Create texture atlases for games (bridge package for <a class="reference external" href="https://github.com/flame-engine/fire-atlas">FireAtlas</a>).</p>
+</div>
+</div>
+<div class="package docutils container">
+<p><a class="reference internal" href="flame_forge2d/flame_forge2d.html"><span class="doc std std-doc">flame_forge2d</span></a></p>
+<div class="docutils container">
+<p>A Box2D physics engine (bridge package for <a class="reference external" href="https://github.com/flame-engine/forge2d">Forge2D</a>).</p>
+</div>
+</div>
+<div class="package docutils container">
+<p><a class="reference internal" href="flame_oxygen/flame_oxygen.html"><span class="doc std std-doc">flame_oxygen</span></a></p>
+<div class="docutils container">
+<p>Replace FCS with the Oxygen Entity Component System.</p>
+</div>
+</div>
+<div class="package docutils container">
+<p><a class="reference internal" href="flame_rive/flame_rive.html"><span class="doc std std-doc">flame_rive</span></a></p>
+<div class="docutils container">
+<p>Create interactive animations (bridge package for <a class="reference external" href="https://rive.app/">Rive</a>).</p>
+</div>
+</div>
+<div class="package docutils container">
+<p><a class="reference internal" href="flame_splash_screen/flame_splash_screen.html"><span class="doc std std-doc">flame_splash_screen</span></a></p>
+<div class="docutils container">
+<p>Add the “Powered by Flame” splash screen.</p>
+</div>
+</div>
+<div class="package docutils container">
+<p><a class="reference internal" href="flame_svg/flame_svg.html"><span class="doc std std-doc">flame_svg</span></a></p>
+<div class="docutils container">
+<p>Draw SVG files in Flutter (bridge package for <a class="reference external" href="https://github.com/dnfield/flutter_svg">flutter_svg</a>).</p>
+</div>
+</div>
+<div class="package docutils container">
+<p><a class="reference internal" href="flame_tiled/flame_tiled.html"><span class="doc std std-doc">flame_tiled</span></a></p>
+<div class="docutils container">
+<p>2D tilemap level editor (bridge package for <a class="reference external" href="https://www.mapeditor.org/">Tiled</a>).</p>
+</div>
+</div>
 <div class="toctree-wrapper compound">
 </div>
 </section>

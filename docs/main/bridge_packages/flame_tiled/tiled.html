@@ -8,6 +8,7 @@
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -162,7 +163,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../flame_rive/flame_rive.html">flame_rive</a><ul class="simple">
+<li class="toctree-l2"><a class="reference internal" href="../flame_rive/flame_rive.html">flame_rive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_rive/rive.html">Overview</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_splash_screen/flame_splash_screen.html">flame_splash_screen</a></li>
@@ -194,6 +196,16 @@
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/tbc.html">[To be continued]...</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/platformer/platformer.html">Ember Quest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_2.html">2. Start Coding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_3.html">3. Building the World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_4.html">4. Adding the Remaining Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../development/development.html">Development</a><ul>
@@ -220,35 +232,31 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="tiled">
 <h1>Tiled<a class="headerlink" href="#tiled" title="Permalink to this heading">¶</a></h1>
-<p>[Tiled] is a great tool to design levels and maps.  From [Tiled]’s documentation:</p>
-<div class="highlight-seealso notranslate"><div class="highlight"><pre><span></span>Tiled is a 2D level editor that helps you develop the content of your game. Its
+<p><a class="reference external" href="https://www.mapeditor.org/">Tiled</a> is a great tool to design levels and maps.  From <a class="reference external" href="https://www.mapeditor.org/">Tiled</a>’s documentation:</p>
+<blockquote>
+<div><p>Tiled is a 2D level editor that helps you develop the content of your game. Its
 primary feature is to edit tile maps of various forms, but it also supports
-free image placement as well as powerful ways to annotate your level with extra 
+free image placement as well as powerful ways to annotate your level with extra
 information used by the game. Tiled focuses on general flexibility while trying
-to stay intuitive.
-
-In terms of tile maps, it supports straight rectangular tile layers, but also
+to stay intuitive.</p>
+<p>In terms of tile maps, it supports straight rectangular tile layers, but also
 projected isometric, staggered isometric and staggered hexagonal layers. A
 tileset can be either a single image containing many tiles, or it can be a
 collection of individual images. In order to support certain depth faking
 techniques, tiles and layers can be offset by a custom distance and their
-rendering order can be configured.
-</pre></div>
-</div>
+rendering order can be configured.</p>
+</div></blockquote>
 <p><img alt="Tiled Editor" src="../../_images/TiledEditor.jpg" /></p>
-<p>Flame provides a package ([flame_tiled]) that bundles a [dart] package which allows you to parse TMX
+<p>Flame provides a package (<a class="reference external" href="https://github.com/flame-engine/flame_tiled">flame_tiled</a>) that bundles a <a class="reference external" href="https://pub.dev/packages/tiled">dart</a> package which allows you to parse TMX
 (XML) files and access the tiles, objects, and everything in there.</p>
-<p>The [dart] package provides a simple <code class="docutils literal notranslate"><span class="pre">Tiled</span></code> class and [flame_tiled] provides a component wrapper
+<p>The <a class="reference external" href="https://pub.dev/packages/tiled">dart</a> package provides a simple <code class="docutils literal notranslate"><span class="pre">Tiled</span></code> class and <a class="reference external" href="https://github.com/flame-engine/flame_tiled">flame_tiled</a> provides a component wrapper
 <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code>, for the map rendering, which renders the tiles on the screen and supports
 rotations and flips.</p>
 <section id="tiled-editor">
 <h2>Tiled Editor<a class="headerlink" href="#tiled-editor" title="Permalink to this heading">¶</a></h2>
-<p>You can choose to download the [Tiled] map editor and create interactive maps that can be loaded
-into your game.  At its core, the [Tiled] map editor creates a TMX file that can be parsed and used
+<p>You can choose to download the <a class="reference external" href="https://www.mapeditor.org/">Tiled</a> map editor and create interactive maps that can be loaded
+into your game.  At its core, the <a class="reference external" href="https://www.mapeditor.org/">Tiled</a> map editor creates a TMX file that can be parsed and used
 within your game.</p>
-<p><a class="reference external" href="https://pub.dev/packages/tiled">dart</a>
-<a class="reference external" href="https://github.com/flame-engine/flame_tiled">flame_tiled</a>
-<a class="reference external" href="https://www.mapeditor.org/">Tiled</a></p>
 </section>
 </section>
 
