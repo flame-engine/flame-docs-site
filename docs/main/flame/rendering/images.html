@@ -160,6 +160,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_forge2d/forge2d.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_isolate/flame_isolate.html">flame_isolate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
@@ -204,6 +208,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/space_shooter/space_shooter.html">Space Shooter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_1.html">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_2.html">2. Controlling the player and adding some graphics</a></li>
 </ul>
 </li>
 </ul>
@@ -382,7 +391,7 @@ image, in addition to transforms (position, scale and rotation) and optional col
 <p>In some cases you may want to merge multiple images into a single image; this is called
 <a class="reference external" href="https://en.wikipedia.org/wiki/Compositing">Compositing</a>. This can be useful for example when
 working with the <a class="reference internal" href="#spritebatch"><span class="std std-doc">SpriteBatch</span></a> API to optimize your drawing calls.</p>
-<p>For such usecases Flame comes with the <code class="docutils literal notranslate"><span class="pre">ImageComposition</span></code> class. This allows you to add multiple
+<p>For such use cases Flame comes with the <code class="docutils literal notranslate"><span class="pre">ImageComposition</span></code> class. This allows you to add multiple
 images, each at their own position, onto a new image:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">composition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ImageComposition</span><span class="p">()</span><span class="w"></span>
 <span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"></span>
@@ -452,7 +461,7 @@ something like the following snippet:</p>
 </pre></div>
 </div>
 <p><strong>Note:</strong> trimmed sprite sheets are not supported by flame, so if you export your sprite sheet this
-kway, it will have the trimmed size, not the sprite original size.</p>
+way, it will have the trimmed size, not the sprite original size.</p>
 <p>Animations, after created, have an update and render method; the latter renders the current frame,
 and the former ticks the internal clock to update the frames.</p>
 <p>Animations are normally used inside <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code>s, but custom components with several

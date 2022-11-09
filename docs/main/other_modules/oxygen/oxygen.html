@@ -160,6 +160,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_forge2d/forge2d.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_isolate/flame_isolate.html">flame_isolate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
@@ -204,6 +208,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/space_shooter/space_shooter.html">Space Shooter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_1.html">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_2.html">2. Controlling the player and adding some graphics</a></li>
 </ul>
 </li>
 </ul>
@@ -338,7 +347,7 @@ normally would in Flame.</p>
 </section>
 <section id="basesystem">
 <h3>BaseSystem<a class="headerlink" href="#basesystem" title="Permalink to this heading">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> is an abstract class whoms logic can be compared to the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
+<p>The <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> is an abstract class whose logic can be compared to the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
 from FCS. The <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> automatically filters all entities that have the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
 and <code class="docutils literal notranslate"><span class="pre">SizeComponent</span></code> from <code class="docutils literal notranslate"><span class="pre">flame_oxygen</span></code>. On top of that you can add your own filters by defining
 a getter called <code class="docutils literal notranslate"><span class="pre">filters</span></code>. These filters are then used to filter down the entities you are
@@ -348,8 +357,7 @@ the <code class="docutils literal notranslate"><span class="pre">game</span></co
 <p>On each render loop the <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> will prepare your canvas the same way the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
 from FCS would (translating, rotating and setting the anchor. After that it will call the
 <code class="docutils literal notranslate"><span class="pre">renderEntity</span></code> method so you can add your own render logic for that entity on a prepared canvas.</p>
-<p>The following components will be checked by <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> for the prepartion of the
-canvas:</p>
+<p>The following components will be checked by <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> for the preparation of the canvas:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> (required)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">SizeComponent</span></code> (required)</p></li>

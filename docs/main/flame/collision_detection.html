@@ -160,6 +160,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_forge2d/forge2d.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_isolate/flame_isolate.html">flame_isolate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
@@ -206,6 +210,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/space_shooter/space_shooter.html">Space Shooter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/space_shooter/step_1.html">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/space_shooter/step_2.html">2. Controlling the player and adding some graphics</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
@@ -246,7 +255,7 @@ when for example two <code class="docutils literal notranslate"><span class="pre
 <p>Do note that the built-in collision detection system does not take collisions between two hitboxes
 that overshoot each other into account, this could happen when they either move very fast or
 <code class="docutils literal notranslate"><span class="pre">update</span></code> being called with a large delta time (for example if your app is not in the foreground).
-This behaviour is called tunneling, if you want to read more about it.</p>
+This behavior is called tunneling, if you want to read more about it.</p>
 <p>Also note that the collision detection system has a limitation that makes it not work properly if
 you have certain types of combinations of flips and scales of the ancestors of the hitboxes.</p>
 <section id="mixins">
@@ -722,14 +731,14 @@ enemy, or it can also be used to create light sources.</p>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collisionDetection</span><span class="p">.</span><span class="n">raycastAll</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="n">origin</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="n">origin</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nl">numberOfRays:</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In this example we would send out 100 rays from (200, 200) uniformingly spread in all directions.</p>
+<p>In this example we would send out 100 rays from (200, 200) uniformly spread in all directions.</p>
 <p>If you want to limit the directions you can use the <code class="docutils literal notranslate"><span class="pre">startAngle</span></code> and the <code class="docutils literal notranslate"><span class="pre">sweepAngle</span></code> arguments.
 Where the <code class="docutils literal notranslate"><span class="pre">startAngle</span></code> (counting from straight up) is where the rays will start and then the rays
 will end at <code class="docutils literal notranslate"><span class="pre">startAngle</span> <span class="pre">+</span> <span class="pre">sweepAngle</span></code>.</p>
@@ -852,7 +861,7 @@ ray_trace.dart</div>
 <span class="w">        </span><span class="nl">direction:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)..</span><span class="n">normalize</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">results</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">collisionDetection</span><span class="p">.</span><span class="n">raytrace</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="n">ray</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="n">ray</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nl">maxDepth:</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">results</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>

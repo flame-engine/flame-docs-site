@@ -160,6 +160,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_forge2d/forge2d.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_isolate/flame_isolate.html">flame_isolate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
@@ -204,6 +208,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/space_shooter/space_shooter.html">Space Shooter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/space_shooter/step_1.html">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/space_shooter/step_2.html">2. Controlling the player and adding some graphics</a></li>
 </ul>
 </li>
 </ul>
@@ -579,8 +588,8 @@ want them to respect the <code class="docutils literal notranslate"><span class=
 and text to always show on the screen, no matter if you move the camera, then you want to use
 <code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code>. In some rare cases you want to use <code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> to position
 your widgets, when you don’t want the component to respect the camera nor the viewport; this could
-for example be for controls or joysticks that would be unergonomic to use if they had to stay within
-the viewport.</p>
+for example be for controls or joysticks that would not be ergonomic to use if they had to stay
+within the viewport.</p>
 <p>Do note that this setting is only respected if the component is added directly to the root
 <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> and not as a child component of another component.</p>
 </section>

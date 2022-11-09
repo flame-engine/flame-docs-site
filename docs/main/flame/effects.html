@@ -160,6 +160,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_forge2d/forge2d.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_isolate/flame_isolate.html">flame_isolate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
@@ -204,6 +208,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/space_shooter/space_shooter.html">Space Shooter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/space_shooter/step_1.html">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/space_shooter/step_2.html">2. Controlling the player and adding some graphics</a></li>
 </ul>
 </li>
 </ul>
@@ -535,7 +544,7 @@ rotate_by_effect.dart</div>
 </div>
 <button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-rotate_by_effect&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RotateEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span><span class="w"></span>
 <span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"></span>
 <span class="p">);</span><span class="w"></span>
 </pre></div>
@@ -587,7 +596,7 @@ rotate_to_effect.dart</div>
 </div>
 <button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-rotate_to_effect&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RotateEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span><span class="w"></span>
 <span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w"></span>
 <span class="p">);</span><span class="w"></span>
 </pre></div>
@@ -872,7 +881,7 @@ anchor_by_effect.dart</div>
 </div>
 <button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-anchor_by_effect&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnchorByEffect</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">),</span><span class="w"> </span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.1</span><span class="p">,</span><span class="w"> </span><span class="m">0.1</span><span class="p">),</span><span class="w"></span>
 <span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"></span>
 <span class="p">);</span><span class="w"></span>
 </pre></div>
@@ -924,7 +933,7 @@ anchor_to_effect.dart</div>
 </div>
 <button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-anchor_to_effect&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">AnchorToEffect</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
 <span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"></span>
 <span class="p">);</span><span class="w"></span>
 </pre></div>
@@ -1115,6 +1124,10 @@ uses multiple paints, the effect can target any individual color using the <code
 </section>
 <section id="gloweffect">
 <h3>GlowEffect<a class="headerlink" href="#gloweffect" title="Permalink to this heading">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This effect is currently experimental, and its API may change in the future.</p>
+</div>
 <p>This effect will apply the glowing shade around target relative to the specified
 <code class="docutils literal notranslate"><span class="pre">glow-strength</span></code>. The color of shade will be targets paint color. For example, the following effect
 will apply the glowing shade around target by strength of <code class="docutils literal notranslate"><span class="pre">10</span></code>:</p>
@@ -1216,20 +1229,20 @@ sequence_effect.dart</div>
 <button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-sequence_effect&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SequenceEffect</span><span class="p">([</span><span class="w"></span>
 <span class="w">  </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1.5</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1.5</span><span class="p">),</span><span class="w"></span>
 <span class="w">    </span><span class="n">EffectController</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span><span class="w"></span>
 <span class="w">      </span><span class="nl">alternate:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="p">),</span><span class="w"></span>
 <span class="w">  </span><span class="p">),</span><span class="w"></span>
 <span class="w">  </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="n">Vector2</span><span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">50</span><span class="p">),</span><span class="w"> </span>
+<span class="w">    </span><span class="n">Vector2</span><span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">50</span><span class="p">),</span><span class="w"></span>
 <span class="w">    </span><span class="n">EffectController</span><span class="p">(</span><span class="w"></span>
 <span class="w">      </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="p">),</span><span class="w"></span>
 <span class="w">  </span><span class="p">),</span><span class="w"></span>
 <span class="w">  </span><span class="n">OpacityEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="m">0</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="m">0</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="n">EffectController</span><span class="p">(</span><span class="w"></span>
 <span class="w">      </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span><span class="w"></span>
 <span class="w">    </span><span class="p">),</span><span class="w"></span>

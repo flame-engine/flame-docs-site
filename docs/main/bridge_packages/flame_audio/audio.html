@@ -160,6 +160,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../flame_forge2d/forge2d.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_isolate/flame_isolate.html">flame_isolate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_isolate/isolate.html">Overview</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
@@ -204,6 +208,11 @@
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/space_shooter/space_shooter.html">Space Shooter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_1.html">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_2.html">2. Controlling the player and adding some graphics</a></li>
 </ul>
 </li>
 </ul>
@@ -279,7 +288,7 @@ methods.</p>
 rate drop, and the looped audio will have a small gap between iterations.</p>
 <p>You can use <a class="reference internal" href="bgm.html"><span class="doc std std-doc">the <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class</span></a> (via <code class="docutils literal notranslate"><span class="pre">FlameAudio.bgm</span></code>) to play looping background music
 tracks. The <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class lets Flame automatically manage the pausing and resuming of background music
-tracks when the game is backgrounded or comes back to the foreground.</p>
+tracks when the game is sent to background or comes back to the foreground.</p>
 <p>You can use <a class="reference internal" href="audio_pool.html"><span class="doc std std-doc">the <code class="docutils literal notranslate"><span class="pre">AudioPool</span></code> class</span></a> if you want to fire quick sound effects in a very
 efficient manner. <code class="docutils literal notranslate"><span class="pre">AudioPool</span></code> will keep a pool of <code class="docutils literal notranslate"><span class="pre">AudioPlayer</span></code>s preloaded with a given sound, and
 allow you to play them very fast in quick succession.</p>
