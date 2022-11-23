@@ -242,7 +242,7 @@
   graph TD  
 
     %% Node Color %%
-    classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
+    classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#AAA ;
     classDef default fill:#282828,stroke:#F6BE00;
     
     %% Nodes %%
@@ -252,47 +252,60 @@
 
         </div><div class="mermaid">
             %%{init: { 'theme': 'dark'  } }%%
-
 graph TD
     %% Node Color %%
-    classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
+    classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#AAA;
     classDef default fill:#282828,stroke:#F6BE00;
     
     %% Nodes %%
        
-    Component[Component]
-    TimerComponent(TimerComponent &lt;br/&gt;ParticleComponent &lt;br&gt;SpriteBatchComponent)
-    Effects(&quot;Effects &lt;br/&gt; (See the effects section)&quot;):::yellow
-    FlameGame(Flame Game)
+    Component(Component)
+    Misc(&quot;
+        TimerComponent
+        ParticleComponent
+        SpriteBatchComponent
+    &quot;)
+    Effects(&quot;Effects&lt;br/&gt;(See the effects section)&quot;):::yellow
+    Game(Game)
+    FlameGame(FlameGame)
     PositionComponent(PositionComponent)
    
-    SpriteComponent(&quot;SpriteComponent  &lt;br/&gt; SpriteGroupComponent 
-    &lt;br/&gt; SpriteAnimationComponent &lt;br/&gt; 
-    SpriteAnimationGroupComponent &lt;br/&gt; ParallaxComponent 
-    &lt;br/&gt; IsoMetricTileMapComponent&quot;)
+    Sprites(&quot;
+        SpriteComponent
+        SpriteGroupComponent 
+        SpriteAnimationComponent
+        SpriteAnimationGroupComponent
+        ParallaxComponent 
+        IsoMetricTileMapComponent
+    &quot;)
     
     HudMarginComponent(HudMarginComponent)
-    HudButtonComponent(HudButtonComponent  &lt;br/&gt; JoystickComponent)
+    HudComponents(&quot;
+        HudButtonComponent
+        JoystickComponent
+    &quot;)
     
-    ButtonComponent(&quot;ButtonComponent &lt;br/&gt; CustomPainterComponent 
-    &lt;br/&gt; ShapeComponent &lt;br/&gt; SpriteButtonComponent 
-    &lt;br/&gt; TextComponent &lt;br/&gt; TextBoxComponent 
-    &lt;br/&gt; NineTileBoxComponent&quot;)
-    
-    Loadable(&quot;Loadable (Mixin)&quot;):::yellow
-    
+    OtherPositionComponents(&quot;
+        ButtonComponent
+        CustomPainterComponent
+        ShapeComponent
+        SpriteButtonComponent
+        TextComponent
+        TextBoxComponent
+        NineTileBoxComponent
+    &quot;)
+        
     %% Flow %%
-    Component --&gt; TimerComponent
+    Component --&gt; Misc
     Component --&gt; Effects
     Component --&gt; PositionComponent
     Component --&gt; FlameGame
    
-    Loadable --&gt; FlameGame
-    PositionComponent --&gt; SpriteComponent
+    Game --&gt; FlameGame
+    PositionComponent --&gt; Sprites
     PositionComponent --&gt; HudMarginComponent
-    PositionComponent --&gt; ButtonComponent
-    HudMarginComponent --&gt; HudButtonComponent
-    
+    PositionComponent --&gt; OtherPositionComponents
+    HudMarginComponent --&gt; HudComponents    
         </div>
 
     </div>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>FlameIsolate &#8212; Flame</title>
+  <title>flame_lottie &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
@@ -32,8 +32,6 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="flame_oxygen" href="../flame_oxygen/flame_oxygen.html" />
-  <link rel="prev" title="flame_isolate" href="flame_isolate.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -103,7 +101,7 @@
       </form>
     </div>
     <div class="nav-left" role="navigation" aria-label="Main">
-      <ul class="current">
+      <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../flame/flame.html">Flame</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">File Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">Game Widget</a></li>
@@ -140,7 +138,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1 current"><a class="reference internal" href="../bridge_packages.html">Bridge Packages</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../bridge_packages.html">Bridge Packages</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../flame_audio/flame_audio.html">flame_audio</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
@@ -160,8 +158,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../flame_forge2d/forge2d.html">Overview</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="flame_isolate.html">flame_isolate</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_isolate/flame_isolate.html">flame_isolate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_isolate/isolate.html">Overview</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
@@ -239,67 +237,49 @@
   <div class="document-wrapper">
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="flameisolate">
-<h1>FlameIsolate<a class="headerlink" href="#flameisolate" title="Permalink to this heading">¶</a></h1>
-<p>The power of <a class="reference external" href="https://pub.dev/packages/integral_isolates">integral_isolates</a> neatly packaged in
-<a class="reference external" href="https://pub.dev/packages/flame_isolates">flame_isolates</a> for your Flame game.</p>
-<p>If you’ve ever used the <a class="reference external" href="https://api.flutter.dev/flutter/foundation/compute-constant.html">compute</a>
-function before, you will feel right at home. This mixin allows you to run CPU-intensive code in an
-isolate.</p>
-<p>To use it in your game you just need to add <code class="docutils literal notranslate"><span class="pre">flame_isolate</span></code> to your pubspec.yaml.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="flame-lottie">
+<h1>flame_lottie<a class="headerlink" href="#flame-lottie" title="Permalink to this heading">¶</a></h1>
+<p>This package allows you to load and add Lottie animations to your Flame game.</p>
+<p>The native Lottie libraries (such as <a class="reference external" href="https://github.com/airbnb/lottie-android">lottie-android</a>)
+are maintained by <strong>Airbnb</strong>.</p>
+<p>The Flutter package <code class="docutils literal notranslate"><span class="pre">lottie</span></code>, on which this wrapper is based on, is by developed <strong>xaha.dev</strong> and
+can be found on <a class="reference external" href="https://pub.dev/packages/lottie">pub.dev</a>.</p>
 <section id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
-<p>Just add the mixin <code class="docutils literal notranslate"><span class="pre">FlameIsolate</span></code> to your component and start utilizing the power of an isolate as
-simple as running the <a class="reference external" href="https://api.flutter.dev/flutter/foundation/compute-constant.html">compute</a>
-function.</p>
+<p>To use it in your game you just need to add <code class="docutils literal notranslate"><span class="pre">flame_lottie</span></code> to your pubspec.yaml.</p>
+<p>Simply load the Lottie animation using the <strong>loadLottie</strong> method and
+the <a class="reference external" href="https://pub.dev/documentation/lottie/latest/lottie/LottieBuilder-class.html">LottieBuilder</a>.
+It allows all the various ways of loading a Lottie file:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://pub.dev/documentation/lottie/latest/lottie/Lottie/asset.html">Lottie.asset</a>, for
+obtaining a Lottie file from an AssetBundle using a key.</p></li>
+<li><p><a class="reference external" href="https://pub.dev/documentation/lottie/latest/lottie/Lottie/network.html">Lottie.network</a>, for
+obtaining a lottie file from a URL.</p></li>
+<li><p><a class="reference external" href="https://pub.dev/documentation/lottie/latest/lottie/Lottie/file.html">Lottie.file</a>, for obtaining
+a lottie file from a File.</p></li>
+<li><p><a class="reference external" href="https://pub.dev/documentation/lottie/latest/lottie/Lottie/memory.html">Lottie.memory</a>, for
+obtaining a lottie file from a Uint8List.</p></li>
+</ul>
+<p>… and add it as <code class="docutils literal notranslate"><span class="pre">LottieComponent</span></code> to your Flame 🔥 game.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">FlameIsolate</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="p">...</span><span class="w"></span>
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">shouldRecalculate</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="n">isolate</span><span class="p">(</span><span class="n">recalculateWorld</span><span class="p">,</span><span class="w"> </span><span class="n">worldData</span><span class="p">).</span><span class="n">then</span><span class="p">(</span><span class="n">updateWorld</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">asset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Lottie</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span><span class="s1">&#39;assets/LottieLogo1.json&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadLottie</span><span class="p">(</span><span class="n">asset</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">LottieComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="n">animation</span><span class="p">,</span><span class="w"></span>
+<span class="w">        </span><span class="nl">repeating:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="c1">// Continuously loop the animation.</span><span class="w"></span>
+<span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">400</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="w">  </span><span class="p">...</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<section id="performance-note">
-<h3>Performance note<a class="headerlink" href="#performance-note" title="Permalink to this heading">¶</a></h3>
-<p>Keep in mind that every component with <code class="docutils literal notranslate"><span class="pre">FlameIsolate</span></code> mixin that you create and add to your game
-will create a new isolate. This means you will probably want to create a manager component to
-manage a lot of “dumber” components. Think of it like ants, where the queen controls the worker
-ants. If every individual worker ant got its own isolate, it would be a total waste of power,
-hence you would put it on the queen, which in turn tells all the worker ants what to do.</p>
-<p>A simple example of this can be found in the example application for the FlameIsolate package.</p>
-</section>
-<section id="backpressure-strategies">
-<h3>Backpressure Strategies<a class="headerlink" href="#backpressure-strategies" title="Permalink to this heading">¶</a></h3>
-<p>Backpressure strategies are a way to cope with the job queue when job items are produced more
-rapidly than the isolate can handle them. This presents the problem of what to do with such a
-growing backlog of unhandled jobs. To mitigate this problem this library funnels all jobs through a
-job queue handler. Also known as <code class="docutils literal notranslate"><span class="pre">BackpressureStrategy</span></code>.</p>
-<p>The ones currently supported are:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">NoBackPressureStrategy</span></code> that basically does not handle back pressure. It uses a FIFO stack for
-storing a backlog of unhandled jobs.
--<code class="docutils literal notranslate"><span class="pre">ReplaceBackpressureStrategy</span></code> that has a job queue with size one, and discards the queue upon
-adding a new job.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">DiscardNewBackPressureStrategy</span></code> that has a job queue with size one, and as long as the queue is
-populated a new job will not be added.</p></li>
-</ul>
-<p>You can specify a backpressure strategy by overriding the <code class="docutils literal notranslate"><span class="pre">backpressureStrategy</span></code> field. This will
-create the isolate with the specified strategy when the component is mounted.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">FlameIsolate</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">BackpressureStrategy</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">backpressureStrategy</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ReplaceBackpressureStrategy</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-</section>
 </section>
 </section>
 
@@ -310,21 +290,7 @@ create the isolate with the specified strategy when the component is mounted.</p
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="flame_isolate.html" title="previous page">
-        <i class="fa fa-angle-left"></i>
-        <div class="prev-next-info">
-          <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">flame_isolate</p>
-        </div>
-      </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="../flame_oxygen/flame_oxygen.html" title="next page">
-        <div class="prev-next-info">
-          <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">flame_oxygen</p>
-        </div>
-        <i class="fa fa-angle-right"></i>
-      </a>
     </div>
   </div>
 
@@ -334,8 +300,6 @@ create the isolate with the specified strategy when the component is mounted.</p
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#usage' class='list-group-item level-1'>Usage</a>
-  <a href='#performance-note' class='list-group-item level-2'>Performance note</a>
-  <a href='#backpressure-strategies' class='list-group-item level-2'>Backpressure Strategies</a>
 </div>
 
     </div>
