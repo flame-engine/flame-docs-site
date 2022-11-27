@@ -1,0 +1,1473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Components &#8212; Flame</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
+  <!-- Scripts -->
+  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+  <script src="../_static/jquery.js"></script>
+  <script src="../_static/underscore.js"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+  <script src="../_static/doctools.js"></script>
+  <script src="../_static/flutter_app.js"></script>
+  <script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+  <script>mermaid.initialize({startOnLoad:true});</script>
+  <script src="../_static/versions.js"></script>
+  <script src="../_static/menu-expand.js"></script>
+  <!--script src="searchindex.js" defer></script-->
+  <!-- Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/fontawesome/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../_static/fontawesome/fa-solid-900.woff2">
+  <link rel="stylesheet" href="../_static/fontawesome/all.min.css">
+  <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  <link rel="index" title="Index" href="../genindex.html" />
+  <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="RouterComponent" href="router.html" />
+  <link rel="prev" title="FlameGame" href="game.html" />
+</head>
+
+<body data-spy="scroll" data-target="#toc-local" data-offset="80">
+
+<div class="top-bar">
+  <button id="menu-button" class="btn" title="Toggle menu"><i class="fa fa-bars"></i></button>
+  <script type="text/javascript">
+    jQuery(function(){
+      $("#menu-button").click(function() {
+        $(this).toggleClass("active");
+        $(".sidebar-left-area").toggleClass("active");
+      });
+
+      $('div.nav-left li > a:not(:only-child)').wrap('<div class=submenu></div>');
+      $('div.nav-left div.submenu').prepend('<a class=arrow>&nbsp;</a>');
+      $('div.nav-left div.submenu > a.arrow')
+        .click(function() {
+          $(this.parentElement.parentElement).toggleClass('current');
+        });
+
+      // This function ensures that when navigating to internal targets within the page (such as
+      // a section header), those targets will be visible to the user and not obscured by the menu
+      // bar at the top of the page.
+      function scrollToHashTarget() {
+        if (location.hash !== location.oldHash) {
+          window.scrollBy(0, -60);
+          location.oldHash = location.hash;
+        }
+      }
+      window.location.oldHash = '';
+      window.addEventListener('hashchange', scrollToHashTarget);
+      scrollToHashTarget();
+    });
+  </script>
+
+  <a href="../index.html" class="logo_image">
+    <img src="../_static/logo_flame.png">
+  </a>  
+  <div class="highlight-box" role="alert" style="display:none">
+    <div>
+      <div class="title">highlighted:</div>
+      <div class="content" id="highlight-content"></div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Dismiss">×</button>
+  </div>
+  <div class="expander"></div>
+
+  <div class="versions-placeholder"></div>
+  <a href="https://discord.com/channels/509714518008528896/516639688581316629" id="discord-button"
+     class="btn" title="Flame Discord channel">
+    <i class="fab fa-discord"></i>
+  </a>
+  <a href="https://github.com/flame-engine/flame/" id="github-button" class="btn"
+     title="GitHub repository">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+
+<div class="sidebar-left-area">
+  <div class="sidebar-left-bg"></div>
+  <div class="sidebar-left">
+    <div class="searchbox" role="search">
+      <form id="search-form" action="../search.html" method="get">
+        <i class="icon fa fa-search"></i>
+        <input type="search" class="form-control" id="search-input" name="q"
+               placeholder="Search the docs..." autocomplete="off" />
+      </form>
+    </div>
+    <div class="nav-left" role="navigation" aria-label="Main">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="flame.html">Flame</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="structure.html">File Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game_widget.html">Game Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="game.html">Game Loop</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="router.html">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs/gesture_input.html">Gesture Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs/keyboard_input.html">Keyboard Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs/other_inputs.html">Other Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs/tap_events.html">Tap Events</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rendering/palette.html">Colors and Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rendering/decorators.html">Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rendering/images.html">Images, Sprites and Animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rendering/layers.html">Layers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rendering/particles.html">Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="rendering/text_rendering.html">Text Rendering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="other/other.html">Other</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="other/debug.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="other/util.html">Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="other/widgets.html">Widgets</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bridge_packages/bridge_packages.html">Bridge Packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_audio/flame_audio.html">flame_audio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_audio/audio.html">General audio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_audio/bgm.html">Background music</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_audio/audio_pool.html">AudioPool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_bloc/flame_bloc.html">flame_bloc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_bloc/bloc.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_bloc/bloc_components.html">Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_fire_atlas/flame_fire_atlas.html">flame_fire_atlas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_fire_atlas/fire_atlas.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_forge2d/forge2d.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_isolate/flame_isolate.html">flame_isolate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_rive/flame_rive.html">flame_rive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_rive/rive.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_splash_screen/flame_splash_screen.html">flame_splash_screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_svg/flame_svg.html">flame_svg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_svg/svg.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_tiled/layers.html">Layers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen/oxygen.html">oxygen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../other_modules/oxygen/components.html">Components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step2.html">2. Scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step4.html">4. Gameplay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/tbc.html">[To be continued]...</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/platformer/platformer.html">Ember Quest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_2.html">2. Start Coding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_3.html">3. Building the World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_4.html">4. Adding the Remaining Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/space_shooter/space_shooter.html">Space Shooter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/space_shooter/step_1.html">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/space_shooter/step_2.html">2. Controlling the player and adding some graphics</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../development/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../development/testing_guide.html">Tests Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.5.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="main-area">
+  <div class="document-wrapper">
+    <div class="document" role="main">
+      
+  <section class="tex2jax_ignore mathjax_ignore" id="components">
+<h1>Components<a class="headerlink" href="#components" title="Permalink to this heading">¶</a></h1>
+<div class="mermaid">
+            %%{init: { 'theme': 'dark' } }%%
+  graph TD  
+
+    %% Node Color %%
+    classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#AAA ;
+    classDef default fill:#282828,stroke:#F6BE00;
+    
+    %% Nodes %%
+
+    z(Abstract Class):::yellow
+    x(Normal Class)
+
+        </div><div class="mermaid">
+            %%{init: { 'theme': 'dark'  } }%%
+graph TD
+    %% Node Color %%
+    classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#AAA;
+    classDef default fill:#282828,stroke:#F6BE00;
+    
+    %% Nodes %%
+       
+    Component(Component)
+    Misc(&quot;
+        TimerComponent
+        ParticleComponent
+        SpriteBatchComponent
+    &quot;)
+    Effects(&quot;Effects&lt;br/&gt;(See the effects section)&quot;):::yellow
+    Game(Game)
+    FlameGame(FlameGame)
+    PositionComponent(PositionComponent)
+   
+    Sprites(&quot;
+        SpriteComponent
+        SpriteGroupComponent 
+        SpriteAnimationComponent
+        SpriteAnimationGroupComponent
+        ParallaxComponent 
+        IsoMetricTileMapComponent
+    &quot;)
+    
+    HudMarginComponent(HudMarginComponent)
+    HudComponents(&quot;
+        HudButtonComponent
+        JoystickComponent
+    &quot;)
+    
+    OtherPositionComponents(&quot;
+        ButtonComponent
+        CustomPainterComponent
+        ShapeComponent
+        SpriteButtonComponent
+        TextComponent
+        TextBoxComponent
+        NineTileBoxComponent
+    &quot;)
+        
+    %% Flow %%
+    Component --&gt; Misc
+    Component --&gt; Effects
+    Component --&gt; PositionComponent
+    Component --&gt; FlameGame
+   
+    Game --&gt; FlameGame
+    PositionComponent --&gt; Sprites
+    PositionComponent --&gt; HudMarginComponent
+    PositionComponent --&gt; OtherPositionComponents
+    HudMarginComponent --&gt; HudComponents    
+        </div><p>This diagram might look intimidating, but don’t worry, it is not as complex as it looks.</p>
+<section id="component">
+<h2>Component<a class="headerlink" href="#component" title="Permalink to this heading">¶</a></h2>
+<p>All components inherit from the abstract class <code class="docutils literal notranslate"><span class="pre">Component</span></code> and all components can have other
+<code class="docutils literal notranslate"><span class="pre">Component</span></code>s as children. This is the base of what we call the Flame Component System, or FCS for
+short.</p>
+<p>Children can be added either with the <code class="docutils literal notranslate"><span class="pre">add(Component</span> <span class="pre">c)</span></code> method or directly in the constructor.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">component1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Component</span><span class="p">(</span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span><span class="n">Component</span><span class="p">(),</span><span class="w"> </span><span class="n">Component</span><span class="p">()]);</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">component2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Component</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="n">component2</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Component</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="n">component2</span><span class="p">.</span><span class="n">addAll</span><span class="p">([</span><span class="n">Component</span><span class="p">(),</span><span class="w"> </span><span class="n">Component</span><span class="p">()]);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">Component()</span></code> here could of course be any subclass of <code class="docutils literal notranslate"><span class="pre">Component</span></code>.</p>
+<p>Every <code class="docutils literal notranslate"><span class="pre">Component</span></code> has a few methods that you can optionally implement, which are used by the
+<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class.</p>
+<section id="component-lifecycle">
+<h3>Component lifecycle<a class="headerlink" href="#component-lifecycle" title="Permalink to this heading">¶</a></h3>
+<div class="mermaid">
+            %%{init: { 'theme': 'dark' } }%%
+  
+  graph TD  
+
+   %% Node Color %%
+   classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
+   classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
+
+   %% Nodes  %%
+   x(Runs every time)
+   z(Runs Once):::yellow
+
+        </div><div class="mermaid">
+            %%{init: { 'theme': 'dark' } }%%
+  graph LR
+  
+   %% Node Color %%
+   classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
+   classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
+
+    %% Nodes %%
+    
+    A(onGameResize)
+    B(onLoad):::yellow
+    C(onMount)
+    D(Update)
+    E(Render)
+    F(onRemove)
+
+    %% Flow %%
+ 
+    A--&gt;B
+    B--&gt;C
+    C--&gt;D
+    D--&gt;E
+    E--&gt;D
+    D--&gt;F
+    F-- if Added new parent .-&gt;A
+    
+        </div><p>The <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> method is called whenever the screen is resized, and once in the beginning when
+the component is added to the game via the <code class="docutils literal notranslate"><span class="pre">add</span></code> method.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> method can be overridden to run code before the component is removed from the game,
+it is only run once even if the component is removed both by using the parents remove method and
+the <code class="docutils literal notranslate"><span class="pre">Component</span></code> remove method.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method can be overridden to run asynchronous initialization code for the component,
+like loading an image for example. This method is executed after <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>, but before
+<code class="docutils literal notranslate"><span class="pre">onMount</span></code>. This method is guaranteed to execute only once during the lifetime of the component, so
+you can think of it as an “asynchronous constructor”.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">onMount</span></code> method runs every time when the component is mounted into a game tree. This means that
+you should not initialize <code class="docutils literal notranslate"><span class="pre">late</span> <span class="pre">final</span></code> variables here, since this method might run several times
+throughout the component’s lifetime. This method will only run if the parent is already mounted.
+If the parent is not mounted yet, then this method will wait in a queue (this will have no effect
+on the rest of the game engine).</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">onChildrenChanged</span></code> method can be overridden if it’s needed to detect changes in a parent’s
+children. This method is called whenever a child is added to or removed from a parent (this includes
+if a child is changing its parent). Its parameters contain the targeting child and the type of
+change it went through (<code class="docutils literal notranslate"><span class="pre">added</span></code> or <code class="docutils literal notranslate"><span class="pre">removed</span></code>).</p>
+<p>A component lifecycle state can be checked by a series of getters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">isLoaded</span></code>: Returns a bool with the current loaded state.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loaded</span></code>: Returns a future that will complete once the component has finished loading.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">isMounted</span></code>: Returns a bool with the current mounted state.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mounted</span></code>: Returns a future that will complete once the component has finished mounting.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">isRemoved</span></code>: Returns a bool with the current removed state.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">removed</span></code>: Returns a future that will complete once the component has been removed.</p></li>
+</ul>
+</section>
+<section id="priority">
+<h3>Priority<a class="headerlink" href="#priority" title="Permalink to this heading">¶</a></h3>
+<p>In Flame every <code class="docutils literal notranslate"><span class="pre">Component</span></code> has the <code class="docutils literal notranslate"><span class="pre">int</span> <span class="pre">priority</span></code> property, which determines
+that component’s sorting order within its parent’s children. This is sometimes referred to
+as <code class="docutils literal notranslate"><span class="pre">z-index</span></code> in other languages and frameworks. The higher the <code class="docutils literal notranslate"><span class="pre">priority</span></code> is set to, the
+closer the component will appear on the screen, since it will be rendered on top of any components
+with lower priority that were rendered before it.</p>
+<p>If you add two components and set one of their priorities to 1 for example, then that component will
+be rendered on top of the other component (if they overlap), because the default priority is 0.</p>
+<p>All components take in <code class="docutils literal notranslate"><span class="pre">priority</span></code> as a named argument, so if you know the priority that you want
+your component at compile time, then you can pass it in to the constructor.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">myComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PositionComponent</span><span class="p">(</span><span class="nl">priority:</span><span class="w"> </span><span class="m">5</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">myComponent</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To update the priority of a component you have to set it to a new value, like
+<code class="docutils literal notranslate"><span class="pre">component.priority</span> <span class="pre">=</span> <span class="pre">2</span></code>, and it will be updated in the next tick.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Tappable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">MyComponent</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">priority:</span><span class="w"> </span><span class="m">1</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTap</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In the example above we first initialize the component with priority 1, and then when the user taps
+the component we change the priority to 2.</p>
+</section>
+<section id="composability-of-components">
+<h3>Composability of components<a class="headerlink" href="#composability-of-components" title="Permalink to this heading">¶</a></h3>
+<p>Sometimes it is useful to wrap other components inside of your component. For example by grouping
+visual components through a hierarchy. You can do this by adding child components to any component,
+for example <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p>
+<p>When you have child components on a component every time the parent is updated and rendered, all the
+children are rendered and updated with the same conditions.</p>
+<p>Example of usage, where visibility of two components are handled by a wrapper:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">GameOverPanel</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Image</span><span class="w"> </span><span class="n">spriteImage</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">GameOverPanel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">spriteImage</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">gameOverText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameOverText</span><span class="p">(</span><span class="n">spriteImage</span><span class="p">);</span><span class="w"> </span><span class="c1">// GameOverText is a Component</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">gameOverButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameOverButton</span><span class="p">(</span><span class="n">spriteImage</span><span class="p">);</span><span class="w"> </span><span class="c1">// GameOverRestart is a SpriteComponent</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">gameOverText</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">gameOverButton</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// If not visible none of the children will be rendered</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>There are two methods for adding children components to your component. First,
+you have methods <code class="docutils literal notranslate"><span class="pre">add()</span></code>, <code class="docutils literal notranslate"><span class="pre">addAll()</span></code>, and <code class="docutils literal notranslate"><span class="pre">addToParent()</span></code>, which can be used
+at any time during the game. Traditionally, children will be created and added
+from the component’s <code class="docutils literal notranslate"><span class="pre">onLoad()</span></code> method, but it is also common to add new
+children during the course of the game.</p>
+<p>The second method is to use the <code class="docutils literal notranslate"><span class="pre">children:</span></code> parameter in the component’s
+constructor. This approach more closely resembles the standard Flutter API:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">PositionComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="n">HighScoreDisplay</span><span class="p">(),</span><span class="w"></span>
+<span class="w">          </span><span class="n">HitPointsDisplay</span><span class="p">(),</span><span class="w"></span>
+<span class="w">          </span><span class="n">FpsComponent</span><span class="p">(),</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">      </span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The two approaches can be combined freely: the children specified within the
+constructor will be added first, and then any additional child components
+after.</p>
+<p>Note that the children added via either methods are only guaranteed to be
+available eventually: after they are loaded and mounted. We can only assure
+that they will appear in the children list in the same order as they were
+scheduled for addition.</p>
+</section>
+<section id="ensuring-a-component-has-a-given-parent">
+<h3>Ensuring a component has a given parent<a class="headerlink" href="#ensuring-a-component-has-a-given-parent" title="Permalink to this heading">¶</a></h3>
+<p>When a component requires to be added to a specific parent type the
+<code class="docutils literal notranslate"><span class="pre">ParentIsA</span></code> mixin can be used to enforce a strongly typed parent.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ParentIsA</span><span class="o">&lt;</span><span class="n">MyParentComponent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// parent is of type MyParentComponent</span><span class="w"></span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="n">parent</span><span class="p">.</span><span class="n">myValue</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If you try to add <code class="docutils literal notranslate"><span class="pre">MyComponent</span></code> to a parent that is not <code class="docutils literal notranslate"><span class="pre">MyParentComponent</span></code>,
+an assertion error will be thrown.</p>
+</section>
+<section id="ensuring-a-component-has-a-given-ancestor">
+<h3>Ensuring a component has a given ancestor<a class="headerlink" href="#ensuring-a-component-has-a-given-ancestor" title="Permalink to this heading">¶</a></h3>
+<p>When a component requires to have a specific ancestor type somewhere in the
+component tree, <code class="docutils literal notranslate"><span class="pre">HasAncestor</span></code> mixin can be used to enforce that relationship.</p>
+<p>The mixin exposes the <code class="docutils literal notranslate"><span class="pre">ancestor</span></code> field that will be of the given type.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasAncestor</span><span class="o">&lt;</span><span class="n">MyAncestorComponent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// ancestor is of type MyAncestorComponent.</span><span class="w"></span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="n">ancestor</span><span class="p">.</span><span class="n">myValue</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If you try to add <code class="docutils literal notranslate"><span class="pre">MyComponent</span></code> to a tree that does not contain <code class="docutils literal notranslate"><span class="pre">MyAncestorComponent</span></code>,
+an assertion error will be thrown.</p>
+</section>
+<section id="querying-child-components">
+<h3>Querying child components<a class="headerlink" href="#querying-child-components" title="Permalink to this heading">¶</a></h3>
+<p>The children that have been added to a component live in a <code class="docutils literal notranslate"><span class="pre">QueryableOrderedSet</span></code> called
+<code class="docutils literal notranslate"><span class="pre">children</span></code>. To query for a specific type of components in the set, the <code class="docutils literal notranslate"><span class="pre">query&lt;T&gt;()</span></code> function can be
+used. By default <code class="docutils literal notranslate"><span class="pre">strictMode</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code> in the children set, but if you set it to true, then the
+queries will have to be registered with <code class="docutils literal notranslate"><span class="pre">children.register</span></code> before a query can be used.</p>
+<p>If you know in compile time that you later will run a query of a specific type it is recommended to
+register the query, no matter if the <code class="docutils literal notranslate"><span class="pre">strictMode</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>, since there are some
+performance benefits to gain from it. The <code class="docutils literal notranslate"><span class="pre">register</span></code> call is usually done in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span><span class="w"></span>
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">children</span><span class="p">.</span><span class="n">register</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In the example above a query is registered for <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, and an example of how to query
+the registered component type can be seen below.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">allPositionComponents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">children</span><span class="p">.</span><span class="n">query</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="querying-components-at-a-specific-point-on-the-screen">
+<h3>Querying components at a specific point on the screen<a class="headerlink" href="#querying-components-at-a-specific-point-on-the-screen" title="Permalink to this heading">¶</a></h3>
+<p>The method <code class="docutils literal notranslate"><span class="pre">componentsAtPoint()</span></code> allows you to check which components were rendered at some point
+on the screen. The returned value is an iterable of components, but you can also obtain the
+coordinates of the initial point in each component’s local coordinate space by providing a writable
+<code class="docutils literal notranslate"><span class="pre">List&lt;Vector2&gt;</span></code> as a second parameter.</p>
+<p>The iterable retrieves the components in the front-to-back order, i.e. first the components in the
+front, followed by the components in the back.</p>
+<p>This method can only return components that implement the method <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code>. The
+<code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> (which is the base class for many components in Flame) provides such an
+implementation. However, if you’re defining a custom class that derives from <code class="docutils literal notranslate"><span class="pre">Component</span></code>, you’d have
+to implement the <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code> method yourself.</p>
+<p>Here is an example of how <code class="docutils literal notranslate"><span class="pre">componentsAtPoint()</span></code> can be used:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">componentsAtPoint</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">widget</span><span class="p">).</span><span class="n">forEach</span><span class="p">((</span><span class="n">component</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">component</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">DropTarget</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">component</span><span class="p">.</span><span class="n">highlight</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">});</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="positiontype">
+<h3>PositionType<a class="headerlink" href="#positiontype" title="Permalink to this heading">¶</a></h3>
+<p>If you want to create a HUD (Head-up display) or another component that isn’t positioned in relation
+to the game coordinates, you can change the <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> of the component.
+The default <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> is <code class="docutils literal notranslate"><span class="pre">positionType</span> <span class="pre">=</span> <span class="pre">PositionType.game</span></code> and that can be changed to
+either <code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code> or <code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> depending on how you want to position
+the component.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.game</span></code> (Default) - Respects camera and viewport.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code> - Respects viewport only (ignores camera).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> - Position in relation to the coordinate system of the Flutter game
+widget (i.e. the raw canvas).</p></li>
+</ul>
+<p>Most of your components will probably be positioned according to <code class="docutils literal notranslate"><span class="pre">PositionType.game</span></code>, since you
+want them to respect the <code class="docutils literal notranslate"><span class="pre">Camera</span></code> and the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code>. But quite often you want for example buttons
+and text to always show on the screen, no matter if you move the camera, then you want to use
+<code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code>. In some rare cases you want to use <code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> to position
+your widgets, when you don’t want the component to respect the camera nor the viewport; this could
+for example be for controls or joysticks that would not be ergonomic to use if they had to stay
+within the viewport.</p>
+<p>Do note that this setting is only respected if the component is added directly to the root
+<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> and not as a child component of another component.</p>
+</section>
+</section>
+<section id="positioncomponent">
+<h2>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this heading">¶</a></h2>
+<p>This class represent a positioned object on the screen, being a floating rectangle or a rotating
+sprite. It can also represent a group of positioned components if children are added to it.</p>
+<p>The base of the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is that it has a <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">size</span></code>, <code class="docutils literal notranslate"><span class="pre">scale</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code> and
+<code class="docutils literal notranslate"><span class="pre">anchor</span></code> which transforms how the component is rendered.</p>
+<section id="position">
+<h3>Position<a class="headerlink" href="#position" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">position</span></code> is just a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> which represents the position of the component’s anchor in
+relation to its parent; if the parent is a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, it is in relation to the viewport.</p>
+</section>
+<section id="size">
+<h3>Size<a class="headerlink" href="#size" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">size</span></code> of the component when the zoom level of the camera is 1.0 (no zoom, default).
+The <code class="docutils literal notranslate"><span class="pre">size</span></code> is <em>not</em> in relation to the parent of the component.</p>
+</section>
+<section id="scale">
+<h3>Scale<a class="headerlink" href="#scale" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">scale</span></code> is how much the component and its children should be scaled. Since it is represented
+by a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>, you can scale in a uniform way by changing <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> with the same amount, or in a
+non-uniform way, by change <code class="docutils literal notranslate"><span class="pre">x</span></code> or <code class="docutils literal notranslate"><span class="pre">y</span></code> by different amounts.</p>
+</section>
+<section id="angle">
+<h3>Angle<a class="headerlink" href="#angle" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">angle</span></code> is the rotation angle around the anchor, represented as a double in radians. It is
+relative to the parent’s angle.</p>
+</section>
+<section id="native-angle">
+<h3>Native Angle<a class="headerlink" href="#native-angle" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">nativeAngle</span></code> is an angle in radians, measured clockwise, representing the default orientation
+of the component. It can be used to define the direction in which the component is facing when
+<a class="reference internal" href="#angle"><span class="std std-doc">angle</span></a> is zero.</p>
+<p>It is specially helpful when making a sprite based component look at a specific target. If the
+original image of the sprite is not facing in the up/north direction, the calculated angle to make
+the component look at the target will need some offset to make it look correct. For such cases,
+<code class="docutils literal notranslate"><span class="pre">nativeAngle</span></code> can be used to let the component know what direction the original image is faces.</p>
+<p>An example could be a bullet image pointing in east direction. In this case <code class="docutils literal notranslate"><span class="pre">nativeAngle</span></code> can be set
+to pi/2 radians. Following are some common directions and their corresponding native angle values.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Direction</p></th>
+<th class="head"><p>Native Angle</p></th>
+<th class="head"><p>In degrees</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Up/North</p></td>
+<td><p>0</p></td>
+<td><p>0</p></td>
+</tr>
+<tr class="row-odd"><td><p>Down/South</p></td>
+<td><p>pi or -pi</p></td>
+<td><p>180 or -180</p></td>
+</tr>
+<tr class="row-even"><td><p>Left/West</p></td>
+<td><p>-pi/2</p></td>
+<td><p>-90</p></td>
+</tr>
+<tr class="row-odd"><td><p>Right/East</p></td>
+<td><p>pi/2</p></td>
+<td><p>90</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="anchor">
+<h3>Anchor<a class="headerlink" href="#anchor" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">anchor</span></code> is where on the component that the position and rotation should be defined from (the
+default is <code class="docutils literal notranslate"><span class="pre">Anchor.topLeft</span></code>). So if you have the anchor set as <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code> the component’s
+position on the screen will be in the center of the component and if an <code class="docutils literal notranslate"><span class="pre">angle</span></code> is applied, it is
+rotated around the anchor, so in this case around the center of the component. You can think of it
+as the point within the component by which Flame “grabs” it.</p>
+</section>
+<section id="positioncomponent-children">
+<h3>PositionComponent children<a class="headerlink" href="#positioncomponent-children" title="Permalink to this heading">¶</a></h3>
+<p>All children of the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> will be transformed in relation to the parent, which means
+that the <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code> and <code class="docutils literal notranslate"><span class="pre">scale</span></code> will be relative to the parents state.
+So if you, for example, wanted to position a child 50 logical pixels above the center of the parent
+you would do this:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">parent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PositionComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">child</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PositionComponent</span><span class="p">(</span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">50</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">parent</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">child</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Remember that most components that are rendered on the screen are <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, so
+this pattern can be used in for example <a class="reference internal" href="#spritecomponent"><span class="std std-doc">SpriteComponent</span></a> and <a class="reference internal" href="#spriteanimationcomponent"><span class="std std-doc">SpriteAnimationComponent</span></a> too.</p>
+</section>
+<section id="render-positioncomponent">
+<h3>Render PositionComponent<a class="headerlink" href="#render-positioncomponent" title="Permalink to this heading">¶</a></h3>
+<p>When implementing the <code class="docutils literal notranslate"><span class="pre">render</span></code> method for a component that extends <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> remember to
+render from the top left corner (0.0). Your render method should not handle where on the screen your
+component should be rendered. To handle where and how your component should be rendered use the
+<code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code> and <code class="docutils literal notranslate"><span class="pre">anchor</span></code> properties and Flame will automatically handle the rest for you.</p>
+<p>If you want to know where on the screen the bounding box of the component is you can use the
+<code class="docutils literal notranslate"><span class="pre">toRect</span></code> method.</p>
+<p>In the event that you want to change the direction of your components rendering, you can also use
+<code class="docutils literal notranslate"><span class="pre">flipHorizontally()</span></code> and <code class="docutils literal notranslate"><span class="pre">flipVertically()</span></code> to flip anything drawn to canvas during
+<code class="docutils literal notranslate"><span class="pre">render(Canvas</span> <span class="pre">canvas)</span></code>, around the anchor point. These methods are available on all
+<code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> objects, and are especially useful on <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> and
+<code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code>.</p>
+<p>In case you want to flip a component around its center without having to change the anchor to
+<code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code>, you can use <code class="docutils literal notranslate"><span class="pre">flipHorizontallyAroundCenter()</span></code> and <code class="docutils literal notranslate"><span class="pre">flipVerticallyAroundCenter()</span></code>.</p>
+</section>
+</section>
+<section id="spritecomponent">
+<h2>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this heading">¶</a></h2>
+<p>The most commonly used implementation of <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code>, and it can be
+created with a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components/component.dart&#39;</span><span class="p">;</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="n">player</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">128.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">sprite</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Vector2(0.0, 0.0) by default, can also be set in the constructor</span><span class="w"></span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// 0 by default, can also be set in the constructor</span><span class="w"></span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// Adds the component</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="spriteanimationcomponent">
+<h2>SpriteAnimationComponent<a class="headerlink" href="#spriteanimationcomponent" title="Permalink to this heading">¶</a></h2>
+<p>This class is used to represent a Component that has sprites that run in a single cyclic animation.</p>
+<p>This will create a simple three frame animation using 3 different images:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="p">.</span><span class="n">map</span><span class="p">((</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player_</span><span class="si">$</span><span class="n">i</span><span class="s1">.png&#39;</span><span class="p">));</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">sprites</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+<span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nl">animation:</span><span class="w"> </span><span class="n">animation</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If you have a sprite sheet, you can use the <code class="docutils literal notranslate"><span class="pre">sequenced</span></code> constructor from the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationData</span></code>
+class (check more details on <a class="reference internal" href="rendering/images.html#animation"><span class="std std-doc">Images &gt; Animation</span></a>):</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">);</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nl">amount:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+<span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">data</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If you are not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, don’t forget this component needs to be updated, because the
+animation object needs to be ticked to move the frames.</p>
+<p>To listen when the animation is done (when it reaches the last frame and is not looping) you can
+use <code class="docutils literal notranslate"><span class="pre">animation.completed</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">await</span><span class="w"> </span><span class="n">animation</span><span class="p">.</span><span class="n">completed</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">doSomething</span><span class="p">();</span><span class="w"></span>
+
+<span class="c1">// or alternatively</span><span class="w"></span>
+
+<span class="n">animation</span><span class="p">.</span><span class="n">completed</span><span class="p">.</span><span class="n">whenComplete</span><span class="p">(</span><span class="n">doSomething</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Additionally, this component also has the following optional event callbacks:  <code class="docutils literal notranslate"><span class="pre">onStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onFrame</span></code>,
+and <code class="docutils literal notranslate"><span class="pre">onComplete</span></code>. To listen to these events, you can do the following:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">([</span><span class="n">sprite</span><span class="p">],</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nl">loop:</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">..</span><span class="n">onStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Do something on start.</span><span class="w"></span>
+<span class="w">      </span><span class="p">};</span><span class="w"></span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">([</span><span class="n">sprite</span><span class="p">],</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nl">loop:</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Do something on completion.</span><span class="w"></span>
+<span class="w">      </span><span class="p">};</span><span class="w"></span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"></span>
+<span class="w">    </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">([</span><span class="n">sprite</span><span class="p">],</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nl">loop:</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">..</span><span class="n">onFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="c1">// Do something for the second frame.</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="spriteanimationgroup">
+<h2>SpriteAnimationGroup<a class="headerlink" href="#spriteanimationgroup" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SpriteAnimationGroupComponent</span></code> is a simple wrapper around <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> which enables
+your component to hold several animations and change the current playing animation at runtime. Since
+this component is just a wrapper, the event listeners can be implemented as described in
+<a class="reference internal" href="#spriteanimationcomponent"><span class="std std-doc">SpriteAnimationComponent</span></a>.</p>
+<p>Its use is very similar to the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> but instead of being initialized with a
+single animation, this component receives a Map of a generic type <code class="docutils literal notranslate"><span class="pre">T</span></code> as key and a
+<code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code> as value, and the current animation.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span><span class="w"> </span><span class="n">RobotState</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">idle</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">running</span><span class="p">,</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">idle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span><span class="w"></span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationGroupComponent</span><span class="o">&lt;</span><span class="n">RobotState</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="nl">animations:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">RobotState</span><span class="p">.</span><span class="nl">running:</span><span class="w"> </span><span class="n">running</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="n">RobotState</span><span class="p">.</span><span class="nl">idle:</span><span class="w"> </span><span class="n">idle</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">},</span><span class="w"></span>
+<span class="w">  </span><span class="nl">current:</span><span class="w"> </span><span class="n">RobotState</span><span class="p">.</span><span class="n">idle</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+
+<span class="c1">// Changes current animation to &quot;running&quot;</span><span class="w"></span>
+<span class="n">robot</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RobotState</span><span class="p">.</span><span class="n">running</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="spritegroup">
+<h2>SpriteGroup<a class="headerlink" href="#spritegroup" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SpriteGroupComponent</span></code> is pretty similar to its animation counterpart, but especially for sprites.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">ButtonComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteGroupComponent</span><span class="o">&lt;</span><span class="n">ButtonState</span><span class="o">&gt;</span><span class="w"></span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">SpriteGroupExample</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Tappable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;?</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">pressedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">unpressedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="o">/*</span><span class="w"> </span><span class="n">omitted</span><span class="w"> </span><span class="o">/*</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">ButtonState</span><span class="p">.</span><span class="nl">pressed:</span><span class="w"> </span><span class="n">pressedSprite</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="n">ButtonState</span><span class="p">.</span><span class="nl">unpressed:</span><span class="w"> </span><span class="n">unpressedSprite</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">};</span><span class="w"></span>
+
+<span class="w">    </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ButtonState</span><span class="p">.</span><span class="n">unpressed</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// tap methods handler omitted...</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="svgcomponent">
+<h2>SvgComponent<a class="headerlink" href="#svgcomponent" title="Permalink to this heading">¶</a></h2>
+<p><strong>Note</strong>: To use SVG with Flame, use the <a class="reference external" href="https://github.com/flame-engine/flame_svg"><code class="docutils literal notranslate"><span class="pre">flame_svg</span></code></a>
+package.</p>
+<p>This component uses an instance of <code class="docutils literal notranslate"><span class="pre">Svg</span></code> class to represent a Component that has a svg that is
+rendered in the game:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">svg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Svg</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;android.svg&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">android</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SvgComponent</span><span class="p">.</span><span class="n">fromSvg</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">svg</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="flareactorcomponent">
+<h2>FlareActorComponent<a class="headerlink" href="#flareactorcomponent" title="Permalink to this heading">¶</a></h2>
+<p><strong>Note</strong>: The previous implementation of a Flare integration API using <code class="docutils literal notranslate"><span class="pre">FlareAnimation</span></code> and
+<code class="docutils literal notranslate"><span class="pre">FlareComponent</span></code> has been deprecated.</p>
+<p>To use Flare within Flame, use the <a class="reference external" href="https://github.com/flame-engine/flame_flare"><code class="docutils literal notranslate"><span class="pre">flame_flare</span></code></a>
+package.</p>
+<p>This is the interface for using a <a class="reference external" href="https://pub.dev/packages/flare_flutter">flare animation</a> within
+flame. <code class="docutils literal notranslate"><span class="pre">FlareActorComponent</span></code> has almost the same API as of flare’s <code class="docutils literal notranslate"><span class="pre">FlareActor</span></code> widget. It receives
+the animation filename (that is loaded by default with <code class="docutils literal notranslate"><span class="pre">Flame.bundle</span></code>), it can also receive a
+FlareController that can play multiple animations and control nodes.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_flare/flame_flare.dart&#39;</span><span class="p">;</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">YourFlareController</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlareControls</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">ActorNode</span><span class="w"> </span><span class="n">rightHandNode</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="n">FlutterActorArtboard</span><span class="w"> </span><span class="n">artboard</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">artboard</span><span class="p">);</span><span class="w"></span>
+
+<span class="w">    </span><span class="c1">// get flare node</span><span class="w"></span>
+<span class="w">    </span><span class="n">rightHand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">artboard</span><span class="p">.</span><span class="n">getNode</span><span class="p">(</span><span class="s1">&#39;right_hand&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;assets/george_washington.flr&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1776</span><span class="p">,</span><span class="w"> </span><span class="m">1804</span><span class="p">);</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YourFlareController</span><span class="p">();</span><span class="w"></span>
+
+<span class="n">FlareActorComponent</span><span class="w"> </span><span class="n">flareAnimation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlareActorComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">fileName</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nl">controller:</span><span class="w"> </span><span class="n">controller</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nl">width:</span><span class="w"> </span><span class="m">306</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nl">height:</span><span class="w"> </span><span class="m">228</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+
+<span class="n">flareAnimation</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">;</span><span class="w"></span>
+<span class="n">flareAnimation</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">240</span><span class="p">;</span><span class="w"></span>
+<span class="n">add</span><span class="p">(</span><span class="n">flareAnimation</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// to play an animation</span><span class="w"></span>
+<span class="n">controller</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;rise_up&#39;</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// you can add another animation to play at the same time</span><span class="w"></span>
+<span class="n">controller</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;close_door_way_out&#39;</span><span class="p">);</span><span class="w"></span>
+
+<span class="c1">// also, you can get a flare node and modify it</span><span class="w"></span>
+<span class="n">controller</span><span class="p">.</span><span class="n">rightHandNode</span><span class="p">.</span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="p">;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>You can also change the current playing animation by using the <code class="docutils literal notranslate"><span class="pre">updateAnimation</span></code> method.</p>
+<p>For a working example, check the example in the
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_flare/example">flame_flare repository</a>.</p>
+</section>
+<section id="parallaxcomponent">
+<h2>ParallaxComponent<a class="headerlink" href="#parallaxcomponent" title="Permalink to this heading">¶</a></h2>
+<p>This <code class="docutils literal notranslate"><span class="pre">Component</span></code> can be used to render backgrounds with a depth feeling by drawing several
+transparent images on top of each other, where each image or animation (<code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code>) is
+moving with a different velocity.</p>
+<p>The rationale is that when you look at the horizon and moving, closer objects seem to move faster
+than distant ones.</p>
+<p>This component simulates this effect, making a more realistic background effect.</p>
+<p>The simplest <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code> is created like this:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span><span class="w"></span>
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">([</span><span class="w"></span>
+<span class="w">    </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;bg.png&#39;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;trees.png&#39;</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">]);</span><span class="w"></span>
+<span class="w">  </span><span class="n">add</span><span class="p">(</span><span class="n">parallaxComponent</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>A ParallaxComponent can also “load itself” by implementing the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyParallaxComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ParallaxComponent</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadParallax</span><span class="p">([</span><span class="w"></span>
+<span class="w">      </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;bg.png&#39;</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;trees.png&#39;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="p">]);</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">MyParallaxComponent</span><span class="p">());</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This creates a static background. If you want a moving parallax (which is the whole point of a
+parallax), you can do it in a few different ways depending on how fine-grained you want to set the
+settings for each layer.</p>
+<p>They simplest way is to set the named optional parameters <code class="docutils literal notranslate"><span class="pre">baseVelocity</span></code> and
+<code class="docutils literal notranslate"><span class="pre">velocityMultiplierDelta</span></code> in the <code class="docutils literal notranslate"><span class="pre">load</span></code> helper function. For example if you want to move your
+background images along the X-axis with a faster speed the “closer” the image is:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">_dataList</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="nl">baseVelocity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="nl">velocityMultiplierDelta:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1.8</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>You can set the baseSpeed and layerDelta at any time, for example if your character jumps or your
+game speeds up.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="p">.</span><span class="n">parallax</span><span class="p">;</span><span class="w"></span>
+<span class="n">parallax</span><span class="p">.</span><span class="n">baseSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span><span class="w"></span>
+<span class="n">parallax</span><span class="p">.</span><span class="n">velocityMultiplierDelta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">2.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<p>By default, the images are aligned to the bottom left, repeated along the X-axis and scaled
+proportionally so that the image covers the height of the screen. If you want to change this
+behavior, for example if you are not making a side-scrolling game, you can set the <code class="docutils literal notranslate"><span class="pre">repeat</span></code>,
+<code class="docutils literal notranslate"><span class="pre">alignment</span></code> and <code class="docutils literal notranslate"><span class="pre">fill</span></code> parameters for each <code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code> and add them to <code class="docutils literal notranslate"><span class="pre">ParallaxLayer</span></code>s that
+you then pass in to the <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code>’s constructor.</p>
+<p>Advanced example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">images</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
+<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;stars.jpg&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">width</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;planets.jpg&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeatY</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">bottomLeft</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">none</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="s1">&#39;dust.jpg&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeatX</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">topRight</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">height</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="p">];</span><span class="w"></span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">map</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ParallaxLayer</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">velocityMultiplier:</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2.0</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">)</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ParallaxComponent</span><span class="p">.</span><span class="n">fromParallax</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="n">Parallax</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">layers</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="nl">baseVelocity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The stars image in this example will be repeatedly drawn in both axis, align in the center and be
+scaled to fill the screen width.</p></li>
+<li><p>The planets image will be repeated in Y-axis, aligned to the bottom left of the screen and not be
+scaled.</p></li>
+<li><p>The dust image will be repeated in X-axis, aligned to the top right and scaled to fill the screen
+height.</p></li>
+</ul>
+<p>Once you are done setting up your <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code>, add it to the game like with any other
+component (<code class="docutils literal notranslate"><span class="pre">game.add(parallaxComponent</span></code>).
+Also, don’t forget to add you images to the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file as assets or they wont be found.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Parallax</span></code> file contains an extension of the game which adds <code class="docutils literal notranslate"><span class="pre">loadParallax</span></code>, <code class="docutils literal notranslate"><span class="pre">loadParallaxLayer</span></code>
+, <code class="docutils literal notranslate"><span class="pre">loadParallaxImage</span></code> and <code class="docutils literal notranslate"><span class="pre">loadParallaxAnimation</span></code> so that it automatically uses your game’s image
+cache instead of the global one. The same goes for the <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code> file, but that provides
+<code class="docutils literal notranslate"><span class="pre">loadParallaxComponent</span></code>.</p>
+<p>If you want a fullscreen <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code> simply omit the <code class="docutils literal notranslate"><span class="pre">size</span></code> argument and it will take the
+size of the game, it will also resize to fullscreen when the game changes size or orientation.</p>
+<p>Flame provides two kinds of <code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code>: <code class="docutils literal notranslate"><span class="pre">ParallaxImage</span></code> and <code class="docutils literal notranslate"><span class="pre">ParallaxAnimation</span></code>,
+<code class="docutils literal notranslate"><span class="pre">ParallaxImage</span></code> is a static image renderer and <code class="docutils literal notranslate"><span class="pre">ParallaxAnimation</span></code> is, as it’s name implies, an
+animation and frame based renderer.
+It is also possible to create custom renderers by extending the <code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code> class.</p>
+<p>Three example implementations can be found in the
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/parallax">examples directory</a>.</p>
+</section>
+<section id="shapecomponents">
+<h2>ShapeComponents<a class="headerlink" href="#shapecomponents" title="Permalink to this heading">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">ShapeComponent</span></code> is the base class for representing a scalable geometrical shape. The shapes have
+different ways of defining how they look, but they all have a size and angle that can be modified
+and the shape definition will scale or rotate the shape accordingly.</p>
+<p>These shapes are meant as a tool for using geometrical shapes in a more general way than together
+with the collision detection system, where you want to use the
+<a class="reference internal" href="collision_detection.html#shapehitbox"><span class="std std-doc">ShapeHitbox</span></a>es.</p>
+<section id="polygoncomponent">
+<h3>PolygonComponent<a class="headerlink" href="#polygoncomponent" title="Permalink to this heading">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">PolygonComponent</span></code> is created by giving it a list of points in the constructor, called vertices.
+This list will be transformed into a polygon with a size, which can still be scaled and rotated.</p>
+<p>For example, this would create a square going from (50, 50) to (100, 100), with it’s center in
+(75, 75):</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">PolygonComponent</span><span class="p">([</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">]);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">PolygonComponent</span></code> can also be created with a list of relative vertices, which are points defined
+in relation to the given size, most often the size of the intended parent.</p>
+<p>For example you could create a diamond shapes polygon like this:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">PolygonComponent</span><span class="p">.</span><span class="n">relative</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="p">[</span><span class="w"></span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of top wall</span><span class="w"></span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of right wall</span><span class="w"></span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1.0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of bottom wall</span><span class="w"></span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of left wall</span><span class="w"></span>
+<span class="w">    </span><span class="p">],</span><span class="w"></span>
+<span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The vertices in the example defines percentages of the length from the center to the edge of the
+screen in both x and y axis, so for our first item in our list (<code class="docutils literal notranslate"><span class="pre">Vector2(0.0,</span> <span class="pre">1.0)</span></code>) we are pointing
+on the middle of the top wall of the bounding box, since the coordinate system here is defined from
+the center of the polygon.</p>
+<p><img alt="An example of how to define a polygon shape" src="../_images/polygon_shape.png" /></p>
+<p>In the image you can see how the polygon shape formed by the purple arrows is defined by the red
+arrows.</p>
+<p>Remember to define the lists in a counter clockwise manner (if you think in the screen coordinate
+system where the y-axis is flipped, otherwise it is clockwise).</p>
+</section>
+<section id="rectanglecomponent">
+<h3>RectangleComponent<a class="headerlink" href="#rectanglecomponent" title="Permalink to this heading">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> is created very similarly to how a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is created, since it
+also has a bounding rectangle.</p>
+<p>Something like this for example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">RectangleComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10.0</span><span class="p">,</span><span class="w"> </span><span class="m">15.0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">10</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="nl">angle:</span><span class="w"> </span><span class="n">pi</span><span class="o">/</span><span class="m">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Dart also already has an excellent way to create rectangles and that class is called <code class="docutils literal notranslate"><span class="pre">Rect</span></code>, you can
+create a Flame <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> from a <code class="docutils literal notranslate"><span class="pre">Rect</span></code> by using the <code class="docutils literal notranslate"><span class="pre">Rectangle.fromRect</span></code> factory, and
+just like when setting the vertices of the <code class="docutils literal notranslate"><span class="pre">PolygonComponent</span></code>, your rectangle will be sized
+according to the <code class="docutils literal notranslate"><span class="pre">Rect</span></code> if you use this constructor.</p>
+<p>The following would create a <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> with its top left corner in <code class="docutils literal notranslate"><span class="pre">(10,</span> <span class="pre">10)</span></code> and a size
+of <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">50)</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">RectangleComponent</span><span class="p">.</span><span class="n">fromRect</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>You can also create a <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> by defining a relation to the intended parent’s size,
+you can use the default constructor to build your rectangle from a position, size and angle. The
+<code class="docutils literal notranslate"><span class="pre">relation</span></code> is a vector defined in relation to the parent size, for example a <code class="docutils literal notranslate"><span class="pre">relation</span></code> that is
+<code class="docutils literal notranslate"><span class="pre">Vector2(0.5,</span> <span class="pre">0.8)</span></code> would create a rectangle that is 50% of the width of the parent’s size and
+80% of its height.</p>
+<p>In the example below a <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> of size <code class="docutils literal notranslate"><span class="pre">(25.0,</span> <span class="pre">30.0)</span></code> positioned at <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">100)</span></code> would
+be created.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">RectangleComponent</span><span class="p">.</span><span class="n">relative</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">30</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Since a square is a simplified version of a rectangle, there is also a constructor for creating a
+square <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code>, the only difference is that the <code class="docutils literal notranslate"><span class="pre">size</span></code> argument is a <code class="docutils literal notranslate"><span class="pre">double</span></code> instead
+of a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">RectangleComponent</span><span class="p">.</span><span class="n">square</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="m">200</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="circlecomponent">
+<h3>CircleComponent<a class="headerlink" href="#circlecomponent" title="Permalink to this heading">¶</a></h3>
+<p>If you know how long your circle’s position and/or how long the radius is going to be from the start
+you can use the optional arguments <code class="docutils literal notranslate"><span class="pre">radius</span></code> and <code class="docutils literal notranslate"><span class="pre">position</span></code> to set those.</p>
+<p>The following would create a <code class="docutils literal notranslate"><span class="pre">CircleComponent</span></code> with its center in <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">100)</span></code> with a radius of 5,
+and therefore a size of <code class="docutils literal notranslate"><span class="pre">Vector2(10,</span> <span class="pre">10)</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">CircleComponent</span><span class="p">(</span><span class="nl">radius:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"> </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>When creating a <code class="docutils literal notranslate"><span class="pre">CircleComponent</span></code> with the <code class="docutils literal notranslate"><span class="pre">relative</span></code> constructor you can define how long the
+radius is in comparison to the shortest edge of the of the bounding box defined by <code class="docutils literal notranslate"><span class="pre">size</span></code>.</p>
+<p>The following example would result in a <code class="docutils literal notranslate"><span class="pre">CircleComponent</span></code> that defines a circle with a radius of 40
+(a diameter of 80).</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">CircleComponent</span><span class="p">.</span><span class="n">relative</span><span class="p">(</span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">));</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="tiledcomponent">
+<h2>TiledComponent<a class="headerlink" href="#tiledcomponent" title="Permalink to this heading">¶</a></h2>
+<p>Tiled is a free and open source, full-featured level and map editor for your platformer or
+RPG game. Currently we have an “in progress” implementation of a Tiled component. This API
+uses the lib <a class="reference external" href="https://github.com/flame-engine/tiled.dart">tiled.dart</a> to parse map files and
+render visible layers using the performant <code class="docutils literal notranslate"><span class="pre">SpriteBatch</span></code> for each layer.</p>
+<p>Supported map types include: Orthogonal, Isometric, Hexagonal, and Staggered.</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Orthogonal</p></th>
+<th class="head text-center"><p>Hexagonal</p></th>
+<th class="head text-center"><p>Isomorphic</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><img alt="An example of an orthogonal map" src="../_images/orthogonal.png" /></p></td>
+<td class="text-center"><p><img alt="An example of hexagonal map" src="../_images/pointy_hex_even.png" /></p></td>
+<td class="text-center"><p><img alt="An example of isomorphic map" src="../_images/tile_stack_single_move.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<p>An example of how to use the API can be found
+<a class="reference external" href="https://github.com/flame-engine/flame_tiled/tree/main/example">here</a>.</p>
+<section id="tilestack">
+<h3>TileStack<a class="headerlink" href="#tilestack" title="Permalink to this heading">¶</a></h3>
+<p>Once a <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code> is loaded, you can select any column of (x,y) tiles in a <code class="docutils literal notranslate"><span class="pre">tileStack</span></code> to
+then add animation. Removing the stack will not remove the tiles from the map.</p>
+<blockquote>
+<div><p><strong>Note</strong>: This currently only supports position based effects.</p>
+</div></blockquote>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="n">tileMap</span><span class="p">.</span><span class="n">tileStack</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nl">named:</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;floor_under&#39;</span><span class="p">});</span><span class="w"></span>
+<span class="w">    </span><span class="n">stack</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="n">SequenceEffect</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="p">[</span><span class="w"></span>
+<span class="w">          </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
+<span class="w">            </span><span class="n">Vector2</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">            </span><span class="n">NoiseEffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nl">frequency:</span><span class="w"> </span><span class="m">20</span><span class="p">),</span><span class="w"></span>
+<span class="w">          </span><span class="p">),</span><span class="w"></span>
+<span class="w">          </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">(),</span><span class="w"> </span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">2</span><span class="p">)),</span><span class="w"></span>
+<span class="w">        </span><span class="p">],</span><span class="w"></span>
+<span class="w">        </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="p">)..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">stack</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">(),</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">map</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">stack</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="isometrictilemapcomponent">
+<h2>IsometricTileMapComponent<a class="headerlink" href="#isometrictilemapcomponent" title="Permalink to this heading">¶</a></h2>
+<p>This component allows you to render an isometric map based on a cartesian matrix of blocks and an
+isometric tileset.</p>
+<p>A simple example on how to use it:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Creates a tileset, the block ids are automatically assigned sequentially</span><span class="w"></span>
+<span class="c1">// starting at 0, from left to right and then top to bottom.</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">tilesetImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;tileset.png&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">tileset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IsometricTileset</span><span class="p">(</span><span class="n">tilesetImage</span><span class="p">,</span><span class="w"> </span><span class="m">32</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Each element is a block id, -1 means nothing</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]];</span><span class="w"></span>
+<span class="n">add</span><span class="p">(</span><span class="n">IsometricTileMapComponent</span><span class="p">(</span><span class="n">tileset</span><span class="p">,</span><span class="w"> </span><span class="n">matrix</span><span class="p">));</span><span class="w"></span>
+</pre></div>
+</div>
+<p>It also provides methods for converting coordinates so you can handle clicks, hovers, render
+entities on top of tiles, add a selector, etc.</p>
+<p>You can also specify the <code class="docutils literal notranslate"><span class="pre">tileHeight</span></code>, which is the vertical distance between the bottom and top
+planes of each cuboid in your tile. Basically, it’s the height of the front-most edge of your
+cuboid; normally it’s half (default) or a quarter of the tile size. On the image below you can see
+the height colored in the darker tone:</p>
+<p><img alt="An example of how to determine the tileHeight" src="../_images/tile-height-example.png" /></p>
+<p>This is an example of how a quarter-length map looks like:</p>
+<p><img alt="An example of a isometric map with selector" src="../_images/isometric.png" /></p>
+<p>Flame’s Example app contains a more in-depth example, featuring how to parse coordinates to make a
+selector. The code can be found
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/isometric_tile_map_example.dart">here</a>,
+and a live version can be seen <a class="reference external" href="https://examples.flame-engine.org/#/Rendering_Isometric%20Tile%20Map">here</a>.</p>
+</section>
+<section id="ninetileboxcomponent">
+<h2>NineTileBoxComponent<a class="headerlink" href="#ninetileboxcomponent" title="Permalink to this heading">¶</a></h2>
+<p>A Nine Tile Box is a rectangle drawn using a grid sprite.</p>
+<p>The grid sprite is a 3x3 grid and with 9 blocks, representing the 4 corners, the 4 sides and the
+middle.</p>
+<p>The corners are drawn at the same size, the sides are stretched on the side direction and the middle
+is expanded both ways.</p>
+<p>Using this, you can get a box/rectangle that expands well to any sizes. This is useful for making
+panels, dialogs, borders.</p>
+<p>Check the example app
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/nine_tile_box_example.dart">nine_tile_box</a>
+for details on how to use it.</p>
+</section>
+<section id="custompaintercomponent">
+<h2>CustomPainterComponent<a class="headerlink" href="#custompaintercomponent" title="Permalink to this heading">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">CustomPainter</span></code> is a Flutter class used with the <code class="docutils literal notranslate"><span class="pre">CustomPaint</span></code> widget to render custom
+shapes inside a Flutter application.</p>
+<p>Flame provides a component that can render a <code class="docutils literal notranslate"><span class="pre">CustomPainter</span></code> called <code class="docutils literal notranslate"><span class="pre">CustomPainterComponent</span></code>, it
+receives a custom painter and renders it on the game canvas.</p>
+<p>This can be used for sharing custom rendering logic between your Flame game, and your Flutter
+widgets.</p>
+<p>Check the example app
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/custom_painter_example.dart">custom_painter_component</a>
+for details on how to use it.</p>
+</section>
+<section id="componentsnotifier">
+<h2>ComponentsNotifier<a class="headerlink" href="#componentsnotifier" title="Permalink to this heading">¶</a></h2>
+<p>Most of the time just accessing children and their attributes is enough to build the logic of
+your game.</p>
+<p>But sometimes, reactivity can help the developer to simplify and write better code, to help with
+that Flame provides the <code class="docutils literal notranslate"><span class="pre">ComponentsNotifier</span></code>, which is an implementation of a
+<code class="docutils literal notranslate"><span class="pre">ChangeNotifier</span></code> that notifies listeners every time a component is added, removed or manually
+changed.</p>
+<p>For example, lets say that we want to show a game over text when the player’s lives reach zero.</p>
+<p>To make the component automatically report when new instances are added or removed, the <code class="docutils literal notranslate"><span class="pre">Notifier</span></code>
+mixin can be applied to the component class:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Notifier</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Then to listen to changes on that component the <code class="docutils literal notranslate"><span class="pre">componentsNotifier</span></code> method from <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> can
+be used:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">lives</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">playerNotifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">componentsNotifier</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">..</span><span class="n">addListener</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerNotifier</span><span class="p">.</span><span class="n">single</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">lives</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lives</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">add</span><span class="p">(</span><span class="n">GameOverComponent</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">add</span><span class="p">(</span><span class="n">Player</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">Notifier</span></code> component can also manually notify its listeners that something changed. Lets expand
+the example above to make a hud component to blink when the player has half of their health. In
+order to do so, we need that the <code class="docutils literal notranslate"><span class="pre">Player</span></code> component notify a change manually, example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Notifier</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">takeHit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">health</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="p">.</span><span class="m">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">health</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">health</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">notifyListeners</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Then our hud component could look like:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Hud</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">playerNotifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">componentsNotifier</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">..</span><span class="n">addListener</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerNotifier</span><span class="p">.</span><span class="n">single</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="p">.</span><span class="n">health</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">add</span><span class="p">(</span><span class="n">BlinkEffect</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ComponentsNotifier</span></code>s can also come in handy to rebuild widgets when state changes inside a
+<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, to help with that Flame provides a <code class="docutils literal notranslate"><span class="pre">ComponentsNotifierBuilder</span></code> widget.</p>
+<p>To see an example of its use check the running example
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/components/components_notifier_example.dart">here</a>;</p>
+</section>
+<section id="clipcomponent">
+<h2>ClipComponent<a class="headerlink" href="#clipcomponent" title="Permalink to this heading">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code> is a component that will clip the canvas to its size and shape. This means that
+if the component itself or any child of the <code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code> renders outside of the
+<code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code>’s boundaries, the part that is not inside the area will not be shown.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code> receives a builder function that should return the <code class="docutils literal notranslate"><span class="pre">Shape</span></code> that will define the
+clipped area, based on its size.</p>
+<p>To make it easier to use that component, there are three factories that offers common shapes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ClipComponent.rectangle</span></code>: Clips the area in the form a rectangle based on its size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ClipComponent.circle</span></code>: Clips the area in the form of a circle based on its size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ClipComponent.polygon</span></code>:  Clips the area in the form of a polygon based on the points received
+in the constructor.</p></li>
+</ul>
+<p>Check the example app
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/components/clip_component_example.dart">clip_component</a>
+for details on how to use it.</p>
+</section>
+<section id="effects">
+<h2>Effects<a class="headerlink" href="#effects" title="Permalink to this heading">¶</a></h2>
+<p>Flame provides a set of effects that can be applied to a certain type of components, these effects
+can be used to animate some properties of your components, like position or dimensions.
+You can check the list of those effects <a class="reference internal" href="effects.html"><span class="doc std std-doc">here</span></a>.</p>
+<p>Examples of the running effects can be found <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/effects">here</a>;</p>
+</section>
+</section>
+
+
+    </div>
+    <div class="copyright">
+      The content on this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 License</a>,
+      and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
+    </div>
+    <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="game.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">FlameGame</p>
+        </div>
+      </a>
+      <div class='expander'></div>
+      <a class="right-next" id="next-link" href="router.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">RouterComponent</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-right">
+    
+    <div class="nav-right" role="navigation" aria-label="table of contents">
+      <div id='toc-local' class='list-group'>
+ <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#component' class='list-group-item level-1'>Component</a>
+  <a href='#component-lifecycle' class='list-group-item level-2'>Component lifecycle</a>
+  <a href='#priority' class='list-group-item level-2'>Priority</a>
+  <a href='#composability-of-components' class='list-group-item level-2'>Composability of components</a>
+  <a href='#ensuring-a-component-has-a-given-parent' class='list-group-item level-2'>Ensuring a component has a given parent</a>
+  <a href='#ensuring-a-component-has-a-given-ancestor' class='list-group-item level-2'>Ensuring a component has a given ancestor</a>
+  <a href='#querying-child-components' class='list-group-item level-2'>Querying child components</a>
+  <a href='#querying-components-at-a-specific-point-on-the-screen' class='list-group-item level-2'>Querying components at a specific point on the screen</a>
+  <a href='#positiontype' class='list-group-item level-2'>PositionType</a>
+  <a href='#positioncomponent' class='list-group-item level-1'>PositionComponent</a>
+  <a href='#position' class='list-group-item level-2'>Position</a>
+  <a href='#size' class='list-group-item level-2'>Size</a>
+  <a href='#scale' class='list-group-item level-2'>Scale</a>
+  <a href='#angle' class='list-group-item level-2'>Angle</a>
+  <a href='#native-angle' class='list-group-item level-2'>Native Angle</a>
+  <a href='#anchor' class='list-group-item level-2'>Anchor</a>
+  <a href='#positioncomponent-children' class='list-group-item level-2'>PositionComponent children</a>
+  <a href='#render-positioncomponent' class='list-group-item level-2'>Render PositionComponent</a>
+  <a href='#spritecomponent' class='list-group-item level-1'>SpriteComponent</a>
+  <a href='#spriteanimationcomponent' class='list-group-item level-1'>SpriteAnimationComponent</a>
+  <a href='#spriteanimationgroup' class='list-group-item level-1'>SpriteAnimationGroup</a>
+  <a href='#spritegroup' class='list-group-item level-1'>SpriteGroup</a>
+  <a href='#svgcomponent' class='list-group-item level-1'>SvgComponent</a>
+  <a href='#flareactorcomponent' class='list-group-item level-1'>FlareActorComponent</a>
+  <a href='#parallaxcomponent' class='list-group-item level-1'>ParallaxComponent</a>
+  <a href='#shapecomponents' class='list-group-item level-1'>ShapeComponents</a>
+  <a href='#polygoncomponent' class='list-group-item level-2'>PolygonComponent</a>
+  <a href='#rectanglecomponent' class='list-group-item level-2'>RectangleComponent</a>
+  <a href='#circlecomponent' class='list-group-item level-2'>CircleComponent</a>
+  <a href='#tiledcomponent' class='list-group-item level-1'>TiledComponent</a>
+  <a href='#tilestack' class='list-group-item level-2'>TileStack</a>
+  <a href='#isometrictilemapcomponent' class='list-group-item level-1'>IsometricTileMapComponent</a>
+  <a href='#ninetileboxcomponent' class='list-group-item level-1'>NineTileBoxComponent</a>
+  <a href='#custompaintercomponent' class='list-group-item level-1'>CustomPainterComponent</a>
+  <a href='#componentsnotifier' class='list-group-item level-1'>ComponentsNotifier</a>
+  <a href='#clipcomponent' class='list-group-item level-1'>ClipComponent</a>
+  <a href='#effects' class='list-group-item level-1'>Effects</a>
+</div>
+
+    </div>
+  </div>
+
+  <div class="expander"></div>
+</div>
+
+
+
+
+</body>
+</html>
