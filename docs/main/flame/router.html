@@ -711,6 +711,10 @@ the content of its page.</p>
 below it from rendering or receiving pointer events, a transparent route doesn’t. As a rule of
 thumb, declare the route opaque if it is full-screen, and transparent if it is supposed to cover
 only a part of the screen.</p>
+<p>By default, routes maintain the state of the page component after being popped from the stack
+and the <code class="docutils literal notranslate"><span class="pre">builder</span></code> function is only called the first time a route is activated. Setting
+<code class="docutils literal notranslate"><span class="pre">maintainState</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code> drops the page component after the route is popped from the route stack
+and the <code class="docutils literal notranslate"><span class="pre">builder</span></code> function is called each time the route is activated.</p>
 </section>
 <section id="overlayroute">
 <h2>OverlayRoute<a class="headerlink" href="#overlayroute" title="Permalink to this heading">¶</a></h2>

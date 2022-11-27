@@ -1289,6 +1289,81 @@ widgets.</p>
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/custom_painter_example.dart">custom_painter_component</a>
 for details on how to use it.</p>
 </section>
+<section id="componentsnotifier">
+<h2>ComponentsNotifier<a class="headerlink" href="#componentsnotifier" title="Permalink to this heading">¶</a></h2>
+<p>Most of the time just accessing children and their attributes is enough to build the logic of
+your game.</p>
+<p>But sometimes, reactivity can help the developer to simplify and write better code, to help with
+that Flame provides the <code class="docutils literal notranslate"><span class="pre">ComponentsNotifier</span></code>, which is an implementation of a
+<code class="docutils literal notranslate"><span class="pre">ChangeNotifier</span></code> that notifies listeners every time a component is added, removed or manually
+changed.</p>
+<p>For example, lets say that we want to show a game over text when the player’s lives reach zero.</p>
+<p>To make the component automatically report when new instances are added or removed, the <code class="docutils literal notranslate"><span class="pre">Notifier</span></code>
+mixin can be applied to the component class:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Notifier</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Then to listen to changes on that component the <code class="docutils literal notranslate"><span class="pre">componentsNotifier</span></code> method from <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> can
+be used:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">lives</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">playerNotifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">componentsNotifier</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">..</span><span class="n">addListener</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerNotifier</span><span class="p">.</span><span class="n">single</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">lives</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lives</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">add</span><span class="p">(</span><span class="n">GameOverComponent</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">add</span><span class="p">(</span><span class="n">Player</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">Notifier</span></code> component can also manually notify its listeners that something changed. Lets expand
+the example above to make a hud component to blink when the player has half of their health. In
+order to do so, we need that the <code class="docutils literal notranslate"><span class="pre">Player</span></code> component notify a change manually, example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Notifier</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">takeHit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">health</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="p">.</span><span class="m">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">health</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">health</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="n">notifyListeners</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Then our hud component could look like:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Hud</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">playerNotifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">componentsNotifier</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">    </span><span class="p">..</span><span class="n">addListener</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerNotifier</span><span class="p">.</span><span class="n">single</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="p">.</span><span class="n">health</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="n">add</span><span class="p">(</span><span class="n">BlinkEffect</span><span class="p">());</span><span class="w"></span>
+<span class="w">        </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ComponentsNotifier</span></code>s can also come in handy to rebuild widgets when state changes inside a
+<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, to help with that Flame provides a <code class="docutils literal notranslate"><span class="pre">ComponentsNotifierBuilder</span></code> widget.</p>
+<p>To see an example of its use check the running example
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/components/components_notifier_example.dart">here</a>;</p>
+</section>
 <section id="clipcomponent">
 <h2>ClipComponent<a class="headerlink" href="#clipcomponent" title="Permalink to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code> is a component that will clip the canvas to its size and shape. This means that
@@ -1380,6 +1455,7 @@ You can check the list of those effects <a class="reference internal" href="effe
   <a href='#isometrictilemapcomponent' class='list-group-item level-1'>IsometricTileMapComponent</a>
   <a href='#ninetileboxcomponent' class='list-group-item level-1'>NineTileBoxComponent</a>
   <a href='#custompaintercomponent' class='list-group-item level-1'>CustomPainterComponent</a>
+  <a href='#componentsnotifier' class='list-group-item level-1'>ComponentsNotifier</a>
   <a href='#clipcomponent' class='list-group-item level-1'>ClipComponent</a>
   <a href='#effects' class='list-group-item level-1'>Effects</a>
 </div>
