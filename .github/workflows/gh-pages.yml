@@ -2,11 +2,6 @@ name: GH-Pages
 
 on:
   workflow_dispatch:
-    inputs:
-      source:
-        description: 'Push to the Flame main branch'
-        required: false
-        default: 'No source specified'
 
 jobs:
   build:
