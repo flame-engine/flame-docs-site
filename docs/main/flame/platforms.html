@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
   <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
   <link rel="stylesheet" type="text/css" href="../_static/package.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -164,6 +165,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_lottie/flame_lottie.html">flame_lottie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
@@ -184,6 +186,36 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../other_modules/jenny/index.html">jenny</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../other_modules/jenny/language/language.html">YarnSpinner language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/language/nodes.html">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/language/lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/language/options.html">Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/language/commands/commands.html">Commands</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../other_modules/jenny/language/commands/declare.html">&lt;&lt;declare&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../other_modules/jenny/language/commands/if.html">&lt;&lt;if&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../other_modules/jenny/language/commands/jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../other_modules/jenny/language/commands/set.html">&lt;&lt;set&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../other_modules/jenny/language/commands/stop.html">&lt;&lt;stop&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../other_modules/jenny/language/commands/wait.html">&lt;&lt;wait&gt;&gt;</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/language/expressions.html">Expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../other_modules/jenny/runtime/index.html">Jenny API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/dialogue_choice.html">DialogueChoice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/dialogue_line.html">DialogueLine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/dialogue_option.html">DialogueOption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/dialogue_runner.html">DialogueRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/dialogue_view.html">DialogueView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/markup_attribute.html">MarkupAttribute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/node.html">Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/yarn_project.html">YarnProject</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen/oxygen.html">oxygen</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../other_modules/oxygen/components.html">Components</a></li>
 </ul>
@@ -303,12 +335,12 @@ deployed game.</p>
 <code class="docutils literal notranslate"><span class="pre">https://YOUR_GITHUB_USERNAME.github.io/YOUR_REPO_NAME/</span></code></p>
 </section>
 <section id="deploy-your-game-to-itch-io">
-<h2>Deploy your game to <a class="reference external" href="http://itch.io">itch.io</a><a class="headerlink" href="#deploy-your-game-to-itch-io" title="Permalink to this heading">¶</a></h2>
+<h2>Deploy your game to itch.io<a class="headerlink" href="#deploy-your-game-to-itch-io" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>Create a web build, either from your IDE or by running <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">build</span> <span class="pre">web</span></code>
 (If it complains about <code class="docutils literal notranslate"><span class="pre">Missing</span> <span class="pre">index.html</span></code> run <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">create</span> <span class="pre">.</span> <span class="pre">--platforms=web</span></code>)</p></li>
 <li><p>Go into <code class="docutils literal notranslate"><span class="pre">index.html</span></code> and remove the line that says <code class="docutils literal notranslate"><span class="pre">&lt;base</span> <span class="pre">href=&quot;/&quot;&gt;</span></code></p></li>
-<li><p>zip the <code class="docutils literal notranslate"><span class="pre">build/web</span></code> folder and upload to <a class="reference external" href="http://itch.io">itch.io</a></p></li>
+<li><p>zip the <code class="docutils literal notranslate"><span class="pre">build/web</span></code> folder and upload to itch.io</p></li>
 </ol>
 <p><strong>Remember that it shouldn’t be the <code class="docutils literal notranslate"><span class="pre">web</span></code> directory in your project’s root, but in <code class="docutils literal notranslate"><span class="pre">build/web</span></code>!</strong></p>
 <p>If you are submitting your game to a game jam, remember to make it public and submit it on the

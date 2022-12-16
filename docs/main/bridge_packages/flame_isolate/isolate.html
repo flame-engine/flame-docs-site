@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
@@ -32,7 +33,7 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="flame_oxygen" href="../flame_oxygen/flame_oxygen.html" />
+  <link rel="next" title="flame_lottie" href="../flame_lottie/flame_lottie.html" />
   <link rel="prev" title="flame_isolate" href="flame_isolate.html" />
 </head>
 
@@ -164,6 +165,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_lottie/flame_lottie.html">flame_lottie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
@@ -184,6 +186,36 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/jenny/index.html">jenny</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/jenny/language/language.html">YarnSpinner language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/nodes.html">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/options.html">Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/commands/commands.html">Commands</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/declare.html">&lt;&lt;declare&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/if.html">&lt;&lt;if&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/set.html">&lt;&lt;set&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/stop.html">&lt;&lt;stop&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/wait.html">&lt;&lt;wait&gt;&gt;</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/expressions.html">Expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/jenny/runtime/index.html">Jenny API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_choice.html">DialogueChoice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_line.html">DialogueLine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_option.html">DialogueOption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_runner.html">DialogueRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_view.html">DialogueView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/markup_attribute.html">MarkupAttribute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/node.html">Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/yarn_project.html">YarnProject</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen/oxygen.html">oxygen</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../other_modules/oxygen/components.html">Components</a></li>
 </ul>
@@ -242,7 +274,7 @@
   <section class="tex2jax_ignore mathjax_ignore" id="flameisolate">
 <h1>FlameIsolate<a class="headerlink" href="#flameisolate" title="Permalink to this heading">¶</a></h1>
 <p>The power of <a class="reference external" href="https://pub.dev/packages/integral_isolates">integral_isolates</a> neatly packaged in
-<a class="reference external" href="https://pub.dev/packages/flame_isolates">flame_isolates</a> for your Flame game.</p>
+<a class="reference external" href="https://pub.dev/packages/flame_isolate">flame_isolate</a> for your Flame game.</p>
 <p>If you’ve ever used the <a class="reference external" href="https://api.flutter.dev/flutter/foundation/compute-constant.html">compute</a>
 function before, you will feel right at home. This mixin allows you to run CPU-intensive code in an
 isolate.</p>
@@ -318,10 +350,10 @@ create the isolate with the specified strategy when the component is mounted.</p
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="../flame_oxygen/flame_oxygen.html" title="next page">
+      <a class="right-next" id="next-link" href="../flame_lottie/flame_lottie.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">flame_oxygen</p>
+          <p class="prev-next-title">flame_lottie</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>

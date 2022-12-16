@@ -9,6 +9,7 @@
   <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
   <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
   <link rel="stylesheet" type="text/css" href="../_static/package.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
@@ -164,6 +165,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_lottie/flame_lottie.html">flame_lottie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
@@ -184,6 +186,36 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../other_modules/jenny/index.html">jenny</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../other_modules/jenny/language/language.html">YarnSpinner language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/language/nodes.html">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/language/lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/language/options.html">Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/language/commands/commands.html">Commands</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../other_modules/jenny/language/commands/declare.html">&lt;&lt;declare&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../other_modules/jenny/language/commands/if.html">&lt;&lt;if&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../other_modules/jenny/language/commands/jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../other_modules/jenny/language/commands/set.html">&lt;&lt;set&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../other_modules/jenny/language/commands/stop.html">&lt;&lt;stop&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../other_modules/jenny/language/commands/wait.html">&lt;&lt;wait&gt;&gt;</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/language/expressions.html">Expressions</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../other_modules/jenny/runtime/index.html">Jenny API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/dialogue_choice.html">DialogueChoice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/dialogue_line.html">DialogueLine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/dialogue_option.html">DialogueOption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/dialogue_runner.html">DialogueRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/dialogue_view.html">DialogueView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/markup_attribute.html">MarkupAttribute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/node.html">Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../other_modules/jenny/runtime/yarn_project.html">YarnProject</a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../other_modules/oxygen/oxygen.html">oxygen</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../other_modules/oxygen/components.html">Components</a></li>
 </ul>
@@ -245,7 +277,7 @@
 other. For example an arrow hitting an enemy or the player picking up a coin.</p>
 <p>In most collision detection systems you use something called hitboxes to create more precise
 bounding boxes of your components. In Flame the hitboxes are areas of the component that can react
-to collisions (and make <span class="xref myst">gesture input</span>) more accurate.</p>
+to collisions (and make <a class="reference internal" href="inputs/gesture_input.html#gesturehitboxes"><span class="std std-doc">gesture input</span></a>) more accurate.</p>
 <p>The collision detection system supports three different types of shapes that you can build hitboxes
 from, these shapes are Polygon, Rectangle and Circle. Multiple hitbox can be added to a component to
 form the area which can be used to either detect collisions or whether it contains a point or not,
@@ -421,7 +453,7 @@ more complex areas. For example a snowman with a hat could be represented by thr
 and two <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code>s as its hat.</p>
 <p>A hitbox can be used either for collision detection or for making gesture detection more accurate
 on top of components, see more regarding the latter in the section about the
-<span class="xref myst">GestureHitboxes</span> mixin.</p>
+<a class="reference internal" href="inputs/gesture_input.html#gesturehitboxes"><span class="std std-doc">GestureHitboxes</span></a> mixin.</p>
 <section id="collisiontype">
 <h3>CollisionType<a class="headerlink" href="#collisiontype" title="Permalink to this heading">¶</a></h3>
 <p>The hitboxes have a field called <code class="docutils literal notranslate"><span class="pre">collisionType</span></code> which defines when a hitbox should collide with
@@ -936,10 +968,10 @@ previously.</p>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>[<a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Collidable%20AnimationComponent">https://examples.flame-engine.org/#/Collision Detection_Collidable AnimationComponent</a>]</p></li>
-<li><p>[<a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Circles">https://examples.flame-engine.org/#/Collision Detection_Circles</a>]</p></li>
-<li><p>[<a class="reference external" href="https://examples.flame-engine.org/#/Collision%20Detection_Multiple%20shapes">https://examples.flame-engine.org/#/Collision Detection_Multiple shapes</a>]</p></li>
-<li><p>[<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collision_detection">https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collision_detection</a>]</p></li>
+<li><p>[https://examples.flame-engine.org/#/Collision%20Detection_Collidable%20AnimationComponent]</p></li>
+<li><p>[https://examples.flame-engine.org/#/Collision%20Detection_Circles]</p></li>
+<li><p>[https://examples.flame-engine.org/#/Collision%20Detection_Multiple%20shapes]</p></li>
+<li><p>[https://github.com/flame-engine/flame/tree/main/examples/lib/stories/collision_detection]</p></li>
 </ul>
 </section>
 </section>
