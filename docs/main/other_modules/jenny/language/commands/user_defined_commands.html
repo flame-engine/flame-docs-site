@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>&lt;&lt;if&gt;&gt; &#8212; Flame</title>
+  <title>User-defined commands &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css" />
@@ -33,8 +33,8 @@
   <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../../../genindex.html" />
   <link rel="search" title="Search" href="../../../../search.html" />
-  <link rel="next" title="&lt;&lt;jump&gt;&gt;" href="jump.html" />
-  <link rel="prev" title="&lt;&lt;declare&gt;&gt;" href="declare.html" />
+  <link rel="next" title="Expressions" href="../expressions.html" />
+  <link rel="prev" title="&lt;&lt;wait&gt;&gt;" href="wait.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -193,12 +193,12 @@
 <li class="toctree-l4"><a class="reference internal" href="../options.html">Options</a></li>
 <li class="toctree-l4 current"><a class="reference internal" href="commands.html">Commands</a><ul class="current">
 <li class="toctree-l5"><a class="reference internal" href="declare.html">&lt;&lt;declare&gt;&gt;</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">&lt;&lt;if&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="if.html">&lt;&lt;if&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="jump.html">&lt;&lt;jump&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="set.html">&lt;&lt;set&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="stop.html">&lt;&lt;stop&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="wait.html">&lt;&lt;wait&gt;&gt;</a></li>
-<li class="toctree-l5"><a class="reference internal" href="user_defined_commands.html">User-defined commands</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">User-defined commands</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../expressions.html">Expressions</a></li>
@@ -274,24 +274,39 @@
   <div class="document-wrapper">
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="if">
-<h1><code class="docutils literal notranslate"><span class="pre">&lt;&lt;if&gt;&gt;</span></code><a class="headerlink" href="#if" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>&lt;&lt;if&gt;&gt;</strong> command evaluates its condition, and based on that decides which statements to
-execute next. This command may have multiple parts, which look as following:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nf">condition1</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span>statements1...<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nf">condition2</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span>statements2...<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span>statementsN...<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
+  <section class="tex2jax_ignore mathjax_ignore" id="user-defined-commands">
+<h1>User-defined commands<a class="headerlink" href="#user-defined-commands" title="Permalink to this heading">¶</a></h1>
+<p>In addition to the built-in commands, you can also declare your own <strong>user-defined commands</strong> for
+use in your yarn scripts. Typically, these commands would perform some in-game action that can be
+viewed as a natural part of the dialogue. For example, you can create commands for such action as
+<code class="docutils literal notranslate"><span class="pre">&lt;&lt;wave&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;smile&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;frown&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;moveCamera&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;zoom&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;shakeCamera&gt;&gt;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&lt;&lt;fadeOut&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;walk&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;give&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;take&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;achievement&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;GainExperience&gt;&gt;</span></code>,
+<code class="docutils literal notranslate"><span class="pre">&lt;&lt;startQuest&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;finishQuest&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;openTrade&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;drawWeapon&gt;&gt;</span></code>, and so on.</p>
+<p>In many cases, the commands will need to take arguments. The arguments of a user-defined command
+are processed according to the following rules:</p>
+<ul class="simple">
+<li><p>First, all content after the command name and until the closing <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> is parsed according to the
+rules of regular line parsing, where interpolated expressions are allowed but markup and hashtags
+are not.</p></li>
+<li><p>At runtime, the content of that line is evaluated, meaning that we substitute the values of all
+expressions.</p></li>
+<li><p>The evaluated argument string is then broken into individual arguments at whitespace, and the
+types of these arguments are checked against the signature of the backing function.</p></li>
+<li><p>Then, the backing function is called with the parsed arguments.</p></li>
+<li><p>Lastly, all dialogue views in the dialogue runner receive the <code class="docutils literal notranslate"><span class="pre">onCommand()</span></code> event.</p></li>
+</ul>
+<p>As a concrete example, consider the following command:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="nc">give</span><span class="w"> </span>Gold <span class="p">{</span><span class="nb">round</span><span class="p">(</span><span class="m">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">$multiplier</span><span class="p">)}&gt;&gt;</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">&lt;&lt;elseif&gt;&gt;</span></code>s and the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;else&gt;&gt;</span></code> are optional, whereas the final <code class="docutils literal notranslate"><span class="pre">&lt;&lt;endif&gt;&gt;</span></code> is mandatory. Also,
-notice that the statements within each block are indented.</p>
-<p>During the runtime, the conditions within each <code class="docutils literal notranslate"><span class="pre">&lt;&lt;if&gt;&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;&lt;elseif&gt;&gt;</span></code> blocks will be evaluated
-in turn, and the first one which evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> will have its statements executed next. These
-conditions must be boolean.</p>
+<p>First note that, unlike builtin commands, the arguments of the command are treated as text, and any
+expressions need to be placed in curly brackets.</p>
+<p>Then, at runtime the expression is evaluated, and (assuming <code class="docutils literal notranslate"><span class="pre">$multiplier</span></code> is 1.5) the command’s
+argument string becomes <code class="docutils literal notranslate"><span class="pre">&quot;Gold</span> <span class="pre">150&quot;</span></code>. The string is then broken at white spaces and each argument
+is parsed according to its type in the backing Dart function. For example, if the function’s
+signature is <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">give(String</span> <span class="pre">item,</span> <span class="pre">int?</span> <span class="pre">amount)</span></code>, then it will be invoked as <code class="docutils literal notranslate"><span class="pre">give(&quot;Gold&quot;,</span> <span class="pre">150)</span></code>.
+If, on the other hand, the number or types of arguments do not match the expected signature, then
+a <code class="docutils literal notranslate"><span class="pre">DialogueException</span></code> will be raised.</p>
 </section>
 
 
@@ -301,18 +316,18 @@ conditions must be boolean.</p>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="declare.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="wait.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">&lt;&lt;declare&gt;&gt;</p>
+          <p class="prev-next-title">&lt;&lt;wait&gt;&gt;</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="jump.html" title="next page">
+      <a class="right-next" id="next-link" href="../expressions.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">&lt;&lt;jump&gt;&gt;</p>
+          <p class="prev-next-title">Expressions</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>

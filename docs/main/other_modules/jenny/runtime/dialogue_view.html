@@ -198,12 +198,14 @@
 <li class="toctree-l5"><a class="reference internal" href="../language/commands/set.html">&lt;&lt;set&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../language/commands/stop.html">&lt;&lt;stop&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../language/commands/wait.html">&lt;&lt;wait&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../language/commands/user_defined_commands.html">User-defined commands</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../language/expressions.html">Expressions</a></li>
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Jenny API</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="command_storage.html">CommandStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dialogue_choice.html">DialogueChoice</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dialogue_line.html">DialogueLine</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dialogue_option.html">DialogueOption</a></li>
@@ -211,6 +213,7 @@
 <li class="toctree-l4 current"><a class="current reference internal" href="#">DialogueView</a></li>
 <li class="toctree-l4"><a class="reference internal" href="markup_attribute.html">MarkupAttribute</a></li>
 <li class="toctree-l4"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="user_defined_command.html">UserDefinedCommand</a></li>
 <li class="toctree-l4"><a class="reference internal" href="yarn_project.html">YarnProject</a></li>
 </ul>
 </li>
@@ -359,7 +362,7 @@ preparations to receive the next dialogue line.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">option</span></code> will be the one returned from the <strong>onChoiceStart</strong> method by one of the dialogue
 views.</p>
 </dd>
-<dt><strong>onCommand</strong>(<code class="docutils literal notranslate"><span class="pre">UserDefinedCommand</span> <span class="pre">command</span></code>)</dt><dd><p>Called when executing a user-defined <span class="xref myst">command</span>.</p>
+<dt><strong>onCommand</strong>(<code class="docutils literal notranslate"><span class="pre">UserDefinedCommand</span> <span class="pre">command</span></code>)</dt><dd><p>Called when executing a user-defined <a class="reference internal" href="user_defined_command.html"><span class="doc std std-doc">command</span></a>.</p>
 <p>This method is invoked immediately after the command itself is executed, but before the result of
 the execution was awaited. Thus, if the command’s effect is asynchronous, then it will be send to
 dialogue views and executed “at the same time”.</p>

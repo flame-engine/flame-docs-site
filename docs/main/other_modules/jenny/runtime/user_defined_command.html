@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Node &#8212; Flame</title>
+  <title>UserDefinedCommand &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/basic.css" />
@@ -33,8 +33,8 @@
   <link rel="shortcut icon" href="../../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../../genindex.html" />
   <link rel="search" title="Search" href="../../../search.html" />
-  <link rel="next" title="UserDefinedCommand" href="user_defined_command.html" />
-  <link rel="prev" title="MarkupAttribute" href="markup_attribute.html" />
+  <link rel="next" title="Yarn Project" href="yarn_project.html" />
+  <link rel="prev" title="Node" href="node.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -212,8 +212,8 @@
 <li class="toctree-l4"><a class="reference internal" href="dialogue_runner.html">DialogueRunner</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dialogue_view.html">DialogueView</a></li>
 <li class="toctree-l4"><a class="reference internal" href="markup_attribute.html">MarkupAttribute</a></li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Node</a></li>
-<li class="toctree-l4"><a class="reference internal" href="user_defined_command.html">UserDefinedCommand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="node.html">Node</a></li>
+<li class="toctree-l4 current"><a class="current reference internal" href="#">UserDefinedCommand</a></li>
 <li class="toctree-l4"><a class="reference internal" href="yarn_project.html">YarnProject</a></li>
 </ul>
 </li>
@@ -274,22 +274,37 @@
   <div class="document-wrapper">
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="node">
-<h1>Node<a class="headerlink" href="#node" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>Node</strong> class represents a single <a class="reference internal" href="../language/nodes.html"><span class="doc std std-doc">node</span></a> within the <code class="docutils literal notranslate"><span class="pre">.yarn</span></code> script. The objects of this class
-will be delivered to your <a class="reference internal" href="dialogue_view.html"><span class="doc std std-doc">DialogueView</span></a>s with the methods <code class="docutils literal notranslate"><span class="pre">onNodeStart()</span></code>, <code class="docutils literal notranslate"><span class="pre">onNodeFinish()</span></code>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="userdefinedcommand">
+<h1>UserDefinedCommand<a class="headerlink" href="#userdefinedcommand" title="Permalink to this heading">¶</a></h1>
+<p>The <strong>UserDefinedCommand</strong> class represents a single invocation of a custom (non-built-in) command
+within a yarn script. Objects of this type will be delivered to a <a class="reference internal" href="dialogue_view.html"><span class="doc std std-doc">DialogueView</span></a> in its
+<code class="docutils literal notranslate"><span class="pre">.onCommand()</span></code> method.</p>
 <section id="properties">
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
 <dl class="simple myst">
-<dt><strong>title</strong> <code class="docutils literal notranslate"><span class="pre">String</span></code></dt><dd><p>The title (name) of the node.</p>
+<dt><strong>name</strong> <code class="docutils literal notranslate"><span class="pre">String</span></code></dt><dd><p>The name of the command, without the angle brackets. For example, if the command is <code class="docutils literal notranslate"><span class="pre">&lt;&lt;smile&gt;&gt;</span></code>
+in the yarn script, then its name will be <code class="docutils literal notranslate"><span class="pre">&quot;smile&quot;</span></code>.</p>
 </dd>
-<dt><strong>tags</strong> <code class="docutils literal notranslate"><span class="pre">Map&lt;String,</span> <span class="pre">String&gt;</span></code></dt><dd><p>Additional tags specified in the header of the node. The map will be empty if there were no tags
-besides the required <code class="docutils literal notranslate"><span class="pre">title</span></code> tag.</p>
+<dt><strong>argumentString</strong> <code class="docutils literal notranslate"><span class="pre">String</span></code></dt><dd><p>Command arguments, as a single string. For example, if the command is <code class="docutils literal notranslate"><span class="pre">&lt;&lt;move</span> <span class="pre">Hippo</span> <span class="pre">{$delta}&gt;&gt;</span></code>,
+and the value of variable <code class="docutils literal notranslate"><span class="pre">$delta</span></code> is <code class="docutils literal notranslate"><span class="pre">3.17</span></code>, then the argument string will be <code class="docutils literal notranslate"><span class="pre">&quot;Hippo</span> <span class="pre">3.17&quot;</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">argumentString</span></code> is re-evaluated every time the command is executed, however, it is an error
+to access this property before the command was executed by the dialogue runner.</p>
 </dd>
-<dt><strong>iterator</strong> <code class="docutils literal notranslate"><span class="pre">Iterator&lt;DialogueEntry&gt;</span></code></dt><dd><p>The content of the node, which is a sequence of <code class="docutils literal notranslate"><span class="pre">DialogueLine</span></code>s, <code class="docutils literal notranslate"><span class="pre">DialogueChoice</span></code>s, or
-<code class="docutils literal notranslate"><span class="pre">Command</span></code>s.</p>
+<dt><strong>arguments</strong> <code class="docutils literal notranslate"><span class="pre">List&lt;dynamic&gt;?</span></code></dt><dd><p>Command arguments, as a list of parsed values. This property will be null if the command was
+declared without a signature (i.e. as an “orphaned command”). However, if the command was linked
+as an external function, then the number and types of arguments in the list will correspond to
+the arguments of that function.</p>
+<p>In the same example as above, the <code class="docutils literal notranslate"><span class="pre">arguments</span></code> will be <code class="docutils literal notranslate"><span class="pre">['Hippo',</span> <span class="pre">3.17]</span></code>, assuming the linked Dart
+function is <code class="docutils literal notranslate"><span class="pre">move(String</span> <span class="pre">target,</span> <span class="pre">double</span> <span class="pre">distance)</span></code>.</p>
 </dd>
 </dl>
+</section>
+<section id="see-also">
+<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The description of <a class="reference internal" href="../language/commands/user_defined_commands.html"><span class="doc std std-doc">User-defined Commands</span></a> in the YarnSpinner language.</p></li>
+<li><p>The guide on how to register a new custom command in the <a class="reference internal" href="command_storage.html"><span class="doc std std-doc">CommandStorage</span></a> document.</p></li>
+</ul>
 </section>
 </section>
 
@@ -300,18 +315,18 @@ besides the required <code class="docutils literal notranslate"><span class="pre
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="markup_attribute.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="node.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">MarkupAttribute</p>
+          <p class="prev-next-title">Node</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="user_defined_command.html" title="next page">
+      <a class="right-next" id="next-link" href="yarn_project.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">UserDefinedCommand</p>
+          <p class="prev-next-title">Yarn Project</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
@@ -324,6 +339,7 @@ besides the required <code class="docutils literal notranslate"><span class="pre
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#properties' class='list-group-item level-1'>Properties</a>
+  <a href='#see-also' class='list-group-item level-1'>See also</a>
 </div>
 
     </div>

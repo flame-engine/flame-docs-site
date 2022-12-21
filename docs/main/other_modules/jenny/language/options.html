@@ -198,12 +198,14 @@
 <li class="toctree-l5"><a class="reference internal" href="commands/set.html">&lt;&lt;set&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="commands/stop.html">&lt;&lt;stop&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="commands/wait.html">&lt;&lt;wait&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="commands/user_defined_commands.html">User-defined commands</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="expressions.html">Expressions</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="../runtime/index.html">Jenny API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../runtime/command_storage.html">CommandStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../runtime/dialogue_choice.html">DialogueChoice</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../runtime/dialogue_line.html">DialogueLine</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../runtime/dialogue_option.html">DialogueOption</a></li>
@@ -211,6 +213,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../runtime/dialogue_view.html">DialogueView</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../runtime/markup_attribute.html">MarkupAttribute</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../runtime/node.html">Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../runtime/user_defined_command.html">UserDefinedCommand</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../runtime/yarn_project.html">YarnProject</a></li>
 </ul>
 </li>
@@ -298,11 +301,11 @@ command after the text of an option (but before the hashtags):</p>
 <span class="p">---</span>
 <span class="nt">Guard</span><span class="p">: </span>50 coins and you can cross the bridge.<span class="w"></span>
 <span class="p">-&gt;</span><span class="w"> </span>Alright, take the money  <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$gold</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">50</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">take</span><span class="w"> </span><span class="nf">gold</span><span class="w"> </span><span class="m">50</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">grant</span><span class="w"> </span><span class="nf">bridge_pass</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">take</span><span class="w"> </span>gold 50<span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">grant</span><span class="w"> </span>bridge_pass<span class="p">&gt;&gt;</span><span class="w"></span>
 <span class="p">-&gt;</span><span class="w"> </span>I have so much money, here, take a 100  <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$gold</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">10000</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">take</span><span class="w"> </span><span class="nf">gold</span><span class="w"> </span><span class="m">100</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">grant</span><span class="w"> </span><span class="nf">bridge_pass</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">take</span><span class="w"> </span>gold 100<span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">grant</span><span class="w"> </span>bridge_pass<span class="p">&gt;&gt;</span><span class="w"></span>
 <span class="w">   </span><span class="nt">Guard</span><span class="p">: </span>Wow, so generous!<span class="w"></span>
 <span class="w">   </span><span class="nt">Guard</span><span class="p">: </span>But I wouldn&#39;t recommend going around telling everyone that you <span class="se">\</span>
 <span class="se">          </span>have &quot;so much money&quot;<span class="w"></span>
@@ -313,7 +316,7 @@ command after the text of an option (but before the hashtags):</p>
 <span class="w">      </span><span class="p">&lt;&lt;</span><span class="nc">fight</span><span class="p">&gt;&gt;</span><span class="w"></span>
 <span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span><span class="w"></span>
 <span class="w">      </span>You make a very reasonable point, sir, my apologies.<span class="w"></span>
-<span class="w">      </span><span class="p">&lt;&lt;</span><span class="nc">grant</span><span class="w"> </span><span class="nf">bridge_pass</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&lt;&lt;</span><span class="nc">grant</span><span class="w"> </span>bridge_pass<span class="p">&gt;&gt;</span><span class="w"></span>
 <span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
 <span class="p">===</span>
 </pre></div>
