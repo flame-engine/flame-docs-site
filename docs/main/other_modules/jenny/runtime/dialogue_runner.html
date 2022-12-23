@@ -310,7 +310,7 @@ that need to be presented to the player. Such presentation, is handled by the <a
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h2>
 <dl class="simple myst">
-<dt><strong>runNode</strong>(<code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">nodeName</span></code>)</dt><dd><p>Executes the node with the given name, and returns a future that completes only when the dialogue
+<dt><strong>startDialogue</strong>(<code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">nodeName</span></code>)</dt><dd><p>Executes the node with the given name, and returns a future that completes only when the dialogue
 finishes running (which may be a while). A single <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> can only run one node at a
 time.</p>
 </dd>
@@ -361,6 +361,11 @@ Hello<span class="w"></span>
 <li><p><code class="docutils literal notranslate"><span class="pre">onNodeFinish(Node(&quot;Away&quot;))</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">onDialogueFinish()</span></code></p></li>
 </ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Keep in mind that if a <code class="docutils literal notranslate"><span class="pre">DialogueError</span></code> is thrown while running the dialogue, then the dialogue will
+terminate immediately and none of the <code class="docutils literal notranslate"><span class="pre">*Finish</span></code> callbacks will run.</p>
+</div>
 </section>
 </section>
 

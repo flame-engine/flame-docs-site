@@ -308,13 +308,15 @@ load resources.</p>
 </dd>
 <dt><strong>onDialogueFinish</strong>()</dt><dd><p>Called when the dialogue is about to finish.</p>
 </dd>
-<dt><strong>onNodeStart</strong>(<code class="docutils literal notranslate"><span class="pre">Node</span> <span class="pre">node</span></code>)</dt><dd><p>Called when the dialogue runner starts executing the <a class="reference internal" href="node.html"><span class="doc std std-doc">Node</span></a>. This will be called at the start of
-<code class="docutils literal notranslate"><span class="pre">DialogueView.runNode()</span></code> (but after the <strong>onDialogueStart</strong>), and then each time the dialogue
-jumps to another node.</p>
+<dt><strong>onNodeStart</strong>(<code class="docutils literal notranslate"><span class="pre">Node</span> <span class="pre">node</span></code>)</dt><dd><p>Called when the dialogue runner starts executing the <a class="reference internal" href="node.html"><span class="doc std std-doc">Node</span></a>. This will be called right after the
+<strong>onDialogueStart</strong> event, and then each time the dialogue jumps to another node.</p>
 <p>This method is a good place to perform node-specific initialization, for example by querying the
 <code class="docutils literal notranslate"><span class="pre">node</span></code>’s properties or metadata.</p>
 </dd>
-<dt><strong>onNodeFinish</strong>(<code class="docutils literal notranslate"><span class="pre">Node</span> <span class="pre">node</span></code>)</dt><dd><p>TODO</p>
+<dt><strong>onNodeFinish</strong>(<code class="docutils literal notranslate"><span class="pre">Node</span> <span class="pre">node</span></code>)</dt><dd><p>Called when the dialogue runner finishes executing the <a class="reference internal" href="node.html"><span class="doc std std-doc">Node</span></a>, before <strong>onDialogueFinish</strong>. This
+will also be called every time a node is exited via <code class="docutils literal notranslate"><span class="pre">&lt;&lt;stop&gt;&gt;</span></code> or a <code class="docutils literal notranslate"><span class="pre">&lt;&lt;jump&gt;&gt;</span></code> command (including
+jumps from node to itself).</p>
+<p>This callback can be used to clean up any preparations that were performed in <code class="docutils literal notranslate"><span class="pre">onNodeStart</span></code>.</p>
 </dd>
 <dt><strong>onLineStart</strong>(<code class="docutils literal notranslate"><span class="pre">DialogueLine</span> <span class="pre">line</span></code>) <code class="docutils literal notranslate"><span class="pre">-&gt;</span> <span class="pre">bool</span></code></dt><dd><p>Called when the next dialogue <a class="reference internal" href="dialogue_line.html"><span class="doc std std-doc">line</span></a> should be presented to the user.</p>
 <p>The DialogueView may decide to present the <code class="docutils literal notranslate"><span class="pre">line</span></code> in whatever way it wants, or to not present
