@@ -195,6 +195,7 @@
 <li class="toctree-l5"><a class="reference internal" href="declare.html">&lt;&lt;declare&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="if.html">&lt;&lt;if&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="local.html">&lt;&lt;local&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="set.html">&lt;&lt;set&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="stop.html">&lt;&lt;stop&gt;&gt;</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">&lt;&lt;wait&gt;&gt;</a></li>
@@ -276,9 +277,14 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="wait">
 <h1><code class="docutils literal notranslate"><span class="pre">&lt;&lt;wait&gt;&gt;</span></code><a class="headerlink" href="#wait" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>&lt;&lt;wait&gt;&gt;</strong> command forces the engine to wait the provided number of seconds before
-proceeding with the dialogue.</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">wait</span><span class="w"> </span><span class="m">1.5</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<p>The <strong>&lt;&lt;wait&gt;&gt;</strong> command forces the dialogue engine to wait for the specified duration
+(in seconds) before resuming the dialogue. The number of seconds can be 0, but cannot be negative.
+This command takes a single argument, which must be a numeric expression. For example:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="c">// Wait for a quarter of a second</span>
+<span class="p">&lt;&lt;</span><span class="k">wait</span><span class="w"> </span><span class="m">0.25</span><span class="p">&gt;&gt;</span><span class="w"></span>
+
+<span class="c">// Wait for the amount of time given by the $delay variable</span>
+<span class="p">&lt;&lt;</span><span class="k">wait</span><span class="w"> </span><span class="nv">$delay</span><span class="p">&gt;&gt;</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

@@ -195,6 +195,7 @@
 <li class="toctree-l5"><a class="reference internal" href="declare.html">&lt;&lt;declare&gt;&gt;</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">&lt;&lt;if&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="local.html">&lt;&lt;local&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="set.html">&lt;&lt;set&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="stop.html">&lt;&lt;stop&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="wait.html">&lt;&lt;wait&gt;&gt;</a></li>
@@ -277,7 +278,8 @@
   <section class="tex2jax_ignore mathjax_ignore" id="if">
 <h1><code class="docutils literal notranslate"><span class="pre">&lt;&lt;if&gt;&gt;</span></code><a class="headerlink" href="#if" title="Permalink to this heading">¶</a></h1>
 <p>The <strong>&lt;&lt;if&gt;&gt;</strong> command evaluates its condition, and based on that decides which statements to
-execute next. This command may have multiple parts, which look as following:</p>
+execute next. This is equivalent to <code class="docutils literal notranslate"><span class="pre">if</span></code> keyword in most programming languages. This command may
+have multiple parts, which look as follows:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nf">condition1</span><span class="p">&gt;&gt;</span><span class="w"></span>
 <span class="w">  </span>statements1...<span class="w"></span>
 <span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nf">condition2</span><span class="p">&gt;&gt;</span><span class="w"></span>
@@ -287,11 +289,43 @@ execute next. This command may have multiple parts, which look as following:</p>
 <span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">&lt;&lt;elseif&gt;&gt;</span></code>s and the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;else&gt;&gt;</span></code> are optional, whereas the final <code class="docutils literal notranslate"><span class="pre">&lt;&lt;endif&gt;&gt;</span></code> is mandatory. Also,
-notice that the statements within each block are indented.</p>
-<p>During the runtime, the conditions within each <code class="docutils literal notranslate"><span class="pre">&lt;&lt;if&gt;&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;&lt;elseif&gt;&gt;</span></code> blocks will be evaluated
-in turn, and the first one which evaluates to <code class="docutils literal notranslate"><span class="pre">true</span></code> will have its statements executed next. These
-conditions must be boolean.</p>
+<ul class="simple">
+<li><p>The conditions within each command must have boolean type.</p></li>
+<li><p>There could be any number of <code class="docutils literal notranslate"><span class="pre">&lt;&lt;elseif&gt;&gt;</span></code> blocks.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">&lt;&lt;elseif&gt;&gt;</span></code> blocks and <code class="docutils literal notranslate"><span class="pre">&lt;&lt;else&gt;&gt;</span></code> are optional.</p></li>
+<li><p>The final <code class="docutils literal notranslate"><span class="pre">&lt;&lt;endif&gt;&gt;</span></code> is mandatory.</p></li>
+<li><p>The statements within each block must be indented.</p></li>
+</ul>
+<p>At runtime, the condition within the <code class="docutils literal notranslate"><span class="pre">if</span></code> block is evaluated first. If it turns out to be <code class="docutils literal notranslate"><span class="pre">true</span></code>,
+then the dialogue proceeds with executing <code class="docutils literal notranslate"><span class="pre">statements1</span></code>, and no other conditions are evaluated nor
+other statement blocks executed. However, if <code class="docutils literal notranslate"><span class="pre">condition1</span></code> evaluated to <code class="docutils literal notranslate"><span class="pre">false</span></code>, then <code class="docutils literal notranslate"><span class="pre">condition2</span></code>
+is calculated. If it is true, then the dialogue runner will execute <code class="docutils literal notranslate"><span class="pre">statements2</span></code>, and if false it
+will fall-through into the <code class="docutils literal notranslate"><span class="pre">else</span></code> block and execute <code class="docutils literal notranslate"><span class="pre">statementsN</span></code>. In the end, the dialogue will
+proceed to statements that occur after the final <code class="docutils literal notranslate"><span class="pre">&lt;&lt;endif&gt;&gt;</span></code>.</p>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<p>In this dialogue a <em>Guard</em> will greet you differently depending on your reputation with the
+citizens of the area. If your reputation falls below −100, you’ll be attacked on sight.</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> GuardGreeting</span>
+<span class="p">---</span>
+<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">100</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>Hail to the savior of the people!<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">30</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>Nice to meet you, sir!<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">0</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>Hello<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="m">30</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>I&#39;m keeping an eye on you...<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="m">100</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>You filthy scum!<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>You&#39;ll pay for your crimes! <span class="ch">#auto</span><span class="w"></span>
+<span class="w">  </span><span class="p">&lt;&lt;</span><span class="nc">attack</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">===</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -324,6 +358,7 @@ conditions must be boolean.</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#example' class='list-group-item level-1'>Example</a>
 </div>
 
     </div>

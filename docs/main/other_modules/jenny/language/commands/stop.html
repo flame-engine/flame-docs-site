@@ -195,6 +195,7 @@
 <li class="toctree-l5"><a class="reference internal" href="declare.html">&lt;&lt;declare&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="if.html">&lt;&lt;if&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="local.html">&lt;&lt;local&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="set.html">&lt;&lt;set&gt;&gt;</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">&lt;&lt;stop&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="wait.html">&lt;&lt;wait&gt;&gt;</a></li>
@@ -276,8 +277,15 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="stop">
 <h1><code class="docutils literal notranslate"><span class="pre">&lt;&lt;stop&gt;&gt;</span></code><a class="headerlink" href="#stop" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>&lt;&lt;stop&gt;&gt;</strong> command is very simple: it immediately stops evaluating the current node, as if
-we reached the end of the dialogue. This command takes no arguments.</p>
+<p>The <strong>&lt;&lt;stop&gt;&gt;</strong> command: immediately stops evaluating the current node, as if you jumped to
+its end. This command takes no arguments.</p>
+<p>Normally, the effect of this command is that it stops the dialogue. However, if you’re only
+visiting the current node from a different one, then <code class="docutils literal notranslate"><span class="pre">&lt;&lt;stop&gt;&gt;</span></code> will only exit the current node,
+and the execution flow will return to the parent. Thus, the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;stop&gt;&gt;</span></code> command is similar to
+<code class="docutils literal notranslate"><span class="pre">return;</span></code> in many programming languages.</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">stop</span><span class="p">&gt;&gt;</span><span class="w"></span>
+</pre></div>
+</div>
 </section>
 
 

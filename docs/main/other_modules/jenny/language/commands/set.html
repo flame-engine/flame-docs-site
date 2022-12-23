@@ -34,7 +34,7 @@
   <link rel="index" title="Index" href="../../../../genindex.html" />
   <link rel="search" title="Search" href="../../../../search.html" />
   <link rel="next" title="&lt;&lt;stop&gt;&gt;" href="stop.html" />
-  <link rel="prev" title="&lt;&lt;jump&gt;&gt;" href="jump.html" />
+  <link rel="prev" title="&lt;&lt;local&gt;&gt;" href="local.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -195,6 +195,7 @@
 <li class="toctree-l5"><a class="reference internal" href="declare.html">&lt;&lt;declare&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="if.html">&lt;&lt;if&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="local.html">&lt;&lt;local&gt;&gt;</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">&lt;&lt;set&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="stop.html">&lt;&lt;stop&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="wait.html">&lt;&lt;wait&gt;&gt;</a></li>
@@ -276,7 +277,62 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="set">
 <h1><code class="docutils literal notranslate"><span class="pre">&lt;&lt;set&gt;&gt;</span></code><a class="headerlink" href="#set" title="Permalink to this heading">¶</a></h1>
-<p>TODO</p>
+<p>The <strong>&lt;&lt;set&gt;&gt;</strong> command is used to update the value of an existing variable. The variable
+must be declared with <a class="reference internal" href="declare.html"><span class="doc std std-doc">&lt;&lt;declare&gt;&gt;</span></a> or <a class="reference internal" href="local.html"><span class="doc std std-doc">&lt;&lt;local&gt;&gt;</span></a> before it can be used
+in <code class="docutils literal notranslate"><span class="pre">&lt;&lt;set&gt;&gt;</span></code>.</p>
+<p>The command <code class="docutils literal notranslate"><span class="pre">&lt;&lt;set&gt;&gt;</span></code> allows either regular assignment, or modifying assignment, like follows:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="c">// Regular assignment</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">to</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+
+<span class="c">// Modifying assignments</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">%=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+
+<span class="c">// These modifying assignments are equivalent to the following:</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In all cases, the <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code> must have the same type as the <code class="docutils literal notranslate"><span class="pre">$VARIABLE</span></code>. If not, a compile-time
+error will be thrown.</p>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nb">String</span><span class="p">&gt;&gt;</span><span class="w"></span>
+
+<span class="nb">title</span><span class="p">:</span><span class="nv"> ColorQuiz</span>
+<span class="p">---</span>
+What is your favorite color?<span class="w"></span>
+<span class="p">-&gt;</span><span class="w"> </span>White<span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">to</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">White</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">-&gt;</span><span class="w"> </span>Red<span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">to</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Red</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">-&gt;</span><span class="w"> </span>Yellow<span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Yellow</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">-&gt;</span><span class="w"> </span>Blue<span class="w"></span>
+<span class="w">   </span>Oh, Nice! Which shade of blue?<span class="w"></span>
+<span class="w">   </span><span class="p">-&gt;</span><span class="w"> </span>Azure<span class="w"></span>
+<span class="w">   </span><span class="p">-&gt;</span><span class="w"> </span>Cerulean<span class="w"></span>
+<span class="w">   </span><span class="p">-&gt;</span><span class="w"> </span>Lapis Lazuli<span class="w"></span>
+<span class="w">   </span>Umm, I don&#39;t know how to spell that. I&#39;ll just put you down as &quot;blue&quot;.<span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Blue</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">-&gt;</span><span class="w"> </span>Black<span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Black</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">   </span>That&#39;s mine too!<span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$affinity</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">3</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">-&gt;</span><span class="w"> </span>Prefer not to tell<span class="w"></span>
+<span class="w">   </span>Aww... Maybe if I ask again really nicely?<span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">ColorQuiz</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">===</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -286,11 +342,11 @@
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="jump.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="local.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">&lt;&lt;jump&gt;&gt;</p>
+          <p class="prev-next-title">&lt;&lt;local&gt;&gt;</p>
         </div>
       </a>
       <div class='expander'></div>
@@ -309,6 +365,7 @@
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#examples' class='list-group-item level-1'>Examples</a>
 </div>
 
     </div>

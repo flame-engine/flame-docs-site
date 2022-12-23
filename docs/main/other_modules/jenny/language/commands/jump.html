@@ -33,7 +33,7 @@
   <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../../../genindex.html" />
   <link rel="search" title="Search" href="../../../../search.html" />
-  <link rel="next" title="&lt;&lt;set&gt;&gt;" href="set.html" />
+  <link rel="next" title="&lt;&lt;local&gt;&gt;" href="local.html" />
   <link rel="prev" title="&lt;&lt;if&gt;&gt;" href="if.html" />
 </head>
 
@@ -195,6 +195,7 @@
 <li class="toctree-l5"><a class="reference internal" href="declare.html">&lt;&lt;declare&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="if.html">&lt;&lt;if&gt;&gt;</a></li>
 <li class="toctree-l5 current"><a class="current reference internal" href="#">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="local.html">&lt;&lt;local&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="set.html">&lt;&lt;set&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="stop.html">&lt;&lt;stop&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="wait.html">&lt;&lt;wait&gt;&gt;</a></li>
@@ -276,17 +277,18 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="jump">
 <h1><code class="docutils literal notranslate"><span class="pre">&lt;&lt;jump&gt;&gt;</span></code><a class="headerlink" href="#jump" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>&lt;&lt;jump&gt;&gt;</strong> command unconditionally moves the execution pointer to the start of the target
-node. The target node will now become “current”:</p>
+<p>The <strong>&lt;&lt;jump&gt;&gt;</strong> command stops executing the current node, and then immediately starts running
+the target node. This is similar to a <code class="docutils literal notranslate"><span class="pre">goto</span></code> in many programming languages. For example:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">FarewellScene</span><span class="p">&gt;&gt;</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The argument of this command is the id of the node to jump to. It can be given in plain text if the
-name of the node is a valid ID. If not, you can use the text interpolation syntax to supply an
-arbitrary node id (which includes dynamically defined node ids):</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="p">{</span><span class="s s-Delimeter">&quot;</span><span class="s">Farewell Scene</span><span class="s s-Delimeter">&quot;</span><span class="p">}&gt;&gt;</span><span class="w"></span>
+<p>The argument of this command is the id of the node to jump to. It can be given either as a plain
+node ID, or as an expression in curly braces:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="p">{</span><span class="s s-Delimeter">&quot;</span><span class="s">Ending_</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nv">$ending</span><span class="p">}&gt;&gt;</span><span class="w"></span>
 </pre></div>
 </div>
+<p>If the expression evaluates at runtime to an unknown name, then a <code class="docutils literal notranslate"><span class="pre">NameError</span></code> exception will be
+thrown.</p>
 </section>
 
 
@@ -304,10 +306,10 @@ arbitrary node id (which includes dynamically defined node ids):</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="set.html" title="next page">
+      <a class="right-next" id="next-link" href="local.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">&lt;&lt;set&gt;&gt;</p>
+          <p class="prev-next-title">&lt;&lt;local&gt;&gt;</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>

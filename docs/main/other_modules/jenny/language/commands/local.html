@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>User-defined commands &#8212; Flame</title>
+  <title>&lt;&lt;local&gt;&gt; &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css" />
@@ -33,8 +33,8 @@
   <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../../../genindex.html" />
   <link rel="search" title="Search" href="../../../../search.html" />
-  <link rel="next" title="Expressions" href="../expressions.html" />
-  <link rel="prev" title="&lt;&lt;wait&gt;&gt;" href="wait.html" />
+  <link rel="next" title="&lt;&lt;set&gt;&gt;" href="set.html" />
+  <link rel="prev" title="&lt;&lt;jump&gt;&gt;" href="jump.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -195,11 +195,11 @@
 <li class="toctree-l5"><a class="reference internal" href="declare.html">&lt;&lt;declare&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="if.html">&lt;&lt;if&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="jump.html">&lt;&lt;jump&gt;&gt;</a></li>
-<li class="toctree-l5"><a class="reference internal" href="local.html">&lt;&lt;local&gt;&gt;</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">&lt;&lt;local&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="set.html">&lt;&lt;set&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="stop.html">&lt;&lt;stop&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="wait.html">&lt;&lt;wait&gt;&gt;</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">User-defined commands</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_defined_commands.html">User-defined commands</a></li>
 </ul>
 </li>
 <li class="toctree-l4"><a class="reference internal" href="../expressions.html">Expressions</a></li>
@@ -275,39 +275,47 @@
   <div class="document-wrapper">
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="user-defined-commands">
-<h1>User-defined commands<a class="headerlink" href="#user-defined-commands" title="Permalink to this heading">¶</a></h1>
-<p>In addition to the built-in commands, you can also declare your own <strong>user-defined commands</strong> for
-use in your yarn scripts. Typically, these commands would perform some in-game action that can be
-viewed as a natural part of the dialogue. For example, you can create commands for such action as
-<code class="docutils literal notranslate"><span class="pre">&lt;&lt;wave&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;smile&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;frown&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;moveCamera&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;zoom&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;shakeCamera&gt;&gt;</span></code>,
-<code class="docutils literal notranslate"><span class="pre">&lt;&lt;fadeOut&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;walk&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;give&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;take&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;achievement&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;GainExperience&gt;&gt;</span></code>,
-<code class="docutils literal notranslate"><span class="pre">&lt;&lt;startQuest&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;finishQuest&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;openTrade&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;drawWeapon&gt;&gt;</span></code>, and so on.</p>
-<p>In many cases, the commands will need to take arguments. The arguments of a user-defined command
-are processed according to the following rules:</p>
-<ul class="simple">
-<li><p>First, all content after the command name and until the closing <code class="docutils literal notranslate"><span class="pre">&gt;&gt;</span></code> is parsed according to the
-rules of regular line parsing, where interpolated expressions are allowed but markup and hashtags
-are not.</p></li>
-<li><p>At runtime, the content of that line is evaluated, meaning that we substitute the values of all
-expressions.</p></li>
-<li><p>The evaluated argument string is then broken into individual arguments at whitespace, and the
-types of these arguments are checked against the signature of the backing function.</p></li>
-<li><p>Then, the backing function is called with the parsed arguments.</p></li>
-<li><p>Lastly, all dialogue views in the dialogue runner receive the <code class="docutils literal notranslate"><span class="pre">onCommand()</span></code> event.</p></li>
-</ul>
-<p>As a concrete example, consider the following command:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="nc">give</span><span class="w"> </span>Gold <span class="p">{</span><span class="nb">round</span><span class="p">(</span><span class="m">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">$multiplier</span><span class="p">)}&gt;&gt;</span><span class="w"></span>
+  <section class="tex2jax_ignore mathjax_ignore" id="local">
+<h1><code class="docutils literal notranslate"><span class="pre">&lt;&lt;local&gt;&gt;</span></code><a class="headerlink" href="#local" title="Permalink to this heading">¶</a></h1>
+<p>The <strong>&lt;&lt;local&gt;&gt;</strong> command creates a new variable within the current node, and initializes it
+to some starting value. Thus, it is similar to <a class="reference internal" href="declare.html"><span class="doc std std-doc">&lt;&lt;declare&gt;&gt;</span></a>, except that the variable
+it creates is visible within a single node only.</p>
+<p>The syntax of the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;local&gt;&gt;</span></code> command can be one of the following:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">local</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">local</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nf">TYPE</span><span class="p">&gt;&gt;</span><span class="w"></span>
 </pre></div>
 </div>
-<p>First note that, unlike builtin commands, the arguments of the command are treated as text, and any
-expressions need to be placed in curly brackets.</p>
-<p>Then, at runtime the expression is evaluated, and (assuming <code class="docutils literal notranslate"><span class="pre">$multiplier</span></code> is 1.5) the command’s
-argument string becomes <code class="docutils literal notranslate"><span class="pre">&quot;Gold</span> <span class="pre">150&quot;</span></code>. The string is then broken at white spaces and each argument
-is parsed according to its type in the backing Dart function. For example, if the function’s
-signature is <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">give(String</span> <span class="pre">item,</span> <span class="pre">int?</span> <span class="pre">amount)</span></code>, then it will be invoked as <code class="docutils literal notranslate"><span class="pre">give(&quot;Gold&quot;,</span> <span class="pre">150)</span></code>.
-If, on the other hand, the number or types of arguments do not match the expected signature, then
-a <code class="docutils literal notranslate"><span class="pre">DialogueException</span></code> will be raised.</p>
+<p>This would create a variable with the name <code class="docutils literal notranslate"><span class="pre">$VARIABLE</span></code> (all variables in YarnSpinner start with a
+<code class="docutils literal notranslate"><span class="pre">$</span></code> sign), and assign it the value of <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code>. In the second form, it will ensure that the
+type of the expression is equal to <code class="docutils literal notranslate"><span class="pre">TYPE</span></code>, otherwise a compile-time error will be thrown. Thus, the
+second form serves as the explicit annotation for the type of the variable created.</p>
+<p>The following restrictions apply:</p>
+<ul class="simple">
+<li><p>each local variable can be declared only once within a node;</p></li>
+<li><p>the name of a local variable cannot coincide with the name of any global variable.</p></li>
+</ul>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<p>In this example the variable <code class="docutils literal notranslate"><span class="pre">$roll</span></code> will only be needed temporarily within this one node, so it
+wouldn’t make sense to declare it as global.</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> a_dice_roll</span>
+<span class="p">---</span>
+<span class="p">&lt;&lt;</span><span class="k">local</span><span class="w"> </span><span class="nv">$roll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dice</span><span class="p">(</span><span class="m">6</span><span class="p">)&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$roll</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span>You&#39;ve rolled 1, rotten luck...<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$roll</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span>You&#39;ve rolled 2, which is still below the average. Try harder!<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$roll</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">3</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span>You&#39;ve rolled 3.14159265 (well, almost).<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$roll</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">4</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span>Your roll is an unlucky number. Please roll again<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span>You&#39;ve rolled 10 (when rounded to the nearest ten). Good job!<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">===</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -317,18 +325,18 @@ a <code class="docutils literal notranslate"><span class="pre">DialogueException
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="wait.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="jump.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">&lt;&lt;wait&gt;&gt;</p>
+          <p class="prev-next-title">&lt;&lt;jump&gt;&gt;</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="../expressions.html" title="next page">
+      <a class="right-next" id="next-link" href="set.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Expressions</p>
+          <p class="prev-next-title">&lt;&lt;set&gt;&gt;</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
@@ -340,6 +348,7 @@ a <code class="docutils literal notranslate"><span class="pre">DialogueException
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#examples' class='list-group-item level-1'>Examples</a>
 </div>
 
     </div>

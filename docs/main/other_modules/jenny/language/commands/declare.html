@@ -195,6 +195,7 @@
 <li class="toctree-l5 current"><a class="current reference internal" href="#">&lt;&lt;declare&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="if.html">&lt;&lt;if&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="local.html">&lt;&lt;local&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="set.html">&lt;&lt;set&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="stop.html">&lt;&lt;stop&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="wait.html">&lt;&lt;wait&gt;&gt;</a></li>
@@ -276,7 +277,79 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="declare">
 <h1><code class="docutils literal notranslate"><span class="pre">&lt;&lt;declare&gt;&gt;</span></code><a class="headerlink" href="#declare" title="Permalink to this heading">¶</a></h1>
-<p>TODO</p>
+<p>The <strong>&lt;&lt;declare&gt;&gt;</strong> command creates a new global variable and assigns an initial value to it.
+After this command is encountered, the declared variable will be available for use anywhere a
+variable might be needed, including in inline expressions, other commands, and even other declare
+statements.</p>
+<p>Unlike most other commands, the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;declare&gt;&gt;</span></code> command is executed at compile time, i.e. when the
+yarn scripts are parsed. When the dialogue runs, it has no effect, since by that time the variable
+is already initialized and ready for use. For this reason, the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;declare&gt;&gt;</span></code> commands must be
+placed outside of nodes, at the root level of the script, making it clear that these commands do
+not execute when a node runs.</p>
+<p>For example:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$monicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">boy</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
+
+<span class="p">---------------</span>
+<span class="nb">title</span><span class="p">:</span><span class="nv"> Greeting</span>
+<span class="p">---------------</span>
+<span class="nt">Teacher</span><span class="p">: </span>Welcome to the class, <span class="p">{</span><span class="nv">$monicker</span><span class="p">}</span>!<span class="w"></span>
+<span class="p">===</span>
+</pre></div>
+</div>
+<p>Here the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;declare&gt;&gt;</span></code> command introduces a new variable called <code class="docutils literal notranslate"><span class="pre">$monicker</span></code>, of type <code class="docutils literal notranslate"><span class="pre">String</span></code>, and
+assigns it an initial value of <code class="docutils literal notranslate"><span class="pre">&quot;boy&quot;</span></code>. Later on, this variable is used inside the “Greeting” node.
+By that time, the value of the variable can be anything: it could be changed in some other node, or
+by the game itself. The <code class="docutils literal notranslate"><span class="pre">&lt;&lt;declare&gt;&gt;</span></code> statement, however, is necessary to tell Jenny that this is
+a valid variable name, and what type it has.</p>
+<p>From the project organization standpoint, the recommended approach is to put all the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;declare&gt;&gt;</span></code>
+statements into a separate file, and then make sure that this yarn file is parsed first. This will
+ensure that all global variables are declared before they are used in subsequent nodes.</p>
+<p>If your game supports save-games, then you would probably want to store the values of yarn global
+variables too. In this case restoring the saved values should be done <em>after</em> all yarn scripts are
+parsed (otherwise the engine will think that a variable is declared twice).</p>
+<section id="syntax">
+<h2>Syntax<a class="headerlink" href="#syntax" title="Permalink to this heading">¶</a></h2>
+<p>There are several forms of the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;declare&gt;&gt;</span></code> statement. The most common one is the following:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Here <code class="docutils literal notranslate"><span class="pre">$VARIABLE</span></code> is the name of the variable being declared (all variables in Yarn start with a <code class="docutils literal notranslate"><span class="pre">$</span></code>
+sign), and <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code> is either a literal or a more complicated <a class="reference internal" href="../expressions.html"><span class="doc std std-doc">expression</span></a> that will be
+evaluated at compile time in order to provide the initial value for the variable. The type of the
+variable will be deduced from the type of the <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code>.</p>
+<p>Another possible syntax for the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;declare&gt;&gt;</span></code> command is this:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nf">TYPE</span><span class="p">&gt;&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">TYPE</span></code> is one of <code class="docutils literal notranslate"><span class="pre">Bool</span></code>, <code class="docutils literal notranslate"><span class="pre">Number</span></code>, or <code class="docutils literal notranslate"><span class="pre">String</span></code>. This will create a variable of the given type,
+and initialize it with values <code class="docutils literal notranslate"><span class="pre">false</span></code>, <code class="docutils literal notranslate"><span class="pre">0</span></code>, or <code class="docutils literal notranslate"><span class="pre">&quot;&quot;</span></code> respectively.</p>
+<p>Finally, it is possible to combine these two syntaxes:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nf">TYPE</span><span class="p">&gt;&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>This can be useful when the type of the <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code> is not immediately obvious, and you want to
+make the declaration more explicit. The compiler will check that the type of the <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code> is
+the same as <code class="docutils literal notranslate"><span class="pre">TYPE</span></code>, and will throw a compile-time error otherwise.</p>
+</section>
+<section id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Mr.</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$gold</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$been_to_hell</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">&gt;&gt;</span><span class="w"></span>
+
+<span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nb">String</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$distanceTravelled</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nf">Number</span><span class="p">&gt;&gt;</span><span class="w"></span>
+
+<span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$birthDay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">randomRange</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">365</span><span class="p">)</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nf">Number</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$vulgarity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">GetObscenitySetting</span><span class="p">()</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nb">Bool</span><span class="p">&gt;&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>It is a good idea to accompany each <code class="docutils literal notranslate"><span class="pre">&lt;&lt;declare&gt;&gt;</span></code> with a doc-comment explaining the purpose of the
+variable, similarly to how you would document public members of a class.</p>
+</div>
+</section>
 </section>
 
 
@@ -309,6 +382,8 @@
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#syntax' class='list-group-item level-1'>Syntax</a>
+  <a href='#examples' class='list-group-item level-1'>Examples</a>
 </div>
 
     </div>
