@@ -449,7 +449,7 @@ your component at compile time, then you can pass it in to the constructor.</p>
 <p>Example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">myComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PositionComponent</span><span class="p">(</span><span class="nl">priority:</span><span class="w"> </span><span class="m">5</span><span class="p">);</span><span class="w"></span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">myComponent</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
@@ -488,7 +488,7 @@ children are rendered and updated with the same conditions.</p>
 <span class="w">  </span><span class="n">GameOverPanel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">spriteImage</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">gameOverText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameOverText</span><span class="p">(</span><span class="n">spriteImage</span><span class="p">);</span><span class="w"> </span><span class="c1">// GameOverText is a Component</span><span class="w"></span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">gameOverButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameOverButton</span><span class="p">(</span><span class="n">spriteImage</span><span class="p">);</span><span class="w"> </span><span class="c1">// GameOverRestart is a SpriteComponent</span><span class="w"></span>
 
@@ -513,7 +513,7 @@ children during the course of the game.</p>
 constructor. This approach more closely resembles the standard Flutter API:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="w"></span>
 <span class="w">      </span><span class="n">PositionComponent</span><span class="p">(</span><span class="w"></span>
 <span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">30</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
@@ -543,7 +543,7 @@ scheduled for addition.</p>
 <p>Example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ParentIsA</span><span class="o">&lt;</span><span class="n">MyParentComponent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// parent is of type MyParentComponent</span><span class="w"></span>
 <span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="n">parent</span><span class="p">.</span><span class="n">myValue</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
@@ -561,7 +561,7 @@ component tree, <code class="docutils literal notranslate"><span class="pre">Has
 <p>Example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasAncestor</span><span class="o">&lt;</span><span class="n">MyAncestorComponent</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="c1">// ancestor is of type MyAncestorComponent.</span><span class="w"></span>
 <span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="n">ancestor</span><span class="p">.</span><span class="n">myValue</span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
@@ -582,7 +582,7 @@ register the query, no matter if the <code class="docutils literal notranslate">
 performance benefits to gain from it. The <code class="docutils literal notranslate"><span class="pre">register</span></code> call is usually done in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>.</p>
 <p>Example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span><span class="w"></span>
-<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="n">children</span><span class="p">.</span><span class="n">register</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
@@ -769,10 +769,10 @@ created with a <code class="docutils literal notranslate"><span class="pre">Spri
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">sprite</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Vector2(0.0, 0.0) by default, can also be set in the constructor</span><span class="w"></span>
-<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// 0 by default, can also be set in the constructor</span><span class="w"></span>
-<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"></span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">    </span><span class="c1">// Adds the component</span><span class="w"></span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span><span class="w"></span>
@@ -785,30 +785,34 @@ created with a <code class="docutils literal notranslate"><span class="pre">Spri
 <h2>SpriteAnimationComponent<a class="headerlink" href="#spriteanimationcomponent" title="Permalink to this heading">¶</a></h2>
 <p>This class is used to represent a Component that has sprites that run in a single cyclic animation.</p>
 <p>This will create a simple three frame animation using 3 different images:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="p">.</span><span class="n">map</span><span class="p">((</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player_</span><span class="si">$</span><span class="n">i</span><span class="s1">.png&#39;</span><span class="p">));</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">sprites</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
-<span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">animation:</span><span class="w"> </span><span class="n">animation</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="p">.</span><span class="n">map</span><span class="p">((</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player_</span><span class="si">$</span><span class="n">i</span><span class="s1">.png&#39;</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">sprites</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">animation:</span><span class="w"> </span><span class="n">animation</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>If you have a sprite sheet, you can use the <code class="docutils literal notranslate"><span class="pre">sequenced</span></code> constructor from the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationData</span></code>
 class (check more details on <a class="reference internal" href="rendering/images.html#animation"><span class="std std-doc">Images &gt; Animation</span></a>):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">amount:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
-<span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="n">data</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">amount:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="n">data</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>If you are not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, don’t forget this component needs to be updated, because the
@@ -889,7 +893,7 @@ single animation, this component receives a Map of a generic type <code class="d
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;?</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">pressedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">unpressedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="o">/*</span><span class="w"> </span><span class="n">omitted</span><span class="w"> </span><span class="o">/*</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">unpressedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span><span class="w"></span>
 
 <span class="w">    </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">      </span><span class="n">ButtonState</span><span class="p">.</span><span class="nl">pressed:</span><span class="w"> </span><span class="n">pressedSprite</span><span class="p">,</span><span class="w"></span>
@@ -910,12 +914,14 @@ single animation, this component receives a Map of a generic type <code class="d
 package.</p>
 <p>This component uses an instance of <code class="docutils literal notranslate"><span class="pre">Svg</span></code> class to represent a Component that has a svg that is
 rendered in the game:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">svg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Svg</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;android.svg&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">android</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SvgComponent</span><span class="p">.</span><span class="n">fromSvg</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">svg</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">svg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Svg</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;android.svg&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">android</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SvgComponent</span><span class="p">.</span><span class="n">fromSvg</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">svg</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -1004,7 +1010,7 @@ than distant ones.</p>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">MyParallaxComponent</span><span class="p">());</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
@@ -1016,18 +1022,22 @@ settings for each layer.</p>
 <p>They simplest way is to set the named optional parameters <code class="docutils literal notranslate"><span class="pre">baseVelocity</span></code> and
 <code class="docutils literal notranslate"><span class="pre">velocityMultiplierDelta</span></code> in the <code class="docutils literal notranslate"><span class="pre">load</span></code> helper function. For example if you want to move your
 background images along the X-axis with a faster speed the “closer” the image is:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">_dataList</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">baseVelocity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">velocityMultiplierDelta:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1.8</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">_dataList</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nl">baseVelocity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="nl">velocityMultiplierDelta:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1.8</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>You can set the baseSpeed and layerDelta at any time, for example if your character jumps or your
 game speeds up.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="p">.</span><span class="n">parallax</span><span class="p">;</span><span class="w"></span>
-<span class="n">parallax</span><span class="p">.</span><span class="n">baseSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span><span class="w"></span>
-<span class="n">parallax</span><span class="p">.</span><span class="n">velocityMultiplierDelta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">2.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="p">.</span><span class="n">parallax</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">parallax</span><span class="p">.</span><span class="n">baseSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">parallax</span><span class="p">.</span><span class="n">velocityMultiplierDelta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">2.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 <p>By default, the images are aligned to the bottom left, repeated along the X-axis and scaled
@@ -1254,20 +1264,23 @@ then add animation. Removing the stack will not remove the tiles from the map.</
 <blockquote>
 <div><p><strong>Note</strong>: This currently only supports position based effects.</p>
 </div></blockquote>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="n">tileMap</span><span class="p">.</span><span class="n">tileStack</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nl">named:</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;floor_under&#39;</span><span class="p">});</span><span class="w"></span>
-<span class="w">    </span><span class="n">stack</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="n">SequenceEffect</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="p">[</span><span class="w"></span>
-<span class="w">          </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="n">Vector2</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
-<span class="w">            </span><span class="n">NoiseEffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nl">frequency:</span><span class="w"> </span><span class="m">20</span><span class="p">),</span><span class="w"></span>
-<span class="w">          </span><span class="p">),</span><span class="w"></span>
-<span class="w">          </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">(),</span><span class="w"> </span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">2</span><span class="p">)),</span><span class="w"></span>
-<span class="w">        </span><span class="p">],</span><span class="w"></span>
-<span class="w">        </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="p">)..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">stack</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">(),</span><span class="w"></span>
-<span class="w">    </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">map</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">stack</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="n">tileMap</span><span class="p">.</span><span class="n">tileStack</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nl">named:</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;floor_under&#39;</span><span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="n">stack</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">SequenceEffect</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="p">[</span><span class="w"></span>
+<span class="w">        </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="w"></span>
+<span class="w">          </span><span class="n">Vector2</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
+<span class="w">          </span><span class="n">NoiseEffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nl">frequency:</span><span class="w"> </span><span class="m">20</span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="p">),</span><span class="w"></span>
+<span class="w">        </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">(),</span><span class="w"> </span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">2</span><span class="p">)),</span><span class="w"></span>
+<span class="w">      </span><span class="p">],</span><span class="w"></span>
+<span class="w">      </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="p">..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">stack</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">(),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">stack</span><span class="p">);</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
@@ -1344,19 +1357,20 @@ be used:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">lives</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"></span>
 
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">playerNotifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">componentsNotifier</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="p">..</span><span class="n">addListener</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerNotifier</span><span class="p">.</span><span class="n">single</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">lives</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lives</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="n">add</span><span class="p">(</span><span class="n">GameOverComponent</span><span class="p">());</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="n">add</span><span class="p">(</span><span class="n">Player</span><span class="p">());</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">playerNotifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">componentsNotifier</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">..</span><span class="n">addListener</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerNotifier</span><span class="p">.</span><span class="n">single</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="n">lives</span><span class="o">--</span><span class="p">;</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lives</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">add</span><span class="p">(</span><span class="n">GameOverComponent</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">add</span><span class="p">(</span><span class="n">Player</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">});</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
@@ -1381,16 +1395,17 @@ order to do so, we need that the <code class="docutils literal notranslate"><spa
 <p>Then our hud component could look like:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Hud</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">playerNotifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">componentsNotifier</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="p">..</span><span class="n">addListener</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerNotifier</span><span class="p">.</span><span class="n">single</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="p">.</span><span class="n">health</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="n">add</span><span class="p">(</span><span class="n">BlinkEffect</span><span class="p">());</span><span class="w"></span>
-<span class="w">        </span><span class="p">}</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">playerNotifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">componentsNotifier</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">()</span><span class="w"></span>
+<span class="w">        </span><span class="p">..</span><span class="n">addListener</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">          </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerNotifier</span><span class="p">.</span><span class="n">single</span><span class="p">;</span><span class="w"></span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="p">.</span><span class="n">health</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">              </span><span class="n">add</span><span class="p">(</span><span class="n">BlinkEffect</span><span class="p">());</span><span class="w"></span>
+<span class="w">            </span><span class="p">}</span><span class="w"></span>
+<span class="w">          </span><span class="p">}</span><span class="w"></span>
+<span class="w">        </span><span class="p">});</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
