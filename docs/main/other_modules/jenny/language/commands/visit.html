@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>&lt;&lt;set&gt;&gt; &#8212; Flame</title>
+  <title>&lt;&lt;visit&gt;&gt; &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css" />
@@ -33,8 +33,8 @@
   <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../../../genindex.html" />
   <link rel="search" title="Search" href="../../../../search.html" />
-  <link rel="next" title="&lt;&lt;stop&gt;&gt;" href="stop.html" />
-  <link rel="prev" title="&lt;&lt;local&gt;&gt;" href="local.html" />
+  <link rel="next" title="&lt;&lt;wait&gt;&gt;" href="wait.html" />
+  <link rel="prev" title="&lt;&lt;stop&gt;&gt;" href="stop.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -196,9 +196,9 @@
 <li class="toctree-l5"><a class="reference internal" href="if.html">&lt;&lt;if&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="jump.html">&lt;&lt;jump&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="local.html">&lt;&lt;local&gt;&gt;</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">&lt;&lt;set&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="set.html">&lt;&lt;set&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="stop.html">&lt;&lt;stop&gt;&gt;</a></li>
-<li class="toctree-l5"><a class="reference internal" href="visit.html">&lt;&lt;visit&gt;&gt;</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">&lt;&lt;visit&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="wait.html">&lt;&lt;wait&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="user_defined_commands.html">User-defined commands</a></li>
 </ul>
@@ -276,64 +276,39 @@
   <div class="document-wrapper">
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="set">
-<h1><code class="docutils literal notranslate"><span class="pre">&lt;&lt;set&gt;&gt;</span></code><a class="headerlink" href="#set" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>&lt;&lt;set&gt;&gt;</strong> command is used to update the value of an existing variable. The variable
-must be declared with <a class="reference internal" href="declare.html"><span class="doc std std-doc">&lt;&lt;declare&gt;&gt;</span></a> or <a class="reference internal" href="local.html"><span class="doc std std-doc">&lt;&lt;local&gt;&gt;</span></a> before it can be used
-in <code class="docutils literal notranslate"><span class="pre">&lt;&lt;set&gt;&gt;</span></code>.</p>
-<p>The command <code class="docutils literal notranslate"><span class="pre">&lt;&lt;set&gt;&gt;</span></code> allows either regular assignment, or modifying assignment, like follows:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="c">// Regular assignment</span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">to</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-
-<span class="c">// Modifying assignments</span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">%=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-
-<span class="c">// These modifying assignments are equivalent to the following:</span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-</pre></div>
-</div>
-<p>In all cases, the <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code> must have the same type as the <code class="docutils literal notranslate"><span class="pre">$VARIABLE</span></code>. If not, a compile-time
-error will be thrown.</p>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nb">String</span><span class="p">&gt;&gt;</span><span class="w"></span>
-
-<span class="nb">title</span><span class="p">:</span><span class="nv"> ColorQuiz</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="visit">
+<h1><code class="docutils literal notranslate"><span class="pre">&lt;&lt;visit&gt;&gt;</span></code><a class="headerlink" href="#visit" title="Permalink to this heading">¶</a></h1>
+<p>The <strong>&lt;&lt;visit&gt;&gt;</strong> command temporarily puts the current node on hold, executes the target node,
+and after it finishes, resumes execution of the previous node. This is similar to a function call
+in many programming languages.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">&lt;&lt;visit&gt;&gt;</span></code> command can be useful for splitting a large dialogue into several smaller nodes,
+or for reusing some common dialogue lines in several nodes. For example:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> RoamingTrader1</span>
 <span class="p">---</span>
-What is your favorite color?<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>White<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">to</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">White</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Red<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">to</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Red</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Yellow<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Yellow</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Blue<span class="w"></span>
-<span class="w">   </span>Oh, Nice! Which shade of blue?<span class="w"></span>
-<span class="w">   </span><span class="p">-&gt;</span><span class="w"> </span>Azure<span class="w"></span>
-<span class="w">   </span><span class="p">-&gt;</span><span class="w"> </span>Cerulean<span class="w"></span>
-<span class="w">   </span><span class="p">-&gt;</span><span class="w"> </span>Lapis Lazuli<span class="w"></span>
-<span class="w">   </span>Umm, I don&#39;t know how to spell that. I&#39;ll just put you down as &quot;blue&quot;.<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Blue</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Black<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Black</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span>That&#39;s mine too!<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$affinity</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">3</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Prefer not to tell<span class="w"></span>
-<span class="w">   </span>Aww... Maybe if I ask again really nicely?<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">ColorQuiz</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$roaming_trader_introduced</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span>Hello again, <span class="p">{</span><span class="nv">$player</span><span class="p">}</span>!<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="p">&lt;&lt;</span><span class="k">visit</span><span class="w"> </span><span class="nf">RoamingTraderIntro</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
+
+<span class="p">-&gt;</span><span class="w"> </span>What do you think about the Calamity?  <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$calamity_started</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">visit</span><span class="w"> </span><span class="nf">RoamingTrader_Calamity</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">-&gt;</span><span class="w"> </span>Have you seen a weird-looking girl running by? <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$quest_little_girl</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">visit</span><span class="w"> </span><span class="nf">RoamingTrader_LittleGirl</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">-&gt;</span><span class="w"> </span>What do you have for trade?<span class="w"></span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">OpenTrade</span><span class="p">&gt;&gt;</span><span class="w"></span>
+
+Pleasure doing business with you! <span class="ch">#auto</span><span class="w"></span>
 <span class="p">===</span>
 </pre></div>
 </div>
-</section>
+<p>The argument of this command is the id of the node to jump to. It can be given either as a plain
+node ID, or as an expression in curly braces:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">visit</span><span class="w"> </span><span class="p">{</span><span class="s s-Delimeter">&quot;</span><span class="s">RewardChoice_</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">string</span><span class="p">(</span><span class="nv">$choice</span><span class="p">)}&gt;&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If the expression evaluates at runtime to an unknown name, then a <code class="docutils literal notranslate"><span class="pre">NameError</span></code> exception will be
+thrown.</p>
 </section>
 
 
@@ -343,18 +318,18 @@ What is your favorite color?<span class="w"></span>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="local.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="stop.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">&lt;&lt;local&gt;&gt;</p>
+          <p class="prev-next-title">&lt;&lt;stop&gt;&gt;</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="stop.html" title="next page">
+      <a class="right-next" id="next-link" href="wait.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">&lt;&lt;stop&gt;&gt;</p>
+          <p class="prev-next-title">&lt;&lt;wait&gt;&gt;</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
@@ -366,7 +341,6 @@ What is your favorite color?<span class="w"></span>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
-  <a href='#examples' class='list-group-item level-1'>Examples</a>
 </div>
 
     </div>
