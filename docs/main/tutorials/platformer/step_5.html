@@ -329,7 +329,8 @@ set a variable at the top of the class:</p>
 </pre></div>
 </div>
 <p>Let’s make Ember move by adding a few lines of code and creating our <code class="docutils literal notranslate"><span class="pre">update</span></code> method.  First, we
-need to define a velocity variable for Ember.  Add the following at the top of your class:</p>
+need to define a velocity variable for Ember.  Add the following at the top of the <code class="docutils literal notranslate"><span class="pre">EmberPlayer</span></code>
+class:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">();</span><span class="w"></span>
 <span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">moveSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">200</span><span class="p">;</span><span class="w"></span>
 </pre></div>
@@ -476,11 +477,11 @@ following to the bottom of the <code class="docutils literal notranslate"><span 
 </div>
 <p>When Ember collides with a star, the game will remove the star, and to implement the <code class="docutils literal notranslate"><span class="pre">hit</span></code> method for
 when Ember collides with an enemy, we need to do the following:</p>
-<p>Add the following variable at the top of your class:</p>
+<p>Add the following variable at the top of the <code class="docutils literal notranslate"><span class="pre">EmberPlayer</span></code> class:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Additionally, add this method to your class:</p>
+<p>Additionally, add this method to the <code class="docutils literal notranslate"><span class="pre">EmberPlayer</span></code> class:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// This method runs an opacity effect on ember</span><span class="w"></span>
 <span class="c1">// to make it blink.</span><span class="w"></span>
 <span class="kt">void</span><span class="w"> </span><span class="n">hit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>

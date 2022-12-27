@@ -600,14 +600,14 @@ uses a <code class="docutils literal notranslate"><span class="pre">double</span
 called.  This <code class="docutils literal notranslate"><span class="pre">dt</span></code> variable then allows you to calculate how far your component needs to move
 on-screen.</p>
 <p>All components in our game will need to move at the same speed, so to do this, open
-<code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code>, and let’s define a global variable called <code class="docutils literal notranslate"><span class="pre">objectSpeed</span></code>.  At the top of your
-class, add:</p>
+<code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code>, and let’s define a global variable called <code class="docutils literal notranslate"><span class="pre">objectSpeed</span></code>.  At the top of the
+<code class="docutils literal notranslate"><span class="pre">EmberQuestGame</span></code> class, add:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="w"> </span><span class="n">_ember</span><span class="p">;</span><span class="w"></span>
 <span class="kt">double</span><span class="w"> </span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">;</span><span class="w"></span>
 </pre></div>
 </div>
-<p>So to implement that movement, declare a variable at the top of your class and make your <code class="docutils literal notranslate"><span class="pre">update</span></code>
-method look like this:</p>
+<p>So to implement that movement, declare a variable at the top of the <code class="docutils literal notranslate"><span class="pre">EmberQuestGame</span></code> class and make
+your <code class="docutils literal notranslate"><span class="pre">update</span></code> method look like this:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">();</span><span class="w"></span>
 </pre></div>
 </div>
