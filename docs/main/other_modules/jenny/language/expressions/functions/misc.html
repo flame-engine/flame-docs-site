@@ -296,6 +296,21 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="miscellaneous-functions">
 <h1>Miscellaneous functions<a class="headerlink" href="#miscellaneous-functions" title="Permalink to this heading">¶</a></h1>
+<section id="if-condition-then-else">
+<h2>if(condition, then, else)<a class="headerlink" href="#if-condition-then-else" title="Permalink to this heading">¶</a></h2>
+<p>This function implements the ternary-if condition, it is equivalent to the <code class="docutils literal notranslate"><span class="pre">?:</span></code> operator in Dart.</p>
+<p>The function evaluates its <code class="docutils literal notranslate"><span class="pre">condition</span></code> (which must be a boolean), and then returns either the value
+of <code class="docutils literal notranslate"><span class="pre">then</span></code> if the condition was <code class="docutils literal notranslate"><span class="pre">true</span></code>, or the value of <code class="docutils literal notranslate"><span class="pre">else</span></code> if the condition was <code class="docutils literal notranslate"><span class="pre">false</span></code>. The
+types of arguments <code class="docutils literal notranslate"><span class="pre">then</span></code> and <code class="docutils literal notranslate"><span class="pre">else</span></code> must be the same.</p>
+<p>Note: Only one of the <code class="docutils literal notranslate"><span class="pre">then</span></code>/<code class="docutils literal notranslate"><span class="pre">else</span></code> values will be evaluated, depending on the <code class="docutils literal notranslate"><span class="pre">condition</span></code>. This
+may be important in cases when evaluating those expressions may produce a side-effect.</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> Birth</span>
+<span class="p">---</span>
+<span class="nt">Doctor</span><span class="p">: </span>Congratulations, you have a <span class="p">{</span><span class="w"> </span><span class="nb">if</span><span class="p">(</span><span class="nv">$gender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">m</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">boy</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">girl</span><span class="s s-Delimeter">&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>!<span class="w"></span>
+<span class="p">===</span>
+</pre></div>
+</div>
+</section>
 <section id="plural-x-words">
 <h2>plural(x, words…)<a class="headerlink" href="#plural-x-words" title="Permalink to this heading">¶</a></h2>
 <p>Returns the correct plural form depending on the value of variable <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
@@ -426,6 +441,7 @@ given name does not exist in the project, an exception will be thrown.</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#if-condition-then-else' class='list-group-item level-1'>if(condition, then, else)</a>
   <a href='#plural-x-words' class='list-group-item level-1'>plural(x, words…)</a>
   <a href='#visit-count-node' class='list-group-item level-1'>visit_count(node)</a>
   <a href='#visited-node' class='list-group-item level-1'>visited(node)</a>
