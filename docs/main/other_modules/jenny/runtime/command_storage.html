@@ -206,7 +206,13 @@
 <li class="toctree-l4"><a class="reference internal" href="../language/expressions/expressions.html">Expressions</a><ul>
 <li class="toctree-l5"><a class="reference internal" href="../language/expressions/variables.html">Variables</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../language/expressions/operators.html">Operators</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../language/expressions/functions/functions.html">Functions</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../language/expressions/functions/functions.html">Functions</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../language/expressions/functions/random.html">Random functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../language/expressions/functions/numeric.html">Numeric functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../language/expressions/functions/type.html">Type conversion functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../language/expressions/functions/misc.html">Miscellaneous functions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -218,6 +224,7 @@
 <li class="toctree-l4"><a class="reference internal" href="dialogue_option.html">DialogueOption</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dialogue_runner.html">DialogueRunner</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dialogue_view.html">DialogueView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="function_storage.html">FunctionStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="markup_attribute.html">MarkupAttribute</a></li>
 <li class="toctree-l4"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="user_defined_command.html">UserDefinedCommand</a></li>
@@ -307,13 +314,6 @@ the number of function’s arguments.</p></li>
 <li><p>If the function’s signature has 1 or more booleans at the end, then those arguments will be
 considered optional and will default to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
 </ul>
-<section id="properties">
-<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
-<dl class="simple myst">
-<dt><strong>trueValues</strong>, <strong>falseValues</strong> <code class="docutils literal notranslate"><span class="pre">Set&lt;String&gt;</span></code></dt><dd><p>The strings that can be recognized as <code class="docutils literal notranslate"><span class="pre">true</span></code>/<code class="docutils literal notranslate"><span class="pre">false</span></code> values respectively.</p>
-</dd>
-</dl>
-</section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h2>
 <dl class="simple myst">
@@ -349,7 +349,7 @@ quotes, otherwise it would be parsed as four different arguments <code class="do
 </div>
 <p>In order to implement this command, we create a Dart function <code class="docutils literal notranslate"><span class="pre">startQuest()</span></code> with two string
 arguments. The function will do a brief animated “Started quest X” message, but we don’t want the
-game to dialogue to wait for that message, so we’ll make the function return <code class="docutils literal notranslate"><span class="pre">void</span></code>, not a future.
+game dialogue to wait for that message, so we’ll make the function return <code class="docutils literal notranslate"><span class="pre">void</span></code>, not a future.
 Finally, we register the command with <code class="docutils literal notranslate"><span class="pre">commands.addCommand2()</span></code>.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">YarnProject</span><span class="w"> </span><span class="n">yarnProject</span><span class="p">;</span><span class="w"></span>
@@ -473,7 +473,6 @@ is being executed.</p></li>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
-  <a href='#properties' class='list-group-item level-1'>Properties</a>
   <a href='#methods' class='list-group-item level-1'>Methods</a>
   <a href='#examples' class='list-group-item level-1'>Examples</a>
   <a href='#startquest' class='list-group-item level-2'>&lt;&lt;StartQuest&gt;&gt;</a>

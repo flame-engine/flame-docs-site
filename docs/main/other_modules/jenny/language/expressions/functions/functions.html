@@ -33,7 +33,7 @@
   <link rel="shortcut icon" href="../../../../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../../../../genindex.html" />
   <link rel="search" title="Search" href="../../../../../search.html" />
-  <link rel="next" title="Jenny Runtime" href="../../../runtime/index.html" />
+  <link rel="next" title="Random functions" href="random.html" />
   <link rel="prev" title="Operators" href="../operators.html" />
 </head>
 
@@ -206,7 +206,13 @@
 <li class="toctree-l4 current"><a class="reference internal" href="../expressions.html">Expressions</a><ul class="current">
 <li class="toctree-l5"><a class="reference internal" href="../variables.html">Variables</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../operators.html">Operators</a></li>
-<li class="toctree-l5 current"><a class="current reference internal" href="#">Functions</a></li>
+<li class="toctree-l5 current"><a class="current reference internal" href="#">Functions</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="random.html">Random functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="numeric.html">Numeric functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="type.html">Type conversion functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="misc.html">Miscellaneous functions</a></li>
+</ul>
+</li>
 </ul>
 </li>
 </ul>
@@ -218,6 +224,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../../../runtime/dialogue_option.html">DialogueOption</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../runtime/dialogue_runner.html">DialogueRunner</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../runtime/dialogue_view.html">DialogueView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../../runtime/function_storage.html">FunctionStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../runtime/markup_attribute.html">MarkupAttribute</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../runtime/node.html">Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../../../runtime/user_defined_command.html">UserDefinedCommand</a></li>
@@ -289,14 +296,102 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="functions">
 <h1>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">¶</a></h1>
-<p>TODO</p>
-<p>An expression may also contain function calls, which are indicated by the name of the function,
-followed by its arguments in parentheses. The parentheses are required, even when there are no
-arguments:</p>
+<p>A <strong>function</strong> in YarnSpinner is the same notion as in any other programming language, or in math:
+it takes a certain number of arguments, and then computes and returns the result. A function call
+is indicated by the name of the function, followed by its arguments in parentheses. The parentheses
+are required, even when there are no arguments:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$roll_2d6</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dice</span><span class="p">(</span><span class="m">6</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">dice</span><span class="p">(</span><span class="m">6</span><span class="p">)&gt;&gt;</span><span class="w"></span>
 <span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$random</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">random</span><span class="p">()&gt;&gt;</span><span class="w"></span>
 </pre></div>
 </div>
+<p>There are around 20 built-in functions in Jenny, listed below; and it is also possible to add
+user-defined functions as well.</p>
+<section id="built-in-functions">
+<h2>Built-in functions<a class="headerlink" href="#built-in-functions" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Random functions</strong></p>
+<ul>
+<li><p><a class="reference internal" href="random.html#dice-n"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">dice(n)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="random.html#random"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">random()</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="random.html#random-range-a-b"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">random_range(a,</span> <span class="pre">b)</span></code></span></a></p></li>
+</ul>
+</li>
+<li><p><strong>Numeric functions</strong></p>
+<ul>
+<li><p><a class="reference internal" href="numeric.html#ceil-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">ceil(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="numeric.html#dec-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">dec(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="numeric.html#decimal-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">decimal(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="numeric.html#floor-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">floor(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="numeric.html#inc-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">inc(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="numeric.html#int-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">int(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="numeric.html#round-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">round(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="numeric.html#round-places-x-n"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">round_places(x,</span> <span class="pre">n)</span></code></span></a></p></li>
+</ul>
+</li>
+<li><p><strong>Type conversion functions</strong></p>
+<ul>
+<li><p><a class="reference internal" href="type.html#bool-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">bool(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="type.html#number-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">number(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="type.html#string-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">string(x)</span></code></span></a></p></li>
+</ul>
+</li>
+<li><p><strong>Other functions</strong></p>
+<ul>
+<li><p><a class="reference internal" href="misc.html#plural-x-words"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">plural(x,</span> <span class="pre">...)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="misc.html#visit-count-node"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">visit_count(node)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="misc.html#visited-node"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">visited(node)</span></code></span></a></p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="user-defined-functions">
+<h2>User-defined functions<a class="headerlink" href="#user-defined-functions" title="Permalink to this heading">¶</a></h2>
+<p>In addition to the built-in functions, you can also define any number of <strong>user-defined functions</strong>
+which can later be used in your yarn scripts. The syntax for these functions is exactly the same
+as for the built-in functions: it consists of a function name, followed by the arguments in
+parentheses.</p>
+<p>Each user-defined function has a fixed signature, declared at the time when the function is added
+to the <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code>. A function must have a fixed number of arguments of specific types, and a
+fixed return type.</p>
+<p>All user-defined functions must be added to the <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code> before they can be used. A compile
+error will be raised if the parser encounters an unknown function, or if the number or types of
+arguments do not match.</p>
+<p>User-defined functions can be used for a variety of purposes, such as:</p>
+<ul class="simple">
+<li><p>implement functionality that is currently missing in Jenny;</p></li>
+<li><p>interface with the game engine;</p></li>
+<li><p>provide access to “variables” stored outside of Jenny;</p></li>
+<li><p>etc.</p></li>
+</ul>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> Blacksmith</span>
+<span class="p">---</span>
+<span class="c">// This example showcases several hypothetical user-defined functions:</span>
+<span class="c">// - broken(slot): checks whether the item in the given slot is broken;</span>
+<span class="c">// - name(slot): gives the name for an item in a slot, e.g. &quot;sword&quot; or &quot;bow&quot;;</span>
+<span class="c">// - money(): returns the current amount of money that the player has.</span>
+<span class="c">// At the same time, functions `round()` and `plural()` are built-in.</span>
+
+<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nf">broken</span><span class="p">(</span><span class="s s-Delimeter">&quot;</span><span class="s">mainhand</span><span class="s s-Delimeter">&quot;</span><span class="p">)&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="p">&lt;&lt;</span><span class="k">local</span><span class="w"> </span><span class="nv">$repair_cost</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="nf">value</span><span class="p">(</span><span class="s s-Delimeter">&quot;</span><span class="s">mainhand</span><span class="s s-Delimeter">&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">5</span><span class="p">)&gt;&gt;</span><span class="w"></span>
+
+<span class="w">  </span><span class="nt">Blacksmith</span><span class="p">: </span>Your <span class="p">{</span><span class="nf">name</span><span class="p">(</span><span class="s s-Delimeter">&quot;</span><span class="s">mainhand</span><span class="s s-Delimeter">&quot;</span><span class="p">)}</span><span class="w"> </span>seems to be completely broken!<span class="w"></span>
+<span class="w">  </span><span class="nt">Blacksmith</span><span class="p">: </span>I can fix it for just <span class="p">{</span><span class="nb">plural</span><span class="p">(</span><span class="nv">$repair_cost</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% coin</span><span class="s s-Delimeter">&quot;</span><span class="p">)}</span><span class="w"></span>
+<span class="w">  </span><span class="p">-&gt;</span><span class="w"> </span>Ok, do it  <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nf">money</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="nv">$repair_cost</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span><span class="p">-&gt;</span><span class="w"> </span>I&#39;ll be fine...<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">===</span>
+</pre></div>
+</div>
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../../runtime/function_storage.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">FunctionStorage</span></code></span></a> – document
+describing how to add user-defined functions to a <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code>.</p></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+</div>
+</section>
 </section>
 
 
@@ -314,10 +409,10 @@ arguments:</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="../../../runtime/index.html" title="next page">
+      <a class="right-next" id="next-link" href="random.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Jenny Runtime</p>
+          <p class="prev-next-title">Random functions</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
@@ -329,6 +424,8 @@ arguments:</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#built-in-functions' class='list-group-item level-1'>Built-in functions</a>
+  <a href='#user-defined-functions' class='list-group-item level-1'>User-defined functions</a>
 </div>
 
     </div>
