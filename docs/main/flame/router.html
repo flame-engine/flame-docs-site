@@ -721,14 +721,14 @@ visual effects to the content of the page below it.</p>
 <p>The <strong>RouterComponent</strong>’s job is to manage navigation across multiple screens within the game. It is
 similar in spirit to Flutter’s <a class="reference external" href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Navigator</a> class, except that it works with Flame
 components instead of Flutter widgets.</p>
-<p>A typical game will usually consists of multiple pages: the splash screen, the starting menu page,
+<p>A typical game will usually consist of multiple pages: the splash screen, the starting menu page,
 the settings page, credits, the main game page, several pop-ups, etc. The router will organize
 all these destinations and allow you to transition between them.</p>
 <p>Internally, the <code class="docutils literal notranslate"><span class="pre">RouterComponent</span></code> contains a stack of routes. When you request it to show a route,
-it will be placed on top of all other pages in the stack. Later you can <code class="docutils literal notranslate"><span class="pre">popPage()</span></code> to remove the
+it will be placed on top of all other pages in the stack. Later you can <code class="docutils literal notranslate"><span class="pre">pop()</span></code> to remove the
 topmost page from the stack. The pages of the router are addressed by their unique names.</p>
 <p>Each page in the router can be either transparent or opaque. If a page is opaque, then the pages
-below it in the stack are not rendered, and do not receive pointer events (such as taps or drags).
+below it in the stack are not rendered and do not receive pointer events (such as taps or drags).
 On the contrary, if a page is transparent, then the page below it will be rendered and receive
 events normally. Such transparent pages are useful for implementing modal dialogs, inventory or
 dialogue UIs, etc.</p>
@@ -770,6 +770,8 @@ only a part of the screen.</p>
 and the <code class="docutils literal notranslate"><span class="pre">builder</span></code> function is only called the first time a route is activated. Setting
 <code class="docutils literal notranslate"><span class="pre">maintainState</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code> drops the page component after the route is popped from the route stack
 and the <code class="docutils literal notranslate"><span class="pre">builder</span></code> function is called each time the route is activated.</p>
+<p>The current route can be replaced using <code class="docutils literal notranslate"><span class="pre">pushReplacementNamed</span></code> or <code class="docutils literal notranslate"><span class="pre">pushReplacement</span></code>.  Each method
+simply executes <code class="docutils literal notranslate"><span class="pre">pop</span></code> on the current route and then <code class="docutils literal notranslate"><span class="pre">pushNamed</span></code> or <code class="docutils literal notranslate"><span class="pre">pushRoute</span></code>.</p>
 </section>
 <section id="overlayroute">
 <h2>OverlayRoute<a class="headerlink" href="#overlayroute" title="Permalink to this heading">¶</a></h2>
@@ -795,8 +797,10 @@ builder function was already specified within the <code class="docutils literal 
 <p>Overlays that were defined within the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> don’t even need to be declared within the routes
 map beforehand: the <code class="docutils literal notranslate"><span class="pre">RouterComponent.pushOverlay()</span></code> method can do it for you. Once an overlay route
 was registered, it can be activated either via the regular <code class="docutils literal notranslate"><span class="pre">.pushNamed()</span></code> method, or via the
-<code class="docutils literal notranslate"><span class="pre">.pushOverlay()</span></code> – the two method will do exactly the same, though you can use the second one to
+<code class="docutils literal notranslate"><span class="pre">.pushOverlay()</span></code> – the two methods will do exactly the same, though you can use the second one to
 make it more clear in your code that an overlay is being added instead of a regular route.</p>
+<p>The current overlay can be replaced using <code class="docutils literal notranslate"><span class="pre">pushReplacementOverlay</span></code>.  This method executes
+<code class="docutils literal notranslate"><span class="pre">pushReplacementNamed</span></code> or <code class="docutils literal notranslate"><span class="pre">pushReplacement</span></code> based on the status of the overlay being pushed.</p>
 </section>
 <section id="valueroute">
 <h2>ValueRoute<a class="headerlink" href="#valueroute" title="Permalink to this heading">¶</a></h2>
