@@ -431,12 +431,20 @@ cancelled.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Camera.setBounds()</span></code> allows you to add limits to where the camera is allowed to go. These limits
 are in the form of a <code class="docutils literal notranslate"><span class="pre">Shape</span></code>, which is commonly a rectangle, but can also be any other shape.</p></li>
 </ul>
+<section id="visibleworldrect">
+<h3>visibleWorldRect<a class="headerlink" href="#visibleworldrect" title="Permalink to this heading">¶</a></h3>
+<p>The camera exposes property <code class="docutils literal notranslate"><span class="pre">visibleWorldRect</span></code>, which is a rect that describes the world’s region
+which is currently visible through the camera. This region can be used in order to avoid rendering
+components that are out of view, or updating objects that are far away from the player less
+frequently.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">visibleWorldRect</span></code> is a cached property, and it updates automatically whenever the camera
+moves or the viewport changes its size.</p>
+</section>
 </section>
 <section id="comparison-to-the-traditional-camera">
 <h2>Comparison to the traditional camera<a class="headerlink" href="#comparison-to-the-traditional-camera" title="Permalink to this heading">¶</a></h2>
 <p>Compared to the normal <a class="reference internal" href="camera_and_viewport.html"><span class="doc std std-doc">Camera</span></a>, the <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code>
-has several advantages and drawbacks.</p>
-<p>Pros:</p>
+has several advantages:</p>
 <ul class="simple">
 <li><p>Multiple cameras can be added to the game at the same time;</p></li>
 <li><p>More flexibility in choosing the placement and the size of the viewport;</p></li>
@@ -485,6 +493,7 @@ without having to unmount one world and then mount another;</p></li>
   <a href='#viewport' class='list-group-item level-1'>Viewport</a>
   <a href='#viewfinder' class='list-group-item level-1'>Viewfinder</a>
   <a href='#camera-controls' class='list-group-item level-1'>Camera controls</a>
+  <a href='#visibleworldrect' class='list-group-item level-2'>visibleWorldRect</a>
   <a href='#comparison-to-the-traditional-camera' class='list-group-item level-1'>Comparison to the traditional camera</a>
 </div>
 
