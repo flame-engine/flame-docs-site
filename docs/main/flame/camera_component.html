@@ -414,8 +414,8 @@ be viable in some circumstances, but in general it is not recommended.</p></li>
 <li><p>Apply effects and/or behaviors to the camera’s <code class="docutils literal notranslate"><span class="pre">Viewfinder</span></code> or <code class="docutils literal notranslate"><span class="pre">Viewport</span></code>.
 The effects and behaviors are special kinds of components whose purpose is
 to modify over time some property of a component that they attach to.</p></li>
-<li><p>Use special camera functions such as <code class="docutils literal notranslate"><span class="pre">follow()</span></code> and <code class="docutils literal notranslate"><span class="pre">moveTo()</span></code>. Under the
-hood, this approach uses the same effects/behaviors as in (2).</p></li>
+<li><p>Use special camera functions such as <code class="docutils literal notranslate"><span class="pre">follow()</span></code>, <code class="docutils literal notranslate"><span class="pre">moveBy()</span></code> and <code class="docutils literal notranslate"><span class="pre">moveTo()</span></code>.
+Under the hood, this approach uses the same effects/behaviors as in (2).</p></li>
 </ol>
 <p>Camera has several methods for controlling its behavior:</p>
 <ul class="simple">
@@ -424,6 +424,9 @@ Optionally you can limit the maximum speed of movement of the camera, or
 allow it to move horizontally/vertically only.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Camera.stop()</span></code> will undo the effect of the previous call and stop the camera
 at its current position.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Camera.moveBy()</span></code> can be used to move the camera by the specified offset.
+If the camera was already following another component or moving towards,
+those behaviors would be automatically cancelled.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Camera.moveTo()</span></code> can be used to move the camera to the designated point on
 the world map. If the camera was already following another component or
 moving towards another point, those behaviors would be automatically
