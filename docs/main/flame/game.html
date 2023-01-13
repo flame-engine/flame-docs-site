@@ -361,6 +361,11 @@ will call all of the <code class="docutils literal notranslate"><span class="pre
 the camera and viewport.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame.camera</span></code> controls which point in the coordinate space should be the top-left of the
 screen (it defaults to [0,0] like a regular <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Utilizing <code class="docutils literal notranslate"><span class="pre">FlameGame.camera.gameSize</span></code> in the <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> event should be done
+after the call to <code class="docutils literal notranslate"><span class="pre">super.onGameResize(canvasSize);</span></code>.</p>
+</div>
 </section>
 <section id="lifecycle">
 <h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this heading">¶</a></h2>
