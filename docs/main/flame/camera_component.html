@@ -446,6 +446,17 @@ frequently.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">visibleWorldRect</span></code> is a cached property, and it updates automatically whenever the camera
 moves or the viewport changes its size.</p>
 </section>
+<section id="check-if-a-component-is-visible-from-the-camera-point-of-view">
+<h3>Check if a component is visible from the camera point of view<a class="headerlink" href="#check-if-a-component-is-visible-from-the-camera-point-of-view" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has a method called <code class="docutils literal notranslate"><span class="pre">canSee</span></code> which can be used to check
+if a component is visible from the camera point of view.
+This is useful for example to cull components that are not in view.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">camera</span><span class="p">.</span><span class="n">canSee</span><span class="p">(</span><span class="n">component</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">   </span><span class="n">component</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">();</span><span class="w"> </span><span class="c1">// Cull the component</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="comparison-to-the-traditional-camera">
 <h2>Comparison to the traditional camera<a class="headerlink" href="#comparison-to-the-traditional-camera" title="Permalink to this heading">¶</a></h2>
@@ -500,6 +511,7 @@ without having to unmount one world and then mount another;</p></li>
   <a href='#viewfinder' class='list-group-item level-1'>Viewfinder</a>
   <a href='#camera-controls' class='list-group-item level-1'>Camera controls</a>
   <a href='#visibleworldrect' class='list-group-item level-2'>visibleWorldRect</a>
+  <a href='#check-if-a-component-is-visible-from-the-camera-point-of-view' class='list-group-item level-2'>Check if a component is visible from the camera point of view</a>
   <a href='#comparison-to-the-traditional-camera' class='list-group-item level-1'>Comparison to the traditional camera</a>
 </div>
 
