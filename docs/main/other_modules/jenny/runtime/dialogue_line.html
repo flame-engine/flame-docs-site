@@ -192,6 +192,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../language/lines.html">Lines</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../language/options.html">Options</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../language/commands/commands.html">Commands</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../language/commands/character.html">&lt;&lt;character&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../language/commands/declare.html">&lt;&lt;declare&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../language/commands/if.html">&lt;&lt;if&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../language/commands/jump.html">&lt;&lt;jump&gt;&gt;</a></li>
@@ -219,6 +220,8 @@
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Jenny API</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="character.html">Character</a></li>
+<li class="toctree-l4"><a class="reference internal" href="character_storage.html">CharacterStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="command_storage.html">CommandStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dialogue_choice.html">DialogueChoice</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">DialogueLine</a></li>
@@ -303,7 +306,7 @@
 <section id="properties">
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
 <dl class="simple myst">
-<dt><strong>character</strong> <code class="docutils literal notranslate"><span class="pre">String?</span></code></dt><dd><p>The name of the character who is speaking the line, or <code class="docutils literal notranslate"><span class="pre">null</span></code> if the line has no speaker.</p>
+<dt><strong>character</strong> <code class="docutils literal notranslate"><span class="pre">Character?</span></code></dt><dd><p>The name of the character who is speaking the line, or <code class="docutils literal notranslate"><span class="pre">null</span></code> if the line has no speaker.</p>
 </dd>
 <dt><strong>text</strong> <code class="docutils literal notranslate"><span class="pre">String</span></code></dt><dd><p>The computed text of the line, after evaluating the inline expressions, stripping the markup,
 and processing the escape sequences.</p>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Expressions &#8212; Flame</title>
+  <title>&lt;&lt;character&gt;&gt; &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../../../_static/basic.css" />
@@ -33,8 +33,8 @@
   <link rel="shortcut icon" href="../../../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../../../genindex.html" />
   <link rel="search" title="Search" href="../../../../search.html" />
-  <link rel="next" title="Variables" href="variables.html" />
-  <link rel="prev" title="User-defined commands" href="../commands/user_defined_commands.html" />
+  <link rel="next" title="&lt;&lt;declare&gt;&gt;" href="declare.html" />
+  <link rel="prev" title="Commands" href="commands.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -191,27 +191,27 @@
 <li class="toctree-l4"><a class="reference internal" href="../nodes.html">Nodes</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../lines.html">Lines</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../options.html">Options</a></li>
-<li class="toctree-l4"><a class="reference internal" href="../commands/commands.html">Commands</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="../commands/character.html">&lt;&lt;character&gt;&gt;</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../commands/declare.html">&lt;&lt;declare&gt;&gt;</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../commands/if.html">&lt;&lt;if&gt;&gt;</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../commands/jump.html">&lt;&lt;jump&gt;&gt;</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../commands/local.html">&lt;&lt;local&gt;&gt;</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../commands/set.html">&lt;&lt;set&gt;&gt;</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../commands/stop.html">&lt;&lt;stop&gt;&gt;</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../commands/visit.html">&lt;&lt;visit&gt;&gt;</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../commands/wait.html">&lt;&lt;wait&gt;&gt;</a></li>
-<li class="toctree-l5"><a class="reference internal" href="../commands/user_defined_commands.html">User-defined commands</a></li>
+<li class="toctree-l4 current"><a class="reference internal" href="commands.html">Commands</a><ul class="current">
+<li class="toctree-l5 current"><a class="current reference internal" href="#">&lt;&lt;character&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="declare.html">&lt;&lt;declare&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="if.html">&lt;&lt;if&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="local.html">&lt;&lt;local&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="set.html">&lt;&lt;set&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="stop.html">&lt;&lt;stop&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="visit.html">&lt;&lt;visit&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="wait.html">&lt;&lt;wait&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="user_defined_commands.html">User-defined commands</a></li>
 </ul>
 </li>
-<li class="toctree-l4 current"><a class="current reference internal" href="#">Expressions</a><ul>
-<li class="toctree-l5"><a class="reference internal" href="variables.html">Variables</a></li>
-<li class="toctree-l5"><a class="reference internal" href="operators.html">Operators</a></li>
-<li class="toctree-l5"><a class="reference internal" href="functions/functions.html">Functions</a><ul>
-<li class="toctree-l6"><a class="reference internal" href="functions/random.html">Random functions</a></li>
-<li class="toctree-l6"><a class="reference internal" href="functions/numeric.html">Numeric functions</a></li>
-<li class="toctree-l6"><a class="reference internal" href="functions/type.html">Type conversion functions</a></li>
-<li class="toctree-l6"><a class="reference internal" href="functions/misc.html">Miscellaneous functions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../expressions/expressions.html">Expressions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../expressions/variables.html">Variables</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../expressions/operators.html">Operators</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../expressions/functions/functions.html">Functions</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../expressions/functions/random.html">Random functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../expressions/functions/numeric.html">Numeric functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../expressions/functions/type.html">Type conversion functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../expressions/functions/misc.html">Miscellaneous functions</a></li>
 </ul>
 </li>
 </ul>
@@ -298,23 +298,59 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="expressions">
-<h1>Expressions<a class="headerlink" href="#expressions" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>expressions</strong> in YarnSpinner provide a way to dynamically change the flow or the content
-of the dialogue, based on <a class="reference internal" href="variables.html"><span class="doc std std-doc">variables</span></a>, combined with <a class="reference internal" href="operators.html"><span class="doc std std-doc">operators</span></a> or <a class="reference internal" href="functions/functions.html"><span class="doc std std-doc">function</span></a> calls. They are
-used in several places:</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="character">
+<h1><code class="docutils literal notranslate"><span class="pre">&lt;&lt;character&gt;&gt;</span></code><a class="headerlink" href="#character" title="Permalink to this heading">¶</a></h1>
+<p>The <strong>&lt;&lt;character&gt;&gt;</strong> command declares a character with the given name, and one or more aliases
+that can be used in the scripts.</p>
+<p>The command has several purposes:</p>
 <ul class="simple">
-<li><p>to insert a dynamic text into a <a class="reference internal" href="../lines.html"><span class="doc std std-doc">line</span></a>;</p></li>
-<li><p>to create or update a <a class="reference internal" href="variables.html"><span class="doc std std-doc">variable</span></a>;</p></li>
-<li><p>as part of a <a class="reference internal" href="../commands/commands.html"><span class="doc std std-doc">command</span></a> such as <code class="docutils literal notranslate"><span class="pre">&lt;&lt;if&gt;&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">&lt;&lt;set&gt;&gt;</span></code>;</p></li>
-<li><p>to compute the values of <a class="reference internal" href="../markup.html"><span class="doc std std-doc">markup</span></a> attributes.</p></li>
+<li><p>it protects you from accidentally misspelling a character’s name in your script;</p></li>
+<li><p>it allows a character to have <em>full name</em>, which doesn’t have to be an ID;</p></li>
+<li><p>it allows declaring multiple aliases for the same character, which can be used in different
+nodes (an alias may even be in a different language than the full name);</p></li>
+<li><p>you can associate additional data with each character, which will then be available at runtime.</p></li>
 </ul>
-<p>An expression always evaluates synchronously, meaning that it cannot wait for user’s input, nor
-perform an action over time, nor carry out any computationally intensive calculations in a
-different thread. If such functionality is really desired, then it can be achieved via a
-<a class="reference internal" href="../commands/user_defined_commands.html"><span class="doc std std-doc">user-defined command</span></a> that waits for the calculation to succeed and then stores the result into
-some global <a class="reference internal" href="variables.html"><span class="doc std std-doc">variable</span></a>, which can then be accessed from an expression.</p>
-<div class="toctree-wrapper compound">
+<p>The format of this command is the following:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">character</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">FULL NAME</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="nf">alias1</span><span class="w"> </span><span class="nf">alias2</span><span class="p">...&gt;&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>The <em>full name</em> here is optional: if given, it will be considered <em>the</em> name of the character.
+However, if the name is omitted, then the first alias will be considered the true character’s name.
+Each <em>alias</em> must be a valid ID, and at least one alias must be provided. For example:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="c">// A well-mannered seven-year-old girl, who nevertheless always gets into</span>
+<span class="c">// all kinds of zany adventures.</span>
+<span class="p">&lt;&lt;</span><span class="k">character</span><span class="w"> </span><span class="nf">Alice</span><span class="p">&gt;&gt;</span><span class="w"></span>
+
+<span class="c">// A magical cat known for his ability to grin majestically, and partially</span>
+<span class="c">// vanish. He is mad (by his own admission).</span>
+<span class="p">&lt;&lt;</span><span class="k">character</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Cheshire Cat</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="nf">Cat</span><span class="w"> </span><span class="nf">Cheshire</span><span class="p">&gt;&gt;</span><span class="w"></span>
+
+<span class="c">// A foul-tempered Queen, who is also a playing card. Described as</span>
+<span class="c">// &quot;a blind fury&quot;, her favorite saying is &quot;Off with their heads!&quot;.</span>
+<span class="c">// Not to be confused with Red Queen.</span>
+<span class="p">&lt;&lt;</span><span class="k">character</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Queen of Hearts</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="nf">Queen</span><span class="w"> </span><span class="nf">QoH</span><span class="w"> </span><span class="nf">QH</span><span class="p">&gt;&gt;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>After a character is declared, any of its aliases can be used in the script: they will all refer
+to the same <code class="docutils literal notranslate"><span class="pre">Character</span></code> object. At the same time, using a character without declaring it first is
+not allowed (unless a special flag in <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code> is set to allow this).</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> Alice_and_the_Cat</span>
+<span class="p">---</span>
+<span class="nt">Alice</span><span class="p">: </span>But I don&#39;t want to go among mad people.<span class="w"></span>
+<span class="nt">Cat</span><span class="p">:   </span>Oh, you can&#39;t help that, we&#39;re all mad here. I&#39;m mad. You&#39;re mad.<span class="w"></span>
+<span class="nt">Alice</span><span class="p">: </span>How do you know I&#39;m mad?<span class="w"></span>
+<span class="nt">Cat</span><span class="p">:   </span>You must be, or you wouldn&#39;t have come here.<span class="w"></span>
+<span class="nt">Alice</span><span class="p">: </span>And how do you know that you&#39;re mad?<span class="w"></span>
+<span class="nt">Cat</span><span class="p">:   </span>To begin with, a dog&#39;s not mad. You grant that?<span class="w"></span>
+<span class="nt">Alice</span><span class="p">: </span>I suppose so.<span class="w"></span>
+<span class="nt">Cat</span><span class="p">:   </span>Well then, you see a dog growls when it&#39;s angry, and wags its tail <span class="se">\</span>
+<span class="se">       </span>when it&#39;s pleased.<span class="w"></span>
+<span class="nt">Cat</span><span class="p">:   </span>Now, <span class="sb">[i]</span>I<span class="sb">[/i]</span><span class="w"> </span>growl when I&#39;m pleased, and wag my tail when I&#39;m angry. <span class="se">\</span>
+<span class="se">       </span>Therefore, I&#39;m mad.<span class="w"></span>
+<span class="nt">Alice</span><span class="p">: </span><span class="sb">[i]</span>I<span class="sb">[/i]</span><span class="w"> </span>call it purring, not growling.<span class="w"></span>
+<span class="nt">Cat</span><span class="p">:   </span>Call it what you like.<span class="w"></span>
+<span class="p">===</span>
+</pre></div>
 </div>
 </section>
 
@@ -325,18 +361,18 @@ some global <a class="reference internal" href="variables.html"><span class="doc
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="../commands/user_defined_commands.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="commands.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">User-defined commands</p>
+          <p class="prev-next-title">Commands</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="variables.html" title="next page">
+      <a class="right-next" id="next-link" href="declare.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Variables</p>
+          <p class="prev-next-title">&lt;&lt;declare&gt;&gt;</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>

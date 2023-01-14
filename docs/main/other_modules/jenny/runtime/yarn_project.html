@@ -192,6 +192,7 @@
 <li class="toctree-l4"><a class="reference internal" href="../language/lines.html">Lines</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../language/options.html">Options</a></li>
 <li class="toctree-l4"><a class="reference internal" href="../language/commands/commands.html">Commands</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../language/commands/character.html">&lt;&lt;character&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../language/commands/declare.html">&lt;&lt;declare&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../language/commands/if.html">&lt;&lt;if&gt;&gt;</a></li>
 <li class="toctree-l5"><a class="reference internal" href="../language/commands/jump.html">&lt;&lt;jump&gt;&gt;</a></li>
@@ -219,6 +220,8 @@
 </ul>
 </li>
 <li class="toctree-l3 current"><a class="reference internal" href="index.html">Jenny API</a><ul class="current">
+<li class="toctree-l4"><a class="reference internal" href="character.html">Character</a></li>
+<li class="toctree-l4"><a class="reference internal" href="character_storage.html">CharacterStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="command_storage.html">CommandStorage</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dialogue_choice.html">DialogueChoice</a></li>
 <li class="toctree-l4"><a class="reference internal" href="dialogue_line.html">DialogueLine</a></li>
@@ -349,6 +352,13 @@ dialogue script – otherwise a compile error will occur when encountering an un
 <dt><strong>commands</strong> <code class="docutils literal notranslate"><span class="pre">CommandStorage</span></code></dt><dd><p>The <a class="reference internal" href="command_storage.html"><span class="doc std std-doc">container</span></a> for all user-defined commands linked into the project. The main
 reason to access this container is to register new custom commands.</p>
 <p>All custom commands must be added before they can be used in the dialogue script.</p>
+</dd>
+<dt><strong>characters</strong> <code class="docutils literal notranslate"><span class="pre">CharacterStorage</span></code></dt><dd><p>The <a class="reference internal" href="character_storage.html"><span class="doc std std-doc">container</span></a> for all <a class="reference internal" href="character.html"><span class="doc std std-doc">Character</span></a> objects declared in your yarn scripts.</p>
+</dd>
+<dt><strong>strictCharacterNames</strong> <code class="docutils literal notranslate"><span class="pre">bool</span></code></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code> (default), the validity of character names will be strictly enforced. That is, all
+characters must be declared before they can be used, using the <a class="reference internal" href="../language/commands/character.html"><span class="doc std std-doc">&lt;&lt;character&gt;&gt;</span></a> commands. If
+this property is set to false, then new <a class="reference internal" href="character.html"><span class="doc std std-doc">Character</span></a> objects will be created automatically as
+they are encountered in scripts.</p>
 </dd>
 <dt><strong>trueValues</strong>, <strong>falseValues</strong> <code class="docutils literal notranslate"><span class="pre">Set&lt;String&gt;</span></code></dt><dd><p>The strings that can be recognized as <code class="docutils literal notranslate"><span class="pre">true</span></code>/<code class="docutils literal notranslate"><span class="pre">false</span></code> values respectively.</p>
 </dd>
