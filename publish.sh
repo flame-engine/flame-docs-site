@@ -51,11 +51,10 @@ function generate {
   fi
 
   melos bootstrap || echo "Melos bootstrapping failed, trying without"
+  melos run doc-setup
   cd $sphinx_dir
   echo "+ Generating for version $version..."
   pre_process $version
-  pip install -r requirements.txt
-  pip install 'jinja2>=3.1.0'
   make clean
   make html
 
