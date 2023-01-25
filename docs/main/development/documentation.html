@@ -569,23 +569,14 @@ building the project due to
 following:</p>
 <ol class="arabic">
 <li><p>A working <strong>Flutter</strong> installation, accessible from the command line;</p></li>
-<li><p>A <strong>Python</strong> environment, with python version 3.8+ or higher;</p>
-<ul class="simple">
-<li><p>You can verify this by running <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">--version</span></code> from the command line;</p></li>
-<li><p>Having a dedicated python virtual environment is recommended but not required;</p></li>
-</ul>
-</li>
-<li><p>A set of python <strong>modules</strong> listed in the <code class="docutils literal notranslate"><span class="pre">doc/_sphinx/requirements.txt</span></code> file;</p>
-<ul>
-<li><p>The easiest way to install these is to run</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">pip install -r doc/_sphinx/requirements.txt</span>
+<li><p><strong>Melos</strong> command-line tool, as per the <a class="reference internal" href="contributing.html#environment-setup"><span class="std std-doc">contributing</span></a> guide.</p></li>
+<li><p>A <strong>Python</strong> environment, with python version 3.8+ or higher. Having a dedicated python
+virtual environment is recommended but not required;</p></li>
+<li><p>Install the remaining requirements using the command</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go"> melos run doc-setup</span>
 </pre></div>
 </div>
 </li>
-<li><p>Verify that all packages were installed correctly, otherwise, an error may occur.</p></li>
-</ul>
-</li>
-<li><p>Melos as per the <a class="reference internal" href="contributing.html#environment-setup"><span class="std std-doc">contributing</span></a> guide.</p></li>
 </ol>
 <p>Once these prerequisites are met, you can build the documentation by using the built-in Melos
 target:</p>
