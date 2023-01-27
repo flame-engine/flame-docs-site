@@ -75,7 +75,6 @@ function generate_docs_for_version {
   sed -i "s/name: example/name: flame_flare_example/g" packages/flame_flare/example/pubspec.yaml
   sed -i "s/name: example/name: flame_forge2d_example/g" packages/flame_forge2d/example/pubspec.yaml
   sed -i "s/name: example/name: flame_lint_example/g" packages/flame_lint/example/pubspec.yaml
-  sed -i "s/name: example/name: flame_lottie_example/g" packages/flame_lottie/example/pubspec.yaml
   sed -i "s/name: example/name: flame_oxygen_example/g" packages/flame_oxygen/example/pubspec.yaml
   sed -i "s/name: example/name: flame_rive_example/g" packages/flame_rive/example/pubspec.yaml
   sed -i "s/name: example/name: flame_svg_example/g" packages/flame_svg/example/pubspec.yaml
