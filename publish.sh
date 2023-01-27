@@ -15,8 +15,8 @@ function main {
   cd -
   echo "$list"
   latest_version=$(head -n 1 <<< "$list")
-  sed -i '' "s/FLAME_VERSION/$latest_version/g" docs/index.html
-  sed -i '' "s/FLAME_VERSION/$latest_version/g" docs/404.html
+  sed -i "s/FLAME_VERSION/$latest_version/g" docs/index.html
+  sed -i "s/FLAME_VERSION/$latest_version/g" docs/404.html
 
   generate_docs_for_version main
   while IFS= read -r line; do
