@@ -7,6 +7,7 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/dart_domain.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/flutter_app.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/package.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/yarn_lexer.css" />
@@ -122,6 +123,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/other_inputs.html">Other Inputs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/tap_events.html">Tap Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/rendering/rendering.html">Rendering</a><ul>
@@ -300,21 +302,52 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="characterstorage">
 <h1>CharacterStorage<a class="headerlink" href="#characterstorage" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>CharacterStorage</strong> object is a cache of all <a class="reference internal" href="character.html"><span class="doc std std-doc">Character</span></a>s declared in yarn scripts. Typically,
-this cache will be populated with the help of the <a class="reference internal" href="../language/commands/character.html"><span class="doc std std-doc">&lt;&lt;character&gt;&gt;</span></a> commands. Adding characters
-manually is possible but not recommended.</p>
+<div class="dartdoc docutils container">
+<div class="class docutils container">
+<div class="signature sig1 docutils container" id="CharacterStorage">
+<div class="docutils container">
+<span class="keyword">class </span><span class="name">CharacterStorage</span></div>
+</div>
+<div class="description doc1 docutils container">
+<p>The <strong>CharacterStorage</strong> is a cache for all <a class="reference internal" href="character.html#Character"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">Character</span></code></a>s defined in your
+yarn scripts. This container is populated from the <code class="docutils literal notranslate"><span class="pre">&lt;&lt;character&gt;&gt;</span></code>
+commands as the YarnProject parses the input scripts.</p>
+</div>
+<section id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
+<div class="getter docutils container">
+<div class="signature sig2 docutils container" id="CharacterStorage-isEmpty">
+<span class="name">isEmpty</span><span class="punct"> → </span>bool</div>
+</div>
+<div class="getter docutils container">
+<div class="signature sig2 docutils container" id="CharacterStorage-isNotEmpty">
+<span class="name">isNotEmpty</span><span class="punct"> → </span>bool</div>
+</div>
+</section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h2>
-<dl class="simple myst">
-<dt><strong>contains</strong>(<code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">name</span></code>) → <code class="docutils literal notranslate"><span class="pre">bool</span></code></dt><dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if a character with the given name or alias was defined.</p>
-</dd>
-<dt><strong>operator[]</strong>(<code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">name</span></code>) → <code class="docutils literal notranslate"><span class="pre">Character?</span></code></dt><dd><p>Returns the <a class="reference internal" href="character.html"><span class="doc std std-doc">Character</span></a> object with the given name/alias, or <code class="docutils literal notranslate"><span class="pre">null</span></code> if this character was not
-defined.</p>
-</dd>
-<dt><strong>add</strong>(<code class="docutils literal notranslate"><span class="pre">Character</span> <span class="pre">character</span></code>)</dt><dd><p>Adds a new <code class="docutils literal notranslate"><span class="pre">Character</span></code> object into the storage.</p>
-</dd>
-</dl>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="CharacterStorage-contains">
+<div class="docutils container">
+<span class="name">contains</span><span class="arguments"><span class="punct">(</span><span class="argument">String <span class="name">name</span></span><span class="punct">)</span></span><span class="punct"> → </span>bool</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if a character with the given name or alias was defined.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="CharacterStorage-operator[]">
+<div class="docutils container">
+<span class="name">operator[]</span><span class="arguments"><span class="punct">(</span><span class="argument">String <span class="name">name</span></span><span class="punct">)</span></span><span class="punct"> → </span>Character?</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Retrieves the character with the given name/alias, or returns <code class="docutils literal notranslate"><span class="pre">null</span></code> if
+such character was not present.</p>
+</div>
+</div>
 </section>
+</div>
+</div>
 </section>
 
 
@@ -347,6 +380,7 @@ defined.</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#properties' class='list-group-item level-1'>Properties</a>
   <a href='#methods' class='list-group-item level-1'>Methods</a>
 </div>
 

@@ -7,6 +7,7 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/dart_domain.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/flutter_app.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/package.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/yarn_lexer.css" />
@@ -122,6 +123,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/other_inputs.html">Other Inputs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/tap_events.html">Tap Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/rendering/rendering.html">Rendering</a><ul>
@@ -300,116 +302,240 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="dialogueview">
 <h1>DialogueView<a class="headerlink" href="#dialogueview" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>DialogueView</strong> class is the main mechanism of integrating Jenny with any existing framework,
-such as a game engine. This class describes how <a class="reference internal" href="dialogue_line.html"><span class="doc std std-doc">line</span></a>s and <a class="reference internal" href="dialogue_option.html"><span class="doc std std-doc">option</span></a>s are presented to the user.</p>
-<p>This class is abstract, which means you must create a concrete implementation in order to use the
-dialogue system. The concrete <code class="docutils literal notranslate"><span class="pre">DialogueView</span></code> objects will then be passed to a <a class="reference internal" href="dialogue_runner.html"><span class="doc std std-doc">DialogueRunner</span></a>,
-which will orchestrate the dialogue’s progression.</p>
+<div class="dartdoc docutils container">
+<div class="class docutils container">
+<div class="signature sig1 docutils container" id="DialogueView">
+<div class="docutils container">
+<span class="keyword">class </span><span class="name">DialogueView</span></div>
+</div>
+<div class="description doc1 docutils container">
+<p>The <strong>DialogueView</strong> class is the main mechanism for integrating Jenny with
+a game engine. This class describes how <a class="reference internal" href="dialogue_line.html#DialogueLine"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">line</span></code></a>s and
+<code class="xref dart dart-ref docutils literal notranslate"><span class="pre">option</span></code>s are presented to the user.</p>
+<p>The class is abstract, which means you must create a concrete
+implementation in order to use Jenny’s dialogue system. The concrete
+<code class="docutils literal notranslate"><span class="pre">DialogueView</span></code> objects will then be passed to a <a class="reference internal" href="dialogue_runner.html#DialogueRunner"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueRunner</span></code></a>, which
+will orchestrate the dialogue’s progression.</p>
+<p>The class defines a number of “event handler” methods, which can be
+overridden in subclasses in order to respond to the corresponding event.
+Each method has a default no-op implementation, which means you only need
+to override those methods that you care about.</p>
+<p>Most of the event handler methods return <a class="reference external" href="https://api.dart.dev/stable/2.18.6/dart-async/FutureOr-class.html">FutureOr</a>, which means they can
+be implemented either synchronously or asynchronously. In the latter case
+the dialogue runner will wait for the future to resolve before proceeding
+(futures from several dialogue views will be awaited simultaneously).</p>
+</div>
 <section id="properties">
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
-<dl class="simple myst">
-<dt><strong>dialogueRunner</strong>: <code class="docutils literal notranslate"><span class="pre">DialogueRunner?</span></code></dt><dd><p>The owner of this DialogueView. This property is non-<code class="docutils literal notranslate"><span class="pre">null</span></code> when the dialogue view is actively
-used by a <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code>.</p>
-<p>This property can be used in order to access the parent <a class="reference internal" href="yarn_project.html"><span class="doc std std-doc">YarnProject</span></a>, or to send signals into the
-sibling <code class="docutils literal notranslate"><span class="pre">DialogueView</span></code>s.</p>
-</dd>
-</dl>
+<div class="getter docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-dialogueRunner">
+<span class="name">dialogueRunner</span><span class="punct"> → </span>DialogueRunner?</div>
+<div class="description doc2 docutils container">
+<p>The owner of this <code class="docutils literal notranslate"><span class="pre">DialogueView</span></code>. This property will be <code class="docutils literal notranslate"><span class="pre">null</span></code> when the
+dialogue view hasn’t been attached to any <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> yet.</p>
+<p>This property can be used in order to access the parent <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">YarnProject</span></code>,
+or to send signals into the sibling <code class="docutils literal notranslate"><span class="pre">DialogueView</span></code>s.</p>
+</div>
+</div>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h2>
-<p>These methods that the <code class="docutils literal notranslate"><span class="pre">DialogueView</span></code> can implement in order to respond to the corresponding events.
-Each method is optional, with a default implementation that does nothing. This means that you can
-only implement those methods that you care about.</p>
-<p>Most of the methods return <code class="docutils literal notranslate"><span class="pre">FutureOr&lt;void&gt;</span></code>, which means that the implementations can be either
-synchronous or asynchronous. In the latter case, the dialogue runner will wait for the future to
-resolve before proceeding (however, the futures from several dialogue views are awaited
-simultaneously).</p>
-<dl class="simple myst">
-<dt><strong>onDialogueStart</strong>()</dt><dd><p>Called at the start of a new dialogue.</p>
-<p>This is a good place to prepare the game’s UI, such as fade in or animate dialogue panels, or
-load resources.</p>
-</dd>
-<dt><strong>onDialogueFinish</strong>()</dt><dd><p>Called when the dialogue is about to finish.</p>
-</dd>
-<dt><strong>onNodeStart</strong>(<code class="docutils literal notranslate"><span class="pre">Node</span> <span class="pre">node</span></code>)</dt><dd><p>Called when the dialogue runner starts executing the <a class="reference internal" href="node.html"><span class="doc std std-doc">Node</span></a>. This will be called right after the
-<strong>onDialogueStart</strong> event, and then each time the dialogue jumps to another node.</p>
-<p>This method is a good place to perform node-specific initialization, for example by querying the
-<code class="docutils literal notranslate"><span class="pre">node</span></code>’s properties or metadata.</p>
-</dd>
-<dt><strong>onNodeFinish</strong>(<code class="docutils literal notranslate"><span class="pre">Node</span> <span class="pre">node</span></code>)</dt><dd><p>Called when the dialogue runner finishes executing the <a class="reference internal" href="node.html"><span class="doc std std-doc">Node</span></a>, before <strong>onDialogueFinish</strong>. This
-will also be called every time a node is exited via <code class="docutils literal notranslate"><span class="pre">&lt;&lt;stop&gt;&gt;</span></code> or a <code class="docutils literal notranslate"><span class="pre">&lt;&lt;jump&gt;&gt;</span></code> command (including
-jumps from node to itself).</p>
-<p>This callback can be used to clean up any preparations that were performed in <code class="docutils literal notranslate"><span class="pre">onNodeStart</span></code>.</p>
-</dd>
-<dt><strong>onLineStart</strong>(<code class="docutils literal notranslate"><span class="pre">DialogueLine</span> <span class="pre">line</span></code>) <code class="docutils literal notranslate"><span class="pre">-&gt;</span> <span class="pre">bool</span></code></dt><dd><p>Called when the next dialogue <a class="reference internal" href="dialogue_line.html"><span class="doc std std-doc">line</span></a> should be presented to the user.</p>
-<p>The DialogueView may decide to present the <code class="docutils literal notranslate"><span class="pre">line</span></code> in whatever way it wants, or to not present
-the line at all. For example, the dialogue view may: augment the line object, render the line at
-a certain place on the screen, render only the character’s name, show the portrait of whoever is
-speaking, show the text within a chat bubble, play a voice-over audio file, store the text into
-the player’s conversation log, move the camera to show the speaker, etc.</p>
-<p>Some of these methods of delivery can be considered “primary”, while others are “auxiliary”.
-A “primary” dialogue view should return <code class="docutils literal notranslate"><span class="pre">true</span></code>, while all others <code class="docutils literal notranslate"><span class="pre">false</span></code> (especially if the
-dialogue view ignores the line completely). This is used as a robustness check: if none of the
-dialogue views return <code class="docutils literal notranslate"><span class="pre">true</span></code>, then a <code class="docutils literal notranslate"><span class="pre">DialogueError</span></code> will be thrown because it would mean the
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-onDialogueStart">
+<div class="docutils container">
+<span class="name">onDialogueStart</span><span class="arguments"><span class="punct">(</span><span class="punct">)</span></span><span class="punct"> → </span>FutureOr&lt;void&gt;</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Called before the start of a new dialogue, i.e. before any lines, options,
+or commands are delivered.</p>
+<p>This method is a good place to prepare the game’s UI, such as fading in/
+animating dialogue panels, or loading resources. If this method returns a
+future, then the dialogue will start running only after the future
+completes.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-onDialogueFinish">
+<div class="docutils container">
+<span class="name">onDialogueFinish</span><span class="arguments"><span class="punct">(</span><span class="punct">)</span></span><span class="punct"> → </span>FutureOr&lt;void&gt;</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Called when the dialogue has ended.</p>
+<p>This method can be used to clean up any of the dialogue UI. The returned
+future will be awaited before the dialogue runner considers its job
+finished.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-onNodeStart">
+<div class="docutils container">
+<span class="name">onNodeStart</span><span class="arguments"><span class="punct">(</span><span class="argument">Node <span class="name">node</span></span><span class="punct">)</span></span><span class="punct"> → </span>FutureOr&lt;void&gt;</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Called when the dialogue enters a new <span class="param">node</span>.</p>
+<p>This will be called immediately after the <a class="reference internal" href="#DialogueView-onDialogueStart"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onDialogueStart</span></code></a>, and then
+possibly several times more over the course of the dialogue if it jumps
+to other nodes. This method is a good place to perform node-specific
+initialization, for example by querying the <span class="param">node</span>’s properties or
+metadata.</p>
+<p>If this method returns a future, then the dialogue runner will wait for it
+to complete before proceeding with the actual dialogue.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-onNodeFinish">
+<div class="docutils container">
+<span class="name">onNodeFinish</span><span class="arguments"><span class="punct">(</span><span class="argument">Node <span class="name">node</span></span><span class="punct">)</span></span><span class="punct"> → </span>FutureOr&lt;void&gt;</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Called when the dialogue exits the <span class="param">node</span>.</p>
+<p>For example, during a <a class="reference internal" href="../language/commands/jump.html"><span class="doc std std-doc">&lt;&lt;jump&gt;&gt;</span></a> this callback will be called with the
+current node, and then <a class="reference internal" href="#DialogueView-onNodeStart"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onNodeStart</span></code></a> will be called with the new node.
+Similarly, the command <a class="reference internal" href="../language/commands/stop.html"><span class="doc std std-doc">&lt;&lt;stop&gt;&gt;</span></a> will trigger this callback too. At the
+same time, during <a class="reference internal" href="../language/commands/visit.html"><span class="doc std std-doc">&lt;&lt;visit&gt;&gt;</span></a> this callback will not be invoked.</p>
+<p>This callback can be used to clean up any preparations that were
+performed in <a class="reference internal" href="#DialogueView-onNodeStart"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onNodeStart</span></code></a>.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-onLineStart">
+<div class="docutils container">
+<span class="name">onLineStart</span><span class="arguments"><span class="punct">(</span><span class="argument">DialogueLine <span class="name">line</span></span><span class="punct">)</span></span><span class="punct"> → </span>FutureOr&lt;bool&gt;</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Called when the next dialogue <span class="param">line</span> should be presented to the user.</p>
+<p>The <a class="reference internal" href="#DialogueView"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueView</span></code></a> may decide to present the <span class="param">line</span> in whatever way it
+wants, or to not present the line at all. For example, the dialogue view
+may: augment the line object, render the line at a certain place on the
+screen, render only the character’s name, show the portrait of whoever is
+speaking, show the text within a chat bubble, play a voice-over audio
+file, store the text into the player’s conversation log, move the camera
+to show the speaker, etc.</p>
+<p>Some of these methods of delivery can be considered “primary”, while
+others are “auxiliary”. A “primary” <a class="reference internal" href="#DialogueView"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueView</span></code></a> should return <code class="docutils literal notranslate"><span class="pre">true</span></code>,
+while all others <code class="docutils literal notranslate"><span class="pre">false</span></code> (especially if a dialogue view ignores the line
+completely). This is used as a robustness check: if none of the dialogue
+views return <code class="docutils literal notranslate"><span class="pre">true</span></code>, then a <code class="docutils literal notranslate"><span class="pre">DialogueError</span></code> will be thrown because the
 line was not shown to the user in a meaningful way.</p>
-<p>It is common for non-trivial dialogue views to return a future. After all, if this method were
-to return immediately, the dialogue runner would advance to the next line without any delay,
-and the player wouldn’t have time to read the line. A common scenario then is to reveal the line
-gradually, and then wait some time before returning; or, alternatively, return a <code class="docutils literal notranslate"><span class="pre">Completer</span></code>-based
-future that completes based on some user action such as clicking a button or pressing a
-keyboard key.</p>
-<p>Note that this method is supposed to only <em>show</em> the line to the player, it should not try to
-hide it at the end – for that, there is a dedicated method <strong>onLineFinish</strong>.</p>
-</dd>
-<dt><strong>onLineSignal</strong>(<code class="docutils literal notranslate"><span class="pre">DialogueLine</span> <span class="pre">line,</span> <span class="pre">dynamic</span> <span class="pre">signal</span></code>)</dt><dd><p>Called when the dialogue runner sends the <code class="docutils literal notranslate"><span class="pre">signal</span></code> to all dialogue views.</p>
-<p>The signal will be sent to all views, regardless of whether they have finished running
-their <strong>onLineStart</strong> or not. The interpretation of the signal and the appropriate response
-is up to the dialogue view.</p>
-<p>For example, one possible scenario would be to speed up a typewriter effect and reveal the text
-immediately in response to a “RUSH” signal. Or pause presentation in response to a “PAUSE”
-signal. Or give a warning if the player makes a hostile gesture such as drawing a weapon.</p>
-</dd>
-<dt><strong>onLineStop</strong>(<code class="docutils literal notranslate"><span class="pre">DialogueLine</span> <span class="pre">line</span></code>)</dt><dd><p>Invoked via the <a class="reference internal" href="dialogue_runner.html"><span class="doc std std-doc">DialogueRunner</span></a>’s <code class="docutils literal notranslate"><span class="pre">stopLine()</span></code> method. This is a request to finish presenting
-the line as quickly as possible (though it doesn’t have to be immediate).</p>
-<p>Examples when calling this method could be appropriate: the player was hit while talking to
-an NPC; or the user has pressed the “next” button in the dialogue UI.</p>
-<p>This method is invoked on all dialogue views, regardless of whether they finished their
-<strong>onLineStart</strong> call or not. If they haven’t, the futures from <code class="docutils literal notranslate"><span class="pre">onLineStart</span></code> will be discarded
-and will no longer be awaited. In addition, the <strong>onLineFinish</strong> will not be called either –
-the line will be considered finished when the future from <code class="docutils literal notranslate"><span class="pre">onLineStop</span></code> completes.</p>
-</dd>
-<dt><strong>onLineFinish</strong>(<code class="docutils literal notranslate"><span class="pre">DialogueLine</span> <span class="pre">line</span></code>)</dt><dd><p>Called when the line has finished presenting in all dialogue views.</p>
-<p>Some dialogue views may need to clear their display when this event happens, or make some other
-preparations to receive the next dialogue line.</p>
-</dd>
-<dt><strong>onChoiceStart</strong>(<code class="docutils literal notranslate"><span class="pre">DialogueChoice</span> <span class="pre">choice</span></code>) → <code class="docutils literal notranslate"><span class="pre">FutureOr&lt;int?&gt;</span></code></dt><dd><p>Called when the dialogue enters a <a class="reference internal" href="dialogue_choice.html"><span class="doc std std-doc">choice</span></a>: the player needs to select among several presented
-<a class="reference internal" href="dialogue_option.html"><span class="doc std std-doc">option</span></a>s.</p>
-<p>This callback is invoked on all dialogue views, however, normally only one of them should be
-making a selection. A view that performs the actual selection should return a future that resolves
-with the index of the chosen option; all other views should return <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
-<p>An error will be thrown if:</p>
-<!-- markdownlint-disable MD006 MD007 -->
-<ul class="simple">
-<li><p>None of the views return a valid selection (i.e. all return <code class="docutils literal notranslate"><span class="pre">null</span></code>);</p></li>
-<li><p>The returned index is invalid for the <code class="docutils literal notranslate"><span class="pre">choice</span></code> list;</p></li>
-<li><p>The selected option is marked as disabled.</p></li>
-</ul>
-<!-- markdownlint-enable MD006 MD007 -->
-</dd>
-<dt><strong>onChoiceFinish</strong>(<code class="docutils literal notranslate"><span class="pre">DialogueOption</span> <span class="pre">option</span></code>)</dt><dd><p>Called when the choice has been made, and an <a class="reference internal" href="dialogue_option.html"><span class="doc std std-doc">option</span></a> has been selected.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">option</span></code> will be the one returned from the <strong>onChoiceStart</strong> method by one of the dialogue
-views.</p>
-</dd>
-<dt><strong>onCommand</strong>(<code class="docutils literal notranslate"><span class="pre">UserDefinedCommand</span> <span class="pre">command</span></code>)</dt><dd><p>Called when executing a user-defined <a class="reference internal" href="user_defined_command.html"><span class="doc std std-doc">command</span></a>.</p>
-<p>This method is invoked immediately after the command itself is executed, but before the result of
-the execution was awaited. Thus, if the command’s effect is asynchronous, then it will be send to
-dialogue views and executed “at the same time”.</p>
-<p>In cases when the command’s effect occurs within the game itself, implementing this method may not
-be necessary. However, if you want to have a command that affects the dialogue views themselves,
-then this method provides a way of doing that.</p>
-</dd>
-</dl>
+<p>If this method returns a future, then the dialogue runner will wait for
+that future to complete before advancing to the next line. If multiple
+<a class="reference internal" href="#DialogueView"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueView</span></code></a>s return such futures, then the dialogue runner will wait
+for all of them to complete before proceeding.</p>
+<p>Returning a future is quite common for non-trivial <a class="reference internal" href="#DialogueView"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueView</span></code></a>s. After
+all, if this method were to return immediately, the dialogue runner would
+immediately advance to the next line, and the player wouldn’t have time
+to read the first one. A common scenario then is to reveal the line
+gradually, and then wait some time before returning; or, alternatively,
+return a <a class="reference external" href="https://api.dart.dev/stable/2.18.6/dart-async/Completer-class.html">Completer</a>-based future that completes based on some user action
+such as clicking a button or pressing a keyboard key.</p>
+<p>Note that this method is supposed to only <em>show</em> the line to the player,
+so do not try to hide it at the end – for that, there is a dedicated
+method <a class="reference internal" href="#DialogueView-onLineFinish"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onLineFinish</span></code></a>.</p>
+<p>Also, given that this method may take a significant amount of time, there
+are two additional methods that may attempt to interfere into this
+process: <a class="reference internal" href="#DialogueView-onLineSignal"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onLineSignal</span></code></a> and <a class="reference internal" href="#DialogueView-onLineStop"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onLineStop</span></code></a>.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-onLineSignal">
+<div class="docutils container">
+<span class="name">onLineSignal</span><span class="arguments"><span class="punct">(</span><span class="argument">DialogueLine <span class="name">line</span></span><span class="punct">, </span><span class="argument">dynamic <span class="name">signal</span></span><span class="punct">)</span></span></div>
+</div>
+<div class="description doc2 docutils container">
+<p>Called when the dialogue runner sends a <span class="param">signal</span> to all dialogue views.</p>
+<p>The signal will be sent to all views, regardless of whether they have
+finished running <a class="reference internal" href="#DialogueView-onLineStart"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onLineStart</span></code></a> or not. The interpretation of the signal
+and the appropriate response is up to each dialogue view.</p>
+<p>For example, one possible scenario would be to speed up a typewriter
+effect and reveal the text immediately in response to the RUSH signal.
+Or make some kind of an interjection in response to an OMG event. Or
+pause presentation in response to a PAUSE signal. Or give a warning if
+the player makes a hostile gesture such as drawing a weapon.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-onLineStop">
+<div class="docutils container">
+<span class="name">onLineStop</span><span class="arguments"><span class="punct">(</span><span class="argument">DialogueLine <span class="name">line</span></span><span class="punct">)</span></span><span class="punct"> → </span>FutureOr&lt;void&gt;</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Called when the game demands that the <span class="param">line</span> finished presenting as soon
+as possible.</p>
+<p>By itself, the dialogue runner will never call this method. However, it
+may be invoked as a result of an explicit request by the game (or by one
+of the dialogue views). Examples when this could be appropriate: (a) the
+player was hit while talking to an NPC – better stop talking and fight
+for your life, (b) the user has pressed a “skip dialogue” button, so we
+should stop the current line and proceed to the next one ASAP.</p>
+<p>This method returns a future that will be awaited before continuing to
+the next line of the dialogue. At the same time, any future that’s still
+pending from the <a class="reference internal" href="#DialogueView-onLineStart"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onLineStart</span></code></a> call will be discarded and will no longer
+be awaited. The <a class="reference internal" href="#DialogueView-onLineFinish"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onLineFinish</span></code></a> method will not be called either.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-onLineFinish">
+<div class="docutils container">
+<span class="name">onLineFinish</span><span class="arguments"><span class="punct">(</span><span class="argument">DialogueLine <span class="name">line</span></span><span class="punct">)</span></span><span class="punct"> → </span>FutureOr&lt;void&gt;</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Called when the <span class="param">line</span> has finished presenting in all dialogue views.</p>
+<p>Some dialogue views may need to clear their display when this event
+happens, or make some other preparations to receive the next dialogue
+line. If this method returns a future, that future will be awaited
+before proceeding to the next line in the dialogue.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-onChoiceStart">
+<div class="docutils container">
+<span class="name">onChoiceStart</span><span class="arguments"><span class="punct">(</span><span class="argument">DialogueChoice <span class="name">choice</span></span><span class="punct">)</span></span><span class="punct"> → </span>FutureOr&lt;int?&gt;</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Called when the dialogue arrives at an option set, and the player must now
+make a choice on how to proceed. If a dialogue view presents this choice
+to the player and allows them to make a selection, then it must return a
+future that completes when the choice is made. If the dialogue view does
+not display menu choice, then it should return <code class="docutils literal notranslate"><span class="pre">null</span></code> (possibly in a
+<code class="docutils literal notranslate"><span class="pre">Future</span></code>).</p>
+<p>The future returned by this method should deliver an integer value of the
+index of the option that was selected. This index must not exceed the
+length of the <span class="param">choice</span> list, and the indicated option must not be marked
+as “unavailable”. If these conditions are violated, an exception will be
+thrown.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-onChoiceFinish">
+<div class="docutils container">
+<span class="name">onChoiceFinish</span><span class="arguments"><span class="punct">(</span><span class="argument">DialogueOption <span class="name">option</span></span><span class="punct">)</span></span><span class="punct"> → </span>FutureOr&lt;void&gt;</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Called when the choice has been made, and the <span class="param">option</span> was selected.</p>
+<p>The <span class="param">option</span> will be the one returned from the <a class="reference internal" href="#DialogueView-onChoiceStart"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onChoiceStart</span></code></a> method by
+one of the dialogue views.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-onCommand">
+<div class="docutils container">
+<span class="name">onCommand</span><span class="arguments"><span class="punct">(</span><span class="argument">UserDefinedCommand <span class="name">command</span></span><span class="punct">)</span></span><span class="punct"> → </span>FutureOr&lt;void&gt;</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Called when the dialogue encounters a <a class="reference internal" href="user_defined_command.html"><span class="doc std std-doc">user-defined command</span></a>.</p>
+<p>This method is invoked immediately after the command itself is executed,
+but before the result of the execution was awaited. Thus, if the command’s
+effect is asynchronous, then it will be send to dialogue views and
+executed <em>at the same time</em>.</p>
+<p>In cases when the command’s effect occurs within the game, implementing
+this method may not be necessary. However, if you want to have a command
+that affects the dialogue views themselves, then this method provides
+a way of achieving that.</p>
+</div>
+</div>
 </section>
+</div>
+</div>
 </section>
 
 

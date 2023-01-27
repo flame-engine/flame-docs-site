@@ -7,6 +7,7 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/dart_domain.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/flutter_app.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/package.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/yarn_lexer.css" />
@@ -122,6 +123,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/other_inputs.html">Other Inputs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/tap_events.html">Tap Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/rendering/rendering.html">Rendering</a><ul>
@@ -300,55 +302,97 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="dialoguerunner">
 <h1>DialogueRunner<a class="headerlink" href="#dialoguerunner" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>DialogueRunner</strong> class is used to execute the dialogue at runtime. If you think of a
-<a class="reference internal" href="yarn_project.html"><span class="doc std std-doc">YarnProject</span></a> as a dialogue program consisting of multiple <a class="reference internal" href="node.html"><span class="doc std std-doc">Node</span></a>s as “functions”, then a
-<code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> is the virtual machine that can run a single “function” within that “program”.</p>
-<p>A single DialogueRunner may only execute one dialogue <code class="docutils literal notranslate"><span class="pre">Node</span></code> at a time. It is an error to try to
-run another Node before the first one concludes. However, it is possible to create multiple
-DialogueRunners for the same YarnProject, and then they would be able to execute multiple dialogues
-simultaneously (for example, in a crowded room there could be multiple dialogues occurring at once
-with different groups of people).</p>
-<p>The job of a DialogueRunner is to fetch the dialogue lines in the correct order and at the
-appropriate pace, to execute the logic in dialogue scripts, and to branch according to user input
-in <a class="reference internal" href="dialogue_choice.html"><span class="doc std std-doc">DialogueChoice</span></a>s. The output of a DialogueRunner, therefore, is a stream of dialogue statements
-that need to be presented to the player. Such presentation, is handled by the <a class="reference internal" href="dialogue_view.html"><span class="doc std std-doc">DialogueView</span></a>s.</p>
-<section id="construction">
-<h2>Construction<a class="headerlink" href="#construction" title="Permalink to this heading">¶</a></h2>
-<p>The constructor takes two required parameters:</p>
-<dl class="simple myst">
-<dt><strong>yarnProject</strong> <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code></dt><dd><p>The <a class="reference internal" href="yarn_project.html"><span class="doc std std-doc">YarnProject</span></a> which the dialogue runner will be executing.</p>
-</dd>
-<dt><strong>dialogueViews</strong> <code class="docutils literal notranslate"><span class="pre">List&lt;DialogueView&gt;</span></code></dt><dd><p>The list of <a class="reference internal" href="dialogue_view.html"><span class="doc std std-doc">DialogueView</span></a>s that will be presenting the dialogue within the game. Each of these
-<code class="docutils literal notranslate"><span class="pre">DialogueView</span></code>s can only be assigned to a single <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> at a time.</p>
-</dd>
-</dl>
+<div class="dartdoc docutils container">
+<div class="class docutils container">
+<div class="signature sig1 docutils container" id="DialogueRunner">
+<div class="docutils container">
+<span class="keyword">class </span><span class="name">DialogueRunner</span></div>
+</div>
+<div class="description doc1 docutils container">
+<p>The <strong>DialogueRunner</strong> is the engine that executes Jenny’s dialogue at
+runtime.</p>
+<p>If you imagine <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">YarnProject</span></code> as a “program”, consisting of multiple <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">Node</span></code>s
+as “functions”, then <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> is a virtual machine, capable of
+executing a single “function” in that “program”.</p>
+<p>A single <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> may only execute one dialogue node at a time. It
+is an error to try to run another node before the first one concludes.
+However, it is possible to create multiple <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code>s for the same
+<code class="xref dart dart-ref docutils literal notranslate"><span class="pre">YarnProject</span></code>, and then they would be able to execute multiple dialogues
+simultaneously (for example, in a crowded room there could be multiple
+dialogues occurring at once within different groups of people).</p>
+<p>The job of a <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> is to fetch the dialogue lines in the correct
+order and at the appropriate pace, to execute the logic in dialogue
+scripts, and to branch according to user input in <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueChoice</span></code>s. The
+output of a <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code>, therefore, is a stream of dialogue statements
+that need to be presented to the player. Such presentation, is handled by
+<a class="reference internal" href="dialogue_view.html#DialogueView"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueView</span></code></a>s.</p>
+</div>
+<section id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this heading">¶</a></h2>
+<div class="constructor docutils container">
+<div class="signature sig2 docutils container" id="DialogueRunner-DialogueRunner">
+<div class="docutils container">
+<span class="name">DialogueRunner</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument">YarnProject <span class="name">yarnProject</span></span><span class="punct">, </span><span class="argument">List&lt;DialogueView&gt; <span class="name">dialogueViews</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
+</div>
+<div class="description doc2 docutils container">
+<p>Creates a <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> for executing the <span class="param">yarnProject</span>. The dialogue
+will be delivered to all the provided <span class="param">dialogueViews</span>. Each of these
+dialogue views may only be assigned to a single <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> at a
+time.</p>
+</div>
+</div>
 </section>
 <section id="properties">
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
-<dl class="simple myst">
-<dt><strong>project</strong> <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code></dt><dd><p>The <a class="reference internal" href="yarn_project.html"><span class="doc std std-doc">YarnProject</span></a> within which the dialogue runner is running.</p>
-</dd>
-</dl>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="DialogueRunner-project">
+<span class="name">project</span><span class="punct"> : </span>YarnProject</div>
+<div class="description doc2 docutils container">
+<p>The <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code> that this dialogue runner is executing.</p>
+</div>
+</div>
 </section>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h2>
-<dl class="simple myst">
-<dt><strong>startDialogue</strong>(<code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">nodeName</span></code>)</dt><dd><p>Executes the node with the given name, and returns a future that completes only when the dialogue
-finishes running (which may be a while). A single <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> can only run one node at a
-time.</p>
-</dd>
-<dt><strong>sendSignal</strong>(<code class="docutils literal notranslate"><span class="pre">dynamic</span> <span class="pre">signal</span></code>)</dt><dd><p>Delivers the given <code class="docutils literal notranslate"><span class="pre">signal</span></code> to all dialogue views, in the form of a <code class="docutils literal notranslate"><span class="pre">DialogueView</span></code> method
-<code class="docutils literal notranslate"><span class="pre">onLineSignal(line,</span> <span class="pre">signal)</span></code>. This can be used, for example, as a means of communication between
-the dialogue views.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">signal</span></code> object here is completely arbitrary, and it is up to the implementations to decide
-which signals to send and to receive. Implementations should ignore any signals they do not
-understand.</p>
-</dd>
-<dt><strong>stopLine</strong>()</dt><dd><p>Requests (via <code class="docutils literal notranslate"><span class="pre">onLineStop()</span></code>) that the presentation of the current line be finished as quickly
-as possible. The dialogue will then proceed normally to the next line.</p>
-</dd>
-</dl>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueRunner-startDialogue">
+<div class="docutils container">
+<span class="name">startDialogue</span><span class="arguments"><span class="punct">(</span><span class="argument">String <span class="name">nodeName</span></span><span class="punct">)</span></span><span class="punct"> → </span>Future&lt;void&gt;</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Starts the dialogue with the node <span class="param">nodeName</span>, and returns a future that
+completes once the dialogue finishes running. While this future is
+pending, the <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> cannot start any other dialogue.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueRunner-sendSignal">
+<div class="docutils container">
+<span class="name">sendSignal</span><span class="arguments"><span class="punct">(</span><span class="argument">dynamic <span class="name">signal</span></span><span class="punct">)</span></span></div>
+</div>
+<div class="description doc2 docutils container">
+<p>Delivers the given <span class="param">signal</span> to all dialogue views, in the form of a
+<a class="reference internal" href="dialogue_view.html#DialogueView"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueView</span></code></a> method <code class="docutils literal notranslate"><span class="pre">onLineSignal(line,</span> <span class="pre">signal)</span></code>. This can be used, for
+example, as a means of communication between the dialogue views.</p>
+<p>The <span class="param">signal</span> object here is completely arbitrary, and it is up to the
+implementations to decide which signals to send and to receive.
+Implementations should ignore any signals they do not understand.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueRunner-stopLine">
+<div class="docutils container">
+<span class="name">stopLine</span><span class="arguments"><span class="punct">(</span><span class="punct">)</span></span></div>
+</div>
+<div class="description doc2 docutils container">
+<p>Requests (via <code class="docutils literal notranslate"><span class="pre">onLineStop()</span></code>) that the presentation of the current line
+be finished as quickly as possible. The dialogue will then proceed
+normally to the next line.</p>
+</div>
+</div>
 </section>
+</div>
+</div>
 <section id="execution-model">
 <h2>Execution model<a class="headerlink" href="#execution-model" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> uses futures as a main mechanism for controlling the timing of the dialogue
@@ -422,7 +466,7 @@ terminate immediately and none of the <code class="docutils literal notranslate"
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
-  <a href='#construction' class='list-group-item level-1'>Construction</a>
+  <a href='#constructors' class='list-group-item level-1'>Constructors</a>
   <a href='#properties' class='list-group-item level-1'>Properties</a>
   <a href='#methods' class='list-group-item level-1'>Methods</a>
   <a href='#execution-model' class='list-group-item level-1'>Execution model</a>

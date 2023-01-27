@@ -7,6 +7,7 @@
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/dart_domain.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/flutter_app.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/package.css" />
   <link rel="stylesheet" type="text/css" href="../../../_static/yarn_lexer.css" />
@@ -122,6 +123,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/other_inputs.html">Other Inputs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/tap_events.html">Tap Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/rendering/rendering.html">Rendering</a><ul>
@@ -300,25 +302,123 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="dialogueline">
 <h1>DialogueLine<a class="headerlink" href="#dialogueline" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>DialogueLine</strong> class represents a single <a class="reference internal" href="../language/lines.html"><span class="doc std std-doc">Line</span></a> of text in the <code class="docutils literal notranslate"><span class="pre">.yarn</span></code> script. The
-<code class="docutils literal notranslate"><span class="pre">DialogueLine</span></code> objects will be delivered to your <code class="docutils literal notranslate"><span class="pre">DialogueView</span></code> with the methods <code class="docutils literal notranslate"><span class="pre">onLineStart()</span></code>,
-<code class="docutils literal notranslate"><span class="pre">onLineSignal()</span></code>, <code class="docutils literal notranslate"><span class="pre">onLineStop()</span></code>, and <code class="docutils literal notranslate"><span class="pre">onLineFinish()</span></code>.</p>
+<div class="dartdoc docutils container">
+<div class="class docutils container">
+<div class="signature sig1 docutils container" id="DialogueLine">
+<div class="docutils container">
+<span class="keyword">class </span><span class="name">DialogueLine</span></div>
+<div class="modifier docutils container">
+<span class="keyword">extends</span> <span>DialogueEntry</span></div>
+</div>
+<div class="description doc1 docutils container">
+<p>The <strong>DialogueLine</strong> class represents a single line of text within the
+dialogue <a class="reference internal" href="../language/lines.html"><span class="doc std std-doc">Line</span></a>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">DialogueLine</span></code> objects will be delivered to your <a class="reference internal" href="dialogue_view.html#DialogueView"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueView</span></code></a> with
+methods <code class="docutils literal notranslate"><span class="pre">onLineStart()</span></code>, <code class="docutils literal notranslate"><span class="pre">onLineSignal()</span></code>, <code class="docutils literal notranslate"><span class="pre">onLineStop()</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">onLineFinish()</span></code>.</p>
+<p>A dialogue line may contain a <a class="reference internal" href="#DialogueLine-character"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">character</span></code></a> (the name of the entity who is
+speaking), and <a class="reference internal" href="#DialogueLine-tags"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">tags</span></code></a> – a list of hashtag tokens that specify some meta
+information about the line.</p>
+<p>Example of a dialogue line in yarn script:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="n">Hermione</span><span class="p">:</span> Holy cricket! You&#39;re Harry Potter.  #surprised
+</pre></div>
+</div>
+<p>Here the <a class="reference internal" href="#DialogueLine-character"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">character</span></code></a> is “Hermione”, the <a class="reference internal" href="#DialogueLine-text"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">text</span></code></a> of the line is “Holy
+cricket! You’re Harry Potter.”, and the <a class="reference internal" href="#DialogueLine-tags"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">tags</span></code></a> list will contain a single
+entry “#surprised”.</p>
+<p>A dialogue line may also contain inline expressions, which will be
+re-evaluated every time the line is executed by the dialogue runner:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="n">Jenny</span><span class="p">:</span> My favorite color is {$favoriteColor}, what about you?
+</pre></div>
+</div>
+<p>After evaluation, the resulting string may be “My favorite color is
+vantablack, what about you?”.</p>
+<p>Lastly, a dialogue line may have markup attributes. These are similar to
+HTML tags, only they use square brackets:</p>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="n">Jenny</span><span class="p">:</span> My [i]favorite[/i] color is [bb color=$color]{$color}[/bb].
+</pre></div>
+</div>
+<p>These markup attributes will not be visible in the output (i.e. the
+resulting text is still “My favorite color is vantablack”), but they can be
+queried in the <a class="reference internal" href="#DialogueLine-attributes"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">attributes</span></code></a> list, which will specify that there is an
+attribute <code class="docutils literal notranslate"><span class="pre">[i]</span></code> around the word “favorite”, and another attribute <code class="docutils literal notranslate"><span class="pre">[bb]</span></code>
+with parameter <code class="docutils literal notranslate"><span class="pre">color</span></code> around the word “vantablack”.</p>
+<p>Inline expressions cannot contain markup attributes.</p>
+</div>
+<section id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this heading">¶</a></h2>
+<div class="constructor docutils container">
+<div class="signature sig2 docutils container" id="DialogueLine-DialogueLine">
+<div class="docutils container">
+<span class="name">DialogueLine</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument">LineContent <span class="name">content</span></span><span class="punct">, </span><span class="argument">Character? <span class="name">character</span></span><span class="punct">, </span><span class="argument">List&lt;String&gt;? <span class="name">tags</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
+</div>
+</div>
+</section>
 <section id="properties">
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
-<dl class="simple myst">
-<dt><strong>character</strong> <code class="docutils literal notranslate"><span class="pre">Character?</span></code></dt><dd><p>The name of the character who is speaking the line, or <code class="docutils literal notranslate"><span class="pre">null</span></code> if the line has no speaker.</p>
-</dd>
-<dt><strong>text</strong> <code class="docutils literal notranslate"><span class="pre">String</span></code></dt><dd><p>The computed text of the line, after evaluating the inline expressions, stripping the markup,
-and processing the escape sequences.</p>
-</dd>
-<dt><strong>tags</strong> <code class="docutils literal notranslate"><span class="pre">List&lt;String&gt;</span></code></dt><dd><p>The list of hashtags for this line. If there are no hashtags, the list will be empty. Each entry
-in the list will be a simple string starting with <code class="docutils literal notranslate"><span class="pre">#</span></code>.</p>
-</dd>
-<dt><strong>attributes</strong> <code class="docutils literal notranslate"><span class="pre">List&lt;MarkupAttribute&gt;</span></code></dt><dd><p>The list of markup spans associated with the line. Each <a class="reference internal" href="markup_attribute.html"><span class="doc std std-doc">MarkupAttribute</span></a> corresponds to a
-single span within the <strong>text</strong>, delineated with markup tags.</p>
-</dd>
-</dl>
+<div class="getter docutils container">
+<div class="signature sig2 docutils container" id="DialogueLine-character">
+<span class="name">character</span><span class="punct"> → </span>Character?</div>
+<div class="description doc2 docutils container">
+<p>The character who is speaking the line. This can be null if the line does
+not contain a speaker.</p>
+</div>
+</div>
+<div class="getter docutils container">
+<div class="signature sig2 docutils container" id="DialogueLine-text">
+<span class="name">text</span><span class="punct"> → </span>String</div>
+<div class="description doc2 docutils container">
+<p>The computed text of the line, after substituting all inline expressions,
+stripping the markup, and processing the escape sequences.</p>
+<p>This value can only be accessed after the line was <a class="reference internal" href="#DialogueLine-evaluate"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">evaluate</span></code></a>d. It may
+change upon subsequent re-evaluations of the line (which occur each time
+the line goes through a <a class="reference internal" href="dialogue_runner.html#DialogueRunner"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueRunner</span></code></a>).</p>
+</div>
+</div>
+<div class="getter docutils container">
+<div class="signature sig2 docutils container" id="DialogueLine-tags">
+<span class="name">tags</span><span class="punct"> → </span>List&lt;String&gt;</div>
+<div class="description doc2 docutils container">
+<p>The list of hashtags associated with the line. If there are no hashtags,
+the list will be empty.</p>
+<p>Each value in the list will start with the <code class="docutils literal notranslate"><span class="pre">#</span></code> symbol.</p>
+</div>
+</div>
+<div class="getter docutils container">
+<div class="signature sig2 docutils container" id="DialogueLine-attributes">
+<span class="name">attributes</span><span class="punct"> → </span>List&lt;MarkupAttribute&gt;</div>
+<div class="description doc2 docutils container">
+<p>The list of markup spans associated with the line.</p>
+</div>
+</div>
+<div class="getter docutils container">
+<div class="signature sig2 docutils container" id="DialogueLine-isConst">
+<span class="name">isConst</span><span class="punct"> → </span>bool</div>
+<div class="description doc2 docutils container">
+<p>True if the line will never change upon subsequent reruns. That is, when
+the line does not depend on any dynamic expressions.</p>
+</div>
+</div>
 </section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h2>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueLine-evaluate">
+<div class="docutils container">
+<span class="name">evaluate</span><span class="arguments"><span class="punct">(</span><span class="punct">)</span></span></div>
+</div>
+<div class="description doc2 docutils container">
+<p>Computes the <a class="reference internal" href="#DialogueLine-text"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">text</span></code></a> of the line, substituting the current values of all
+inline expressions.</p>
+<p>Normally, you wouldn’t need to call this method manually – the
+<a class="reference internal" href="dialogue_runner.html#DialogueRunner"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueRunner</span></code></a> will take care to do that for you. However, it may be
+necessary to call this if you need to access <code class="docutils literal notranslate"><span class="pre">DialogueLine</span></code>s outside of
+a dialogue runner.</p>
+</div>
+</div>
+</section>
+</div>
+</div>
 </section>
 
 
@@ -351,7 +451,9 @@ single span within the <strong>text</strong>, delineated with markup tags.</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#constructors' class='list-group-item level-1'>Constructors</a>
   <a href='#properties' class='list-group-item level-1'>Properties</a>
+  <a href='#methods' class='list-group-item level-1'>Methods</a>
 </div>
 
     </div>
