@@ -71,7 +71,7 @@ function generate_docs_for_version {
   # This is due to both these examples having the name "example" in v1.0.0
   sed -i "s/name: example/name: flame_audio_example/g" packages/flame_audio/example/pubspec.yaml
   sed -i "s/name: example/name: flame_bloc_example/g" packages/flame_bloc/example/pubspec.yaml
-  sed -i "s/name: example/name: flame_fire_atlas_example/g" packages/flame_atlas/example/pubspec.yaml
+  sed -i "s/name: example/name: flame_fire_atlas_example/g" packages/flame_fire_atlas/example/pubspec.yaml
   sed -i "s/name: example/name: flame_flare_example/g" packages/flame_flare/example/pubspec.yaml
   sed -i "s/name: example/name: flame_forge2d_example/g" packages/flame_forge2d/example/pubspec.yaml
   sed -i "s/name: example/name: flame_lint_example/g" packages/flame_lint/example/pubspec.yaml
