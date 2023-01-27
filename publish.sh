@@ -67,7 +67,7 @@ function generate_docs_for_version {
   cp -r $tmp_stash/melos.yaml $tmp_flame_src/
 
   cd $tmp_flame_src
-  melos bootstrap || echo "Melos bootstrapping failed, trying without"
+  melos bootstrap --ignore=example || echo "Melos bootstrapping failed, trying without"
   melos run doc-setup
   cd -
 
