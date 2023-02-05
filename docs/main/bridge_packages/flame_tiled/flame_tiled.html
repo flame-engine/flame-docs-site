@@ -304,8 +304,40 @@
 <h1>flame_tiled<a class="headerlink" href="#flame-tiled" title="Permalink to this heading">¶</a></h1>
 <p><strong>flame_tiled</strong> is the bridge package that connects the flame game engine to <a class="reference external" href="https://www.mapeditor.org/">Tiled</a> maps by parsing
 TMX (XML) files and accessing the tiles, objects, and everything in there.</p>
+<p>To use this,</p>
+<ol class="arabic simple">
+<li><p>Create your own map by using <a class="reference external" href="https://www.mapeditor.org/">Tiled</a>.</p></li>
+<li><p>Create a <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code> and add it to the component tree as follows:</p></li>
+</ol>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="s1">&#39;my_map.tmx&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+
+<span class="n">add</span><span class="p">(</span><span class="n">component</span><span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
+<section id="limitations">
+<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading">¶</a></h2>
+<section id="flip">
+<h3>Flip<a class="headerlink" href="#flip" title="Permalink to this heading">¶</a></h3>
+<p><a class="reference external" href="https://www.mapeditor.org/">Tiled</a> has a feature that allows you to flip a tile horizontally or vertically, or even rotate it.</p>
+<p><code class="docutils literal notranslate"><span class="pre">flame_tiled</span></code> supports this but if you are using a large texture and have flipped tiles there will
+be a drop in performance. If you want to ignore any flips in your tilemap you can set the
+<code class="docutils literal notranslate"><span class="pre">ignoreFlip</span></code> to false in the constructor.</p>
+<p><strong>Note</strong>: A large texture in this context means one with multiple tilesets (or a huge tileset)
+where the sum of their dimensions are in the thousands.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="w"></span>
+<span class="w">  </span><span class="s1">&#39;my_map.tmx&#39;</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span><span class="w"></span>
+<span class="w">  </span><span class="nl">ignoreFlip:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="p">);</span><span class="w"></span>
+</pre></div>
+</div>
 <div class="toctree-wrapper compound">
 </div>
+</section>
+</section>
 </section>
 
 
@@ -338,6 +370,8 @@ TMX (XML) files and accessing the tiles, objects, and everything in there.</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#limitations' class='list-group-item level-1'>Limitations</a>
+  <a href='#flip' class='list-group-item level-2'>Flip</a>
 </div>
 
     </div>
