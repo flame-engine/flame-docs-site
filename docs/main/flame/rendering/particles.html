@@ -693,13 +693,12 @@ randomly positioning its child during each frame:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="n">rnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span><span class="w"></span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">GlitchParticle</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Particle</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">SingleChildParticle</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
 <span class="w">  </span><span class="n">Particle</span><span class="w"> </span><span class="n">child</span><span class="p">;</span><span class="w"></span>
 
 <span class="w">  </span><span class="n">GlitchParticle</span><span class="p">({</span><span class="w"></span>
-<span class="w">    </span><span class="nd">@required</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">child</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">lifespan</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">lifespan:</span><span class="w"> </span><span class="n">lifespan</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="kd">required</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">child</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">lifespan</span><span class="p">,</span><span class="w"></span>
+<span class="w">  </span><span class="p">});</span><span class="w"></span>
 
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
 <span class="w">  </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w">  </span><span class="p">{</span><span class="w"></span>
