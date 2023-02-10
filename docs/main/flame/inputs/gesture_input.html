@@ -720,6 +720,29 @@ also be applied to <code class="docutils literal notranslate"><span class="pre">
 </pre></div>
 </div>
 </section>
+<section id="doubletapcallbacks">
+<h3>DoubleTapCallbacks<a class="headerlink" href="#doubletapcallbacks" title="Permalink to this heading">¶</a></h3>
+<p>Flame also offers a mixin named <code class="docutils literal notranslate"><span class="pre">DoubleTapCallbacks</span></code> to receive a double-tap event from the
+component. To start receiving double tap events in a component, add the
+<code class="docutils literal notranslate"><span class="pre">DoubleTapCallbacks</span></code> mixin to your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DoubleTapCallbacks</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDoubleTapUp</span><span class="p">(</span><span class="n">DoubleTapEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">/// Do something</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDoubleTapCancel</span><span class="p">(</span><span class="n">DoubleTapCancelEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">/// Do something</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+
+<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDoubleTapDown</span><span class="p">(</span><span class="n">DoubleTapDownEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">/// Do something</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
 <section id="gesturehitboxes">
 <h3>GestureHitboxes<a class="headerlink" href="#gesturehitboxes" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin is used to more accurately recognize gestures on top of your
@@ -781,6 +804,7 @@ added in the below <code class="docutils literal notranslate"><span class="pre">
   <a href='#tappable-components' class='list-group-item level-2'>Tappable components</a>
   <a href='#draggable-components' class='list-group-item level-2'>Draggable components</a>
   <a href='#hoverable-components' class='list-group-item level-2'>Hoverable components</a>
+  <a href='#doubletapcallbacks' class='list-group-item level-2'>DoubleTapCallbacks</a>
   <a href='#gesturehitboxes' class='list-group-item level-2'>GestureHitboxes</a>
 </div>
 
