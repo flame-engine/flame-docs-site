@@ -302,60 +302,203 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="game-widget">
 <h1>Game Widget<a class="headerlink" href="#game-widget" title="Permalink to this heading">¶</a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> is a Flutter <code class="docutils literal notranslate"><span class="pre">Widget</span></code> that is used to insert a <a class="reference internal" href="game.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">Game</span></code></span></a> inside the Flutter
-widget tree.</p>
-<p>It can directly receive a <code class="docutils literal notranslate"><span class="pre">Game</span></code> instance in its default constructor or it can receive a
-<code class="docutils literal notranslate"><span class="pre">GameFactory</span></code> function on the <code class="docutils literal notranslate"><span class="pre">controlled</span></code> constructor that will be used to create the game once the
-<code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> is inserted in the widget tree.</p>
-<section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<p>Directly in <code class="docutils literal notranslate"><span class="pre">runApp</span></code>, with either:</p>
+<div class="dartdoc docutils container">
+<div class="class docutils container">
+<div class="signature sig1 docutils container" id="GameWidget">
+<div class="docutils container">
+<span class="keyword">class </span><span class="name">GameWidget</span><span class="types"><span class="punct">&lt;</span><span class="name">T</span><span class="keyword"> extends </span>Game<span class="punct">&gt;</span></span></div>
+<div class="modifier docutils container">
+<span class="keyword">extends</span> <span>StatefulWidget</span></div>
+</div>
+<div class="description doc1 docutils container">
+<p>The <strong>GameWidget</strong> is a Flutter widget which is used to insert a <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">Game</span></code>
+instance into the Flutter widget tree.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> is sufficiently feature-rich to run as the root of your
+Flutter application. Thus, the simplest way to use <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> is like
+this:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="w"></span>
+<span class="w">    </span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">MyGame</span><span class="p">()),</span><span class="w"></span>
+<span class="w">  </span><span class="p">);</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Or:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">.</span><span class="n">controlled</span><span class="p">(</span><span class="nl">gameFactory:</span><span class="w"> </span><span class="n">MyGame</span><span class="p">.</span><span class="k">new</span><span class="p">));</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
+<p>At the same time, <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> is a regular Flutter widget, and can be
+inserted arbitrarily deep into the widget tree, including the possibility
+of having multiple <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>s within a single app.</p>
+<p>The layout behavior of this widget is that it will expand to fill all
+available space. Thus, when used as a root widget it will make the app
+full-screen. Inside any other layout widget it will take as much space as
+possible.</p>
+<p>In addition to hosting a <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">Game</span></code> instance, the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> also provides
+some structural support, with the following features:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#GameWidget-loadingBuilder"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">loadingBuilder</span></code></a> to display something while the game is loading;</p></li>
+<li><p><a class="reference internal" href="#GameWidget-errorBuilder"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">errorBuilder</span></code></a> which will be shows if the game throws an error;</p></li>
+<li><p><a class="reference internal" href="#GameWidget-backgroundBuilder"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">backgroundBuilder</span></code></a> to draw some decoration behind the game;</p></li>
+<li><p><a class="reference internal" href="#GameWidget-overlayBuilderMap"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">overlayBuilderMap</span></code></a> to draw one or more widgets on top of the game.</p></li>
+</ul>
+<p>It should be noted that <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> does not clip the content of its
+canvas, which means the game can potentially draw outside of its boundaries
+(not always, depending on which camera is used). If this is not desired,
+then consider wrapping the widget in Flutter’s <a class="reference external" href="https://api.flutter.dev/flutter/widgets/ClipRect-class.html">ClipRect</a>.</p>
 </div>
-<p>In a <code class="docutils literal notranslate"><span class="pre">StatefulWidget</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGamePage</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatefulWidget</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">State</span><span class="w"> </span><span class="n">createState</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_MyGamePageState</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">_MyGamePageState</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">State</span><span class="o">&lt;</span><span class="n">MyGamePage</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">MyGame</span><span class="w"> </span><span class="n">_game</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initState</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">initState</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="n">_game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-
+<section id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Permalink to this heading">¶</a></h2>
+<div class="constructor docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-GameWidget">
+<div class="docutils container">
+<span class="name">GameWidget</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="keyword">required </span><span class="name">this.game</span></span><span class="punct">, </span><span class="argument"><span class="name">this.textDirection</span></span><span class="punct">, </span><span class="argument"><span class="name">this.loadingBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.errorBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.backgroundBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.overlayBuilderMap</span></span><span class="punct">, </span><span class="argument"><span class="name">this.initialActiveOverlays</span></span><span class="punct">, </span><span class="argument"><span class="name">this.focusNode</span></span><span class="punct">, </span><span class="argument"><span class="name">this.autofocus</span><span class="punct"> = </span><span class="default">true</span></span><span class="punct">, </span><span class="argument"><span class="name">this.mouseCursor</span></span><span class="punct">, </span><span class="argument"><span class="name">this.addRepaintBoundary</span><span class="punct"> = </span><span class="default">true</span></span><span class="punct">, </span><span class="argument"><span class="name">super.key</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
+</div>
+<div class="description doc2 docutils container">
+<p>Renders the provided <a class="reference internal" href="#GameWidget-game"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">game</span></code></a> instance.</p>
+</div>
+</div>
+<div class="constructor docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-GameWidget.controlled">
+<div class="docutils container">
+<span class="name">GameWidget.controlled</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="keyword">required </span><span class="name">this.gameFactory</span></span><span class="punct">, </span><span class="argument"><span class="name">this.textDirection</span></span><span class="punct">, </span><span class="argument"><span class="name">this.loadingBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.errorBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.backgroundBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.overlayBuilderMap</span></span><span class="punct">, </span><span class="argument"><span class="name">this.initialActiveOverlays</span></span><span class="punct">, </span><span class="argument"><span class="name">this.focusNode</span></span><span class="punct">, </span><span class="argument"><span class="name">this.autofocus</span><span class="punct"> = </span><span class="default">true</span></span><span class="punct">, </span><span class="argument"><span class="name">this.mouseCursor</span></span><span class="punct">, </span><span class="argument"><span class="name">this.addRepaintBoundary</span><span class="punct"> = </span><span class="default">true</span></span><span class="punct">, </span><span class="argument"><span class="name">super.key</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
+</div>
+<div class="description doc2 docutils container">
+<p>A <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> which will create and own a <code class="docutils literal notranslate"><span class="pre">Game</span></code> instance, using the
+provided <a class="reference internal" href="#GameWidget-gameFactory"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">gameFactory</span></code></a>.</p>
+<p>This constructor can be useful when you want to put <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> into
+another widget, but would like to avoid the need to store the game’s
+instance yourself. For example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyWidget</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatelessWidget</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">  </span><span class="nd">@override</span><span class="w"></span>
 <span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">_game</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Container</span><span class="p">(</span><span class="w"></span>
+<span class="w">      </span><span class="nl">padding:</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">20</span><span class="p">),</span><span class="w"></span>
+<span class="w">      </span><span class="nl">child:</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">.</span><span class="n">controlled</span><span class="p">(</span><span class="w"></span>
+<span class="w">        </span><span class="nl">gameFactory:</span><span class="w"> </span><span class="n">MyGame</span><span class="p">.</span><span class="k">new</span><span class="p">,</span><span class="w"></span>
+<span class="w">      </span><span class="p">),</span><span class="w"></span>
+<span class="w">    </span><span class="p">);</span><span class="w"></span>
 <span class="w">  </span><span class="p">}</span><span class="w"></span>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In a <code class="docutils literal notranslate"><span class="pre">StatelessWidget</span></code> with the <code class="docutils literal notranslate"><span class="pre">gameFactory</span></code> argument:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGamePage</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatelessWidget</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">.</span><span class="n">controlled</span><span class="p">(</span><span class="nl">gameFactory:</span><span class="w"> </span><span class="n">MyGame</span><span class="p">.</span><span class="k">new</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
 </div>
-<p>Do note that if the <code class="docutils literal notranslate"><span class="pre">GameWidget.controlled</span></code> constructor is used, the <code class="docutils literal notranslate"><span class="pre">GameWidget.game</span></code> field will
-always be null.</p>
+</div>
 </section>
+<section id="properties">
+<h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-game">
+<span class="name">game</span><span class="punct"> : </span>T?</div>
+<div class="description doc2 docutils container">
+<p>The game instance which this widget will render, if it was provided with
+the default constructor. Otherwise, if the <a class="reference internal" href="#GameWidget-GameWidget.controlled"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">GameWidget.controlled</span></code></a>
+constructor was used, this will always be <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
+</div>
+</div>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-gameFactory">
+<span class="name">gameFactory</span><span class="punct"> : </span>GameFactory&lt;T&gt;?</div>
+<div class="description doc2 docutils container">
+<p>A function that creates a <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">Game</span></code> that this widget will render.</p>
+</div>
+</div>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-textDirection">
+<span class="name">textDirection</span><span class="punct"> : </span>TextDirection?</div>
+<div class="description doc2 docutils container">
+<p>The text direction to be used in text elements in a game.</p>
+</div>
+</div>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-loadingBuilder">
+<span class="name">loadingBuilder</span><span class="punct"> : </span>GameLoadingWidgetBuilder?</div>
+<div class="description doc2 docutils container">
+<p>Builder to provide a widget which will be displayed while the game is
+loading. By default this is an empty <code class="docutils literal notranslate"><span class="pre">Container</span></code>.</p>
+</div>
+</div>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-errorBuilder">
+<span class="name">errorBuilder</span><span class="punct"> : </span>GameErrorWidgetBuilder?</div>
+<div class="description doc2 docutils container">
+<p>If set, errors during the game loading will be caught and this widget
+will be shown. If not provided, errors are propagated normally.</p>
+</div>
+</div>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-backgroundBuilder">
+<span class="name">backgroundBuilder</span><span class="punct"> : </span>WidgetBuilder?</div>
+<div class="description doc2 docutils container">
+<p>Builder to provide a widget tree to be built between the game elements and
+the background color provided via <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">Game.backgroundColor</span></code>.</p>
+</div>
+</div>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-overlayBuilderMap">
+<span class="name">overlayBuilderMap</span><span class="punct"> : </span>Map&lt;String, OverlayWidgetBuilder&lt;T&gt;&gt;?</div>
+<div class="description doc2 docutils container">
+<p>A collection of widgets that can be displayed over the game’s surface.
+These widgets can be turned on-and-off dynamically from within the game
+via the <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">Game.overlays</span></code> property.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">runApp</span><span class="p">(</span>
+    <span class="n">GameWidget</span><span class="p">(</span>
+      <span class="n">game</span><span class="p">:</span> <span class="n">MyGame</span><span class="p">(),</span>
+      <span class="n">overlayBuilderMap</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;PauseMenu&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">game</span><span class="p">)</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="n">Container</span><span class="p">(</span>
+            <span class="n">color</span><span class="p">:</span> <span class="n">const</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFF000000</span><span class="p">),</span>
+            <span class="n">child</span><span class="p">:</span> <span class="n">Text</span><span class="p">(</span><span class="s1">&#39;A pause menu&#39;</span><span class="p">),</span>
+          <span class="p">);</span>
+        <span class="p">},</span>
+      <span class="p">},</span>
+    <span class="p">),</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-initialActiveOverlays">
+<span class="name">initialActiveOverlays</span><span class="punct"> : </span>List&lt;String&gt;?</div>
+<div class="description doc2 docutils container">
+<p>The list of overlays that will be shown when the game starts (but after
+it was loaded).</p>
+</div>
+</div>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-focusNode">
+<span class="name">focusNode</span><span class="punct"> : </span>FocusNode?</div>
+<div class="description doc2 docutils container">
+<p>The <a class="reference external" href="https://api.flutter.dev/flutter/widgets/FocusNode-class.html">FocusNode</a> to control the games focus to receive event inputs.
+If omitted, defaults to an internally controlled focus node.</p>
+</div>
+</div>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-autofocus">
+<span class="name">autofocus</span><span class="punct"> : </span>bool</div>
+<div class="description doc2 docutils container">
+<p>Whether the <a class="reference internal" href="#GameWidget-focusNode"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">focusNode</span></code></a> requests focus once the game is mounted.
+Defaults to true.</p>
+</div>
+</div>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-mouseCursor">
+<span class="name">mouseCursor</span><span class="punct"> : </span>MouseCursor?</div>
+<div class="description doc2 docutils container">
+<p>The shape of the mouse cursor when it is hovering over the game canvas.
+This property can be changed dynamically via <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">Game.mouseCursor</span></code>.</p>
+</div>
+</div>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-addRepaintBoundary">
+<span class="name">addRepaintBoundary</span><span class="punct"> : </span>bool</div>
+<div class="description doc2 docutils container">
+<p>Whether the game should assume the behavior of a <a class="reference external" href="https://api.flutter.dev/flutter/widgets/RepaintBoundary-class.html">RepaintBoundary</a>,
+defaults to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
+</div>
+</div>
+</section>
+</div>
+</div>
 </section>
 
 
@@ -388,7 +531,8 @@ always be null.</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
-  <a href='#examples' class='list-group-item level-1'>Examples</a>
+  <a href='#constructors' class='list-group-item level-1'>Constructors</a>
+  <a href='#properties' class='list-group-item level-1'>Properties</a>
 </div>
 
     </div>
