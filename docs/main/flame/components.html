@@ -483,8 +483,9 @@ your component at compile time, then you can pass it in to the constructor.</p>
 </pre></div>
 </div>
 <p>To update the priority of a component you have to set it to a new value, like
-<code class="docutils literal notranslate"><span class="pre">component.priority</span> <span class="pre">=</span> <span class="pre">2</span></code>, and it will be updated in the next tick.</p>
-<p>Example:</p>
+<code class="docutils literal notranslate"><span class="pre">component.priority</span> <span class="pre">=</span> <span class="pre">2</span></code>, and it will be updated in the current tick before the rendering stage.</p>
+<p>In the following example we first initialize the component with priority 1, and then when the
+user taps the component we change its priority to 2:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Tappable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 
 <span class="w">  </span><span class="n">MyComponent</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">priority:</span><span class="w"> </span><span class="m">1</span><span class="p">);</span><span class="w"></span>
@@ -496,8 +497,6 @@ your component at compile time, then you can pass it in to the constructor.</p>
 <span class="p">}</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In the example above we first initialize the component with priority 1, and then when the user taps
-the component we change the priority to 2.</p>
 </section>
 <section id="composability-of-components">
 <h3>Composability of components<a class="headerlink" href="#composability-of-components" title="Permalink to this heading">¶</a></h3>
