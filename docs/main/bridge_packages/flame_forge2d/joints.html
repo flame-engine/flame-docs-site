@@ -305,19 +305,18 @@
 <h1>Joints<a class="headerlink" href="#joints" title="Permalink to this heading">¶</a></h1>
 <p>Joints are used to connect two different bodies together in various ways.
 They help to simulate interactions between objects to create hinges, wheels, ropes, chains etc.</p>
-<p>One <code class="docutils literal notranslate"><span class="pre">Body</span></code> in a joint may be of type <code class="docutils literal notranslate"><span class="pre">BodyType.static</span></code>.
-Joints between <code class="docutils literal notranslate"><span class="pre">BodyType.static</span></code> and/or <code class="docutils literal notranslate"><span class="pre">BodyType.kinematic</span></code> are allowed,
-but have no effect and use some processing time.</p>
-<p>To construct a <code class="docutils literal notranslate"><span class="pre">Joint</span></code>, you need to create a corresponding subclass of <code class="docutils literal notranslate"><span class="pre">JointDef</span></code>
-and initialize it with its parameters.</p>
-<p>To register a <code class="docutils literal notranslate"><span class="pre">Joint</span></code> use <code class="docutils literal notranslate"><span class="pre">world.createJoint</span></code>
-and later use <code class="docutils literal notranslate"><span class="pre">world.destroyJoint</span></code> when you want to remove it.</p>
+<p>One <code class="docutils literal notranslate"><span class="pre">Body</span></code> in a joint may be of type <code class="docutils literal notranslate"><span class="pre">BodyType.static</span></code>. Joints between <code class="docutils literal notranslate"><span class="pre">BodyType.static</span></code> and/or
+<code class="docutils literal notranslate"><span class="pre">BodyType.kinematic</span></code> are allowed, but have no effect and use some processing time.</p>
+<p>To construct a <code class="docutils literal notranslate"><span class="pre">Joint</span></code>, you need to create a corresponding subclass of <code class="docutils literal notranslate"><span class="pre">JointDef</span></code>and initialize it
+with its parameters.</p>
+<p>To register a <code class="docutils literal notranslate"><span class="pre">Joint</span></code> use <code class="docutils literal notranslate"><span class="pre">world.createJoint</span></code>and later use <code class="docutils literal notranslate"><span class="pre">world.destroyJoint</span></code> when you want to
+remove it.</p>
 <section id="built-in-joints">
 <h2>Built-in joints<a class="headerlink" href="#built-in-joints" title="Permalink to this heading">¶</a></h2>
 <p>Currently, Forge2D supports the following joints:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#constantvolumejoint"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJoint</span></code></span></a></p></li>
-<li><p>DistanceJoint</p></li>
+<li><p><a class="reference internal" href="#distancejoint"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code></span></a></p></li>
 <li><p>FrictionJoint</p></li>
 <li><p>GearJoint</p></li>
 <li><p>MotorJoint</p></li>
@@ -332,7 +331,8 @@ and later use <code class="docutils literal notranslate"><span class="pre">world
 <section id="constantvolumejoint">
 <h3><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJoint</span></code><a class="headerlink" href="#constantvolumejoint" title="Permalink to this heading">¶</a></h3>
 <p>This type of joint connects a group of bodies together and maintains a constant volume within them.
-Essentially, it is a set of <code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code>s, that connects all bodies one after another.</p>
+Essentially, it is a set of <a class="reference internal" href="#distancejoint"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code></span></a>s, that connects all bodies one after
+another.</p>
 <p>It can for example be useful when simulating “soft-bodies”.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">constantVolumeJoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConstantVolumeJointDef</span><span class="p">()</span><span class="w"></span>
 <span class="w">    </span><span class="p">..</span><span class="n">frequencyHz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="w"></span>
@@ -345,11 +345,45 @@ Essentially, it is a set of <code class="docutils literal notranslate"><span cla
 <span class="w">  </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">ConstantVolumeJoint</span><span class="p">(</span><span class="n">world</span><span class="p">,</span><span class="w"> </span><span class="n">constantVolumeJoint</span><span class="p">));</span><span class="w"></span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJointDef</span></code> requires at least 3 bodies to be added using the <code class="docutils literal notranslate"><span class="pre">addBody</span></code> method.</p>
-<p>Optional param <code class="docutils literal notranslate"><span class="pre">frequencyHz</span></code> defines the frequency of oscillation of the joint.
-If it’s not 0, the higher the value is, the less springy each of the compound <code class="docutils literal notranslate"><span class="pre">DistantJoint</span></code>s are.</p>
-<p>Another optional parameter is <code class="docutils literal notranslate"><span class="pre">dampingRatio</span></code>, it defines how fast the oscillation comes to rest.
-It takes values from 0 to 1, where 0 = no damping, 1 = critical damping.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJointDef</span></code> requires at least 3 bodies to be added using the <code class="docutils literal notranslate"><span class="pre">addBody</span></code> method. It also
+has two optional parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">frequencyHz</span></code>: This parameter sets the frequency of oscillation of the joint. If it is not set to
+0, the higher the value, the less springy each of the compound <code class="docutils literal notranslate"><span class="pre">DistantJoint</span></code>s are.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dampingRatio</span></code>: This parameter defines how quickly the oscillation comes to rest. It ranges from
+0 to 1, where 0 means no damping and 1 indicates critical damping.</p></li>
+</ul>
+</section>
+<section id="distancejoint">
+<h3><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code><a class="headerlink" href="#distancejoint" title="Permalink to this heading">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code> constrains two points on two bodies to remain at a fixed distance from each other.</p>
+<p>You can view this as a massless, rigid rod.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">distanceJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DistanceJointDef</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span><span class="n">firstBody</span><span class="p">,</span><span class="w"> </span><span class="n">secondBody</span><span class="p">,</span><span class="w"> </span><span class="n">firstBody</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">,</span><span class="w"> </span><span class="n">secondBody</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">frequencyHz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">dampingRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">;</span><span class="w"></span>
+
+<span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">DistanceJoint</span><span class="p">(</span><span class="n">distanceJointDef</span><span class="p">));</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To create a <code class="docutils literal notranslate"><span class="pre">DistanceJointDef</span></code>, you can use the <code class="docutils literal notranslate"><span class="pre">initialize</span></code> method, which requires two bodies and a
+world anchor point on each body. The definition uses local anchor points, allowing for a slight
+violation of the constraint in the initial configuration. This is useful when saving and
+loading a game.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">DistanceJointDef</span></code> has three optional parameters that you can set:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">length</span></code>: This parameter determines the distance between the two anchor points and must be greater
+than 0. The default value is 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">frequencyHz</span></code>: This parameter sets the frequency of oscillation of the joint. If it is not set
+to 0, the higher the value, the less springy the joint becomes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">dampingRatio</span></code>: This parameter defines how quickly the oscillation comes to rest. It ranges from
+0 to 1, where 0 means no damping and 1 indicates critical damping.</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Do not use a zero or short length.</p>
+</div>
 </section>
 </section>
 </section>
@@ -386,6 +420,7 @@ It takes values from 0 to 1, where 0 = no damping, 1 = critical damping.</p>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#built-in-joints' class='list-group-item level-1'>Built-in joints</a>
   <a href='#constantvolumejoint' class='list-group-item level-2'>ConstantVolumeJoint</a>
+  <a href='#distancejoint' class='list-group-item level-2'>DistanceJoint</a>
 </div>
 
     </div>
