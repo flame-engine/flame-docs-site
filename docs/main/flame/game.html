@@ -552,47 +552,6 @@ are also missing out on all of the built-in features in Flame if you use it.</p>
 <p>When pausing a Flame <code class="docutils literal notranslate"><span class="pre">Game</span></code>, the <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is effectively paused, meaning that no updates or new
 renders will happen until it is resumed.</p>
 </section>
-<section id="flutter-widgets-and-game-instances">
-<h2>Flutter Widgets and Game instances<a class="headerlink" href="#flutter-widgets-and-game-instances" title="Permalink to this heading">¶</a></h2>
-<p>Since a Flame game can be wrapped in a widget, it is quite easy to use it alongside other Flutter
-widgets. But still, there is the Widgets Overlay API that makes things even easier.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Game.overlays</span></code> enables any Flutter widget to be shown on top of a game instance, this makes it very
-easy to create things like a pause menu or an inventory screen for example.</p>
-<p>This management is done via the <code class="docutils literal notranslate"><span class="pre">game.overlays.add</span></code> and <code class="docutils literal notranslate"><span class="pre">game.overlays.remove</span></code> methods that mark an
-overlay to be shown or hidden, respectively, via a <code class="docutils literal notranslate"><span class="pre">String</span></code> argument that identifies the overlay.
-After that, it can be specified which widgets represent each overlay in the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> declaration
-by setting an <code class="docutils literal notranslate"><span class="pre">overlayBuilderMap</span></code>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// Inside the game methods:</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">pauseOverlayIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PauseMenu&#39;</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to be rendered.</span><span class="w"></span>
-<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span><span class="w"></span>
-<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// On the widget declaration</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span><span class="w"></span>
-
-<span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nl">overlayBuilderMap:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="s1">&#39;PauseMenu&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;A pause menu&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">  </span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-<p>The order of rendering for an overlay is determined by the order of the keys in the
-<code class="docutils literal notranslate"><span class="pre">overlayBuilderMap</span></code>.</p>
-<p>An example of this feature can be found
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/system/overlays_example.dart">here</a>.</p>
-</section>
 </section>
 
 
@@ -633,7 +592,6 @@ by setting an <code class="docutils literal notranslate"><span class="pre">overl
   <a href='#singlegameinstance-mixin' class='list-group-item level-1'>SingleGameInstance mixin</a>
   <a href='#low-level-game-api' class='list-group-item level-1'>Low-level Game API</a>
   <a href='#pause-resuming-game-execution' class='list-group-item level-1'>Pause/Resuming game execution</a>
-  <a href='#flutter-widgets-and-game-instances' class='list-group-item level-1'>Flutter Widgets and Game instances</a>
 </div>
 
     </div>
