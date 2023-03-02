@@ -135,6 +135,10 @@
 <li class="toctree-l3"><a class="reference internal" href="rendering/text_rendering.html">Text Rendering</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="layout/layout.html">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="layout/align_component.html">AlignComponent</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="other/util.html">Utils</a></li>
@@ -435,6 +439,8 @@ short.</p>
     
         </div><p>The <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> method is called whenever the screen is resized, and also when this component
 gets added into the component tree, before the <code class="docutils literal notranslate"><span class="pre">onMount</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">onParentResize</span></code> method is similar: it is also called when the component is mounted into the
+component tree, and also whenever the parent of the current component changes its size.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> method can be overridden to run code before the component is removed from the game,
 it is only run once even if the component is removed both by using the parents remove method and
 the <code class="docutils literal notranslate"><span class="pre">Component</span></code> remove method.</p>

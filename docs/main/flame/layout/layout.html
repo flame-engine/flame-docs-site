@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Text Rendering &#8212; Flame</title>
+  <title>Layout &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
@@ -34,8 +34,8 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="Layout" href="../layout/layout.html" />
-  <link rel="prev" title="Particles" href="particles.html" />
+  <link rel="next" title="AlignComponent" href="align_component.html" />
+  <link rel="prev" title="Text Rendering" href="../rendering/text_rendering.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -126,17 +126,17 @@
 <li class="toctree-l3"><a class="reference internal" href="../inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="rendering.html">Rendering</a><ul class="current">
-<li class="toctree-l3"><a class="reference internal" href="palette.html">Colors and Palette</a></li>
-<li class="toctree-l3"><a class="reference internal" href="decorators.html">Decorators</a></li>
-<li class="toctree-l3"><a class="reference internal" href="images.html">Images, Sprites and Animations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="layers.html">Layers</a></li>
-<li class="toctree-l3"><a class="reference internal" href="particles.html">Particles</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Text Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/palette.html">Colors and Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/decorators.html">Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/images.html">Images, Sprites and Animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/layers.html">Layers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/particles.html">Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/text_rendering.html">Text Rendering</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../layout/layout.html">Layout</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../layout/align_component.html">AlignComponent</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="align_component.html">AlignComponent</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../other/other.html">Other</a><ul>
@@ -305,118 +305,10 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="text-rendering">
-<h1>Text Rendering<a class="headerlink" href="#text-rendering" title="Permalink to this heading">¶</a></h1>
-<p>Flame has some dedicated classes to help you render text.</p>
-<section id="textrenderer">
-<h2>TextRenderer<a class="headerlink" href="#textrenderer" title="Permalink to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">TextRenderer</span></code> is the abstract class used by Flame to render text. Flame provides one
-implementation for this called <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> but anyone can implement this abstraction
-and create a custom way to render text.</p>
-</section>
-<section id="textpaint">
-<h2>TextPaint<a class="headerlink" href="#textpaint" title="Permalink to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> is the built-in implementation of text rendering in Flame, it is based on top of
-Flutter’s <code class="docutils literal notranslate"><span class="pre">TextPainter</span></code> class (hence the name), and it can be configured by the style class <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>
-which contains all typographical information required to render text; i.e., font size and color,
-font family, etc.</p>
-<p>Example usage:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">TextPaint</span><span class="w"> </span><span class="n">textPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">48.0</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nl">fontFamily:</span><span class="w"> </span><span class="s1">&#39;Awesome Font&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
-</pre></div>
+  <section class="tex2jax_ignore mathjax_ignore" id="layout">
+<h1>Layout<a class="headerlink" href="#layout" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
 </div>
-<p>Note: there are several packages that contain the class <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>, make sure that you import
-either <code class="docutils literal notranslate"><span class="pre">package:flutter/material.dart</span></code> or <code class="docutils literal notranslate"><span class="pre">package:flutter/painting.dart</span></code> and if you also need to
-import <code class="docutils literal notranslate"><span class="pre">dart:ui</span></code> you need to import it like this (since that contains another class that is also
-named <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="w"> </span><span class="k">hide</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">;</span><span class="w"></span>
-</pre></div>
-</div>
-<p>Some common properties of <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code> are the following (here is the
-<a class="reference external" href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">full list</a>):</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">fontFamily</span></code>: a commonly available font, like Arial (default), or a custom font added in your
-pubspec (see <a class="reference external" href="https://docs.flutter.dev/cookbook/design/fonts">here</a> how to do it).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">fontSize</span></code>: font size, in pts (default <code class="docutils literal notranslate"><span class="pre">24.0</span></code>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">height</span></code>: height of text line, as a multiple of font size (default <code class="docutils literal notranslate"><span class="pre">null</span></code>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: the color, as a <code class="docutils literal notranslate"><span class="pre">ui.Color</span></code> (default white).</p></li>
-</ul>
-<p>For more information regarding colors and how to create then, see the
-<a class="reference internal" href="palette.html"><span class="doc std std-doc">Colors and the Palette</span></a> guide.</p>
-<p>After the creation of the <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> object you can use its <code class="docutils literal notranslate"><span class="pre">render</span></code> method to draw strings on
-a canvas:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">textPaint</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Flame is awesome&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">));</span><span class="w"></span>
-</pre></div>
-</div>
-<p>If you want to set the anchor of the text you can also do that in the render call, with the optional
-<code class="docutils literal notranslate"><span class="pre">anchor</span></code> parameter:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">textPaint</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Flame is awesome&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">);</span><span class="w"></span>
-</pre></div>
-</div>
-</section>
-<section id="text-components">
-<h2>Text Components<a class="headerlink" href="#text-components" title="Permalink to this heading">¶</a></h2>
-<p>Flame provides two text components that make it even easier to render text in your game:
-<code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> and <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code>.</p>
-<section id="textcomponent">
-<h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this heading">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> is a simple component that renders a single line of text.</p>
-<p>Example usage:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span><span class="nl">style:</span><span class="w"> </span><span class="n">style</span><span class="p">);</span><span class="w"></span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">TextComponent</span><span class="p">(</span><span class="nl">text:</span><span class="w"> </span><span class="s1">&#39;Hello, Flame&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">regular</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="p">..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="w"></span>
-<span class="w">      </span><span class="p">..</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1">// size is a property from game</span><span class="w"></span>
-<span class="w">      </span><span class="p">..</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">32.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-</section>
-<section id="textboxcomponent">
-<h3>TextBoxComponent<a class="headerlink" href="#textboxcomponent" title="Permalink to this heading">¶</a></h3>
-<p><code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> is very similar to <code class="docutils literal notranslate"><span class="pre">TextComponent</span></code>, but as its name suggest it is used to render
-text inside a bounding box, creating line breaks according to the provided box size.</p>
-<p>You can decide if the box should grow as the text is written or if it should be static by the
-<code class="docutils literal notranslate"><span class="pre">growingBox</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>. A static box could either have a fixed size (setting
-the <code class="docutils literal notranslate"><span class="pre">size</span></code> property of the <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code>), or to automatically shrink to fit the text content.</p>
-<p>In addition, the <code class="docutils literal notranslate"><span class="pre">align</span></code> property allows you to control the the horizontal and vertical alignment
-of the text content. For example, setting <code class="docutils literal notranslate"><span class="pre">align</span></code> to <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code> will center the text within
-its bounding box both vertically and horizontally.</p>
-<p>If you want to change the margins of the box use the <code class="docutils literal notranslate"><span class="pre">margins</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>.</p>
-<p>Example usage:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyTextBox</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">TextBoxComponent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="nl">text:</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">tiny</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nl">boxConfig:</span><span class="w"> </span><span class="n">TextBoxConfig</span><span class="p">(</span><span class="nl">timePerChar:</span><span class="w"> </span><span class="m">0.05</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="p">);</span><span class="w"></span>
-
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">bgPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFF00FF</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">borderPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF000000</span><span class="p">)..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span><span class="w"></span>
-
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">Rect</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="w"> </span><span class="n">bgPaint</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">deflate</span><span class="p">(</span><span class="n">boxConfig</span><span class="p">.</span><span class="n">margin</span><span class="p">),</span><span class="w"> </span><span class="n">borderPaint</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-</pre></div>
-</div>
-<p>Both components are showcased in an example
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/text_example.dart">here</a></p>
-</section>
-</section>
 </section>
 
 
@@ -426,18 +318,18 @@ its bounding box both vertically and horizontally.</p>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="particles.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="../rendering/text_rendering.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Particles</p>
+          <p class="prev-next-title">Text Rendering</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="../layout/layout.html" title="next page">
+      <a class="right-next" id="next-link" href="align_component.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Layout</p>
+          <p class="prev-next-title">AlignComponent</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
@@ -449,11 +341,6 @@ its bounding box both vertically and horizontally.</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
-  <a href='#textrenderer' class='list-group-item level-1'>TextRenderer</a>
-  <a href='#textpaint' class='list-group-item level-1'>TextPaint</a>
-  <a href='#text-components' class='list-group-item level-1'>Text Components</a>
-  <a href='#textcomponent' class='list-group-item level-2'>TextComponent</a>
-  <a href='#textboxcomponent' class='list-group-item level-2'>TextBoxComponent</a>
 </div>
 
     </div>
