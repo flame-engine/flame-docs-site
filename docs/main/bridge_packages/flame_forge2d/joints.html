@@ -321,7 +321,7 @@ remove it.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#constantvolumejoint"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJoint</span></code></span></a></p></li>
 <li><p><a class="reference internal" href="#distancejoint"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code></span></a></p></li>
-<li><p>FrictionJoint</p></li>
+<li><p><a class="reference internal" href="#frictionjoint"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code></span></a></p></li>
 <li><p>GearJoint</p></li>
 <li><p>MotorJoint</p></li>
 <li><p>MouseJoint</p></li>
@@ -389,6 +389,39 @@ to 0, the higher the value, the less springy the joint becomes.</p></li>
 <p>Do not use a zero or short length.</p>
 </div>
 </section>
+<section id="frictionjoint">
+<h3><code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code><a class="headerlink" href="#frictionjoint" title="Permalink to this heading">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code> is used for simulating friction in a top-down game. It provides 2D translational
+friction and angular friction.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code> isn’t related to the friction that occurs when two shapes collide in the x-y plane
+of the screen. Instead, it’s designed to simulate friction along the z-axis, which is perpendicular
+to the screen. The most common use-case for it is applying the friction force between a moving body
+and the game floor.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">initialize</span></code> method of the <code class="docutils literal notranslate"><span class="pre">FrictionJointDef</span></code> method requires two bodies that will have friction
+force applied to them, and an anchor.</p>
+<p>The third parameter is the <code class="docutils literal notranslate"><span class="pre">anchor</span></code> point in the world coordinates where the friction force will be
+applied. In most cases, it would be the center of the first object. However, for more complex
+physics interactions between bodies, you can set the <code class="docutils literal notranslate"><span class="pre">anchor</span></code> point to a specific location on one or
+both of the bodies.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">frictionJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FrictionJointDef</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span><span class="n">ballBody</span><span class="p">,</span><span class="w"> </span><span class="n">floorBody</span><span class="p">,</span><span class="w"> </span><span class="n">ballBody</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">maxForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="w"></span>
+<span class="w">  </span><span class="p">..</span><span class="n">maxTorque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">FrictionJoint</span><span class="p">(</span><span class="n">frictionJointDef</span><span class="p">));</span><span class="w"></span>
+</pre></div>
+</div>
+<p>When creating a <code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code>, simulated friction can be applied via maximum force and torque
+values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">maxForce</span></code>: the maximum translational friction which applied to the joined body. A higher value</p></li>
+<li><p>simulates higher friction.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxTorque</span></code>: the maximum angular friction which may be applied to the joined body. A higher value</p></li>
+<li><p>simulates higher friction.</p></li>
+</ul>
+<p>In other words, the former simulates the friction, when the body is sliding and the latter simulates
+the friction when the body is spinning.</p>
+</section>
 </section>
 </section>
 
@@ -425,6 +458,7 @@ to 0, the higher the value, the less springy the joint becomes.</p></li>
   <a href='#built-in-joints' class='list-group-item level-1'>Built-in joints</a>
   <a href='#constantvolumejoint' class='list-group-item level-2'>ConstantVolumeJoint</a>
   <a href='#distancejoint' class='list-group-item level-2'>DistanceJoint</a>
+  <a href='#frictionjoint' class='list-group-item level-2'>FrictionJoint</a>
 </div>
 
     </div>
