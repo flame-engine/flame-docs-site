@@ -45,6 +45,7 @@ function prepare_flame_repo {
   mkdir $tmp_stash
   cp -r $tmp_flame_src/doc/_sphinx $tmp_stash
   cp $tmp_flame_src/melos.yaml $tmp_stash
+  cp $tmp_flame_src/pubspec.yaml $tmp_stash
 }
 
 # Creates a fresh docs/ directory, and populates it with some initial files,
