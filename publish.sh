@@ -65,6 +65,9 @@ function generate_docs_for_version {
   rm -rf $tmp_flame_src/doc/_sphinx
   cp -r $tmp_stash/_sphinx $tmp_flame_src/doc/
   cp -r $tmp_stash/melos.yaml $tmp_flame_src/
+  # This is very fragile work around for the face that older versions don't have a pubspec.yaml in
+  # the root which is required by Melos 3.
+  cp -r $tmp_stash/pubspec.yaml $tmp_flame_src/
 
   cd $tmp_flame_src
 
