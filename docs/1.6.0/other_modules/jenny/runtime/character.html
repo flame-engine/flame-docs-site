@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-  <script src="../../../_static/jquery.js"></script>
-  <script src="../../../_static/underscore.js"></script>
-  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../_static/doctools.js"></script>
+  <script src="../../../_static/sphinx_highlight.js"></script>
   <script src="../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -302,24 +300,24 @@
   <section class="tex2jax_ignore mathjax_ignore" id="character">
 <h1>Character<a class="headerlink" href="#character" title="Permalink to this heading">¶</a></h1>
 <p>A <strong>Character</strong> represents a person who is speaking a particular line in a dialogue. This object
-is available as the <code class="docutils literal notranslate"><span class="pre">.character</span></code> property of a <a class="reference internal" href="dialogue_line.html"><span class="doc std std-doc">DialogueLine</span></a> delivered to your <a class="reference internal" href="dialogue_view.html"><span class="doc std std-doc">DialogueView</span></a>.</p>
+is available as the <code class="docutils literal notranslate"><span class="pre">.character</span></code> property of a <a class="reference internal" href="dialogue_line.html"><span class="std std-doc">DialogueLine</span></a> delivered to your <a class="reference internal" href="dialogue_view.html"><span class="std std-doc">DialogueView</span></a>.</p>
 <section id="properties">
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
 <dl class="simple myst">
-<dt><strong>name</strong> <code class="docutils literal notranslate"><span class="pre">String</span></code></dt><dd><p>The canonical name of the character, as declared by the <a class="reference internal" href="../language/commands/character.html"><span class="doc std std-doc">&lt;&lt;character&gt;&gt;</span></a> command.</p>
+<dt><strong>name</strong> <code class="docutils literal notranslate"><span class="pre">String</span></code></dt><dd><p>The canonical name of the character, as declared by the <a class="reference internal" href="../language/commands/character.html"><span class="std std-doc">&lt;&lt;character&gt;&gt;</span></a> command.</p>
 </dd>
 <dt><strong>aliases</strong> <code class="docutils literal notranslate"><span class="pre">List&lt;String&gt;</span></code></dt><dd><p>Additional names (IDs) that may be used for this character in yarn scripts.</p>
 </dd>
 <dt><strong>data</strong> <code class="docutils literal notranslate"><span class="pre">Map&lt;String,</span> <span class="pre">dynamic&gt;</span></code></dt><dd><p>Extra information that you can associate with this character. This may include their short bio,
 portrait, affiliation, color, etc. This information must be stored for each character manually,
-and then it will be accessible from <a class="reference internal" href="dialogue_view.html"><span class="doc std std-doc">DialogueView</span></a>s.</p>
+and then it will be accessible from <a class="reference internal" href="dialogue_view.html"><span class="std std-doc">DialogueView</span></a>s.</p>
 </dd>
 </dl>
 </section>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
-<li><p><a class="reference internal" href="character_storage.html"><span class="doc std std-doc">CharacterStorage</span></a>: the container where all Character objects within a YarnProject are cached.</p></li>
+<li><p><a class="reference internal" href="character_storage.html"><span class="std std-doc">CharacterStorage</span></a>: the container where all Character objects within a YarnProject are cached.</p></li>
 </ul>
 </section>
 </section>

@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-  <script src="_static/jquery.js"></script>
-  <script src="_static/underscore.js"></script>
-  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="_static/doctools.js"></script>
+  <script src="_static/sphinx_highlight.js"></script>
   <script src="_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -171,7 +169,7 @@
 <h2>Component<a class="headerlink" href="#component" title="Permalink to this heading">¶</a></h2>
 <p>All components inherit from the abstract class <code class="docutils literal notranslate"><span class="pre">Component</span></code>.</p>
 <p>If you want to skip reading about abstract classes you can jump directly to
-<a class="reference internal" href="#positioncomponent"><span class="std std-doc">PositionComponent</span></a>.</p>
+<a class="reference internal" href="#positioncomponent"><span class="std std-ref">PositionComponent</span></a>.</p>
 <p>Every <code class="docutils literal notranslate"><span class="pre">Component</span></code> has a few methods that you can optionally implement, which are used by the
 <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class. If you are not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, you can use these methods on your own game loop
 if you wish.</p>
@@ -217,27 +215,27 @@ for example <code class="docutils literal notranslate"><span class="pre">Positio
 When you have child components on a component every time the parent is updated and rendered, all the
 children are rendered and updated with the same conditions.</p>
 <p>Example of usage, where visibility of two components are handled by a wrapper:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">GameOverPanel</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Image</span><span class="w"> </span><span class="n">spriteImage</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">GameOverPanel</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Image</span><span class="w"> </span><span class="n">spriteImage</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">GameOverPanel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">spriteImage</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">GameOverPanel</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">spriteImage</span><span class="p">);</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">gameOverText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameOverText</span><span class="p">(</span><span class="n">spriteImage</span><span class="p">);</span><span class="w"> </span><span class="c1">// GameOverText is a Component</span><span class="w"></span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">gameOverButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameOverButton</span><span class="p">(</span><span class="n">spriteImage</span><span class="p">);</span><span class="w"> </span><span class="c1">// GameOverRestart is a SpriteComponent</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">gameOverText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameOverText</span><span class="p">(</span><span class="n">spriteImage</span><span class="p">);</span><span class="w"> </span><span class="c1">// GameOverText is a Component</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">gameOverButton</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GameOverButton</span><span class="p">(</span><span class="n">spriteImage</span><span class="p">);</span><span class="w"> </span><span class="c1">// GameOverRestart is a SpriteComponent</span>
 
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">gameOverText</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">gameOverButton</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">gameOverText</span><span class="p">);</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">gameOverButton</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// If not visible none of the children will be rendered</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">visible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="c1">// If not visible none of the children will be rendered</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -248,17 +246,17 @@ children are rendered and updated with the same conditions.</p>
 registered on the set, and then the <code class="docutils literal notranslate"><span class="pre">query</span></code> function can be run efficiently at any later point. The
 register call is usually done in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">components</span><span class="p">.</span><span class="n">register</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="w">  </span><span class="n">components</span><span class="p">.</span><span class="n">register</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>In the example above a query is registered for <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, and an example of how to query
 the registered component type can be seen below.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">allPositionComponents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">components</span><span class="p">.</span><span class="n">query</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="o">&gt;</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">allPositionComponents</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">components</span><span class="p">.</span><span class="n">query</span><span class="o">&lt;</span><span class="n">PositionComponent</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -335,7 +333,7 @@ you would do this:</p>
 </pre></div>
 </div>
 <p>Remember that most components that are rendered on the screen are <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, so
-this pattern can be used in for example <a class="reference internal" href="#spritecomponent"><span class="std std-doc">SpriteComponent</span></a> and <a class="reference internal" href="#spriteanimationcomponent"><span class="std std-doc">SpriteAnimationComponent</span></a> too.</p>
+this pattern can be used in for example <a class="reference internal" href="#spritecomponent"><span class="std std-ref">SpriteComponent</span></a> and <a class="reference internal" href="#spriteanimationcomponent"><span class="std std-ref">SpriteAnimationComponent</span></a> too.</p>
 </section>
 <section id="render-positioncomponent">
 <h3>Render PositionComponent<a class="headerlink" href="#render-positioncomponent" title="Permalink to this heading">¶</a></h3>
@@ -356,23 +354,23 @@ horizontal rendering.</p>
 <h2>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this heading">¶</a></h2>
 <p>The most commonly used implementation of <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code>, and it can be
 created with a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components/component.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components/component.dart&#39;</span><span class="p">;</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="n">player</span><span class="p">;</span><span class="w"></span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">128.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">sprite</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">128.0</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">sprite</span><span class="p">);</span>
 
-<span class="w">    </span><span class="c1">// screen coordinates</span><span class="w"></span>
-<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="c1">// Vector2(0.0, 0.0) by default, can also be set in the constructor</span><span class="w"></span>
-<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="c1">// 0 by default, can also be set in the constructor</span><span class="w"></span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span><span class="w"> </span><span class="c1">// Adds the component</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// screen coordinates</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="c1">// Vector2(0.0, 0.0) by default, can also be set in the constructor</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="c1">// 0 by default, can also be set in the constructor</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span><span class="w"> </span><span class="c1">// Adds the component</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -380,30 +378,30 @@ created with a <code class="docutils literal notranslate"><span class="pre">Spri
 <h2>SpriteAnimationComponent<a class="headerlink" href="#spriteanimationcomponent" title="Permalink to this heading">¶</a></h2>
 <p>This class is used to represent a Component that has sprites that run in a single cyclic animation.</p>
 <p>This will create a simple three frame animation using 3 different images:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="p">.</span><span class="n">map</span><span class="p">((</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player_</span><span class="si">$</span><span class="n">i</span><span class="s1">.png&#39;</span><span class="p">));</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">sprites</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
-<span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">animation:</span><span class="w"> </span><span class="n">animation</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span>
+<span class="w">    </span><span class="p">.</span><span class="n">map</span><span class="p">((</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player_</span><span class="si">$</span><span class="n">i</span><span class="s1">.png&#39;</span><span class="p">));</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">sprites</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span>
+<span class="p">);</span>
+<span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">animation:</span><span class="w"> </span><span class="n">animation</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">),</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>If you have a sprite sheet, you can use the <code class="docutils literal notranslate"><span class="pre">sequenced</span></code> constructor from the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationData</span></code>
-class (check more details on <a class="reference internal" href="images.html#animation"><span class="std std-ref">Images &gt; Animation</span></a>):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">amount:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
-<span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="n">data</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+class (check more details on <a class="reference internal" href="images.html#Animation"><span class="std std-ref">Images &gt; Animation</span></a>):</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">amount:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span>
+<span class="p">);</span>
+<span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="n">data</span><span class="p">,</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>If you are not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, don’t forget this component needs to be updated, because the
@@ -417,24 +415,24 @@ your component to hold several animations and change the current playing animati
 single animation, this component receives a Map of a generic type <code class="docutils literal notranslate"><span class="pre">T</span></code> as key and a
 <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code> as value, and the current animation.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span><span class="w"> </span><span class="n">RobotState</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">idle</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">running</span><span class="p">,</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span><span class="w"> </span><span class="n">RobotState</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">idle</span><span class="p">,</span>
+<span class="w">  </span><span class="n">running</span><span class="p">,</span>
+<span class="p">}</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">idle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">idle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationGroupComponent</span><span class="o">&lt;</span><span class="n">RobotState</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">animations:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">RobotState</span><span class="p">.</span><span class="nl">running:</span><span class="w"> </span><span class="n">running</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">RobotState</span><span class="p">.</span><span class="nl">idle:</span><span class="w"> </span><span class="n">idle</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="p">},</span><span class="w"></span>
-<span class="w">  </span><span class="nl">current:</span><span class="w"> </span><span class="n">RobotState</span><span class="p">.</span><span class="n">idle</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationGroupComponent</span><span class="o">&lt;</span><span class="n">RobotState</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">animations:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">RobotState</span><span class="p">.</span><span class="nl">running:</span><span class="w"> </span><span class="n">running</span><span class="p">,</span>
+<span class="w">    </span><span class="n">RobotState</span><span class="p">.</span><span class="nl">idle:</span><span class="w"> </span><span class="n">idle</span><span class="p">,</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nl">current:</span><span class="w"> </span><span class="n">RobotState</span><span class="p">.</span><span class="n">idle</span><span class="p">,</span>
+<span class="p">);</span>
 
-<span class="c1">// Changes current animation to &quot;running&quot;</span><span class="w"></span>
-<span class="n">robot</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RobotState</span><span class="p">.</span><span class="n">running</span><span class="p">;</span><span class="w"></span>
+<span class="c1">// Changes current animation to &quot;running&quot;</span>
+<span class="n">robot</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RobotState</span><span class="p">.</span><span class="n">running</span><span class="p">;</span>
 </pre></div>
 </div>
 </section>
@@ -442,23 +440,23 @@ single animation, this component receives a Map of a generic type <code class="d
 <h2>SpriteGroup<a class="headerlink" href="#spritegroup" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SpriteGroupComponent</span></code> is pretty similar to its animation counterpart, but especially for sprites.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">ButtonComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteGroupComponent</span><span class="o">&lt;</span><span class="n">ButtonState</span><span class="o">&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">SpriteGroupExample</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Tappable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;?</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">pressedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">unpressedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="o">/*</span><span class="w"> </span><span class="n">omitted</span><span class="w"> </span><span class="o">/*</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">ButtonComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteGroupComponent</span><span class="o">&lt;</span><span class="n">ButtonState</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">SpriteGroupExample</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">Tappable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;?</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">pressedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">unpressedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="o">/*</span><span class="w"> </span><span class="n">omitted</span><span class="w"> </span><span class="o">/*</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="n">ButtonState</span><span class="p">.</span><span class="nl">pressed:</span><span class="w"> </span><span class="n">pressedSprite</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="n">ButtonState</span><span class="p">.</span><span class="nl">unpressed:</span><span class="w"> </span><span class="n">unpressedSprite</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="p">};</span><span class="w"></span>
+<span class="w">    </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">ButtonState</span><span class="p">.</span><span class="nl">pressed:</span><span class="w"> </span><span class="n">pressedSprite</span><span class="p">,</span>
+<span class="w">      </span><span class="n">ButtonState</span><span class="p">.</span><span class="nl">unpressed:</span><span class="w"> </span><span class="n">unpressedSprite</span><span class="p">,</span>
+<span class="w">    </span><span class="p">};</span>
 
-<span class="w">    </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ButtonState</span><span class="p">.</span><span class="n">unpressed</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ButtonState</span><span class="p">.</span><span class="n">unpressed</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// tap methods handler omitted...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// tap methods handler omitted...</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -468,12 +466,12 @@ single animation, this component receives a Map of a generic type <code class="d
 package.</p>
 <p>This component uses an instance of <code class="docutils literal notranslate"><span class="pre">Svg</span></code> class to represent a Component that has a svg that is
 rendered in the game:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">svg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Svg</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;android.svg&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">android</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SvgComponent</span><span class="p">.</span><span class="n">fromSvg</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">svg</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">svg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Svg</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;android.svg&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">android</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SvgComponent</span><span class="p">.</span><span class="n">fromSvg</span><span class="p">(</span>
+<span class="w">  </span><span class="n">svg</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -487,43 +485,43 @@ package.</p>
 flame. <code class="docutils literal notranslate"><span class="pre">FlareActorComponent</span></code> has almost the same API as of flare’s <code class="docutils literal notranslate"><span class="pre">FlareActor</span></code> widget. It receives
 the animation filename (that is loaded by default with <code class="docutils literal notranslate"><span class="pre">Flame.bundle</span></code>), it can also receive a
 FlareController that can play multiple animations and control nodes.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_flare/flame_flare.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_flare/flame_flare.dart&#39;</span><span class="p">;</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">YourFlareController</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlareControls</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">YourFlareController</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlareControls</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">ActorNode</span><span class="w"> </span><span class="n">rightHandNode</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">ActorNode</span><span class="w"> </span><span class="n">rightHandNode</span><span class="p">;</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="n">FlutterActorArtboard</span><span class="w"> </span><span class="n">artboard</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">artboard</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="n">FlutterActorArtboard</span><span class="w"> </span><span class="n">artboard</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">artboard</span><span class="p">);</span>
 
-<span class="w">    </span><span class="c1">// get flare node</span><span class="w"></span>
-<span class="w">    </span><span class="n">rightHand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">artboard</span><span class="p">.</span><span class="n">getNode</span><span class="p">(</span><span class="s1">&#39;right_hand&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// get flare node</span>
+<span class="w">    </span><span class="n">rightHand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">artboard</span><span class="p">.</span><span class="n">getNode</span><span class="p">(</span><span class="s1">&#39;right_hand&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;assets/george_washington.flr&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1776</span><span class="p">,</span><span class="w"> </span><span class="m">1804</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YourFlareController</span><span class="p">();</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;assets/george_washington.flr&#39;</span><span class="p">;</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1776</span><span class="p">,</span><span class="w"> </span><span class="m">1804</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YourFlareController</span><span class="p">();</span>
 
-<span class="n">FlareActorComponent</span><span class="w"> </span><span class="n">flareAnimation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlareActorComponent</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">fileName</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">controller:</span><span class="w"> </span><span class="n">controller</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">width:</span><span class="w"> </span><span class="m">306</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">height:</span><span class="w"> </span><span class="m">228</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<span class="n">FlareActorComponent</span><span class="w"> </span><span class="n">flareAnimation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlareActorComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="n">fileName</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">controller:</span><span class="w"> </span><span class="n">controller</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">width:</span><span class="w"> </span><span class="m">306</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">height:</span><span class="w"> </span><span class="m">228</span><span class="p">,</span>
+<span class="p">);</span>
 
-<span class="n">flareAnimation</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">;</span><span class="w"></span>
-<span class="n">flareAnimation</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">240</span><span class="p">;</span><span class="w"></span>
-<span class="n">add</span><span class="p">(</span><span class="n">flareAnimation</span><span class="p">);</span><span class="w"></span>
+<span class="n">flareAnimation</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">;</span>
+<span class="n">flareAnimation</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">240</span><span class="p">;</span>
+<span class="n">add</span><span class="p">(</span><span class="n">flareAnimation</span><span class="p">);</span>
 
-<span class="c1">// to play an animation</span><span class="w"></span>
-<span class="n">controller</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;rise_up&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// to play an animation</span>
+<span class="n">controller</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;rise_up&#39;</span><span class="p">);</span>
 
-<span class="c1">// you can add another animation to play at the same time</span><span class="w"></span>
-<span class="n">controller</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;close_door_way_out&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// you can add another animation to play at the same time</span>
+<span class="n">controller</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;close_door_way_out&#39;</span><span class="p">);</span>
 
-<span class="c1">// also, you can get a flare node and modify it</span><span class="w"></span>
-<span class="n">controller</span><span class="p">.</span><span class="n">rightHandNode</span><span class="p">.</span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="p">;</span><span class="w"></span>
+<span class="c1">// also, you can get a flare node and modify it</span>
+<span class="n">controller</span><span class="p">.</span><span class="n">rightHandNode</span><span class="p">.</span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>You can also change the current playing animation by using the <code class="docutils literal notranslate"><span class="pre">updateAnimation</span></code> method.</p>
@@ -539,33 +537,33 @@ moving with a different velocity.</p>
 than distant ones.</p>
 <p>This component simulates this effect, making a more realistic background effect.</p>
 <p>The simplest <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code> is created like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span><span class="w"></span>
-<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">([</span><span class="w"></span>
-<span class="w">    </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;bg.png&#39;</span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;trees.png&#39;</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="p">]);</span><span class="w"></span>
-<span class="w">  </span><span class="n">add</span><span class="p">(</span><span class="n">parallax</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">([</span>
+<span class="w">    </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;bg.png&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;trees.png&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="p">]);</span>
+<span class="w">  </span><span class="n">add</span><span class="p">(</span><span class="n">parallax</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>A ParallaxComponent can also “load itself” by implementing the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyParallaxComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ParallaxComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadParallax</span><span class="p">([</span><span class="w"></span>
-<span class="w">      </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;bg.png&#39;</span><span class="p">),</span><span class="w"></span>
-<span class="w">      </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;trees.png&#39;</span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="p">]);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyParallaxComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ParallaxComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadParallax</span><span class="p">([</span>
+<span class="w">      </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;bg.png&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;trees.png&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="p">]);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">MyParallaxComponent</span><span class="p">());</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">MyParallaxComponent</span><span class="p">());</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>This creates a static background. If you want a moving parallax (which is the whole point of a
@@ -574,18 +572,18 @@ settings for each layer.</p>
 <p>They simplest way is to set the named optional parameters <code class="docutils literal notranslate"><span class="pre">baseVelocity</span></code> and
 <code class="docutils literal notranslate"><span class="pre">velocityMultiplierDelta</span></code> in the <code class="docutils literal notranslate"><span class="pre">load</span></code> helper function. For example if you want to move your
 background images along the X-axis with a faster speed the “closer” the image is:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">_dataList</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">baseVelocity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">velocityMultiplierDelta:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1.8</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="n">_dataList</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">baseVelocity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">20</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">velocityMultiplierDelta:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1.8</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">),</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>You can set the baseSpeed and layerDelta at any time, for example if your character jumps or your
 game speeds up.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="p">.</span><span class="n">parallax</span><span class="p">;</span><span class="w"></span>
-<span class="n">parallax</span><span class="p">.</span><span class="n">baseSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span><span class="w"></span>
-<span class="n">parallax</span><span class="p">.</span><span class="n">velocityMultiplierDelta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">2.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="p">.</span><span class="n">parallax</span><span class="p">;</span>
+<span class="n">parallax</span><span class="p">.</span><span class="n">baseSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span>
+<span class="n">parallax</span><span class="p">.</span><span class="n">velocityMultiplierDelta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">2.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>By default, the images are aligned to the bottom left, repeated along the X-axis and scaled
@@ -594,18 +592,18 @@ behavior, for example if you are not making a side-scrolling game, you can set t
 <code class="docutils literal notranslate"><span class="pre">alignment</span></code> and <code class="docutils literal notranslate"><span class="pre">fill</span></code> parameters for each <code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code> and add them to <code class="docutils literal notranslate"><span class="pre">ParallaxLayer</span></code>s that
 you then pass in to the <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code>’s constructor.</p>
 <p>Advanced example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">images</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="s1">&#39;stars.jpg&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span><span class="w"> </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">width</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="s1">&#39;planets.jpg&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeatY</span><span class="p">,</span><span class="w"> </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">bottomLeft</span><span class="p">,</span><span class="w"> </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">none</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="s1">&#39;dust.jpg&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeatX</span><span class="p">,</span><span class="w"> </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">topRight</span><span class="p">,</span><span class="w"> </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">height</span><span class="p">),</span><span class="w"></span>
-<span class="p">];</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">map</span><span class="p">((</span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ParallaxLayer</span><span class="p">(</span><span class="kd">await</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="nl">velocityMultiplier:</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2.0</span><span class="p">));</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ParallaxComponent</span><span class="p">.</span><span class="n">fromParallax</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">Parallax</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">layers</span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="nl">baseVelocity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">images</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
+<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="s1">&#39;stars.jpg&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span><span class="w"> </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span><span class="w"> </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">width</span><span class="p">),</span>
+<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="s1">&#39;planets.jpg&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeatY</span><span class="p">,</span><span class="w"> </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">bottomLeft</span><span class="p">,</span><span class="w"> </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">none</span><span class="p">),</span>
+<span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span><span class="s1">&#39;dust.jpg&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeatX</span><span class="p">,</span><span class="w"> </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">topRight</span><span class="p">,</span><span class="w"> </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">height</span><span class="p">),</span>
+<span class="p">];</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">layers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">map</span><span class="p">((</span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ParallaxLayer</span><span class="p">(</span><span class="kd">await</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="nl">velocityMultiplier:</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">indexOf</span><span class="p">(</span><span class="n">image</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">2.0</span><span class="p">));</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ParallaxComponent</span><span class="p">.</span><span class="n">fromParallax</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Parallax</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">layers</span><span class="p">),</span>
+<span class="w">    </span><span class="nl">baseVelocity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -645,8 +643,8 @@ the shape of the specific component, it also takes all the arguments that can be
 <p>A <code class="docutils literal notranslate"><span class="pre">CircleComponent</span></code> can be created only by defining its <code class="docutils literal notranslate"><span class="pre">radius</span></code>, but you most likely want to pass
 it a <code class="docutils literal notranslate"><span class="pre">position</span></code> and maybe <code class="docutils literal notranslate"><span class="pre">paint</span></code> (the default is white) too.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">paint</span><span class="p">()..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CircleComponent</span><span class="p">(</span><span class="nl">radius:</span><span class="w"> </span><span class="m">200.0</span><span class="p">,</span><span class="w"> </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w"> </span><span class="nl">paint:</span><span class="w"> </span><span class="n">paint</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">paint</span><span class="p">()..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">circle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CircleComponent</span><span class="p">(</span><span class="nl">radius:</span><span class="w"> </span><span class="m">200.0</span><span class="p">,</span><span class="w"> </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w"> </span><span class="nl">paint:</span><span class="w"> </span><span class="n">paint</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -655,23 +653,23 @@ it a <code class="docutils literal notranslate"><span class="pre">position</span
 <p>A <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> can be created in two ways, depending on if it’s a square or not.
 To create a <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> that is 300 in width and 200 in height you can do the following:</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">paint</span><span class="p">()..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">rectangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RectangleComponent</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">300.0</span><span class="p">,</span><span class="w"> </span><span class="m">200.0</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">paint:</span><span class="w"> </span><span class="n">paint</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">paint</span><span class="p">()..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">rectangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RectangleComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">300.0</span><span class="p">,</span><span class="w"> </span><span class="m">200.0</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">paint:</span><span class="w"> </span><span class="n">paint</span><span class="p">,</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>To create a square you can instead use the slightly simpler named constructor
 <code class="docutils literal notranslate"><span class="pre">RectangleComponent.square</span></code>. This is an example of how to create a red square with width and height
 200:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">paint</span><span class="p">()..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RectangleComponent</span><span class="p">.</span><span class="n">square</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="m">200.0</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">paint:</span><span class="w"> </span><span class="n">paint</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">paint</span><span class="p">()..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">square</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RectangleComponent</span><span class="p">.</span><span class="n">square</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="m">200.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">paint:</span><span class="w"> </span><span class="n">paint</span><span class="p">,</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -688,18 +686,18 @@ a counter clockwise manner (if you think in the screen coordinate system where t
 flipped, otherwise it is clockwise).</p>
 <p>So to create a diamond shaped <code class="docutils literal notranslate"><span class="pre">PolygonComponent</span></code> which is slightly smaller than the defined size you
 would do this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">vertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">([</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.9</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of top wall</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="m">0.0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of left wall</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">0.9</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of bottom wall</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="m">0.0</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of right wall</span><span class="w"></span>
-<span class="p">]);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">vertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">([</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.9</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of top wall</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="m">0.0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of left wall</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">0.9</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of bottom wall</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.9</span><span class="p">,</span><span class="w"> </span><span class="m">0.0</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of right wall</span>
+<span class="p">]);</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">diamond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PolygonComponent</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">normalizedVertices:</span><span class="w"> </span><span class="n">vertices</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="m">300</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">500</span><span class="p">),</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">diamond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PolygonComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">normalizedVertices:</span><span class="w"> </span><span class="n">vertices</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="m">300</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">500</span><span class="p">),</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>If you instead want to define your polygon from absolute points you can do that too with the
@@ -707,22 +705,22 @@ would do this:</p>
 <code class="docutils literal notranslate"><span class="pre">position</span></code> either since it will be calculated for you, but if you decide to add those arguments
 anyways they will override what has been calculated from your list of vertices.</p>
 <p>Example (diamond shape again):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">vertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">([</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of top wall</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of left wall</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of bottom wall</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of right wall</span><span class="w"></span>
-<span class="p">]);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">vertices</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">([</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of top wall</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of left wall</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of bottom wall</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of right wall</span>
+<span class="p">]);</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">diamond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PolygonComponent</span><span class="p">.</span><span class="n">fromPoints</span><span class="p">(</span><span class="n">vertices</span><span class="p">);</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">diamond</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PolygonComponent</span><span class="p">.</span><span class="n">fromPoints</span><span class="p">(</span><span class="n">vertices</span><span class="p">);</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </section>
 </section>
 <section id="spritebodycomponent">
 <h2>SpriteBodyComponent<a class="headerlink" href="#spritebodycomponent" title="Permalink to this heading">¶</a></h2>
-<p>See <a class="reference internal" href="forge2d.html#spritebodycomponent"><span class="std std-ref">SpriteBodyComponent</span></a> in the Forge2D documentation.</p>
+<p>See <a class="reference internal" href="forge2d.html#SpriteBodyComponent"><span class="std std-ref">SpriteBodyComponent</span></a> in the Forge2D documentation.</p>
 </section>
 <section id="tiledcomponent">
 <h2>TiledComponent<a class="headerlink" href="#tiledcomponent" title="Permalink to this heading">¶</a></h2>
@@ -737,13 +735,13 @@ layers.</p>
 <p>This component allows you to render an isometric map based on a cartesian matrix of blocks and an
 isometric tileset.</p>
 <p>A simple example on how to use it:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Creates a tileset, the block ids are automatically assigned sequentially starting at 0,</span><span class="w"></span>
-<span class="c1">// from left to right and then top to bottom.</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">tilesetImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;tileset.png&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">tileset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IsometricTileset</span><span class="p">(</span><span class="n">tilesetImage</span><span class="p">,</span><span class="w"> </span><span class="m">32</span><span class="p">);</span><span class="w"></span>
-<span class="c1">// Each element is a block id, -1 means nothing</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]];</span><span class="w"></span>
-<span class="n">add</span><span class="p">(</span><span class="n">IsometricTileMapComponent</span><span class="p">(</span><span class="n">tileset</span><span class="p">,</span><span class="w"> </span><span class="n">matrix</span><span class="p">));</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Creates a tileset, the block ids are automatically assigned sequentially starting at 0,</span>
+<span class="c1">// from left to right and then top to bottom.</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">tilesetImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;tileset.png&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">tileset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IsometricTileset</span><span class="p">(</span><span class="n">tilesetImage</span><span class="p">,</span><span class="w"> </span><span class="m">32</span><span class="p">);</span>
+<span class="c1">// Each element is a block id, -1 means nothing</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]];</span>
+<span class="n">add</span><span class="p">(</span><span class="n">IsometricTileMapComponent</span><span class="p">(</span><span class="n">tileset</span><span class="p">,</span><span class="w"> </span><span class="n">matrix</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>It also provides methods for converting coordinates so you can handle clicks, hovers, render
@@ -789,7 +787,7 @@ for details on how to use it.</p>
 <h2>Effects<a class="headerlink" href="#effects" title="Permalink to this heading">¶</a></h2>
 <p>Flame provides a set of effects that can be applied to a certain type of components, these effects
 can be used to animate some properties of your components, like position or dimensions.
-You can check the list of those effects <a class="reference internal" href="effects.html"><span class="doc std std-doc">here</span></a>.</p>
+You can check the list of those effects <a class="reference internal" href="effects.html"><span class="std std-doc">here</span></a>.</p>
 <p>Examples of the running effects can be found <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/effects">here</a>;</p>
 </section>
 </section>

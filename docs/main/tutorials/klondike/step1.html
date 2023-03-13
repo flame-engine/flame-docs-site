@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
@@ -309,16 +308,16 @@
 <h1>1. Preparation<a class="headerlink" href="#preparation" title="Permalink to this heading">¶</a></h1>
 <p>Before you begin any kind of game project, you need to give it a <strong>name</strong>. For
 this tutorial the name will be simply <code class="docutils literal notranslate"><span class="pre">klondike</span></code>.</p>
-<p>Having this name in mind, please head over to the <a class="reference internal" href="../bare_flame_game.html"><span class="doc std std-doc">Bare Flame game</span></a>
+<p>Having this name in mind, please head over to the <a class="reference internal" href="../bare_flame_game.html"><span class="std std-doc">Bare Flame game</span></a>
 tutorial and complete the necessary set up steps. When you come back, you should
 already have the <code class="docutils literal notranslate"><span class="pre">main.dart</span></code> file with the following content:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">));</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">();</span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">));</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <section id="planning">
@@ -394,9 +393,9 @@ tired drawing these.</p></li>
 <p>Also, you need to tell Flutter about this image (just having it inside the
 <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder is not enough). In order to do this, let’s add the following
 lines into the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">assets</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/images/</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">assets</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/images/</span>
 </pre></div>
 </div>
 <p>Alright, enough with preparing – onward to coding!</p>

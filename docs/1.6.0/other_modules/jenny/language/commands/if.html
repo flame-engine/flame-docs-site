@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-  <script src="../../../../_static/jquery.js"></script>
-  <script src="../../../../_static/underscore.js"></script>
-  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -304,13 +302,13 @@
 <p>The <strong>&lt;&lt;if&gt;&gt;</strong> command evaluates its condition, and based on that decides which statements to
 execute next. This is equivalent to <code class="docutils literal notranslate"><span class="pre">if</span></code> keyword in most programming languages. This command may
 have multiple parts, which look as follows:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nf">condition1</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span>statements1...<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nf">condition2</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span>statements2...<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span>statementsN...<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nf">condition1</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span>statements1...
+<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nf">condition2</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span>statements2...
+<span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span>statementsN...
+<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -332,20 +330,20 @@ proceed to statements that occur after the final <code class="docutils literal n
 citizens of the area. If your reputation falls below −100, you’ll be attacked on sight.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> GuardGreeting</span>
 <span class="p">---</span>
-<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">100</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>Hail to the savior of the people!<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">30</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>Nice to meet you, sir!<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">0</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>Hello<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="m">30</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>I&#39;m keeping an eye on you...<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="m">100</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>You filthy scum!<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>You&#39;ll pay for your crimes! <span class="ch">#auto</span><span class="w"></span>
-<span class="w">  </span><span class="p">&lt;&lt;</span><span class="nc">attack</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">100</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>Hail to the savior of the people!
+<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">30</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>Nice to meet you, sir!
+<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">0</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>Hello
+<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="m">30</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>I&#39;m keeping an eye on you...
+<span class="p">&lt;&lt;</span><span class="k">elseif</span><span class="w"> </span><span class="nv">$reputation</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="o">-</span><span class="m">100</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>You filthy scum!
+<span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span><span class="nt">Guard</span><span class="p">: </span>You&#39;ll pay for your crimes! <span class="ch">#auto</span>
+<span class="w">  </span><span class="p">&lt;&lt;</span><span class="nc">attack</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span>
 <span class="p">===</span>
 </pre></div>
 </div>

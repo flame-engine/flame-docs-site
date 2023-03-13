@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/underscore.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -329,7 +327,7 @@ separate DOM elements.</p>
 It is a cool feature from GitHub, by which you can easily host web content from your repository.</p>
 <p>Here we will explain the easiest way to get your game hosted using GitHub pages.</p>
 <p>First thing, lets create the branch where your deployed files will live:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout -b gh-pages
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>gh-pages
 </pre></div>
 </div>
 <p>This branch can be created from <code class="docutils literal notranslate"><span class="pre">main</span></code> or any other place, it doesn’t matter much. After you push that
@@ -337,23 +335,23 @@ branch go back to your <code class="docutils literal notranslate"><span class="p
 <p>Now you should add the <a class="reference external" href="https://github.com/bluefireteam/flutter-gh-pages">flutter-gh-pages</a>
 action to your repository, you can do that by creating a file <code class="docutils literal notranslate"><span class="pre">gh-pages.yaml</span></code> under the folder
 <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code>.</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gh-Pages</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Gh-Pages</span>
 
-<span class="nt">on</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">push</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span><span class="w"></span>
+<span class="nt">on</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">push</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">branches</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="nv">main</span><span class="w"> </span><span class="p p-Indicator">]</span>
 
-<span class="nt">jobs</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">build</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span><span class="w"></span>
+<span class="nt">jobs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">build</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">runs-on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ubuntu-latest</span>
 
-<span class="w">    </span><span class="nt">steps</span><span class="p">:</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subosito/flutter-action@v2</span><span class="w"></span>
-<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bluefireteam/flutter-gh-pages@v8</span><span class="w"></span>
-<span class="w">        </span><span class="nt">with</span><span class="p">:</span><span class="w"></span>
-<span class="w">          </span><span class="nt">baseHref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/NAME_OF_YOUR_REPOSITORY/</span><span class="w"></span>
-<span class="w">          </span><span class="nt">webRenderer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">canvaskit</span><span class="w"></span>
+<span class="w">    </span><span class="nt">steps</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actions/checkout@v3</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">subosito/flutter-action@v2</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">uses</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">bluefireteam/flutter-gh-pages@v8</span>
+<span class="w">        </span><span class="nt">with</span><span class="p">:</span>
+<span class="w">          </span><span class="nt">baseHref</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/NAME_OF_YOUR_REPOSITORY/</span>
+<span class="w">          </span><span class="nt">webRenderer</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">canvaskit</span>
 </pre></div>
 </div>
 <p>Be sure to change <code class="docutils literal notranslate"><span class="pre">NAME_OF_YOUR_REPOSITORY</span></code> to the name of your GitHub repository.</p>

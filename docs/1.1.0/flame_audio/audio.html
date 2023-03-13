@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/underscore.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -179,8 +177,8 @@
 <p>Playing audio is essential for any game, so we made it simple!</p>
 <p>First you have to add <a class="reference external" href="https://github.com/flame-engine/flame_audio">flame_audio</a> to your dependency
 list in your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">flame_audio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.0</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">dependencies</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">flame_audio</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.1.0</span>
 </pre></div>
 </div>
 <p>The latest version can be found on <a class="reference external" href="https://pub.dev/packages/flame_audio/install">pub.dev</a>.</p>
@@ -189,31 +187,31 @@ list in your <code class="docutils literal notranslate"><span class="pre">pubspe
 <p>The default directory for <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> is <code class="docutils literal notranslate"><span class="pre">assets/audio</span></code> (which can be changed) and for <code class="docutils literal notranslate"><span class="pre">AudioPool</span></code>
 the default directory is <code class="docutils literal notranslate"><span class="pre">assets/audio/sfx</span></code>.</p>
 <p>For the examples below, your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file needs to contain something like this:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">assets</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/audio/explosion.mp3</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/audio/music.mp3</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">assets</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/audio/explosion.mp3</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/audio/music.mp3</span>
 </pre></div>
 </div>
 <p>(The default directory for <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> is <code class="docutils literal notranslate"><span class="pre">assets/audio</span></code> (which can be changed) and for <code class="docutils literal notranslate"><span class="pre">AudioPool</span></code>
 the default directory is <code class="docutils literal notranslate"><span class="pre">assets/audio/sfx</span></code>.)</p>
 <p>Then you have the following methods at your disposal:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_audio/flame_audio.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_audio/flame_audio.dart&#39;</span><span class="p">;</span>
 
-<span class="c1">// For shorter reused audio clips, like sound effects</span><span class="w"></span>
-<span class="n">FlameAudio</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// For shorter reused audio clips, like sound effects</span>
+<span class="n">FlameAudio</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span>
 
-<span class="c1">// For looping an audio file</span><span class="w"></span>
-<span class="n">FlameAudio</span><span class="p">.</span><span class="n">loop</span><span class="p">(</span><span class="s1">&#39;music.mp3&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// For looping an audio file</span>
+<span class="n">FlameAudio</span><span class="p">.</span><span class="n">loop</span><span class="p">(</span><span class="s1">&#39;music.mp3&#39;</span><span class="p">);</span>
 
-<span class="c1">// For playing a longer audio file</span><span class="w"></span>
-<span class="n">FlameAudio</span><span class="p">.</span><span class="n">playLongAudio</span><span class="p">(</span><span class="s1">&#39;music.mp3&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// For playing a longer audio file</span>
+<span class="n">FlameAudio</span><span class="p">.</span><span class="n">playLongAudio</span><span class="p">(</span><span class="s1">&#39;music.mp3&#39;</span><span class="p">);</span>
 
-<span class="c1">// For looping a longer audio file</span><span class="w"></span>
-<span class="n">FlameAudio</span><span class="p">.</span><span class="n">loopLongAudio</span><span class="p">(</span><span class="s1">&#39;music.mp3&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// For looping a longer audio file</span>
+<span class="n">FlameAudio</span><span class="p">.</span><span class="n">loopLongAudio</span><span class="p">(</span><span class="s1">&#39;music.mp3&#39;</span><span class="p">);</span>
 
-<span class="c1">// For background music that should be paused/played when the pausing/resuming the game</span><span class="w"></span>
-<span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;music.mp3&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// For background music that should be paused/played when the pausing/resuming the game</span>
+<span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;music.mp3&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>The difference between the <code class="docutils literal notranslate"><span class="pre">play/loop</span></code> and <code class="docutils literal notranslate"><span class="pre">playLongAudio/loopLongAudio</span></code> is that <code class="docutils literal notranslate"><span class="pre">play/loop</span></code> makes
@@ -222,7 +220,7 @@ almost no drop on the game frame rate will happen. You should whenever possible,
 methods.</p>
 <p><code class="docutils literal notranslate"><span class="pre">playLongAudio/loopLongAudio</span></code> allows for audios of any length to be played, but they do create frame
 rate drop, and the looped audio will have a small gap between iterations.</p>
-<p>You can use <a class="reference internal" href="bgm.html"><span class="doc std std-doc">the <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class</span></a> (via <code class="docutils literal notranslate"><span class="pre">FlameAudio.bgm</span></code>) to play looping background music
+<p>You can use <a class="reference internal" href="bgm.html"><span class="std std-doc">the <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class</span></a> (via <code class="docutils literal notranslate"><span class="pre">FlameAudio.bgm</span></code>) to play looping background music
 tracks. The <code class="docutils literal notranslate"><span class="pre">Bgm</span></code> class lets Flame automatically manage the pausing and resuming of background music
 tracks when the game is backgrounded or comes back to the foreground.</p>
 <p>Some file formats that work across devices and that we recommend are: MP3, OGG and WAV.</p>
@@ -232,16 +230,16 @@ link for a more in-depth explanation.</p>
 <p>Finally, you can pre-load your audios. Audios need to be stored in the memory the first time they
 are requested; therefore, the first time you play each mp3 you might get a delay. In order to
 pre-load your audios, just use:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">await</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">await</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>You can load all your audios in the beginning in your game’s <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method so that they always
 play smoothly. To load multiple audio files, use the <code class="docutils literal notranslate"><span class="pre">loadAll</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">await</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;music.mp3&#39;</span><span class="p">])</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">await</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;music.mp3&#39;</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Finally, you can use the <code class="docutils literal notranslate"><span class="pre">clear</span></code> method to remove a file that has been loaded into the cache:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>There is also a <code class="docutils literal notranslate"><span class="pre">clearCache</span></code> method, that clears the whole cache.</p>

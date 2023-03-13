@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/underscore.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/other/util.html">Utils</a></li>
@@ -319,11 +318,11 @@ the test file should be <code class="docutils literal notranslate"><span class="
 <li><p>The test file should contain a <code class="docutils literal notranslate"><span class="pre">main()</span></code> function with a single <code class="docutils literal notranslate"><span class="pre">group()</span></code> whose name matches the
 name of the class being tested. If the source file contains multiple public classes, then each of
 them should have its own group. For example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;SpookyEffect&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// tests here</span><span class="w"></span>
-<span class="w">  </span><span class="p">});</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">group</span><span class="p">(</span><span class="s1">&#39;SpookyEffect&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// tests here</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </li>
@@ -339,9 +338,9 @@ the tests. Having the <code class="docutils literal notranslate"><span class="pr
 <h2>Types of tests<a class="headerlink" href="#types-of-tests" title="Permalink to this heading">¶</a></h2>
 <section id="simple-tests">
 <h3>Simple tests<a class="headerlink" href="#simple-tests" title="Permalink to this heading">¶</a></h3>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="p">(</span><span class="s1">&#39;the name of the test&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">expect</span><span class="p">(...);</span><span class="w"></span>
-<span class="p">});</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">test</span><span class="p">(</span><span class="s1">&#39;the name of the test&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">expect</span><span class="p">(...);</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 <p>This is the simplest kind of test available, and also the fastest. Use these tests for checking
@@ -351,12 +350,12 @@ some classes/methods that can function in isolation from the rest of the Flame f
 <h3>FlameGame tests<a class="headerlink" href="#flamegame-tests" title="Permalink to this heading">¶</a></h3>
 <p>It is very common to want to have a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> instance inside a test, so that you can add some
 components to it and verify various behaviors. The following approach is recommended:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">testWithFlameGame</span><span class="p">(</span><span class="s1">&#39;the name of the test&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(...);</span><span class="w"></span>
-<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">ready</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">testWithFlameGame</span><span class="p">(</span><span class="s1">&#39;the name of the test&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(...);</span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">ready</span><span class="p">();</span>
 
-<span class="w">  </span><span class="n">expect</span><span class="p">(...);</span><span class="w"></span>
-<span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="n">expect</span><span class="p">(...);</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 <p>Here the <code class="docutils literal notranslate"><span class="pre">game</span></code> instance that is passed to the test body is a fully initialized game that behaves
@@ -364,13 +363,13 @@ as if it was mounted to a <code class="docutils literal notranslate"><span class
 components are loaded and mounted to the component tree.</p>
 <p>The time within the <code class="docutils literal notranslate"><span class="pre">game</span></code> can be advanced with <code class="docutils literal notranslate"><span class="pre">game.update(dt)</span></code>.</p>
 <p>If you need to have a custom game inside this test (say, a game with some mixin), then use</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">testWithGame</span><span class="o">&lt;</span><span class="n">_MyGame</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="s1">&#39;the name of the test&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">_MyGame</span><span class="p">.</span><span class="k">new</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="p">(</span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// test body...</span><span class="w"></span>
-<span class="w">  </span><span class="p">},</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">testWithGame</span><span class="o">&lt;</span><span class="n">_MyGame</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;the name of the test&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">_MyGame</span><span class="p">.</span><span class="k">new</span><span class="p">,</span>
+<span class="w">  </span><span class="p">(</span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// test body...</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -379,22 +378,22 @@ components are loaded and mounted to the component tree.</p>
 <p>Sometimes having a “naked” <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is insufficient, and you want to have access to the Flutter
 infrastructure as well. That is, to have a game mounted into a real <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> embedded into an
 actual Flutter framework. In such cases, use</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">testWidgets</span><span class="p">(</span><span class="s1">&#39;test name&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">tester</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_MyGame</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">tester</span><span class="p">.</span><span class="n">pumpWidget</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">tester</span><span class="p">.</span><span class="n">pump</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">tester</span><span class="p">.</span><span class="n">pump</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">testWidgets</span><span class="p">(</span><span class="s1">&#39;test name&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">tester</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_MyGame</span><span class="p">();</span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">tester</span><span class="p">.</span><span class="n">pumpWidget</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">));</span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">tester</span><span class="p">.</span><span class="n">pump</span><span class="p">();</span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">tester</span><span class="p">.</span><span class="n">pump</span><span class="p">();</span>
 
-<span class="w">  </span><span class="c1">// At this point the game is fully initialized, and you can run your checks</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// against it.</span><span class="w"></span>
-<span class="w">  </span><span class="n">expect</span><span class="p">(...);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// At this point the game is fully initialized, and you can run your checks</span>
+<span class="w">  </span><span class="c1">// against it.</span>
+<span class="w">  </span><span class="n">expect</span><span class="p">(...);</span>
 
-<span class="w">  </span><span class="c1">// Equivalent to game.update(0)</span><span class="w"></span>
-<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">tester</span><span class="p">.</span><span class="n">pump</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Equivalent to game.update(0)</span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">tester</span><span class="p">.</span><span class="n">pump</span><span class="p">();</span>
 
-<span class="w">  </span><span class="c1">// Advances in-game time by 20 milliseconds</span><span class="w"></span>
-<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">tester</span><span class="p">.</span><span class="n">pump</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Duration</span><span class="p">(</span><span class="nl">milliseconds:</span><span class="w"> </span><span class="m">20</span><span class="p">));</span><span class="w"></span>
-<span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Advances in-game time by 20 milliseconds</span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">tester</span><span class="p">.</span><span class="n">pump</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Duration</span><span class="p">(</span><span class="nl">milliseconds:</span><span class="w"> </span><span class="m">20</span><span class="p">));</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 <p>There are some additional methods available on the <code class="docutils literal notranslate"><span class="pre">tester</span></code> controller, for example in order to
@@ -406,15 +405,15 @@ simulate taps, or drags, or key presses.</p>
 simple:</p>
 <ol class="arabic">
 <li><p>Write the test, using the following template:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">testGolden</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="s1">&#39;the name of the test&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="p">(</span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">     </span><span class="c1">// Set up the game by adding the necessary components</span><span class="w"></span>
-<span class="w">     </span><span class="c1">// You can add `expect()` checks here too, if you want to</span><span class="w"></span>
-<span class="w">  </span><span class="p">},</span><span class="w"></span>
-<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">300</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">goldenFile:</span><span class="w"> </span><span class="s1">&#39;.../_goldens/my_test_file.png&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">testGolden</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;the name of the test&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">(</span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">     </span><span class="c1">// Set up the game by adding the necessary components</span>
+<span class="w">     </span><span class="c1">// You can add `expect()` checks here too, if you want to</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">300</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">goldenFile:</span><span class="w"> </span><span class="s1">&#39;.../_goldens/my_test_file.png&#39;</span><span class="p">,</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>Here the <code class="docutils literal notranslate"><span class="pre">size</span></code> parameter determines the size of the game canvas and of the output image. The
@@ -443,9 +442,9 @@ anti-aliasing algorithms.</p>
 <h3>Random tests<a class="headerlink" href="#random-tests" title="Permalink to this heading">¶</a></h3>
 <p>These are the tests that use a random number generator in order to construct a randomized input and
 then check its correctness. Use as follows:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">testRandom</span><span class="p">(</span><span class="s1">&#39;test name&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">Random</span><span class="w"> </span><span class="n">random</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// Use [random] to generate random input</span><span class="w"></span>
-<span class="p">});</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">testRandom</span><span class="p">(</span><span class="s1">&#39;test name&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">Random</span><span class="w"> </span><span class="n">random</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Use [random] to generate random input</span>
+<span class="p">});</span>
 </pre></div>
 </div>
 <p>You can add <code class="docutils literal notranslate"><span class="pre">repeatCount:</span> <span class="pre">1000</span></code> parameter to run this test the specified number of times, each one

@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-  <script src="../../../../../_static/jquery.js"></script>
-  <script src="../../../../../_static/underscore.js"></script>
-  <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../../_static/doctools.js"></script>
+  <script src="../../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -311,8 +309,8 @@ getting different results upon reload.</p>
 random integer from 1 to 6, as if throwing a regular six-sided die.</p>
 <p>The argument <code class="docutils literal notranslate"><span class="pre">n</span></code> must be numeric, and greater or equal than 1. If <code class="docutils literal notranslate"><span class="pre">n</span></code> is a non-integer, then it
 will be truncated to an integer value at runtime. Thus, <code class="docutils literal notranslate"><span class="pre">dice(3.5)</span></code> is equivalent to <code class="docutils literal notranslate"><span class="pre">dice(3)</span></code>.</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$roll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dice</span><span class="p">(</span><span class="m">6</span><span class="p">)&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$coin_flip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">if</span><span class="p">(</span><span class="nb">dice</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">H</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">T</span><span class="s s-Delimeter">&quot;</span><span class="p">)&gt;&gt;</span><span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$roll</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dice</span><span class="p">(</span><span class="m">6</span><span class="p">)&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$coin_flip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">if</span><span class="p">(</span><span class="nb">dice</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">H</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">T</span><span class="s s-Delimeter">&quot;</span><span class="p">)&gt;&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -320,10 +318,10 @@ will be truncated to an integer value at runtime. Thus, <code class="docutils li
 <h2><code class="docutils literal notranslate"><span class="pre">random()</span></code><a class="headerlink" href="#random" title="Permalink to this heading">¶</a></h2>
 <p>Returns a random floating-point between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
 <p>This function can be used to implement events with a prescribed probability. For example:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nb">random</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.001</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nb">random</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.001</span><span class="p">&gt;&gt;</span>
 <span class="w">  </span><span class="c">// This happens only with 0.1% probability</span>
-<span class="w">  </span>You found it! The Holy Grail!<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="w">  </span>You found it! The Holy Grail!
+<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -334,7 +332,7 @@ will be truncated to an integer value at runtime. Thus, <code class="docutils li
 The value of <code class="docutils literal notranslate"><span class="pre">a</span></code> must be less than or equal to <code class="docutils literal notranslate"><span class="pre">b</span></code>, or otherwise a runtime exception will be thrown.</p>
 <p>The purpose of this function is similar to <code class="docutils literal notranslate"><span class="pre">dice()</span></code>, but it can be used in situations where a
 custom range is desired.</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$coin_flip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">bool</span><span class="p">(</span><span class="nb">random_range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))&gt;&gt;</span><span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$coin_flip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">bool</span><span class="p">(</span><span class="nb">random_range</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">))&gt;&gt;</span>
 </pre></div>
 </div>
 </section>

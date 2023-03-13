@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/underscore.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -34,6 +32,8 @@
   <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
+  <link rel="next" title="Other" href="other/other.html" />
+  <link rel="prev" title="AlignComponent" href="layout/align_component.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -103,8 +103,8 @@
       </form>
     </div>
     <div class="nav-left" role="navigation" aria-label="Main">
-      <ul>
-<li class="toctree-l1"><a class="reference internal" href="flame.html">Flame</a><ul>
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="flame.html">Flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="structure.html">File Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game Loop</a></li>
@@ -137,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="other/util.html">Utils</a></li>
@@ -315,28 +316,28 @@ easy to create things like a pause menu or an inventory screen for example.</p>
 overlay to be shown or hidden, respectively, via a <code class="docutils literal notranslate"><span class="pre">String</span></code> argument that identifies the overlay.
 After that, you can map each overlay to their corresponding Widget in your <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> declaration
 by providing an <code class="docutils literal notranslate"><span class="pre">overlayBuilderMap</span></code>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">// Inside your game:</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">pauseOverlayIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PauseMenu&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">// Inside your game:</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">pauseOverlayIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PauseMenu&#39;</span><span class="p">;</span>
 
-<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to be rendered.</span><span class="w"></span>
-<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span><span class="w"></span>
-<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to be rendered.</span>
+<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span>
+<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// On the widget declaration</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// On the widget declaration</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span>
 
-<span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nl">overlayBuilderMap:</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="s1">&#39;PauseMenu&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;A pause menu&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="p">},</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">  </span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">overlayBuilderMap:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="s1">&#39;PauseMenu&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;A pause menu&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The order of rendering for an overlay is determined by the order of the keys in the
@@ -352,7 +353,21 @@ by providing an <code class="docutils literal notranslate"><span class="pre">ove
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="layout/align_component.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">AlignComponent</p>
+        </div>
+      </a>
       <div class='expander'></div>
+      <a class="right-next" id="next-link" href="other/other.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">Other</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
     </div>
   </div>
 

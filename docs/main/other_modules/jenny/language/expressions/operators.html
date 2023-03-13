@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-  <script src="../../../../_static/jquery.js"></script>
-  <script src="../../../../_static/underscore.js"></script>
-  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/other/util.html">Utils</a></li>
@@ -319,9 +318,9 @@ into the following categories:</p>
 arguments (with the exception of <code class="docutils literal notranslate"><span class="pre">+</span></code> which can also be used with strings):</p>
 <table class="first-col-align-center docutils align-left">
 <colgroup>
-<col style="width: 8%" />
-<col style="width: 17%" />
-<col style="width: 75%" />
+<col style="width: 8.3%" />
+<col style="width: 16.7%" />
+<col style="width: 75.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>operator</p></th>
@@ -368,9 +367,9 @@ example, <code class="docutils literal notranslate"><span class="pre">&quot;Hell
 symbolic or word form – both forms are equivalent:</p>
 <table class="first-col-align-center docutils align-left">
 <colgroup>
-<col style="width: 8%" />
-<col style="width: 17%" />
-<col style="width: 75%" />
+<col style="width: 8.3%" />
+<col style="width: 16.7%" />
+<col style="width: 75.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>operator</p></th>
@@ -407,9 +406,9 @@ is the variable that shall be modified, the right-hand side is the expression of
 the variable on the left:</p>
 <table class="first-col-align-center docutils align-left">
 <colgroup>
-<col style="width: 8%" />
-<col style="width: 17%" />
-<col style="width: 75%" />
+<col style="width: 8.3%" />
+<col style="width: 16.7%" />
+<col style="width: 75.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>operator</p></th>
@@ -447,7 +446,7 @@ the variable on the left:</p>
 <p>Unlike all other operators, the assignment operators do not produce a value. This means they
 cannot be used inside a larger expression, for example the following is invalid: <code class="docutils literal notranslate"><span class="pre">3</span> <span class="pre">+</span> <span class="pre">($x</span> <span class="pre">+=</span> <span class="pre">7)</span></code>.
 Instead, the assignment operators are only usable at the top level of commands such as
-<a class="reference internal" href="../commands/set.html"><span class="doc std std-doc">&lt;&lt;set&gt;&gt;</span></a>, <a class="reference internal" href="../commands/declare.html"><span class="doc std std-doc">&lt;&lt;declare&gt;&gt;</span></a>, and <a class="reference internal" href="../commands/local.html"><span class="doc std std-doc">&lt;&lt;local&gt;&gt;</span></a>.</p>
+<a class="reference internal" href="../commands/set.html"><span class="std std-doc">&lt;&lt;set&gt;&gt;</span></a>, <a class="reference internal" href="../commands/declare.html"><span class="std std-doc">&lt;&lt;declare&gt;&gt;</span></a>, and <a class="reference internal" href="../commands/local.html"><span class="std std-doc">&lt;&lt;local&gt;&gt;</span></a>.</p>
 </section>
 <section id="relational">
 <h3>Relational<a class="headerlink" href="#relational" title="Permalink to this heading">¶</a></h3>
@@ -458,9 +457,9 @@ relational operator is a boolean value, which can be either assigned to a variab
 larger expression:</p>
 <table class="first-col-align-center docutils align-left">
 <colgroup>
-<col style="width: 8%" />
-<col style="width: 25%" />
-<col style="width: 67%" />
+<col style="width: 8.3%" />
+<col style="width: 25.0%" />
+<col style="width: 66.7%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>operator</p></th>

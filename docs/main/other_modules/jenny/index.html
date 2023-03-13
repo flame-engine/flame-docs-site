@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
@@ -327,12 +326,12 @@ is specifically designed for writing dialogue.</p>
 <p>The simplest form of the yarn dialogue looks like a play:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> Scene1_Gregory_and_Sampson</span>
 <span class="p">---</span>
-<span class="nt">Sampson</span><span class="p">: </span>Gregory, on my word, we&#39;ll not carry coals.<span class="w"></span>
-<span class="nt">Gregory</span><span class="p">: </span>No, for then we should be colliers.<span class="w"></span>
-<span class="nt">Sampson</span><span class="p">: </span>I mean, an we be in choler, we&#39;ll draw.<span class="w"></span>
-<span class="nt">Gregory</span><span class="p">: </span>Ay, while you live, draw your neck out of collar.<span class="w"></span>
-<span class="nt">Sampson</span><span class="p">: </span>I strike quickly being moved.<span class="w"></span>
-<span class="nt">Gregory</span><span class="p">: </span>But thou art not quickly moved to strike.<span class="w"></span>
+<span class="nt">Sampson</span><span class="p">: </span>Gregory, on my word, we&#39;ll not carry coals.
+<span class="nt">Gregory</span><span class="p">: </span>No, for then we should be colliers.
+<span class="nt">Sampson</span><span class="p">: </span>I mean, an we be in choler, we&#39;ll draw.
+<span class="nt">Gregory</span><span class="p">: </span>Ay, while you live, draw your neck out of collar.
+<span class="nt">Sampson</span><span class="p">: </span>I strike quickly being moved.
+<span class="nt">Gregory</span><span class="p">: </span>But thou art not quickly moved to strike.
 <span class="p">===</span>
 </pre></div>
 </div>
@@ -345,46 +344,46 @@ select their response, etc. Most importantly, the format is so intuitive that it
 understood without having to learn it:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> Slughorn_encounter</span>
 <span class="p">---</span>
-<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nb">visited</span><span class="p">(</span><span class="s s-Delimeter">&quot;</span><span class="s">Horcrux_question</span><span class="s s-Delimeter">&quot;</span><span class="p">)&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">Slughorn</span><span class="p">: </span>Sorry, Tom, I don&#39;t have time right now.<span class="w"></span>
-<span class="w">  </span><span class="p">&lt;&lt;</span><span class="k">stop</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nb">visited</span><span class="p">(</span><span class="s s-Delimeter">&quot;</span><span class="s">Horcrux_question</span><span class="s s-Delimeter">&quot;</span><span class="p">)&gt;&gt;</span>
+<span class="w">  </span><span class="nt">Slughorn</span><span class="p">: </span>Sorry, Tom, I don&#39;t have time right now.
+<span class="w">  </span><span class="p">&lt;&lt;</span><span class="k">stop</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span>
 
-<span class="nt">Slughorn</span><span class="p">: </span>Oh hello, Tom, is there anything I can help you with?<span class="w"></span>
-<span class="nt">Tom</span><span class="p">: </span>Good <span class="p">{</span><span class="nf">time_of_day</span><span class="p">()}</span>, Professor.<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>I was curious about the 12 uses of the dragon blood.<span class="w"></span>
+<span class="nt">Slughorn</span><span class="p">: </span>Oh hello, Tom, is there anything I can help you with?
+<span class="nt">Tom</span><span class="p">: </span>Good <span class="p">{</span><span class="nf">time_of_day</span><span class="p">()}</span>, Professor.
+<span class="p">-&gt;</span><span class="w"> </span>I was curious about the 12 uses of the dragon blood.
 <span class="w">    </span><span class="nt">Slughorn</span><span class="p">: </span>Such an inquisitive mind! You can read about that in the &quot;Most <span class="se">\</span>
-<span class="se">              </span>Potente Potions&quot; in the Restricted Section of the library.<span class="w"></span>
-<span class="w">    </span><span class="p">&lt;&lt;</span><span class="nc">give</span><span class="w"> </span>restricted_library_pass<span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="nt">Tom</span><span class="p">: </span>Thank you, Professor, this is very munificent of you.<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>I wanted to ask... about Horcruxes <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$knows_about_horcruxes</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">Horcrux_question</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>I just wanted to say how much I always admire your lectures.<span class="w"></span>
-<span class="w">    </span><span class="nt">Slughorn</span><span class="p">: </span>Thank you, Tom. I do enjoy flattery, even if it is well-deserved.<span class="w"></span>
+<span class="se">              </span>Potente Potions&quot; in the Restricted Section of the library.
+<span class="w">    </span><span class="p">&lt;&lt;</span><span class="nc">give</span><span class="w"> </span>restricted_library_pass<span class="p">&gt;&gt;</span>
+<span class="w">    </span><span class="nt">Tom</span><span class="p">: </span>Thank you, Professor, this is very munificent of you.
+<span class="p">-&gt;</span><span class="w"> </span>I wanted to ask... about Horcruxes <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$knows_about_horcruxes</span><span class="p">&gt;&gt;</span>
+<span class="w">    </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">Horcrux_question</span><span class="p">&gt;&gt;</span>
+<span class="p">-&gt;</span><span class="w"> </span>I just wanted to say how much I always admire your lectures.
+<span class="w">    </span><span class="nt">Slughorn</span><span class="p">: </span>Thank you, Tom. I do enjoy flattery, even if it is well-deserved.
 <span class="p">===</span>
 
 <span class="nb">title</span><span class="p">:</span><span class="nv"> Horcrux_question</span>
 <span class="p">---</span>
-<span class="nt">Slughorn</span><span class="p">: </span>Where... did you hear that?<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span><span class="nt">Tom</span><span class="p">: </span>It was mentioned in an old book in the library...<span class="w"></span>
+<span class="nt">Slughorn</span><span class="p">: </span>Where... did you hear that?
+<span class="p">-&gt;</span><span class="w"> </span><span class="nt">Tom</span><span class="p">: </span>It was mentioned in an old book in the library...
 <span class="w">    </span><span class="nt">Slughorn</span><span class="p">: </span>I see that you have read more books from the Restricted Section <span class="se">\</span>
-<span class="se">              </span>than is wise.<span class="w"></span>
-<span class="w">    </span><span class="nt">Slughorn</span><span class="p">: </span>I&#39;m sorry, Tom, I should have seen you&#39;d be tempted...<span class="w"></span>
-<span class="w">    </span><span class="p">&lt;&lt;</span><span class="nc">take</span><span class="w"> </span>restricted_library_pass<span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">    </span><span class="p">-&gt;</span><span class="w"> </span>But Professor!..<span class="w"></span>
-<span class="w">        </span><span class="nt">Slughorn</span><span class="p">: </span>This is for your good, Tom. Many of those books are dangerous!<span class="w"></span>
+<span class="se">              </span>than is wise.
+<span class="w">    </span><span class="nt">Slughorn</span><span class="p">: </span>I&#39;m sorry, Tom, I should have seen you&#39;d be tempted...
+<span class="w">    </span><span class="p">&lt;&lt;</span><span class="nc">take</span><span class="w"> </span>restricted_library_pass<span class="p">&gt;&gt;</span>
+<span class="w">    </span><span class="p">-&gt;</span><span class="w"> </span>But Professor!..
+<span class="w">        </span><span class="nt">Slughorn</span><span class="p">: </span>This is for your good, Tom. Many of those books are dangerous!
 <span class="w">        </span><span class="nt">Slughorn</span><span class="p">: </span>Now off you go. And do your best to forget about what you <span class="se">\</span>
-<span class="se">                  </span>asked...<span class="w"></span>
-<span class="w">        </span><span class="p">&lt;&lt;</span><span class="k">stop</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="se">                  </span>asked...
+<span class="w">        </span><span class="p">&lt;&lt;</span><span class="k">stop</span><span class="p">&gt;&gt;</span>
 <span class="p">-&gt;</span><span class="w"> </span><span class="nt">Tom</span><span class="p">: </span>I overheard it... And the word felt sharp and frigid, like it was the <span class="se">\</span>
-<span class="se">   </span>embodiment of Dark Art <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nf">luck</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">80</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="se">   </span>embodiment of Dark Art <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nf">luck</span><span class="p">()</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">80</span><span class="p">&gt;&gt;</span>
 <span class="w">    </span><span class="nt">Slughorn</span><span class="p">: </span>It is a very Dark Art indeed, it is not good for you to know <span class="se">\</span>
-<span class="se">              </span>about it...<span class="w"></span>
+<span class="se">              </span>about it...
 <span class="w">    </span><span class="nt">Tom</span><span class="p">: </span>But if I don&#39;t know about this Dark Art, how can I defend myself <span class="se">\</span>
-<span class="se">         </span>against it?<span class="w"></span>
-<span class="w">    </span><span class="nt">Slughorn</span><span class="p">: </span>It is a Ritual, one of the darkest known to wizard-kind ...<span class="w"></span>
-<span class="w">    </span>...<span class="w"></span>
-<span class="w">    </span><span class="p">&lt;&lt;</span><span class="nc">achievement</span><span class="w"> </span>&quot;The Darkest Secret&quot;<span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="se">         </span>against it?
+<span class="w">    </span><span class="nt">Slughorn</span><span class="p">: </span>It is a Ritual, one of the darkest known to wizard-kind ...
+<span class="w">    </span>...
+<span class="w">    </span><span class="p">&lt;&lt;</span><span class="nc">achievement</span><span class="w"> </span>&quot;The Darkest Secret&quot;<span class="p">&gt;&gt;</span>
 <span class="p">===</span>
 </pre></div>
 </div>
@@ -397,7 +396,7 @@ understood without having to learn it:</p>
 <li><p>keep state information in variables;</p></li>
 <li><p>user-defined functions (<code class="docutils literal notranslate"><span class="pre">time_of_day</span></code>, <code class="docutils literal notranslate"><span class="pre">luck</span></code>) and commands (<code class="docutils literal notranslate"><span class="pre">&lt;&lt;give&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;take&gt;&gt;</span></code>).</p></li>
 </ul>
-<p>For more information, see the <a class="reference internal" href="language/language.html"><span class="doc std std-doc">Yarn Language</span></a> section.</p>
+<p>For more information, see the <a class="reference internal" href="language/language.html"><span class="std std-doc">Yarn Language</span></a> section.</p>
 </section>
 <section id="using-the-dialogue-in-a-game">
 <h2>Using the dialogue in a game<a class="headerlink" href="#using-the-dialogue-in-a-game" title="Permalink to this heading">¶</a></h2>
@@ -405,11 +404,11 @@ understood without having to learn it:</p>
 runtime that can be used to build such an integration. This runtime consists of the following
 components:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="runtime/yarn_project.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">YarnProject</span></code></span></a> – the central repository of information, which knows
+<li><p><a class="reference internal" href="runtime/yarn_project.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">YarnProject</span></code></span></a> – the central repository of information, which knows
 about all your yarn scripts, variables, custom functions and commands, settings, etc.</p></li>
-<li><p><a class="reference internal" href="runtime/dialogue_runner.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code></span></a> – an executor that can run a specific dialogue
+<li><p><a class="reference internal" href="runtime/dialogue_runner.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code></span></a> – an executor that can run a specific dialogue
 node. This executor will send the dialogue lines into one or more <code class="docutils literal notranslate"><span class="pre">DialogueView</span></code>s.</p></li>
-<li><p><a class="reference internal" href="runtime/dialogue_view.html"><span class="doc std std-doc"><code class="docutils literal notranslate"><span class="pre">DialogueView</span></code></span></a> – an abstract interface describing how the dialogue
+<li><p><a class="reference internal" href="runtime/dialogue_view.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">DialogueView</span></code></span></a> – an abstract interface describing how the dialogue
 will be presented to the end user. Implementing this interface is the primary way of integrating
 <code class="docutils literal notranslate"><span class="pre">jenny</span></code> into a specific environment.</p></li>
 </ul>

@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/underscore.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -180,10 +178,10 @@
 <p><img alt="" src="https://raw.githubusercontent.com/flame-engine/flame_splash_screen/main/demogif.gif" /></p>
 <p>Style your flame game with a beautiful splash screen.</p>
 <p>FlameSplashScreen is a very customizable splash screen package.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameSplashScreen</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">theme:</span><span class="w"> </span><span class="n">FlameSplashTheme</span><span class="p">.</span><span class="n">dark</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">onFinish:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Navigator</span><span class="p">.</span><span class="n">pushNamed</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/your-game-initial-screen&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameSplashScreen</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">theme:</span><span class="w"> </span><span class="n">FlameSplashTheme</span><span class="p">.</span><span class="n">dark</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">onFinish:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Navigator</span><span class="p">.</span><span class="n">pushNamed</span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;/your-game-initial-screen&#39;</span><span class="p">)</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 <p>Check the <a class="reference external" href="https://github.com/flame-engine/flame_splash_screen">package’s repo</a> and the

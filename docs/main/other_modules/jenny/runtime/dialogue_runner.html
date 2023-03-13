@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-  <script src="../../../_static/jquery.js"></script>
-  <script src="../../../_static/underscore.js"></script>
-  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../_static/doctools.js"></script>
+  <script src="../../../_static/sphinx_highlight.js"></script>
   <script src="../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/other/util.html">Utils</a></li>
@@ -402,20 +401,20 @@ normally to the next line.</p>
 <h2>Execution model<a class="headerlink" href="#execution-model" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> uses futures as a main mechanism for controlling the timing of the dialogue
 progression. For each event, the dialogue runner will invoke the corresponding callback on all its
-<a class="reference internal" href="dialogue_view.html"><span class="doc std std-doc">DialogueView</span></a>s, and each of those callbacks may return a future. The dialogue runner then awaits
+<a class="reference internal" href="dialogue_view.html"><span class="std std-doc">DialogueView</span></a>s, and each of those callbacks may return a future. The dialogue runner then awaits
 on all of these futures (in parallel), before proceeding to the next event.</p>
 <p>For a simple <code class="docutils literal notranslate"><span class="pre">.yarn</span></code> script like this</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> main</span>
 <span class="p">---</span>
-Hello<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Hi<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Go away<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">Away</span><span class="p">&gt;&gt;</span><span class="w"></span>
+Hello
+<span class="p">-&gt;</span><span class="w"> </span>Hi
+<span class="p">-&gt;</span><span class="w"> </span>Go away
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">Away</span><span class="p">&gt;&gt;</span>
 <span class="p">===</span>
 
 <span class="nb">title</span><span class="p">:</span><span class="nv"> Away</span>
 <span class="p">---</span>
-<span class="p">&lt;&lt;</span><span class="nc">OhNo</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="nc">OhNo</span><span class="p">&gt;&gt;</span>
 <span class="p">===</span>
 </pre></div>
 </div>

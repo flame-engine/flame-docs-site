@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -34,7 +32,7 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="Other" href="../other/other.html" />
+  <link rel="next" title="Overlays" href="../overlays.html" />
   <link rel="prev" title="Layout" href="layout.html" />
 </head>
 
@@ -139,6 +137,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../other/util.html">Utils</a></li>
@@ -330,10 +329,10 @@ this component in that direction will be equal to the size of the child
 times the corresponding factor. For example, if you set <a class="reference internal" href="#AlignComponent-heightFactor"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">heightFactor</span></code></a> to
 1 then the width of this component will be equal to the width of the parent,
 but the height will match the height of the child.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">AlignComponent</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">child:</span><span class="w"> </span><span class="n">TextComponent</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">centerLeft</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">AlignComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">child:</span><span class="w"> </span><span class="n">TextComponent</span><span class="p">(</span><span class="s1">&#39;hello&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">centerLeft</span><span class="p">,</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>By default, the child’s anchor is set equal to the <a class="reference internal" href="#AlignComponent-alignment"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">alignment</span></code></a> value. This
@@ -345,13 +344,13 @@ placement by giving the child a different anchor and setting
 <a class="reference internal" href="#AlignComponent-keepChildAnchor"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">keepChildAnchor</span></code></a> to true. For example, if you set <code class="docutils literal notranslate"><span class="pre">alignment</span></code> to
 <code class="docutils literal notranslate"><span class="pre">topCenter</span></code>, and child’s anchor to <code class="docutils literal notranslate"><span class="pre">bottomCenter</span></code>, then the child will
 effectively be placed above the current component:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">PlayerSprite</span><span class="p">().</span><span class="n">add</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">AlignComponent</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="nl">child:</span><span class="w"> </span><span class="n">HealthBar</span><span class="p">()..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">bottomCenter</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nl">keepChildAnchor:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">PlayerSprite</span><span class="p">().</span><span class="n">add</span><span class="p">(</span>
+<span class="w">  </span><span class="n">AlignComponent</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">child:</span><span class="w"> </span><span class="n">HealthBar</span><span class="p">()..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">bottomCenter</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">keepChildAnchor:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 </div>
@@ -438,10 +437,10 @@ own <code class="docutils literal notranslate"><span class="pre">anchor</span></
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="../other/other.html" title="next page">
+      <a class="right-next" id="next-link" href="../overlays.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Other</p>
+          <p class="prev-next-title">Overlays</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>

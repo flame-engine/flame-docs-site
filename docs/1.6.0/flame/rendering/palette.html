@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -312,9 +310,9 @@ opaque green (the “mask” would be <code class="docutils literal notranslate"
 the alpha channel (transparency), unlike on regular (non-A) RGB. The max(FF = 255) for the two first
 digits means fully opaque, and the min (00 = 0) means fully transparent.</p>
 <p>In the Material Flutter package there is a <code class="docutils literal notranslate"><span class="pre">Colors</span></code> class that provides common colors as constants:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">Colors</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="w"> </span><span class="k">show</span><span class="w"> </span><span class="n">Colors</span><span class="p">;</span>
 
-<span class="k">const</span><span class="w"> </span><span class="n">black</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">black</span><span class="p">;</span><span class="w"></span>
+<span class="k">const</span><span class="w"> </span><span class="n">black</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">black</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Some more complex methods might also take a <code class="docutils literal notranslate"><span class="pre">Paint</span></code> object, which is a more complete structure that
@@ -327,7 +325,7 @@ is to either define the <code class="docutils literal notranslate"><span class="
 class is mutable, unlike <code class="docutils literal notranslate"><span class="pre">Color</span></code>), or to use the <code class="docutils literal notranslate"><span class="pre">Palette</span></code> class to define all the colors that you
 want to use in your game.</p>
 <p>You can create such an object like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Paint</span><span class="w"> </span><span class="n">green</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF00FF00</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Paint</span><span class="w"> </span><span class="n">green</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF00FF00</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>To help you with this and to also keep your game’s color palette consistent, Flame adds the <code class="docutils literal notranslate"><span class="pre">Palette</span></code>
@@ -336,30 +334,30 @@ the colors your game use as constants, so you don’t get those mixed up.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">BasicPalette</span></code> class is an example of what a palette can look like, and adds black and white as
 colors. So to use black or white you can access those directly from the <code class="docutils literal notranslate"><span class="pre">BasicPalette</span></code>; for example,
 using <code class="docutils literal notranslate"><span class="pre">color</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">TextConfig</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">TextConfig</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Or using <code class="docutils literal notranslate"><span class="pre">paint</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">black</span><span class="p">.</span><span class="n">paint</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">black</span><span class="p">.</span><span class="n">paint</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>However, the idea is that you can create your own palette, following the <code class="docutils literal notranslate"><span class="pre">BasicPalette</span></code> example, and
 add the color palette/scheme of your game. Then you will be able to statically access any color in
 your components and classes. Below is an example of a <code class="docutils literal notranslate"><span class="pre">Palette</span></code> implementation, from the example
 game <a class="reference external" href="https://github.com/bluefireteam/bgug/blob/master/lib/palette.dart">BGUG</a>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
 
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/palette.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/palette.dart&#39;</span><span class="p">;</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">Palette</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="w"> </span><span class="n">white</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">;</span><span class="w"></span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">Palette</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="w"> </span><span class="n">white</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">;</span>
 
-<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="w"> </span><span class="n">toastBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFAC3232</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="w"> </span><span class="n">toastText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFDA9A00</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="w"> </span><span class="n">toastBackground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFAC3232</span><span class="p">));</span>
+<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="w"> </span><span class="n">toastText</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFDA9A00</span><span class="p">));</span>
 
-<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="w"> </span><span class="n">grey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF404040</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="w"> </span><span class="n">green</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF54a286</span><span class="p">));</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="w"> </span><span class="n">grey</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF404040</span><span class="p">));</span>
+<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="w"> </span><span class="n">green</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaletteEntry</span><span class="p">(</span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF54a286</span><span class="p">));</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>A <code class="docutils literal notranslate"><span class="pre">PaletteEntry</span></code> is a <code class="docutils literal notranslate"><span class="pre">const</span></code> class that holds information of a color and it has the following

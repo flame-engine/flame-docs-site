@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -274,7 +272,7 @@ to register components and systems and do anything else that you normally would 
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_oxygen/example">example folder</a>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code> also comes with it’s own <code class="docutils literal notranslate"><span class="pre">createEntity</span></code> method that automatically adds certain
 default components on the entity. This is especially helpful when you are using the
-<a class="reference internal" href="#basesystem"><span class="std std-doc">BaseSystem</span></a> as your base.</p>
+<a class="reference internal" href="#basesystem">BaseSystem</a> as your base.</p>
 </section>
 <section id="systems">
 <h2>Systems<a class="headerlink" href="#systems" title="Permalink to this heading">¶</a></h2>
@@ -285,27 +283,27 @@ no render loop. It only knows <code class="docutils literal notranslate"><span c
 Flame we can have different logic for different loops (render/update). So in <code class="docutils literal notranslate"><span class="pre">flame_oxygen</span></code> we
 introduced the <code class="docutils literal notranslate"><span class="pre">RenderSystem</span></code> and <code class="docutils literal notranslate"><span class="pre">UpdateSystem</span></code> mixin. These mixins allow you to add the <code class="docutils literal notranslate"><span class="pre">render</span></code>
 method and the <code class="docutils literal notranslate"><span class="pre">update</span></code> method respectively to your custom system. For more information see the
-<a class="reference internal" href="#mixin-rendersystem"><span class="std std-doc">RenderSystem</span></a> and <a class="reference internal" href="#mixin-updatesystem"><span class="std std-doc">UpdateSystem</span></a> section.</p>
+<a class="reference internal" href="#mixin-rendersystem">RenderSystem</a> and <a class="reference internal" href="#mixin-updatesystem">UpdateSystem</a> section.</p>
 <p>If you are coming from FCS you might expect certain default functionality that you normally got
 from the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>. As mentioned before components do not contain any kind of logic, but
 to give you the same default functionality we also created a class called <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code>. This system
 acts almost identical to the prerender logic from the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> in FCS. You only have
 to subclass it to your own system. For more information see the
-<a class="reference internal" href="#basesystem"><span class="std std-doc">BaseSystem</span></a> section.</p>
+<a class="reference internal" href="#basesystem">BaseSystem</a> section.</p>
 <p>Systems can be registered to the world using the <code class="docutils literal notranslate"><span class="pre">world.registerSystem</span></code> method on
-<a class="reference internal" href="#oxygengame-game-extension"><span class="std std-doc">OxygenGame</span></a>.</p>
+<a class="reference internal" href="#oxygengame-game-extension">OxygenGame</a>.</p>
 <section id="mixin-gameref">
 <h3>mixin GameRef<a class="headerlink" href="#mixin-gameref" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameRef</span></code> mixin allows a system to become aware of the <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code> instance its attached to.
 This allows easy access to the methods on the game class.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">YourSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">GameRef</span><span class="o">&lt;</span><span class="n">YourGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// Access to game using the .game propery</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">YourSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">GameRef</span><span class="o">&lt;</span><span class="n">YourGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Access to game using the .game propery</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// ...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -314,20 +312,20 @@ This allows easy access to the methods on the game class.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">RenderSystem</span></code> mixin allows a system to be registered for the render loop.
 By adding a <code class="docutils literal notranslate"><span class="pre">render</span></code> method to the system you get full access to the canvas as
 you normally would in Flame.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SimpleRenderSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">RenderSystem</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">Query</span><span class="o">?</span><span class="w"> </span><span class="n">_query</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SimpleRenderSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">RenderSystem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Query</span><span class="o">?</span><span class="w"> </span><span class="n">_query</span><span class="p">;</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">_query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createQuery</span><span class="p">([</span><span class="cm">/* Your filters */</span><span class="p">]);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createQuery</span><span class="p">([</span><span class="cm">/* Your filters */</span><span class="p">]);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">_query</span><span class="o">?</span><span class="p">.</span><span class="n">entities</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// Render entity based on components</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">_query</span><span class="o">?</span><span class="p">.</span><span class="n">entities</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Render entity based on components</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -336,20 +334,20 @@ you normally would in Flame.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">MixinSystem</span></code> mixin allows a system to be registered for the update loop.
 By adding a <code class="docutils literal notranslate"><span class="pre">update</span></code> method to the system you get full access to the delta time as you
 normally would in Flame.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SimpleUpdateSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">UpdateSystem</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">Query</span><span class="o">?</span><span class="w"> </span><span class="n">_query</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SimpleUpdateSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">UpdateSystem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Query</span><span class="o">?</span><span class="w"> </span><span class="n">_query</span><span class="p">;</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">_query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createQuery</span><span class="p">([</span><span class="cm">/* Your filters */</span><span class="p">]);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">init</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_query</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createQuery</span><span class="p">([</span><span class="cm">/* Your filters */</span><span class="p">]);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">_query</span><span class="o">?</span><span class="p">.</span><span class="n">entities</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// Update components values</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">entity</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">_query</span><span class="o">?</span><span class="p">.</span><span class="n">entities</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Entity</span><span class="o">&gt;</span><span class="p">[])</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Update components values</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -372,28 +370,28 @@ from FCS would (translating, rotating and setting the anchor. After that it will
 <li><p><code class="docutils literal notranslate"><span class="pre">AnchorComponent</span></code> (optional, defaults to <code class="docutils literal notranslate"><span class="pre">Anchor.topLeft</span></code>)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">AngleComponent</span></code> (optional, defaults to <code class="docutils literal notranslate"><span class="pre">0</span></code>)</p></li>
 </ul>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SimpleBaseSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BaseSystem</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Filter</span><span class="o">&lt;</span><span class="n">Component</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">filters</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[];</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SimpleBaseSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BaseSystem</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Filter</span><span class="o">&lt;</span><span class="n">Component</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">filters</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">[];</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">renderEntity</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">Entity</span><span class="w"> </span><span class="n">entity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// The canvas is translated, rotated and fully prepared for rendering.</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">renderEntity</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">Entity</span><span class="w"> </span><span class="n">entity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// The canvas is translated, rotated and fully prepared for rendering.</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
 <section id="particlesystem">
 <h3>ParticleSystem<a class="headerlink" href="#particlesystem" title="Permalink to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ParticleSystem</span></code> is a simple system that brings the Particle API from Flame to Oxygen. This
-allows you to use the <a class="reference internal" href="components.html#particlecomponent"><span class="std std-doc">ParticleComponent</span></a> without having to worry
+allows you to use the <a class="reference internal" href="components.html#particlecomponent"><span class="std std-ref">ParticleComponent</span></a> without having to worry
 about how it will render or when to update it. As most of that logic is already contained in the
 Particle itself.</p>
 <p>Simply register the <code class="docutils literal notranslate"><span class="pre">ParticleSystem</span></code> and the <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code> to your world like so:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">registerSystem</span><span class="p">(</span><span class="n">ParticleSystem</span><span class="p">());</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">registerSystem</span><span class="p">(</span><span class="n">ParticleSystem</span><span class="p">());</span>
 
-<span class="n">world</span><span class="p">.</span><span class="n">registerComponent</span><span class="o">&lt;</span><span class="n">ParticleComponent</span><span class="p">,</span><span class="w"> </span><span class="n">Particle</span><span class="o">&gt;</span><span class="p">(()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ParticleComponent</span><span class="p">);</span><span class="w"></span>
+<span class="n">world</span><span class="p">.</span><span class="n">registerComponent</span><span class="o">&lt;</span><span class="n">ParticleComponent</span><span class="p">,</span><span class="w"> </span><span class="n">Particle</span><span class="o">&gt;</span><span class="p">(()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ParticleComponent</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>You can now create a new entity with a <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code>. For more info about that see the

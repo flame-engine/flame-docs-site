@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-  <script src="../../../_static/jquery.js"></script>
-  <script src="../../../_static/underscore.js"></script>
-  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../_static/doctools.js"></script>
+  <script src="../../../_static/sphinx_highlight.js"></script>
   <script src="../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/other/util.html">Utils</a></li>
@@ -307,14 +306,14 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="markupattribute">
 <h1>MarkupAttribute<a class="headerlink" href="#markupattribute" title="Permalink to this heading">¶</a></h1>
-<p>A <strong>MarkupAttribute</strong> is a descriptor of a subrange of text in a <a class="reference internal" href="dialogue_line.html"><span class="doc std std-doc">line</span></a>, demarcated with markup
+<p>A <strong>MarkupAttribute</strong> is a descriptor of a subrange of text in a <a class="reference internal" href="dialogue_line.html"><span class="std std-doc">line</span></a>, demarcated with markup
 tags. For example, in a <code class="docutils literal notranslate"><span class="pre">.yarn</span></code> line below there are two ranges of text surrounded by markup tags,
 and therefore there will be two <code class="docutils literal notranslate"><span class="pre">MarkupAttribute</span></code>s associated with this line:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="sb">[b]</span>Jenny<span class="sb">[/b]</span><span class="w"> </span>is a library based on <span class="se">\</span>
-<span class="se">    </span><span class="sb">[link url=&quot;docs.yarnspinner.dev&quot;]</span>YarnSpinner<span class="sb">[/link]</span><span class="w"> </span>for Unity.<span class="w"></span>
+<span class="se">    </span><span class="sb">[link url=&quot;docs.yarnspinner.dev&quot;]</span>YarnSpinner<span class="sb">[/link]</span><span class="w"> </span>for Unity.
 </pre></div>
 </div>
-<p>These <code class="docutils literal notranslate"><span class="pre">MarkupAttribute</span></code>s can be found in the <code class="docutils literal notranslate"><span class="pre">.attributes</span></code> property of a <a class="reference internal" href="dialogue_line.html"><span class="doc std std-doc">DialogueLine</span></a>.</p>
+<p>These <code class="docutils literal notranslate"><span class="pre">MarkupAttribute</span></code>s can be found in the <code class="docutils literal notranslate"><span class="pre">.attributes</span></code> property of a <a class="reference internal" href="dialogue_line.html"><span class="std std-doc">DialogueLine</span></a>.</p>
 <section id="properties">
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
 <dl class="simple myst">
@@ -334,7 +333,7 @@ single parameter, so this map will be equal to <code class="docutils literal not
 expression give in the <code class="docutils literal notranslate"><span class="pre">.yarn</span></code> script. The expressions for parameter values can be dynamic, that
 is they can be evaluated at runtime. In the example below, the parameter <code class="docutils literal notranslate"><span class="pre">color</span></code> will be equal to
 the value of the variable <code class="docutils literal notranslate"><span class="pre">$color</span></code>, which may change each time the line is run.</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>My <span class="sb">[i]</span>favorite<span class="sb">[/i]</span><span class="w"> </span>color is <span class="sb">[bb color=$color]</span><span class="p">{</span><span class="nv">$color</span><span class="p">}</span><span class="sb">[/bb]</span>.<span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>My <span class="sb">[i]</span>favorite<span class="sb">[/i]</span><span class="w"> </span>color is <span class="sb">[bb color=$color]</span><span class="p">{</span><span class="nv">$color</span><span class="p">}</span><span class="sb">[/bb]</span>.
 </pre></div>
 </div>
 </dd>

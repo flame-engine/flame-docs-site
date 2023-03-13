@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
@@ -314,12 +313,12 @@ TMX (XML) files and accessing the tiles, objects, and everything in there.</p>
 <li><p>Create your own map by using <a class="reference external" href="https://www.mapeditor.org/">Tiled</a>.</p></li>
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code> and add it to the component tree as follows:</p></li>
 </ol>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="s1">&#39;my_map.tmx&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;my_map.tmx&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span>
+<span class="p">);</span>
 
-<span class="n">add</span><span class="p">(</span><span class="n">component</span><span class="p">);</span><span class="w"></span>
+<span class="n">add</span><span class="p">(</span><span class="n">component</span><span class="p">);</span>
 </pre></div>
 </div>
 <section id="limitations">
@@ -332,11 +331,11 @@ be a drop in performance. If you want to ignore any flips in your tilemap you ca
 <code class="docutils literal notranslate"><span class="pre">ignoreFlip</span></code> to false in the constructor.</p>
 <p><strong>Note</strong>: A large texture in this context means one with multiple tilesets (or a huge tileset)
 where the sum of their dimensions are in the thousands.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="s1">&#39;my_map.tmx&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">ignoreFlip:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;my_map.tmx&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">ignoreFlip:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <div class="toctree-wrapper compound">

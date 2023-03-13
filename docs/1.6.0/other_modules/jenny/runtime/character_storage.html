@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-  <script src="../../../_static/jquery.js"></script>
-  <script src="../../../_static/underscore.js"></script>
-  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../_static/doctools.js"></script>
+  <script src="../../../_static/sphinx_highlight.js"></script>
   <script src="../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -301,15 +299,15 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="characterstorage">
 <h1>CharacterStorage<a class="headerlink" href="#characterstorage" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>CharacterStorage</strong> object is a cache of all <a class="reference internal" href="character.html"><span class="doc std std-doc">Character</span></a>s declared in yarn scripts. Typically,
-this cache will be populated with the help of the <a class="reference internal" href="../language/commands/character.html"><span class="doc std std-doc">&lt;&lt;character&gt;&gt;</span></a> commands. Adding characters
+<p>The <strong>CharacterStorage</strong> object is a cache of all <a class="reference internal" href="character.html"><span class="std std-doc">Character</span></a>s declared in yarn scripts. Typically,
+this cache will be populated with the help of the <a class="reference internal" href="../language/commands/character.html"><span class="std std-doc">&lt;&lt;character&gt;&gt;</span></a> commands. Adding characters
 manually is possible but not recommended.</p>
 <section id="methods">
 <h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h2>
 <dl class="simple myst">
 <dt><strong>contains</strong>(<code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">name</span></code>) → <code class="docutils literal notranslate"><span class="pre">bool</span></code></dt><dd><p>Returns <code class="docutils literal notranslate"><span class="pre">true</span></code> if a character with the given name or alias was defined.</p>
 </dd>
-<dt><strong>operator[]</strong>(<code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">name</span></code>) → <code class="docutils literal notranslate"><span class="pre">Character?</span></code></dt><dd><p>Returns the <a class="reference internal" href="character.html"><span class="doc std std-doc">Character</span></a> object with the given name/alias, or <code class="docutils literal notranslate"><span class="pre">null</span></code> if this character was not
+<dt><strong>operator[]</strong>(<code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">name</span></code>) → <code class="docutils literal notranslate"><span class="pre">Character?</span></code></dt><dd><p>Returns the <a class="reference internal" href="character.html"><span class="std std-doc">Character</span></a> object with the given name/alias, or <code class="docutils literal notranslate"><span class="pre">null</span></code> if this character was not
 defined.</p>
 </dd>
 <dt><strong>add</strong>(<code class="docutils literal notranslate"><span class="pre">Character</span> <span class="pre">character</span></code>)</dt><dd><p>Adds a new <code class="docutils literal notranslate"><span class="pre">Character</span></code> object into the storage.</p>

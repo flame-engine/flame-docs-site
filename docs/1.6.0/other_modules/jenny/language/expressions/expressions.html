@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-  <script src="../../../../_static/jquery.js"></script>
-  <script src="../../../../_static/underscore.js"></script>
-  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -302,19 +300,19 @@
   <section class="tex2jax_ignore mathjax_ignore" id="expressions">
 <h1>Expressions<a class="headerlink" href="#expressions" title="Permalink to this heading">¶</a></h1>
 <p>The <strong>expressions</strong> in YarnSpinner provide a way to dynamically change the flow or the content
-of the dialogue, based on <a class="reference internal" href="variables.html"><span class="doc std std-doc">variables</span></a>, combined with <a class="reference internal" href="operators.html"><span class="doc std std-doc">operators</span></a> or <a class="reference internal" href="functions/functions.html"><span class="doc std std-doc">function</span></a> calls. They are
+of the dialogue, based on <a class="reference internal" href="variables.html"><span class="std std-doc">variables</span></a>, combined with <a class="reference internal" href="operators.html"><span class="std std-doc">operators</span></a> or <a class="reference internal" href="functions/functions.html"><span class="std std-doc">function</span></a> calls. They are
 used in several places:</p>
 <ul class="simple">
-<li><p>to insert a dynamic text into a <a class="reference internal" href="../lines.html"><span class="doc std std-doc">line</span></a>;</p></li>
-<li><p>to create or update a <a class="reference internal" href="variables.html"><span class="doc std std-doc">variable</span></a>;</p></li>
-<li><p>as part of a <a class="reference internal" href="../commands/commands.html"><span class="doc std std-doc">command</span></a> such as <code class="docutils literal notranslate"><span class="pre">&lt;&lt;if&gt;&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">&lt;&lt;set&gt;&gt;</span></code>;</p></li>
-<li><p>to compute the values of <a class="reference internal" href="../markup.html"><span class="doc std std-doc">markup</span></a> attributes.</p></li>
+<li><p>to insert a dynamic text into a <a class="reference internal" href="../lines.html"><span class="std std-doc">line</span></a>;</p></li>
+<li><p>to create or update a <a class="reference internal" href="variables.html"><span class="std std-doc">variable</span></a>;</p></li>
+<li><p>as part of a <a class="reference internal" href="../commands/commands.html"><span class="std std-doc">command</span></a> such as <code class="docutils literal notranslate"><span class="pre">&lt;&lt;if&gt;&gt;</span></code> or <code class="docutils literal notranslate"><span class="pre">&lt;&lt;set&gt;&gt;</span></code>;</p></li>
+<li><p>to compute the values of <a class="reference internal" href="../markup.html"><span class="std std-doc">markup</span></a> attributes.</p></li>
 </ul>
 <p>An expression always evaluates synchronously, meaning that it cannot wait for user’s input, nor
 perform an action over time, nor carry out any computationally intensive calculations in a
 different thread. If such functionality is really desired, then it can be achieved via a
-<a class="reference internal" href="../commands/user_defined_commands.html"><span class="doc std std-doc">user-defined command</span></a> that waits for the calculation to succeed and then stores the result into
-some global <a class="reference internal" href="variables.html"><span class="doc std std-doc">variable</span></a>, which can then be accessed from an expression.</p>
+<a class="reference internal" href="../commands/user_defined_commands.html"><span class="std std-doc">user-defined command</span></a> that waits for the calculation to succeed and then stores the result into
+some global <a class="reference internal" href="variables.html"><span class="std std-doc">variable</span></a>, which can then be accessed from an expression.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>

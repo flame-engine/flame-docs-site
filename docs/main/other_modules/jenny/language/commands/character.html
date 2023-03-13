@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-  <script src="../../../../_static/jquery.js"></script>
-  <script src="../../../../_static/underscore.js"></script>
-  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/other/util.html">Utils</a></li>
@@ -318,7 +317,7 @@ nodes (an alias may even be in a different language than the full name);</p></li
 <li><p>you can associate additional data with each character, which will then be available at runtime.</p></li>
 </ul>
 <p>The format of this command is the following:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">character</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">FULL NAME</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="nf">alias1</span><span class="w"> </span><span class="nf">alias2</span><span class="p">...&gt;&gt;</span><span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">character</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">FULL NAME</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="nf">alias1</span><span class="w"> </span><span class="nf">alias2</span><span class="p">...&gt;&gt;</span>
 </pre></div>
 </div>
 <p>The <em>full name</em> here is optional: if given, it will be considered <em>the</em> name of the character.
@@ -326,16 +325,16 @@ However, if the name is omitted, then the first alias will be considered the tru
 Each <em>alias</em> must be a valid ID, and at least one alias must be provided. For example:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="c">// A well-mannered seven-year-old girl, who nevertheless always gets into</span>
 <span class="c">// all kinds of zany adventures.</span>
-<span class="p">&lt;&lt;</span><span class="k">character</span><span class="w"> </span><span class="nf">Alice</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">character</span><span class="w"> </span><span class="nf">Alice</span><span class="p">&gt;&gt;</span>
 
 <span class="c">// A magical cat known for his ability to grin majestically, and partially</span>
 <span class="c">// vanish. He is mad (by his own admission).</span>
-<span class="p">&lt;&lt;</span><span class="k">character</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Cheshire Cat</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="nf">Cat</span><span class="w"> </span><span class="nf">Cheshire</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">character</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Cheshire Cat</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="nf">Cat</span><span class="w"> </span><span class="nf">Cheshire</span><span class="p">&gt;&gt;</span>
 
 <span class="c">// A foul-tempered Queen, who is also a playing card. Described as</span>
 <span class="c">// &quot;a blind fury&quot;, her favorite saying is &quot;Off with their heads!&quot;.</span>
 <span class="c">// Not to be confused with Red Queen.</span>
-<span class="p">&lt;&lt;</span><span class="k">character</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Queen of Hearts</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="nf">Queen</span><span class="w"> </span><span class="nf">QoH</span><span class="w"> </span><span class="nf">QH</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">character</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Queen of Hearts</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="nf">Queen</span><span class="w"> </span><span class="nf">QoH</span><span class="w"> </span><span class="nf">QH</span><span class="p">&gt;&gt;</span>
 </pre></div>
 </div>
 <p>After a character is declared, any of its aliases can be used in the script: they will all refer
@@ -343,19 +342,19 @@ to the same <code class="docutils literal notranslate"><span class="pre">Charact
 not allowed (unless a special flag in <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code> is set to allow this).</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> Alice_and_the_Cat</span>
 <span class="p">---</span>
-<span class="nt">Alice</span><span class="p">: </span>But I don&#39;t want to go among mad people.<span class="w"></span>
-<span class="nt">Cat</span><span class="p">:   </span>Oh, you can&#39;t help that, we&#39;re all mad here. I&#39;m mad. You&#39;re mad.<span class="w"></span>
-<span class="nt">Alice</span><span class="p">: </span>How do you know I&#39;m mad?<span class="w"></span>
-<span class="nt">Cat</span><span class="p">:   </span>You must be, or you wouldn&#39;t have come here.<span class="w"></span>
-<span class="nt">Alice</span><span class="p">: </span>And how do you know that you&#39;re mad?<span class="w"></span>
-<span class="nt">Cat</span><span class="p">:   </span>To begin with, a dog&#39;s not mad. You grant that?<span class="w"></span>
-<span class="nt">Alice</span><span class="p">: </span>I suppose so.<span class="w"></span>
+<span class="nt">Alice</span><span class="p">: </span>But I don&#39;t want to go among mad people.
+<span class="nt">Cat</span><span class="p">:   </span>Oh, you can&#39;t help that, we&#39;re all mad here. I&#39;m mad. You&#39;re mad.
+<span class="nt">Alice</span><span class="p">: </span>How do you know I&#39;m mad?
+<span class="nt">Cat</span><span class="p">:   </span>You must be, or you wouldn&#39;t have come here.
+<span class="nt">Alice</span><span class="p">: </span>And how do you know that you&#39;re mad?
+<span class="nt">Cat</span><span class="p">:   </span>To begin with, a dog&#39;s not mad. You grant that?
+<span class="nt">Alice</span><span class="p">: </span>I suppose so.
 <span class="nt">Cat</span><span class="p">:   </span>Well then, you see a dog growls when it&#39;s angry, and wags its tail <span class="se">\</span>
-<span class="se">       </span>when it&#39;s pleased.<span class="w"></span>
+<span class="se">       </span>when it&#39;s pleased.
 <span class="nt">Cat</span><span class="p">:   </span>Now, <span class="sb">[i]</span>I<span class="sb">[/i]</span><span class="w"> </span>growl when I&#39;m pleased, and wag my tail when I&#39;m angry. <span class="se">\</span>
-<span class="se">       </span>Therefore, I&#39;m mad.<span class="w"></span>
-<span class="nt">Alice</span><span class="p">: </span><span class="sb">[i]</span>I<span class="sb">[/i]</span><span class="w"> </span>call it purring, not growling.<span class="w"></span>
-<span class="nt">Cat</span><span class="p">:   </span>Call it what you like.<span class="w"></span>
+<span class="se">       </span>Therefore, I&#39;m mad.
+<span class="nt">Alice</span><span class="p">: </span><span class="sb">[i]</span>I<span class="sb">[/i]</span><span class="w"> </span>call it purring, not growling.
+<span class="nt">Cat</span><span class="p">:   </span>Call it what you like.
 <span class="p">===</span>
 </pre></div>
 </div>

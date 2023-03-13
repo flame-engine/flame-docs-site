@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/underscore.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -201,10 +199,10 @@ rendering, which renders the tiles on the screen and supports rotations and flip
 <section id="layers">
 <h2>Layers<a class="headerlink" href="#layers" title="Permalink to this heading">¶</a></h2>
 <p>At its simplest, layers can be retrieved from a Tilemap by invoking:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">getLayer</span><span class="o">&lt;</span><span class="n">ObjectGroup</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myObjectGroupLayer&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">getLayer</span><span class="o">&lt;</span><span class="n">ImageLayer</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myImageLayer&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">getLayer</span><span class="o">&lt;</span><span class="n">TileLayer</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myTileLayer&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="n">getLayer</span><span class="o">&lt;</span><span class="n">Group</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myGroupLayer&quot;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">getLayer</span><span class="o">&lt;</span><span class="n">ObjectGroup</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myObjectGroupLayer&quot;</span><span class="p">);</span>
+<span class="n">getLayer</span><span class="o">&lt;</span><span class="n">ImageLayer</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myImageLayer&quot;</span><span class="p">);</span>
+<span class="n">getLayer</span><span class="o">&lt;</span><span class="n">TileLayer</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myTileLayer&quot;</span><span class="p">);</span>
+<span class="n">getLayer</span><span class="o">&lt;</span><span class="n">Group</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myGroupLayer&quot;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>These methods will either return the requested layer type or null if it does not exist.</p>

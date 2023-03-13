@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-  <script src="../../../../_static/jquery.js"></script>
-  <script src="../../../../_static/underscore.js"></script>
-  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -305,10 +303,10 @@
 (in seconds) before resuming the dialogue. The number of seconds can be 0, but cannot be negative.
 This command takes a single argument, which must be a numeric expression. For example:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="c">// Wait for a quarter of a second</span>
-<span class="p">&lt;&lt;</span><span class="k">wait</span><span class="w"> </span><span class="m">0.25</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">wait</span><span class="w"> </span><span class="m">0.25</span><span class="p">&gt;&gt;</span>
 
 <span class="c">// Wait for the amount of time given by the $delay variable</span>
-<span class="p">&lt;&lt;</span><span class="k">wait</span><span class="w"> </span><span class="nv">$delay</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">wait</span><span class="w"> </span><span class="nv">$delay</span><span class="p">&gt;&gt;</span>
 </pre></div>
 </div>
 </section>

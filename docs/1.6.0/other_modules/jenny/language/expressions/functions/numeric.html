@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-  <script src="../../../../../_static/jquery.js"></script>
-  <script src="../../../../../_static/underscore.js"></script>
-  <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../../_static/doctools.js"></script>
+  <script src="../../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -309,20 +307,20 @@ and produce a numeric result.</p>
 smallest integer value greater than or equal to <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> ceil</span>
 <span class="p">---</span>
-<span class="p">{</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 1</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="m">5</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -2</span><span class="w"></span>
+<span class="p">{</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 1</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="m">5</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">ceil</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -2</span>
 <span class="p">===</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#floor-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">floor(x)</span></code></span></a></p></li>
-<li><p><a class="reference internal" href="#int-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">int(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#floor-x"><code class="docutils literal notranslate"><span class="pre">floor(x)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#int-x"><code class="docutils literal notranslate"><span class="pre">int(x)</span></code></a></p></li>
 </ul>
 </div>
 </section>
@@ -332,19 +330,19 @@ smallest integer value greater than or equal to <code class="docutils literal no
 this returns <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">-</span> <span class="pre">1</span></code>, but if <code class="docutils literal notranslate"><span class="pre">x</span></code> is not an integer then this returns <code class="docutils literal notranslate"><span class="pre">floor(x)</span></code>.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> dec</span>
 <span class="p">---</span>
-<span class="p">{</span><span class="w"> </span><span class="nb">dec</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// -1</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">dec</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">dec</span><span class="p">(</span><span class="m">5.0</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 4</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">dec</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">dec</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">dec</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -3</span><span class="w"></span>
+<span class="p">{</span><span class="w"> </span><span class="nb">dec</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// -1</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">dec</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">dec</span><span class="p">(</span><span class="m">5.0</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 4</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">dec</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">dec</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">dec</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -3</span>
 <span class="p">===</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#inc-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">inc(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#inc-x"><code class="docutils literal notranslate"><span class="pre">inc(x)</span></code></a></p></li>
 </ul>
 </div>
 </section>
@@ -356,19 +354,19 @@ If <code class="docutils literal notranslate"><span class="pre">x</span></code> 
 hold that <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">==</span> <span class="pre">int(x)</span> <span class="pre">+</span> <span class="pre">decimal(x)</span></code>.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> decimal</span>
 <span class="p">---</span>
-<span class="p">{</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0.3</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="m">5.0</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 0.001</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 0.999</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -0.07</span><span class="w"></span>
+<span class="p">{</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0.3</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="m">5.0</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 0.001</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 0.999</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">decimal</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -0.07</span>
 <span class="p">===</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#int-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">int(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#int-x"><code class="docutils literal notranslate"><span class="pre">int(x)</span></code></a></p></li>
 </ul>
 </div>
 </section>
@@ -378,20 +376,20 @@ hold that <code class="docutils literal notranslate"><span class="pre">x</span> 
 largest integer value less than or equal to <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> floor</span>
 <span class="p">---</span>
-<span class="p">{</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="m">5</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -3</span><span class="w"></span>
+<span class="p">{</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="m">5</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -3</span>
 <span class="p">===</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#ceil-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">ceil(x)</span></code></span></a></p></li>
-<li><p><a class="reference internal" href="#int-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">int(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#ceil-x"><code class="docutils literal notranslate"><span class="pre">ceil(x)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#int-x"><code class="docutils literal notranslate"><span class="pre">int(x)</span></code></a></p></li>
 </ul>
 </div>
 </section>
@@ -401,19 +399,19 @@ largest integer value less than or equal to <code class="docutils literal notran
 this returns <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">1</span></code>, but if <code class="docutils literal notranslate"><span class="pre">x</span></code> is not an integer then this returns <code class="docutils literal notranslate"><span class="pre">ceil(x)</span></code>.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> inc</span>
 <span class="p">---</span>
-<span class="p">{</span><span class="w"> </span><span class="nb">inc</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 1</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">inc</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 1</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">inc</span><span class="p">(</span><span class="m">5.0</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">inc</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">inc</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">inc</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -2</span><span class="w"></span>
+<span class="p">{</span><span class="w"> </span><span class="nb">inc</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 1</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">inc</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 1</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">inc</span><span class="p">(</span><span class="m">5.0</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">inc</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">inc</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">inc</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -2</span>
 <span class="p">===</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#dec-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">dec(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#dec-x"><code class="docutils literal notranslate"><span class="pre">dec(x)</span></code></a></p></li>
 </ul>
 </div>
 </section>
@@ -423,20 +421,20 @@ this returns <code class="docutils literal notranslate"><span class="pre">x</spa
 of the argument <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> int</span>
 <span class="p">---</span>
-<span class="p">{</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="m">5.0</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -2</span><span class="w"></span>
+<span class="p">{</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="m">5.0</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -2</span>
 <span class="p">===</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#decimal-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">decimal(x)</span></code></span></a></p></li>
-<li><p><a class="reference internal" href="#round-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">round(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#decimal-x"><code class="docutils literal notranslate"><span class="pre">decimal(x)</span></code></a></p></li>
+<li><p><a class="reference internal" href="#round-x"><code class="docutils literal notranslate"><span class="pre">round(x)</span></code></a></p></li>
 </ul>
 </div>
 </section>
@@ -446,21 +444,21 @@ of the argument <code class="docutils literal notranslate"><span class="pre">x</
 <p>The values that end with <code class="docutils literal notranslate"><span class="pre">.5</span></code> are rounded up if <code class="docutils literal notranslate"><span class="pre">x</span></code> is positive, and down if <code class="docutils literal notranslate"><span class="pre">x</span></code> is negative.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> round</span>
 <span class="p">---</span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="m">5.0</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="m">5.5</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -2</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="o">-</span><span class="m">2.5</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c">// -3</span><span class="w"></span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="m">0.3</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="m">5.0</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="m">5.001</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="m">5.5</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="m">5.999</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 6</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -2</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round</span><span class="p">(</span><span class="o">-</span><span class="m">2.5</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">   </span><span class="c">// -3</span>
 <span class="p">===</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#round-places-x-n"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">round_places(x,</span> <span class="pre">n)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#round-places-x-n"><code class="docutils literal notranslate"><span class="pre">round_places(x,</span> <span class="pre">n)</span></code></a></p></li>
 </ul>
 </div>
 </section>
@@ -473,23 +471,23 @@ function will attempt to keep that many digits after the decimal point in <code 
 then <code class="docutils literal notranslate"><span class="pre">round_places()</span></code> will round <code class="docutils literal notranslate"><span class="pre">x</span></code> to nearest tens, hundreds, thousands, etc:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> round_places</span>
 <span class="p">---</span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0.3</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">5.001</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5.0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">5.001</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5.0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">5.001</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5.001</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">5.5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 5.5</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">5.999</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 6.0</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -2.1</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">13</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 10</span><span class="w"></span>
-<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">252</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="p">}</span><span class="w">  </span><span class="c">// 200</span><span class="w"></span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">     </span><span class="p">}</span><span class="w">  </span><span class="c">// 0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">0.3</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 0.3</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">5.001</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5.0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">5.001</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5.0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">5.001</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 5.001</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">5.5</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 5.5</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">5.999</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// 6.0</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="o">-</span><span class="m">2.07</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">}</span><span class="w">  </span><span class="c">// -2.1</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">13</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">)</span><span class="w">   </span><span class="p">}</span><span class="w">  </span><span class="c">// 10</span>
+<span class="p">{</span><span class="w"> </span><span class="nb">round_places</span><span class="p">(</span><span class="m">252</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">2</span><span class="p">)</span><span class="w">  </span><span class="p">}</span><span class="w">  </span><span class="c">// 200</span>
 <span class="p">===</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#round-x"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">round(x)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#round-x"><code class="docutils literal notranslate"><span class="pre">round(x)</span></code></a></p></li>
 </ul>
 </div>
 </section>

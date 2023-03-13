@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-  <script src="../../../_static/jquery.js"></script>
-  <script src="../../../_static/underscore.js"></script>
-  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../_static/doctools.js"></script>
+  <script src="../../../_static/sphinx_highlight.js"></script>
   <script src="../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -302,7 +300,7 @@
   <section class="tex2jax_ignore mathjax_ignore" id="dialoguerunner">
 <h1>DialogueRunner<a class="headerlink" href="#dialoguerunner" title="Permalink to this heading">¶</a></h1>
 <p>The <strong>DialogueRunner</strong> class is used to execute the dialogue at runtime. If you think of a
-<a class="reference internal" href="yarn_project.html"><span class="doc std std-doc">YarnProject</span></a> as a dialogue program consisting of multiple <a class="reference internal" href="node.html"><span class="doc std std-doc">Node</span></a>s as “functions”, then a
+<a class="reference internal" href="yarn_project.html"><span class="std std-doc">YarnProject</span></a> as a dialogue program consisting of multiple <a class="reference internal" href="node.html"><span class="std std-doc">Node</span></a>s as “functions”, then a
 <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> is the virtual machine that can run a single “function” within that “program”.</p>
 <p>A single DialogueRunner may only execute one dialogue <code class="docutils literal notranslate"><span class="pre">Node</span></code> at a time. It is an error to try to
 run another Node before the first one concludes. However, it is possible to create multiple
@@ -311,15 +309,15 @@ simultaneously (for example, in a crowded room there could be multiple dialogues
 with different groups of people).</p>
 <p>The job of a DialogueRunner is to fetch the dialogue lines in the correct order and at the
 appropriate pace, to execute the logic in dialogue scripts, and to branch according to user input
-in <a class="reference internal" href="dialogue_choice.html"><span class="doc std std-doc">DialogueChoice</span></a>s. The output of a DialogueRunner, therefore, is a stream of dialogue statements
-that need to be presented to the player. Such presentation, is handled by the <a class="reference internal" href="dialogue_view.html"><span class="doc std std-doc">DialogueView</span></a>s.</p>
+in <a class="reference internal" href="dialogue_choice.html"><span class="std std-doc">DialogueChoice</span></a>s. The output of a DialogueRunner, therefore, is a stream of dialogue statements
+that need to be presented to the player. Such presentation, is handled by the <a class="reference internal" href="dialogue_view.html"><span class="std std-doc">DialogueView</span></a>s.</p>
 <section id="construction">
 <h2>Construction<a class="headerlink" href="#construction" title="Permalink to this heading">¶</a></h2>
 <p>The constructor takes two required parameters:</p>
 <dl class="simple myst">
-<dt><strong>yarnProject</strong> <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code></dt><dd><p>The <a class="reference internal" href="yarn_project.html"><span class="doc std std-doc">YarnProject</span></a> which the dialogue runner will be executing.</p>
+<dt><strong>yarnProject</strong> <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code></dt><dd><p>The <a class="reference internal" href="yarn_project.html"><span class="std std-doc">YarnProject</span></a> which the dialogue runner will be executing.</p>
 </dd>
-<dt><strong>dialogueViews</strong> <code class="docutils literal notranslate"><span class="pre">List&lt;DialogueView&gt;</span></code></dt><dd><p>The list of <a class="reference internal" href="dialogue_view.html"><span class="doc std std-doc">DialogueView</span></a>s that will be presenting the dialogue within the game. Each of these
+<dt><strong>dialogueViews</strong> <code class="docutils literal notranslate"><span class="pre">List&lt;DialogueView&gt;</span></code></dt><dd><p>The list of <a class="reference internal" href="dialogue_view.html"><span class="std std-doc">DialogueView</span></a>s that will be presenting the dialogue within the game. Each of these
 <code class="docutils literal notranslate"><span class="pre">DialogueView</span></code>s can only be assigned to a single <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> at a time.</p>
 </dd>
 </dl>
@@ -327,7 +325,7 @@ that need to be presented to the player. Such presentation, is handled by the <a
 <section id="properties">
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
 <dl class="simple myst">
-<dt><strong>project</strong> <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code></dt><dd><p>The <a class="reference internal" href="yarn_project.html"><span class="doc std std-doc">YarnProject</span></a> within which the dialogue runner is running.</p>
+<dt><strong>project</strong> <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code></dt><dd><p>The <a class="reference internal" href="yarn_project.html"><span class="std std-doc">YarnProject</span></a> within which the dialogue runner is running.</p>
 </dd>
 </dl>
 </section>
@@ -354,20 +352,20 @@ as possible. The dialogue will then proceed normally to the next line.</p>
 <h2>Execution model<a class="headerlink" href="#execution-model" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">DialogueRunner</span></code> uses futures as a main mechanism for controlling the timing of the dialogue
 progression. For each event, the dialogue runner will invoke the corresponding callback on all its
-<a class="reference internal" href="dialogue_view.html"><span class="doc std std-doc">DialogueView</span></a>s, and each of those callbacks may return a future. The dialogue runner then awaits
+<a class="reference internal" href="dialogue_view.html"><span class="std std-doc">DialogueView</span></a>s, and each of those callbacks may return a future. The dialogue runner then awaits
 on all of these futures (in parallel), before proceeding to the next event.</p>
 <p>For a simple <code class="docutils literal notranslate"><span class="pre">.yarn</span></code> script like this</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> main</span>
 <span class="p">---</span>
-Hello<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Hi<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Go away<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">Away</span><span class="p">&gt;&gt;</span><span class="w"></span>
+Hello
+<span class="p">-&gt;</span><span class="w"> </span>Hi
+<span class="p">-&gt;</span><span class="w"> </span>Go away
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">Away</span><span class="p">&gt;&gt;</span>
 <span class="p">===</span>
 
 <span class="nb">title</span><span class="p">:</span><span class="nv"> Away</span>
 <span class="p">---</span>
-<span class="p">&lt;&lt;</span><span class="nc">OhNo</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="nc">OhNo</span><span class="p">&gt;&gt;</span>
 <span class="p">===</span>
 </pre></div>
 </div>

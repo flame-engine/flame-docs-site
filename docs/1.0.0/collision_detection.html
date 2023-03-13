@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-  <script src="_static/jquery.js"></script>
-  <script src="_static/underscore.js"></script>
-  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="_static/doctools.js"></script>
+  <script src="_static/sphinx_highlight.js"></script>
   <script src="_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -218,48 +216,48 @@ component it will never collide with anything. If you want the component to have
 rectangular shape that fills the size of your component you can simply do
 <code class="docutils literal notranslate"><span class="pre">addHitbox(HitboxRectangle())</span></code>.</p>
 <p>To make your component collidable you would start off something like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCollidable</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasHitboxes</span><span class="p">,</span><span class="w"> </span><span class="n">Collidable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">MyCollidable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// This could also be done in onLoad instead of in the constructor</span><span class="w"></span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HitboxPolygon</span><span class="p">([</span><span class="w"></span>
-<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w"></span>
-<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
-<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">),</span><span class="w"></span>
-<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="p">]);</span><span class="w"></span>
-<span class="w">    </span><span class="n">addHitbox</span><span class="p">(</span><span class="n">shape</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCollidable</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasHitboxes</span><span class="p">,</span><span class="w"> </span><span class="n">Collidable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">MyCollidable</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// This could also be done in onLoad instead of in the constructor</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HitboxPolygon</span><span class="p">([</span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">),</span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="w">    </span><span class="p">]);</span>
+<span class="w">    </span><span class="n">addHitbox</span><span class="p">(</span><span class="n">shape</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code> added to the <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> here is a diamond shape(◇).
-More about how the different shapes are defined in the <a class="reference internal" href="#shapes"><span class="std std-doc">Shapes</span></a> section.</p>
+More about how the different shapes are defined in the <a class="reference internal" href="#shapes">Shapes</a> section.</p>
 <p>Remember that you can add as many <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code>s as you want to your <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> to make up more
 complex hitboxes. For example a snowman with a hat could be represented by three <code class="docutils literal notranslate"><span class="pre">HitboxCircle</span></code>s and
 a <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code> as its hat.</p>
 <p>To react to a collision you should override the <code class="docutils literal notranslate"><span class="pre">collisionCallback</span></code> in your component.
 Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCollidable</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasHitboxes</span><span class="p">,</span><span class="w"> </span><span class="n">Collidable</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCollidable</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasHitboxes</span><span class="p">,</span><span class="w"> </span><span class="n">Collidable</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">Collidable</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">CollidableScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">YourOtherCollidable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">Collidable</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">CollidableScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="p">...</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">YourOtherCollidable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="p">...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">Collidable</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">CollidableScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">YourOtherCollidable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">Collidable</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">CollidableScreen</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="p">...</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">YourOtherCollidable</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="p">...</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>In this example it can be seen how the Dart <code class="docutils literal notranslate"><span class="pre">is</span></code> keyword is used to check which other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
@@ -269,7 +267,7 @@ have both implemented the <code class="docutils literal notranslate"><span class
 implemented. The same goes for the <code class="docutils literal notranslate"><span class="pre">onCollisionEnd</span></code> method, which is called when two components or
 shapes that were previously colliding no longer colliding with each other.</p>
 <p>If you want to check collisions with the screen edges, as we do in the example above, you can use
-the predefined <a class="reference internal" href="#screencollidable"><span class="std std-doc">ScreenCollidable</span></a> class and since that one also is a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
+the predefined <a class="reference internal" href="#screencollidable">ScreenCollidable</a> class and since that one also is a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
 you can implement your own <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method for that class if needed.</p>
 <section id="collidabletype">
 <h4>CollidableType<a class="headerlink" href="#collidabletype" title="Permalink to this heading">¶</a></h4>
@@ -298,9 +296,9 @@ them so don’t doubt to use them even if your use case isn’t listed here.</p>
 <p>If you want to use this collision detection in your game you have to add the <code class="docutils literal notranslate"><span class="pre">HasCollidables</span></code> mixin
 to your game so that the game knows that it should keep track of which components that can collide.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollidables</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// ...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollidables</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Now when you add your <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> components to your game they will automatically be checked for
@@ -324,7 +322,7 @@ with it. If you so want it to be notified, then you need to extend it and implem
 <p>A Shape is the base class for representing a scalable geometrical shape. The shapes have different
 ways of defining how they look, but they all have a size and angle that can be modified and the
 shape definition will scale or rotate the shape accordingly.</p>
-<p>There are currently three shapes: <a class="reference internal" href="#polygon"><span class="std std-doc">Polygon</span></a>, <a class="reference internal" href="#rectangle"><span class="std std-doc">Rectangle</span></a> and <a class="reference internal" href="#circle"><span class="std std-doc">Circle</span></a>.</p>
+<p>There are currently three shapes: <a class="reference internal" href="#polygon"><span class="std std-ref">Polygon</span></a>, <a class="reference internal" href="#rectangle"><span class="std std-ref">Rectangle</span></a> and <a class="reference internal" href="#circle"><span class="std std-ref">Circle</span></a>.</p>
 </section>
 <section id="hitboxshape">
 <h3>HitboxShape<a class="headerlink" href="#hitboxshape" title="Permalink to this heading">¶</a></h3>
@@ -342,13 +340,13 @@ define the vertices in your polygon in a clockwise order.</p>
 <p>In comparison to the normal <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>, there is only one way to create a <code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code>, the only
 mandatory argument is a list of <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> which defines how your polygon should look, but not the
 size or position for it (since that sill be defined by the component that you attach it to).
-For example you could create a diamond like in the <a class="reference internal" href="#collidable"><span class="std std-doc">Collidable</span></a> example like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">HitboxPolygon</span><span class="p">([</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of top wall</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of right wall</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of bottom wall</span><span class="w"></span>
-<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of left wall</span><span class="w"></span>
-<span class="p">]);</span><span class="w"></span>
+For example you could create a diamond like in the <a class="reference internal" href="#collidable"><span class="std std-ref">Collidable</span></a> example like this:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">HitboxPolygon</span><span class="p">([</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of top wall</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w">  </span><span class="c1">// Middle of right wall</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of bottom wall</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of left wall</span>
+<span class="p">]);</span>
 </pre></div>
 </div>
 <p>The other hitbox shapes don’t have any mandatory constructor, but that is because they can have a

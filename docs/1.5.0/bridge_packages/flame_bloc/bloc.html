@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -262,84 +260,84 @@ and in the pub.dev <a class="reference external" href="https://pub.dev/packages/
 <p>Lets assume we have a bloc that handles player inventory, first we need to make it available to our
 components.</p>
 <p>We can do that by using <code class="docutils literal notranslate"><span class="pre">FlameBlocProvider</span></code> component:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">PlayerInventoryBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerInventoryState</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">PlayerInventoryBloc</span><span class="p">(),</span><span class="w"></span>
-<span class="w">        </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">          </span><span class="n">Player</span><span class="p">(),</span><span class="w"></span>
-<span class="w">          </span><span class="c1">// ...</span><span class="w"></span>
-<span class="w">        </span><span class="p">],</span><span class="w"></span>
-<span class="w">      </span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span>
+<span class="w">      </span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">PlayerInventoryBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerInventoryState</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">PlayerInventoryBloc</span><span class="p">(),</span>
+<span class="w">        </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="n">Player</span><span class="p">(),</span>
+<span class="w">          </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>With the above changes, the <code class="docutils literal notranslate"><span class="pre">Player</span></code> component will now have access to our bloc.</p>
 <p>If more than one bloc needs to be provided, <code class="docutils literal notranslate"><span class="pre">FlameMultiBlocProvider</span></code> can be used in a similar
 fashion:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="n">FlameMultiBlocProvider</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="nl">providers:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">          </span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">PlayerInventoryBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerInventoryState</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">PlayerInventoryBloc</span><span class="p">(),</span><span class="w"></span>
-<span class="w">          </span><span class="p">),</span><span class="w"></span>
-<span class="w">          </span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">PlayerStatsBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerStatsState</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
-<span class="w">            </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">PlayerStatsBloc</span><span class="p">(),</span><span class="w"></span>
-<span class="w">          </span><span class="p">),</span><span class="w"></span>
-<span class="w">        </span><span class="p">],</span><span class="w"></span>
-<span class="w">        </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">          </span><span class="n">Player</span><span class="p">(),</span><span class="w"></span>
-<span class="w">          </span><span class="c1">// ...</span><span class="w"></span>
-<span class="w">        </span><span class="p">],</span><span class="w"></span>
-<span class="w">      </span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span>
+<span class="w">      </span><span class="n">FlameMultiBlocProvider</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">providers:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">PlayerInventoryBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerInventoryState</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">            </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">PlayerInventoryBloc</span><span class="p">(),</span>
+<span class="w">          </span><span class="p">),</span>
+<span class="w">          </span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">PlayerStatsBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerStatsState</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">            </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">PlayerStatsBloc</span><span class="p">(),</span>
+<span class="w">          </span><span class="p">),</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">        </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">          </span><span class="n">Player</span><span class="p">(),</span>
+<span class="w">          </span><span class="c1">// ...</span>
+<span class="w">        </span><span class="p">],</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Listening to states changes at the component level can be done with two approaches:</p>
 <p>By using <code class="docutils literal notranslate"><span class="pre">FlameBlocListener</span></code> component:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="n">FlameBlocListener</span><span class="o">&lt;</span><span class="n">PlayerInventoryBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerInventoryState</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
-<span class="w">        </span><span class="nl">listener:</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="n">updateGear</span><span class="p">(</span><span class="n">state</span><span class="p">);</span><span class="w"></span>
-<span class="w">        </span><span class="p">},</span><span class="w"></span>
-<span class="w">      </span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span>
+<span class="w">      </span><span class="n">FlameBlocListener</span><span class="o">&lt;</span><span class="n">PlayerInventoryBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerInventoryState</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">listener:</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">updateGear</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Or by using <code class="docutils literal notranslate"><span class="pre">FlameBlocListenable</span></code> mixin:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"></span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">FlameBlocListenable</span><span class="o">&lt;</span><span class="n">PlayerInventoryBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerInventoryState</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">FlameBlocListenable</span><span class="o">&lt;</span><span class="n">PlayerInventoryBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerInventoryState</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onNewState</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">updateGear</span><span class="p">(</span><span class="n">state</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onNewState</span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">updateGear</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>If all your component need is to simply access a bloc, the <code class="docutils literal notranslate"><span class="pre">FlameBlocReader</span></code> mixin can be applied to
 a component:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"></span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">FlameBlocReader</span><span class="o">&lt;</span><span class="n">PlayerStatsBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerStatsState</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">FlameBlocReader</span><span class="o">&lt;</span><span class="n">PlayerStatsBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerStatsState</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">takeHit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">bloc</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">PlayerDamaged</span><span class="p">());</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">takeHit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">bloc</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">PlayerDamaged</span><span class="p">());</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Note that one limitation of the mixin is that it can access only a single bloc.</p>

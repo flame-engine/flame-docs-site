@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -315,19 +313,19 @@ Flutter’s <code class="docutils literal notranslate"><span class="pre">TextPai
 which contains all typographical information required to render text; i.e., font size and color,
 font family, etc.</p>
 <p>Example usage:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">TextPaint</span><span class="w"> </span><span class="n">textPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">48.0</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nl">fontFamily:</span><span class="w"> </span><span class="s1">&#39;Awesome Font&#39;</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">TextPaint</span><span class="w"> </span><span class="n">textPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">48.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">fontFamily:</span><span class="w"> </span><span class="s1">&#39;Awesome Font&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>Note: there are several packages that contain the class <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>, make sure that you import
 either <code class="docutils literal notranslate"><span class="pre">package:flutter/material.dart</span></code> or <code class="docutils literal notranslate"><span class="pre">package:flutter/painting.dart</span></code> and if you also need to
 import <code class="docutils literal notranslate"><span class="pre">dart:ui</span></code> you need to import it like this (since that contains another class that is also
 named <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="w"> </span><span class="k">hide</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="w"> </span><span class="k">hide</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Some common properties of <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code> are the following (here is the
@@ -340,15 +338,15 @@ pubspec (see <a class="reference external" href="https://docs.flutter.dev/cookbo
 <li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: the color, as a <code class="docutils literal notranslate"><span class="pre">ui.Color</span></code> (default white).</p></li>
 </ul>
 <p>For more information regarding colors and how to create then, see the
-<a class="reference internal" href="palette.html"><span class="doc std std-doc">Colors and the Palette</span></a> guide.</p>
+<a class="reference internal" href="palette.html"><span class="std std-doc">Colors and the Palette</span></a> guide.</p>
 <p>After the creation of the <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> object you can use its <code class="docutils literal notranslate"><span class="pre">render</span></code> method to draw strings on
 a canvas:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">textPaint</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Flame is awesome&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">));</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">textPaint</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Flame is awesome&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>If you want to set the anchor of the text you can also do that in the render call, with the optional
 <code class="docutils literal notranslate"><span class="pre">anchor</span></code> parameter:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">textPaint</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Flame is awesome&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">textPaint</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Flame is awesome&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -360,18 +358,18 @@ a canvas:</p>
 <h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> is a simple component that renders a single line of text.</p>
 <p>Example usage:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span><span class="nl">style:</span><span class="w"> </span><span class="n">style</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span><span class="nl">style:</span><span class="w"> </span><span class="n">style</span><span class="p">);</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">TextComponent</span><span class="p">(</span><span class="nl">text:</span><span class="w"> </span><span class="s1">&#39;Hello, Flame&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">regular</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="p">..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="w"></span>
-<span class="w">      </span><span class="p">..</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1">// size is a property from game</span><span class="w"></span>
-<span class="w">      </span><span class="p">..</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">32.0</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">TextComponent</span><span class="p">(</span><span class="nl">text:</span><span class="w"> </span><span class="s1">&#39;Hello, Flame&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">regular</span><span class="p">)</span>
+<span class="w">      </span><span class="p">..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span>
+<span class="w">      </span><span class="p">..</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1">// size is a property from game</span>
+<span class="w">      </span><span class="p">..</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">32.0</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -387,24 +385,24 @@ of the text content. For example, setting <code class="docutils literal notransl
 its bounding box both vertically and horizontally.</p>
 <p>If you want to change the margins of the box use the <code class="docutils literal notranslate"><span class="pre">margins</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>.</p>
 <p>Example usage:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyTextBox</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">TextBoxComponent</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="nl">text:</span><span class="w"> </span><span class="n">text</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">tiny</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="nl">boxConfig:</span><span class="w"> </span><span class="n">TextBoxConfig</span><span class="p">(</span><span class="nl">timePerChar:</span><span class="w"> </span><span class="m">0.05</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyTextBox</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">TextBoxComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">text:</span><span class="w"> </span><span class="n">text</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">tiny</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">boxConfig:</span><span class="w"> </span><span class="n">TextBoxConfig</span><span class="p">(</span><span class="nl">timePerChar:</span><span class="w"> </span><span class="m">0.05</span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
 
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">bgPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFF00FF</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">borderPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF000000</span><span class="p">)..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">bgPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFF00FF</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">borderPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF000000</span><span class="p">)..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">Rect</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="w"> </span><span class="n">bgPaint</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">deflate</span><span class="p">(</span><span class="n">boxConfig</span><span class="p">.</span><span class="n">margin</span><span class="p">),</span><span class="w"> </span><span class="n">borderPaint</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Rect</span><span class="w"> </span><span class="n">rect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">);</span>
+<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span><span class="w"> </span><span class="n">bgPaint</span><span class="p">);</span>
+<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">rect</span><span class="p">.</span><span class="n">deflate</span><span class="p">(</span><span class="n">boxConfig</span><span class="p">.</span><span class="n">margin</span><span class="p">),</span><span class="w"> </span><span class="n">borderPaint</span><span class="p">);</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Both components are showcased in an example

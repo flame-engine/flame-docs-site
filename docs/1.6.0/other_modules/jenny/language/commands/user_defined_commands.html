@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-  <script src="../../../../_static/jquery.js"></script>
-  <script src="../../../../_static/underscore.js"></script>
-  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -321,7 +319,7 @@ types of these arguments are checked against the signature of the backing functi
 <li><p>Lastly, all dialogue views in the dialogue runner receive the <code class="docutils literal notranslate"><span class="pre">onCommand()</span></code> event.</p></li>
 </ul>
 <p>As a concrete example, consider the following command:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="nc">give</span><span class="w"> </span>Gold <span class="p">{</span><span class="nb">round</span><span class="p">(</span><span class="m">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">$multiplier</span><span class="p">)}&gt;&gt;</span><span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="nc">give</span><span class="w"> </span>Gold <span class="p">{</span><span class="nb">round</span><span class="p">(</span><span class="m">100</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nv">$multiplier</span><span class="p">)}&gt;&gt;</span>
 </pre></div>
 </div>
 <p>First note that, unlike builtin commands, the arguments of the command are treated as text, and any

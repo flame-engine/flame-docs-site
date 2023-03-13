@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-  <script src="../../../../../_static/jquery.js"></script>
-  <script src="../../../../../_static/underscore.js"></script>
-  <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../../_static/doctools.js"></script>
+  <script src="../../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../../flame/other/util.html">Utils</a></li>
@@ -317,7 +316,7 @@ types of arguments <code class="docutils literal notranslate"><span class="pre">
 may be important in cases when evaluating those expressions may produce a side-effect.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> Birth</span>
 <span class="p">---</span>
-<span class="nt">Doctor</span><span class="p">: </span>Congratulations, you have a <span class="p">{</span><span class="w"> </span><span class="nb">if</span><span class="p">(</span><span class="nv">$gender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">m</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">boy</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">girl</span><span class="s s-Delimeter">&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>!<span class="w"></span>
+<span class="nt">Doctor</span><span class="p">: </span>Congratulations, you have a <span class="p">{</span><span class="w"> </span><span class="nb">if</span><span class="p">(</span><span class="nv">$gender</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">m</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">boy</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">girl</span><span class="s s-Delimeter">&quot;</span><span class="p">)</span><span class="w"> </span><span class="p">}</span>!
 <span class="p">===</span>
 </pre></div>
 </div>
@@ -333,7 +332,7 @@ current language. For example, suppose you need to say <code class="docutils lit
 you simply plug in the value of the variable like that, you’ll end up getting phrases like
 “23 items”, or “1 items” – which is not what you want. So instead, the <code class="docutils literal notranslate"><span class="pre">plural()</span></code> function can be
 used, which will select the correct plural form of the word “item”:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>I have <span class="p">{</span><span class="nb">plural</span><span class="p">(</span><span class="nv">$n</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% item</span><span class="s s-Delimeter">&quot;</span><span class="p">)}</span>.<span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>I have <span class="p">{</span><span class="nb">plural</span><span class="p">(</span><span class="nv">$n</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% item</span><span class="s s-Delimeter">&quot;</span><span class="p">)}</span>.
 </pre></div>
 </div>
 <p>In English locale (<code class="docutils literal notranslate"><span class="pre">en</span></code>), the function <code class="docutils literal notranslate"><span class="pre">plural()</span></code> takes either 1 or 2 <code class="docutils literal notranslate"><span class="pre">word</span></code>s after the numeral
@@ -343,7 +342,7 @@ omitted if the singular form is simple enough that its plural form can be obtain
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="c">// Here &quot;foot&quot; is an irregular noun, so its plural form must be specified</span>
 <span class="c">// explicitly. At the same time, &quot;inch&quot; is regular, and the function</span>
 <span class="c">// plural() will know to add &quot;es&quot; to make its plural form.</span>
-The distance is <span class="p">{</span><span class="nb">plural</span><span class="p">(</span><span class="nv">$ft</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% foot</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% feet</span><span class="s s-Delimeter">&quot;</span><span class="p">)}</span><span class="w"> </span>and <span class="p">{</span><span class="nb">plural</span><span class="p">(</span><span class="nv">$in</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% inch</span><span class="s s-Delimeter">&quot;</span><span class="p">)}</span>.<span class="w"></span>
+The distance is <span class="p">{</span><span class="nb">plural</span><span class="p">(</span><span class="nv">$ft</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% foot</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% feet</span><span class="s s-Delimeter">&quot;</span><span class="p">)}</span><span class="w"> </span>and <span class="p">{</span><span class="nb">plural</span><span class="p">(</span><span class="nv">$in</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% inch</span><span class="s s-Delimeter">&quot;</span><span class="p">)}</span>.
 </pre></div>
 </div>
 <p>In locales other than English, the number of plural words can be anywhere from 1 to 3. Usually,
@@ -351,7 +350,7 @@ the first word is the singular form, while others are different plurals – thei
 depend on a particular language. For example, in Ukrainian locale (<code class="docutils literal notranslate"><span class="pre">uk</span></code>) the function <code class="docutils literal notranslate"><span class="pre">plural()</span></code>
 requires 3 words: the singular form, the “few” plural form, and the “many” plural form:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="c">// Assuming locale == &#39;uk&#39;</span>
-У мене є <span class="p">{</span><span class="nb">plural</span><span class="p">(</span><span class="nv">$coins</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% монета</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% монети</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% монет</span><span class="s s-Delimeter">&quot;</span><span class="p">)}</span>.<span class="w"></span>
+У мене є <span class="p">{</span><span class="nb">plural</span><span class="p">(</span><span class="nv">$coins</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% монета</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% монети</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% монет</span><span class="s s-Delimeter">&quot;</span><span class="p">)}</span>.
 
 <span class="c">// Produces phrases like this:</span>
 <span class="c">//   У мене є 21 монета</span>
@@ -367,28 +366,28 @@ the <code class="docutils literal notranslate"><span class="pre">%</span></code>
 <h2>visit_count(node)<a class="headerlink" href="#visit-count-node" title="Permalink to this heading">¶</a></h2>
 <p>Returns the number of times that the <code class="docutils literal notranslate"><span class="pre">node</span></code> was visited.</p>
 <p>A node is considered “visited” if the dialogue enters and then exits that node. The node can be
-exited either through the normal dialogue flow, or via the <a class="reference internal" href="../../commands/stop.html"><span class="doc std std-doc">&lt;&lt;stop&gt;&gt;</span></a> command. However, if a
+exited either through the normal dialogue flow, or via the <a class="reference internal" href="../../commands/stop.html"><span class="std std-doc">&lt;&lt;stop&gt;&gt;</span></a> command. However, if a
 runtime exception occurs while running the node, then the visit will not count.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">node</span></code> argument must be a string, and it must contain a valid node name. If a node with the
 given name does not exist in the project, an exception will be thrown.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> LuckyWheel</span>
 <span class="p">---</span>
-<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nb">visit_count</span><span class="p">(</span><span class="s s-Delimeter">&quot;</span><span class="s">LuckyWheel</span><span class="s s-Delimeter">&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">5</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">Clown</span><span class="p">: </span>Would you like to speen a wheel and get fabulous prizes?<span class="w"></span>
-<span class="w">  </span><span class="p">-&gt;</span><span class="w"> </span>I sure do!<span class="w"></span>
-<span class="w">     </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">SpinLuckyWheel</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="p">-&gt;</span><span class="w"> </span>I don&#39;t talk to strangers...<span class="w"></span>
-<span class="w">     </span><span class="p">&lt;&lt;</span><span class="k">stop</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="nt">Clown</span><span class="p">: </span>Sorry kid, we&#39;re all out of prizes for now.<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nb">visit_count</span><span class="p">(</span><span class="s s-Delimeter">&quot;</span><span class="s">LuckyWheel</span><span class="s s-Delimeter">&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">5</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span><span class="nt">Clown</span><span class="p">: </span>Would you like to speen a wheel and get fabulous prizes?
+<span class="w">  </span><span class="p">-&gt;</span><span class="w"> </span>I sure do!
+<span class="w">     </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">SpinLuckyWheel</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span><span class="p">-&gt;</span><span class="w"> </span>I don&#39;t talk to strangers...
+<span class="w">     </span><span class="p">&lt;&lt;</span><span class="k">stop</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span><span class="nt">Clown</span><span class="p">: </span>Sorry kid, we&#39;re all out of prizes for now.
+<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span>
 <span class="p">===</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#visited-node"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">visited(node)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#visited-node"><code class="docutils literal notranslate"><span class="pre">visited(node)</span></code></a></p></li>
 </ul>
 </div>
 </section>
@@ -402,21 +401,21 @@ first run of this node, and <code class="docutils literal notranslate"><span cla
 given name does not exist in the project, an exception will be thrown.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> MerchantDialogue</span>
 <span class="p">---</span>
-<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="o">not</span><span class="w"> </span><span class="nb">visited</span><span class="p">(</span><span class="s s-Delimeter">&quot;</span><span class="s">MerchantDialogue</span><span class="s s-Delimeter">&quot;</span><span class="p">)&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="o">not</span><span class="w"> </span><span class="nb">visited</span><span class="p">(</span><span class="s s-Delimeter">&quot;</span><span class="s">MerchantDialogue</span><span class="s s-Delimeter">&quot;</span><span class="p">)&gt;&gt;</span>
 <span class="w">  </span><span class="c">// This part of the dialogue will run only during the first interaction</span>
 <span class="w">  </span><span class="c">// with the merchant.</span>
-<span class="w">  </span><span class="nt">Merchant</span><span class="p">: </span>Greetings! My name is Hazeem<span class="w"></span>
-<span class="w">  </span><span class="nt">Merchant</span><span class="p">: </span>I offer exquisute wares for the most fastidious customers!<span class="w"></span>
-<span class="w">  </span><span class="nt">Player</span><span class="p">: </span>Hi. I&#39;m Bob. I like stuff.<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
-...<span class="w"></span>
+<span class="w">  </span><span class="nt">Merchant</span><span class="p">: </span>Greetings! My name is Hazeem
+<span class="w">  </span><span class="nt">Merchant</span><span class="p">: </span>I offer exquisute wares for the most fastidious customers!
+<span class="w">  </span><span class="nt">Player</span><span class="p">: </span>Hi. I&#39;m Bob. I like stuff.
+<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span>
+...
 <span class="p">===</span>
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#visit-count-node"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">visit_count(node)</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#visit-count-node"><code class="docutils literal notranslate"><span class="pre">visit_count(node)</span></code></a></p></li>
 </ul>
 </div>
 </section>

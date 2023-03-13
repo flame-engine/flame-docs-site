@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/underscore.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -248,15 +246,15 @@ these <code class="docutils literal notranslate"><span class="pre">Fixture</span
 (<code class="docutils literal notranslate"><span class="pre">endContact</span></code>).</p>
 <p>There are multiple ways to listen to these events. One common way is to use the <code class="docutils literal notranslate"><span class="pre">ContactCallbacks</span></code>
 class as a mixin in the <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> where you are interested in these events.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Ball</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ContactCallbacks</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">beginContact</span><span class="p">(</span><span class="kt">Object</span><span class="w"> </span><span class="n">other</span><span class="p">,</span><span class="w"> </span><span class="n">Contact</span><span class="w"> </span><span class="n">contact</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Wall</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// Do something here.</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Ball</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ContactCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">beginContact</span><span class="p">(</span><span class="kt">Object</span><span class="w"> </span><span class="n">other</span><span class="p">,</span><span class="w"> </span><span class="n">Contact</span><span class="w"> </span><span class="n">contact</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Wall</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Do something here.</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>In order for the above to work, the <code class="docutils literal notranslate"><span class="pre">Ball</span></code>’s <code class="docutils literal notranslate"><span class="pre">body.userData</span></code> or contacting <code class="docutils literal notranslate"><span class="pre">fixture.userData</span></code> must be
@@ -264,19 +262,19 @@ set to a <code class="docutils literal notranslate"><span class="pre">ContactCal
 <code class="docutils literal notranslate"><span class="pre">fixture.userData</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">Wall</span></code>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">userData</span></code> is <code class="docutils literal notranslate"><span class="pre">null</span></code> the contact events are ignored, it is <code class="docutils literal notranslate"><span class="pre">null</span></code> by default.</p>
 <p>A convenient way of setting <code class="docutils literal notranslate"><span class="pre">userData</span></code> is to assign it when creating the body. For example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Ball</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ContactCallbacks</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Ball</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ContactCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Body</span><span class="w"> </span><span class="n">createBody</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">bodyDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BodyDef</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="nl">userData:</span><span class="w"> </span><span class="k">this</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">...</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Body</span><span class="w"> </span><span class="n">createBody</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">bodyDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BodyDef</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">userData:</span><span class="w"> </span><span class="k">this</span><span class="p">,</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="p">...</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="p">}</span><span class="w"></span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Every time <code class="docutils literal notranslate"><span class="pre">Ball</span></code> and <code class="docutils literal notranslate"><span class="pre">Wall</span></code> begin to come in contact <code class="docutils literal notranslate"><span class="pre">beginContact</span></code> will be called, and once the
@@ -287,7 +285,7 @@ fixtures cease being in contact, <code class="docutils literal notranslate"><spa
 <h3>Forge2DCamera.followBodyComponent<a class="headerlink" href="#forge2dcamera-followbodycomponent" title="Permalink to this heading">¶</a></h3>
 <p>Just like with normal <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s you can make the <code class="docutils literal notranslate"><span class="pre">Forge2DCamera</span></code> follow <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>s
 by calling <code class="docutils literal notranslate"><span class="pre">camera.followBodyComponent(...)</span></code> which works the same as
-<a class="reference internal" href="../flame/camera_and_viewport.html#camera-followcomponent"><span class="std std-doc">camera.followComponent</span></a>. When you want to
+<a class="reference internal" href="../flame/camera_and_viewport.html#camera-followcomponent"><span class="std std-ref">camera.followComponent</span></a>. When you want to
 stop following a <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> you should call <code class="docutils literal notranslate"><span class="pre">camera.unfollowBodyComponent</span></code>.</p>
 </section>
 </section>

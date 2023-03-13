@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-  <script src="../../../../_static/jquery.js"></script>
-  <script src="../../../../_static/underscore.js"></script>
-  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/other/util.html">Utils</a></li>
@@ -314,26 +313,26 @@ in many programming languages.</p>
 or for reusing some common dialogue lines in several nodes. For example:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> RoamingTrader1</span>
 <span class="p">---</span>
-<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$roaming_trader_introduced</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span>Hello again, <span class="p">{</span><span class="nv">$player</span><span class="p">}</span>!<span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">  </span><span class="p">&lt;&lt;</span><span class="k">visit</span><span class="w"> </span><span class="nf">RoamingTraderIntro</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$roaming_trader_introduced</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span>Hello again, <span class="p">{</span><span class="nv">$player</span><span class="p">}</span>!
+<span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span>
+<span class="w">  </span><span class="p">&lt;&lt;</span><span class="k">visit</span><span class="w"> </span><span class="nf">RoamingTraderIntro</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span>
 
-<span class="p">-&gt;</span><span class="w"> </span>What do you think about the Calamity?  <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$calamity_started</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">visit</span><span class="w"> </span><span class="nf">RoamingTrader_Calamity</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Have you seen a weird-looking girl running by? <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$quest_little_girl</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">visit</span><span class="w"> </span><span class="nf">RoamingTrader_LittleGirl</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>What do you have for trade?<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">OpenTrade</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">-&gt;</span><span class="w"> </span>What do you think about the Calamity?  <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$calamity_started</span><span class="p">&gt;&gt;</span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">visit</span><span class="w"> </span><span class="nf">RoamingTrader_Calamity</span><span class="p">&gt;&gt;</span>
+<span class="p">-&gt;</span><span class="w"> </span>Have you seen a weird-looking girl running by? <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$quest_little_girl</span><span class="p">&gt;&gt;</span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">visit</span><span class="w"> </span><span class="nf">RoamingTrader_LittleGirl</span><span class="p">&gt;&gt;</span>
+<span class="p">-&gt;</span><span class="w"> </span>What do you have for trade?
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">OpenTrade</span><span class="p">&gt;&gt;</span>
 
-Pleasure doing business with you! <span class="ch">#auto</span><span class="w"></span>
+Pleasure doing business with you! <span class="ch">#auto</span>
 <span class="p">===</span>
 </pre></div>
 </div>
 <p>The argument of this command is the id of the node to jump to. It can be given either as a plain
 node ID, or as an expression in curly braces:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">visit</span><span class="w"> </span><span class="p">{</span><span class="s s-Delimeter">&quot;</span><span class="s">RewardChoice_</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">string</span><span class="p">(</span><span class="nv">$choice</span><span class="p">)}&gt;&gt;</span><span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">visit</span><span class="w"> </span><span class="p">{</span><span class="s s-Delimeter">&quot;</span><span class="s">RewardChoice_</span><span class="s s-Delimeter">&quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">string</span><span class="p">(</span><span class="nv">$choice</span><span class="p">)}&gt;&gt;</span>
 </pre></div>
 </div>
 <p>If the expression evaluates at runtime to an unknown name, then a <code class="docutils literal notranslate"><span class="pre">NameError</span></code> exception will be

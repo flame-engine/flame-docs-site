@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-  <script src="../../../_static/jquery.js"></script>
-  <script src="../../../_static/underscore.js"></script>
-  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../_static/doctools.js"></script>
+  <script src="../../../_static/sphinx_highlight.js"></script>
   <script src="../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/other/util.html">Utils</a></li>
@@ -394,10 +393,10 @@ to complete before proceeding with the actual dialogue.</p>
 </div>
 <div class="description doc2 docutils container">
 <p>Called when the dialogue exits the <span class="param">node</span>.</p>
-<p>For example, during a <a class="reference internal" href="../language/commands/jump.html"><span class="doc std std-doc">&lt;&lt;jump&gt;&gt;</span></a> this callback will be called with the
+<p>For example, during a <a class="reference internal" href="../language/commands/jump.html"><span class="std std-doc">&lt;&lt;jump&gt;&gt;</span></a> this callback will be called with the
 current node, and then <a class="reference internal" href="#DialogueView-onNodeStart"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onNodeStart</span></code></a> will be called with the new node.
-Similarly, the command <a class="reference internal" href="../language/commands/stop.html"><span class="doc std std-doc">&lt;&lt;stop&gt;&gt;</span></a> will trigger this callback too. At the
-same time, during <a class="reference internal" href="../language/commands/visit.html"><span class="doc std std-doc">&lt;&lt;visit&gt;&gt;</span></a> this callback will not be invoked.</p>
+Similarly, the command <a class="reference internal" href="../language/commands/stop.html"><span class="std std-doc">&lt;&lt;stop&gt;&gt;</span></a> will trigger this callback too. At the
+same time, during <a class="reference internal" href="../language/commands/visit.html"><span class="std std-doc">&lt;&lt;visit&gt;&gt;</span></a> this callback will not be invoked.</p>
 <p>This callback can be used to clean up any preparations that were
 performed in <a class="reference internal" href="#DialogueView-onNodeStart"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onNodeStart</span></code></a>.</p>
 </div>
@@ -527,7 +526,7 @@ one of the dialogue views.</p>
 <span class="name">onCommand</span><span class="arguments"><span class="punct">(</span><span class="argument">UserDefinedCommand <span class="name">command</span></span><span class="punct">)</span></span><span class="punct"> → </span>FutureOr&lt;void&gt;</div>
 </div>
 <div class="description doc2 docutils container">
-<p>Called when the dialogue encounters a <a class="reference internal" href="user_defined_command.html"><span class="doc std std-doc">user-defined command</span></a>.</p>
+<p>Called when the dialogue encounters a <a class="reference internal" href="user_defined_command.html"><span class="std std-doc">user-defined command</span></a>.</p>
 <p>This method is invoked immediately after the command itself is executed,
 but before the result of the execution was awaited. Thus, if the command’s
 effect is asynchronous, then it will be send to dialogue views and

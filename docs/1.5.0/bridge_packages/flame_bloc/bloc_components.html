@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -256,34 +254,34 @@ The bloc will only live while this component is alive.It is used as a dependency
 widget so that a single instance of a bloc can be provided to multiple Components within a subtree.</p>
 <p>FlameBlocProvider should be used to create new blocs which will be made available to the rest of the
 subtree.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">BlocA</span><span class="p">,</span><span class="w"> </span><span class="n">BlocAState</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">BlocA</span><span class="p">(),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">children:</span><span class="w"> </span><span class="p">[...]</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">BlocA</span><span class="p">,</span><span class="w"> </span><span class="n">BlocAState</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">BlocA</span><span class="p">(),</span>
+<span class="w">  </span><span class="nl">children:</span><span class="w"> </span><span class="p">[...]</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>FlameBlocProvider can be used to provide an existing bloc to a new portion of the Component tree.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">BlocA</span><span class="p">,</span><span class="w"> </span><span class="n">BlocAState</span><span class="o">&gt;</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">value:</span><span class="w"> </span><span class="n">blocA</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">children:</span><span class="w"> </span><span class="p">[...],</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">BlocA</span><span class="p">,</span><span class="w"> </span><span class="n">BlocAState</span><span class="o">&gt;</span><span class="p">.</span><span class="n">value</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">value:</span><span class="w"> </span><span class="n">blocA</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">children:</span><span class="w"> </span><span class="p">[...],</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 </section>
 <section id="flamemultiblocprovider">
 <h2>FlameMultiBlocProvider<a class="headerlink" href="#flamemultiblocprovider" title="Permalink to this heading">¶</a></h2>
 <p>Similar to FlameBlocProvider, but provides multiples blocs down to the component tree</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameMultiBlocProvider</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">providers:</span><span class="w"> </span><span class="p">[</span><span class="w"></span>
-<span class="w">    </span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">BlocA</span><span class="p">,</span><span class="w"> </span><span class="n">BlocAState</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">BlocA</span><span class="p">(),</span><span class="w"></span>
-<span class="w">    </span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">BlocB</span><span class="p">,</span><span class="w"> </span><span class="n">BlocBState</span><span class="o">&gt;</span><span class="p">.</span><span class="n">value</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">BlocB</span><span class="p">(),</span><span class="w"></span>
-<span class="w">    </span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="p">],</span><span class="w"></span>
-<span class="w">  </span><span class="nl">children:</span><span class="w"> </span><span class="p">[...],</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameMultiBlocProvider</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">providers:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">BlocA</span><span class="p">,</span><span class="w"> </span><span class="n">BlocAState</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">BlocA</span><span class="p">(),</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">BlocB</span><span class="p">,</span><span class="w"> </span><span class="n">BlocBState</span><span class="o">&gt;</span><span class="p">.</span><span class="n">value</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">BlocB</span><span class="p">(),</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">  </span><span class="nl">children:</span><span class="w"> </span><span class="p">[...],</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -296,36 +294,36 @@ previous bloc state and current bloc state and returns a boolean. If <code class
 true, <code class="docutils literal notranslate"><span class="pre">onNewState</span></code> will be called with <code class="docutils literal notranslate"><span class="pre">state</span></code>. If <code class="docutils literal notranslate"><span class="pre">listenWhen</span></code> returns false, <code class="docutils literal notranslate"><span class="pre">onNewState</span></code> will not
 be called with <code class="docutils literal notranslate"><span class="pre">state</span></code>.</p>
 <p>alternatively you can use <code class="docutils literal notranslate"><span class="pre">FlameBlocListenable</span></code> mixin to listen state changes on Component.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameBlocListener</span><span class="o">&lt;</span><span class="n">GameStatsBloc</span><span class="p">,</span><span class="w"> </span><span class="n">GameStatsState</span><span class="o">&gt;</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">listenWhen:</span><span class="w"> </span><span class="p">(</span><span class="n">previousState</span><span class="p">,</span><span class="w"> </span><span class="n">newState</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// return true/false to determine whether or not</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// to call listener with state</span><span class="w"></span>
-<span class="w">  </span><span class="p">},</span><span class="w"></span>
-<span class="w">  </span><span class="nl">onNewState:</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">          </span><span class="c1">// do stuff here based on state</span><span class="w"></span>
-<span class="w">  </span><span class="p">},</span><span class="w"></span>
-<span class="p">)</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameBlocListener</span><span class="o">&lt;</span><span class="n">GameStatsBloc</span><span class="p">,</span><span class="w"> </span><span class="n">GameStatsState</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">listenWhen:</span><span class="w"> </span><span class="p">(</span><span class="n">previousState</span><span class="p">,</span><span class="w"> </span><span class="n">newState</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// return true/false to determine whether or not</span>
+<span class="w">      </span><span class="c1">// to call listener with state</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nl">onNewState:</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="c1">// do stuff here based on state</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="flamebloclistenable">
 <h2>FlameBlocListenable<a class="headerlink" href="#flamebloclistenable" title="Permalink to this heading">¶</a></h2>
 <p>FlameBlocListenable is an alternative to FlameBlocListener to listen state changes.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">ComponentA</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"></span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">FlameBlocListenable</span><span class="o">&lt;</span><span class="n">BlocA</span><span class="p">,</span><span class="w"> </span><span class="n">BlocAState</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">ComponentA</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">FlameBlocListenable</span><span class="o">&lt;</span><span class="n">BlocA</span><span class="p">,</span><span class="w"> </span><span class="n">BlocAState</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">listenWhen</span><span class="p">(</span><span class="n">PlayerState</span><span class="w"> </span><span class="n">previousState</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerState</span><span class="w"> </span><span class="n">newState</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// return true/false to determine whether or not</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// to call listener with state</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">listenWhen</span><span class="p">(</span><span class="n">PlayerState</span><span class="w"> </span><span class="n">previousState</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerState</span><span class="w"> </span><span class="n">newState</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// return true/false to determine whether or not</span>
+<span class="w">    </span><span class="c1">// to call listener with state</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onNewState</span><span class="p">(</span><span class="n">PlayerState</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onNewState</span><span class="p">(</span><span class="n">state</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// do stuff here based on state</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onNewState</span><span class="p">(</span><span class="n">PlayerState</span><span class="w"> </span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onNewState</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// do stuff here based on state</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -334,14 +332,14 @@ be called with <code class="docutils literal notranslate"><span class="pre">stat
 <p>FlameBlocReader is mixin that allows you to read the current state of bloc on Component. It is
 Useful for components that needs to only read a bloc current state or to trigger an event on it. You
 can have only one reader on Component</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">InventoryReader</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"></span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">FlameBlocReader</span><span class="o">&lt;</span><span class="n">InventoryCubit</span><span class="p">,</span><span class="w"> </span><span class="n">InventoryState</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">InventoryReader</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">FlameBlocReader</span><span class="o">&lt;</span><span class="n">InventoryCubit</span><span class="p">,</span><span class="w"> </span><span class="n">InventoryState</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{}</span>
 
-<span class="w">    </span><span class="c1">/// inside game</span><span class="w"></span>
+<span class="w">    </span><span class="c1">/// inside game</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InventoryReader</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// reading current state</span><span class="w"></span>
-<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">component</span><span class="p">.</span><span class="n">bloc</span><span class="w"></span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InventoryReader</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// reading current state</span>
+<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">state</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">component</span><span class="p">.</span><span class="n">bloc</span>
 </pre></div>
 </div>
 </section>

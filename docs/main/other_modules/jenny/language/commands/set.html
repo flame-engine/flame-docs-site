@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-  <script src="../../../../_static/jquery.js"></script>
-  <script src="../../../../_static/underscore.js"></script>
-  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/other/util.html">Utils</a></li>
@@ -308,57 +307,57 @@
   <section class="tex2jax_ignore mathjax_ignore" id="set">
 <h1><code class="docutils literal notranslate"><span class="pre">&lt;&lt;set&gt;&gt;</span></code><a class="headerlink" href="#set" title="Permalink to this heading">¶</a></h1>
 <p>The <strong>&lt;&lt;set&gt;&gt;</strong> command is used to update the value of an existing variable. The variable
-must be declared with <a class="reference internal" href="declare.html"><span class="doc std std-doc">&lt;&lt;declare&gt;&gt;</span></a> or <a class="reference internal" href="local.html"><span class="doc std std-doc">&lt;&lt;local&gt;&gt;</span></a> before it can be used
+must be declared with <a class="reference internal" href="declare.html"><span class="std std-doc">&lt;&lt;declare&gt;&gt;</span></a> or <a class="reference internal" href="local.html"><span class="std std-doc">&lt;&lt;local&gt;&gt;</span></a> before it can be used
 in <code class="docutils literal notranslate"><span class="pre">&lt;&lt;set&gt;&gt;</span></code>.</p>
 <p>The command <code class="docutils literal notranslate"><span class="pre">&lt;&lt;set&gt;&gt;</span></code> allows either regular assignment, or modifying assignment, like follows:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="c">// Regular assignment</span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">to</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">to</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span>
 
 <span class="c">// Modifying assignments</span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">%=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">%=</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span>
 
 <span class="c">// These modifying assignments are equivalent to the following:</span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span>
+<span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nv">$VARIABLE</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="nf">EXPRESSION</span><span class="p">&gt;&gt;</span>
 </pre></div>
 </div>
 <p>In all cases, the <code class="docutils literal notranslate"><span class="pre">EXPRESSION</span></code> must have the same type as the <code class="docutils literal notranslate"><span class="pre">$VARIABLE</span></code>. If not, a compile-time
 error will be thrown.</p>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nb">String</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nb">String</span><span class="p">&gt;&gt;</span>
 
 <span class="nb">title</span><span class="p">:</span><span class="nv"> ColorQuiz</span>
 <span class="p">---</span>
-What is your favorite color?<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>White<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">to</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">White</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Red<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">to</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Red</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Yellow<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Yellow</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Blue<span class="w"></span>
-<span class="w">   </span>Oh, Nice! Which shade of blue?<span class="w"></span>
-<span class="w">   </span><span class="p">-&gt;</span><span class="w"> </span>Azure<span class="w"></span>
-<span class="w">   </span><span class="p">-&gt;</span><span class="w"> </span>Cerulean<span class="w"></span>
-<span class="w">   </span><span class="p">-&gt;</span><span class="w"> </span>Lapis Lazuli<span class="w"></span>
-<span class="w">   </span>Umm, I don&#39;t know how to spell that. I&#39;ll just put you down as &quot;blue&quot;.<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Blue</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Black<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Black</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span>That&#39;s mine too!<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$affinity</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">3</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Prefer not to tell<span class="w"></span>
-<span class="w">   </span>Aww... Maybe if I ask again really nicely?<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">ColorQuiz</span><span class="p">&gt;&gt;</span><span class="w"></span>
+What is your favorite color?
+<span class="p">-&gt;</span><span class="w"> </span>White
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">to</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">White</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span>
+<span class="p">-&gt;</span><span class="w"> </span>Red
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">to</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Red</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span>
+<span class="p">-&gt;</span><span class="w"> </span>Yellow
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Yellow</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span>
+<span class="p">-&gt;</span><span class="w"> </span>Blue
+<span class="w">   </span>Oh, Nice! Which shade of blue?
+<span class="w">   </span><span class="p">-&gt;</span><span class="w"> </span>Azure
+<span class="w">   </span><span class="p">-&gt;</span><span class="w"> </span>Cerulean
+<span class="w">   </span><span class="p">-&gt;</span><span class="w"> </span>Lapis Lazuli
+<span class="w">   </span>Umm, I don&#39;t know how to spell that. I&#39;ll just put you down as &quot;blue&quot;.
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Blue</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span>
+<span class="p">-&gt;</span><span class="w"> </span>Black
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$favorite_color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">Black</span><span class="s s-Delimeter">&quot;</span><span class="p">&gt;&gt;</span>
+<span class="w">   </span>That&#39;s mine too!
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$affinity</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">3</span><span class="p">&gt;&gt;</span>
+<span class="p">-&gt;</span><span class="w"> </span>Prefer not to tell
+<span class="w">   </span>Aww... Maybe if I ask again really nicely?
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">ColorQuiz</span><span class="p">&gt;&gt;</span>
 <span class="p">===</span>
 </pre></div>
 </div>

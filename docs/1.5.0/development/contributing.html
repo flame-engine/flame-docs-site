@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/underscore.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -266,7 +264,7 @@ please read these instructions carefully.</p>
 <section id="bug-fix">
 <h3>Bug Fix<a class="headerlink" href="#bug-fix" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
-<li><p>If you’d like to submit a fix for a bug, please read the <a class="reference internal" href="#how-to-contribute"><span class="std std-doc">How To</span></a> for how to
+<li><p>If you’d like to submit a fix for a bug, please read the <a class="reference internal" href="#how-to-contribute">How To</a> for how to
 send a Pull Request.</p></li>
 <li><p>Indicate on the open issue that you are working on fixing the bug and the issue will be assigned
 to you.</p></li>
@@ -286,7 +284,7 @@ the feature in a new <a class="reference external" href="https://github.com/flam
 <li><p>If you’d like to implement the new feature, please wait for feedback from the project maintainers
 before spending too much time writing the code. In some cases, enhancements may not align well
 with the project future development direction.</p></li>
-<li><p>Implement the code for the new feature and please read the <a class="reference internal" href="#how-to-contribute"><span class="std std-doc">How To</span></a>.</p></li>
+<li><p>Implement the code for the new feature and please read the <a class="reference internal" href="#how-to-contribute">How To</a>.</p></li>
 </ul>
 </section>
 <section id="documentation-miscellaneous">
@@ -295,7 +293,7 @@ with the project future development direction.</p></li>
 <li><p>If you have suggestions for improvements to the documentation, tutorial or examples (or something
 else), we would love to hear about it.</p></li>
 <li><p>As always first file a <a class="reference external" href="https://github.com/flame-engine/flame/issues/new">Github issue</a>.</p></li>
-<li><p>Implement the changes to the documentation, please read the <a class="reference internal" href="#how-to-contribute"><span class="std std-doc">How To</span></a>.</p></li>
+<li><p>Implement the changes to the documentation, please read the <a class="reference internal" href="#how-to-contribute">How To</a>.</p></li>
 </ul>
 </section>
 </section>
@@ -333,11 +331,11 @@ and it will be automatically reflected in the PR.</p>
 <h3>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this heading">¶</a></h3>
 <p>Flame uses <a class="reference external" href="https://github.com/invertase/melos">Melos</a> to manage the project and dependencies.</p>
 <p>To install Melos, run the following command from your terminal:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flutter pub global activate melos
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flutter<span class="w"> </span>pub<span class="w"> </span>global<span class="w"> </span>activate<span class="w"> </span>melos
 </pre></div>
 </div>
 <p>Next, at the root of your locally cloned repository bootstrap the projects dependencies:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>melos bootstrap
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>melos<span class="w"> </span>bootstrap
 </pre></div>
 </div>
 <p>The bootstrap command locally links all dependencies within the project without having to
@@ -372,8 +370,8 @@ two versions after the current one, such that there will be at least one stable 
 users get to see the deprecation warning and in the version after that (or a later version) the
 deprecated entity should be removed.</p>
 <p>Example (if the current version is v1.3.0):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@Deprecated</span><span class="p">(</span><span class="s1">&#39;Will be removed in v1.5.0, use nonDeprecatedFeature() instead&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="n">deprecatedFeature</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@Deprecated</span><span class="p">(</span><span class="s1">&#39;Will be removed in v1.5.0, use nonDeprecatedFeature() instead&#39;</span><span class="p">)</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">deprecatedFeature</span><span class="p">()</span><span class="w"> </span><span class="p">{}</span>
 </pre></div>
 </div>
 </section>

@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-  <script src="../../../_static/jquery.js"></script>
-  <script src="../../../_static/underscore.js"></script>
-  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../_static/doctools.js"></script>
+  <script src="../../../_static/sphinx_highlight.js"></script>
   <script src="../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/other/util.html">Utils</a></li>
@@ -320,12 +319,12 @@ several yarn projects if their content is completely independent.</p>
 <li><p>restore the variables from a save-game storage.</p></li>
 </ul>
 <p>For example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">yarn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YarnProject</span><span class="p">()</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">functions</span><span class="p">.</span><span class="n">addFunction0</span><span class="p">(</span><span class="s1">&#39;money&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">player</span><span class="p">.</span><span class="n">getMoney</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">commands</span><span class="p">.</span><span class="n">addCommand1</span><span class="p">(</span><span class="s1">&#39;achievement&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">player</span><span class="p">.</span><span class="n">earnAchievement</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">parse</span><span class="p">(</span><span class="n">readFile</span><span class="p">(</span><span class="s1">&#39;project.yarn&#39;</span><span class="p">))</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">parse</span><span class="p">(</span><span class="n">readFile</span><span class="p">(</span><span class="s1">&#39;chapter1.yarn&#39;</span><span class="p">))</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">parse</span><span class="p">(</span><span class="n">readFile</span><span class="p">(</span><span class="s1">&#39;chapter2.yarn&#39;</span><span class="p">));</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">yarn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YarnProject</span><span class="p">()</span>
+<span class="w">  </span><span class="p">..</span><span class="n">functions</span><span class="p">.</span><span class="n">addFunction0</span><span class="p">(</span><span class="s1">&#39;money&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">player</span><span class="p">.</span><span class="n">getMoney</span><span class="p">)</span>
+<span class="w">  </span><span class="p">..</span><span class="n">commands</span><span class="p">.</span><span class="n">addCommand1</span><span class="p">(</span><span class="s1">&#39;achievement&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">player</span><span class="p">.</span><span class="n">earnAchievement</span><span class="p">)</span>
+<span class="w">  </span><span class="p">..</span><span class="n">parse</span><span class="p">(</span><span class="n">readFile</span><span class="p">(</span><span class="s1">&#39;project.yarn&#39;</span><span class="p">))</span>
+<span class="w">  </span><span class="p">..</span><span class="n">parse</span><span class="p">(</span><span class="n">readFile</span><span class="p">(</span><span class="s1">&#39;chapter1.yarn&#39;</span><span class="p">))</span>
+<span class="w">  </span><span class="p">..</span><span class="n">parse</span><span class="p">(</span><span class="n">readFile</span><span class="p">(</span><span class="s1">&#39;chapter2.yarn&#39;</span><span class="p">));</span>
 </pre></div>
 </div>
 <section id="properties">
@@ -337,7 +336,7 @@ changes the builtin <code class="docutils literal notranslate"><span class="pre"
 <dt><strong>random</strong> <code class="docutils literal notranslate"><span class="pre">Random</span></code></dt><dd><p>The random number generator. This can be replaced with a different generator, if, for example,
 you need to control the seed.</p>
 </dd>
-<dt><strong>nodes</strong> <code class="docutils literal notranslate"><span class="pre">Map&lt;String,</span> <span class="pre">Node&gt;</span></code></dt><dd><p>All <a class="reference internal" href="node.html"><span class="doc std std-doc">Node</span></a>s loaded into the project, keyed by their titles.</p>
+<dt><strong>nodes</strong> <code class="docutils literal notranslate"><span class="pre">Map&lt;String,</span> <span class="pre">Node&gt;</span></code></dt><dd><p>All <a class="reference internal" href="node.html"><span class="std std-doc">Node</span></a>s loaded into the project, keyed by their titles.</p>
 </dd>
 <dt><strong>variables</strong> <code class="docutils literal notranslate"><span class="pre">VariableStorage</span></code></dt><dd><p>The container for all global variables used in this yarn project. There could be several reasons
 to access this storage:</p>
@@ -351,20 +350,20 @@ loading the game.</p></li>
 </ul>
 <!-- markdownlint-enable MD006 MD007 -->
 </dd>
-<dt><strong>functions</strong> <code class="docutils literal notranslate"><span class="pre">FunctionStorage</span></code></dt><dd><p>The <a class="reference internal" href="function_storage.html"><span class="doc std std-doc">container</span></a> for all user-defined functions linked into the project. The main
+<dt><strong>functions</strong> <code class="docutils literal notranslate"><span class="pre">FunctionStorage</span></code></dt><dd><p>The <a class="reference internal" href="function_storage.html"><span class="std std-doc">container</span></a> for all user-defined functions linked into the project. The main
 reason to access this property is to register new custom function to be available at runtime.</p>
 <p>Note that all custom functions must be added to the <code class="docutils literal notranslate"><span class="pre">YarnProject</span></code> before they can be used in a
 dialogue script – otherwise a compile error will occur when encountering an unknown function.</p>
 </dd>
-<dt><strong>commands</strong> <code class="docutils literal notranslate"><span class="pre">CommandStorage</span></code></dt><dd><p>The <a class="reference internal" href="command_storage.html"><span class="doc std std-doc">container</span></a> for all user-defined commands linked into the project. The main
+<dt><strong>commands</strong> <code class="docutils literal notranslate"><span class="pre">CommandStorage</span></code></dt><dd><p>The <a class="reference internal" href="command_storage.html"><span class="std std-doc">container</span></a> for all user-defined commands linked into the project. The main
 reason to access this container is to register new custom commands.</p>
 <p>All custom commands must be added before they can be used in the dialogue script.</p>
 </dd>
-<dt><strong>characters</strong> <code class="docutils literal notranslate"><span class="pre">CharacterStorage</span></code></dt><dd><p>The <a class="reference internal" href="character_storage.html"><span class="doc std std-doc">container</span></a> for all <a class="reference internal" href="character.html"><span class="doc std std-doc">Character</span></a> objects declared in your yarn scripts.</p>
+<dt><strong>characters</strong> <code class="docutils literal notranslate"><span class="pre">CharacterStorage</span></code></dt><dd><p>The <a class="reference internal" href="character_storage.html"><span class="std std-doc">container</span></a> for all <a class="reference internal" href="character.html"><span class="std std-doc">Character</span></a> objects declared in your yarn scripts.</p>
 </dd>
 <dt><strong>strictCharacterNames</strong> <code class="docutils literal notranslate"><span class="pre">bool</span></code></dt><dd><p>If <code class="docutils literal notranslate"><span class="pre">true</span></code> (default), the validity of character names will be strictly enforced. That is, all
-characters must be declared before they can be used, using the <a class="reference internal" href="../language/commands/character.html"><span class="doc std std-doc">&lt;&lt;character&gt;&gt;</span></a> commands. If
-this property is set to false, then new <a class="reference internal" href="character.html"><span class="doc std std-doc">Character</span></a> objects will be created automatically as
+characters must be declared before they can be used, using the <a class="reference internal" href="../language/commands/character.html"><span class="std std-doc">&lt;&lt;character&gt;&gt;</span></a> commands. If
+this property is set to false, then new <a class="reference internal" href="character.html"><span class="std std-doc">Character</span></a> objects will be created automatically as
 they are encountered in scripts.</p>
 </dd>
 <dt><strong>trueValues</strong>, <strong>falseValues</strong> <code class="docutils literal notranslate"><span class="pre">Set&lt;String&gt;</span></code></dt><dd><p>The strings that can be recognized as <code class="docutils literal notranslate"><span class="pre">true</span></code>/<code class="docutils literal notranslate"><span class="pre">false</span></code> values respectively.</p>

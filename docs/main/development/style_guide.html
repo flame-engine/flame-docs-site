@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/underscore.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame/other/util.html">Utils</a></li>
@@ -346,13 +345,13 @@ section), so that it can be seen immediately upon opening the file. All other de
 including typedefs, helper classes and functions, should be moved below the main class.</p></li>
 <li><p>If multiple public symbols are defined in a file, then they must be exported explicitly using
 the <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">...</span> <span class="pre">show</span> <span class="pre">...</span></code> statement. For example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="s1">&#39;src/effects/provider_interfaces.dart&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="k">show</span><span class="w"></span>
-<span class="w">    </span><span class="n">AnchorProvider</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">AngleProvider</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">PositionProvider</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">ScaleProvider</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">SizeProvider</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">export</span><span class="w"> </span><span class="s1">&#39;src/effects/provider_interfaces.dart&#39;</span>
+<span class="w">  </span><span class="k">show</span>
+<span class="w">    </span><span class="n">AnchorProvider</span><span class="p">,</span>
+<span class="w">    </span><span class="n">AngleProvider</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PositionProvider</span><span class="p">,</span>
+<span class="w">    </span><span class="n">ScaleProvider</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SizeProvider</span><span class="p">;</span>
 </pre></div>
 </div>
 </li>
@@ -367,7 +366,7 @@ however, using exceptions would be more appropriate. The following rules of thum
 For example, when creating a component that takes an <code class="docutils literal notranslate"><span class="pre">opacity</span></code> level as an input, you should check
 whether the value is in the range from 0 to 1. Consider also including the value itself into the
 error message, to make it easier for the developer to debug the error:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span><span class="p">(</span><span class="m">0</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">opacity</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">opacity</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The opacity value must be from 0 to 1: </span><span class="si">$</span><span class="n">opacity</span><span class="s1">&#39;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">assert</span><span class="p">(</span><span class="m">0</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">opacity</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">opacity</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The opacity value must be from 0 to 1: </span><span class="si">$</span><span class="n">opacity</span><span class="s1">&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Always use asserts as early as possible to detect possible violations. For example, check the
@@ -405,28 +404,28 @@ them at will! Consider such properties as read-only, unless the documentation ex
 they are allowed to be modified.</p></li>
 <li><p>When a class becomes sufficiently big, consider adding <em>regions</em> inside it, which help with code
 navigation and collapsing (note the lack of space after <code class="docutils literal notranslate"><span class="pre">//</span></code>):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">//#region Region description</span><span class="w"></span>
-<span class="p">...</span><span class="w"></span>
-<span class="c1">//#endregion</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">//#region Region description</span>
+<span class="p">...</span>
+<span class="c1">//#endregion</span>
 </pre></div>
 </div>
 </li>
 <li><p>If a class has a private member that needs to be exposed via a getter/setter, prefer the following
 code structure:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">MyClass</span><span class="p">();</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyClass</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">MyClass</span><span class="p">();</span>
 
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">_variable</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">...</span><span class="w"></span>
+<span class="w">  </span><span class="p">...</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">_variable</span><span class="p">;</span>
+<span class="w">  </span><span class="p">...</span>
 
-<span class="w">  </span><span class="c1">/// Docs for both the getter and the setter.</span><span class="w"></span>
-<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">variable</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_variable</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kd">set</span><span class="w"> </span><span class="n">variable</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;variable must be non-negative: </span><span class="si">$</span><span class="n">value</span><span class="s1">&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">_variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="c1">/// Docs for both the getter and the setter.</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">variable</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_variable</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">set</span><span class="w"> </span><span class="n">variable</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;variable must be non-negative: </span><span class="si">$</span><span class="n">value</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>This would gather all private variables in a single block near the top of the class, allowing one
@@ -454,9 +453,9 @@ documentation.</p>
 </ul>
 </li>
 <li><p>Class documentation should ideally start with the class name itself, and follow a pattern such as:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">/// [MyClass] is ...</span><span class="w"></span>
-<span class="c1">/// [MyClass] serves as ...</span><span class="w"></span>
-<span class="c1">/// [MyClass] does the following ...</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">/// [MyClass] is ...</span>
+<span class="c1">/// [MyClass] serves as ...</span>
+<span class="c1">/// [MyClass] does the following ...</span>
 </pre></div>
 </div>
 <p>The reason for such convention is that often the documentation for a class becomes sufficiently
@@ -467,13 +466,13 @@ being documented there.</p>
 as an implicit subject. Add a paragraph break after the first sentence. Try to think about what
 could be unclear to the users of the method; and mention any pre- and post-conditions.
 For example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Adds a new [child] into the container, and becomes the owner of that</span><span class="w"></span>
-<span class="c1">/// child.</span><span class="w"></span>
-<span class="c1">///</span><span class="w"></span>
-<span class="c1">/// The child will be disposed of when this container is destroyed.</span><span class="w"></span>
-<span class="c1">/// It is an error to try to add a child that already belongs to another</span><span class="w"></span>
-<span class="c1">/// container.</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="n">addChild</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">child</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Adds a new [child] into the container, and becomes the owner of that</span>
+<span class="c1">/// child.</span>
+<span class="c1">///</span>
+<span class="c1">/// The child will be disposed of when this container is destroyed.</span>
+<span class="c1">/// It is an error to try to add a child that already belongs to another</span>
+<span class="c1">/// container.</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">addChild</span><span class="p">(</span><span class="n">T</span><span class="w"> </span><span class="n">child</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Avoid stating the obvious (or at least only the obvious).</p>
@@ -498,7 +497,7 @@ Without the docs site, your class might never be used (or at least used less tha
 been), because the developers would simply not know about it.</p>
 <p>When adding the documentation to the main docs site, consider also including an example directly
 into the docs. This will make readers more excited about trying this new functionality.</p>
-<p>Check the <a class="reference internal" href="documentation.html"><span class="doc std std-doc">Documentation</span></a> manual about how to work with the docs site.</p>
+<p>Check the <a class="reference internal" href="documentation.html"><span class="std std-doc">Documentation</span></a> manual about how to work with the docs site.</p>
 <p>The following style rules generally apply when writing documentation:</p>
 <ul class="simple">
 <li><p>Maximum line length of 100 characters;</p></li>

@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-  <script src="../../../_static/jquery.js"></script>
-  <script src="../../../_static/underscore.js"></script>
-  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../_static/doctools.js"></script>
+  <script src="../../../_static/sphinx_highlight.js"></script>
   <script src="../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -310,49 +308,49 @@ developer to actually use the markup information in their game.</p>
 <p>Markup tags are denoted with the name of the tag, placed in square brackets: <code class="docutils literal notranslate"><span class="pre">[tag_name]</span></code>. The
 corresponding closing tag would be <code class="docutils literal notranslate"><span class="pre">[/tag_name]</span></code>. Every markup tag must have a corresponding
 closing tag:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Hello, <span class="sb">[wavy]</span>world<span class="sb">[/wavy]</span>!<span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Hello, <span class="sb">[wavy]</span>world<span class="sb">[/wavy]</span>!
 </pre></div>
 </div>
 <p>Markup tags may nest within each other, though they must nest properly, in the sense that one
 markup range must be fully inside or fully outside another:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Lorem <span class="sb">[S]</span>ipsum dolor <span class="sb">[A]</span>sit<span class="sb">[/A]</span><span class="w"> </span>amet<span class="sb">[/S]</span>, consectetur <span class="sb">[B]</span>adipiscing<span class="sb">[/B]</span><span class="w"> </span>elit<span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Lorem <span class="sb">[S]</span>ipsum dolor <span class="sb">[A]</span>sit<span class="sb">[/A]</span><span class="w"> </span>amet<span class="sb">[/S]</span>, consectetur <span class="sb">[B]</span>adipiscing<span class="sb">[/B]</span><span class="w"> </span>elit
 </pre></div>
 </div>
 <p>The special <strong>close-all</strong> markup tag <code class="docutils literal notranslate"><span class="pre">[/]</span></code> closes all currently opened markup ranges. It is also
 handy in situations where the name of the markup tag is long and you don’t want to repeat it:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Lorem ipsum dolor sit amet, <span class="sb">[Incididunt]</span>consectetur adipiscing elit<span class="sb">[/]</span><span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Lorem ipsum dolor sit amet, <span class="sb">[Incididunt]</span>consectetur adipiscing elit<span class="sb">[/]</span>
 </pre></div>
 </div>
 <p>The <strong>self-closing</strong> markup tags have the form <code class="docutils literal notranslate"><span class="pre">[tag_name/]</span></code>. These tags mark a single location
 within the text. In addition, if such tag is surrounded by spaces on both sides, then a single
 space after the tag will be removed from the resulting text. If this is undesired, then simply
 add an extra space after the markup tag:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Lorem ipsum dolor sit amet, <span class="sb">[carramba/]</span><span class="w"> </span>consectetur adipiscing elit.<span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Lorem ipsum dolor sit amet, <span class="sb">[carramba/]</span><span class="w"> </span>consectetur adipiscing elit.
 </pre></div>
 </div>
 <p>Markup tags also accept parameters, which are similar to HTML tag attributes. The names of these
 parameters can be arbitrary IDs, and the values are expressions that will be evaluated each time
 the line is executed. Thus, the values of attributes can be dynamic:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Lorem ipsum <span class="sb">[color name=$color]</span>dolor sit amet<span class="sb">[/color]</span><span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Lorem ipsum <span class="sb">[color name=$color]</span>dolor sit amet<span class="sb">[/color]</span>
 </pre></div>
 </div>
 <p>Markup tags can surround dynamic text (interpolated expressions), which will cause the length of
 the marked up span to be different every time the line is run. At the same time, markup cannot be
 generated dynamically – in the sense that the interpolated expressions will always be inserted
 as-is, even if they contain some text in square brackets.</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Hello, <span class="sb">[b]</span><span class="p">{</span><span class="nv">$player</span><span class="p">}</span><span class="sb">[/b]</span>!<span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Hello, <span class="sb">[b]</span><span class="p">{</span><span class="nv">$player</span><span class="p">}</span><span class="sb">[/b]</span>!
 </pre></div>
 </div>
 <p>Lastly, it should be noted that if you want to have an actual text in square brackets within a
 line, then in order to prevent it from being parsed as markup you can escape the square brackets
 with a backslash <code class="docutils literal notranslate"><span class="pre">\</span></code>:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Hello, <span class="se">\[</span>world<span class="se">\]</span>!<span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Hello, <span class="se">\[</span>world<span class="se">\]</span>!
 </pre></div>
 </div>
 <div class="admonition seealso">
 <p class="admonition-title">See also</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="../runtime/markup_attribute.html"><span class="doc std std-doc">MarkupAttribute</span></a>: the runtime representation
+<li><p><a class="reference internal" href="../runtime/markup_attribute.html"><span class="std std-doc">MarkupAttribute</span></a>: the runtime representation
 of a markup attribute within a line.</p></li>
 </ul>
 </div>
@@ -366,8 +364,8 @@ the word itself is cursed (it is up to you how to actually render this in a game
 word “stupid” in the second line has an emphasis, which may be rendered as italic text.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> Scene117_Harry_MrMalfoy</span>
 <span class="p">---</span>
-<span class="nt">Harry</span><span class="p">: </span>I&#39;m not afraid of <span class="sb">[cursed]</span>Voldemort<span class="sb">[/cursed]</span>!<span class="w"></span>
-<span class="nt">MrMalfoy</span><span class="p">: </span>You must be really brave... or really <span class="sb">[i]</span>stupid<span class="sb">[/i]</span>?<span class="w"></span>
+<span class="nt">Harry</span><span class="p">: </span>I&#39;m not afraid of <span class="sb">[cursed]</span>Voldemort<span class="sb">[/cursed]</span>!
+<span class="nt">MrMalfoy</span><span class="p">: </span>You must be really brave... or really <span class="sb">[i]</span>stupid<span class="sb">[/i]</span>?
 <span class="p">===</span>
 </pre></div>
 </div>
@@ -380,7 +378,7 @@ tooltip with a minimap for where to find this NPC.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> MonkDialogue</span>
 <span class="p">---</span>
 <span class="nt">Monk</span><span class="p">: </span>Visit <span class="sb">[tooltip place=&quot;TS&quot; x=23 y=-74]</span>Llewellyn<span class="sb">[/]</span><span class="w"> </span>in Thunderstorm, <span class="se">\</span>
-<span class="se">      </span>he will be able to help you.<span class="w"></span>
+<span class="se">      </span>he will be able to help you.
 <span class="p">===</span>
 </pre></div>
 </div>
@@ -391,8 +389,8 @@ tooltip with a minimap for where to find this NPC.</p>
 tapping this name would bring up the item’s description card.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> BlacksmithQuest</span>
 <span class="p">---</span>
-<span class="p">&lt;&lt;</span><span class="k">local</span><span class="w"> </span><span class="nv">$reward</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">if</span><span class="p">(</span><span class="nv">$chapter</span><span class="o">==</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">A0325</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">A1018</span><span class="s s-Delimeter">&quot;</span><span class="p">)&gt;&gt;</span><span class="w"></span>
-<span class="nt">Smith</span><span class="p">: </span>Find me my lost ring, and I&#39;ll give you this <span class="sb">[item id=$reward/]</span>.<span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">local</span><span class="w"> </span><span class="nv">$reward</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">if</span><span class="p">(</span><span class="nv">$chapter</span><span class="o">==</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">A0325</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">A1018</span><span class="s s-Delimeter">&quot;</span><span class="p">)&gt;&gt;</span>
+<span class="nt">Smith</span><span class="p">: </span>Find me my lost ring, and I&#39;ll give you this <span class="sb">[item id=$reward/]</span>.
 <span class="p">===</span>
 </pre></div>
 </div>

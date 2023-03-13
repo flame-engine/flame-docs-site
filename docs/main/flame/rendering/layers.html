@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../other/util.html">Utils</a></li>
@@ -322,32 +321,32 @@ rendered every game tick.</p>
 name suggests, it is meant for dynamic content and is most useful for grouping rendering of objects
 that have the same context.</p>
 <p>Usage example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">GameLayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">DynamicLayer</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">GameLayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">DynamicLayer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">GameLayer</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">game</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">GameLayer</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">game</span><span class="p">);</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">drawLayer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">playerSprite</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="n">canvas</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">playerPosition</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">enemySprite</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="n">canvas</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">enemyPosition</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">drawLayer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">playerSprite</span><span class="p">.</span><span class="n">render</span><span class="p">(</span>
+<span class="w">      </span><span class="n">canvas</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">playerPosition</span><span class="p">,</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">enemySprite</span><span class="p">.</span><span class="n">render</span><span class="p">(</span>
+<span class="w">      </span><span class="n">canvas</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">enemyPosition</span><span class="p">,</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// Other methods omitted...</span><span class="w"></span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Other methods omitted...</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">gameLayer</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span><span class="w"> </span><span class="c1">// x and y can be provided as optional position arguments</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">gameLayer</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span><span class="w"> </span><span class="c1">// x and y can be provided as optional position arguments</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -357,29 +356,29 @@ that have the same context.</p>
 replicated on the game canvas afterwards. They are useful for caching content that doesn’t change
 during the game, like a background for example.</p>
 <p>Usage example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">BackgroundLayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PreRenderedLayer</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Sprite</span><span class="w"> </span><span class="n">sprite</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">BackgroundLayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PreRenderedLayer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Sprite</span><span class="w"> </span><span class="n">sprite</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">BackgroundLayer</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">sprite</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="n">BackgroundLayer</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">sprite</span><span class="p">);</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">drawLayer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">sprite</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="n">canvas</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">drawLayer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">sprite</span><span class="p">.</span><span class="n">render</span><span class="p">(</span>
+<span class="w">      </span><span class="n">canvas</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="c1">// Other methods omitted...</span><span class="w"></span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Other methods omitted...</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// x and y can be provided as optional position arguments.</span><span class="w"></span>
-<span class="w">    </span><span class="n">backgroundLayer</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// x and y can be provided as optional position arguments.</span>
+<span class="w">    </span><span class="n">backgroundLayer</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -390,18 +389,18 @@ entire layer. At the moment, out of the box, only the <code class="docutils lite
 renders a back drop shadow on your layer.</p>
 <p>To add processors to your layer, just add them to the layer <code class="docutils literal notranslate"><span class="pre">preProcessors</span></code> or <code class="docutils literal notranslate"><span class="pre">postProcessors</span></code>
 list. For example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Works the same for both DynamicLayer and PreRenderedLayer</span><span class="w"></span>
-<span class="kd">class</span><span class="w"> </span><span class="nc">BackgroundLayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PreRenderedLayer</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Sprite</span><span class="w"> </span><span class="n">sprite</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Works the same for both DynamicLayer and PreRenderedLayer</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">BackgroundLayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PreRenderedLayer</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Sprite</span><span class="w"> </span><span class="n">sprite</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">BackgroundLayer</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">sprite</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">preProcessors</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">ShadowProcessor</span><span class="p">());</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">BackgroundLayer</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">sprite</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">preProcessors</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">ShadowProcessor</span><span class="p">());</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">drawLayer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* omitted */</span><span class="w"> </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">drawLayer</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* omitted */</span><span class="w"> </span><span class="p">}</span>
 
-<span class="w">  </span><span class="c1">// ...</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// ...</span>
 </pre></div>
 </div>
 <p>Custom processors can be created by extending the <code class="docutils literal notranslate"><span class="pre">LayerProcessor</span></code> class.</p>

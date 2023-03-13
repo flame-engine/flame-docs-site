@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-  <script src="../../../../_static/jquery.js"></script>
-  <script src="../../../../_static/underscore.js"></script>
-  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/other/util.html">Utils</a></li>
@@ -341,10 +340,10 @@ the variable is first declared, and it never changes afterwards.</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">string</span></code> variables contain arbitrary text, for example <code class="docutils literal notranslate"><span class="pre">&quot;the</span> <span class="pre">most</span> <span class="pre">random</span> <span class="pre">number</span> <span class="pre">is</span> <span class="pre">4&quot;</span></code>.</p></li>
 </ul>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="c">// Creates a variable $money of type number, and gives it initial value of 100</span>
-<span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$money</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$money</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">&gt;&gt;</span>
 
 <span class="c">// Creates variable $name of type string, the initial value will be &quot;&quot;</span>
-<span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nb">String</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$name</span><span class="w"> </span><span class="o">as</span><span class="w"> </span><span class="nb">String</span><span class="p">&gt;&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -353,7 +352,7 @@ the variable is first declared, and it never changes afterwards.</p>
 <p>Each variable stores a single <strong>value</strong>. This value can be replaced with another value at any time,
 but the type of the new value must be the same.</p>
 <p>Each variable will have an initial value assigned to it when the variable is first created, and
-then new values can be assigned with the <a class="reference internal" href="../commands/set.html"><span class="doc std std-doc">&lt;&lt;set&gt;&gt;</span></a> command.</p>
+then new values can be assigned with the <a class="reference internal" href="../commands/set.html"><span class="std std-doc">&lt;&lt;set&gt;&gt;</span></a> command.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">set</span><span class="w"> </span><span class="nv">$money</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="m">10</span><span class="p">&gt;&gt;</span><span class="w">  </span><span class="c">// increases the value of $money by 10</span>
 </pre></div>
 </div>
@@ -363,17 +362,17 @@ then new values can be assigned with the <a class="reference internal" href="../
 <p>The <strong>scope</strong> of a variable is where exactly it can be accessed. In YarnSpinner, the variables can
 be either global or local.</p>
 <ul class="simple">
-<li><p>The <strong>global</strong> variables are introduced via the <a class="reference internal" href="../commands/declare.html"><span class="doc std std-doc">&lt;&lt;declare&gt;&gt;</span></a> command, and once
+<li><p>The <strong>global</strong> variables are introduced via the <a class="reference internal" href="../commands/declare.html"><span class="std std-doc">&lt;&lt;declare&gt;&gt;</span></a> command, and once
 created can be accessed anywhere. The names of all global variables are unique.</p></li>
-<li><p>The <strong>local</strong> variables are created with the <a class="reference internal" href="../commands/local.html"><span class="doc std std-doc">&lt;&lt;local&gt;&gt;</span></a> command, and can only be used
+<li><p>The <strong>local</strong> variables are created with the <a class="reference internal" href="../commands/local.html"><span class="std std-doc">&lt;&lt;local&gt;&gt;</span></a> command, and can only be used
 within the node where they were created. It is possible to have a local variable with the same
 name in different nodes, and they will be considered different variables.</p></li>
 </ul>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$global_variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$global_variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">&gt;&gt;</span>
 
 <span class="nb">title</span><span class="p">:</span><span class="nv"> MyNode</span>
 <span class="p">---</span>
-<span class="p">&lt;&lt;</span><span class="k">local</span><span class="w"> </span><span class="nv">$local_variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">local</span><span class="w"> </span><span class="nv">$local_variable</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">&gt;&gt;</span>
 <span class="p">===</span>
 </pre></div>
 </div>

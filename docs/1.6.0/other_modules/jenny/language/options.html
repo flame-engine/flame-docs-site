@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-  <script src="../../../_static/jquery.js"></script>
-  <script src="../../../_static/underscore.js"></script>
-  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../_static/doctools.js"></script>
+  <script src="../../../_static/sphinx_highlight.js"></script>
   <script src="../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -307,10 +305,10 @@ of the line:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> Adventure</span>
 <span class="p">---</span>
 You arrive at the edge of the forest. The road dives in, but there is another <span class="se">\</span>
-one going around the edge.<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Go straight ahead, on the beaten path (x)<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Take the road along the forest&#39;s edge<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Turn back<span class="w"></span>
+one going around the edge.
+<span class="p">-&gt;</span><span class="w"> </span>Go straight ahead, on the beaten path (x)
+<span class="p">-&gt;</span><span class="w"> </span>Take the road along the forest&#39;s edge
+<span class="p">-&gt;</span><span class="w"> </span>Turn back
 <span class="p">===</span>
 </pre></div>
 </div>
@@ -318,31 +316,31 @@ one going around the edge.<span class="w"></span>
 options, or commands). These statements indicate how the dialogue should proceed if the player
 chooses that particular option. After the control flow finishes running through the block
 corresponding to the selected option, the dialogue resumes after the option set.</p>
-<p>Other than the arrow indicator, an option follows the same syntax as the <a class="reference internal" href="lines.html"><span class="doc std std-doc">line</span></a>. Thus, it can have
+<p>Other than the arrow indicator, an option follows the same syntax as the <a class="reference internal" href="lines.html"><span class="std std-doc">line</span></a>. Thus, it can have
 a character name, the main text, interpolated expressions, markup, and hashtags. One additional
 feature that an option can have is the <strong>conditional</strong>. A conditional is a short-form <code class="docutils literal notranslate"><span class="pre">&lt;&lt;if&gt;&gt;</span></code>
 command after the text of an option (but before the hashtags):</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> Bridge</span>
 <span class="p">---</span>
-<span class="nt">Guard</span><span class="p">: </span>50 coins and you can cross the bridge.<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>Alright, take the money  <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$gold</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">50</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">take</span><span class="w"> </span>gold 50<span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">grant</span><span class="w"> </span>bridge_pass<span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>I have so much money, here, take a 100  <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$gold</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">10000</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">take</span><span class="w"> </span>gold 100<span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">grant</span><span class="w"> </span>bridge_pass<span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="nt">Guard</span><span class="p">: </span>Wow, so generous!<span class="w"></span>
+<span class="nt">Guard</span><span class="p">: </span>50 coins and you can cross the bridge.
+<span class="p">-&gt;</span><span class="w"> </span>Alright, take the money  <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$gold</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">50</span><span class="p">&gt;&gt;</span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">take</span><span class="w"> </span>gold 50<span class="p">&gt;&gt;</span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">grant</span><span class="w"> </span>bridge_pass<span class="p">&gt;&gt;</span>
+<span class="p">-&gt;</span><span class="w"> </span>I have so much money, here, take a 100  <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$gold</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">10000</span><span class="p">&gt;&gt;</span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">take</span><span class="w"> </span>gold 100<span class="p">&gt;&gt;</span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="nc">grant</span><span class="w"> </span>bridge_pass<span class="p">&gt;&gt;</span>
+<span class="w">   </span><span class="nt">Guard</span><span class="p">: </span>Wow, so generous!
 <span class="w">   </span><span class="nt">Guard</span><span class="p">: </span>But I wouldn&#39;t recommend going around telling everyone that you <span class="se">\</span>
-<span class="se">          </span>have &quot;so much money&quot;<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>That&#39;s too expensive!<span class="w"></span>
-<span class="w">   </span><span class="nt">Guard</span><span class="p">: </span>Is it? My condolences<span class="w"></span>
-<span class="p">-&gt;</span><span class="w"> </span>How about I <span class="sb">[s]</span>kick your butt<span class="sb">[/s]</span><span class="w"> </span>instead?<span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$power</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">1000</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">      </span><span class="p">&lt;&lt;</span><span class="nc">fight</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">      </span>You make a very reasonable point, sir, my apologies.<span class="w"></span>
-<span class="w">      </span><span class="p">&lt;&lt;</span><span class="nc">grant</span><span class="w"> </span>bridge_pass<span class="p">&gt;&gt;</span><span class="w"></span>
-<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="se">          </span>have &quot;so much money&quot;
+<span class="p">-&gt;</span><span class="w"> </span>That&#39;s too expensive!
+<span class="w">   </span><span class="nt">Guard</span><span class="p">: </span>Is it? My condolences
+<span class="p">-&gt;</span><span class="w"> </span>How about I <span class="sb">[s]</span>kick your butt<span class="sb">[/s]</span><span class="w"> </span>instead?
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nv">$power</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">1000</span><span class="p">&gt;&gt;</span>
+<span class="w">      </span><span class="p">&lt;&lt;</span><span class="nc">fight</span><span class="p">&gt;&gt;</span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">else</span><span class="p">&gt;&gt;</span>
+<span class="w">      </span>You make a very reasonable point, sir, my apologies.
+<span class="w">      </span><span class="p">&lt;&lt;</span><span class="nc">grant</span><span class="w"> </span>bridge_pass<span class="p">&gt;&gt;</span>
+<span class="w">   </span><span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span>
 <span class="p">===</span>
 </pre></div>
 </div>

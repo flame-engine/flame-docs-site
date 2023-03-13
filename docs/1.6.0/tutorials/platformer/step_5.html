@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -307,75 +305,75 @@
 <p>The first step will be to allow control of Ember via the keyboard.  We need to start by adding the
 appropriate mixins to the game class and Ember. Add the following:</p>
 <p>`lib/ember_quest.dart’</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">EmberQuestGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasKeyboardHandlerComponents</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">EmberQuestGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasKeyboardHandlerComponents</span><span class="w"> </span><span class="p">{</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">lib/actors/ember.dart</span></code></p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">EmberPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="w"></span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardHandler</span><span class="p">,</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">EmberPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardHandler</span><span class="p">,</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 </pre></div>
 </div>
 <p>Now we can add a new method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onKeyEvent</span><span class="p">(</span><span class="n">RawKeyEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">LogicalKeyboardKey</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onKeyEvent</span><span class="p">(</span><span class="n">RawKeyEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">LogicalKeyboardKey</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Like before, if this did not trigger an auto-import, you will need the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/services.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/services.dart&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>To control Ember’s movement, it is easiest to set a variable where we think of the direction of
 movement like a normalized vector, meaning the value will be restricted to -1, 0, or 1.  So let’s
 set a variable at the top of the class:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Now in our <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> method, we can register the key pressed by adding:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onKeyEvent</span><span class="p">(</span><span class="n">RawKeyEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">LogicalKeyboardKey</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">keyA</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
-<span class="w">            </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">arrowLeft</span><span class="p">))</span><span class="w"></span>
-<span class="w">        </span><span class="o">?</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">keyD</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"></span>
-<span class="w">            </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">arrowRight</span><span class="p">))</span><span class="w"></span>
-<span class="w">        </span><span class="o">?</span><span class="w"> </span><span class="m">1</span><span class="w"></span>
-<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onKeyEvent</span><span class="p">(</span><span class="n">RawKeyEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">LogicalKeyboardKey</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">keyA</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="w">            </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">arrowLeft</span><span class="p">))</span>
+<span class="w">        </span><span class="o">?</span><span class="w"> </span><span class="o">-</span><span class="m">1</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="w">    </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">keyD</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="w">            </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">arrowRight</span><span class="p">))</span>
+<span class="w">        </span><span class="o">?</span><span class="w"> </span><span class="m">1</span>
+<span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
 <p>Let’s make Ember move by adding a few lines of code and creating our <code class="docutils literal notranslate"><span class="pre">update</span></code> method.  First, we
 need to define a velocity variable for Ember.  Add the following at the top of the <code class="docutils literal notranslate"><span class="pre">EmberPlayer</span></code>
 class:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">();</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">moveSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">200</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">();</span>
+<span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">moveSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">200</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>This establishes a base velocity of 0 and stores <code class="docutils literal notranslate"><span class="pre">moveSpeed</span></code> so we can adjust as necessary to suit
 how the game-play should be. Next, add the <code class="docutils literal notranslate"><span class="pre">update</span></code> method with the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">moveSpeed</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">moveSpeed</span><span class="p">;</span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
 <p>If you run the game now, Ember moves left and right using the arrow keys or the <code class="docutils literal notranslate"><span class="pre">A</span></code> and <code class="docutils literal notranslate"><span class="pre">D</span></code> keys.
 You may have noticed that Ember doesn’t look back if you are going left, to fix that, add the
 following code at the end of your <code class="docutils literal notranslate"><span class="pre">update</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">scale</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">flipHorizontally</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">scale</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">flipHorizontally</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">scale</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">flipHorizontally</span><span class="p">();</span>
+<span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">scale</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">flipHorizontally</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Now Ember looks in the direction they are traveling.</p>
@@ -383,105 +381,105 @@ following code at the end of your <code class="docutils literal notranslate"><sp
 <section id="collisions">
 <h2>Collisions<a class="headerlink" href="#collisions" title="Permalink to this heading">¶</a></h2>
 <p>It is time to get into the thick of it with collisions.  I highly suggest reading the
-<a class="reference internal" href="../../flame/collision_detection.html"><span class="doc std std-doc">documentation</span></a> to understand how collisions work in Flame.  The
+<a class="reference internal" href="../../flame/collision_detection.html"><span class="std std-doc">documentation</span></a> to understand how collisions work in Flame.  The
 first thing we need to do is make the game aware that collisions are going to occur using the
 <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> mixin.  Add that to <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> like:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">EmberQuestGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"></span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="p">,</span><span class="w"> </span><span class="n">HasKeyboardHandlerComponents</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">EmberQuestGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="p">,</span><span class="w"> </span><span class="n">HasKeyboardHandlerComponents</span><span class="w"> </span><span class="p">{</span>
 </pre></div>
 </div>
 <p>Next, add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to <code class="docutils literal notranslate"><span class="pre">lib/actors/ember.dart</span></code> like:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">EmberPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="w"></span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardHandler</span><span class="p">,</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="p">,</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">EmberPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardHandler</span><span class="p">,</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="p">,</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 </pre></div>
 </div>
 <p>If it did not auto-import, you will need the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Now add the following <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">GroundBlock</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">PlatformBlock</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// Calculate the collision normal and separation distance.</span><span class="w"></span>
-<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">.</span><span class="n">elementAt</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"></span>
-<span class="w">        </span><span class="n">intersectionPoints</span><span class="p">.</span><span class="n">elementAt</span><span class="p">(</span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">GroundBlock</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">PlatformBlock</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Calculate the collision normal and separation distance.</span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">.</span><span class="n">elementAt</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="w">        </span><span class="n">intersectionPoints</span><span class="p">.</span><span class="n">elementAt</span><span class="p">(</span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
 
-<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">collisionNormal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">absoluteCenter</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">separationDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">collisionNormal</span><span class="p">.</span><span class="n">length</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="n">collisionNormal</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span><span class="w"></span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">collisionNormal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">absoluteCenter</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">separationDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">collisionNormal</span><span class="p">.</span><span class="n">length</span><span class="p">;</span>
+<span class="w">      </span><span class="n">collisionNormal</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span>
 
-<span class="w">      </span><span class="c1">// If collision normal is almost upwards,</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// ember must be on ground.</span><span class="w"></span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fromAbove</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">collisionNormal</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.9</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">isOnGround</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// If collision normal is almost upwards,</span>
+<span class="w">      </span><span class="c1">// ember must be on ground.</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fromAbove</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">collisionNormal</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.9</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">isOnGround</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">      </span><span class="p">}</span>
 
-<span class="w">      </span><span class="c1">// Resolve collision by moving ember along</span><span class="w"></span>
-<span class="w">      </span><span class="c1">// collision normal by separation distance.</span><span class="w"></span>
-<span class="w">      </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">collisionNormal</span><span class="p">.</span><span class="n">scaled</span><span class="p">(</span><span class="n">separationDistance</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="p">}</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="c1">// Resolve collision by moving ember along</span>
+<span class="w">      </span><span class="c1">// collision normal by separation distance.</span>
+<span class="w">      </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">collisionNormal</span><span class="p">.</span><span class="n">scaled</span><span class="p">(</span><span class="n">separationDistance</span><span class="p">);</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">  </span><span class="k">super</span><span class="p">.</span><span class="n">onCollision</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="k">super</span><span class="p">.</span><span class="n">onCollision</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>You will need to import the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;../objects/ground_block.dart&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;../objects/platform_block.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;../objects/ground_block.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;../objects/platform_block.dart&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>As well as create these class variables:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">fromAbove</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">isOnGround</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">fromAbove</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">isOnGround</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>For the collisions to be activated for Ember, we need to add a <code class="docutils literal notranslate"><span class="pre">CircleHitbox</span></code>, so in the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>
 method, add the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">CircleHitbox</span><span class="p">(),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span>
+<span class="w">  </span><span class="n">CircleHitbox</span><span class="p">(),</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>Now that we have the basic collisions created, we can add gravity so Ember exists in a game world
 with very basic physics.  To do that, we need to create some more variables:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">gravity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">jumpSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">600</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">terminalVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">150</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">gravity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">jumpSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">600</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">terminalVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">150</span><span class="p">;</span>
 
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">hasJumped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">hasJumped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Now we can add Ember’s ability to jump by adding the following to our <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">hasJumped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">space</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">hasJumped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">space</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Finally, in our <code class="docutils literal notranslate"><span class="pre">update</span></code> method we can tie this all together with:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Apply basic gravity</span><span class="w"></span>
-<span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">gravity</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Apply basic gravity</span>
+<span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">gravity</span><span class="p">;</span>
 
-<span class="c1">// Determine if ember has jumped</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hasJumped</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isOnGround</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">jumpSpeed</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">isOnGround</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="n">hasJumped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="c1">// Determine if ember has jumped</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hasJumped</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isOnGround</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">jumpSpeed</span><span class="p">;</span>
+<span class="w">    </span><span class="n">isOnGround</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">hasJumped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
 
-<span class="c1">// Prevent ember from jumping to crazy fast as well as descending too fast and </span><span class="w"></span>
-<span class="c1">// crashing through the ground or a platform.</span><span class="w"></span>
-<span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="o">-</span><span class="n">jumpSpeed</span><span class="p">,</span><span class="w"> </span><span class="n">terminalVelocity</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// Prevent ember from jumping to crazy fast as well as descending too fast and </span>
+<span class="c1">// crashing through the ground or a platform.</span>
+<span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="o">-</span><span class="n">jumpSpeed</span><span class="p">,</span><span class="w"> </span><span class="n">terminalVelocity</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Earlier I mentioned that Ember was in the center of the grass, to solve this and show how collisions
 and gravity work with Ember, I like to add a little drop-in when you start the game.  So in
 <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> in the <code class="docutils literal notranslate"><span class="pre">initializeGame</span></code> method, change the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_ember</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">128</span><span class="p">,</span><span class="w"> </span><span class="n">canvasSize</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">128</span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_ember</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">128</span><span class="p">,</span><span class="w"> </span><span class="n">canvasSize</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">128</span><span class="p">),</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>If you run the game now, Ember should be created and fall to the ground; then you can jump around!</p>
@@ -489,47 +487,47 @@ and gravity work with Ember, I like to add a little drop-in when you start the g
 <h3>Collisions with Objects<a class="headerlink" href="#collisions-with-objects" title="Permalink to this heading">¶</a></h3>
 <p>Adding the collisions with the other objects is fairly trivial. All we need to do is add the
 following to the bottom of the <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Star</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">other</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Star</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">other</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="p">}</span>
 
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">WaterEnemy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">hit</span><span class="p">();</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">WaterEnemy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">hit</span><span class="p">();</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>When Ember collides with a star, the game will remove the star, and to implement the <code class="docutils literal notranslate"><span class="pre">hit</span></code> method for
 when Ember collides with an enemy, we need to do the following:</p>
 <p>Add the following variable at the top of the <code class="docutils literal notranslate"><span class="pre">EmberPlayer</span></code> class:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Additionally, add this method to the <code class="docutils literal notranslate"><span class="pre">EmberPlayer</span></code> class:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// This method runs an opacity effect on ember</span><span class="w"></span>
-<span class="c1">// to make it blink.</span><span class="w"></span>
-<span class="kt">void</span><span class="w"> </span><span class="n">hit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">hitByEnemy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="n">add</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="n">OpacityEffect</span><span class="p">.</span><span class="n">fadeOut</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="n">EffectController</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="nl">alternate:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="p">)..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="p">},</span><span class="w"></span>
-<span class="w">  </span><span class="p">);</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// This method runs an opacity effect on ember</span>
+<span class="c1">// to make it blink.</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">hit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">hitByEnemy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">add</span><span class="p">(</span>
+<span class="w">    </span><span class="n">OpacityEffect</span><span class="p">.</span><span class="n">fadeOut</span><span class="p">(</span>
+<span class="w">    </span><span class="n">EffectController</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">alternate:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">6</span><span class="p">,</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="p">)..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="p">},</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>If the auto-imports did not occur, you will need to add the following imports to your file:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span>
 
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;../objects/star.dart&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;water_enemy.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;../objects/star.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;water_enemy.dart&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>If you run the game now, you should be able to move around, make stars disappear, and if you
@@ -541,16 +539,16 @@ collide with an enemy, Ember should blink.</p>
 <p>This is our last task with Ember.  We need to restrict Ember’s movement because as of now, Ember can
 go off-screen and we never move the map.  So to implement this feature, we simply need to add the
 following to our <code class="docutils literal notranslate"><span class="pre">update</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"></span>
-<span class="c1">// Prevent ember from going backwards at screen edge.</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">36</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
-<span class="c1">// Prevent ember from going beyond half screen.</span><span class="w"></span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">moveSpeed</span><span class="p">;</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="c1">// Prevent ember from going backwards at screen edge.</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">36</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="c1">// Prevent ember from going beyond half screen.</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">moveSpeed</span><span class="p">;</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>If you run the game now, Ember can’t move off-screen to the left, and as Ember moves to the right,
@@ -561,13 +559,13 @@ Ground Block.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>As I mentioned earlier, I would add a section on how this game could be adapted
-to a traditional level game. As we built the segments in <a class="reference internal" href="step_3.html"><span class="doc std std-doc">3. Building the World</span></a>, we
+to a traditional level game. As we built the segments in <a class="reference internal" href="step_3.html"><span class="std std-doc">3. Building the World</span></a>, we
 could add a segment that has a door or a special block. For every <code class="docutils literal notranslate"><span class="pre">X</span></code> number of
 segments loaded, we could then add that special segment. When Ember reaches that
 object, we could reload the level and start all over maintaining the stars
 collected and health.</p>
 </div>
-<p>We are almost done!  In <a class="reference internal" href="step_6.html"><span class="doc std std-doc">6. Adding the HUD</span></a>, we will add the health system, keep track of
+<p>We are almost done!  In <a class="reference internal" href="step_6.html"><span class="std std-doc">6. Adding the HUD</span></a>, we will add the health system, keep track of
 the score, and provide a HUD to relay that information to the player.</p>
 </section>
 </section>

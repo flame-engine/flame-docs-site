@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-  <script src="../../../_static/jquery.js"></script>
-  <script src="../../../_static/underscore.js"></script>
-  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../_static/doctools.js"></script>
+  <script src="../../../_static/sphinx_highlight.js"></script>
   <script src="../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/other/util.html">Utils</a></li>
@@ -317,13 +316,13 @@ some that were not implemented in the YarnSpinner yet.</p>
 encoding. As such, they can be edited in any text editor or IDE.</p>
 <p>Having multiple <code class="docutils literal notranslate"><span class="pre">.yarn</span></code> files helps you better organize your project, but Jenny doesn’t impose any
 requirements on the number of files or their relationship.</p>
-<p>Each <code class="docutils literal notranslate"><span class="pre">.yarn</span></code> file may contain <strong>comments</strong>, <strong>tags</strong>, <strong><a class="reference internal" href="commands/commands.html"><span class="doc std std-doc">commands</span></a></strong>, and <strong><a class="reference internal" href="nodes.html"><span class="doc std std-doc">nodes</span></a></strong>.
+<p>Each <code class="docutils literal notranslate"><span class="pre">.yarn</span></code> file may contain <strong>comments</strong>, <strong>tags</strong>, <strong><a class="reference internal" href="commands/commands.html"><span class="std std-doc">commands</span></a></strong>, and <strong><a class="reference internal" href="nodes.html"><span class="std std-doc">nodes</span></a></strong>.
 For example:</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="c">// This is a comment</span>
 <span class="c">// The line below, however, is a tag:</span>
 <span class="ch"># Chapter 1d</span>
 
-<span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$visited_graveyard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">&gt;&gt;</span><span class="w"></span>
+<span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$visited_graveyard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">false</span><span class="p">&gt;&gt;</span>
 <span class="p">&lt;&lt;</span><span class="k">declare</span><span class="w"> </span><span class="nv">$money</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="p">&gt;&gt;</span><span class="w">  </span><span class="c">// is this too much?</span>
 
 <span class="nb">title</span><span class="p">:</span><span class="nv"> Start</span>
@@ -345,7 +344,7 @@ include some per-file custom project metadata. These tags are not interpreted by
 </section>
 <section id="commands">
 <h3>Commands<a class="headerlink" href="#commands" title="Permalink to this heading">¶</a></h3>
-<p>The commands are explained in more details <a class="reference internal" href="commands/commands.html"><span class="doc std std-doc">later</span></a>, but at this point it is
+<p>The commands are explained in more details <a class="reference internal" href="commands/commands.html"><span class="std std-doc">later</span></a>, but at this point it is
 worth pointing out that only a limited number of commands are allowed at the root level of a file
 (that is, outside of nodes). Currently, these commands are:</p>
 <ul class="simple">
@@ -358,7 +357,7 @@ compilation of a YarnProject.</p>
 <section id="nodes">
 <h3>Nodes<a class="headerlink" href="#nodes" title="Permalink to this heading">¶</a></h3>
 <p>Nodes represent the main bulk of content in a yarn file, and are explained in a dedicated
-<a class="reference internal" href="nodes.html"><span class="doc std std-doc">section</span></a>. There could be multiple nodes in a single file, placed one after another.
+<a class="reference internal" href="nodes.html"><span class="std std-doc">section</span></a>. There could be multiple nodes in a single file, placed one after another.
 No special separator is needed between nodes: as soon as one node ends, the next one can begin.</p>
 <div class="toctree-wrapper compound">
 </div>

@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-  <script src="../../../_static/jquery.js"></script>
-  <script src="../../../_static/underscore.js"></script>
-  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../_static/doctools.js"></script>
+  <script src="../../../_static/sphinx_highlight.js"></script>
   <script src="../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -301,7 +299,7 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="dialogueline">
 <h1>DialogueLine<a class="headerlink" href="#dialogueline" title="Permalink to this heading">¶</a></h1>
-<p>The <strong>DialogueLine</strong> class represents a single <a class="reference internal" href="../language/lines.html"><span class="doc std std-doc">Line</span></a> of text in the <code class="docutils literal notranslate"><span class="pre">.yarn</span></code> script. The
+<p>The <strong>DialogueLine</strong> class represents a single <a class="reference internal" href="../language/lines.html"><span class="std std-doc">Line</span></a> of text in the <code class="docutils literal notranslate"><span class="pre">.yarn</span></code> script. The
 <code class="docutils literal notranslate"><span class="pre">DialogueLine</span></code> objects will be delivered to your <code class="docutils literal notranslate"><span class="pre">DialogueView</span></code> with the methods <code class="docutils literal notranslate"><span class="pre">onLineStart()</span></code>,
 <code class="docutils literal notranslate"><span class="pre">onLineSignal()</span></code>, <code class="docutils literal notranslate"><span class="pre">onLineStop()</span></code>, and <code class="docutils literal notranslate"><span class="pre">onLineFinish()</span></code>.</p>
 <section id="properties">
@@ -315,7 +313,7 @@ and processing the escape sequences.</p>
 <dt><strong>tags</strong> <code class="docutils literal notranslate"><span class="pre">List&lt;String&gt;</span></code></dt><dd><p>The list of hashtags for this line. If there are no hashtags, the list will be empty. Each entry
 in the list will be a simple string starting with <code class="docutils literal notranslate"><span class="pre">#</span></code>.</p>
 </dd>
-<dt><strong>attributes</strong> <code class="docutils literal notranslate"><span class="pre">List&lt;MarkupAttribute&gt;</span></code></dt><dd><p>The list of markup spans associated with the line. Each <a class="reference internal" href="markup_attribute.html"><span class="doc std std-doc">MarkupAttribute</span></a> corresponds to a
+<dt><strong>attributes</strong> <code class="docutils literal notranslate"><span class="pre">List&lt;MarkupAttribute&gt;</span></code></dt><dd><p>The list of markup spans associated with the line. Each <a class="reference internal" href="markup_attribute.html"><span class="std std-doc">MarkupAttribute</span></a> corresponds to a
 single span within the <strong>text</strong>, delineated with markup tags.</p>
 </dd>
 </dl>

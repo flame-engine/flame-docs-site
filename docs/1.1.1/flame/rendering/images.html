@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -180,10 +178,10 @@
 <h1>Images<a class="headerlink" href="#images" title="Permalink to this heading">¶</a></h1>
 <p>To start off you must have an appropriate folder structure and add the files to the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>
 file, like this:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">assets</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/images/player.png</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/images/enemy.png</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">assets</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/images/player.png</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/images/enemy.png</span>
 </pre></div>
 </div>
 <p>Images can be in any format supported by Flutter, which include: JPEG, WebP, PNG, GIF, animated GIF,
@@ -211,9 +209,9 @@ cache, so make sure that you don’t use the image afterwards.</p>
 <section id="standalone-usage">
 <h3>Standalone usage<a class="headerlink" href="#standalone-usage" title="Permalink to this heading">¶</a></h3>
 <p>It can manually be used by instantiating it:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/images.dart&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">imagesLoader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Images</span><span class="p">();</span><span class="w"></span>
-<span class="n">Image</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">imagesLoader</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;yourImage.png&#39;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/images.dart&#39;</span><span class="p">;</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">imagesLoader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Images</span><span class="p">();</span>
+<span class="n">Image</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">imagesLoader</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;yourImage.png&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>But Flame also offers two ways of using this class without instantiating it yourself.</p>
@@ -222,13 +220,13 @@ cache, so make sure that you don’t use the image afterwards.</p>
 <h3>Flame.images<a class="headerlink" href="#flame-images" title="Permalink to this heading">¶</a></h3>
 <p>There is a singleton, provided by the <code class="docutils literal notranslate"><span class="pre">Flame</span></code> class, that can be used as a global image cache.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/flame.dart&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/sprite.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/flame.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/sprite.dart&#39;</span><span class="p">;</span>
 
-<span class="c1">// inside an async context</span><span class="w"></span>
-<span class="n">Image</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span><span class="w"></span>
+<span class="c1">// inside an async context</span>
+<span class="n">Image</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">playerSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">image</span><span class="p">);</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">playerSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -239,36 +237,36 @@ of the <code class="docutils literal notranslate"><span class="pre">Images</span
 will automatically free the cache when the game widget is removed from the widget tree.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method from the <code class="docutils literal notranslate"><span class="pre">Game</span></code> class is a great place for the initial assets to be loaded.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="n">Sprite</span><span class="w"> </span><span class="n">player</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">Sprite</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">playerImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Note that you could also use Sprite.load for this</span><span class="w"></span>
-<span class="w">    </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">playerImage</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">playerImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// Note that you could also use Sprite.load for this</span>
+<span class="w">    </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">playerImage</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>Loaded assets can also be retrieved while the game is running by <code class="docutils literal notranslate"><span class="pre">images.fromCache</span></code>, for example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="c1">// attributes omitted</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// attributes omitted</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// other loads omitted</span><span class="w"></span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;bullet.png&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// other loads omitted</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;bullet.png&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">shoot</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// This is just an example, in your game you probably don&#39;t want to instantiate new [Sprite]</span><span class="w"></span>
-<span class="w">    </span><span class="c1">// objects every time you shoot.</span><span class="w"></span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">bulletSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;bullet.png&#39;</span><span class="p">));</span><span class="w"></span>
-<span class="w">    </span><span class="n">_bullets</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">bulletSprite</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">shoot</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// This is just an example, in your game you probably don&#39;t want to instantiate new [Sprite]</span>
+<span class="w">    </span><span class="c1">// objects every time you shoot.</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">bulletSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;bullet.png&#39;</span><span class="p">));</span>
+<span class="w">    </span><span class="n">_bullets</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">bulletSprite</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -279,28 +277,28 @@ will automatically free the cache when the game widget is removed from the widge
 <p>You can create a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> by providing it an <code class="docutils literal notranslate"><span class="pre">Image</span></code> and coordinates that defines the piece of the
 image that that sprite represents.</p>
 <p>For example, this will create a sprite representing the whole image of the file passed:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="n">Sprite</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">image</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="n">Sprite</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>You can also specify the coordinates in the original image where the sprite is located. This allows
 you to use sprite sheets and reduce the number of images in memory, for example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">playerFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="n">image</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">srcPosition:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32.0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">16.0</span><span class="p">,</span><span class="w"> </span><span class="m">16.0</span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">playerFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span>
+<span class="w">  </span><span class="n">image</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">srcPosition:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32.0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">16.0</span><span class="p">,</span><span class="w"> </span><span class="m">16.0</span><span class="p">),</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>The default values are <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">0.0)</span></code> for <code class="docutils literal notranslate"><span class="pre">srcPosition</span></code> and <code class="docutils literal notranslate"><span class="pre">null</span></code> for <code class="docutils literal notranslate"><span class="pre">srcSize</span></code> (meaning it will use
 the full width/height of the source image).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> class has a render method, that allows you to render the sprite onto a <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;block.png&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="n">Sprite</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">image</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;block.png&#39;</span><span class="p">);</span>
+<span class="n">Sprite</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
 
-<span class="c1">// in your render method</span><span class="w"></span>
-<span class="n">block</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="m">16.0</span><span class="p">,</span><span class="w"> </span><span class="m">16.0</span><span class="p">);</span><span class="w"> </span><span class="c1">//canvas, width, height</span><span class="w"></span>
+<span class="c1">// in your render method</span>
+<span class="n">block</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="m">16.0</span><span class="p">,</span><span class="w"> </span><span class="m">16.0</span><span class="p">);</span><span class="w"> </span><span class="c1">//canvas, width, height</span>
 </pre></div>
 </div>
 <p>You must pass the size to the render method, and the image will be resized accordingly.</p>
@@ -326,18 +324,18 @@ image, in addition to transforms (position, scale and rotation) and optional col
 <h2>ImageComposition<a class="headerlink" href="#imagecomposition" title="Permalink to this heading">¶</a></h2>
 <p>In some cases you may want to merge multiple images into a single image; this is called
 <a class="reference external" href="https://en.wikipedia.org/wiki/Compositing">Compositing</a>. This can be useful for example when
-working with the <a class="reference internal" href="#spritebatch"><span class="std std-doc">SpriteBatch</span></a> API to optimize your drawing calls.</p>
+working with the <a class="reference internal" href="#spritebatch">SpriteBatch</a> API to optimize your drawing calls.</p>
 <p>For such usecases Flame comes with the <code class="docutils literal notranslate"><span class="pre">ImageComposition</span></code> class. This allows you to add multiple
 images, each at their own position, onto a new image:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">composition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ImageComposition</span><span class="p">()</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">image2</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">64</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">));</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">image3</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">Vector2</span><span class="p">(</span><span class="m">128</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span><span class="w"></span>
-<span class="w">    </span><span class="k">source</span><span class="o">:</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">64</span><span class="p">,</span><span class="w"> </span><span class="m">64</span><span class="p">),</span><span class="w"></span>
-<span class="w">  </span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">composition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ImageComposition</span><span class="p">()</span>
+<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">image1</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">))</span>
+<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">image2</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">64</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">));</span>
+<span class="w">  </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">image3</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Vector2</span><span class="p">(</span><span class="m">128</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="w">    </span><span class="k">source</span><span class="o">:</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">64</span><span class="p">,</span><span class="w"> </span><span class="m">64</span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
 
-<span class="n">Image</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">composition</span><span class="p">.</span><span class="n">compose</span><span class="p">();</span><span class="w"></span>
+<span class="n">Image</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">composition</span><span class="p">.</span><span class="n">compose</span><span class="p">();</span>
 </pre></div>
 </div>
 <p><strong>Note:</strong> Composing images is expensive, we do not recommend you run this every tick as it affect
@@ -351,26 +349,26 @@ reuse the output image.</p>
 to use it.</p>
 <p>To use it just import the <code class="docutils literal notranslate"><span class="pre">Svg</span></code> class from <code class="docutils literal notranslate"><span class="pre">'package:flame_svg/flame_svg.dart'</span></code>, and use the
 following snippet to render it on the canvas:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Svg</span><span class="w"> </span><span class="n">svgInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Svg</span><span class="p">(</span><span class="s1">&#39;android.svg&#39;</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Svg</span><span class="w"> </span><span class="n">svgInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Svg</span><span class="p">(</span><span class="s1">&#39;android.svg&#39;</span><span class="p">);</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">300</span><span class="p">,</span><span class="w"> </span><span class="m">300</span><span class="p">);</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">300</span><span class="p">,</span><span class="w"> </span><span class="m">300</span><span class="p">);</span>
 
-<span class="n">svgInstance</span><span class="p">.</span><span class="n">renderPosition</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">);</span><span class="w"></span>
+<span class="n">svgInstance</span><span class="p">.</span><span class="n">renderPosition</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>or use the [SvgComponent]:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">svgInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Svg</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;android.svg&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">svgComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SvgComponent</span><span class="p">.</span><span class="n">fromSvg</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">svgInstance</span><span class="p">);</span><span class="w"></span>
-<span class="w">      </span><span class="n">svgComponent</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span><span class="w"></span>
-<span class="w">      </span><span class="n">svgComponent</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">svgInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Svg</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;android.svg&#39;</span><span class="p">);</span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">svgComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SvgComponent</span><span class="p">.</span><span class="n">fromSvg</span><span class="p">(</span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">svgInstance</span><span class="p">);</span>
+<span class="w">      </span><span class="n">svgComponent</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
+<span class="w">      </span><span class="n">svgComponent</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
 
-<span class="w">      </span><span class="n">add</span><span class="p">(</span><span class="n">svgComponent</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">      </span><span class="n">add</span><span class="p">(</span><span class="n">svgComponent</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 </section>
@@ -379,39 +377,39 @@ following snippet to render it on the canvas:</p>
 <p>The Animation class helps you create a cyclic animation of sprites.</p>
 <p>You can create it by passing a list of equally sized sprites and the stepTime (that is, how many
 seconds it takes to move to the next frame):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span><span class="n">sprites</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.02</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span><span class="n">sprites</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.02</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>After the animation is created, you need to call its <code class="docutils literal notranslate"><span class="pre">update</span></code> method and render the current frame’s
 sprite on your game instance.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">SpriteAnimation</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">SpriteAnimation</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">(...);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">(...);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">getSprite</span><span class="p">().</span><span class="n">render</span><span class="p">(</span><span class="n">c</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">a</span><span class="p">.</span><span class="n">getSprite</span><span class="p">().</span><span class="n">render</span><span class="p">(</span><span class="n">c</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>A better alternative to generate a list of sprites is to use the <code class="docutils literal notranslate"><span class="pre">fromFrameData</span></code> constructor:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">amountOfFrames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">;</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span><span class="w"></span>
-<span class="w">    </span><span class="n">imageInstance</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="n">SpriteAnimationFrame</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span><span class="w"></span>
-<span class="w">      </span><span class="nl">amount:</span><span class="w"> </span><span class="n">amountOfFrames</span><span class="p">,</span><span class="w"></span>
-<span class="w">      </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">16.0</span><span class="p">,</span><span class="w"> </span><span class="m">16.0</span><span class="p">),</span><span class="w"></span>
-<span class="w">      </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span><span class="w"></span>
-<span class="w">    </span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">amountOfFrames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">8</span><span class="p">;</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span>
+<span class="w">    </span><span class="n">imageInstance</span><span class="p">,</span>
+<span class="w">    </span><span class="n">SpriteAnimationFrame</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">amount:</span><span class="w"> </span><span class="n">amountOfFrames</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">16.0</span><span class="p">,</span><span class="w"> </span><span class="m">16.0</span><span class="p">),</span>
+<span class="w">      </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 <p>This constructor makes creating an <code class="docutils literal notranslate"><span class="pre">Animation</span></code> very easy when using sprite sheets.</p>
@@ -421,9 +419,9 @@ the <code class="docutils literal notranslate"><span class="pre">SpriteAnimation
 <p>If you use Aseprite for your animations, Flame does provide some support for Aseprite animation’s
 JSON data. To use this feature you will need to export the Sprite Sheet’s JSON data, and use
 something like the following snippet:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;chopper.png&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">jsonData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">assets</span><span class="p">.</span><span class="n">readJson</span><span class="p">(</span><span class="s1">&#39;chopper.json&#39;</span><span class="p">);</span><span class="w"></span>
-<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">fromAsepriteData</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">jsonData</span><span class="p">);</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;chopper.png&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">jsonData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">assets</span><span class="p">.</span><span class="n">readJson</span><span class="p">(</span><span class="s1">&#39;chopper.json&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">fromAsepriteData</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">jsonData</span><span class="p">);</span>
 </pre></div>
 </div>
 <p><strong>Note:</strong> trimmed sprite sheets are not supported by flame, so if you export your sprite sheet this
@@ -440,38 +438,38 @@ Animations can be created as well.</p>
 <p>Flame provides a simple wrapper of <a class="reference external" href="https://rive.app/#LearnMore">Flare</a> animations so you can use
 them in Flame games.</p>
 <p>Check the following snippet on how to use this wrapper:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="n">FlareAnimation</span><span class="w"> </span><span class="n">flareAnimation</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">loaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">FlareAnimation</span><span class="w"> </span><span class="n">flareAnimation</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">loaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">_start</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_start</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">_start</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">flareAnimation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FlareAnimation</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;assets/FLARE_FILE.flr&quot;</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">updateAnimation</span><span class="p">(</span><span class="s2">&quot;ANIMATION_NAME&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">_start</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">flareAnimation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FlareAnimation</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;assets/FLARE_FILE.flr&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">updateAnimation</span><span class="p">(</span><span class="s2">&quot;ANIMATION_NAME&quot;</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">306</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">228</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">306</span><span class="p">;</span>
+<span class="w">    </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">228</span><span class="p">;</span>
 
-<span class="w">    </span><span class="n">loaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="n">loaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="nl">x:</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="nl">y:</span><span class="w"> </span><span class="m">50</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="nl">x:</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="nl">y:</span><span class="w"> </span><span class="m">50</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="nd">@override</span><span class="w"></span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">      </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-<span class="w">  </span><span class="p">}</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>FlareAnimations are normally used inside <code class="docutils literal notranslate"><span class="pre">FlareComponent</span></code>s, that way <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> will handle calling
@@ -485,19 +483,19 @@ them in Flame games.</p>
 organize and keep your animations stored. Flame provides a very simple utility class to deal with
 SpriteSheets, with it you can load your sprite sheet image and extract animations from it. Below is
 a very simple example of how to use it:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/sprite.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/sprite.dart&#39;</span><span class="p">;</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">spritesheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteSheet</span><span class="p">(</span><span class="w"></span>
-<span class="w">  </span><span class="nl">image:</span><span class="w"> </span><span class="n">imageInstance</span><span class="p">,</span><span class="w"></span>
-<span class="w">  </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16.0</span><span class="p">),</span><span class="w"></span>
-<span class="p">);</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">spritesheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteSheet</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">image:</span><span class="w"> </span><span class="n">imageInstance</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16.0</span><span class="p">),</span>
+<span class="p">);</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spritesheet</span><span class="p">.</span><span class="n">createAnimation</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">);</span><span class="w"></span>
+<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spritesheet</span><span class="p">.</span><span class="n">createAnimation</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Now you can use the animation directly or use it in an animation component.</p>
 <p>You can also get a single frame of the sprite sheet using the <code class="docutils literal notranslate"><span class="pre">getSprite</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">spritesheet</span><span class="p">.</span><span class="n">getSprite</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="c1">// row, column;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">spritesheet</span><span class="p">.</span><span class="n">getSprite</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="c1">// row, column;</span>
 </pre></div>
 </div>
 <p>You can see a full example of the <code class="docutils literal notranslate"><span class="pre">SpriteSheet</span></code> class

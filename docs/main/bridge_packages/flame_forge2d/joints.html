@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
@@ -319,11 +318,11 @@ remove it.</p>
 <h2>Built-in joints<a class="headerlink" href="#built-in-joints" title="Permalink to this heading">¶</a></h2>
 <p>Currently, Forge2D supports the following joints:</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="#constantvolumejoint"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJoint</span></code></span></a></p></li>
-<li><p><a class="reference internal" href="#distancejoint"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code></span></a></p></li>
-<li><p><a class="reference internal" href="#frictionjoint"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code></span></a></p></li>
+<li><p><a class="reference internal" href="#constantvolumejoint"><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJoint</span></code></a></p></li>
+<li><p><a class="reference internal" href="#distancejoint"><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code></a></p></li>
+<li><p><a class="reference internal" href="#frictionjoint"><code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code></a></p></li>
 <li><p>GearJoint</p></li>
-<li><p>MotorJoint</p></li>
+<li><p><a class="reference internal" href="#motorjoint"><code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code></a></p></li>
 <li><p>MouseJoint</p></li>
 <li><p>PrismaticJoint</p></li>
 <li><p>PulleyJoint</p></li>
@@ -335,21 +334,82 @@ remove it.</p>
 <section id="constantvolumejoint">
 <h3><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJoint</span></code><a class="headerlink" href="#constantvolumejoint" title="Permalink to this heading">¶</a></h3>
 <p>This type of joint connects a group of bodies together and maintains a constant volume within them.
-Essentially, it is a set of <a class="reference internal" href="#distancejoint"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code></span></a>s, that connects all bodies one after
+Essentially, it is a set of <a class="reference internal" href="#distancejoint"><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code></a>s, that connects all bodies one after
 another.</p>
 <p>It can for example be useful when simulating “soft-bodies”.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">constantVolumeJoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConstantVolumeJointDef</span><span class="p">()</span><span class="w"></span>
-<span class="w">    </span><span class="p">..</span><span class="n">frequencyHz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="w"></span>
-<span class="w">    </span><span class="p">..</span><span class="n">dampingRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">constantVolumeJoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConstantVolumeJointDef</span><span class="p">()</span>
+<span class="w">    </span><span class="p">..</span><span class="n">frequencyHz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="w">    </span><span class="p">..</span><span class="n">dampingRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">bodies</span><span class="p">.</span><span class="n">forEach</span><span class="p">((</span><span class="n">body</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">constantVolumeJoint</span><span class="p">.</span><span class="n">addBody</span><span class="p">(</span><span class="n">body</span><span class="p">);</span><span class="w"></span>
-<span class="w">  </span><span class="p">});</span><span class="w"></span>
+<span class="w">  </span><span class="n">bodies</span><span class="p">.</span><span class="n">forEach</span><span class="p">((</span><span class="n">body</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">constantVolumeJoint</span><span class="p">.</span><span class="n">addBody</span><span class="p">(</span><span class="n">body</span><span class="p">);</span>
+<span class="w">  </span><span class="p">});</span>
 <span class="w">    </span>
-<span class="w">  </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">ConstantVolumeJoint</span><span class="p">(</span><span class="n">world</span><span class="p">,</span><span class="w"> </span><span class="n">constantVolumeJoint</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">ConstantVolumeJoint</span><span class="p">(</span><span class="n">world</span><span class="p">,</span><span class="w"> </span><span class="n">constantVolumeJoint</span><span class="p">));</span>
 </pre></div>
 </div>
-<p><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJointDef</span></code> requires at least 3 bodies to be added using the <code class="docutils literal notranslate"><span class="pre">addBody</span></code> method. It also
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/examples/index.html?constant_volume_joint&quot;)">Run</button><div class="flutter-app-code docutils container" id="examples-source-constant_volume_joint">
+<div class="filename docutils container">
+constant_volume_joint.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:math&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:examples/stories/bridge_libraries/forge2d/utils/balls.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:examples/stories/bridge_libraries/forge2d/utils/boundaries.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_forge2d/flame_forge2d.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kd">class</span><span class="w"> </span><span class="nc">ConstantVolumeJointExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Forge2DGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="linenos">10</span><span class="s1">    This example shows how to use a `ConstantVolumeJoint`. Tap the screen to add</span>
+<span class="linenos">11</span><span class="s1">    a bunch off balls, that maintain a constant volume within them.</span>
+<span class="linenos">12</span><span class="s1">  &#39;&#39;&#39;</span><span class="p">;</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">15</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">16</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">17</span><span class="w">    </span><span class="n">addAll</span><span class="p">(</span><span class="n">createBoundaries</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+<span class="linenos">18</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">21</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">details</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">22</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onTapDown</span><span class="p">(</span><span class="n">details</span><span class="p">);</span>
+<span class="linenos">23</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">center</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span><span class="p">;</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">numPieces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">;</span>
+<span class="linenos">26</span><span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5.0</span><span class="p">;</span>
+<span class="linenos">27</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">balls</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&lt;</span><span class="n">Ball</span><span class="o">&gt;</span><span class="p">[];</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">numPieces</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">30</span><span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cos</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">numPieces</span><span class="p">));</span>
+<span class="linenos">31</span><span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">numPieces</span><span class="p">));</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">ball</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ball</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">center</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">center</span><span class="p">.</span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="nl">radius:</span><span class="w"> </span><span class="m">0.5</span><span class="p">);</span>
+<span class="linenos">34</span>
+<span class="linenos">35</span><span class="w">      </span><span class="n">add</span><span class="p">(</span><span class="n">ball</span><span class="p">);</span>
+<span class="linenos">36</span><span class="w">      </span><span class="n">balls</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">ball</span><span class="p">);</span>
+<span class="linenos">37</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">38</span>
+<span class="linenos">39</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">balls</span><span class="p">.</span><span class="n">map</span><span class="p">((</span><span class="n">e</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">e</span><span class="p">.</span><span class="n">loaded</span><span class="p">));</span>
+<span class="linenos">40</span>
+<span class="linenos">41</span><span class="w">    </span><span class="n">createJoint</span><span class="p">(</span><span class="n">balls</span><span class="p">);</span>
+<span class="linenos">42</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">createJoint</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Ball</span><span class="o">&gt;</span><span class="w"> </span><span class="n">balls</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">45</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">constantVolumeJoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ConstantVolumeJointDef</span><span class="p">()</span>
+<span class="linenos">46</span><span class="w">      </span><span class="p">..</span><span class="n">frequencyHz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="linenos">47</span><span class="w">      </span><span class="p">..</span><span class="n">dampingRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.8</span><span class="p">;</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span><span class="w">    </span><span class="n">balls</span><span class="p">.</span><span class="n">forEach</span><span class="p">((</span><span class="n">ball</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">50</span><span class="w">      </span><span class="n">constantVolumeJoint</span><span class="p">.</span><span class="n">addBody</span><span class="p">(</span><span class="n">ball</span><span class="p">.</span><span class="n">body</span><span class="p">);</span>
+<span class="linenos">51</span><span class="w">    </span><span class="p">});</span>
+<span class="linenos">52</span>
+<span class="linenos">53</span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">ConstantVolumeJoint</span><span class="p">(</span><span class="n">world</span><span class="p">,</span><span class="w"> </span><span class="n">constantVolumeJoint</span><span class="p">));</span>
+<span class="linenos">54</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">55</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;examples-source-constant_volume_joint&quot;)">Code</button><p><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJointDef</span></code> requires at least 3 bodies to be added using the <code class="docutils literal notranslate"><span class="pre">addBody</span></code> method. It also
 has two optional parameters:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">frequencyHz</span></code>: This parameter sets the frequency of oscillation of the joint. If it is not set to
@@ -362,16 +422,68 @@ has two optional parameters:</p>
 <h3><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code><a class="headerlink" href="#distancejoint" title="Permalink to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code> constrains two points on two bodies to remain at a fixed distance from each other.</p>
 <p>You can view this as a massless, rigid rod.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">distanceJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DistanceJointDef</span><span class="p">()</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span><span class="n">firstBody</span><span class="p">,</span><span class="w"> </span><span class="n">secondBody</span><span class="p">,</span><span class="w"> </span><span class="n">firstBody</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">,</span><span class="w"> </span><span class="n">secondBody</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">frequencyHz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">dampingRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">distanceJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DistanceJointDef</span><span class="p">()</span>
+<span class="w">  </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span><span class="n">firstBody</span><span class="p">,</span><span class="w"> </span><span class="n">secondBody</span><span class="p">,</span><span class="w"> </span><span class="n">firstBody</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">,</span><span class="w"> </span><span class="n">secondBody</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">)</span>
+<span class="w">  </span><span class="p">..</span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="w">  </span><span class="p">..</span><span class="n">frequencyHz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<span class="w">  </span><span class="p">..</span><span class="n">dampingRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">;</span>
 
-<span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">DistanceJoint</span><span class="p">(</span><span class="n">distanceJointDef</span><span class="p">));</span><span class="w"></span>
+<span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">DistanceJoint</span><span class="p">(</span><span class="n">distanceJointDef</span><span class="p">));</span>
 </pre></div>
 </div>
-<p>To create a <code class="docutils literal notranslate"><span class="pre">DistanceJointDef</span></code>, you can use the <code class="docutils literal notranslate"><span class="pre">initialize</span></code> method, which requires two bodies and a
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/examples/index.html?distance_joint&quot;)">Run</button><div class="flutter-app-code docutils container" id="examples-source-distance_joint">
+<div class="filename docutils container">
+distance_joint.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:examples/stories/bridge_libraries/forge2d/utils/balls.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:examples/stories/bridge_libraries/forge2d/utils/boundaries.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_forge2d/flame_forge2d.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kd">class</span><span class="w"> </span><span class="nc">DistanceJointExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Forge2DGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="linenos"> 8</span><span class="s1">    This example shows how to use a `DistanceJoint`. Tap the screen to add a</span>
+<span class="linenos"> 9</span><span class="s1">    pair of balls joined with a `DistanceJoint`.</span>
+<span class="linenos">10</span><span class="s1">  &#39;&#39;&#39;</span><span class="p">;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">13</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">14</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">15</span><span class="w">    </span><span class="n">addAll</span><span class="p">(</span><span class="n">createBoundaries</span><span class="p">(</span><span class="k">this</span><span class="p">));</span>
+<span class="linenos">16</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">19</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">details</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">20</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onTapDown</span><span class="p">(</span><span class="n">details</span><span class="p">);</span>
+<span class="linenos">21</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">tap</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">details</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">game</span><span class="p">;</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">first</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ball</span><span class="p">(</span><span class="n">tap</span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">second</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ball</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="n">tap</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">tap</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">3</span><span class="p">));</span>
+<span class="linenos">25</span><span class="w">    </span><span class="n">addAll</span><span class="p">([</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">second</span><span class="p">]);</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">([</span><span class="n">first</span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span><span class="w"> </span><span class="n">second</span><span class="p">.</span><span class="n">loaded</span><span class="p">]);</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="w">    </span><span class="n">createJoint</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">second</span><span class="p">);</span>
+<span class="linenos">30</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">createJoint</span><span class="p">(</span><span class="n">Ball</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">Ball</span><span class="w"> </span><span class="n">second</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">33</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">distanceJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DistanceJointDef</span><span class="p">()</span>
+<span class="linenos">34</span><span class="w">      </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span>
+<span class="linenos">35</span><span class="w">        </span><span class="n">first</span><span class="p">.</span><span class="n">body</span><span class="p">,</span>
+<span class="linenos">36</span><span class="w">        </span><span class="n">second</span><span class="p">.</span><span class="n">body</span><span class="p">,</span>
+<span class="linenos">37</span><span class="w">        </span><span class="n">first</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">,</span>
+<span class="linenos">38</span><span class="w">        </span><span class="n">second</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">39</span><span class="w">      </span><span class="p">)</span>
+<span class="linenos">40</span><span class="w">      </span><span class="p">..</span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span>
+<span class="linenos">41</span><span class="w">      </span><span class="p">..</span><span class="n">frequencyHz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span>
+<span class="linenos">42</span><span class="w">      </span><span class="p">..</span><span class="n">dampingRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">;</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">DistanceJoint</span><span class="p">(</span><span class="n">distanceJointDef</span><span class="p">));</span>
+<span class="linenos">45</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">46</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;examples-source-distance_joint&quot;)">Code</button><p>To create a <code class="docutils literal notranslate"><span class="pre">DistanceJointDef</span></code>, you can use the <code class="docutils literal notranslate"><span class="pre">initialize</span></code> method, which requires two bodies and a
 world anchor point on each body. The definition uses local anchor points, allowing for a slight
 violation of the constraint in the initial configuration. This is useful when saving and
 loading a game.</p>
@@ -403,15 +515,67 @@ force applied to them, and an anchor.</p>
 applied. In most cases, it would be the center of the first object. However, for more complex
 physics interactions between bodies, you can set the <code class="docutils literal notranslate"><span class="pre">anchor</span></code> point to a specific location on one or
 both of the bodies.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">frictionJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FrictionJointDef</span><span class="p">()</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span><span class="n">ballBody</span><span class="p">,</span><span class="w"> </span><span class="n">floorBody</span><span class="p">,</span><span class="w"> </span><span class="n">ballBody</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">maxForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="w"></span>
-<span class="w">  </span><span class="p">..</span><span class="n">maxTorque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">frictionJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FrictionJointDef</span><span class="p">()</span>
+<span class="w">  </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span><span class="n">ballBody</span><span class="p">,</span><span class="w"> </span><span class="n">floorBody</span><span class="p">,</span><span class="w"> </span><span class="n">ballBody</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">)</span>
+<span class="w">  </span><span class="p">..</span><span class="n">maxForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span>
+<span class="w">  </span><span class="p">..</span><span class="n">maxTorque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">;</span>
 
-<span class="w">  </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">FrictionJoint</span><span class="p">(</span><span class="n">frictionJointDef</span><span class="p">));</span><span class="w"></span>
+<span class="w">  </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">FrictionJoint</span><span class="p">(</span><span class="n">frictionJointDef</span><span class="p">));</span>
 </pre></div>
 </div>
-<p>When creating a <code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code>, simulated friction can be applied via maximum force and torque
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/examples/index.html?friction_joint&quot;)">Run</button><div class="flutter-app-code docutils container" id="examples-source-friction_joint">
+<div class="filename docutils container">
+friction_joint.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:examples/stories/bridge_libraries/forge2d/utils/balls.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:examples/stories/bridge_libraries/forge2d/utils/boundaries.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_forge2d/flame_forge2d.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kd">class</span><span class="w"> </span><span class="nc">FrictionJointExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Forge2DGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="linenos"> 8</span><span class="s1">    This example shows how to use a `FrictionJoint`. Tap the screen to move the</span>
+<span class="linenos"> 9</span><span class="s1">    ball around and observe it slows down due to the friction force.</span>
+<span class="linenos">10</span><span class="s1">  &#39;&#39;&#39;</span><span class="p">;</span>
+<span class="linenos">11</span><span class="w">  </span><span class="n">FrictionJointExample</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">gravity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">0</span><span class="p">));</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Wall</span><span class="w"> </span><span class="n">border</span><span class="p">;</span>
+<span class="linenos">14</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Ball</span><span class="w"> </span><span class="n">ball</span><span class="p">;</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">17</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">18</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">19</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">boundaries</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createBoundaries</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="linenos">20</span><span class="w">    </span><span class="n">border</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">boundaries</span><span class="p">.</span><span class="n">first</span><span class="p">;</span>
+<span class="linenos">21</span><span class="w">    </span><span class="n">addAll</span><span class="p">(</span><span class="n">boundaries</span><span class="p">);</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">    </span><span class="n">ball</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ball</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="nl">radius:</span><span class="w"> </span><span class="m">3</span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">ball</span><span class="p">);</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">([</span><span class="n">ball</span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="p">.</span><span class="n">loaded</span><span class="p">]);</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="w">    </span><span class="n">createJoint</span><span class="p">(</span><span class="n">ball</span><span class="p">.</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">border</span><span class="p">.</span><span class="n">body</span><span class="p">);</span>
+<span class="linenos">29</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">32</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">details</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">33</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onTapDown</span><span class="p">(</span><span class="n">details</span><span class="p">);</span>
+<span class="linenos">34</span><span class="w">    </span><span class="n">ball</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">applyLinearImpulse</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">random</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">5000</span><span class="p">);</span>
+<span class="linenos">35</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">createJoint</span><span class="p">(</span><span class="n">Body</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">Body</span><span class="w"> </span><span class="n">second</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">38</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">frictionJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FrictionJointDef</span><span class="p">()</span>
+<span class="linenos">39</span><span class="w">      </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">second</span><span class="p">,</span><span class="w"> </span><span class="n">first</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">)</span>
+<span class="linenos">40</span><span class="w">      </span><span class="p">..</span><span class="n">collideConnected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos">41</span><span class="w">      </span><span class="p">..</span><span class="n">maxForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span>
+<span class="linenos">42</span><span class="w">      </span><span class="p">..</span><span class="n">maxTorque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">500</span><span class="p">;</span>
+<span class="linenos">43</span>
+<span class="linenos">44</span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">FrictionJoint</span><span class="p">(</span><span class="n">frictionJointDef</span><span class="p">));</span>
+<span class="linenos">45</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">46</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;examples-source-friction_joint&quot;)">Code</button><p>When creating a <code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code>, simulated friction can be applied via maximum force and torque
 values:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">maxForce</span></code>: the maximum translational friction which applied to the joined body. A higher value</p></li>
@@ -421,6 +585,52 @@ values:</p>
 </ul>
 <p>In other words, the former simulates the friction, when the body is sliding and the latter simulates
 the friction when the body is spinning.</p>
+</section>
+<section id="motorjoint">
+<h3><code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code><a class="headerlink" href="#motorjoint" title="Permalink to this heading">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code> is used to control the relative motion between two bodies. A typical usage is to
+control the movement of a dynamic body with respect to the fixed point, for example to create
+animations.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code> lets you control the motion of a body by specifying target position and rotation
+offsets. You can set the maximum motor force and torque that will be applied to reach the target
+position and rotation. If the body is blocked, it will stop and the contact forces will be
+proportional the maximum motor force and torque.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">motorJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MotorJointDef</span><span class="p">()</span>
+<span class="w">  </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">second</span><span class="p">)</span>
+<span class="w">  </span><span class="p">..</span><span class="n">maxTorque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span>
+<span class="w">  </span><span class="p">..</span><span class="n">maxForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span>
+<span class="w">  </span><span class="p">..</span><span class="n">correctionFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">MotorJoint</span><span class="p">(</span><span class="n">motorJointDef</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">MotorJointDef</span></code> has three optional parameters:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">maxForce</span></code>: the maximum translational force which will be applied to the joined body to reach the
+target position.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxTorque</span></code>: the maximum angular force which will be applied to the joined body to reach the
+target rotation.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">correctionFactor</span></code>: position correction factor in range [0, 1]. It adjusts the joint’s response to
+deviation from target position. A higher value makes the joint respond faster, while a lower value
+makes it respond slower. If the value is set too high, the joint may overcompensate and oscillate,
+becoming unstable. If set too low, it may respond too slowly.</p></li>
+</ul>
+<p>The linear and angular offsets are the target distance and angle that the bodies should achieve
+relative to each other’s position and rotation. By default, the linear target will be the distance
+between the two body centers and the angular target will be the relative rotation of the bodies.
+Use the <code class="docutils literal notranslate"><span class="pre">setLinearOffset(Vector2)</span></code> and <code class="docutils literal notranslate"><span class="pre">setLinearOffset(double)</span></code> methods of the <code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code> to set
+the desired relative translation and rotate between the bodies.</p>
+<p>For example, this code increments the angular offset of the joint every update cycle, causing the
+body to rotate.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">angularOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joint</span><span class="p">.</span><span class="n">getAngularOffset</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">motorSpeed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="w">  </span><span class="n">joint</span><span class="p">.</span><span class="n">setAngularOffset</span><span class="p">(</span><span class="n">angularOffset</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 </section>
 </section>
@@ -459,6 +669,7 @@ the friction when the body is spinning.</p>
   <a href='#constantvolumejoint' class='list-group-item level-2'>ConstantVolumeJoint</a>
   <a href='#distancejoint' class='list-group-item level-2'>DistanceJoint</a>
   <a href='#frictionjoint' class='list-group-item level-2'>FrictionJoint</a>
+  <a href='#motorjoint' class='list-group-item level-2'>MotorJoint</a>
 </div>
 
     </div>

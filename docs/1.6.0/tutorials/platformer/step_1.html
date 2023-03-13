@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/underscore.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../_static/doctools.js"></script>
+  <script src="../../_static/sphinx_highlight.js"></script>
   <script src="../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -304,21 +302,21 @@
 <p>Before you begin any kind of game project, you need an idea of what you want to make and I like to
 then give it a <strong>name</strong>. For this tutorial and game, Ember will be on a quest to gather as many
 (GitHub) stars as possible and I will call the game, <code class="docutils literal notranslate"><span class="pre">Ember</span> <span class="pre">Quest</span></code>.</p>
-<p>Now it is time to get started, but first you need to go to the <a class="reference internal" href="../bare_flame_game.html"><span class="doc std std-doc">bare flame game
+<p>Now it is time to get started, but first you need to go to the <a class="reference internal" href="../bare_flame_game.html"><span class="std std-doc">bare flame game
 tutorial</span></a> and complete the necessary setup steps. When you come back, you
 should already have the <code class="docutils literal notranslate"><span class="pre">main.dart</span></code> file with the following content:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span><span class="w"></span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span><span class="w"></span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span>
 
-<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">();</span><span class="w"></span>
-<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">));</span><span class="w"></span>
-<span class="p">}</span><span class="w"></span>
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">();</span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">));</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <section id="planning">
 <h2>Planning<a class="headerlink" href="#planning" title="Permalink to this heading">¶</a></h2>
-<p>Like in the <a class="reference internal" href="../klondike/klondike.html"><span class="doc std std-doc">klondike</span></a> tutorial, starting a new game can feel overwhelming.
+<p>Like in the <a class="reference internal" href="../klondike/klondike.html"><span class="std std-doc">klondike</span></a> tutorial, starting a new game can feel overwhelming.
 I like to first decide what platform I am trying to target. Will this be a mobile game, a desktop
 game, or maybe a web game, with Flutter and Flame, these are all possible.  For this game though, I
 am going to focus on a web game. This means my users will interact with the game using their
@@ -384,9 +382,9 @@ not matter for the game as we will resize as needed.</p>
 </div>
 <p>Also, you need to tell Flutter about these images (just having them inside the <code class="docutils literal notranslate"><span class="pre">assets</span></code> folder is
 not enough). To do this, let’s add the following lines into the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">assets</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/images/</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">assets</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/images/</span>
 </pre></div>
 </div>
 <p>Alright, enough with preparing – onward to coding!</p>

@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../../../../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-  <script src="../../../../_static/jquery.js"></script>
-  <script src="../../../../_static/underscore.js"></script>
-  <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../../../../_static/doctools.js"></script>
+  <script src="../../../../_static/sphinx_highlight.js"></script>
   <script src="../../../../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -139,6 +137,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../../flame/overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../../flame/other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../../flame/other/util.html">Utils</a></li>
@@ -313,35 +312,35 @@ are both <em>built-in</em> and <em>user-defined</em> commands.</p>
 they would alter the execution of the dialogue, or perform a similar dialogue-related function. The
 full list of such commands is given below.</p>
 <p>The <strong>user-defined</strong> commands are those that you yourself create and then use within your yarn
-scripts. For a full description of these commands, see the document on <a class="reference internal" href="user_defined_commands.html"><span class="doc std std-doc">user-defined commands</span></a>.</p>
+scripts. For a full description of these commands, see the document on <a class="reference internal" href="user_defined_commands.html"><span class="std std-doc">user-defined commands</span></a>.</p>
 <section id="built-in-commands">
 <h2>Built-in commands<a class="headerlink" href="#built-in-commands" title="Permalink to this heading">¶</a></h2>
 <section id="variables">
 <h3>Variables<a class="headerlink" href="#variables" title="Permalink to this heading">¶</a></h3>
 <dl class="simple myst">
-<dt><strong><a class="reference internal" href="character.html"><span class="doc std std-doc">&lt;&lt;character&gt;&gt;</span></a></strong></dt><dd><p>Declares a character (person).</p>
+<dt><strong><a class="reference internal" href="character.html"><span class="std std-doc">&lt;&lt;character&gt;&gt;</span></a></strong></dt><dd><p>Declares a character (person).</p>
 </dd>
-<dt><strong><a class="reference internal" href="declare.html"><span class="doc std std-doc">&lt;&lt;declare&gt;&gt;</span></a></strong></dt><dd><p>Declares a global variable.</p>
+<dt><strong><a class="reference internal" href="declare.html"><span class="std std-doc">&lt;&lt;declare&gt;&gt;</span></a></strong></dt><dd><p>Declares a global variable.</p>
 </dd>
-<dt><strong><a class="reference internal" href="local.html"><span class="doc std std-doc">&lt;&lt;local&gt;&gt;</span></a></strong></dt><dd><p>Declares a local variable.</p>
+<dt><strong><a class="reference internal" href="local.html"><span class="std std-doc">&lt;&lt;local&gt;&gt;</span></a></strong></dt><dd><p>Declares a local variable.</p>
 </dd>
-<dt><strong><a class="reference internal" href="set.html"><span class="doc std std-doc">&lt;&lt;set&gt;&gt;</span></a></strong></dt><dd><p>Updates the value of a variable (either local or global).</p>
+<dt><strong><a class="reference internal" href="set.html"><span class="std std-doc">&lt;&lt;set&gt;&gt;</span></a></strong></dt><dd><p>Updates the value of a variable (either local or global).</p>
 </dd>
 </dl>
 </section>
 <section id="control-flow">
 <h3>Control flow<a class="headerlink" href="#control-flow" title="Permalink to this heading">¶</a></h3>
 <dl class="simple myst">
-<dt><strong><a class="reference internal" href="if.html"><span class="doc std std-doc">&lt;&lt;if&gt;&gt;</span></a></strong></dt><dd><p>Conditionally executes certain statements. This is equivalent to the <strong>if</strong> keyword in most
+<dt><strong><a class="reference internal" href="if.html"><span class="std std-doc">&lt;&lt;if&gt;&gt;</span></a></strong></dt><dd><p>Conditionally executes certain statements. This is equivalent to the <strong>if</strong> keyword in most
 programming languages.</p>
 </dd>
-<dt><strong><a class="reference internal" href="jump.html"><span class="doc std std-doc">&lt;&lt;jump&gt;&gt;</span></a></strong></dt><dd><p>Switches execution to another node.</p>
+<dt><strong><a class="reference internal" href="jump.html"><span class="std std-doc">&lt;&lt;jump&gt;&gt;</span></a></strong></dt><dd><p>Switches execution to another node.</p>
 </dd>
-<dt><strong><a class="reference internal" href="stop.html"><span class="doc std std-doc">&lt;&lt;stop&gt;&gt;</span></a></strong></dt><dd><p>Stops executing the current node.</p>
+<dt><strong><a class="reference internal" href="stop.html"><span class="std std-doc">&lt;&lt;stop&gt;&gt;</span></a></strong></dt><dd><p>Stops executing the current node.</p>
 </dd>
-<dt><strong><a class="reference internal" href="visit.html"><span class="doc std std-doc">&lt;&lt;visit&gt;&gt;</span></a></strong></dt><dd><p>Temporarily jumps to another node, and then comes back.</p>
+<dt><strong><a class="reference internal" href="visit.html"><span class="std std-doc">&lt;&lt;visit&gt;&gt;</span></a></strong></dt><dd><p>Temporarily jumps to another node, and then comes back.</p>
 </dd>
-<dt><strong><a class="reference internal" href="wait.html"><span class="doc std std-doc">&lt;&lt;wait&gt;&gt;</span></a></strong></dt><dd><p>Pauses the dialogue for the specified amount of time.</p>
+<dt><strong><a class="reference internal" href="wait.html"><span class="std std-doc">&lt;&lt;wait&gt;&gt;</span></a></strong></dt><dd><p>Pauses the dialogue for the specified amount of time.</p>
 </dd>
 </dl>
 <div class="toctree-wrapper compound">

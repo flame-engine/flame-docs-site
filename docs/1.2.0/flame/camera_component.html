@@ -14,10 +14,8 @@
   <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
   <!-- Scripts -->
   <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/underscore.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
   <script src="../_static/doctools.js"></script>
+  <script src="../_static/sphinx_highlight.js"></script>
   <script src="../_static/flutter_app.js"></script>
   <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
   <script>mermaid.initialize({startOnLoad:true});</script>
@@ -186,7 +184,7 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This document describes a new experimental API. The more traditional approach
-for handling a camera is described in <a class="reference internal" href="camera_and_viewport.html"><span class="doc std std-doc">Camera and Viewport</span></a>.</p>
+for handling a camera is described in <a class="reference internal" href="camera_and_viewport.html"><span class="std std-doc">Camera and Viewport</span></a>.</p>
 </div>
 <p>Camera-as-a-component is an alternative way of structuring a game, an approach
 that allows more flexibility in placing the camera, or even having more than
@@ -198,10 +196,10 @@ That you can close that window at any moment, and the game world would still be
 there. Or, on the contrary, you can open multiple windows that all look at the
 same world (or different worlds) at the same time.</p>
 <p>With this mindset, we can now understand how camera-as-a-component works.</p>
-<p>First, there is the <a class="reference internal" href="#world"><span class="std std-doc">World</span></a> class, which contains all components that are
+<p>First, there is the <a class="reference internal" href="#world"><span class="std std-ref">World</span></a> class, which contains all components that are
 inside your game world. The <code class="docutils literal notranslate"><span class="pre">World</span></code> component can be mounted anywhere, for
 example at the root of your game class.</p>
-<p>Then, a <a class="reference internal" href="#cameracomponent"><span class="std std-doc">CameraComponent</span></a> class that “looks at” the <code class="docutils literal notranslate"><span class="pre">World</span></code>. The
+<p>Then, a <a class="reference internal" href="#cameracomponent"><span class="std std-ref">CameraComponent</span></a> class that “looks at” the <code class="docutils literal notranslate"><span class="pre">World</span></code>. The
 <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has a <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> and a <code class="docutils literal notranslate"><span class="pre">Viewfinder</span></code> inside, allowing both the
 flexibility of rendering the world at any place on the screen, and also control
 the viewing location and angle.</p>
@@ -209,7 +207,7 @@ the viewing location and angle.</p>
 <h2>World<a class="headerlink" href="#world" title="Permalink to this heading">¶</a></h2>
 <p>This component should be used to host all other components that comprise your
 game world. The main property of the <code class="docutils literal notranslate"><span class="pre">World</span></code> class is that it does not render
-through traditional means – instead, create one or more <a class="reference internal" href="#cameracomponent"><span class="std std-doc">CameraComponent</span></a>s
+through traditional means – instead, create one or more <a class="reference internal" href="#cameracomponent"><span class="std std-ref">CameraComponent</span></a>s
 to “look at” the world.</p>
 <p>A game can have multiple <code class="docutils literal notranslate"><span class="pre">World</span></code> instances that can be rendered either at the
 same time, or at different times. For example, if you have two worlds A and B
@@ -223,8 +221,8 @@ then mount B.</p>
 reference to a <code class="docutils literal notranslate"><span class="pre">World</span></code> instance during construction; however later the target
 world can be replaced with another one. Multiple cameras can observe the same
 world at the same time.</p>
-<p>A <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has two other components inside: a <a class="reference internal" href="#viewport"><span class="std std-doc">Viewport</span></a> and a
-<a class="reference internal" href="#viewfinder"><span class="std std-doc">Viewfinder</span></a>. Unlike the <code class="docutils literal notranslate"><span class="pre">World</span></code> object, the camera owns the viewport and
+<p>A <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has two other components inside: a <a class="reference internal" href="#viewport"><span class="std std-ref">Viewport</span></a> and a
+<a class="reference internal" href="#viewfinder"><span class="std std-ref">Viewfinder</span></a>. Unlike the <code class="docutils literal notranslate"><span class="pre">World</span></code> object, the camera owns the viewport and
 the viewfinder, which means those components are children of the camera.</p>
 <p>There is also a static property <code class="docutils literal notranslate"><span class="pre">CameraComponent.currentCamera</span></code> which is not
 null only during the rendering stage, and it returns the camera object that
@@ -267,7 +265,7 @@ the lower-left corner. This off-center position would be the “logical center�
 of the camera, controlled by the viewfinder’s <code class="docutils literal notranslate"><span class="pre">anchor</span></code>.</p>
 <p>Components added to the <code class="docutils literal notranslate"><span class="pre">Viewfinder</span></code> as children will be rendered as if they
 were part of the world (but on top). It is more useful to add behavioral
-components to the viewfinder, for example <a class="reference internal" href="effects.html"><span class="doc std std-doc">Effects</span></a> or other controllers.</p>
+components to the viewfinder, for example <a class="reference internal" href="effects.html"><span class="std std-doc">Effects</span></a> or other controllers.</p>
 </section>
 <section id="camera-controls">
 <h2>Camera controls<a class="headerlink" href="#camera-controls" title="Permalink to this heading">¶</a></h2>
@@ -300,7 +298,7 @@ are in the form of a <code class="docutils literal notranslate"><span class="pre
 </section>
 <section id="comparison-to-the-traditional-camera">
 <h2>Comparison to the traditional camera<a class="headerlink" href="#comparison-to-the-traditional-camera" title="Permalink to this heading">¶</a></h2>
-<p>Compared to the normal <a class="reference internal" href="camera_and_viewport.html"><span class="doc std std-doc">Camera</span></a>, the <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code>
+<p>Compared to the normal <a class="reference internal" href="camera_and_viewport.html"><span class="std std-doc">Camera</span></a>, the <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code>
 has several advantages and drawbacks.</p>
 <p>Pros:</p>
 <ul class="simple">
