@@ -337,6 +337,20 @@ mixin to your game so that it can keep track of the components that can collide.
 </div>
 <p>Now when you add <code class="docutils literal notranslate"><span class="pre">ShapeHitbox</span></code>s to components that are then added to the game, they will
 automatically be checked for collisions.</p>
+<p>You can also add <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> directly to another <code class="docutils literal notranslate"><span class="pre">Component</span></code> instead of the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>,
+for example to the <code class="docutils literal notranslate"><span class="pre">World</span></code> that is used for the <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code>.
+If that is done, hitboxes that are added in that component’s tree will only be compared to other
+hitboxes in that subtree, which makes it possible to have several worlds with collision detection
+within one <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">CollisionDetectionWorld</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Hitboxes will only be connected to one collision detection system and that is
+the closest parent that has the <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> mixin.</p>
+</div>
 </section>
 <section id="collisioncallbacks">
 <h3>CollisionCallbacks<a class="headerlink" href="#collisioncallbacks" title="Permalink to this heading">¶</a></h3>
