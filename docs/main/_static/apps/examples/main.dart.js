@@ -131868,9 +131868,7 @@ bR(a){var s,r,q,p,o,n,m=this
 m.Wq()
 s=m.aP
 s===$&&A.c()
-r=s.length
-q=0
-for(;q<s.length;s.length===r||(0,A.D)(s),++q)s[q].ai(0)
+B.b.ai(s)
 m.hD=0
 m.gmm().K(0,"game_over")
 m.a79()
