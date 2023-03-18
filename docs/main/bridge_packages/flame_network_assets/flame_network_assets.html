@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Flame fire atlas &#8212; Flame</title>
+  <title>FlameNetworkAssets &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
@@ -34,8 +34,8 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="flame_forge2d" href="../flame_forge2d/flame_forge2d.html" />
-  <link rel="prev" title="flame_fire_atlas" href="flame_fire_atlas.html" />
+  <link rel="next" title="flame_oxygen" href="../flame_oxygen/flame_oxygen.html" />
+  <link rel="prev" title="flame_lottie" href="../flame_lottie/flame_lottie.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -160,8 +160,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../flame_bloc/bloc_components.html">Components</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="reference internal" href="flame_fire_atlas.html">flame_fire_atlas</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_fire_atlas/flame_fire_atlas.html">flame_fire_atlas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_fire_atlas/fire_atlas.html">Overview</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
@@ -174,7 +174,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_lottie/flame_lottie.html">flame_lottie</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../flame_network_assets/flame_network_assets.html">flame_network_assets</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">flame_network_assets</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
 </ul>
 </li>
@@ -307,97 +307,35 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="flame-fire-atlas">
-<h1>Flame fire atlas<a class="headerlink" href="#flame-fire-atlas" title="Permalink to this heading">¶</a></h1>
-<p>Flame fire atlas is a texture atlas lib for Flame. By using <code class="docutils literal notranslate"><span class="pre">flame_fire_atlas</span></code> one can access images
-and animations stored in a <code class="docutils literal notranslate"><span class="pre">.fa</span></code> texture atlas by referring to them by their named keys.</p>
-<section id="fireatlas">
-<h2>FireAtlas<a class="headerlink" href="#fireatlas" title="Permalink to this heading">¶</a></h2>
-<p>FireAtlas is a tool for handling texture atlases. Atlases can be created using the
-<a class="reference external" href="https://fire-atlas.flame-engine.org">Fire Atlas Editor</a>.</p>
-<section id="creating-atlas">
-<h3>Creating Atlas<a class="headerlink" href="#creating-atlas" title="Permalink to this heading">¶</a></h3>
-<p>To create a texture atlas open <a class="reference external" href="https://fire-atlas.flame-engine.org">Fire Atlas Editor</a>.</p>
-<p>Select new atlas and give the atlas a name, tile width, tile height and an image and press okay.
-This will take you to the atlas editor.</p>
-<p>To create a new <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> in the atlas, select a portion and click the plus button on top left and
-give the selection a name and then select type <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> and press <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Sprite</span></code>. You can now
-see a preview in the right panel of editor.</p>
-<p>To create a new <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code> in the atlas, select a portion and click the plus button on top
-left and give the selection a name and then select type <code class="docutils literal notranslate"><span class="pre">Animation</span></code> and provide <code class="docutils literal notranslate"><span class="pre">frame</span> <span class="pre">count</span></code>
-and <code class="docutils literal notranslate"><span class="pre">steps</span> <span class="pre">times</span> <span class="pre">(in</span> <span class="pre">milliseconds)</span></code> and select the checkbox to loop the animation, and then
-press <code class="docutils literal notranslate"><span class="pre">Create</span> <span class="pre">Animation</span></code>. You can now see a preview of the animation in the right panel of the
-editor.</p>
-<p>Once you are done with editing you can download the fire atlas file from top left with
-the <code class="docutils literal notranslate"><span class="pre">download</span></code> icon button.</p>
-</section>
-</section>
-<section id="texture-atlas">
-<h2>Texture atlas<a class="headerlink" href="#texture-atlas" title="Permalink to this heading">¶</a></h2>
-<p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Texture_atlas">Texture atlas</a> is an image that contains data from
-several smaller images that have been packed together to reduce overall dimensions. With it, you
-reduce the number of images loaded and can speed up the loading time of the game.</p>
-</section>
-<section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
-<p>To use the bridge library in your game you just need to add <code class="docutils literal notranslate"><span class="pre">flame_fire_atlas</span></code> to your pubspec.yaml,
-as can be seen in
-the <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_fire_atlas/example">Flame Fire Atlas example</a>
-and in the pub.dev <a class="reference external" href="https://pub.dev/packages/flame_fire_atlas">installation instructions</a>.</p>
-<p>Then you have the following methods at your disposal:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_fire_atlas/flame_fire_atlas.dart&#39;</span><span class="p">;</span>
-
-<span class="c1">// Load the atlas from your assets</span>
-<span class="c1">// file at assets/atlas.fa</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FireAtlas</span><span class="p">.</span><span class="n">loadAsset</span><span class="p">(</span><span class="s1">&#39;atlas.fa&#39;</span><span class="p">);</span>
-
-<span class="c1">//or when inside a game instance, the loadFireAtlas can be used:</span>
-<span class="c1">// file at assets/atlas.fa</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadFireAtlas</span><span class="p">(</span><span class="s1">&#39;atlas.fa&#39;</span><span class="p">);</span>
-
-<span class="c1">// Get a Sprite with the given key.</span>
-<span class="n">FireAtlas</span><span class="p">.</span><span class="n">getSprite</span><span class="p">(</span><span class="s1">&#39;sprite_name&#39;</span><span class="p">)</span>
-
-<span class="c1">// Get a SpriteAnimation with the given key.</span>
-<span class="n">FireAtlas</span><span class="p">.</span><span class="n">getAnimation</span><span class="p">(</span><span class="s1">&#39;animation_name&#39;</span><span class="p">)</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="flamenetworkassets">
+<h1>FlameNetworkAssets<a class="headerlink" href="#flamenetworkassets" title="Permalink to this heading">¶</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">FlameNetworkAssets</span></code> is a bridge package focused on providing a solution to fetch, and cache assets
+from the network.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">FlameNetworkAssets</span></code> class provides an abstraction that should be extended in order to create
+asset specific handler.</p>
+<p>By default, the package relies on the <code class="docutils literal notranslate"><span class="pre">http</span></code> package to make http requests, and <code class="docutils literal notranslate"><span class="pre">path_provider</span></code>
+to get the place to store the local cache, to use a different approach for those, use the
+optional arguments in the constructor.</p>
+<p>This package bundles a specific asset handler class for images:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">networkAssets</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlameNetworkImages</span><span class="p">();</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">playerSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">networkAssets</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;https://url.com/image.png&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>To use FireAtlas in your game, load the fire atlas file in an <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method, either in your game
-or a component. Then you can use <code class="docutils literal notranslate"><span class="pre">getSprite</span></code> and <code class="docutils literal notranslate"><span class="pre">getAnimation</span></code> to retrieve the mapped assets.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">ExampleGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">FireAtlas</span><span class="w"> </span><span class="n">_atlas</span><span class="p">;</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">_atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadFireAtlas</span><span class="p">(</span><span class="s1">&#39;atlas.fa&#39;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">add</span><span class="p">(</span>
-<span class="w">      </span><span class="n">SpriteComponent</span><span class="p">(</span>
-<span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span>
-<span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span>
-<span class="w">        </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">_atlas</span><span class="p">.</span><span class="n">getSprite</span><span class="p">(</span><span class="s1">&#39;sprite_name&#39;</span><span class="p">),</span>
-<span class="w">      </span><span class="p">),</span>
-<span class="w">    </span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">add</span><span class="p">(</span>
-<span class="w">      </span><span class="n">SpriteAnimationComponent</span><span class="p">(</span>
-<span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">150</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span>
-<span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">150</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span>
-<span class="w">        </span><span class="nl">animation:</span><span class="w"> </span><span class="n">_atlas</span><span class="p">.</span><span class="n">getAnimation</span><span class="p">(</span><span class="s1">&#39;animation_name&#39;</span><span class="p">),</span>
-<span class="w">      </span><span class="p">),</span>
-<span class="w">    </span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-
+<p>To create a specific asset handler class, you just need to extend the <code class="docutils literal notranslate"><span class="pre">FlameNetworkAssets</span></code> class
+and define the <code class="docutils literal notranslate"><span class="pre">decodeAsset</span></code> and <code class="docutils literal notranslate"><span class="pre">endcodeAsset</span></code> arguments:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">FlameNetworkCustomAsset</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameNetworkAssets</span><span class="o">&lt;</span><span class="n">CustomAsset</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">FlameNetworkImages</span><span class="p">({</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="kd">get</span><span class="p">,</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">getAppDirectory</span><span class="p">,</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">cacheInMemory</span><span class="p">,</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">cacheInStorage</span><span class="p">,</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="w">          </span><span class="nl">decodeAsset:</span><span class="w"> </span><span class="p">(</span><span class="n">bytes</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">CustomAsset</span><span class="p">.</span><span class="n">decode</span><span class="p">(</span><span class="n">bytes</span><span class="p">),</span>
+<span class="w">          </span><span class="nl">encodeAsset:</span><span class="w"> </span><span class="p">(</span><span class="n">CustomAsset</span><span class="w"> </span><span class="n">asset</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">asset</span><span class="p">.</span><span class="n">encode</span><span class="p">(),</span>
+<span class="w">        </span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
-<section id="full-example">
-<h2>Full Example<a class="headerlink" href="#full-example" title="Permalink to this heading">¶</a></h2>
-<p>You can check an example
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_fire_atlas/example">here</a>.</p>
-</section>
 </section>
 
 
@@ -407,18 +345,18 @@ or a component. Then you can use <code class="docutils literal notranslate"><spa
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="flame_fire_atlas.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="../flame_lottie/flame_lottie.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">flame_fire_atlas</p>
+          <p class="prev-next-title">flame_lottie</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="../flame_forge2d/flame_forge2d.html" title="next page">
+      <a class="right-next" id="next-link" href="../flame_oxygen/flame_oxygen.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">flame_forge2d</p>
+          <p class="prev-next-title">flame_oxygen</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
@@ -430,11 +368,6 @@ or a component. Then you can use <code class="docutils literal notranslate"><spa
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
-  <a href='#fireatlas' class='list-group-item level-1'>FireAtlas</a>
-  <a href='#creating-atlas' class='list-group-item level-2'>Creating Atlas</a>
-  <a href='#texture-atlas' class='list-group-item level-1'>Texture atlas</a>
-  <a href='#usage' class='list-group-item level-1'>Usage</a>
-  <a href='#full-example' class='list-group-item level-1'>Full Example</a>
 </div>
 
     </div>
