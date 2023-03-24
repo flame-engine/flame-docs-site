@@ -328,7 +328,7 @@ remove it.</p>
 <li><p><a class="reference internal" href="#motorjoint"><code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code></a></p></li>
 <li><p><a class="reference internal" href="#mousejoint"><code class="docutils literal notranslate"><span class="pre">MouseJoint</span></code></a></p></li>
 <li><p>PrismaticJoint</p></li>
-<li><p>PulleyJoint</p></li>
+<li><p><a class="reference internal" href="#pulleyjoint"><code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code></a></p></li>
 <li><p>RevoluteJoint</p></li>
 <li><p>RopeJoint</p></li>
 <li><p>WeldJoint</p></li>
@@ -636,62 +636,67 @@ motor_joint.dart</div>
 <span class="linenos">24</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">25</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
 <span class="linenos">26</span>
-<span class="linenos">27</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Box</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">);</span>
-<span class="linenos">28</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">box</span><span class="p">);</span>
-<span class="linenos">29</span>
-<span class="linenos">30</span><span class="w">    </span><span class="n">ball</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ball</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">5</span><span class="p">));</span>
-<span class="linenos">31</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">ball</span><span class="p">);</span>
-<span class="linenos">32</span>
-<span class="linenos">33</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">([</span><span class="n">ball</span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span><span class="w"> </span><span class="n">box</span><span class="p">.</span><span class="n">loaded</span><span class="p">]);</span>
+<span class="linenos">27</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Box</span><span class="p">(</span>
+<span class="linenos">28</span><span class="w">      </span><span class="nl">startPosition:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">29</span><span class="w">      </span><span class="nl">width:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">30</span><span class="w">      </span><span class="nl">height:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="linenos">31</span><span class="w">      </span><span class="nl">bodyType:</span><span class="w"> </span><span class="n">BodyType</span><span class="p">.</span><span class="kd">static</span><span class="p">,</span>
+<span class="linenos">32</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">33</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">box</span><span class="p">);</span>
 <span class="linenos">34</span>
-<span class="linenos">35</span><span class="w">    </span><span class="n">joint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createJoint</span><span class="p">(</span><span class="n">ball</span><span class="p">.</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">box</span><span class="p">.</span><span class="n">body</span><span class="p">);</span>
-<span class="linenos">36</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">35</span><span class="w">    </span><span class="n">ball</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ball</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">5</span><span class="p">));</span>
+<span class="linenos">36</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">ball</span><span class="p">);</span>
 <span class="linenos">37</span>
-<span class="linenos">38</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">39</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">details</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">40</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onTapDown</span><span class="p">(</span><span class="n">details</span><span class="p">);</span>
-<span class="linenos">41</span><span class="w">    </span><span class="n">clockWise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">clockWise</span><span class="p">;</span>
-<span class="linenos">42</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">43</span>
-<span class="linenos">44</span><span class="w">  </span><span class="n">MotorJoint</span><span class="w"> </span><span class="n">createJoint</span><span class="p">(</span><span class="n">Body</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">Body</span><span class="w"> </span><span class="n">second</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">45</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">motorJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MotorJointDef</span><span class="p">()</span>
-<span class="linenos">46</span><span class="w">      </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">second</span><span class="p">)</span>
-<span class="linenos">47</span><span class="w">      </span><span class="p">..</span><span class="n">maxForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span>
-<span class="linenos">48</span><span class="w">      </span><span class="p">..</span><span class="n">maxTorque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span>
-<span class="linenos">49</span><span class="w">      </span><span class="p">..</span><span class="n">correctionFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">;</span>
-<span class="linenos">50</span>
-<span class="linenos">51</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">joint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MotorJoint</span><span class="p">(</span><span class="n">motorJointDef</span><span class="p">);</span>
-<span class="linenos">52</span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">joint</span><span class="p">);</span>
-<span class="linenos">53</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">joint</span><span class="p">;</span>
-<span class="linenos">54</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">38</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">([</span><span class="n">ball</span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span><span class="w"> </span><span class="n">box</span><span class="p">.</span><span class="n">loaded</span><span class="p">]);</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="w">    </span><span class="n">joint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createJoint</span><span class="p">(</span><span class="n">ball</span><span class="p">.</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">box</span><span class="p">.</span><span class="n">body</span><span class="p">);</span>
+<span class="linenos">41</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">42</span>
+<span class="linenos">43</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">44</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">details</span><span class="p">)</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">45</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onTapDown</span><span class="p">(</span><span class="n">details</span><span class="p">);</span>
+<span class="linenos">46</span><span class="w">    </span><span class="n">clockWise</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">clockWise</span><span class="p">;</span>
+<span class="linenos">47</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">48</span>
+<span class="linenos">49</span><span class="w">  </span><span class="n">MotorJoint</span><span class="w"> </span><span class="n">createJoint</span><span class="p">(</span><span class="n">Body</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">Body</span><span class="w"> </span><span class="n">second</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">50</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">motorJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MotorJointDef</span><span class="p">()</span>
+<span class="linenos">51</span><span class="w">      </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">second</span><span class="p">)</span>
+<span class="linenos">52</span><span class="w">      </span><span class="p">..</span><span class="n">maxForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span>
+<span class="linenos">53</span><span class="w">      </span><span class="p">..</span><span class="n">maxTorque</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1000</span>
+<span class="linenos">54</span><span class="w">      </span><span class="p">..</span><span class="n">correctionFactor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span><span class="p">;</span>
 <span class="linenos">55</span>
-<span class="linenos">56</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">57</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">58</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
-<span class="linenos">59</span>
-<span class="linenos">60</span><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">deltaOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">motorSpeed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
-<span class="linenos">61</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">clockWise</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">62</span><span class="w">      </span><span class="n">deltaOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">deltaOffset</span><span class="p">;</span>
-<span class="linenos">63</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">56</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">joint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MotorJoint</span><span class="p">(</span><span class="n">motorJointDef</span><span class="p">);</span>
+<span class="linenos">57</span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">joint</span><span class="p">);</span>
+<span class="linenos">58</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">joint</span><span class="p">;</span>
+<span class="linenos">59</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">62</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">63</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 <span class="linenos">64</span>
-<span class="linenos">65</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">linearOffsetX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joint</span><span class="p">.</span><span class="n">getLinearOffset</span><span class="p">().</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">deltaOffset</span><span class="p">;</span>
-<span class="linenos">66</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">linearOffsetY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joint</span><span class="p">.</span><span class="n">getLinearOffset</span><span class="p">().</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">deltaOffset</span><span class="p">;</span>
-<span class="linenos">67</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">linearOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">linearOffsetX</span><span class="p">,</span><span class="w"> </span><span class="n">linearOffsetY</span><span class="p">);</span>
-<span class="linenos">68</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">angularOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joint</span><span class="p">.</span><span class="n">getAngularOffset</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">deltaOffset</span><span class="p">;</span>
+<span class="linenos">65</span><span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="n">deltaOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">motorSpeed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="linenos">66</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">clockWise</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">67</span><span class="w">      </span><span class="n">deltaOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">deltaOffset</span><span class="p">;</span>
+<span class="linenos">68</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">69</span>
-<span class="linenos">70</span><span class="w">    </span><span class="n">joint</span><span class="p">.</span><span class="n">setLinearOffset</span><span class="p">(</span><span class="n">linearOffset</span><span class="p">);</span>
-<span class="linenos">71</span><span class="w">    </span><span class="n">joint</span><span class="p">.</span><span class="n">setAngularOffset</span><span class="p">(</span><span class="n">angularOffset</span><span class="p">);</span>
-<span class="linenos">72</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">73</span>
-<span class="linenos">74</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">75</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">76</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span>
-<span class="linenos">77</span>
-<span class="linenos">78</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worldToScreen</span><span class="p">(</span><span class="n">joint</span><span class="p">.</span><span class="n">anchorA</span><span class="p">);</span>
-<span class="linenos">79</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worldToScreen</span><span class="p">(</span><span class="n">joint</span><span class="p">.</span><span class="n">anchorB</span><span class="p">);</span>
-<span class="linenos">80</span><span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawLine</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">toOffset</span><span class="p">(),</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">toOffset</span><span class="p">(),</span><span class="w"> </span><span class="n">debugPaint</span><span class="p">);</span>
-<span class="linenos">81</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">82</span><span class="p">}</span>
+<span class="linenos">70</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">linearOffsetX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joint</span><span class="p">.</span><span class="n">getLinearOffset</span><span class="p">().</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">deltaOffset</span><span class="p">;</span>
+<span class="linenos">71</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">linearOffsetY</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joint</span><span class="p">.</span><span class="n">getLinearOffset</span><span class="p">().</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">deltaOffset</span><span class="p">;</span>
+<span class="linenos">72</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">linearOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">linearOffsetX</span><span class="p">,</span><span class="w"> </span><span class="n">linearOffsetY</span><span class="p">);</span>
+<span class="linenos">73</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">angularOffset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joint</span><span class="p">.</span><span class="n">getAngularOffset</span><span class="p">()</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">deltaOffset</span><span class="p">;</span>
+<span class="linenos">74</span>
+<span class="linenos">75</span><span class="w">    </span><span class="n">joint</span><span class="p">.</span><span class="n">setLinearOffset</span><span class="p">(</span><span class="n">linearOffset</span><span class="p">);</span>
+<span class="linenos">76</span><span class="w">    </span><span class="n">joint</span><span class="p">.</span><span class="n">setAngularOffset</span><span class="p">(</span><span class="n">angularOffset</span><span class="p">);</span>
+<span class="linenos">77</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">78</span>
+<span class="linenos">79</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">80</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">81</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span>
+<span class="linenos">82</span>
+<span class="linenos">83</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worldToScreen</span><span class="p">(</span><span class="n">joint</span><span class="p">.</span><span class="n">anchorA</span><span class="p">);</span>
+<span class="linenos">84</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worldToScreen</span><span class="p">(</span><span class="n">joint</span><span class="p">.</span><span class="n">anchorB</span><span class="p">);</span>
+<span class="linenos">85</span><span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawLine</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">toOffset</span><span class="p">(),</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">toOffset</span><span class="p">(),</span><span class="w"> </span><span class="n">debugPaint</span><span class="p">);</span>
+<span class="linenos">86</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">87</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -832,6 +837,142 @@ reach the target position</p></li>
 initially.</p></li>
 </ul>
 </section>
+<section id="pulleyjoint">
+<h3><code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code><a class="headerlink" href="#pulleyjoint" title="Permalink to this heading">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code> is used to create an idealized pulley. The pulley connects two bodies to the ground
+and to each other. As one body goes up, the other goes down. The total length of the pulley rope is
+conserved according to the initial configuration:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>length1 + length2 == constant
+</pre></div>
+</div>
+<p>You can supply a ratio that simulates a block and tackle. This causes one side of the pulley to
+extend faster than the other. At the same time the constraint force is smaller on one side than the
+other. You can use this to create a mechanical leverage.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>length1 + ratio * length2 == constant
+</pre></div>
+</div>
+<p>For example, if the ratio is 2, then <code class="docutils literal notranslate"><span class="pre">length1</span></code> will vary at twice the rate of <code class="docutils literal notranslate"><span class="pre">length2</span></code>. Also the
+force in the rope attached to the first body will have half the constraint force as the rope
+attached to the second body.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">pulleyJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PulleyJointDef</span><span class="p">()</span>
+<span class="w">  </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span>
+<span class="w">    </span><span class="n">firstBody</span><span class="p">,</span>
+<span class="w">    </span><span class="n">secondBody</span><span class="p">,</span>
+<span class="w">    </span><span class="n">firstPulley</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">,</span>
+<span class="w">    </span><span class="n">secondPulley</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">,</span>
+<span class="w">    </span><span class="n">firstBody</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">,</span><span class="w">     </span>
+<span class="w">    </span><span class="n">secondBody</span><span class="p">.</span><span class="n">worldCenter</span><span class="p">,</span>
+<span class="w">    </span><span class="m">1</span><span class="p">,</span>
+<span class="w">  </span><span class="p">);</span>
+
+<span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">PulleyJoint</span><span class="p">(</span><span class="n">pulleyJointDef</span><span class="p">));</span>
+</pre></div>
+</div>
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/examples/index.html?pulley_joint&quot;)">Run</button><div class="flutter-app-code docutils container" id="examples-source-pulley_joint">
+<div class="filename docutils container">
+pulley_joint.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:examples/stories/bridge_libraries/forge2d/utils/balls.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:examples/stories/bridge_libraries/forge2d/utils/boxes.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 7</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_forge2d/flame_forge2d.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="kd">class</span><span class="w"> </span><span class="nc">PulleyJointExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Forge2DGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapDetector</span><span class="p">,</span><span class="w"> </span><span class="n">HasDraggables</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">10</span><span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="linenos">11</span><span class="s1">    This example shows how to use a `PulleyJoint`. Drag one of the boxes and see</span>
+<span class="linenos">12</span><span class="s1">    how the other one gets moved by the pulley</span>
+<span class="linenos">13</span><span class="s1">  &#39;&#39;&#39;</span><span class="p">;</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Ball</span><span class="w"> </span><span class="n">firstPulley</span><span class="p">;</span>
+<span class="linenos">16</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Ball</span><span class="w"> </span><span class="n">secondPulley</span><span class="p">;</span>
+<span class="linenos">17</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">PulleyJoint</span><span class="w"> </span><span class="n">joint</span><span class="p">;</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">20</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">21</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">    </span><span class="n">firstPulley</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ball</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.33</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="nl">bodyType:</span><span class="w"> </span><span class="n">BodyType</span><span class="p">.</span><span class="kd">static</span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">    </span><span class="n">secondPulley</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ball</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.66</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="nl">bodyType:</span><span class="w"> </span><span class="n">BodyType</span><span class="p">.</span><span class="kd">static</span><span class="p">);</span>
+<span class="linenos">25</span>
+<span class="linenos">26</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">firstBox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DraggableBox</span><span class="p">(</span>
+<span class="linenos">27</span><span class="w">      </span><span class="nl">startPosition:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.33</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="linenos">28</span><span class="w">      </span><span class="nl">width:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
+<span class="linenos">29</span><span class="w">      </span><span class="nl">height:</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
+<span class="linenos">30</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">31</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">secondBox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DraggableBox</span><span class="p">(</span>
+<span class="linenos">32</span><span class="w">      </span><span class="nl">startPosition:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.66</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="linenos">33</span><span class="w">      </span><span class="nl">width:</span><span class="w"> </span><span class="m">7</span><span class="p">,</span>
+<span class="linenos">34</span><span class="w">      </span><span class="nl">height:</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
+<span class="linenos">35</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">36</span><span class="w">    </span><span class="n">addAll</span><span class="p">([</span><span class="n">firstBox</span><span class="p">,</span><span class="w"> </span><span class="n">secondBox</span><span class="p">,</span><span class="w"> </span><span class="n">firstPulley</span><span class="p">,</span><span class="w"> </span><span class="n">secondPulley</span><span class="p">]);</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">([</span>
+<span class="linenos">39</span><span class="w">      </span><span class="n">firstBox</span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span>
+<span class="linenos">40</span><span class="w">      </span><span class="n">secondBox</span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span>
+<span class="linenos">41</span><span class="w">      </span><span class="n">firstPulley</span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span>
+<span class="linenos">42</span><span class="w">      </span><span class="n">secondPulley</span><span class="p">.</span><span class="n">loaded</span>
+<span class="linenos">43</span><span class="w">    </span><span class="p">]);</span>
+<span class="linenos">44</span>
+<span class="linenos">45</span><span class="w">    </span><span class="n">createJoint</span><span class="p">(</span><span class="n">firstBox</span><span class="p">,</span><span class="w"> </span><span class="n">secondBox</span><span class="p">);</span>
+<span class="linenos">46</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">47</span>
+<span class="linenos">48</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">createJoint</span><span class="p">(</span><span class="n">Box</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">Box</span><span class="w"> </span><span class="n">second</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">49</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">pulleyJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PulleyJointDef</span><span class="p">()</span>
+<span class="linenos">50</span><span class="w">      </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span>
+<span class="linenos">51</span><span class="w">        </span><span class="n">first</span><span class="p">.</span><span class="n">body</span><span class="p">,</span>
+<span class="linenos">52</span><span class="w">        </span><span class="n">second</span><span class="p">.</span><span class="n">body</span><span class="p">,</span>
+<span class="linenos">53</span><span class="w">        </span><span class="n">firstPulley</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">54</span><span class="w">        </span><span class="n">secondPulley</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">55</span><span class="w">        </span><span class="n">first</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">worldPoint</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">first</span><span class="p">.</span><span class="n">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)),</span>
+<span class="linenos">56</span><span class="w">        </span><span class="n">second</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">worldPoint</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">second</span><span class="p">.</span><span class="n">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)),</span>
+<span class="linenos">57</span><span class="w">        </span><span class="m">1</span><span class="p">,</span>
+<span class="linenos">58</span><span class="w">      </span><span class="p">);</span>
+<span class="linenos">59</span><span class="w">    </span><span class="n">joint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PulleyJoint</span><span class="p">(</span><span class="n">pulleyJointDef</span><span class="p">);</span>
+<span class="linenos">60</span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">joint</span><span class="p">);</span>
+<span class="linenos">61</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">62</span>
+<span class="linenos">63</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">64</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">65</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span>
+<span class="linenos">66</span>
+<span class="linenos">67</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">firstBodyAnchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worldToScreen</span><span class="p">(</span><span class="n">joint</span><span class="p">.</span><span class="n">anchorA</span><span class="p">).</span><span class="n">toOffset</span><span class="p">();</span>
+<span class="linenos">68</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">firstPulleyAnchor</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos">69</span><span class="w">        </span><span class="n">worldToScreen</span><span class="p">(</span><span class="n">joint</span><span class="p">.</span><span class="n">getGroundAnchorA</span><span class="p">()).</span><span class="n">toOffset</span><span class="p">();</span>
+<span class="linenos">70</span><span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawLine</span><span class="p">(</span><span class="n">firstBodyAnchor</span><span class="p">,</span><span class="w"> </span><span class="n">firstPulleyAnchor</span><span class="p">,</span><span class="w"> </span><span class="n">debugPaint</span><span class="p">);</span>
+<span class="linenos">71</span>
+<span class="linenos">72</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">secondBodyAnchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worldToScreen</span><span class="p">(</span><span class="n">joint</span><span class="p">.</span><span class="n">anchorB</span><span class="p">).</span><span class="n">toOffset</span><span class="p">();</span>
+<span class="linenos">73</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">secondPulleyAnchor</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos">74</span><span class="w">        </span><span class="n">worldToScreen</span><span class="p">(</span><span class="n">joint</span><span class="p">.</span><span class="n">getGroundAnchorB</span><span class="p">()).</span><span class="n">toOffset</span><span class="p">();</span>
+<span class="linenos">75</span><span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawLine</span><span class="p">(</span><span class="n">secondBodyAnchor</span><span class="p">,</span><span class="w"> </span><span class="n">secondPulleyAnchor</span><span class="p">,</span><span class="w"> </span><span class="n">debugPaint</span><span class="p">);</span>
+<span class="linenos">76</span>
+<span class="linenos">77</span><span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawLine</span><span class="p">(</span><span class="n">firstPulleyAnchor</span><span class="p">,</span><span class="w"> </span><span class="n">secondPulleyAnchor</span><span class="p">,</span><span class="w"> </span><span class="n">debugPaint</span><span class="p">);</span>
+<span class="linenos">78</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">79</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;examples-source-pulley_joint&quot;)">Code</button><p>The <code class="docutils literal notranslate"><span class="pre">initialize</span></code> method of <code class="docutils literal notranslate"><span class="pre">PulleyJointDef</span></code> requires two ground anchors, two dynamic bodies and
+their anchor points, and a pulley ratio.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">b1</span></code>, <code class="docutils literal notranslate"><span class="pre">b2</span></code>: Two dynamic bodies connected with the joint</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ga1</span></code>, <code class="docutils literal notranslate"><span class="pre">ga2</span></code>: Two ground anchors</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anchor1</span></code>, <code class="docutils literal notranslate"><span class="pre">anchor2</span></code>: Anchors on the dynamic bodies the joint will be attached to</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r</span></code>: Pulley ratio to simulate a block and tackle</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code> also provides the current lengths:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">joint</span><span class="p">.</span><span class="n">getCurrentLengthA</span><span class="p">()</span>
+<span class="n">joint</span><span class="p">.</span><span class="n">getCurrentLengthB</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code> can get a bit troublesome by itself. They often work better when
+combined with prismatic joints. You should also cover the the anchor points
+with static shapes to prevent one side from going to zero length.</p>
+</div>
+</section>
 </section>
 </section>
 
@@ -871,6 +1012,7 @@ initially.</p></li>
   <a href='#frictionjoint' class='list-group-item level-2'>FrictionJoint</a>
   <a href='#motorjoint' class='list-group-item level-2'>MotorJoint</a>
   <a href='#mousejoint' class='list-group-item level-2'>MouseJoint</a>
+  <a href='#pulleyjoint' class='list-group-item level-2'>PulleyJoint</a>
 </div>
 
     </div>
