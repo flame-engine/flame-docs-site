@@ -434,6 +434,72 @@ events.</p>
 </pre></div>
 </div>
 </section>
+<section id="time-scale">
+<h2>Time Scale<a class="headerlink" href="#time-scale" title="Permalink to this heading">¶</a></h2>
+<p>In many games it is often desirable to create  slow-motion or fast-forward effects based on some in
+game events. A very common approach to achieve these results is to manipulate the in game time or
+tick rate.</p>
+<p>To make this manipulation easier, Flame provides a <code class="docutils literal notranslate"><span class="pre">HasTimeScale</span></code> mixin. This mixin can be attached
+to any Flame <code class="docutils literal notranslate"><span class="pre">Component</span></code> and exposes a simple get/set API for <code class="docutils literal notranslate"><span class="pre">timeScale</span></code>. The default value of
+<code class="docutils literal notranslate"><span class="pre">timeScale</span></code> is <code class="docutils literal notranslate"><span class="pre">1</span></code>, implying in-game time of the component is running at the same speed as real life
+time. Setting it to <code class="docutils literal notranslate"><span class="pre">2</span></code> will make the component tick twice as fast and setting it to <code class="docutils literal notranslate"><span class="pre">0.5</span></code> will make
+it tick at half the speed as compared to real life time.</p>
+<p>Since <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is a <code class="docutils literal notranslate"><span class="pre">Component</span></code> too, this mixin can be attached to the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> as well. Doing
+so will allow controlling time scale for all the component of the game from a single place.</p>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?time_scale" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-time_scale">
+<div class="filename docutils container">
+time_scale.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:async&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/experimental.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kd">class</span><span class="w"> </span><span class="nc">TimeScaleGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTimeScale</span><span class="p">,</span><span class="w"> </span><span class="n">HasTappableComponents</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">_timeScales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="m">2.0</span><span class="p">];</span>
+<span class="linenos">10</span><span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="n">_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">13</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">14</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">15</span><span class="w">      </span><span class="n">EmberPlayer</span><span class="p">(</span>
+<span class="linenos">16</span><span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">17</span><span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="linenos">18</span><span class="w">        </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">p0</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">timeScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getNextTimeScale</span><span class="p">(),</span>
+<span class="linenos">19</span><span class="w">      </span><span class="p">),</span>
+<span class="linenos">20</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">21</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">22</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">getNextTimeScale</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">25</span><span class="w">    </span><span class="o">++</span><span class="n">_index</span><span class="p">;</span>
+<span class="linenos">26</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_index</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">_timeScales</span><span class="p">.</span><span class="n">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">27</span><span class="w">      </span><span class="n">_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="linenos">28</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">29</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">_timeScales</span><span class="p">[</span><span class="n">_index</span><span class="p">];</span>
+<span class="linenos">30</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">31</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-time_scale&quot;)">Code</button></div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyFlameGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTimeScale</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">speedUp</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">timeScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2.0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">slowDown</span><span class="p">(){</span>
+<span class="w">    </span><span class="n">timeScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1.0</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 <section id="extensions">
 <h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this heading">¶</a></h2>
 <p>Flame bundles a collection of utility extensions, these extensions are meant to help the developer
@@ -626,6 +692,7 @@ as it’s first argument, or by passing x y z doubles.</p></li>
   <a href='#flame-device-setportrait' class='list-group-item level-2'>Flame.device.setPortrait()</a>
   <a href='#flame-device-setorientation-and-flame-device-setorientations' class='list-group-item level-2'>Flame.device.setOrientation() and Flame.device.setOrientations()</a>
   <a href='#timer' class='list-group-item level-1'>Timer</a>
+  <a href='#time-scale' class='list-group-item level-1'>Time Scale</a>
   <a href='#extensions' class='list-group-item level-1'>Extensions</a>
   <a href='#canvas' class='list-group-item level-2'>Canvas</a>
   <a href='#color' class='list-group-item level-2'>Color</a>
