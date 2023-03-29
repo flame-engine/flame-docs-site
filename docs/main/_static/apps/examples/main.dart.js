@@ -10705,7 +10705,7 @@ s.aR(0,"Widgets",new A.b1X(),"https://github.com/flame-engine/flame/blob/main/ex
 A.bBu(a)},
 bBu(a){var s=new A.eJ("flame_forge2d/joints",A.a([],t.C))
 a.c.push(s)
-s.aR(0,"ConstantVolumeJoint",new A.b2o(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/constant_volume_joint.dart","    This example shows how to use a `ConstantVolumeJoint`. Tap the screen to add \n    a bunch off balls, that maintain a constant volume within them.\n  ").aR(0,"DistanceJoint",new A.b2p(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/distance_joint.dart","    This example shows how to use a `DistanceJoint`. Tap the screen to add a \n    pair of balls joined with a `DistanceJoint`.\n  ").aR(0,"FrictionJoint",new A.b2q(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/friction_joint.dart","    This example shows how to use a `FrictionJoint`. Tap the screen to move the \n    ball around and observe it slows down due to the friction force.\n  ").aR(0,"MotorJoint",new A.b2r(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/motor_joint.dart","    This example shows how to use a `MotorJoint`. The ball spins around the \n    center point. Tap the screen to change the direction.\n  ").aR(0,"MouseJoint",new A.b2s(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/mouse_joint.dart","    In this example we use a `MouseJoint` to make the ball follow the mouse\n    when you drag it around.\n  ").aR(0,"PulleyJoint",new A.b2t(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/pulley_joint.dart","    This example shows how to use a `PulleyJoint`. Drag one of the boxes and see \n    how the other one gets moved by the pulley\n  ")},
+s.aR(0,"ConstantVolumeJoint",new A.b2o(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/joints/constant_volume_joint.dart","    This example shows how to use a `ConstantVolumeJoint`. Tap the screen to add \n    a bunch off balls, that maintain a constant volume within them.\n  ").aR(0,"DistanceJoint",new A.b2p(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/joints/distance_joint.dart","    This example shows how to use a `DistanceJoint`. Tap the screen to add a \n    pair of balls joined with a `DistanceJoint`.\n  ").aR(0,"FrictionJoint",new A.b2q(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/joints/friction_joint.dart","    This example shows how to use a `FrictionJoint`. Tap the screen to move the \n    ball around and observe it slows down due to the friction force.\n  ").aR(0,"MotorJoint",new A.b2r(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/joints/motor_joint.dart","    This example shows how to use a `MotorJoint`. The ball spins around the \n    center point. Tap the screen to change the direction.\n  ").aR(0,"MouseJoint",new A.b2s(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/joints/mouse_joint.dart","    In this example we use a `MouseJoint` to make the ball follow the mouse\n    when you drag it around.\n  ").aR(0,"PulleyJoint",new A.b2t(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/joints/pulley_joint.dart","    This example shows how to use a `PulleyJoint`. Drag one of the boxes and see \n    how the other one gets moved by the pulley\n  ")},
 b1T:function b1T(){},
 b1U:function b1U(){},
 b1V:function b1V(){},
@@ -134711,9 +134711,7 @@ o=t.K
 s=3
 return A.E(B.ny.Hd("getAll",p,o),$async$rw)
 case 3:n=c
-if(n==null){q=A.C(p,o)
-s=1
-break}q=n
+q=n==null?A.C(p,o):n
 s=1
 break
 case 1:return A.u(q,r)}})

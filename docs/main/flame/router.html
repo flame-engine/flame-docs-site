@@ -769,6 +769,11 @@ dialogue UIs, etc.</p>
 <span class="kd">class</span><span class="w"> </span><span class="nc">PauseRoute</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Route</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">hide</span> <span class="pre">Route</span></code> if any of your imported packages export another class called <code class="docutils literal notranslate"><span class="pre">Route</span></code></p>
+<p>eg: <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">'package:flutter/material.dart'</span> <span class="pre">hide</span> <span class="pre">Route;</span></code></p>
+</div>
 <section id="route">
 <h2>Route<a class="headerlink" href="#route" title="Permalink to this heading">¶</a></h2>
 <p>The <strong>Route</strong> component holds information about the content of a particular page. <code class="docutils literal notranslate"><span class="pre">Route</span></code>s are
