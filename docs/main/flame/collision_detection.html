@@ -485,7 +485,8 @@ position is instead returned.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">ShapeHitbox</span></code>s are normal components, so you add them to the component that you want to add
 hitboxes to just like any other component:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RectangleHitbox</span><span class="p">());</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -603,7 +604,8 @@ become inefficient. If it does, you can try to use the quad tree broad phase.
 To do this, add the <code class="docutils literal notranslate"><span class="pre">HasQuadTreeCollisionDetection</span></code> mixin to your game instead of
 <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> and call the <code class="docutils literal notranslate"><span class="pre">initializeCollisionDetection</span></code> function on game load:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasQuadTreeCollisionDetection</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">initializeCollisionDetection</span><span class="p">(</span>
 <span class="w">      </span><span class="nl">mapDimensions:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">mapWidth</span><span class="p">,</span><span class="w"> </span><span class="n">mapHeight</span><span class="p">),</span>
 <span class="w">      </span><span class="nl">minimumDistance:</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>

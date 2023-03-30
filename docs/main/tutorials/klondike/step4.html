@@ -662,7 +662,8 @@ similar to how we did it for the <code class="docutils literal notranslate"><spa
 <p>All that remains now is to head over to the <code class="docutils literal notranslate"><span class="pre">KlondikeGame</span></code> and make sure that the cards are dealt
 into the <code class="docutils literal notranslate"><span class="pre">TableauPile</span></code>s at the beginning of the game. Modify the code at the end of the <code class="docutils literal notranslate"><span class="pre">onLoad()</span></code>
 method so that it looks like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="p">...</span>
 
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">cards</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>

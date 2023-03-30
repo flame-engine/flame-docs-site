@@ -372,8 +372,8 @@ Finally, we register the command with <code class="docutils literal notranslate"
 <span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">quests</span><span class="p">[</span><span class="n">questId</span><span class="p">]</span><span class="o">!</span><span class="p">.</span><span class="n">name</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">questName</span><span class="p">);</span>
 <span class="w">    </span><span class="c1">// ...</span>
 <span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">yarnProject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YarnProject</span><span class="p">()</span>
 <span class="w">      </span><span class="p">..</span><span class="n">commands</span><span class="p">.</span><span class="n">addCommand2</span><span class="p">(</span><span class="s1">&#39;StartQuest&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">startQuest</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
@@ -399,7 +399,8 @@ and are not supposed to return values. So instead we will write the result into 
 <span class="w">    </span><span class="n">yarnProject</span><span class="p">.</span><span class="n">variables</span><span class="p">.</span><span class="n">setVariable</span><span class="p">(</span><span class="s1">r&#39;$prompt&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">name</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">yarnProject</span>
 <span class="w">      </span><span class="p">..</span><span class="n">variables</span><span class="p">.</span><span class="n">setVariable</span><span class="p">(</span><span class="s1">r&#39;$prompt&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&#39;</span><span class="p">)</span>
 <span class="w">      </span><span class="p">..</span><span class="n">commands</span><span class="p">.</span><span class="n">addCommand1</span><span class="p">(</span><span class="s1">&#39;prompt&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">prompt</span><span class="p">);</span>
