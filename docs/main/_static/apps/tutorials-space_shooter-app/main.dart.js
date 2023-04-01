@@ -32006,9 +32006,7 @@ return A.T(q.vz(0),$async$aW)
 case 2:s=3
 return A.T(A.Hk("player-sprite.png",q.gh8().rA$,null,null),$async$aW)
 case 3:p=q.k3=c
-o=q.k2
-o===$&&A.m()
-if(o){o=q.at
+if(q.k2){o=q.at
 if(p!=null){p=p.c
 n=new A.al(new Float64Array(2))
 n.bt(p.c-p.a,p.d-p.b)
