@@ -362,7 +362,7 @@ So bodies should live on the top level in the physics world.
 Instead of <code class="docutils literal notranslate"><span class="pre">add(Bullet()))</span></code>, <code class="docutils literal notranslate"><span class="pre">parent?.add(Bullet())</span></code> should be used (as bellow).</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Bullet</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w">  </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="p">...</span>
 <span class="w">    </span><span class="n">isBullet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
 <span class="w">    </span><span class="p">...</span>
@@ -371,7 +371,7 @@ Instead of <code class="docutils literal notranslate"><span class="pre">add(Bull
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w">  </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">parent</span><span class="o">?</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Bullet</span><span class="p">());</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
