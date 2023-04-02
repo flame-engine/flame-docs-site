@@ -370,76 +370,74 @@ collision_detection.dart</div>
 <span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/experimental.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 7</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="w"> </span><span class="k">hide</span><span class="w"> </span><span class="n">Image</span><span class="p">,</span><span class="w"> </span><span class="n">Draggable</span><span class="p">;</span>
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span><span class="kd">class</span><span class="w"> </span><span class="nc">CollisionDetectionGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span>
-<span class="linenos">10</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="p">,</span><span class="w"> </span><span class="n">HasTappableComponents</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">11</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">12</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">13</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">emberPlayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="p">(</span>
-<span class="linenos">14</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
-<span class="linenos">15</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">40</span><span class="p">),</span>
-<span class="linenos">16</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">emberPlayer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">17</span><span class="w">        </span><span class="n">emberPlayer</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="linenos">18</span><span class="w">          </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span>
-<span class="linenos">19</span><span class="w">            </span><span class="n">Vector2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
-<span class="linenos">20</span><span class="w">            </span><span class="n">EffectController</span><span class="p">(</span>
-<span class="linenos">21</span><span class="w">              </span><span class="nl">duration:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
-<span class="linenos">22</span><span class="w">              </span><span class="nl">reverseDuration:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
-<span class="linenos">23</span><span class="w">              </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
-<span class="linenos">24</span><span class="w">              </span><span class="nl">curve:</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOut</span><span class="p">,</span>
-<span class="linenos">25</span><span class="w">            </span><span class="p">),</span>
-<span class="linenos">26</span><span class="w">          </span><span class="p">),</span>
-<span class="linenos">27</span><span class="w">        </span><span class="p">);</span>
-<span class="linenos">28</span><span class="w">      </span><span class="p">},</span>
-<span class="linenos">29</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">30</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">emberPlayer</span><span class="p">);</span>
-<span class="linenos">31</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RectangleCollidable</span><span class="p">(</span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">));</span>
-<span class="linenos">32</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">33</span><span class="p">}</span>
-<span class="linenos">34</span>
-<span class="linenos">35</span><span class="kd">class</span><span class="w"> </span><span class="nc">RectangleCollidable</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">36</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">_collisionStartColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">amber</span><span class="p">;</span>
-<span class="linenos">37</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">_defaultColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">cyan</span><span class="p">;</span>
-<span class="linenos">38</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">ShapeHitbox</span><span class="w"> </span><span class="n">hitbox</span><span class="p">;</span>
-<span class="linenos">39</span>
-<span class="linenos">40</span><span class="w">  </span><span class="n">RectangleCollidable</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">position</span><span class="p">)</span>
-<span class="linenos">41</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
-<span class="linenos">42</span><span class="w">          </span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="p">,</span>
-<span class="linenos">43</span><span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">50</span><span class="p">),</span>
-<span class="linenos">44</span><span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos">45</span><span class="w">        </span><span class="p">);</span>
-<span class="linenos">46</span>
-<span class="linenos">47</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">48</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">49</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">defaultPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()</span>
-<span class="linenos">50</span><span class="w">      </span><span class="p">..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_defaultColor</span>
-<span class="linenos">51</span><span class="w">      </span><span class="p">..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span>
-<span class="linenos">52</span><span class="w">    </span><span class="n">hitbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RectangleHitbox</span><span class="p">()</span>
-<span class="linenos">53</span><span class="w">      </span><span class="p">..</span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">defaultPaint</span>
-<span class="linenos">54</span><span class="w">      </span><span class="p">..</span><span class="n">renderShape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="linenos">55</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">hitbox</span><span class="p">);</span>
-<span class="linenos">56</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">57</span>
-<span class="linenos">58</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">59</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span>
-<span class="linenos">60</span><span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
-<span class="linenos">61</span><span class="w">    </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
-<span class="linenos">62</span><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">63</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionStart</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
-<span class="linenos">64</span><span class="w">    </span><span class="n">hitbox</span><span class="p">.</span><span class="n">paint</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_collisionStartColor</span><span class="p">;</span>
-<span class="linenos">65</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">66</span>
-<span class="linenos">67</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">68</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">69</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">other</span><span class="p">);</span>
-<span class="linenos">70</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isColliding</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">71</span><span class="w">      </span><span class="n">hitbox</span><span class="p">.</span><span class="n">paint</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_defaultColor</span><span class="p">;</span>
-<span class="linenos">72</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">73</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">74</span><span class="p">}</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="w"> </span><span class="k">hide</span><span class="w"> </span><span class="n">Image</span><span class="p">,</span><span class="w"> </span><span class="n">Draggable</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kd">class</span><span class="w"> </span><span class="nc">CollisionDetectionGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">10</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">11</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">emberPlayer</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="p">(</span>
+<span class="linenos">12</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
+<span class="linenos">13</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">40</span><span class="p">),</span>
+<span class="linenos">14</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">emberPlayer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">15</span><span class="w">        </span><span class="n">emberPlayer</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">16</span><span class="w">          </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span>
+<span class="linenos">17</span><span class="w">            </span><span class="n">Vector2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">40</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
+<span class="linenos">18</span><span class="w">            </span><span class="n">EffectController</span><span class="p">(</span>
+<span class="linenos">19</span><span class="w">              </span><span class="nl">duration:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
+<span class="linenos">20</span><span class="w">              </span><span class="nl">reverseDuration:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
+<span class="linenos">21</span><span class="w">              </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="linenos">22</span><span class="w">              </span><span class="nl">curve:</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOut</span><span class="p">,</span>
+<span class="linenos">23</span><span class="w">            </span><span class="p">),</span>
+<span class="linenos">24</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos">25</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">26</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">27</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">28</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">emberPlayer</span><span class="p">);</span>
+<span class="linenos">29</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RectangleCollidable</span><span class="p">(</span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">));</span>
+<span class="linenos">30</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">31</span><span class="p">}</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="kd">class</span><span class="w"> </span><span class="nc">RectangleCollidable</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">34</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">_collisionStartColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">amber</span><span class="p">;</span>
+<span class="linenos">35</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">_defaultColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">cyan</span><span class="p">;</span>
+<span class="linenos">36</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">ShapeHitbox</span><span class="w"> </span><span class="n">hitbox</span><span class="p">;</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="w">  </span><span class="n">RectangleCollidable</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">position</span><span class="p">)</span>
+<span class="linenos">39</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="linenos">40</span><span class="w">          </span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="p">,</span>
+<span class="linenos">41</span><span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">50</span><span class="p">),</span>
+<span class="linenos">42</span><span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">43</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">44</span>
+<span class="linenos">45</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">46</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">47</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">defaultPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()</span>
+<span class="linenos">48</span><span class="w">      </span><span class="p">..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_defaultColor</span>
+<span class="linenos">49</span><span class="w">      </span><span class="p">..</span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintingStyle</span><span class="p">.</span><span class="n">stroke</span><span class="p">;</span>
+<span class="linenos">50</span><span class="w">    </span><span class="n">hitbox</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RectangleHitbox</span><span class="p">()</span>
+<span class="linenos">51</span><span class="w">      </span><span class="p">..</span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">defaultPaint</span>
+<span class="linenos">52</span><span class="w">      </span><span class="p">..</span><span class="n">renderShape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos">53</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">hitbox</span><span class="p">);</span>
+<span class="linenos">54</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">57</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span>
+<span class="linenos">58</span><span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
+<span class="linenos">59</span><span class="w">    </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
+<span class="linenos">60</span><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">61</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionStart</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
+<span class="linenos">62</span><span class="w">    </span><span class="n">hitbox</span><span class="p">.</span><span class="n">paint</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_collisionStartColor</span><span class="p">;</span>
+<span class="linenos">63</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">64</span>
+<span class="linenos">65</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">66</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">67</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionEnd</span><span class="p">(</span><span class="n">other</span><span class="p">);</span>
+<span class="linenos">68</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isColliding</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">69</span><span class="w">      </span><span class="n">hitbox</span><span class="p">.</span><span class="n">paint</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_defaultColor</span><span class="p">;</span>
+<span class="linenos">70</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">71</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">72</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>

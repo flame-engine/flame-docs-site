@@ -327,7 +327,8 @@ will be handled correctly by Flame, and you can even keep track of the events by
 <li><p>This mixin adds four overridable methods to your component: <code class="docutils literal notranslate"><span class="pre">onDragStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code>,
 <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code>, and <code class="docutils literal notranslate"><span class="pre">onDragCancel</span></code>. By default, these methods do nothing – they need to be
 overridden in order to perform any function.</p></li>
-<li><p>In addition, the component must implement the <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code> method – this method
+<li><p>In addition, the component must implement the <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code> method (already implemented
+in <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, so most of the time you don’t need to do anything here) – this method
 allows Flame to know whether the event occurred within the component or not.</p></li>
 </ul>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
