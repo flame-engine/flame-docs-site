@@ -331,7 +331,7 @@ remove it.</p>
 <li><p>GearJoint</p></li>
 <li><p><a class="reference internal" href="#motorjoint"><code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code></a></p></li>
 <li><p><a class="reference internal" href="#mousejoint"><code class="docutils literal notranslate"><span class="pre">MouseJoint</span></code></a></p></li>
-<li><p>PrismaticJoint</p></li>
+<li><p>[<code class="docutils literal notranslate"><span class="pre">PrismaticJoint</span></code>] (#prismaticjoint)</p></li>
 <li><p><a class="reference internal" href="#pulleyjoint"><code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code></a></p></li>
 <li><p><a class="reference internal" href="#revolutejoint"><code class="docutils literal notranslate"><span class="pre">RevoluteJoint</span></code></a></p></li>
 <li><p>RopeJoint</p></li>
@@ -841,6 +841,143 @@ reach the target position</p></li>
 initially.</p></li>
 </ul>
 </section>
+<section id="prismaticjoint">
+<h3><code class="docutils literal notranslate"><span class="pre">PrismaticJoint</span></code><a class="headerlink" href="#prismaticjoint" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">PrismaticJoint</span></code> provides a single degree of freedom, allowing for a relative translation of two
+bodies along an axis fixed in bodyA. Relative rotation is prevented.</p>
+<p><code class="docutils literal notranslate"><span class="pre">PrismaticJointDef</span></code> requires defining a line of motion using an axis and an anchor point.
+The definition uses local anchor points and a local axis so that the initial configuration
+can violate the constraint slightly.</p>
+<p>The joint translation is zero when the local anchor points coincide in world space.
+Using local anchors and a local axis helps when saving and loading a game.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>At least one body should by dynamic with a non-fixed rotation.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">PrismaticJoint</span></code> definition is similar to the <a class="reference internal" href="#revolutejoint"><code class="docutils literal notranslate"><span class="pre">RevoluteJoint</span></code></a> definition, but
+instead of rotation, it uses translation.</p>
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/examples/index.html?prismatic_joint&quot;)">Run</button><div class="flutter-app-code docutils container" id="examples-source-prismatic_joint">
+<div class="filename docutils container">
+prismatic_joint.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:examples/stories/bridge_libraries/forge2d/utils/boxes.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_forge2d/flame_forge2d.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kd">class</span><span class="w"> </span><span class="nc">PrismaticJointExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Forge2DGame</span>
+<span class="linenos"> 9</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">TapDetector</span><span class="p">,</span><span class="w"> </span><span class="n">HasDraggables</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">10</span><span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="linenos">11</span><span class="s1">    This example shows how to use a `PrismaticJoint`.</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="s1">    Drag the box along the specified axis, bound between lower and upper limits.</span>
+<span class="linenos">14</span><span class="s1">    Also, there&#39;s a motor enabled that&#39;s pulling the box to the lower limit.</span>
+<span class="linenos">15</span><span class="s1">  &#39;&#39;&#39;</span><span class="p">;</span>
+<span class="linenos">16</span>
+<span class="linenos">17</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">PrismaticJoint</span><span class="w"> </span><span class="n">joint</span><span class="p">;</span>
+<span class="linenos">18</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
+<span class="linenos">19</span>
+<span class="linenos">20</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">21</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">22</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">box</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DraggableBox</span><span class="p">(</span><span class="nl">startPosition:</span><span class="w"> </span><span class="n">anchor</span><span class="p">,</span><span class="w"> </span><span class="nl">width:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="nl">height:</span><span class="w"> </span><span class="m">3</span><span class="p">);</span>
+<span class="linenos">25</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">box</span><span class="p">);</span>
+<span class="linenos">26</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">([</span><span class="n">box</span><span class="p">.</span><span class="n">loaded</span><span class="p">]);</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="w">    </span><span class="n">createJoint</span><span class="p">(</span><span class="n">box</span><span class="p">.</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">anchor</span><span class="p">);</span>
+<span class="linenos">29</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">30</span>
+<span class="linenos">31</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">createJoint</span><span class="p">(</span><span class="n">Body</span><span class="w"> </span><span class="n">box</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">anchor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">32</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">groundBody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="n">createBody</span><span class="p">(</span><span class="n">BodyDef</span><span class="p">());</span>
+<span class="linenos">33</span>
+<span class="linenos">34</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">prismaticJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrismaticJointDef</span><span class="p">()</span>
+<span class="linenos">35</span><span class="w">      </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span>
+<span class="linenos">36</span><span class="w">        </span><span class="n">box</span><span class="p">,</span>
+<span class="linenos">37</span><span class="w">        </span><span class="n">groundBody</span><span class="p">,</span>
+<span class="linenos">38</span><span class="w">        </span><span class="n">anchor</span><span class="p">,</span>
+<span class="linenos">39</span><span class="w">        </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="linenos">40</span><span class="w">      </span><span class="p">)</span>
+<span class="linenos">41</span><span class="w">      </span><span class="p">..</span><span class="n">enableLimit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos">42</span><span class="w">      </span><span class="p">..</span><span class="n">lowerTranslation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="m">20</span>
+<span class="linenos">43</span><span class="w">      </span><span class="p">..</span><span class="n">upperTranslation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span>
+<span class="linenos">44</span><span class="w">      </span><span class="p">..</span><span class="n">enableMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos">45</span><span class="w">      </span><span class="p">..</span><span class="n">motorSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="linenos">46</span><span class="w">      </span><span class="p">..</span><span class="n">maxMotorForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
+<span class="linenos">47</span>
+<span class="linenos">48</span><span class="w">    </span><span class="n">joint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrismaticJoint</span><span class="p">(</span><span class="n">prismaticJointDef</span><span class="p">);</span>
+<span class="linenos">49</span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">joint</span><span class="p">);</span>
+<span class="linenos">50</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">51</span>
+<span class="linenos">52</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">53</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">54</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span>
+<span class="linenos">55</span>
+<span class="linenos">56</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos">57</span><span class="w">        </span><span class="n">worldToScreen</span><span class="p">(</span><span class="n">anchor</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">joint</span><span class="p">.</span><span class="n">getLocalAxisA</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">joint</span><span class="p">.</span><span class="n">getLowerLimit</span><span class="p">());</span>
+<span class="linenos">58</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos">59</span><span class="w">        </span><span class="n">worldToScreen</span><span class="p">(</span><span class="n">anchor</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">joint</span><span class="p">.</span><span class="n">getLocalAxisA</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">joint</span><span class="p">.</span><span class="n">getUpperLimit</span><span class="p">());</span>
+<span class="linenos">60</span>
+<span class="linenos">61</span><span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawLine</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">toOffset</span><span class="p">(),</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">toOffset</span><span class="p">(),</span><span class="w"> </span><span class="n">debugPaint</span><span class="p">);</span>
+<span class="linenos">62</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">63</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;examples-source-prismatic_joint&quot;)">Code</button><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">b1</span></code>, <code class="docutils literal notranslate"><span class="pre">b2</span></code>: Bodies connected by the joint.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">anchor</span></code>: World anchor point, to put the axis through. Usually the center of the first body.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">axis</span></code>: World translation axis, along which the translation will be fixed.</p></li>
+</ul>
+<p>In some cases you might wish to control the range of motion. For this, the <code class="docutils literal notranslate"><span class="pre">PrismaticJointDef</span></code> has
+optional parameters that allow you to simulate a joint limit and/or a motor.</p>
+<section id="prismatic-joint-limit">
+<h4>Prismatic Joint Limit<a class="headerlink" href="#prismatic-joint-limit" title="Permalink to this heading">¶</a></h4>
+<p>You can limit the relative rotation with a joint limit that specifies a lower and upper translation.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">jointDef</span>
+<span class="w">  </span><span class="p">..</span><span class="n">enableLimit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">..</span><span class="n">lowerTranslation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="m">20</span>
+<span class="w">  </span><span class="p">..</span><span class="n">upperTranslation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">20</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">enableLimit</span></code>: Set to true to enable translation limits</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lowerTranslation</span></code>: The lower translation limit in meters</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">upperTranslation</span></code>: The upper translation limit in meters</p></li>
+</ul>
+<p>You change the limits after the joint was created with this method:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">prismaticJoint</span><span class="p">.</span><span class="n">setLimits</span><span class="p">(</span><span class="o">-</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="prismatic-joint-motor">
+<h4>Prismatic Joint Motor<a class="headerlink" href="#prismatic-joint-motor" title="Permalink to this heading">¶</a></h4>
+<p>You can use a motor to drive the motion or to model joint friction. A maximum motor force is
+provided so that infinite forces are not generated.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">jointDef</span>
+<span class="w">  </span><span class="p">..</span><span class="n">enableMotor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="w">  </span><span class="p">..</span><span class="n">motorSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span>
+<span class="w">  </span><span class="p">..</span><span class="n">maxMotorForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">enableMotor</span></code>: Set to true to enable the motor</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">motorSpeed</span></code>: The desired motor speed in radians per second</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxMotorForce</span></code>: The maximum motor torque used to achieve the desired motor speed in N-m.</p></li>
+</ul>
+<p>You change the motor’s speed and force after the joint was created using these methods:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">prismaticJoint</span><span class="p">.</span><span class="n">setMotorSpeed</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+<span class="n">prismaticJoint</span><span class="p">.</span><span class="n">setMaxMotorForce</span><span class="p">(</span><span class="m">200</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Also, you can get the joint angle and speed using the following methods:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">prismaticJoint</span><span class="p">.</span><span class="n">getJointTranslation</span><span class="p">();</span>
+<span class="n">prismaticJoint</span><span class="p">.</span><span class="n">getJointSpeed</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+</section>
 <section id="pulleyjoint">
 <h3><code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code><a class="headerlink" href="#pulleyjoint" title="Permalink to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code> is used to create an idealized pulley. The pulley connects two bodies to the ground
@@ -1068,8 +1205,8 @@ revolute_joint.dart</div>
 </div>
 <button class="flutter-app-button code" onclick="open_code_listings(&quot;examples-source-revolute_joint&quot;)">Code</button><p>In some cases you might wish to control the joint angle. For this, the <code class="docutils literal notranslate"><span class="pre">RevoluteJointDef</span></code> has
 optional parameters that allow you to simulate a joint limit and/or a motor.</p>
-<section id="joint-limit">
-<h4>Joint Limit<a class="headerlink" href="#joint-limit" title="Permalink to this heading">¶</a></h4>
+<section id="revolute-joint-limit">
+<h4>Revolute Joint Limit<a class="headerlink" href="#revolute-joint-limit" title="Permalink to this heading">¶</a></h4>
 <p>You can limit the relative rotation with a joint limit that specifies a lower and upper angle.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">jointDef</span>
 <span class="w">  </span><span class="p">..</span><span class="n">enableLimit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
@@ -1087,8 +1224,8 @@ optional parameters that allow you to simulate a joint limit and/or a motor.</p>
 </pre></div>
 </div>
 </section>
-<section id="joint-motor">
-<h4>Joint Motor<a class="headerlink" href="#joint-motor" title="Permalink to this heading">¶</a></h4>
+<section id="revolute-joint-motor">
+<h4>Revolute Joint Motor<a class="headerlink" href="#revolute-joint-motor" title="Permalink to this heading">¶</a></h4>
 <p>You can use a motor to drive the relative rotation about the shared point. A maximum motor torque is
 provided so that infinite forces are not generated.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">jointDef</span>
@@ -1153,10 +1290,13 @@ provided so that infinite forces are not generated.</p>
   <a href='#frictionjoint' class='list-group-item level-2'>FrictionJoint</a>
   <a href='#motorjoint' class='list-group-item level-2'>MotorJoint</a>
   <a href='#mousejoint' class='list-group-item level-2'>MouseJoint</a>
+  <a href='#prismaticjoint' class='list-group-item level-2'>PrismaticJoint</a>
+  <a href='#prismatic-joint-limit' class='list-group-item level-3'>Prismatic Joint Limit</a>
+  <a href='#prismatic-joint-motor' class='list-group-item level-3'>Prismatic Joint Motor</a>
   <a href='#pulleyjoint' class='list-group-item level-2'>PulleyJoint</a>
   <a href='#revolutejoint' class='list-group-item level-2'>RevoluteJoint</a>
-  <a href='#joint-limit' class='list-group-item level-3'>Joint Limit</a>
-  <a href='#joint-motor' class='list-group-item level-3'>Joint Motor</a>
+  <a href='#revolute-joint-limit' class='list-group-item level-3'>Revolute Joint Limit</a>
+  <a href='#revolute-joint-motor' class='list-group-item level-3'>Revolute Joint Motor</a>
 </div>
 
     </div>
