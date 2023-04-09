@@ -354,15 +354,16 @@ orientations. To set the app orientation to portrait for a specific direction, u
 <p>Flame provides a simple utility class to help you handle countdowns and timer state changes like
 events.</p>
 <p>Countdown example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
-
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/text_config.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/timer.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/vector2.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">TextConfig</span><span class="w"> </span><span class="n">textConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">));</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">TextPaint</span><span class="w"> </span><span class="n">textPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">style:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">white</span><span class="p">,</span><span class="w"> </span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
+
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">countdown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Timer</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
 
 <span class="w">  </span><span class="nd">@override</span>
@@ -375,7 +376,7 @@ events.</p>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">textConfig</span><span class="p">.</span><span class="n">render</span><span class="p">(</span>
+<span class="w">    </span><span class="n">textPaint</span><span class="p">.</span><span class="n">render</span><span class="p">(</span>
 <span class="w">      </span><span class="n">canvas</span><span class="p">,</span>
 <span class="w">      </span><span class="s2">&quot;Countdown: </span><span class="si">${</span><span class="n">countdown</span><span class="p">.</span><span class="n">current</span><span class="p">.</span><span class="n">toString</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">,</span>
 <span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span>
@@ -385,15 +386,15 @@ events.</p>
 </pre></div>
 </div>
 <p>Interval example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
-
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/text_config.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/timer.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/vector2.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">TextConfig</span><span class="w"> </span><span class="n">textConfig</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFFFFFF</span><span class="p">));</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">TextPaint</span><span class="w"> </span><span class="n">textPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">style:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">white</span><span class="p">,</span><span class="w"> </span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
 <span class="w">  </span><span class="n">Timer</span><span class="w"> </span><span class="n">interval</span><span class="p">;</span>
 
 <span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">elapsedSecs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
@@ -413,7 +414,7 @@ events.</p>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">textConfig</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Elapsed time: </span><span class="si">$</span><span class="n">elapsedSecs</span><span class="s2">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">));</span>
+<span class="w">    </span><span class="n">textPaint</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Elapsed time: </span><span class="si">$</span><span class="n">elapsedSecs</span><span class="s2">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">));</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
