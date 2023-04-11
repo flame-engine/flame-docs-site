@@ -2086,8 +2086,10 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 audioplayers
 audioplayers_android
 audioplayers_darwin
+audioplayers_linux
 audioplayers_platform_interface
 audioplayers_web
+audioplayers_windows
 
 MIT License
 
@@ -2110,11 +2112,6 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
---------------------------------------------------------------------------------
-audioplayers_linux
-audioplayers_windows
-
-../../LICENSE
 --------------------------------------------------------------------------------
 boolean_selector
 meta

@@ -391,8 +391,8 @@ after the call to <code class="docutils literal notranslate"><span class="pre">s
   graph TD  
 
    %% Node Color %%
-   classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
    classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
+   classDef yellow fill:#F6BE00,color:#000;
 
    %% Nodes  %%
    x(Runs every time)
@@ -403,13 +403,13 @@ after the call to <code class="docutils literal notranslate"><span class="pre">s
   graph LR
   
    %% Node Color %%
-   classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
    classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
+   classDef yellow fill:#F6BE00,color:#000;
 
     %% Nodes %%
     
-    A(onGameResize)
-    B(onLoad):::yellow
+    A(onLoad):::yellow
+    B(onGameResize)
     C(onMount)
     D(Update)
     E(Render)
@@ -423,7 +423,7 @@ after the call to <code class="docutils literal notranslate"><span class="pre">s
     D--&gt;E
     E--&gt;D
     D--&gt;F
-    F-- if Added new parent .-&gt;A
+    F-. If added to a new parent .-&gt;B
     
         </div><p>When a game is first added to a Flutter widget tree the following lifecycle methods will be called
 in order: <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>, <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and <code class="docutils literal notranslate"><span class="pre">onMount</span></code>. After that, it goes on to call <code class="docutils literal notranslate"><span class="pre">update</span></code> and
@@ -477,12 +477,12 @@ to always finish loading the component.</p>
   graph TD  
   
     %% Node Color %%
-    classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
     classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
+    classDef yellow fill:#F6BE00,color:#000;
  
     %% Nodes  %%
     
-    z(Mixin):::yellow
+    z(Abstract Class):::yellow
     x(Normal Class)
         </div><div class="mermaid">
             %%{init: { 'theme': 'dark' } }%%
@@ -490,31 +490,27 @@ to always finish loading the component.</p>
   graph BT  
 
     %% Node Color %%
-    classDef yellow fill:#F6BE00,stroke:#F6BE00,stroke-width:4px,color:#000 ;
     classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
+    classDef yellow fill:#F6BE00,color:#000;
  
     %% Nodes  %%
     
     A(OxygenGame)
-    B(Loadable):::yellow
-    C(Game):::yellow
-    D(FlameGame)
-    E(Component)
-    F(Other Components)
-    G(GameWidget)
+    B(Game):::yellow
+    C(FlameGame)
+    D(Component)
+    E(Other Components)
+    F(GameWidget)
 
     %% Flow  %%
 
-    A-- With .-&gt;B
-    A-- With .-&gt;C
-    G-- Wants .-&gt;C
-    C-- On .-&gt;B
-    E-- With .-&gt;B
+    A-- Extends --&gt;B
+    F-- Wants --&gt;B
 
-    D-- Extends .-&gt;E
-    F-- Extends .-&gt;E
+    C-- Extends --&gt;D
+    E-- Extends --&gt;D
 
-    D-- With .-&gt;C
+    C-- With --&gt;B
         </div><p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> class is a low-level API that can be used when you want to implement the functionality of
 how the game engine should be structured. <code class="docutils literal notranslate"><span class="pre">Game</span></code> does not implement any <code class="docutils literal notranslate"><span class="pre">update</span></code> or
 <code class="docutils literal notranslate"><span class="pre">render</span></code> function for example.</p>
