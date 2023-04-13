@@ -328,7 +328,7 @@ remove it.</p>
 <li><p><a class="reference internal" href="#constantvolumejoint"><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJoint</span></code></a></p></li>
 <li><p><a class="reference internal" href="#distancejoint"><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code></a></p></li>
 <li><p><a class="reference internal" href="#frictionjoint"><code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code></a></p></li>
-<li><p>GearJoint</p></li>
+<li><p><a class="reference internal" href="#gearjoint"><code class="docutils literal notranslate"><span class="pre">GearJoint</span></code></a></p></li>
 <li><p><a class="reference internal" href="#motorjoint"><code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code></a></p></li>
 <li><p><a class="reference internal" href="#mousejoint"><code class="docutils literal notranslate"><span class="pre">MouseJoint</span></code></a></p></li>
 <li><p>[<code class="docutils literal notranslate"><span class="pre">PrismaticJoint</span></code>] (#prismaticjoint)</p></li>
@@ -592,6 +592,161 @@ values:</p>
 </ul>
 <p>In other words, the former simulates the friction, when the body is sliding and the latter simulates
 the friction when the body is spinning.</p>
+</section>
+<section id="gearjoint">
+<h3><code class="docutils literal notranslate"><span class="pre">GearJoint</span></code><a class="headerlink" href="#gearjoint" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">GearJoint</span></code> is used to connect two joints together. Joints are required to be a
+<a class="reference internal" href="#revolutejoint"><code class="docutils literal notranslate"><span class="pre">RevoluteJoint</span></code></a> or a <a class="reference internal" href="#prismaticjoint"><code class="docutils literal notranslate"><span class="pre">PrismaticJoint</span></code></a> in any combination.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The connected joints must attach a dynamic body to a static body.
+The static body is expected to be a bodyA on those joints</p>
+</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">gearJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GearJointDef</span><span class="p">()</span>
+<span class="w">  </span><span class="p">..</span><span class="n">bodyA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">firstJoint</span><span class="p">.</span><span class="n">bodyA</span>
+<span class="w">  </span><span class="p">..</span><span class="n">bodyB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">secondJoint</span><span class="p">.</span><span class="n">bodyA</span>
+<span class="w">  </span><span class="p">..</span><span class="n">joint1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">firstJoint</span>
+<span class="w">  </span><span class="p">..</span><span class="n">joint2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">secondJoint</span>
+<span class="w">  </span><span class="p">..</span><span class="n">ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
+
+<span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">GearJoint</span><span class="p">(</span><span class="n">gearJointDef</span><span class="p">));</span>
+</pre></div>
+</div>
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/examples/index.html?gear_joint&quot;)">Run</button><div class="flutter-app-code docutils container" id="examples-source-gear_joint">
+<div class="filename docutils container">
+gear_joint.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
+<span class="linenos">  2</span>
+<span class="linenos">  3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:examples/stories/bridge_libraries/forge2d/utils/balls.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:examples/stories/bridge_libraries/forge2d/utils/boxes.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  7</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_forge2d/flame_forge2d.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  8</span>
+<span class="linenos">  9</span><span class="kd">class</span><span class="w"> </span><span class="nc">GearJointExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Forge2DGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapDetector</span><span class="p">,</span><span class="w"> </span><span class="n">HasDraggables</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 10</span><span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&#39;&#39;</span>
+<span class="linenos"> 11</span><span class="s1">    This example shows how to use a `GearJoint`.</span>
+<span class="linenos"> 12</span>
+<span class="linenos"> 13</span><span class="s1">    Drag the box along the specified axis and observe gears respond to the</span>
+<span class="linenos"> 14</span><span class="s1">    translation</span>
+<span class="linenos"> 15</span><span class="s1">  &#39;&#39;&#39;</span><span class="p">;</span>
+<span class="linenos"> 16</span>
+<span class="linenos"> 17</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">PrismaticJoint</span><span class="w"> </span><span class="n">prismaticJoint</span><span class="p">;</span>
+<span class="linenos"> 18</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">boxAnchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
+<span class="linenos"> 19</span>
+<span class="linenos"> 20</span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">boxWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
+<span class="linenos"> 21</span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">ball1Radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">4</span><span class="p">;</span>
+<span class="linenos"> 22</span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">ball2Radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
+<span class="linenos"> 23</span>
+<span class="linenos"> 24</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos"> 25</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 26</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos"> 27</span>
+<span class="linenos"> 28</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">box</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos"> 29</span><span class="w">        </span><span class="n">DraggableBox</span><span class="p">(</span><span class="nl">startPosition:</span><span class="w"> </span><span class="n">boxAnchor</span><span class="p">,</span><span class="w"> </span><span class="nl">width:</span><span class="w"> </span><span class="n">boxWidth</span><span class="p">,</span><span class="w"> </span><span class="nl">height:</span><span class="w"> </span><span class="m">20</span><span class="p">);</span>
+<span class="linenos"> 30</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">box</span><span class="p">);</span>
+<span class="linenos"> 31</span>
+<span class="linenos"> 32</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">ball1Anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">boxAnchor</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">boxWidth</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ball1Radius</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span>
+<span class="linenos"> 33</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">ball1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ball</span><span class="p">(</span><span class="n">ball1Anchor</span><span class="p">,</span><span class="w"> </span><span class="nl">radius:</span><span class="w"> </span><span class="n">ball1Radius</span><span class="p">);</span>
+<span class="linenos"> 34</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">ball1</span><span class="p">);</span>
+<span class="linenos"> 35</span>
+<span class="linenos"> 36</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">ball2Anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ball1Anchor</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">ball1Radius</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">ball2Radius</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span>
+<span class="linenos"> 37</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">ball2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Ball</span><span class="p">(</span><span class="n">ball2Anchor</span><span class="p">,</span><span class="w"> </span><span class="nl">radius:</span><span class="w"> </span><span class="n">ball2Radius</span><span class="p">);</span>
+<span class="linenos"> 38</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">ball2</span><span class="p">);</span>
+<span class="linenos"> 39</span>
+<span class="linenos"> 40</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">([</span><span class="n">box</span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span><span class="w"> </span><span class="n">ball1</span><span class="p">.</span><span class="n">loaded</span><span class="p">,</span><span class="w"> </span><span class="n">ball2</span><span class="p">.</span><span class="n">loaded</span><span class="p">]);</span>
+<span class="linenos"> 41</span>
+<span class="linenos"> 42</span><span class="w">    </span><span class="n">prismaticJoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createPrismaticJoint</span><span class="p">(</span><span class="n">box</span><span class="p">.</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">boxAnchor</span><span class="p">);</span>
+<span class="linenos"> 43</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">revoluteJoint1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createRevoluteJoint</span><span class="p">(</span><span class="n">ball1</span><span class="p">.</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">ball1Anchor</span><span class="p">);</span>
+<span class="linenos"> 44</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">revoluteJoint2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">createRevoluteJoint</span><span class="p">(</span><span class="n">ball2</span><span class="p">.</span><span class="n">body</span><span class="p">,</span><span class="w"> </span><span class="n">ball2Anchor</span><span class="p">);</span>
+<span class="linenos"> 45</span>
+<span class="linenos"> 46</span><span class="w">    </span><span class="n">createGearJoint</span><span class="p">(</span><span class="n">prismaticJoint</span><span class="p">,</span><span class="w"> </span><span class="n">revoluteJoint1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">);</span>
+<span class="linenos"> 47</span><span class="w">    </span><span class="n">createGearJoint</span><span class="p">(</span><span class="n">revoluteJoint1</span><span class="p">,</span><span class="w"> </span><span class="n">revoluteJoint2</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">);</span>
+<span class="linenos"> 48</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 49</span>
+<span class="linenos"> 50</span><span class="w">  </span><span class="n">PrismaticJoint</span><span class="w"> </span><span class="n">createPrismaticJoint</span><span class="p">(</span><span class="n">Body</span><span class="w"> </span><span class="n">box</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">anchor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 51</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">groundBody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="n">createBody</span><span class="p">(</span><span class="n">BodyDef</span><span class="p">());</span>
+<span class="linenos"> 52</span>
+<span class="linenos"> 53</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">prismaticJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrismaticJointDef</span><span class="p">()</span>
+<span class="linenos"> 54</span><span class="w">      </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span>
+<span class="linenos"> 55</span><span class="w">        </span><span class="n">groundBody</span><span class="p">,</span>
+<span class="linenos"> 56</span><span class="w">        </span><span class="n">box</span><span class="p">,</span>
+<span class="linenos"> 57</span><span class="w">        </span><span class="n">anchor</span><span class="p">,</span>
+<span class="linenos"> 58</span><span class="w">        </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="linenos"> 59</span><span class="w">      </span><span class="p">)</span>
+<span class="linenos"> 60</span><span class="w">      </span><span class="p">..</span><span class="n">enableLimit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
+<span class="linenos"> 61</span><span class="w">      </span><span class="p">..</span><span class="n">lowerTranslation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="m">10</span>
+<span class="linenos"> 62</span><span class="w">      </span><span class="p">..</span><span class="n">upperTranslation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10</span><span class="p">;</span>
+<span class="linenos"> 63</span>
+<span class="linenos"> 64</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">joint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PrismaticJoint</span><span class="p">(</span><span class="n">prismaticJointDef</span><span class="p">);</span>
+<span class="linenos"> 65</span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">joint</span><span class="p">);</span>
+<span class="linenos"> 66</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">joint</span><span class="p">;</span>
+<span class="linenos"> 67</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 68</span>
+<span class="linenos"> 69</span><span class="w">  </span><span class="n">RevoluteJoint</span><span class="w"> </span><span class="n">createRevoluteJoint</span><span class="p">(</span><span class="n">Body</span><span class="w"> </span><span class="n">ball</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">anchor</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 70</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">groundBody</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="n">createBody</span><span class="p">(</span><span class="n">BodyDef</span><span class="p">());</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">revoluteJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RevoluteJointDef</span><span class="p">()</span>
+<span class="linenos"> 73</span><span class="w">      </span><span class="p">..</span><span class="n">initialize</span><span class="p">(</span>
+<span class="linenos"> 74</span><span class="w">        </span><span class="n">groundBody</span><span class="p">,</span>
+<span class="linenos"> 75</span><span class="w">        </span><span class="n">ball</span><span class="p">,</span>
+<span class="linenos"> 76</span><span class="w">        </span><span class="n">anchor</span><span class="p">,</span>
+<span class="linenos"> 77</span><span class="w">      </span><span class="p">);</span>
+<span class="linenos"> 78</span>
+<span class="linenos"> 79</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">joint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RevoluteJoint</span><span class="p">(</span><span class="n">revoluteJointDef</span><span class="p">);</span>
+<span class="linenos"> 80</span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">joint</span><span class="p">);</span>
+<span class="linenos"> 81</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">joint</span><span class="p">;</span>
+<span class="linenos"> 82</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 83</span>
+<span class="linenos"> 84</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">createGearJoint</span><span class="p">(</span><span class="n">Joint</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">Joint</span><span class="w"> </span><span class="n">second</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">gearRatio</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 85</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">gearJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GearJointDef</span><span class="p">()</span>
+<span class="linenos"> 86</span><span class="w">      </span><span class="p">..</span><span class="n">bodyA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span><span class="p">.</span><span class="n">bodyA</span>
+<span class="linenos"> 87</span><span class="w">      </span><span class="p">..</span><span class="n">bodyB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">second</span><span class="p">.</span><span class="n">bodyA</span>
+<span class="linenos"> 88</span><span class="w">      </span><span class="p">..</span><span class="n">joint1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first</span>
+<span class="linenos"> 89</span><span class="w">      </span><span class="p">..</span><span class="n">joint2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">second</span>
+<span class="linenos"> 90</span><span class="w">      </span><span class="p">..</span><span class="n">ratio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gearRatio</span><span class="p">;</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">joint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">GearJoint</span><span class="p">(</span><span class="n">gearJointDef</span><span class="p">);</span>
+<span class="linenos"> 93</span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">createJoint</span><span class="p">(</span><span class="n">joint</span><span class="p">);</span>
+<span class="linenos"> 94</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos"> 97</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 98</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">p1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worldToScreen</span><span class="p">(</span>
+<span class="linenos">101</span><span class="w">      </span><span class="n">boxAnchor</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos">102</span><span class="w">          </span><span class="n">prismaticJoint</span><span class="p">.</span><span class="n">getLocalAxisA</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">prismaticJoint</span><span class="p">.</span><span class="n">getLowerLimit</span><span class="p">(),</span>
+<span class="linenos">103</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">104</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">worldToScreen</span><span class="p">(</span>
+<span class="linenos">105</span><span class="w">      </span><span class="n">boxAnchor</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos">106</span><span class="w">          </span><span class="n">prismaticJoint</span><span class="p">.</span><span class="n">getLocalAxisA</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">prismaticJoint</span><span class="p">.</span><span class="n">getUpperLimit</span><span class="p">(),</span>
+<span class="linenos">107</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">108</span>
+<span class="linenos">109</span><span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawLine</span><span class="p">(</span><span class="n">p1</span><span class="p">.</span><span class="n">toOffset</span><span class="p">(),</span><span class="w"> </span><span class="n">p2</span><span class="p">.</span><span class="n">toOffset</span><span class="p">(),</span><span class="w"> </span><span class="n">debugPaint</span><span class="p">);</span>
+<span class="linenos">110</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">111</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;examples-source-gear_joint&quot;)">Code</button><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">joint1</span></code>, <code class="docutils literal notranslate"><span class="pre">joint2</span></code>: Connected revolute or prismatic joints</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bodyA</span></code>, <code class="docutils literal notranslate"><span class="pre">bodyB</span></code>: Any bodies form the connected joints, as long as they are not the same body.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ratio</span></code>: Gear ratio</p></li>
+</ul>
+<p>Similarly to <a class="reference internal" href="#pulleyjoint"><code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code></a>, you can specify a gear ratio to bind the motions
+together:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>coordinate1 + ratio * coordinate2 == constant 
+</pre></div>
+</div>
+<p>The ratio can be negative or positive. If one joint is a <code class="docutils literal notranslate"><span class="pre">RevoluteJoint</span></code> and the other joint is a
+<code class="docutils literal notranslate"><span class="pre">PrismaticJoint</span></code>, then the ratio will have units of length or units of 1/length.</p>
+<p>Since the <code class="docutils literal notranslate"><span class="pre">GearJoint</span></code> depends on two other joints, if these are destroyed, the <code class="docutils literal notranslate"><span class="pre">GearJoint</span></code> needs to
+be destroyed as well.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Manually destroy the <code class="docutils literal notranslate"><span class="pre">GearJoint</span></code> if joint1 or joint2 is destroyed</p>
+</div>
 </section>
 <section id="motorjoint">
 <h3><code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code><a class="headerlink" href="#motorjoint" title="Permalink to this heading">¶</a></h3>
@@ -1288,6 +1443,7 @@ provided so that infinite forces are not generated.</p>
   <a href='#constantvolumejoint' class='list-group-item level-2'>ConstantVolumeJoint</a>
   <a href='#distancejoint' class='list-group-item level-2'>DistanceJoint</a>
   <a href='#frictionjoint' class='list-group-item level-2'>FrictionJoint</a>
+  <a href='#gearjoint' class='list-group-item level-2'>GearJoint</a>
   <a href='#motorjoint' class='list-group-item level-2'>MotorJoint</a>
   <a href='#mousejoint' class='list-group-item level-2'>MouseJoint</a>
   <a href='#prismaticjoint' class='list-group-item level-2'>PrismaticJoint</a>
