@@ -868,7 +868,7 @@ ember_quest.dart</div>
 <span class="linenos"> 35</span><span class="w">      </span><span class="s1">&#39;star.png&#39;</span><span class="p">,</span>
 <span class="linenos"> 36</span><span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
 <span class="linenos"> 37</span><span class="w">    </span><span class="p">]);</span>
-<span class="linenos"> 38</span><span class="w">    </span><span class="n">initializeGame</span><span class="p">(</span><span class="kc">true</span><span class="p">);</span>
+<span class="linenos"> 38</span><span class="w">    </span><span class="n">initializeGame</span><span class="p">(</span><span class="nl">loadHud:</span><span class="w"> </span><span class="kc">true</span><span class="p">);</span>
 <span class="linenos"> 39</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos"> 40</span>
 <span class="linenos"> 41</span><span class="w">  </span><span class="nd">@override</span>
@@ -923,7 +923,7 @@ ember_quest.dart</div>
 <span class="linenos"> 90</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos"> 91</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos"> 92</span>
-<span class="linenos"> 93</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initializeGame</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">loadHud</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 93</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initializeGame</span><span class="p">({</span><span class="kd">required</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="n">loadHud</span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 94</span><span class="w">    </span><span class="c1">// Assume that size.x &lt; 3200</span>
 <span class="linenos"> 95</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">segmentsToLoad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">640</span><span class="p">).</span><span class="n">ceil</span><span class="p">();</span>
 <span class="linenos"> 96</span><span class="w">    </span><span class="n">segmentsToLoad</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">segments</span><span class="p">.</span><span class="n">length</span><span class="p">);</span>
@@ -944,7 +944,7 @@ ember_quest.dart</div>
 <span class="linenos">111</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">reset</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">112</span><span class="w">    </span><span class="n">starsCollected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 <span class="linenos">113</span><span class="w">    </span><span class="n">health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">;</span>
-<span class="linenos">114</span><span class="w">    </span><span class="n">initializeGame</span><span class="p">(</span><span class="kc">false</span><span class="p">);</span>
+<span class="linenos">114</span><span class="w">    </span><span class="n">initializeGame</span><span class="p">(</span><span class="nl">loadHud:</span><span class="w"> </span><span class="kc">false</span><span class="p">);</span>
 <span class="linenos">115</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">116</span><span class="p">}</span>
 </pre></div>
@@ -1264,7 +1264,7 @@ overlays/game_over.dart</div>
 <span class="linenos"> 5</span><span class="kd">class</span><span class="w"> </span><span class="nc">GameOver</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">StatelessWidget</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 6</span><span class="w">  </span><span class="c1">// Reference to parent game.</span>
 <span class="linenos"> 7</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">EmberQuestGame</span><span class="w"> </span><span class="n">game</span><span class="p">;</span>
-<span class="linenos"> 8</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">GameOver</span><span class="p">({</span><span class="k">super</span><span class="p">.</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="kd">required</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">game</span><span class="p">});</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">GameOver</span><span class="p">({</span><span class="kd">required</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">key</span><span class="p">});</span>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">11</span><span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -1462,7 +1462,7 @@ overlays/main_menu.dart</div>
 <span class="linenos"> 6</span><span class="w">  </span><span class="c1">// Reference to parent game.</span>
 <span class="linenos"> 7</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">EmberQuestGame</span><span class="w"> </span><span class="n">game</span><span class="p">;</span>
 <span class="linenos"> 8</span>
-<span class="linenos"> 9</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">MainMenu</span><span class="p">({</span><span class="k">super</span><span class="p">.</span><span class="n">key</span><span class="p">,</span><span class="w"> </span><span class="kd">required</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">game</span><span class="p">});</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">MainMenu</span><span class="p">({</span><span class="kd">required</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">key</span><span class="p">});</span>
 <span class="linenos">10</span>
 <span class="linenos">11</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">12</span><span class="w">  </span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
