@@ -18,9 +18,9 @@ function main {
   sed -i "s/FLAME_VERSION/$latest_version/g" docs/index.html
   sed -i "s/FLAME_VERSION/$latest_version/g" docs/404.html
 
-  generate_docs_for_version main
+  generate_docs_for_version main "$latest_version"
   while IFS= read -r line; do
-    generate_docs_for_version "$line"
+    generate_docs_for_version "$line" "$latest_version"
   done <<< "$list"
 
   git_push
@@ -57,6 +57,7 @@ function prepare_docs {
 
 function generate_docs_for_version {
   version=$1
+  latest_version=$2
   section "Generating docs for Flame [$version]"
   export PUBLISH_PATH=$version
 
@@ -95,7 +96,11 @@ function generate_docs_for_version {
   make html
   cd -
 
-  cp -r $tmp_flame_src/doc/_build/html "docs/$version"
+  if [[ "$version" == "$latest_version" ]]; then
+    cp -r $tmp_flame_src/doc/_build/html "docs/latest"
+  else
+    cp -r $tmp_flame_src/doc/_build/html "docs/$version"
+  fi
   echo "$version" >> docs/versions.txt
 }
 
