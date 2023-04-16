@@ -856,41 +856,51 @@ class (check more details on <a class="reference internal" href="rendering/image
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>If you are not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, don’t forget this component needs to be updated, because the
-animation object needs to be ticked to move the frames.</p>
-<p>To listen when the animation is done (when it reaches the last frame and is not looping) you can
-use <code class="docutils literal notranslate"><span class="pre">animation.completed</span></code>.</p>
+<p>All animation components internally maintains a <code class="docutils literal notranslate"><span class="pre">SpriteAnimationTicker</span></code> which ticks the <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>.
+This allows multiple components to share the same animation object.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">await</span><span class="w"> </span><span class="n">animation</span><span class="p">.</span><span class="n">completed</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="cm">/*You sprite list here*/</span><span class="p">];</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span><span class="n">sprites</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.01</span><span class="p">);</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationTicker</span><span class="p">(</span><span class="n">animation</span><span class="p">);</span>
+
+<span class="c1">// or alternatively</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">animation</span><span class="p">.</span><span class="n">ticker</span><span class="p">();</span><span class="w"> </span><span class="c1">// creates a new ticker</span>
+
+<span class="n">animationTicker</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To listen when the animation is done (when it reaches the last frame and is not looping) you can
+use <code class="docutils literal notranslate"><span class="pre">animationTicker.completed</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">await</span><span class="w"> </span><span class="n">animationTicker</span><span class="p">.</span><span class="n">completed</span><span class="p">;</span>
 
 <span class="n">doSomething</span><span class="p">();</span>
 
 <span class="c1">// or alternatively</span>
 
-<span class="n">animation</span><span class="p">.</span><span class="n">completed</span><span class="p">.</span><span class="n">whenComplete</span><span class="p">(</span><span class="n">doSomething</span><span class="p">);</span>
+<span class="n">animationTicker</span><span class="p">.</span><span class="n">completed</span><span class="p">.</span><span class="n">whenComplete</span><span class="p">(</span><span class="n">doSomething</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Additionally, this component also has the following optional event callbacks:  <code class="docutils literal notranslate"><span class="pre">onStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onFrame</span></code>,
+<p>Additionally, <code class="docutils literal notranslate"><span class="pre">SpriteAnimationTicker</span></code> also has the following optional event callbacks:  <code class="docutils literal notranslate"><span class="pre">onStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onFrame</span></code>,
 and <code class="docutils literal notranslate"><span class="pre">onComplete</span></code>. To listen to these events, you can do the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">([</span><span class="n">sprite</span><span class="p">],</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nl">loop:</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
-<span class="w">      </span><span class="p">..</span><span class="n">onStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Do something on start.</span>
-<span class="w">      </span><span class="p">};</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationTicker</span><span class="p">(</span><span class="n">animation</span><span class="p">)</span>
+<span class="w">  </span><span class="p">..</span><span class="n">onStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Do something on start.</span>
+<span class="w">  </span><span class="p">};</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">([</span><span class="n">sprite</span><span class="p">],</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nl">loop:</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
-<span class="w">      </span><span class="p">..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="c1">// Do something on completion.</span>
-<span class="w">      </span><span class="p">};</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationTicker</span><span class="p">(</span><span class="n">animation</span><span class="p">)</span>
+<span class="w">  </span><span class="p">..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Do something on completion.</span>
+<span class="w">  </span><span class="p">};</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">([</span><span class="n">sprite</span><span class="p">],</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nl">loop:</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span>
-<span class="w">      </span><span class="p">..</span><span class="n">onFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="c1">// Do something for the second frame.</span>
-<span class="w">        </span><span class="p">}</span>
-<span class="w">      </span><span class="p">};</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationTicker</span><span class="p">(</span><span class="n">animation</span><span class="p">)</span>
+<span class="w">  </span><span class="p">..</span><span class="n">onFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Do something for the second frame.</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">};</span>
 </pre></div>
 </div>
 </section>
@@ -1484,6 +1494,15 @@ can be used to animate some properties of your components, like position or dime
 You can check the list of those effects <a class="reference internal" href="effects.html"><span class="std std-doc">here</span></a>.</p>
 <p>Examples of the running effects can be found <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/effects">here</a>;</p>
 </section>
+<section id="when-not-using-flamegame">
+<h2>When not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code><a class="headerlink" href="#when-not-using-flamegame" title="Permalink to this heading">¶</a></h2>
+<p>If you are not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, don’t forget that all components needs to be updated every time your
+game updates. This lets component perform their internal processing and update their state.</p>
+<p>For example, the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationTicker</span></code> inside all the <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code> based components needs to tick
+the animation object to decide which animation frame will be displayed next. This can be done by manually
+calling <code class="docutils literal notranslate"><span class="pre">component.update()</span></code> when not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>. This also means, if you are implementing your
+own sprite animation based component, you can directly use a <code class="docutils literal notranslate"><span class="pre">SpriteAnimationTicker</span></code> to update the <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>.</p>
+</section>
 </section>
 
 
@@ -1553,6 +1572,7 @@ You can check the list of those effects <a class="reference internal" href="effe
   <a href='#componentsnotifier' class='list-group-item level-1'>ComponentsNotifier</a>
   <a href='#clipcomponent' class='list-group-item level-1'>ClipComponent</a>
   <a href='#effects' class='list-group-item level-1'>Effects</a>
+  <a href='#when-not-using-flamegame' class='list-group-item level-1'>When not using FlameGame</a>
 </div>
 
     </div>
