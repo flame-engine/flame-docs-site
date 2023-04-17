@@ -91,16 +91,17 @@ function generate_docs_for_version {
 
   cd $tmp_flame_src/doc/_sphinx
   echo "+ Generating for version $version..."
-  pre_process "$version"
+  pre_process "$version" "$latest_version"
   make clean
   make html
   cd -
 
   if [[ "$version" == "$latest_version" ]]; then
     cp -r $tmp_flame_src/doc/_build/html "docs/latest"
-  else
-    cp -r $tmp_flame_src/doc/_build/html "docs/$version"
   fi
+  
+  cp -r $tmp_flame_src/doc/_build/html "docs/$version"
+
   echo "$version" >> docs/versions.txt
 }
 
