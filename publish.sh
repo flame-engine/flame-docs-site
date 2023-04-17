@@ -91,7 +91,7 @@ function generate_docs_for_version {
 
   cd $tmp_flame_src/doc/_sphinx
   echo "+ Generating for version $version..."
-  pre_process "$version" "$latest_version"
+  pre_process "$version"
   make clean
   make html
   cd -
