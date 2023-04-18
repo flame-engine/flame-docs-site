@@ -519,9 +519,9 @@ the collision detection more performant. By default the <code class="docutils li
 <li><p><code class="docutils literal notranslate"><span class="pre">inactive</span></code> will not collide with any other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s</p></li>
 </ul>
 <p>So if you have hitboxes that you don’t need to check collisions against each other you can mark
-them as passive by setting <code class="docutils literal notranslate"><span class="pre">collisionType</span> <span class="pre">=</span> <span class="pre">CollisionType.passive</span></code>, this could for example be
-ground components or maybe your enemies don’t need to check collisions between each other, then they
-could be marked as <code class="docutils literal notranslate"><span class="pre">passive</span></code> too.</p>
+them as passive by setting <code class="docutils literal notranslate"><span class="pre">collisionType:</span> <span class="pre">CollisionType.passive</span></code> in the constructor, this could for
+example be ground components or maybe your enemies don’t need to check collisions between each
+other, then they could be marked as <code class="docutils literal notranslate"><span class="pre">passive</span></code> too.</p>
 <p>Imagine a game where there are a lot of bullets, that can’t collide with each other, flying towards
 the player, then the player would be set to <code class="docutils literal notranslate"><span class="pre">CollisionType.active</span></code> and the bullets would be set to
 <code class="docutils literal notranslate"><span class="pre">CollisionType.passive</span></code>.</p>
