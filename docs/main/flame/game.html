@@ -549,8 +549,8 @@ are also missing out on all of the built-in features in Flame if you use it.</p>
 </pre></div>
 </div>
 </section>
-<section id="pause-resuming-game-execution">
-<h2>Pause/Resuming game execution<a class="headerlink" href="#pause-resuming-game-execution" title="Permalink to this heading">¶</a></h2>
+<section id="pause-resuming-stepping-game-execution">
+<h2>Pause/Resuming/Stepping game execution<a class="headerlink" href="#pause-resuming-stepping-game-execution" title="Permalink to this heading">¶</a></h2>
 <p>A Flame <code class="docutils literal notranslate"><span class="pre">Game</span></code> can be paused and resumed in two ways:</p>
 <ul class="simple">
 <li><p>With the use of the <code class="docutils literal notranslate"><span class="pre">pauseEngine</span></code> and <code class="docutils literal notranslate"><span class="pre">resumeEngine</span></code> methods.</p></li>
@@ -558,6 +558,9 @@ are also missing out on all of the built-in features in Flame if you use it.</p>
 </ul>
 <p>When pausing a Flame <code class="docutils literal notranslate"><span class="pre">Game</span></code>, the <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is effectively paused, meaning that no updates or new
 renders will happen until it is resumed.</p>
+<p>While the game is paused, it is possible to advanced it frame by frame using the <code class="docutils literal notranslate"><span class="pre">stepEngine</span></code> method.
+It might not be much useful in the final game, but can be very helpful in inspecting game state step
+by step during the development cycle.</p>
 </section>
 </section>
 
@@ -598,7 +601,7 @@ renders will happen until it is resumed.</p>
   <a href='#change-background-color' class='list-group-item level-1'>Change background color</a>
   <a href='#singlegameinstance-mixin' class='list-group-item level-1'>SingleGameInstance mixin</a>
   <a href='#low-level-game-api' class='list-group-item level-1'>Low-level Game API</a>
-  <a href='#pause-resuming-game-execution' class='list-group-item level-1'>Pause/Resuming game execution</a>
+  <a href='#pause-resuming-stepping-game-execution' class='list-group-item level-1'>Pause/Resuming/Stepping game execution</a>
 </div>
 
     </div>
