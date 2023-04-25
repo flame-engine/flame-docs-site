@@ -448,20 +448,20 @@ the background color provided via <code class="xref dart dart-ref docutils liter
 <p>A collection of widgets that can be displayed over the game’s surface.
 These widgets can be turned on-and-off dynamically from within the game
 via the <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">Game.overlays</span></code> property.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">void</span> <span class="n">main</span><span class="p">()</span> <span class="p">{</span>
-  <span class="n">runApp</span><span class="p">(</span>
-    <span class="n">GameWidget</span><span class="p">(</span>
-      <span class="n">game</span><span class="p">:</span> <span class="n">MyGame</span><span class="p">(),</span>
-      <span class="n">overlayBuilderMap</span><span class="p">:</span> <span class="p">{</span>
-        <span class="s1">&#39;PauseMenu&#39;</span><span class="p">:</span> <span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">game</span><span class="p">)</span> <span class="p">{</span>
-          <span class="k">return</span> <span class="n">Container</span><span class="p">(</span>
-            <span class="n">color</span><span class="p">:</span> <span class="n">const</span> <span class="n">Color</span><span class="p">(</span><span class="mh">0xFF000000</span><span class="p">),</span>
-            <span class="n">child</span><span class="p">:</span> <span class="n">Text</span><span class="p">(</span><span class="s1">&#39;A pause menu&#39;</span><span class="p">),</span>
-          <span class="p">);</span>
-        <span class="p">},</span>
-      <span class="p">},</span>
-    <span class="p">),</span>
-  <span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span>
+<span class="w">    </span><span class="n">GameWidget</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">game:</span><span class="w"> </span><span class="n">MyGame</span><span class="p">(),</span>
+<span class="w">      </span><span class="nl">overlayBuilderMap:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="s1">&#39;PauseMenu&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="n">Container</span><span class="p">(</span>
+<span class="w">            </span><span class="nl">color:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF000000</span><span class="p">),</span>
+<span class="w">            </span><span class="nl">child:</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;A pause menu&#39;</span><span class="p">),</span>
+<span class="w">          </span><span class="p">);</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>

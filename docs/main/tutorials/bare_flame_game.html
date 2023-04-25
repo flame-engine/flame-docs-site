@@ -324,14 +324,14 @@ programs on your computer (all of them are free):</p>
 <h2>1. Check flutter installation<a class="headerlink" href="#check-flutter-installation" title="Permalink to this heading">¶</a></h2>
 <p>First, let’s verify that your Flutter SDK was installed correctly and is accessible from the command
 line:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flutter<span class="w"> </span>doctor
-<span class="go">[✓] Flutter (Channel stable, 2.10.0, on macOS 12.3.1 21E258 darwin-x64, locale en)</span>
-<span class="go">[✓] Android toolchain - develop for Android devices (Android SDK version 31.0.0)</span>
-<span class="go">[✓] Xcode - develop for iOS and macOS (Xcode 13.1)</span>
-<span class="go">[✓] Chrome - develop for the web</span>
-<span class="go">[✓] Android Studio (version 2020.3)</span>
-<span class="go">[✓] Connected device (1 available)</span>
-<span class="go">[✓] HTTP Host Availability</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>flutter<span class="w"> </span>doctor
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Flutter<span class="w"> </span><span class="o">(</span>Channel<span class="w"> </span>stable,<span class="w"> </span><span class="m">2</span>.10.0,<span class="w"> </span>on<span class="w"> </span>macOS<span class="w"> </span><span class="m">12</span>.3.1<span class="w"> </span>21E258<span class="w"> </span>darwin-x64,<span class="w"> </span>locale<span class="w"> </span>en<span class="o">)</span>
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Android<span class="w"> </span>toolchain<span class="w"> </span>-<span class="w"> </span>develop<span class="w"> </span><span class="k">for</span><span class="w"> </span>Android<span class="w"> </span>devices<span class="w"> </span><span class="o">(</span>Android<span class="w"> </span>SDK<span class="w"> </span>version<span class="w"> </span><span class="m">31</span>.0.0<span class="o">)</span>
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Xcode<span class="w"> </span>-<span class="w"> </span>develop<span class="w"> </span><span class="k">for</span><span class="w"> </span>iOS<span class="w"> </span>and<span class="w"> </span>macOS<span class="w"> </span><span class="o">(</span>Xcode<span class="w"> </span><span class="m">13</span>.1<span class="o">)</span>
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Chrome<span class="w"> </span>-<span class="w"> </span>develop<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>web
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Android<span class="w"> </span>Studio<span class="w"> </span><span class="o">(</span>version<span class="w"> </span><span class="m">2020</span>.3<span class="o">)</span>
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Connected<span class="w"> </span>device<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>available<span class="o">)</span>
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>HTTP<span class="w"> </span>Host<span class="w"> </span>Availability
 </pre></div>
 </div>
 <p>Your output will be slightly different, but the important thing is to verify that no errors are
@@ -344,22 +344,22 @@ digits, and underscores. It must also be a valid Dart identifier (thus, for exam
 keyword). In this tutorial, we’re going to call the project <strong>syzygy</strong>, which is a totally real
 non-made-up word.</p>
 <p>Create the directory for your new project:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">mkdir -p ~/projects/syzygy</span>
-<span class="go">cd ~/projects/syzygy</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/projects/syzygy
+<span class="nb">cd</span><span class="w"> </span>~/projects/syzygy
 </pre></div>
 </div>
 </section>
 <section id="initialize-empty-flutter-project">
 <h2>3. Initialize empty Flutter project<a class="headerlink" href="#initialize-empty-flutter-project" title="Permalink to this heading">¶</a></h2>
 <p>To turn this barren directory into an actual Flutter project, run the following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">flutter create .</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flutter<span class="w"> </span>create<span class="w"> </span>.
 </pre></div>
 </div>
 <p>(I have omitted the output for brevity, but there will be lots of output).</p>
 <p>You can verify that the project files were created successfully:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ls
-<span class="go">README.md               android/   lib/           pubspec.yaml   test/</span>
-<span class="go">analysis_options.yaml   ios/       pubspec.lock   syzygy.iml     web/</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ls
+README.md<span class="w">               </span>android/<span class="w">   </span>lib/<span class="w">           </span>pubspec.yaml<span class="w">   </span>test/
+analysis_options.yaml<span class="w">   </span>ios/<span class="w">       </span>pubspec.lock<span class="w">   </span>syzygy.iml<span class="w">     </span>web/
 </pre></div>
 </div>
 </section>
@@ -436,12 +436,12 @@ green <code class="docutils literal notranslate"><span class="pre">[New]</span><
 type “private”; and opt out of adding initial files like <code class="docutils literal notranslate"><span class="pre">README</span></code>, <code class="docutils literal notranslate"><span class="pre">license</span></code>, and <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code>.</p>
 <p>Now go to your project’s directory in the terminal and execute the following commands (make sure to
 replace the URL with the link to the repository that you just created):</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">git init</span>
-<span class="go">git add --all</span>
-<span class="go">git commit -m &#39;Initial commit&#39;</span>
-<span class="go">git remote add origin https://github.com/your-github-username/syzygy.git</span>
-<span class="go">git branch -M main</span>
-<span class="go">git push -u origin main</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>init
+git<span class="w"> </span>add<span class="w"> </span>--all
+git<span class="w"> </span>commit<span class="w"> </span>-m<span class="w"> </span><span class="s1">&#39;Initial commit&#39;</span>
+git<span class="w"> </span>remote<span class="w"> </span>add<span class="w"> </span>origin<span class="w"> </span>https://github.com/your-github-username/syzygy.git
+git<span class="w"> </span>branch<span class="w"> </span>-M<span class="w"> </span>main
+git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
 </pre></div>
 </div>
 <p>At this point, if you go to your repository page on GitHub, you shall see that all your project

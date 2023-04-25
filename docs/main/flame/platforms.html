@@ -327,11 +327,11 @@ don’t support them. This means that issues happening outside the stable channe
 renderer. This will increase performance on the web, as it will use the <code class="docutils literal notranslate"><span class="pre">canvas</span></code> element instead of
 separate DOM elements.</p>
 <p>To run your game using skia, use the following command:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">flutter run -d chrome --web-renderer canvaskit</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flutter<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>chrome<span class="w"> </span>--web-renderer<span class="w"> </span>canvaskit
 </pre></div>
 </div>
 <p>To build the game for production, using skia, use the following:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">flutter build web --release --web-renderer canvaskit</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flutter<span class="w"> </span>build<span class="w"> </span>web<span class="w"> </span>--release<span class="w"> </span>--web-renderer<span class="w"> </span>canvaskit
 </pre></div>
 </div>
 </section>
@@ -341,7 +341,7 @@ separate DOM elements.</p>
 It is a cool feature from GitHub, by which you can easily host web content from your repository.</p>
 <p>Here we will explain the easiest way to get your game hosted using GitHub pages.</p>
 <p>First thing, lets create the branch where your deployed files will live:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>gh-pages
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>gh-pages
 </pre></div>
 </div>
 <p>This branch can be created from <code class="docutils literal notranslate"><span class="pre">main</span></code> or any other place, it doesn’t matter much. After you push that

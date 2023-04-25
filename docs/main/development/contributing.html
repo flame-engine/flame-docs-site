@@ -397,16 +397,16 @@ and it will be automatically reflected in the PR.</p>
 <h3>Environment Setup<a class="headerlink" href="#environment-setup" title="Permalink to this heading">¶</a></h3>
 <p>Flame is setup to run with the most recent <code class="docutils literal notranslate"><span class="pre">stable</span></code> version of Flutter, so make sure your version
 matches that:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flutter<span class="w"> </span>channel<span class="w"> </span>stable
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flutter<span class="w"> </span>channel<span class="w"> </span>stable
 </pre></div>
 </div>
 <p>Also, Flame uses <a class="reference external" href="https://github.com/invertase/melos">Melos</a> to manage the project and dependencies.</p>
 <p>To install Melos, run the following command from your terminal:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flutter<span class="w"> </span>pub<span class="w"> </span>global<span class="w"> </span>activate<span class="w"> </span>melos<span class="w"> </span><span class="m">3</span>.0.0
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flutter<span class="w"> </span>pub<span class="w"> </span>global<span class="w"> </span>activate<span class="w"> </span>melos<span class="w"> </span><span class="m">3</span>.0.0
 </pre></div>
 </div>
 <p>Next, at the root of your locally cloned repository bootstrap the projects dependencies:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>melos<span class="w"> </span>bootstrap
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>melos<span class="w"> </span>bootstrap
 </pre></div>
 </div>
 <p>The bootstrap command locally links all dependencies within the project without having to

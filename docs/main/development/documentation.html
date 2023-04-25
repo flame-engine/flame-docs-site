@@ -583,14 +583,14 @@ following:</p>
 <li><p>A <strong>Python</strong> environment, with python version 3.8+ or higher. Having a dedicated python
 virtual environment is recommended but not required.</p></li>
 <li><p>Install the remaining requirements using the command</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">melos run doc-setup</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>melos<span class="w"> </span>run<span class="w"> </span>doc-setup
 </pre></div>
 </div>
 </li>
 </ol>
 <p>Once these prerequisites are met, you can build the documentation by using the built-in Melos
 target:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">melos doc-build</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>melos<span class="w"> </span>doc-build
 </pre></div>
 </div>
 <p>The <strong>melos doc-build</strong> command here renders the documentation site into HTML. This command needs to
@@ -600,7 +600,7 @@ second or two.</p>
 <p>If you want to automatically recompile the docs every time there is a change to one of the files
 you can use the the built-in Melos target below, which will also serve and open your default
 browser with the docs.</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">melos doc-serve</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>melos<span class="w"> </span>doc-serve
 </pre></div>
 </div>
 <p>When using the <strong>melos doc-serve</strong> command, the <strong>melos doc-build</strong> is only needed when
