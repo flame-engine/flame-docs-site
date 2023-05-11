@@ -101,6 +101,8 @@ function generate_docs_for_version {
   fi
   
   cp -r $tmp_flame_src/doc/_build/html "docs/$version"
+  no_index_string="<meta name=\"robots\" content=\"noindex\">"
+  sed -i "/<head>/a  $no_index_string" docs/$version/index.html
 
   echo "$version" >> docs/versions.txt
 }
