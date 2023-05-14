@@ -439,12 +439,8 @@ to be about 20% of the card’s width:</p>
 <h3>Stock pile – tap to deal cards<a class="headerlink" href="#stock-pile-tap-to-deal-cards" title="Permalink to this heading">¶</a></h3>
 <p>The second item on our todo list is the first interactive functionality in the game: tap the stock
 pile to deal 3 cards onto the waste.</p>
-<p>Adding tap functionality to the components in Flame is quite simple: first, we add the mixin
-<code class="docutils literal notranslate"><span class="pre">HasTappableComponents</span></code> to our top-level game class:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">KlondikeGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTappableComponents</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
-</pre></div>
-</div>
-<p>And second, we add the mixin <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> to the component that we want to be tappable:</p>
+<p>Adding tap functionality to the components in Flame is quite simple: we just add the mixin
+<code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> to the component that we want to be tappable:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">StockPile</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapCallbacks</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
 </pre></div>
 </div>
