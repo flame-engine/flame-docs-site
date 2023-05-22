@@ -317,7 +317,7 @@
 <section id="the-plan">
 <h2>The Plan<a class="headerlink" href="#the-plan" title="Permalink to this heading">¶</a></h2>
 <p>Now that we have the assets loaded and a very rough idea of what classes we will need, we need to
-start thinking about how we will implement this game and our goals.  To do this, let’s break down
+start thinking about how we will implement this game and our goals. To do this, let’s break down
 what the game should do:</p>
 <ul class="simple">
 <li><p>Ember should be able to be controlled to move left, right, and jump.</p></li>
@@ -330,22 +330,22 @@ what the game should do:</p>
 <li><p>There should be a main menu and a game-over screen that lets the player start over.</p></li>
 </ul>
 <p>Now that this is planned out, I know you are probably as excited as I am to begin and I just want to
-see Ember on the screen.  So let’s do that first.</p>
+see Ember on the screen. So let’s do that first.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Why did I choose to make this game an infinite side scrolling platformer?</p>
 <p>Well, I wanted to be able to showcase random level loading. No two game plays
 will be the same. This exact setup can easily be adapted to be a traditional
 level game. As you make your way through this tutorial, you will see how we
-could modify the level code to have an end.  I will add a note in that section
+could modify the level code to have an end. I will add a note in that section
 to explain the appropriate mechanics.</p>
 </div>
 </section>
 <section id="loading-assets">
 <h2>Loading Assets<a class="headerlink" href="#loading-assets" title="Permalink to this heading">¶</a></h2>
-<p>For Ember to be displayed, we will need to load the assets.  This can be done in <code class="docutils literal notranslate"><span class="pre">main.dart</span></code>, but by
-so doing, we will quickly clutter the file.  To keep our game organized, we should create files that
-have a single focus.  So let’s create a file in the <code class="docutils literal notranslate"><span class="pre">lib</span></code> folder called <code class="docutils literal notranslate"><span class="pre">ember_quest.dart</span></code>.  In that
+<p>For Ember to be displayed, we will need to load the assets. This can be done in <code class="docutils literal notranslate"><span class="pre">main.dart</span></code>, but by
+so doing, we will quickly clutter the file. To keep our game organized, we should create files that
+have a single focus. So let’s create a file in the <code class="docutils literal notranslate"><span class="pre">lib</span></code> folder called <code class="docutils literal notranslate"><span class="pre">ember_quest.dart</span></code>. In that
 file, we will add:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 
@@ -371,13 +371,13 @@ file, we will add:</p>
 <p>As I mentioned in the <a class="reference internal" href="step_1.html#assets"><span class="std std-ref">assets</span></a> section, we are using multiple individual image
 files and for performance reasons, we should leverage Flame’s built-in caching system which will
 only load the files once, but allow us to access them as many times as needed without an impact to
-the game.  <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">images.loadAll()</span></code> takes a list of the file names that are found in <code class="docutils literal notranslate"><span class="pre">assets\images</span></code>
+the game. <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">images.loadAll()</span></code> takes a list of the file names that are found in <code class="docutils literal notranslate"><span class="pre">assets\images</span></code>
 and loads them to cache.</p>
 </section>
 <section id="scaffolding">
 <h2>Scaffolding<a class="headerlink" href="#scaffolding" title="Permalink to this heading">¶</a></h2>
 <p>So now that we have our game file, let’s prepare the <code class="docutils literal notranslate"><span class="pre">main.dart</span></code> file to receive our newly created
-<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>.  Change your entire <code class="docutils literal notranslate"><span class="pre">main.dart</span></code> file to the following:</p>
+<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>. Change your entire <code class="docutils literal notranslate"><span class="pre">main.dart</span></code> file to the following:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
 
@@ -392,13 +392,50 @@ and loads them to cache.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>You can run this file and you should just have a blank screen now.  Let’s get Ember loaded!</p>
+<p>You can run this file and you should just have a blank screen now. Let’s get Ember loaded!</p>
+</section>
+<section id="cameracomponent-and-world">
+<h2>CameraComponent and World<a class="headerlink" href="#cameracomponent-and-world" title="Permalink to this heading">¶</a></h2>
+<p>Since <code class="docutils literal notranslate"><span class="pre">FlameGame.camera</span></code> is deprecated, we want to add a <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> that we can move around,
+and a world that we can add all our components to and move around our player in.
+(The <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> will be built-in in Flame v2).</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">EmberQuestGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">EmberQuestGame</span><span class="p">();</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">world</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">World</span><span class="p">();</span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">CameraComponent</span><span class="w"> </span><span class="n">cameraComponent</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span>
+<span class="w">      </span><span class="s1">&#39;block.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;ember.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;ground.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;heart_half.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;heart.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;star.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">cameraComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraComponent</span><span class="p">(</span><span class="nl">world:</span><span class="w"> </span><span class="n">world</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Everything in this tutorial assumes that the position</span>
+<span class="w">    </span><span class="c1">// of the `CameraComponent`s viewfinder (where the camera is looking)</span>
+<span class="w">    </span><span class="c1">// is in the top left corner, that&#39;s why we set the anchor here.</span>
+<span class="w">    </span><span class="n">cameraComponent</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
+<span class="w">    </span><span class="n">addAll</span><span class="p">([</span><span class="n">cameraComponent</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="p">]);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="ember-time">
 <h2>Ember Time<a class="headerlink" href="#ember-time" title="Permalink to this heading">¶</a></h2>
-<p>Keeping your game files organized can always be a challenge.  I like to keep things logically
-organized by how they will be involved in my game.  So for Ember, let’s create the following folder,
-<code class="docutils literal notranslate"><span class="pre">lib/actors</span></code> and in that folder, create <code class="docutils literal notranslate"><span class="pre">ember.dart</span></code>.  In that file, add the following code:</p>
+<p>Keeping your game files organized can always be a challenge. I like to keep things logically
+organized by how they will be involved in my game. So for Ember, let’s create the following folder,
+<code class="docutils literal notranslate"><span class="pre">lib/actors</span></code> and in that folder, create <code class="docutils literal notranslate"><span class="pre">ember.dart</span></code>. In that file, add the following code:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;../ember_quest.dart&#39;</span><span class="p">;</span>
@@ -424,18 +461,18 @@ organized by how they will be involved in my game.  So for Ember, let’s create
 </pre></div>
 </div>
 <p>This file uses the <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code> mixin which allows us to reach back to <code class="docutils literal notranslate"><span class="pre">ember_quest.dart</span></code> and
-leverage any of the variables or methods that are defined in the game class.  You can see this in
-use with the line <code class="docutils literal notranslate"><span class="pre">game.images.fromCache('ember.png')</span></code>.  Earlier, we loaded all the files into
+leverage any of the variables or methods that are defined in the game class. You can see this in
+use with the line <code class="docutils literal notranslate"><span class="pre">game.images.fromCache('ember.png')</span></code>. Earlier, we loaded all the files into
 cache, so to use that file now, we call <code class="docutils literal notranslate"><span class="pre">fromCache</span></code> so it can be leveraged by the <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>.
 The <code class="docutils literal notranslate"><span class="pre">EmberPlayer</span></code> class is extending a <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> which allows us to define
-animation as well as position it accordingly in our game world.  When we construct this class, the
+animation as well as position it accordingly in our game world. When we construct this class, the
 default size of <code class="docutils literal notranslate"><span class="pre">Vector2.all(64)</span></code> is defined as the size of Ember in our game world should be 64x64.
 You may notice that in the animation <code class="docutils literal notranslate"><span class="pre">SpriteAnimationData</span></code>, the <code class="docutils literal notranslate"><span class="pre">textureSize</span></code> is defined as
-<code class="docutils literal notranslate"><span class="pre">Vector2.all(16)</span></code> or 16x16.  This is because the individual frame in our <code class="docutils literal notranslate"><span class="pre">ember.png</span></code> is 16x16 and
-there are 4 frames in total.  To define the speed of the animation, <code class="docutils literal notranslate"><span class="pre">stepTime</span></code> is used and set at
-<code class="docutils literal notranslate"><span class="pre">0.12</span></code> seconds per frame.  You can change the <code class="docutils literal notranslate"><span class="pre">stepTime</span></code> to any length that makes the animation seem
+<code class="docutils literal notranslate"><span class="pre">Vector2.all(16)</span></code> or 16x16. This is because the individual frame in our <code class="docutils literal notranslate"><span class="pre">ember.png</span></code> is 16x16 and
+there are 4 frames in total. To define the speed of the animation, <code class="docutils literal notranslate"><span class="pre">stepTime</span></code> is used and set at
+<code class="docutils literal notranslate"><span class="pre">0.12</span></code> seconds per frame. You can change the <code class="docutils literal notranslate"><span class="pre">stepTime</span></code> to any length that makes the animation seem
 correct for your game vision.</p>
-<p>Now before you rush to run the game again, we have to add Ember to the game world.  To do this, go
+<p>Now before you rush to run the game again, we have to add Ember to the game world. To do this, go
 back to <code class="docutils literal notranslate"><span class="pre">ember_quest.dart</span></code> and add the following:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 
@@ -445,6 +482,9 @@ back to <code class="docutils literal notranslate"><span class="pre">ember_quest
 <span class="w">  </span><span class="n">EmberQuestGame</span><span class="p">();</span>
 
 <span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="w"> </span><span class="n">_ember</span><span class="p">;</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">world</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">World</span><span class="p">();</span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">CameraComponent</span><span class="w"> </span><span class="n">cameraComponent</span><span class="p">;</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
@@ -457,10 +497,15 @@ back to <code class="docutils literal notranslate"><span class="pre">ember_quest
 <span class="w">      </span><span class="s1">&#39;star.png&#39;</span><span class="p">,</span>
 <span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="p">]);</span>
+
+<span class="w">    </span><span class="n">cameraComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraComponent</span><span class="p">(</span><span class="nl">world:</span><span class="w"> </span><span class="n">world</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cameraComponent</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
+<span class="w">    </span><span class="n">addAll</span><span class="p">([</span><span class="n">cameraComponent</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="p">]);</span>
+<span class="w">    </span>
 <span class="w">    </span><span class="n">_ember</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="p">(</span>
 <span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">128</span><span class="p">,</span><span class="w"> </span><span class="n">canvasSize</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">70</span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">_ember</span><span class="p">);</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">_ember</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -470,7 +515,7 @@ back to <code class="docutils literal notranslate"><span class="pre">ember_quest
 <section id="building-blocks">
 <h2>Building Blocks<a class="headerlink" href="#building-blocks" title="Permalink to this heading">¶</a></h2>
 <p>Now that we have Ember showing on screen and we know our basic environment is all working correctly,
-it’s time to create a world for Embers Quest!  Proceed on to <a class="reference internal" href="step_3.html"><span class="std std-doc">3. Building the World</span></a>!</p>
+it’s time to create a world for Embers Quest! Proceed on to <a class="reference internal" href="step_3.html"><span class="std std-doc">3. Building the World</span></a>!</p>
 </section>
 </section>
 
@@ -507,6 +552,7 @@ it’s time to create a world for Embers Quest!  Proceed on to <a class="referen
   <a href='#the-plan' class='list-group-item level-1'>The Plan</a>
   <a href='#loading-assets' class='list-group-item level-1'>Loading Assets</a>
   <a href='#scaffolding' class='list-group-item level-1'>Scaffolding</a>
+  <a href='#cameracomponent-and-world' class='list-group-item level-1'>CameraComponent and World</a>
   <a href='#ember-time' class='list-group-item level-1'>Ember Time</a>
   <a href='#building-blocks' class='list-group-item level-1'>Building Blocks</a>
 </div>

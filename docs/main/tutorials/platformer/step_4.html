@@ -316,9 +316,9 @@
 <h1>4. Adding the Remaining Components<a class="headerlink" href="#adding-the-remaining-components" title="Permalink to this heading">¶</a></h1>
 <section id="star">
 <h2>Star<a class="headerlink" href="#star" title="Permalink to this heading">¶</a></h2>
-<p>The star is pretty simple.  It is just like the Platform block except we are going to add an effect
-to make it pulse in size.  For the effect to look correct, we need to change the object’s <code class="docutils literal notranslate"><span class="pre">Anchor</span></code>
-to <code class="docutils literal notranslate"><span class="pre">center</span></code>.  This means we will need to adjust the position by half of the image size. For brevity,
+<p>The star is pretty simple. It is just like the Platform block except we are going to add an effect
+to make it pulse in size. For the effect to look correct, we need to change the object’s <code class="docutils literal notranslate"><span class="pre">Anchor</span></code>
+to <code class="docutils literal notranslate"><span class="pre">center</span></code>. This means we will need to adjust the position by half of the image size. For brevity,
 I am going to add the whole class and explain the additional changes after.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
@@ -344,8 +344,8 @@ I am going to add the whole class and explain the additional changes after.</p>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">starImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;star.png&#39;</span><span class="p">);</span>
 <span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">starImage</span><span class="p">);</span>
 <span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span>
-<span class="w">        </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
-<span class="w">        </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="w">      </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RectangleHitbox</span><span class="p">(</span><span class="nl">collisionType:</span><span class="w"> </span><span class="n">CollisionType</span><span class="p">.</span><span class="n">passive</span><span class="p">));</span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span>
@@ -373,27 +373,29 @@ I am going to add the whole class and explain the additional changes after.</p>
 </div>
 <p>So the only change between the Star and the Platform beyond the anchor is simply the following:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span>
-<span class="w">    </span><span class="n">SizeEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span>
-<span class="w">    </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">24</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">24</span><span class="p">),</span>
+<span class="w">  </span><span class="n">SizeEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">24</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">24</span><span class="p">),</span>
 <span class="w">    </span><span class="n">EffectController</span><span class="p">(</span>
-<span class="w">        </span><span class="nl">duration:</span><span class="w"> </span><span class="p">.</span><span class="m">75</span><span class="p">,</span>
-<span class="w">        </span><span class="nl">reverseDuration:</span><span class="w"> </span><span class="p">.</span><span class="m">5</span><span class="p">,</span>
-<span class="w">        </span><span class="nl">infinite:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">        </span><span class="nl">curve:</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOut</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">duration:</span><span class="w"> </span><span class="p">.</span><span class="m">75</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">reverseDuration:</span><span class="w"> </span><span class="p">.</span><span class="m">5</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">infinite:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">curve:</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOut</span><span class="p">,</span>
 <span class="w">    </span><span class="p">),</span>
-<span class="w">    </span><span class="p">),</span>
+<span class="w">  </span><span class="p">),</span>
 <span class="p">);</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">SizeEffect</span></code> is best explained by going to their <a class="reference internal" href="../../flame/effects.html#sizeeffect-by"><span class="std std-ref">help
-docs</span></a>.  In short, we simply reduce the size of the star
+docs</span></a>. In short, we simply reduce the size of the star
 by -24 pixels in both directions and we make it pulse infinitely using the <code class="docutils literal notranslate"><span class="pre">EffectController</span></code>.</p>
 <p>Don’t forget to add the star to your <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> file by doing:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">case</span><span class="w"> </span><span class="nl">Star:</span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">Star</span><span class="p">(</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span>
+<span class="w">      </span><span class="n">Star</span><span class="p">(</span>
 <span class="w">        </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
 <span class="w">        </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
-<span class="w">    </span><span class="p">));</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
 <span class="w">    </span><span class="k">break</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -432,8 +434,8 @@ Open <code class="docutils literal notranslate"><span class="pre">lib/actors/wat
 <span class="w">      </span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
 <span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span>
-<span class="w">        </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
-<span class="w">        </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="w">      </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RectangleHitbox</span><span class="p">(</span><span class="nl">collisionType:</span><span class="w"> </span><span class="n">CollisionType</span><span class="p">.</span><span class="n">passive</span><span class="p">));</span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span>
@@ -460,19 +462,21 @@ Open <code class="docutils literal notranslate"><span class="pre">lib/actors/wat
 </div>
 <p>The water drop enemy is an animation just like Ember, so this class is extending the
 <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> class but it uses all of the previous code we have used for the Star and
-the Platform.  The only difference will be instead of the <code class="docutils literal notranslate"><span class="pre">SizeEffect</span></code>, we are going to use the
-<code class="docutils literal notranslate"><span class="pre">MoveEffect</span></code>.  The best resource for information will be their <a class="reference internal" href="../../flame/effects.html#sizeeffect-by"><span class="std std-ref">help
+the Platform. The only difference will be instead of the <code class="docutils literal notranslate"><span class="pre">SizeEffect</span></code>, we are going to use the
+<code class="docutils literal notranslate"><span class="pre">MoveEffect</span></code>. The best resource for information will be their <a class="reference internal" href="../../flame/effects.html#sizeeffect-by"><span class="std std-ref">help
 docs</span></a>.</p>
-<p>In short, the <code class="docutils literal notranslate"><span class="pre">MoveEffect</span></code> will last for 3 seconds, alternate directions, and run infinitely.  It
-will move our enemy to the left, 128 pixels (-2 x image width).  You may have noticed that in the
-constructor, I set <code class="docutils literal notranslate"><span class="pre">Anchor</span></code> to <code class="docutils literal notranslate"><span class="pre">center</span></code>.  This was done just for the sake of making the calculations
+<p>In short, the <code class="docutils literal notranslate"><span class="pre">MoveEffect</span></code> will last for 3 seconds, alternate directions, and run infinitely. It
+will move our enemy to the left, 128 pixels (-2 x image width). You may have noticed that in the
+constructor, I set <code class="docutils literal notranslate"><span class="pre">Anchor</span></code> to <code class="docutils literal notranslate"><span class="pre">center</span></code>. This was done just for the sake of making the calculations
 easier but could have been left as <code class="docutils literal notranslate"><span class="pre">bottomLeft</span></code>.</p>
 <p>Don’t forget to add the water enemy to your <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> file by doing:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">case</span><span class="w"> </span><span class="nl">WaterEnemy:</span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">WaterEnemy</span><span class="p">(</span>
-<span class="w">        </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
-<span class="w">        </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
-<span class="w">    </span><span class="p">));</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span>
+<span class="w">      </span><span class="n">WaterEnemy</span><span class="p">(</span>
+<span class="w">       </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
+<span class="w">       </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
 <span class="w">    </span><span class="k">break</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -481,7 +485,7 @@ easier but could have been left as <code class="docutils literal notranslate"><s
 </section>
 <section id="ground-blocks">
 <h2>Ground Blocks<a class="headerlink" href="#ground-blocks" title="Permalink to this heading">¶</a></h2>
-<p>Finally, the last component that needs to be displayed is the Ground Block!  This component is more
+<p>Finally, the last component that needs to be displayed is the Ground Block! This component is more
 complex than the others as we need to identify two times during a block’s life cycle.</p>
 <ul class="simple">
 <li><p>When the block is added, if it is the last block in the segment, we need to update a global value
@@ -511,8 +515,9 @@ next segment to load.</p></li>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">groundImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;ground.png&#39;</span><span class="p">);</span>
 <span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">groundImage</span><span class="p">);</span>
-<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">((</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xOffset</span><span class="p">,</span>
-<span class="w">        </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">),</span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span>
+<span class="w">      </span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xOffset</span><span class="p">,</span>
+<span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">gridPosition</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
 <span class="w">    </span><span class="p">);</span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RectangleHitbox</span><span class="p">(</span><span class="nl">collisionType:</span><span class="w"> </span><span class="n">CollisionType</span><span class="p">.</span><span class="n">passive</span><span class="p">));</span>
 <span class="w">  </span><span class="p">}</span>
@@ -527,7 +532,7 @@ next segment to load.</p></li>
 </pre></div>
 </div>
 <p>The first thing we will tackle is registering the block globally if it is the absolute last block to
-be loaded.  To do this, add two new global variables in <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> called:</p>
+be loaded. To do this, add two new global variables in <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> called:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">lastBlockXPosition</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">;</span>
 <span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">UniqueKey</span><span class="w"> </span><span class="n">lastBlockKey</span><span class="p">;</span>
 </pre></div>
@@ -564,12 +569,12 @@ the image (the anchor is bottom left and we want the next block to align right n
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">game.lastBlockXPosition</span></code> is being updated by the block’s current x-axis position plus its width -
-10 pixels.  This will cause a little overlap, but due to the potential variance in <code class="docutils literal notranslate"><span class="pre">dt</span></code> this
+10 pixels. This will cause a little overlap, but due to the potential variance in <code class="docutils literal notranslate"><span class="pre">dt</span></code> this
 prevents gaps in the map as it loads while a player is moving.</p>
 <section id="loading-the-next-random-segment">
 <h3>Loading the Next Random Segment<a class="headerlink" href="#loading-the-next-random-segment" title="Permalink to this heading">¶</a></h3>
 <p>To load the next random segment, we will use the <code class="docutils literal notranslate"><span class="pre">Random()</span></code> function that is built-in to
-<code class="docutils literal notranslate"><span class="pre">dart:math</span></code>.  The following line of code gets a random integer from 0 (inclusive) to the max number
+<code class="docutils literal notranslate"><span class="pre">dart:math</span></code>. The following line of code gets a random integer from 0 (inclusive) to the max number
 in the passed parameter (exclusive).</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="p">().</span><span class="n">nextInt</span><span class="p">(</span><span class="n">segments</span><span class="p">.</span><span class="n">length</span><span class="p">),</span>
 </pre></div>
@@ -580,7 +585,9 @@ the other block we just added:</p>
 <span class="w">  </span><span class="n">removeFromParent</span><span class="p">();</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">loadGameSegments</span><span class="p">(</span>
-<span class="w">        </span><span class="n">Random</span><span class="p">().</span><span class="n">nextInt</span><span class="p">(</span><span class="n">segments</span><span class="p">.</span><span class="n">length</span><span class="p">),</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">lastBlockXPosition</span><span class="p">);</span>
+<span class="w">      </span><span class="n">Random</span><span class="p">().</span><span class="n">nextInt</span><span class="p">(</span><span class="n">segments</span><span class="p">.</span><span class="n">length</span><span class="p">),</span>
+<span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">lastBlockXPosition</span><span class="p">,</span>
+<span class="w">    </span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -588,7 +595,7 @@ the other block we just added:</p>
 <p>This simply extends the code that we have in our other objects, where once the block is off the
 screen and if the block is the first block of the segment, we will call the <code class="docutils literal notranslate"><span class="pre">loadGameSegments</span></code>
 method in our game class, get a random number between 0 and the number of segments and pass in the
-offset.  If <code class="docutils literal notranslate"><span class="pre">Random()</span></code> or <code class="docutils literal notranslate"><span class="pre">segments.length</span></code> does not auto-import, you will need:</p>
+offset. If <code class="docutils literal notranslate"><span class="pre">Random()</span></code> or <code class="docutils literal notranslate"><span class="pre">segments.length</span></code> does not auto-import, you will need:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:math&#39;</span><span class="p">;</span>
 
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;../managers/segment_manager.dart&#39;</span><span class="p">;</span>
@@ -620,8 +627,9 @@ offset.  If <code class="docutils literal notranslate"><span class="pre">Random(
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">groundImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;ground.png&#39;</span><span class="p">);</span>
 <span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">groundImage</span><span class="p">);</span>
-<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">((</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xOffset</span><span class="p">,</span>
-<span class="w">        </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">),</span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span>
+<span class="w">      </span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xOffset</span><span class="p">,</span>
+<span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">gridPosition</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">,</span>
 <span class="w">    </span><span class="p">);</span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RectangleHitbox</span><span class="p">(</span><span class="nl">collisionType:</span><span class="w"> </span><span class="n">CollisionType</span><span class="p">.</span><span class="n">passive</span><span class="p">));</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">9</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">lastBlockXPosition</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -639,8 +647,9 @@ offset.  If <code class="docutils literal notranslate"><span class="pre">Random(
 <span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
 <span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">game</span><span class="p">.</span><span class="n">loadGameSegments</span><span class="p">(</span>
-<span class="w">            </span><span class="n">Random</span><span class="p">().</span><span class="n">nextInt</span><span class="p">(</span><span class="n">segments</span><span class="p">.</span><span class="n">length</span><span class="p">),</span>
-<span class="w">            </span><span class="n">game</span><span class="p">.</span><span class="n">lastBlockXPosition</span><span class="p">);</span>
+<span class="w">          </span><span class="n">Random</span><span class="p">().</span><span class="n">nextInt</span><span class="p">(</span><span class="n">segments</span><span class="p">.</span><span class="n">length</span><span class="p">),</span>
+<span class="w">          </span><span class="n">game</span><span class="p">.</span><span class="n">lastBlockXPosition</span><span class="p">,</span>
+<span class="w">        </span><span class="p">);</span>
 <span class="w">      </span><span class="p">}</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">9</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -656,17 +665,19 @@ offset.  If <code class="docutils literal notranslate"><span class="pre">Random(
 </div>
 <p>Finally, don’t forget to add your Ground Block to <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> by adding the following:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">case</span><span class="w"> </span><span class="nl">GroundBlock:</span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">GroundBlock</span><span class="p">(</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span>
+<span class="w">      </span><span class="n">GroundBlock</span><span class="p">(</span>
 <span class="w">        </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
 <span class="w">        </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
-<span class="w">    </span><span class="p">));</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
 <span class="w">    </span><span class="k">break</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>If you run your code, your game should now look like this:</p>
 <p><img alt="Ground Blocks" src="../../_images/Step4Ground.jpg" /></p>
-<p>You might say, but wait!  Ember is in the middle of the ground and that is correct because Ember’s
-<code class="docutils literal notranslate"><span class="pre">Anchor</span></code> is set to center.  This is ok and we will be addressing this in <a class="reference internal" href="step_5.html"><span class="std std-doc">5. Controlling Movement</span></a> where we will
+<p>You might say, but wait! Ember is in the middle of the ground and that is correct because Ember’s
+<code class="docutils literal notranslate"><span class="pre">Anchor</span></code> is set to center. This is ok and we will be addressing this in <a class="reference internal" href="step_5.html"><span class="std std-doc">5. Controlling Movement</span></a> where we will
 be adding movement and collisions to Ember!</p>
 </section>
 </section>

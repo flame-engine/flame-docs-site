@@ -316,16 +316,16 @@
 <h1>6. Adding the HUD<a class="headerlink" href="#adding-the-hud" title="Permalink to this heading">¶</a></h1>
 <section id="setting-up-the-hud">
 <h2>Setting up the HUD<a class="headerlink" href="#setting-up-the-hud" title="Permalink to this heading">¶</a></h2>
-<p>Now that the game is up and running, the rest of the code should come fairly easily.  To prepare for
-the hud, we need to add some variables in <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code>.  Add the following to the top of
+<p>Now that the game is up and running, the rest of the code should come fairly easily. To prepare for
+the hud, we need to add some variables in <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code>. Add the following to the top of
 the class:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">int</span><span class="w"> </span><span class="n">starsCollected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 <span class="kt">int</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>Start by creating a folder called <code class="docutils literal notranslate"><span class="pre">lib/overlays</span></code>, and in that folder, create a component called
-<code class="docutils literal notranslate"><span class="pre">heart.dart</span></code>.  This is going to be the health monitoring component in the upper left-hand corner of
-the game.  Add the following code:</p>
+<code class="docutils literal notranslate"><span class="pre">heart.dart</span></code>. This is going to be the health monitoring component in the upper left-hand corner of
+the game. Add the following code:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:ember_quest/ember_quest.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 
@@ -382,7 +382,7 @@ the game.  Add the following code:</p>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">HeartHealthComponent</span></code> is just a <a class="reference internal" href="../../flame/components.html#spritegroup"><span class="std std-ref">SpriteGroupComponent</span></a>
-that uses the heart images that were created early on.  The unique thing that is being done, is when
+that uses the heart images that were created early on. The unique thing that is being done, is when
 the component is created, it requires a <code class="docutils literal notranslate"><span class="pre">heartNumber</span></code>, so in the <code class="docutils literal notranslate"><span class="pre">update</span></code> method, we check to see if
 the <code class="docutils literal notranslate"><span class="pre">game.health</span></code> is less than the <code class="docutils literal notranslate"><span class="pre">heartNumber</span></code> and if so, change the state of the component to
 unavailable.</p>
@@ -402,14 +402,12 @@ unavailable.</p>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">anchor</span><span class="p">,</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">children</span><span class="p">,</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
-<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">positionType</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PositionType</span><span class="p">.</span><span class="n">viewport</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="p">});</span>
 
 <span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">TextComponent</span><span class="w"> </span><span class="n">_scoreTextComponent</span><span class="p">;</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;?</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">_scoreTextComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextComponent</span><span class="p">(</span>
 <span class="w">      </span><span class="nl">text:</span><span class="w"> </span><span class="s1">&#39;</span><span class="si">${</span><span class="n">game</span><span class="p">.</span><span class="n">starsCollected</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
 <span class="w">      </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span>
@@ -443,22 +441,19 @@ unavailable.</p>
 <span class="w">        </span><span class="p">),</span>
 <span class="w">      </span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
-
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">_scoreTextComponent</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;</span><span class="si">${</span><span class="n">game</span><span class="p">.</span><span class="n">starsCollected</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">;</span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>In the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method, you can see where we loop from 1 to the <code class="docutils literal notranslate"><span class="pre">game.health</span></code> amount, to create
-the number of hearts necessary.  The last step is to add the hud to the game.</p>
+the number of hearts necessary. The last step is to add the hud to the game.</p>
 <p>Go to ‘lib/ember_quest.dart<code class="docutils literal notranslate"><span class="pre">and</span> <span class="pre">add</span> <span class="pre">the</span> <span class="pre">following</span> <span class="pre">code</span> <span class="pre">in</span> <span class="pre">the</span></code>initializeGame` method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="n">Hud</span><span class="p">());</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">cameraComponent</span><span class="p">.</span><span class="n">viewport</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Hud</span><span class="p">());</span>
 </pre></div>
 </div>
 <p>If the auto-import did not occur, you will need to add:</p>
@@ -470,36 +465,36 @@ the number of hearts necessary.  The last step is to add the hud to the game.</p
 </section>
 <section id="updating-the-hud-data">
 <h2>Updating the HUD Data<a class="headerlink" href="#updating-the-hud-data" title="Permalink to this heading">¶</a></h2>
-<p>The last thing we need to do before closing out the HUD is to update the data.  To do this, we need
+<p>The last thing we need to do before closing out the HUD is to update the data. To do this, we need
 to open <code class="docutils literal notranslate"><span class="pre">lib/actors/ember.dart</span></code> and add the following code:</p>
 <p><code class="docutils literal notranslate"><span class="pre">onCollision</span></code></p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Star</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">other</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">();</span>
-<span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">starsCollected</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="n">other</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">starsCollected</span><span class="o">++</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">hit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">hitByEnemy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">hitByEnemy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">health</span><span class="o">--</span><span class="p">;</span>
 <span class="w">    </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="p">}</span>
-<span class="n">add</span><span class="p">(</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="n">add</span><span class="p">(</span>
 <span class="w">    </span><span class="n">OpacityEffect</span><span class="p">.</span><span class="n">fadeOut</span><span class="p">(</span>
-<span class="w">    </span><span class="n">EffectController</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">alternate:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
-<span class="w">    </span><span class="p">),</span>
+<span class="w">      </span><span class="n">EffectController</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">alternate:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
+<span class="w">      </span><span class="p">),</span>
 <span class="w">    </span><span class="p">)..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 <span class="w">    </span><span class="p">},</span>
-<span class="p">);</span>
+<span class="w">  </span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>If you run the game now, you will see that your health is updated and the stars are incremented as
-appropriate.  Finally, in <a class="reference internal" href="step_7.html"><span class="doc std std-doc">7. Adding Menus</span></a>, we will finish the game by adding the main menu and the
+appropriate. Finally, in <a class="reference internal" href="step_7.html"><span class="doc std std-doc">7. Adding Menus</span></a>, we will finish the game by adding the main menu and the
 game-over menu.</p>
 </section>
 </section>

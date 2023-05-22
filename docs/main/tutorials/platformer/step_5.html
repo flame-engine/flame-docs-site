@@ -314,10 +314,10 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="controlling-movement">
 <h1>5. Controlling Movement<a class="headerlink" href="#controlling-movement" title="Permalink to this heading">¶</a></h1>
-<p>If you were waiting for some serious coding, this chapter is it.  Prepare yourself as we dive in!</p>
+<p>If you were waiting for some serious coding, this chapter is it. Prepare yourself as we dive in!</p>
 <section id="keyboard-controls">
 <h2>Keyboard Controls<a class="headerlink" href="#keyboard-controls" title="Permalink to this heading">¶</a></h2>
-<p>The first step will be to allow control of Ember via the keyboard.  We need to start by adding the
+<p>The first step will be to allow control of Ember via the keyboard. We need to start by adding the
 appropriate mixins to the game class and Ember. Add the following:</p>
 <p>`lib/ember_quest.dart’</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
@@ -342,7 +342,7 @@ appropriate mixins to the game class and Ember. Add the following:</p>
 </pre></div>
 </div>
 <p>To control Ember’s movement, it is easiest to set a variable where we think of the direction of
-movement like a normalized vector, meaning the value will be restricted to -1, 0, or 1.  So let’s
+movement like a normalized vector, meaning the value will be restricted to -1, 0, or 1. So let’s
 set a variable at the top of the class:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 </pre></div>
@@ -364,8 +364,8 @@ set a variable at the top of the class:</p>
 <span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
-<p>Let’s make Ember move by adding a few lines of code and creating our <code class="docutils literal notranslate"><span class="pre">update</span></code> method.  First, we
-need to define a velocity variable for Ember.  Add the following at the top of the <code class="docutils literal notranslate"><span class="pre">EmberPlayer</span></code>
+<p>Let’s make Ember move by adding a few lines of code and creating our <code class="docutils literal notranslate"><span class="pre">update</span></code> method. First, we
+need to define a velocity variable for Ember. Add the following at the top of the <code class="docutils literal notranslate"><span class="pre">EmberPlayer</span></code>
 class:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">();</span>
 <span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">moveSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">200</span><span class="p">;</span>
@@ -395,10 +395,10 @@ following code at the end of your <code class="docutils literal notranslate"><sp
 </section>
 <section id="collisions">
 <h2>Collisions<a class="headerlink" href="#collisions" title="Permalink to this heading">¶</a></h2>
-<p>It is time to get into the thick of it with collisions.  I highly suggest reading the
-<a class="reference internal" href="../../flame/collision_detection.html"><span class="std std-doc">documentation</span></a> to understand how collisions work in Flame.  The
+<p>It is time to get into the thick of it with collisions. I highly suggest reading the
+<a class="reference internal" href="../../flame/collision_detection.html"><span class="std std-doc">documentation</span></a> to understand how collisions work in Flame. The
 first thing we need to do is make the game aware that collisions are going to occur using the
-<code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> mixin.  Add that to <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> like:</p>
+<code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> mixin. Add that to <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> like:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">EmberQuestGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="p">,</span><span class="w"> </span><span class="n">HasKeyboardHandlerComponents</span><span class="w"> </span><span class="p">{</span>
 </pre></div>
@@ -459,7 +459,7 @@ method, add the following:</p>
 </pre></div>
 </div>
 <p>Now that we have the basic collisions created, we can add gravity so Ember exists in a game world
-with very basic physics.  To do that, we need to create some more variables:</p>
+with very basic physics. To do that, we need to create some more variables:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">gravity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">15</span><span class="p">;</span>
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">jumpSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">600</span><span class="p">;</span>
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">terminalVelocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">150</span><span class="p">;</span>
@@ -490,7 +490,7 @@ with very basic physics.  To do that, we need to create some more variables:</p>
 </pre></div>
 </div>
 <p>Earlier I mentioned that Ember was in the center of the grass, to solve this and show how collisions
-and gravity work with Ember, I like to add a little drop-in when you start the game.  So in
+and gravity work with Ember, I like to add a little drop-in when you start the game. So in
 <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> in the <code class="docutils literal notranslate"><span class="pre">initializeGame</span></code> method, change the following:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">_ember</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="p">(</span>
 <span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">128</span><span class="p">,</span><span class="w"> </span><span class="n">canvasSize</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">128</span><span class="p">),</span>
@@ -551,8 +551,8 @@ collide with an enemy, Ember should blink.</p>
 </section>
 <section id="adding-the-scrolling">
 <h2>Adding the Scrolling<a class="headerlink" href="#adding-the-scrolling" title="Permalink to this heading">¶</a></h2>
-<p>This is our last task with Ember.  We need to restrict Ember’s movement because as of now, Ember can
-go off-screen and we never move the map.  So to implement this feature, we simply need to add the
+<p>This is our last task with Ember. We need to restrict Ember’s movement because as of now, Ember can
+go off-screen and we never move the map. So to implement this feature, we simply need to add the
 following to our <code class="docutils literal notranslate"><span class="pre">update</span></code> method:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 <span class="c1">// Prevent ember from going backwards at screen edge.</span>
@@ -567,8 +567,8 @@ following to our <code class="docutils literal notranslate"><span class="pre">up
 </pre></div>
 </div>
 <p>If you run the game now, Ember can’t move off-screen to the left, and as Ember moves to the right,
-once they get to the middle of the screen, the rest of the objects scroll by.  This is because we
-are now updating <code class="docutils literal notranslate"><span class="pre">game.objectSpeed</span></code> which we established early on in the series.  Additionally,
+once they get to the middle of the screen, the rest of the objects scroll by. This is because we
+are now updating <code class="docutils literal notranslate"><span class="pre">game.objectSpeed</span></code> which we established early on in the series. Additionally,
 you will see the next random segment be generated and added to the level based on the work we did in
 Ground Block.</p>
 <div class="admonition note">
@@ -580,7 +580,7 @@ segments loaded, we could then add that special segment. When Ember reaches that
 object, we could reload the level and start all over maintaining the stars
 collected and health.</p>
 </div>
-<p>We are almost done!  In <a class="reference internal" href="step_6.html"><span class="std std-doc">6. Adding the HUD</span></a>, we will add the health system, keep track of
+<p>We are almost done! In <a class="reference internal" href="step_6.html"><span class="std std-doc">6. Adding the HUD</span></a>, we will add the health system, keep track of
 the score, and provide a HUD to relay that information to the player.</p>
 </section>
 </section>

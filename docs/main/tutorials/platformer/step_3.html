@@ -317,21 +317,21 @@
 <section id="creating-segments">
 <h2>Creating Segments<a class="headerlink" href="#creating-segments" title="Permalink to this heading">¶</a></h2>
 <p>For this world to be infinite, the best way to approach this is to create segments that can be
-reloaded over and over.  To do this, we need a rough sketch of what our level segments will look
+reloaded over and over. To do this, we need a rough sketch of what our level segments will look
 like. I have created the following sketch to show what the segments would look like and how they can
 be repeated:</p>
 <p><img alt="Level Segment Sketch" src="../../_images/LevelSegmentSketch.jpg" /></p>
-<p>Each segment is a 10x10 grid and each block is 64 pixels x 64 pixels.  This means Ember Quest has a
-height of 640 with an infinite width.  In my design, there must always be a ground
-block at the beginning and the end.  Additionally, there must be at least 3 ground blocks that come
-before an enemy, including if the segment wraps to another segment.  This is because the plan is to
+<p>Each segment is a 10x10 grid and each block is 64 pixels x 64 pixels. This means Ember Quest has a
+height of 640 with an infinite width. In my design, there must always be a ground
+block at the beginning and the end. Additionally, there must be at least 3 ground blocks that come
+before an enemy, including if the segment wraps to another segment. This is because the plan is to
 have the enemies traverse back and forth for 3 blocks. Now that we have a plan for the segments,
 let’s create a segment manager class.</p>
 <section id="segment-manager">
 <h3>Segment Manager<a class="headerlink" href="#segment-manager" title="Permalink to this heading">¶</a></h3>
 <p>To get started, we have to understand that we will be referencing our blocks in the segment manager,
-so first create a new folder called <code class="docutils literal notranslate"><span class="pre">lib/objects</span></code>.  In that folder, create 3 files called
-<code class="docutils literal notranslate"><span class="pre">ground_block.dart</span></code>, <code class="docutils literal notranslate"><span class="pre">platform_block.dart</span></code>, and <code class="docutils literal notranslate"><span class="pre">star.dart</span></code>.  Those files just need basic
+so first create a new folder called <code class="docutils literal notranslate"><span class="pre">lib/objects</span></code>. In that folder, create 3 files called
+<code class="docutils literal notranslate"><span class="pre">ground_block.dart</span></code>, <code class="docutils literal notranslate"><span class="pre">platform_block.dart</span></code>, and <code class="docutils literal notranslate"><span class="pre">star.dart</span></code>. Those files just need basic
 boilerplate code for the class, so create the following in their respective files:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">GroundBlock</span><span class="p">{}</span>
 
@@ -345,8 +345,8 @@ boilerplate code for the class, so create the following in their respective file
 </pre></div>
 </div>
 <p>Now we can create a file called <code class="docutils literal notranslate"><span class="pre">segment_manager.dart</span></code> which will be placed in a new folder called
-<code class="docutils literal notranslate"><span class="pre">lib/managers</span></code>.  The segment manager is the heart and soul, if you will, of Ember Quest.  This is
-where you can get as creative as you want.  You do not have to follow my design, just remember that
+<code class="docutils literal notranslate"><span class="pre">lib/managers</span></code>. The segment manager is the heart and soul, if you will, of Ember Quest. This is
+where you can get as creative as you want. You do not have to follow my design, just remember that
 whatever you design, the segment must follow the rules outlined above. Add the following code to
 <code class="docutils literal notranslate"><span class="pre">segment_manager.dart</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Block</span><span class="w"> </span><span class="p">{</span>
@@ -368,13 +368,13 @@ whatever you design, the segment must follow the rules outlined above. Add the f
 </pre></div>
 </div>
 <p>So what this does, is allows us to create segments (segment0, segment1, etc) in a list format that
-gets added to the <code class="docutils literal notranslate"><span class="pre">segments</span></code> list.  The individual segments will be made up of multiple entries of the
-<code class="docutils literal notranslate"><span class="pre">Block</span></code> class.  This information will allow us to translate the block position from a 10x10 grid to
-the actual pixel position in the game world.  To create a segment, you need to create
+gets added to the <code class="docutils literal notranslate"><span class="pre">segments</span></code> list. The individual segments will be made up of multiple entries of the
+<code class="docutils literal notranslate"><span class="pre">Block</span></code> class. This information will allow us to translate the block position from a 10x10 grid to
+the actual pixel position in the game world. To create a segment, you need to create
 entries for each block that you wish to be rendered from the sketch.</p>
 <p>To understand each segment, if we start in the bottom left corner of the grid in the sketch, we see
 that we should place a <code class="docutils literal notranslate"><span class="pre">Block()</span></code> in the <code class="docutils literal notranslate"><span class="pre">segment0</span></code> list with a first parameter <code class="docutils literal notranslate"><span class="pre">gridPosition</span></code> of a
-<code class="docutils literal notranslate"><span class="pre">Vector2(0,0)</span></code> and a <code class="docutils literal notranslate"><span class="pre">blockType</span></code> of the <code class="docutils literal notranslate"><span class="pre">GroundBlock</span></code> class that we created earlier.  Remember, the
+<code class="docutils literal notranslate"><span class="pre">Vector2(0,0)</span></code> and a <code class="docutils literal notranslate"><span class="pre">blockType</span></code> of the <code class="docutils literal notranslate"><span class="pre">GroundBlock</span></code> class that we created earlier. Remember, the
 very bottom left cell is x=0 and y=0 thus the <code class="docutils literal notranslate"><span class="pre">Vector2(x,y)</span></code> is <code class="docutils literal notranslate"><span class="pre">Vector2(0,0)</span></code>.</p>
 <p><img alt="Segment 0 Sketch" src="../../_images/Segment0Sketch.jpg" /></p>
 <p>The full segment would look like this:</p>
@@ -397,7 +397,7 @@ very bottom left cell is x=0 and y=0 thus the <code class="docutils literal notr
 <span class="p">];</span>
 </pre></div>
 </div>
-<p>Proceed to build the remaining segments.  The full segment manager should look like this:</p>
+<p>Proceed to build the remaining segments. The full segment manager should look like this:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;../actors/water_enemy.dart&#39;</span><span class="p">;</span>
@@ -521,10 +521,10 @@ very bottom left cell is x=0 and y=0 thus the <code class="docutils literal notr
 </section>
 <section id="loading-the-segments-into-the-world">
 <h3>Loading the Segments into the World<a class="headerlink" href="#loading-the-segments-into-the-world" title="Permalink to this heading">¶</a></h3>
-<p>Now that our segments are defined, we need to create a way to load these blocks into our world.  To
-do that, we are going to start work in the <code class="docutils literal notranslate"><span class="pre">ember_quest.dart</span></code> file.  We will create a <code class="docutils literal notranslate"><span class="pre">loadSegments</span></code>
+<p>Now that our segments are defined, we need to create a way to load these blocks into our world. To
+do that, we are going to start work in the <code class="docutils literal notranslate"><span class="pre">ember_quest.dart</span></code> file. We will create a <code class="docutils literal notranslate"><span class="pre">loadSegments</span></code>
 method that when given an index for the segments list, will then loop through that segment from
-our <code class="docutils literal notranslate"><span class="pre">segment_manager</span></code> and we will add the appropriate blocks later.  It should look like this:</p>
+our <code class="docutils literal notranslate"><span class="pre">segment_manager</span></code> and we will add the appropriate blocks later. It should look like this:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">loadGameSegments</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">segmentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">segments</span><span class="p">[</span><span class="n">segmentIndex</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">block</span><span class="p">.</span><span class="n">blockType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -563,17 +563,17 @@ our <code class="docutils literal notranslate"><span class="pre">segment_manager
 <span class="w">    </span><span class="n">_ember</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="p">(</span>
 <span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">128</span><span class="p">,</span><span class="w"> </span><span class="n">canvasSize</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">70</span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">_ember</span><span class="p">);</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">_ember</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
 <p>We simply are taking the width of the game screen, divide that by 640 (10 blocks in a segment times
-64 pixels wide for each block), and round that up.  As we only defined 5 segments total, we need to
+64 pixels wide for each block), and round that up. As we only defined 5 segments total, we need to
 restrict that integer from 0 to the length of the segments list in case the user has a really wide
-screen.  Then we simply loop through the number of <code class="docutils literal notranslate"><span class="pre">segmentsToLoad</span></code> and call <code class="docutils literal notranslate"><span class="pre">loadGameSegments</span></code> with
+screen. Then we simply loop through the number of <code class="docutils literal notranslate"><span class="pre">segmentsToLoad</span></code> and call <code class="docutils literal notranslate"><span class="pre">loadGameSegments</span></code> with
 the integer to load and then calculate the offset.</p>
 <p>Additionally, I have moved the Ember-related code from the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method to our new
-<code class="docutils literal notranslate"><span class="pre">initializeGame</span></code> method.  This means I can now make the call in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> to <code class="docutils literal notranslate"><span class="pre">initializeGame</span></code> such
+<code class="docutils literal notranslate"><span class="pre">initializeGame</span></code> method. This means I can now make the call in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> to <code class="docutils literal notranslate"><span class="pre">initializeGame</span></code> such
 as:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
@@ -586,6 +586,11 @@ as:</p>
 <span class="w">      </span><span class="s1">&#39;star.png&#39;</span><span class="p">,</span>
 <span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="p">]);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="n">cameraComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraComponent</span><span class="p">(</span><span class="nl">world:</span><span class="w"> </span><span class="n">world</span><span class="p">);</span>
+<span class="w">    </span><span class="n">cameraComponent</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
+<span class="w">    </span><span class="n">addAll</span><span class="p">([</span><span class="n">cameraComponent</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="p">]);</span>
+
 <span class="w">    </span><span class="n">initializeGame</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span>
 </pre></div>
@@ -595,10 +600,10 @@ worry, we will solve those right now.</p>
 </section>
 <section id="the-platform-block">
 <h3>The Platform Block<a class="headerlink" href="#the-platform-block" title="Permalink to this heading">¶</a></h3>
-<p>One of the easiest blocks to start with is the Platform Block.  There are two things that we need to
+<p>One of the easiest blocks to start with is the Platform Block. There are two things that we need to
 develop beyond getting the sprite to be displayed; that is, we need to place it in the correct
 position and as Ember moves across the screen, we need to remove the blocks once they are off the
-screen.  In Ember Quest, the player can only move forward, so this will keep the game lightweight as
+screen. In Ember Quest, the player can only move forward, so this will keep the game lightweight as
 it’s an infinite level.</p>
 <p>Open the <code class="docutils literal notranslate"><span class="pre">lib/objects/platform_block.dart</span></code> file and add the following code:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span>
@@ -628,18 +633,18 @@ it’s an infinite level.</p>
 </pre></div>
 </div>
 <p>We are going to extend the Flame <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> and we will need the <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code> mixin to access
-our game class just like we did before.  We are starting with the empty <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and <code class="docutils literal notranslate"><span class="pre">update</span></code>
+our game class just like we did before. We are starting with the empty <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and <code class="docutils literal notranslate"><span class="pre">update</span></code>
 methods and we will begin adding code to create the functionality that is necessary for the game.</p>
-<p>The secret to any gaming engine is the game loop.  This is an infinite loop that calls all the
-objects in your game so you can provide updates.  The <code class="docutils literal notranslate"><span class="pre">update</span></code> method is the hook into this and it
+<p>The secret to any gaming engine is the game loop. This is an infinite loop that calls all the
+objects in your game so you can provide updates. The <code class="docutils literal notranslate"><span class="pre">update</span></code> method is the hook into this and it
 uses a <code class="docutils literal notranslate"><span class="pre">double</span> <span class="pre">dt</span></code> to pass to your method the amount of time in seconds since it was last
-called.  This <code class="docutils literal notranslate"><span class="pre">dt</span></code> variable then allows you to calculate how far your component needs to move
+called. This <code class="docutils literal notranslate"><span class="pre">dt</span></code> variable then allows you to calculate how far your component needs to move
 on-screen.</p>
 <p>All components in our game will need to move at the same speed, so to do this, open
-<code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code>, and let’s define a global variable called <code class="docutils literal notranslate"><span class="pre">objectSpeed</span></code>.  At the top of the
+<code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code>, and let’s define a global variable called <code class="docutils literal notranslate"><span class="pre">objectSpeed</span></code>. At the top of the
 <code class="docutils literal notranslate"><span class="pre">EmberQuestGame</span></code> class, add:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="w"> </span><span class="n">_ember</span><span class="p">;</span>
-<span class="kt">double</span><span class="w"> </span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>So to implement that movement, declare a variable at the top of the <code class="docutils literal notranslate"><span class="pre">PlatformBlock</span></code> class and make
@@ -657,14 +662,14 @@ your <code class="docutils literal notranslate"><span class="pre">update</span><
 </pre></div>
 </div>
 <p>All that is happening is we define a base <code class="docutils literal notranslate"><span class="pre">velocity</span></code> that is instantiated at 0 on both axes and then
-we update <code class="docutils literal notranslate"><span class="pre">velocity</span></code> using the global <code class="docutils literal notranslate"><span class="pre">objectSpeed</span></code> variable for the x-axis.  As this is our
+we update <code class="docutils literal notranslate"><span class="pre">velocity</span></code> using the global <code class="docutils literal notranslate"><span class="pre">objectSpeed</span></code> variable for the x-axis. As this is our
 platform block, it will only scroll left and right, so our y-axis in the <code class="docutils literal notranslate"><span class="pre">velocity</span></code> will always be 0
 as do not want our blocks jumping.</p>
 <p>Next, we update the <code class="docutils literal notranslate"><span class="pre">position</span></code> which is a special variable built into the Flame engine components.
 By multiplying the <code class="docutils literal notranslate"><span class="pre">velocity</span></code> vector by the <code class="docutils literal notranslate"><span class="pre">dt</span></code> we can move our component to the required amount.</p>
 <p>Finally, if <code class="docutils literal notranslate"><span class="pre">x</span></code> value of position is <code class="docutils literal notranslate"><span class="pre">-size.x</span></code> (this means off the left side of the screen by the
 width of the image) then remove this platform block from the game entirely.</p>
-<p>Now we just need to finish the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method.  So make your <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method look like this:</p>
+<p>Now we just need to finish the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method. So make your <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method look like this:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">platformImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;block.png&#39;</span><span class="p">);</span>
@@ -677,21 +682,21 @@ width of the image) then remove this platform block from the game entirely.</p>
 </pre></div>
 </div>
 <p>First, we retrieve the image from cache as we did before, and because this is a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code>
-we can use the built-in <code class="docutils literal notranslate"><span class="pre">sprite</span></code> variable to assign the image to the component.  Next, we need to
-calculate its starting position.  This is where all the magic happens, so let’s break this down.</p>
-<p>Just like in the <code class="docutils literal notranslate"><span class="pre">update</span></code> method we will be setting the <code class="docutils literal notranslate"><span class="pre">position</span></code> variable to a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>.  To
-determine where it needs to be, we need to calculate the x and y positions.  Focusing on the x
+we can use the built-in <code class="docutils literal notranslate"><span class="pre">sprite</span></code> variable to assign the image to the component. Next, we need to
+calculate its starting position. This is where all the magic happens, so let’s break this down.</p>
+<p>Just like in the <code class="docutils literal notranslate"><span class="pre">update</span></code> method we will be setting the <code class="docutils literal notranslate"><span class="pre">position</span></code> variable to a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>. To
+determine where it needs to be, we need to calculate the x and y positions. Focusing on the x
 first, we can see that we are taking <code class="docutils literal notranslate"><span class="pre">gridPosition.x</span></code> times the width of the image and then we will
-add that to the <code class="docutils literal notranslate"><span class="pre">xOffset</span></code> that we pass in.  With the y-axis, we will take the height of the
+add that to the <code class="docutils literal notranslate"><span class="pre">xOffset</span></code> that we pass in. With the y-axis, we will take the height of the
 game and we will subtract the <code class="docutils literal notranslate"><span class="pre">gridPosition.y</span></code> times the height of the image.</p>
 <p>Lastly, as we want Ember to be able to interact with the platform, we will add a <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code>
-with a <code class="docutils literal notranslate"><span class="pre">passive</span></code> <code class="docutils literal notranslate"><span class="pre">CollisionType</span></code>.  Collisions will be explained more in a later chapter.</p>
+with a <code class="docutils literal notranslate"><span class="pre">passive</span></code> <code class="docutils literal notranslate"><span class="pre">CollisionType</span></code>. Collisions will be explained more in a later chapter.</p>
 <section id="display-the-platform">
 <h4>Display the Platform<a class="headerlink" href="#display-the-platform" title="Permalink to this heading">¶</a></h4>
-<p>In our <code class="docutils literal notranslate"><span class="pre">loadGameSegments</span></code> method from earlier, we will need to add the call to add our block.  We
-will need to define <code class="docutils literal notranslate"><span class="pre">gridPosition</span></code> and <code class="docutils literal notranslate"><span class="pre">xOffset</span></code> to be passed in.  <code class="docutils literal notranslate"><span class="pre">gridPosition</span></code> will be a
+<p>In our <code class="docutils literal notranslate"><span class="pre">loadGameSegments</span></code> method from earlier, we will need to add the call to add our block. We
+will need to define <code class="docutils literal notranslate"><span class="pre">gridPosition</span></code> and <code class="docutils literal notranslate"><span class="pre">xOffset</span></code> to be passed in. <code class="docutils literal notranslate"><span class="pre">gridPosition</span></code> will be a
 <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> and <code class="docutils literal notranslate"><span class="pre">xOffset</span></code> is a double as that will be used to calculate the x-axis offset for
-the block in a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>.  So add the following to your <code class="docutils literal notranslate"><span class="pre">loadGameSegments</span></code> method:</p>
+the block in a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>. So add the following to your <code class="docutils literal notranslate"><span class="pre">loadGameSegments</span></code> method:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">case</span><span class="w"> </span><span class="nl">PlatformBlock:</span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">PlatformBlock</span><span class="p">(</span>
 <span class="w">      </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
@@ -702,8 +707,8 @@ the block in a <code class="docutils literal notranslate"><span class="pre">Vect
 </div>
 <p>If you run your code, you should now see:</p>
 <p><img alt="Platforms Displayed" src="../../_images/Step3Platforms.jpg" /></p>
-<p>While this does run, the black just makes it look like Ember is in a dungeon.  Let’s change that
-background real quick so there is a nice blue sky.  Just add the following code to
+<p>While this does run, the black just makes it look like Ember is in a dungeon. Let’s change that
+background real quick so there is a nice blue sky. Just add the following code to
 <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
 
@@ -713,7 +718,7 @@ background real quick so there is a nice blue sky.  Just add the following code 
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Excellent!  Ember is now in front of a blue sky.</p>
+<p>Excellent! Ember is now in front of a blue sky.</p>
 <p>On to <a class="reference internal" href="step_4.html"><span class="std std-doc">4. Adding the Remaining Components</span></a>, where we will add the rest of the components now that we have a basic
 understanding of what we are going to accomplish.</p>
 </section>
