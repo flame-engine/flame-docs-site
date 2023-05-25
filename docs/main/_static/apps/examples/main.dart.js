@@ -81037,15 +81037,13 @@ q="-"}else q=""
 return A.bwp(10,p,o,n,q)},
 $ide:1}
 A.f7.prototype={
-yX(a,b,c){var s,r
+yX(a,b,c){var s
 if(this.l(0,b))return a
 else{s=new A.a(new Float64Array(2))
-s.u(b.a,b.b)
-r=new A.a(new Float64Array(2))
-r.u(this.a,this.b)
-r=s.U(0,r)
-r.bQ(0,c)
-return a.V(0,r)}},
+s.u(b.a-this.a,b.b-this.b)
+s.bQ(0,c)
+s.H(0,a)
+return s}},
 gl9(a){var s=$.b5o().i(0,this)
 return s==null?"Anchor("+A.h(this.a)+", "+A.h(this.b)+")":s},
 k(a){return this.gl9(this)},
