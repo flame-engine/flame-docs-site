@@ -29624,80 +29624,78 @@ return A.O(null,r)}})
 return A.P($async$ae,r)},
 X(a,b){if(this.ap<=0)this.gkC().t(0,"GameOver")
 this.E5(0,b)},
-A3(a,b){var s,r,q,p,o,n,m,l,k,j,i,h=null
+A3(a,b){var s,r,q,p,o,n,m,l,k,j,i,h,g=null
 for(s=$.Tv()[a],r=s.length,q=this.c_,p=0;p<s.length;s.length===r||(0,A.E)(s),++p){o=s[p]
-switch(o.b){case B.k:n=new Float64Array(2)
-m=new Float64Array(2)
-l=new A.z(m)
-m[0]=64
-m[1]=64
-m=$.ah().aI()
-m.sa3(0,B.h)
-k=A.et()
-j=l
+n=o.b
+if(B.k===n){m=new Float64Array(2)
+l=new Float64Array(2)
+k=new A.z(l)
+l[0]=64
+l[1]=64
+l=$.ah().aI()
+l.sa3(0,B.h)
+j=A.et()
+i=k
+h=$.bA()
+h=new A.cr(h,new Float64Array(2))
+h.aX(i)
+h.S()
+m=new A.kj(o.a,b,new A.ld(),new A.z(m),g,!1,g,$,l,g,j,h,B.ae,0,new A.az([]),new A.az([]))
+m.ds(B.ae,g,g,0,g,g,g,k)
+h.aA(0,m.glR())
+q.bw(m)
+continue}if(B.t===n){m=new Float64Array(2)
+l=new Float64Array(2)
+k=new A.z(l)
+l[0]=64
+l[1]=64
+l=$.ah().aI()
+l.sa3(0,B.h)
+j=A.et()
+i=k
+h=$.bA()
+h=new A.cr(h,new Float64Array(2))
+h.aX(i)
+h.S()
+m=new A.kK(o.a,b,new A.z(m),g,!1,g,$,l,g,j,h,B.ae,0,new A.az([]),new A.az([]))
+m.ds(B.ae,g,g,0,g,g,g,k)
+h.aA(0,m.glR())
+q.bw(m)
+continue}if(B.by===n){m=new Float64Array(2)
+l=new Float64Array(2)
+k=new A.z(l)
+l[0]=64
+l[1]=64
+l=$.ah().aI()
+l.sa3(0,B.h)
+j=A.et()
+i=k
+h=$.bA()
+h=new A.cr(h,new Float64Array(2))
+h.aX(i)
+h.S()
+m=new A.kZ(o.a,b,new A.z(m),g,!1,g,$,l,g,j,h,B.x,0,new A.az([]),new A.az([]))
+m.ds(B.x,g,g,0,g,g,g,k)
+h.aA(0,m.glR())
+q.bw(m)
+continue}if(B.ar===n){m=new Float64Array(2)
+l=new Float64Array(2)
+k=new A.z(l)
+l[0]=64
+l[1]=64
+l=$.ah().aI()
+l.sa3(0,B.h)
+j=A.et()
 i=$.bA()
 i=new A.cr(i,new Float64Array(2))
-i.aX(j)
+i.aX(k)
 i.S()
-n=new A.kj(o.a,b,new A.ld(),new A.z(n),h,!1,h,$,m,h,k,i,B.ae,0,new A.az([]),new A.az([]))
-n.ds(B.ae,h,h,0,h,h,h,l)
-i.aA(0,n.glR())
-q.bw(n)
-break
-case B.t:n=new Float64Array(2)
-m=new Float64Array(2)
-l=new A.z(m)
-m[0]=64
-m[1]=64
-m=$.ah().aI()
-m.sa3(0,B.h)
-k=A.et()
-j=l
-i=$.bA()
-i=new A.cr(i,new Float64Array(2))
-i.aX(j)
-i.S()
-n=new A.kK(o.a,b,new A.z(n),h,!1,h,$,m,h,k,i,B.ae,0,new A.az([]),new A.az([]))
-n.ds(B.ae,h,h,0,h,h,h,l)
-i.aA(0,n.glR())
-q.bw(n)
-break
-case B.by:n=new Float64Array(2)
-m=new Float64Array(2)
-l=new A.z(m)
-m[0]=64
-m[1]=64
-m=$.ah().aI()
-m.sa3(0,B.h)
-k=A.et()
-j=l
-i=$.bA()
-i=new A.cr(i,new Float64Array(2))
-i.aX(j)
-i.S()
-n=new A.kZ(o.a,b,new A.z(n),h,!1,h,$,m,h,k,i,B.x,0,new A.az([]),new A.az([]))
-n.ds(B.x,h,h,0,h,h,h,l)
-i.aA(0,n.glR())
-q.bw(n)
-break
-case B.ar:n=new Float64Array(2)
-m=new Float64Array(2)
-l=new A.z(m)
-m[0]=64
-m[1]=64
-m=$.ah().aI()
-m.sa3(0,B.h)
-k=A.et()
-j=$.bA()
-j=new A.cr(j,new Float64Array(2))
-j.aX(l)
-j.S()
-n=new A.lg(o.a,b,new A.z(n),h,h,!1,!0,!1,$,m,h,k,j,B.ae,0,new A.az([]),new A.az([]))
-n.ds(B.ae,h,h,0,h,h,h,l)
-j.aA(0,n.gx5())
-n.lQ()
-q.bw(n)
-break}}},
+m=new A.lg(o.a,b,new A.z(m),g,g,!1,!0,!1,$,l,g,j,i,B.ae,0,new A.az([]),new A.az([]))
+m.ds(B.ae,g,g,0,g,g,g,k)
+i.aA(0,m.gx5())
+m.lQ()
+q.bw(m)
+continue}}},
 zL(a){var s,r,q,p,o,n,m,l,k,j=this,i=null,h=j.id
 h===$&&A.e()
 s=B.c.bU(h.a.a.a.b0(0,1).a[0]/640)
