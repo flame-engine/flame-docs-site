@@ -553,7 +553,7 @@ collide with an enemy, Ember should blink.</p>
 <h2>Adding the Scrolling<a class="headerlink" href="#adding-the-scrolling" title="Permalink to this heading">¶</a></h2>
 <p>This is our last task with Ember. We need to restrict Ember’s movement because as of now, Ember can
 go off-screen and we never move the map. So to implement this feature, we simply need to add the
-following to our <code class="docutils literal notranslate"><span class="pre">update</span></code> method:</p>
+following to the end of our <code class="docutils literal notranslate"><span class="pre">update</span></code> method:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 <span class="c1">// Prevent ember from going backwards at screen edge.</span>
 <span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">36</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -564,6 +564,9 @@ following to our <code class="docutils literal notranslate"><span class="pre">up
 <span class="w">  </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 <span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">moveSpeed</span><span class="p">;</span>
 <span class="p">}</span>
+
+<span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>If you run the game now, Ember can’t move off-screen to the left, and as Ember moves to the right,
