@@ -639,6 +639,9 @@ type checker:</p>
 <span class="w">      </span><span class="c1">// do NOT collide with Player or Water</span>
 <span class="w">      </span><span class="k">return</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="c1">// Just return true if you&#39;re not interested in the parent&#39;s type check result.</span>
+<span class="w">    </span><span class="c1">// Or call super and you will be able to override the result with the parent&#39;s</span>
+<span class="w">    </span><span class="c1">// result.</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onComponentTypeCheck</span><span class="p">(</span><span class="n">other</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
