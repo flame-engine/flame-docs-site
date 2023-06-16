@@ -396,7 +396,7 @@ colors. The full code for the <code class="docutils literal notranslate"><span c
 
 <span class="nd">@immutable</span>
 <span class="kd">class</span><span class="w"> </span><span class="nc">Rank</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">factory</span><span class="w"> </span><span class="n">Rank</span><span class="p">.</span><span class="n">of</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">factory</span><span class="w"> </span><span class="n">Rank</span><span class="p">.</span><span class="n">fromInt</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">value</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">13</span><span class="p">);</span>
 <span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">_singletons</span><span class="p">[</span><span class="n">value</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">1</span><span class="p">];</span>
 <span class="w">  </span><span class="p">}</span>
