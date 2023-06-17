@@ -969,9 +969,9 @@ This allows multiple components to share the same animation object.</p>
 
 <span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationTicker</span><span class="p">(</span><span class="n">animation</span><span class="p">);</span>
 
-<span class="c1">// or alternatively</span>
+<span class="c1">// or alternatively, you can ask the animation object to create one for you.</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">animation</span><span class="p">.</span><span class="n">ticker</span><span class="p">();</span><span class="w"> </span><span class="c1">// creates a new ticker</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">animation</span><span class="p">.</span><span class="n">createTicker</span><span class="p">();</span><span class="w"> </span><span class="c1">// creates a new ticker</span>
 
 <span class="n">animationTicker</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 </pre></div>
@@ -1009,8 +1009,8 @@ and <code class="docutils literal notranslate"><span class="pre">onComplete</spa
 </pre></div>
 </div>
 </section>
-<section id="spriteanimationgroup">
-<h2>SpriteAnimationGroup<a class="headerlink" href="#spriteanimationgroup" title="Permalink to this heading">¶</a></h2>
+<section id="spriteanimationgroupcomponent">
+<h2>SpriteAnimationGroupComponent<a class="headerlink" href="#spriteanimationgroupcomponent" title="Permalink to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SpriteAnimationGroupComponent</span></code> is a simple wrapper around <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> which enables
 your component to hold several animations and change the current playing animation at runtime. Since
 this component is just a wrapper, the event listeners can be implemented as described in
@@ -1037,6 +1037,41 @@ single animation, this component receives a Map of a generic type <code class="d
 
 <span class="c1">// Changes current animation to &quot;running&quot;</span>
 <span class="n">robot</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RobotState</span><span class="p">.</span><span class="n">running</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>As this component works with multiple <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>s, naturally it needs equal number of animation
+tickers to make all those animation tick. Use <code class="docutils literal notranslate"><span class="pre">animationsTickers</span></code> getter to access a map containing tickers
+for each animation state. This can be useful if you want to register callbacks for <code class="docutils literal notranslate"><span class="pre">onStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onComplete</span></code>
+and <code class="docutils literal notranslate"><span class="pre">onFrame</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span><span class="w"> </span><span class="n">RobotState</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">idle</span><span class="p">,</span><span class="w"> </span><span class="n">running</span><span class="p">,</span><span class="w"> </span><span class="n">jump</span><span class="w"> </span><span class="p">}</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">idle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationGroupComponent</span><span class="o">&lt;</span><span class="n">RobotState</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">animations:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">RobotState</span><span class="p">.</span><span class="nl">running:</span><span class="w"> </span><span class="n">running</span><span class="p">,</span>
+<span class="w">    </span><span class="n">RobotState</span><span class="p">.</span><span class="nl">idle:</span><span class="w"> </span><span class="n">idle</span><span class="p">,</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nl">current:</span><span class="w"> </span><span class="n">RobotState</span><span class="p">.</span><span class="n">idle</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="n">robot</span><span class="p">.</span><span class="n">animationTickers</span><span class="o">?</span><span class="p">[</span><span class="n">RobotState</span><span class="p">.</span><span class="n">running</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="n">onStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something on start of running animation.</span>
+<span class="p">};</span>
+
+<span class="n">robot</span><span class="p">.</span><span class="n">animationTickers</span><span class="o">?</span><span class="p">[</span><span class="n">RobotState</span><span class="p">.</span><span class="n">jump</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="n">onStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something on start of jump animation.</span>
+<span class="p">};</span>
+
+<span class="n">robot</span><span class="p">.</span><span class="n">animationTickers</span><span class="o">?</span><span class="p">[</span><span class="n">RobotState</span><span class="p">.</span><span class="n">jump</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something on complete of jump animation.</span>
+<span class="p">};</span>
+
+<span class="n">robot</span><span class="p">.</span><span class="n">animationTickers</span><span class="o">?</span><span class="p">[</span><span class="n">RobotState</span><span class="p">.</span><span class="n">idle</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="n">onFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">currentIndex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something based on current frame index of idle animation.</span>
+<span class="p">};</span>
 </pre></div>
 </div>
 </section>
@@ -1660,7 +1695,7 @@ own sprite animation based component, you can directly use a <code class="docuti
   <a href='#render-positioncomponent' class='list-group-item level-2'>Render PositionComponent</a>
   <a href='#spritecomponent' class='list-group-item level-1'>SpriteComponent</a>
   <a href='#spriteanimationcomponent' class='list-group-item level-1'>SpriteAnimationComponent</a>
-  <a href='#spriteanimationgroup' class='list-group-item level-1'>SpriteAnimationGroup</a>
+  <a href='#spriteanimationgroupcomponent' class='list-group-item level-1'>SpriteAnimationGroupComponent</a>
   <a href='#spritegroup' class='list-group-item level-1'>SpriteGroup</a>
   <a href='#svgcomponent' class='list-group-item level-1'>SvgComponent</a>
   <a href='#flareactorcomponent' class='list-group-item level-1'>FlareActorComponent</a>
