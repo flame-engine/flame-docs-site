@@ -463,6 +463,7 @@ be equal to the <code class="docutils literal notranslate"><span class="pre">car
 meaning that it can change during the lifetime of a card. We should create some
 public accessors and mutators for this variable:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">isFaceUp</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_faceUp</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">isFaceDown</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">!</span><span class="n">_faceUp</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">flip</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_faceUp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">_faceUp</span><span class="p">;</span>
 </pre></div>
 </div>
