@@ -346,6 +346,12 @@ where the sum of their dimensions are in the thousands.</p>
 <span class="p">);</span>
 </pre></div>
 </div>
+</section>
+<section id="clearing-images-cache">
+<h3>Clearing images cache<a class="headerlink" href="#clearing-images-cache" title="Permalink to this heading">¶</a></h3>
+<p>If you have called <code class="docutils literal notranslate"><span class="pre">Flame.images.clearCache()</span></code> you also need to call <code class="docutils literal notranslate"><span class="pre">TiledAtlas.clearCache()</span></code> to
+remove disposed images from the tiled cache. It might be useful if your next game map have completely
+different tiles than the previous.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -384,6 +390,7 @@ where the sum of their dimensions are in the thousands.</p>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#limitations' class='list-group-item level-1'>Limitations</a>
   <a href='#flip' class='list-group-item level-2'>Flip</a>
+  <a href='#clearing-images-cache' class='list-group-item level-2'>Clearing images cache</a>
 </div>
 
     </div>
