@@ -495,10 +495,14 @@ images, each at their own position, onto a new image:</p>
 <span class="w">    </span><span class="n">Vector2</span><span class="p">(</span><span class="m">128</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
 <span class="w">    </span><span class="k">source</span><span class="o">:</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">64</span><span class="p">,</span><span class="w"> </span><span class="m">64</span><span class="p">),</span>
 <span class="w">  </span><span class="p">);</span>
-
+<span class="w">  </span>
 <span class="n">Image</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">composition</span><span class="p">.</span><span class="n">compose</span><span class="p">();</span>
+<span class="n">Image</span><span class="w"> </span><span class="n">imageSync</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">composition</span><span class="p">.</span><span class="n">composeSync</span><span class="p">();</span>
 </pre></div>
 </div>
+<p>As you can see, two versions of composing image are available. Use <code class="docutils literal notranslate"><span class="pre">ImageComposition.compose()</span></code> for
+the async approach. Or use the new <code class="docutils literal notranslate"><span class="pre">ImageComposition.composeSync()</span></code> function to rasterize the
+image into GPU context using the benefits of the <code class="docutils literal notranslate"><span class="pre">Picture.toImageSync</span></code> function.</p>
 <p><strong>Note:</strong> Composing images is expensive, we do not recommend you run this every tick as it affect
 the performance badly. Instead we recommend to have your compositions pre-rendered so you can just
 reuse the output image.</p>
