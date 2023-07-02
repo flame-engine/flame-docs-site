@@ -24924,7 +24924,7 @@ if(r.w)r.na(a)},
 hM(a){var s,r,q=this
 a.e=q
 s=q.fX()
-if((q.a&4)!==0){r=s.at.Dh()
+if((q.a&4)!==0&&(a.a&4)===0){r=s.at.Dh()
 r.a=B.nz
 r.b=a
 r.c=q}else q.gdP(q).on(0,a)
