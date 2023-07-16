@@ -37039,9 +37039,9 @@ A.Si.prototype={
 $1(a){return a.length},
 $S:138}
 A.Sj.prototype={
-$0(){var s=this.b
-this.a.ac.t(0,s)
-s.G()},
+$0(){var s=this.a,r=this.b
+s.ac.t(0,r)
+if((s.a&4)!==0)r.G()},
 $S:13}
 A.iz.prototype={
 sdu(a,b){if(this.k4!==b){this.k4=b
