@@ -81869,7 +81869,8 @@ p=s.ay
 o=s.at.a
 a.aF(0,q-p.a*o[0],r[1]-p.b*o[1])
 r=n.ay
-if((r.a&4)!==0&&$.Cm.length<4){a.bK(0)
+q=r.a
+if((q&4)!==0&&$.Cm.length<4){a.bK(0)
 s.HT(0,a)
 try{$.Cm.push(n)
 q=n.ax
@@ -81896,7 +81897,8 @@ e=e[1]
 m=new A.a(new Float64Array(2))
 m.t(j-g+f.a*d,k-h+f.b*e)
 k=s.ay
-p=(k.a&4)!==0&&$.Cm.length<4?2:3
+j=k.a
+p=(j&4)!==0&&$.Cm.length<4?2:3
 break
 case 2:p=i.jQ(m)?4:5
 break

@@ -25557,7 +25557,8 @@ r=s.ax.a
 q=s.at.a
 a.Y(0,r[0]-0*q[0],r[1]-0*q[1])
 r=p.ay
-if((r.a&4)!==0&&$.i6.length<4){a.ai(0)
+q=r.a
+if((q&4)!==0&&$.i6.length<4){a.ai(0)
 try{$.i6.push(p)
 q=p.ax
 a.b9(0,q.at.gkh().a)
@@ -25583,7 +25584,8 @@ f=f[1]
 m=new A.y(new Float64Array(2))
 m.R(j-g+0*e,k-h+0*f)
 k=s.ay
-p=(k.a&4)!==0&&$.i6.length<4?2:3
+j=k.a
+p=(j&4)!==0&&$.i6.length<4?2:3
 break
 case 2:$.i6.push(s)
 j=s.ax

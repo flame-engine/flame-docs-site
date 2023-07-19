@@ -30074,7 +30074,8 @@ r=s.ax.a
 q=s.at.a
 a.ab(0,r[0]-0*q[0],r[1]-0*q[1])
 r=p.ay
-if((r.a&4)!==0&&$.TD.length<4){a.aD(0)
+q=r.a
+if((q&4)!==0&&$.TD.length<4){a.aD(0)
 try{$.TD.push(p)
 q=p.ax
 a.a0(0,q.at.gtb().a)
