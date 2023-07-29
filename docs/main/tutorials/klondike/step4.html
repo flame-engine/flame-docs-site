@@ -805,17 +805,19 @@ like so:</p>
 it so that it would check whether the card is allowed to be moved before starting the drag:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragStart</span><span class="p">(</span><span class="n">DragStartEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pile</span><span class="o">?</span><span class="p">.</span><span class="n">canMoveCard</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">_isDragging</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">      </span><span class="k">super</span><span class="p">.</span><span class="n">onDragStart</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
 <span class="w">      </span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
-<p>We have also added the boolean <code class="docutils literal notranslate"><span class="pre">_isDragging</span></code> variable here: make sure to define it, and then to
-check this flag in the <code class="docutils literal notranslate"><span class="pre">onDragUpdate()</span></code> method, and to set it back to false in the <code class="docutils literal notranslate"><span class="pre">onDragEnd()</span></code>:</p>
+<p>We have also added a call to <code class="docutils literal notranslate"><span class="pre">super.onDragStart()</span></code> which sets an <code class="docutils literal notranslate"><span class="pre">_isDragged</span></code> variable to <code class="docutils literal notranslate"><span class="pre">true</span></code>
+in the <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixin, we need to check this flag via the public <code class="docutils literal notranslate"><span class="pre">isDragged</span></code> getter in
+the <code class="docutils literal notranslate"><span class="pre">onDragUpdate()</span></code> method and use <code class="docutils literal notranslate"><span class="pre">super.onDragEnd()</span></code> in <code class="docutils literal notranslate"><span class="pre">onDragEnd()</span></code> so the flag is set back
+to <code class="docutils literal notranslate"><span class="pre">false</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">_isDragging</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isDragged</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">return</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">cameraZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">findGame</span><span class="p">()</span><span class="o">!</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">)</span>
@@ -827,11 +829,11 @@ check this flag in the <code class="docutils literal notranslate"><span class="p
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">_isDragging</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
-<p>Now the only the proper cards can be dragged, but they still drop at random positions on the table,
+<p>Now only the proper cards can be dragged, but they still drop at random positions on the table,
 so let’s work on that.</p>
 </section>
 <section id="dropping-the-cards-at-proper-locations">
@@ -843,10 +845,10 @@ position on the screen.</p>
 <p>Thus, my first attempt at revising the <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code> callback looks like this:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">_isDragging</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isDragged</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">return</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">_isDragging</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">dropPiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="o">!</span>
 <span class="w">        </span><span class="p">.</span><span class="n">componentsAtPoint</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
 <span class="w">        </span><span class="p">.</span><span class="n">whereType</span><span class="o">&lt;</span><span class="n">Pile</span><span class="o">&gt;</span><span class="p">()</span>
@@ -997,10 +999,10 @@ implement this method in all four pile subclasses:</p>
 <p>Now, putting this all together, the <code class="docutils literal notranslate"><span class="pre">Card</span></code>’s <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code> method will look like this:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">_isDragging</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isDragged</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">return</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">_isDragging</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">dropPiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="o">!</span>
 <span class="w">        </span><span class="p">.</span><span class="n">componentsAtPoint</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
 <span class="w">        </span><span class="p">.</span><span class="n">whereType</span><span class="o">&lt;</span><span class="n">Pile</span><span class="o">&gt;</span><span class="p">()</span>
@@ -1087,7 +1089,7 @@ dragging cards that are not necessarily on top:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragStart</span><span class="p">(</span><span class="n">DragStartEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pile</span><span class="o">?</span><span class="p">.</span><span class="n">canMoveCard</span><span class="p">(</span><span class="k">this</span><span class="p">)</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">_isDragging</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">      </span><span class="k">super</span><span class="p">.</span><span class="n">onDragStart</span><span class="p">();</span>
 <span class="w">      </span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
 <span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pile</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">TableauPile</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">        </span><span class="n">attachedCards</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
@@ -1105,7 +1107,7 @@ dragging cards that are not necessarily on top:</p>
 the <code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code> method:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">_isDragging</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isDragged</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">return</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">cameraZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">findGame</span><span class="p">()</span><span class="o">!</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">)</span>
@@ -1135,10 +1137,10 @@ pile. So, go back into the <code class="docutils literal notranslate"><span clas
 attached cards into the pile, and the same when it comes to returning the cards into the old pile:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">_isDragging</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isDragged</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">return</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="n">_isDragging</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">dropPiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="o">!</span>
 <span class="w">        </span><span class="p">.</span><span class="n">componentsAtPoint</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
 <span class="w">        </span><span class="p">.</span><span class="n">whereType</span><span class="o">&lt;</span><span class="n">Pile</span><span class="o">&gt;</span><span class="p">()</span>
