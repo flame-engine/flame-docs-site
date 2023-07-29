@@ -432,6 +432,20 @@ in order: <code class="docutils literal notranslate"><span class="pre">onLoad</s
 <code class="docutils literal notranslate"><span class="pre">render</span></code> back and forth every tick, until the widget is removed from the tree.
 Once the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> is removed from the tree, <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> is called, just like when a normal
 component is removed from the component tree.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> can be used to clean up potential memory leaks by doing the following:</p>
+</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onRemove</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">removeAll</span><span class="p">(</span><span class="n">children</span><span class="p">);</span>
+<span class="w">    </span><span class="n">processLifecycleEvents</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">clearCache</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Flame</span><span class="p">.</span><span class="n">assets</span><span class="p">.</span><span class="n">clearCache</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Any other code that you want to run when the game is removed.</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="debug-mode">
 <h2>Debug mode<a class="headerlink" href="#debug-mode" title="Permalink to this heading">¶</a></h2>
