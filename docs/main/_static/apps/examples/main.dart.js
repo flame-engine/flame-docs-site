@@ -82836,8 +82836,9 @@ bt(){var s,r=this,q=r.ax
 if(q==null){q=r.e
 q.toString
 q=r.ax=t.du.a(q)}q=q.gb6(q)
+q=r.at.eu(0,q)
 s=r.ch
-if(r.at.eu(0,q)){q=r.ax
+if(q){q=r.ax
 q.toString
 s.q(q.gb6(q))}else{s.q(r.at.gbw())
 r.a6(0,0)}},
