@@ -434,10 +434,11 @@ Once the <code class="docutils literal notranslate"><span class="pre">GameWidget
 component is removed from the component tree.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> can be used to clean up potential memory leaks by doing the following:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> can be used to clean up potential memory leaks such as the following:</p>
 </div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onRemove</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Optional based on your game needs.</span>
 <span class="w">    </span><span class="n">removeAll</span><span class="p">(</span><span class="n">children</span><span class="p">);</span>
 <span class="w">    </span><span class="n">processLifecycleEvents</span><span class="p">();</span>
 <span class="w">    </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">clearCache</span><span class="p">();</span>
