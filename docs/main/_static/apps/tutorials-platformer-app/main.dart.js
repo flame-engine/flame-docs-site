@@ -8610,7 +8610,7 @@ this.b=b},
 KG:function KG(a){var _=this
 _.a=a
 _.d=_.c=_.b=0
-_.y=_.x=!1},
+_.z=_.y=!1},
 H9:function H9(a,b,c){var _=this
 _.b=_.a=0
 _.c=a
@@ -30896,8 +30896,8 @@ A.KD.prototype={}
 A.KG.prototype={
 Y(a){var s,r,q,p=this,o=p.c+=a
 p.d+=a
-if(p.x)return
-if(!p.y)p.y=!0
+if(p.y)return
+if(!p.z)p.z=!0
 for(s=p.a.a;r=p.b,q=s[r].b,o>=q;)if(r===s.length-1){o-=q
 p.c=o
 p.b=0}else{o-=q

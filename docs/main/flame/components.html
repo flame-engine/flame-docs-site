@@ -315,34 +315,18 @@
   <section class="tex2jax_ignore mathjax_ignore" id="components">
 <h1>Components<a class="headerlink" href="#components" title="Permalink to this heading">¶</a></h1>
 <div class="mermaid">
-            %%{init: { 'theme': 'dark' } }%%
-  graph TD  
-
-    %% Node Color %%
+            graph TD
+    %% Config %%
     classDef default fill:#282828,stroke:#F6BE00;
-    classDef yellow fill:#F6BE00,color:#000;
     
     %% Nodes %%
-
-    z(Abstract Class):::yellow
-    x(Normal Class)
-
-        </div><div class="mermaid">
-            %%{init: { 'theme': 'dark'  } }%%
-graph TD
-    %% Node Color %%
-    classDef default fill:#282828,stroke:#F6BE00;
-    classDef yellow fill:#F6BE00,color:#000;
-    
-    %% Nodes %%
-       
     Component(Component)
     Misc(&quot;
         TimerComponent
         ParticleComponent
         SpriteBatchComponent
     &quot;)
-    Effects(&quot;Effects&lt;br/&gt;(See the effects section)&quot;):::yellow
+    Effects(&quot;Effects&lt;br/&gt;(See the effects section)&quot;)
     Game(Game)
     FlameGame(FlameGame)
     PositionComponent(PositionComponent)
