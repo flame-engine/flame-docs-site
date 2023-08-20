@@ -1151,59 +1151,6 @@ rendered in the game:</p>
 </pre></div>
 </div>
 </section>
-<section id="flareactorcomponent">
-<h2>FlareActorComponent<a class="headerlink" href="#flareactorcomponent" title="Permalink to this heading">¶</a></h2>
-<p><strong>Note</strong>: The previous implementation of a Flare integration API using <code class="docutils literal notranslate"><span class="pre">FlareAnimation</span></code> and
-<code class="docutils literal notranslate"><span class="pre">FlareComponent</span></code> has been deprecated.</p>
-<p>To use Flare within Flame, use the <a class="reference external" href="https://github.com/flame-engine/flame_flare"><code class="docutils literal notranslate"><span class="pre">flame_flare</span></code></a>
-package.</p>
-<p>This is the interface for using a <a class="reference external" href="https://pub.dev/packages/flare_flutter">flare animation</a> within
-flame. <code class="docutils literal notranslate"><span class="pre">FlareActorComponent</span></code> has almost the same API as of flare’s <code class="docutils literal notranslate"><span class="pre">FlareActor</span></code> widget. It receives
-the animation filename (that is loaded by default with <code class="docutils literal notranslate"><span class="pre">Flame.bundle</span></code>), it can also receive a
-FlareController that can play multiple animations and control nodes.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_flare/flame_flare.dart&#39;</span><span class="p">;</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">YourFlareController</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlareControls</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">ActorNode</span><span class="w"> </span><span class="n">rightHandNode</span><span class="p">;</span>
-
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">initialize</span><span class="p">(</span><span class="n">FlutterActorArtboard</span><span class="w"> </span><span class="n">artboard</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">initialize</span><span class="p">(</span><span class="n">artboard</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// get flare node</span>
-<span class="w">    </span><span class="n">rightHand</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">artboard</span><span class="p">.</span><span class="n">getNode</span><span class="p">(</span><span class="s1">&#39;right_hand&#39;</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">final</span><span class="w"> </span><span class="n">fileName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;assets/george_washington.flr&#39;</span><span class="p">;</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1776</span><span class="p">,</span><span class="w"> </span><span class="m">1804</span><span class="p">);</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">YourFlareController</span><span class="p">();</span>
-
-<span class="n">FlareActorComponent</span><span class="w"> </span><span class="n">flareAnimation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlareActorComponent</span><span class="p">(</span>
-<span class="w">  </span><span class="n">fileName</span><span class="p">,</span>
-<span class="w">  </span><span class="nl">controller:</span><span class="w"> </span><span class="n">controller</span><span class="p">,</span>
-<span class="w">  </span><span class="nl">width:</span><span class="w"> </span><span class="m">306</span><span class="p">,</span>
-<span class="w">  </span><span class="nl">height:</span><span class="w"> </span><span class="m">228</span><span class="p">,</span>
-<span class="p">);</span>
-
-<span class="n">flareAnimation</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">;</span>
-<span class="n">flareAnimation</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">240</span><span class="p">;</span>
-<span class="n">add</span><span class="p">(</span><span class="n">flareAnimation</span><span class="p">);</span>
-
-<span class="c1">// to play an animation</span>
-<span class="n">controller</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;rise_up&#39;</span><span class="p">);</span>
-
-<span class="c1">// you can add another animation to play at the same time</span>
-<span class="n">controller</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;close_door_way_out&#39;</span><span class="p">);</span>
-
-<span class="c1">// also, you can get a flare node and modify it</span>
-<span class="n">controller</span><span class="p">.</span><span class="n">rightHandNode</span><span class="p">.</span><span class="n">rotation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">math</span><span class="p">.</span><span class="n">pi</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>You can also change the current playing animation by using the <code class="docutils literal notranslate"><span class="pre">updateAnimation</span></code> method.</p>
-<p>For a working example, check the example in the
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_flare/example">flame_flare repository</a>.</p>
-</section>
 <section id="parallaxcomponent">
 <h2>ParallaxComponent<a class="headerlink" href="#parallaxcomponent" title="Permalink to this heading">¶</a></h2>
 <p>This <code class="docutils literal notranslate"><span class="pre">Component</span></code> can be used to render backgrounds with a depth feeling by drawing several
@@ -1733,7 +1680,6 @@ own sprite animation based component, you can directly use a <code class="docuti
   <a href='#spriteanimationgroupcomponent' class='list-group-item level-1'>SpriteAnimationGroupComponent</a>
   <a href='#spritegroup' class='list-group-item level-1'>SpriteGroup</a>
   <a href='#svgcomponent' class='list-group-item level-1'>SvgComponent</a>
-  <a href='#flareactorcomponent' class='list-group-item level-1'>FlareActorComponent</a>
   <a href='#parallaxcomponent' class='list-group-item level-1'>ParallaxComponent</a>
   <a href='#shapecomponents' class='list-group-item level-1'>ShapeComponents</a>
   <a href='#polygoncomponent' class='list-group-item level-2'>PolygonComponent</a>

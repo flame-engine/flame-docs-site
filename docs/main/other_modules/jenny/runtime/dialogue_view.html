@@ -324,10 +324,15 @@
 <p>The <strong>DialogueView</strong> class is the main mechanism for integrating Jenny with
 a game engine. This class describes how <a class="reference internal" href="dialogue_line.html#DialogueLine"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">line</span></code></a>s and
 <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">option</span></code>s are presented to the user.</p>
-<p>The class is abstract, which means you must create a concrete
-implementation in order to use Jenny’s dialogue system. The concrete
-<code class="docutils literal notranslate"><span class="pre">DialogueView</span></code> objects will then be passed to a <a class="reference internal" href="dialogue_runner.html#DialogueRunner"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueRunner</span></code></a>, which
-will orchestrate the dialogue’s progression.</p>
+<p>There are two ways to use this class:</p>
+<ul class="simple">
+<li><p>Extending DialogueView</p></li>
+<li><p>Adding DialogueView as a mixin</p></li>
+</ul>
+<p>In both cases you will need to create concrete implementations of the
+abstract event handler methods in order to use Jenny’s dialogue system.
+The concrete <code class="docutils literal notranslate"><span class="pre">DialogueView</span></code> objects will then be passed to a
+<a class="reference internal" href="dialogue_runner.html#DialogueRunner"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">DialogueRunner</span></code></a>, which will orchestrate the dialogue’s progression.</p>
 <p>The class defines a number of “event handler” methods, which can be
 overridden in subclasses in order to respond to the corresponding event.
 Each method has a default no-op implementation, which means you only need

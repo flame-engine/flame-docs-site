@@ -568,52 +568,6 @@ Animations can be created as well.</p>
 <p>A complete example of using animations as widgets can be found
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/sprite_animation_widget_example.dart">here</a>.</p>
 </section>
-<section id="flareanimation">
-<h2>FlareAnimation<a class="headerlink" href="#flareanimation" title="Permalink to this heading">¶</a></h2>
-<p>Do note that Flare is discontinued and <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_rive">Rive</a>
-is preferred.</p>
-<p>Flame provides a simple wrapper of <a class="reference external" href="https://flare.rive.app/">Flare</a> animations so you can use
-them in Flame games.</p>
-<p>Check the following snippet on how to use this wrapper:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">FlareAnimation</span><span class="w"> </span><span class="n">flareAnimation</span><span class="p">;</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">loaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-
-<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">_start</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">_start</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">flareAnimation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FlareAnimation</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s2">&quot;assets/FLARE_FILE.flr&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">updateAnimation</span><span class="p">(</span><span class="s2">&quot;ANIMATION_NAME&quot;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">306</span><span class="p">;</span>
-<span class="w">    </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">228</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">loaded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="nl">x:</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="nl">y:</span><span class="w"> </span><span class="m">50</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">loaded</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">flareAnimation</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>FlareAnimations are normally used inside <code class="docutils literal notranslate"><span class="pre">FlareComponent</span></code>s, that way <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> will handle calling
-<code class="docutils literal notranslate"><span class="pre">render</span></code> and <code class="docutils literal notranslate"><span class="pre">update</span></code> automatically.</p>
-<p>You can see a full example of how to use Flare together with Flame in the example
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_flare/example">here</a>.</p>
-</section>
 <section id="spritesheet">
 <h2>SpriteSheet<a class="headerlink" href="#spritesheet" title="Permalink to this heading">¶</a></h2>
 <p>Sprite sheets are big images with several frames of the same sprite on it and is a very good way to
@@ -679,7 +633,6 @@ a very simple example of how to use it:</p>
   <a href='#spritebatch' class='list-group-item level-1'>SpriteBatch</a>
   <a href='#imagecomposition' class='list-group-item level-1'>ImageComposition</a>
   <a href='#animation' class='list-group-item level-1'>Animation</a>
-  <a href='#flareanimation' class='list-group-item level-1'>FlareAnimation</a>
   <a href='#spritesheet' class='list-group-item level-1'>SpriteSheet</a>
 </div>
 

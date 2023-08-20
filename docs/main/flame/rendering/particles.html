@@ -638,29 +638,6 @@ to the <code class="docutils literal notranslate"><span class="pre">game</span><
 </pre></div>
 </div>
 </section>
-<section id="flareparticle">
-<h2>FlareParticle<a class="headerlink" href="#flareparticle" title="Permalink to this heading">¶</a></h2>
-<p>To use Flare within Flame, use the
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_flare"><code class="docutils literal notranslate"><span class="pre">flame_flare</span></code></a> package.</p>
-<p>It will provide a class called <code class="docutils literal notranslate"><span class="pre">FlareParticle</span></code> that is a container for <code class="docutils literal notranslate"><span class="pre">FlareActorAnimation</span></code>, it
-propagates the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> methods to its child.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_flare/flame_flare.dart&#39;</span><span class="p">;</span>
-
-<span class="c1">// Within your game or component&#39;s `onLoad` method</span>
-<span class="k">const</span><span class="w"> </span><span class="n">flareSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">32.0</span><span class="p">;</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">flareAnimation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlareActorAnimation</span><span class="p">(</span><span class="s1">&#39;assets/sparkle.flr&#39;</span><span class="p">);</span>
-<span class="n">flareAnimation</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">flareSize</span><span class="p">;</span>
-<span class="n">flareAnimation</span><span class="p">.</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">flareSize</span><span class="p">;</span>
-
-<span class="c1">// Somewhere in game</span>
-<span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">FlareParticle</span><span class="p">(</span><span class="nl">flare:</span><span class="w"> </span><span class="n">flareAnimation</span><span class="p">),</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</section>
 <section id="computedparticle">
 <h2>ComputedParticle<a class="headerlink" href="#computedparticle" title="Permalink to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">Particle</span></code> which could help you when:</p>
@@ -770,7 +747,6 @@ randomly positioning its child during each frame:</p>
   <a href='#imageparticle' class='list-group-item level-1'>ImageParticle</a>
   <a href='#spriteanimationparticle' class='list-group-item level-1'>SpriteAnimationParticle</a>
   <a href='#componentparticle' class='list-group-item level-1'>ComponentParticle</a>
-  <a href='#flareparticle' class='list-group-item level-1'>FlareParticle</a>
   <a href='#computedparticle' class='list-group-item level-1'>ComputedParticle</a>
   <a href='#nesting-behavior' class='list-group-item level-1'>Nesting behavior</a>
 </div>
