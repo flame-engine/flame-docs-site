@@ -699,11 +699,76 @@ within the viewport.</p>
 <p>Do note that this setting is only respected if the component is added directly to the root
 <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> and not as a child component of another component.</p>
 </section>
+<section id="visibility-of-components">
+<h3>Visibility of components<a class="headerlink" href="#visibility-of-components" title="Permalink to this heading">¶</a></h3>
+<p>The recommended way to hide or show a component is usually to add or remove it from the tree
+using the <code class="docutils literal notranslate"><span class="pre">add</span></code> and <code class="docutils literal notranslate"><span class="pre">remove</span></code> methods.</p>
+<p>However, adding and removing components from the tree will trigger lifecycle steps for that
+component (such as calling <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> and <code class="docutils literal notranslate"><span class="pre">onMount</span></code>). It is also an asynchronous process and care
+needs to be taken to ensure the component has finished removing before it is added again if you
+are removing and adding a component in quick succession.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Example of handling the removal and adding of a child component</span>
+<span class="c1">/// in quick succession</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">show</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Need to await the [removed] future first, just in case the</span>
+<span class="w">  </span><span class="c1">// component is still in the process of being removed.</span>
+<span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">myChildComponent</span><span class="p">.</span><span class="n">removed</span><span class="p">;</span>
+<span class="w">  </span><span class="n">add</span><span class="p">(</span><span class="n">myChildComponent</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">hide</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">remove</span><span class="p">(</span><span class="n">myChildComponent</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>These behaviors are not always desirable.</p>
+<p>An alternative method to show and hide a component is to use the <code class="docutils literal notranslate"><span class="pre">HasVisibility</span></code> mixin, which may
+be used on any class that inherits from <code class="docutils literal notranslate"><span class="pre">Component</span></code>. This mixin introduces the <code class="docutils literal notranslate"><span class="pre">isVisible</span></code> property.
+Simply set <code class="docutils literal notranslate"><span class="pre">isVisible</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code> to hide the component, and <code class="docutils literal notranslate"><span class="pre">true</span></code> to show it again, without
+removing it from the tree. This affects the visibility of the component and all it’s descendants
+(children).</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">/// Example that implements HasVisibility</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasVisibility</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="c1">/// Usage of the isVisible property </span>
+<span class="kd">final</span><span class="w"> </span><span class="n">myComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyComponent</span><span class="p">();</span>
+<span class="n">add</span><span class="p">(</span><span class="n">myComponent</span><span class="p">);</span>
+
+<span class="n">myComponent</span><span class="p">.</span><span class="n">isVisible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The mixin only affects whether the component is rendered, and will not affect other behaviors.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Important! Even when the component is not visible, it is still in the tree and
+will continue to receive calls to ‘update’ and all other lifecycle events. It
+will still respond to input events, and will still interact with other
+components, such as collision detection for example.</p>
+</div>
+<p>The mixin works by preventing the <code class="docutils literal notranslate"><span class="pre">renderTree</span></code> method, therefore if <code class="docutils literal notranslate"><span class="pre">renderTree</span></code> is being
+overridden, a manual check for <code class="docutils literal notranslate"><span class="pre">isVisible</span></code> should be included to retain this functionality.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasVisibility</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">renderTree</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Check for visibility</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isVisible</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Custom code here</span>
+
+<span class="w">      </span><span class="c1">// Continue rendering the tree</span>
+<span class="w">      </span><span class="k">super</span><span class="p">.</span><span class="n">renderTree</span><span class="p">(</span><span class="n">canvas</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="positioncomponent">
 <h2>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this heading">¶</a></h2>
-<p>This class represent a positioned object on the screen, being a floating rectangle or a rotating
-sprite. It can also represent a group of positioned components if children are added to it.</p>
+<p>This class represents a positioned object on the screen, being a floating rectangle, a rotating
+sprite, or anything else with position and size. It can also represent a group of positioned
+components if children are added to it.</p>
 <p>The base of the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is that it has a <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">size</span></code>, <code class="docutils literal notranslate"><span class="pre">scale</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code> and
 <code class="docutils literal notranslate"><span class="pre">anchor</span></code> which transforms how the component is rendered.</p>
 <section id="position">
@@ -1651,6 +1716,7 @@ own sprite animation based component, you can directly use a <code class="docuti
   <a href='#querying-child-components' class='list-group-item level-2'>Querying child components</a>
   <a href='#querying-components-at-a-specific-point-on-the-screen' class='list-group-item level-2'>Querying components at a specific point on the screen</a>
   <a href='#positiontype' class='list-group-item level-2'>PositionType</a>
+  <a href='#visibility-of-components' class='list-group-item level-2'>Visibility of components</a>
   <a href='#positioncomponent' class='list-group-item level-1'>PositionComponent</a>
   <a href='#position' class='list-group-item level-2'>Position</a>
   <a href='#size' class='list-group-item level-2'>Size</a>
