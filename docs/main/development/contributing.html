@@ -421,6 +421,11 @@ command once.</p>
 <a class="reference external" href="https://github.com/igorshubovych/markdownlint-cli">markdownlint-cli</a> and once that is installed you
 can run <code class="docutils literal notranslate"><span class="pre">melos</span> <span class="pre">markdown-check</span></code> to check if the markdown follows the rules. Some markdown linting
 errors can be automatically fixed with <code class="docutils literal notranslate"><span class="pre">melos</span> <span class="pre">markdown-fix</span></code>.</p>
+<p>Note that, sadly, a particularly laborious rule, MD013, <a class="reference external" href="https://github.com/DavidAnson/markdownlint/issues/535">does not provide an auto-fix
+option</a>. However, you can use other tools to
+circumvent this. For example, the extension <a class="reference external" href="https://stkb.github.io/Rewrap/">Rewrap</a> for VSCode, when
+<a class="reference external" href="https://stkb.github.io/Rewrap/configuration/">configured with</a> <code class="docutils literal notranslate"><span class="pre">rewrap.wrappingColumn=100</span></code>, will do
+the trick for you.</p>
 </section>
 <section id="performing-changes">
 <h3>Performing changes<a class="headerlink" href="#performing-changes" title="Permalink to this heading">¶</a></h3>
