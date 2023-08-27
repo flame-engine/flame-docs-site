@@ -315,78 +315,62 @@
   <section class="tex2jax_ignore mathjax_ignore" id="text-rendering">
 <h1>Text Rendering<a class="headerlink" href="#text-rendering" title="Permalink to this heading">¶</a></h1>
 <p>Flame has some dedicated classes to help you render text.</p>
-<section id="textrenderer">
-<h2>TextRenderer<a class="headerlink" href="#textrenderer" title="Permalink to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">TextRenderer</span></code> is the abstract class used by Flame to render text. Flame provides one
-implementation for this called <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> but anyone can implement this abstraction
-and create a custom way to render text.</p>
-</section>
-<section id="textpaint">
-<h2>TextPaint<a class="headerlink" href="#textpaint" title="Permalink to this heading">¶</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> is the built-in implementation of text rendering in Flame, it is based on top of
-Flutter’s <code class="docutils literal notranslate"><span class="pre">TextPainter</span></code> class (hence the name), and it can be configured by the style class <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>
-which contains all typographical information required to render text; i.e., font size and color,
-font family, etc.</p>
-<p>Example usage:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">TextPaint</span><span class="w"> </span><span class="n">textPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span>
-<span class="w">  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">48.0</span><span class="p">,</span>
-<span class="w">    </span><span class="nl">fontFamily:</span><span class="w"> </span><span class="s1">&#39;Awesome Font&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-<p>Note: there are several packages that contain the class <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>, make sure that you import
-either <code class="docutils literal notranslate"><span class="pre">package:flutter/material.dart</span></code> or <code class="docutils literal notranslate"><span class="pre">package:flutter/painting.dart</span></code> and if you also need to
-import <code class="docutils literal notranslate"><span class="pre">dart:ui</span></code> you need to import it like this (since that contains another class that is also
-named <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="w"> </span><span class="k">hide</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">;</span>
-</pre></div>
-</div>
-<p>Some common properties of <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code> are the following (here is the
-<a class="reference external" href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">full list</a>):</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">fontFamily</span></code>: a commonly available font, like Arial (default), or a custom font added in your
-pubspec (see <a class="reference external" href="https://docs.flutter.dev/cookbook/design/fonts">here</a> how to do it).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">fontSize</span></code>: font size, in pts (default <code class="docutils literal notranslate"><span class="pre">24.0</span></code>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">height</span></code>: height of text line, as a multiple of font size (default <code class="docutils literal notranslate"><span class="pre">null</span></code>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: the color, as a <code class="docutils literal notranslate"><span class="pre">ui.Color</span></code> (default white).</p></li>
-</ul>
-<p>For more information regarding colors and how to create then, see the
-<a class="reference internal" href="palette.html"><span class="std std-doc">Colors and the Palette</span></a> guide.</p>
-<p>After the creation of the <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> object you can use its <code class="docutils literal notranslate"><span class="pre">render</span></code> method to draw strings on
-a canvas:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">textPaint</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Flame is awesome&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">));</span>
-</pre></div>
-</div>
-<p>If you want to set the anchor of the text you can also do that in the render call, with the optional
-<code class="docutils literal notranslate"><span class="pre">anchor</span></code> parameter:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">textPaint</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Flame is awesome&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">);</span>
-</pre></div>
-</div>
-</section>
 <section id="text-components">
 <h2>Text Components<a class="headerlink" href="#text-components" title="Permalink to this heading">¶</a></h2>
-<p>Flame provides two text components that make it even easier to render text in your game:
-<code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> and <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code>.</p>
+<p>The simplest way to render text with Flame is to leverage one of the provided text-rendering
+components:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> for rendering a single line of text</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> for bounding multi-line text within a sized box, including the possibility of a
+typing effect</p></li>
+</ul>
+<p>Both components are showcased in <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/text_example.dart">this
+example</a>.</p>
 <section id="textcomponent">
 <h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> is a simple component that renders a single line of text.</p>
-<p>Example usage:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">style</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span><span class="nl">style:</span><span class="w"> </span><span class="n">style</span><span class="p">);</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<p>Simple usage:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">TextComponent</span><span class="p">(</span><span class="nl">text:</span><span class="w"> </span><span class="s1">&#39;Hello, Flame&#39;</span><span class="p">,</span><span class="w"> </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">regular</span><span class="p">)</span>
-<span class="w">      </span><span class="p">..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span>
-<span class="w">      </span><span class="p">..</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="c1">// size is a property from game</span>
-<span class="w">      </span><span class="p">..</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">32.0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span>
+<span class="w">      </span><span class="n">TextComponent</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">text:</span><span class="w"> </span><span class="s1">&#39;Hello, Flame&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16.0</span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>In order to configure aspects of the rendering like font family, size, color, etc, you need to
+provide (or amend) a <code class="docutils literal notranslate"><span class="pre">TextRenderer</span></code> with such information; while you can read more details ab out
+this interface below, the simplest implementation you can use is the <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code>, which takes a
+Flutter <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">48.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">color:</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">,</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">);</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span>
+<span class="w">      </span><span class="n">TextComponent</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">text:</span><span class="w"> </span><span class="s1">&#39;Hello, Flame&#39;</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">regular</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">32.0</span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can find all the options under <a class="reference external" href="https://pub.dev/documentation/flame/latest/components/TextComponent-class.html">TextComponent’s
+API</a>.</p>
 </section>
 <section id="textboxcomponent">
 <h3>TextBoxComponent<a class="headerlink" href="#textboxcomponent" title="Permalink to this heading">¶</a></h3>
@@ -395,10 +379,12 @@ text inside a bounding box, creating line breaks according to the provided box s
 <p>You can decide if the box should grow as the text is written or if it should be static by the
 <code class="docutils literal notranslate"><span class="pre">growingBox</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>. A static box could either have a fixed size (setting
 the <code class="docutils literal notranslate"><span class="pre">size</span></code> property of the <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code>), or to automatically shrink to fit the text content.</p>
-<p>In addition, the <code class="docutils literal notranslate"><span class="pre">align</span></code> property allows you to control the the horizontal and vertical alignment
-of the text content. For example, setting <code class="docutils literal notranslate"><span class="pre">align</span></code> to <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code> will center the text within
-its bounding box both vertically and horizontally.</p>
+<p>In addition, the <code class="docutils literal notranslate"><span class="pre">align</span></code> property allows you to control the the horizontal and vertical alignment of
+the text content. For example, setting <code class="docutils literal notranslate"><span class="pre">align</span></code> to <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code> will center the text within its
+bounding box both vertically and horizontally.</p>
 <p>If you want to change the margins of the box use the <code class="docutils literal notranslate"><span class="pre">margins</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>.</p>
+<p>Finally, if you want to simulate a “typing” effect, by showing each character of the string one by
+one as if being typed in real-time, you can provide the <code class="docutils literal notranslate"><span class="pre">boxConfig.timePerChar</span></code> parameter.</p>
 <p>Example usage:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyTextBox</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">TextBoxComponent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
@@ -420,9 +406,190 @@ its bounding box both vertically and horizontally.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Both components are showcased in an example
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/text_example.dart">here</a></p>
+<p>You can find all the options under <a class="reference external" href="https://pub.dev/documentation/flame/latest/components/TextBoxComponent-class.html">TextBoxComponent’s
+API</a>.</p>
 </section>
+</section>
+<section id="infrastructure">
+<h2>Infrastructure<a class="headerlink" href="#infrastructure" title="Permalink to this heading">¶</a></h2>
+<p>If you are not using the Flame Component System, want to understand the infrastructure behind text
+rendering, want to customize fonts and styles used, or want to create your own custom renderers,
+this section is for you.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TextRenderer</span></code>: renderers know “how” to render text; in essence they contain the style information
+to render any string</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TextElement</span></code>: an element is formatted, “laid-out” piece of text, include the string (“what”) and
+the style (“how”)</p></li>
+</ul>
+<p>The following diagram showcases the class and inheritance structure of the text rendering pipeline:</p>
+<div class="highlight-mermaid notranslate"><div class="highlight"><pre><span></span>classDiagram
+    %% renderers
+    note for TextRenderer &quot;This just the style (how).
+    It knows how to take a text string and create a TextElement.
+    `render` is just a helper to `format(text).render(...)`. Same for `getLineMetrics`.&quot;
+    class TextRenderer {
+        TextElement format(String text)
+        LineMetrics getLineMetrics(String text)
+        void render(Canvas canvas, String text, ...)
+    }
+    class TextPaint
+    class SpriteFontRenderer
+    class DebugTextRenderer
+    
+    %% elements
+    class TextElement {
+        LineMetrics metrics
+        render(Canvas canvas, ...)
+    }
+    class TextPainterTextElement
+        
+    TextRenderer --&gt; TextPaint
+    TextRenderer --&gt; SpriteFontRenderer
+    TextRenderer --&gt; DebugTextRenderer
+
+    TextRenderer *-- TextElement
+    TextPaint *-- TextPainterTextElement
+    SpriteFontRenderer *-- SpriteFontTextElement
+
+    note for TextElement &quot;This is the text (what) and the style (how);
+    laid out and ready to render.&quot;
+    TextElement --&gt; TextPainterTextElement
+    TextElement --&gt; SpriteFontTextElement
+    TextElement --&gt; Others
+</pre></div>
+</div>
+<section id="textrenderer">
+<h3>TextRenderer<a class="headerlink" href="#textrenderer" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">TextRenderer</span></code> is the abstract class used by Flame to render text. Implementations of <code class="docutils literal notranslate"><span class="pre">TextRenderer</span></code>
+must include the information about the “how” the text is rendered. Font style, size, color, etc. It
+should be able to combine that information with a given string of text, via the <code class="docutils literal notranslate"><span class="pre">format</span></code> method, to
+generate a <code class="docutils literal notranslate"><span class="pre">TextElement</span></code>.</p>
+<p>Flame provides two concrete implementations:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">TextPaint</span></code>: most used, uses Flutter <code class="docutils literal notranslate"><span class="pre">TextPainter</span></code> to render regular text</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SpriteFontRenderer</span></code>: uses a <code class="docutils literal notranslate"><span class="pre">SpriteFont</span></code> (a spritesheet-based font) to render bitmap text</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DebugTextRenderer</span></code>: only intended to be used for Golden Tests</p></li>
+</ul>
+<p>But you can also provide your own if you want to extend to other customized forms of text rendering.</p>
+<p>The main job of a <code class="docutils literal notranslate"><span class="pre">TextRenderer</span></code> is to format a string of text into a <code class="docutils literal notranslate"><span class="pre">TextElement</span></code>, that then can
+be rendered onto the screen:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">textElement</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">textRenderer</span><span class="p">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;Flame is awesome&quot;</span><span class="p">)</span>
+<span class="n">textElement</span><span class="p">.</span><span class="n">render</span><span class="p">(...)</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>However the renderer provides a helper method to directly create the element and render it:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">textRenderer</span><span class="p">.</span><span class="n">render</span><span class="p">(</span>
+<span class="w">  </span><span class="n">canvas</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;Flame is awesome&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<section id="textpaint">
+<h4>TextPaint<a class="headerlink" href="#textpaint" title="Permalink to this heading">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> is the built-in implementation of text rendering in Flame. It is based on top of
+Flutter’s <code class="docutils literal notranslate"><span class="pre">TextPainter</span></code> class (hence the name), and it can be configured by the style class
+<code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>, which contains all typographical information required to render text; i.e., font size
+and color, font family, etc.</p>
+<p>Outside of the style you can also optionally provide one extra parameter which is the
+<code class="docutils literal notranslate"><span class="pre">textDirection</span></code> (but that is typically already set to <code class="docutils literal notranslate"><span class="pre">ltr</span></code> or left-to-right).</p>
+<p>Example usage:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">const</span><span class="w"> </span><span class="n">TextPaint</span><span class="w"> </span><span class="n">textPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">style:</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">48.0</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">fontFamily:</span><span class="w"> </span><span class="s1">&#39;Awesome Font&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Note: there are several packages that contain the class <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>. We export the right one (from
+Flutter) via the <code class="docutils literal notranslate"><span class="pre">text</span></code> module:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/text.dart&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>But if you want to import it explicitly, make sure that you import it from
+<code class="docutils literal notranslate"><span class="pre">package:flutter/painting.dart</span></code> (or from material or widgets). If you also need to import <code class="docutils literal notranslate"><span class="pre">dart:ui</span></code>,
+you might need to hide its version of <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>, since that module contains a different class with
+the same name:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/painting.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="w"> </span><span class="k">hide</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Some common properties of <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code> are the following (here is the <a class="reference external" href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">full
+list</a>):</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">fontFamily</span></code>: a commonly available font, like Arial (default), or a custom font added in your
+pubspec (see <a class="reference external" href="https://docs.flutter.dev/cookbook/design/fonts">here</a> how to do it).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fontSize</span></code>: font size, in pts (default <code class="docutils literal notranslate"><span class="pre">24.0</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">height</span></code>: height of text line, as a multiple of font size (default <code class="docutils literal notranslate"><span class="pre">null</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: the color, as a <code class="docutils literal notranslate"><span class="pre">ui.Color</span></code> (default white).</p></li>
+</ul>
+<p>For more information regarding colors and how to create then, see the <a class="reference internal" href="palette.html"><span class="std std-doc">Colors and the
+Palette</span></a> guide.</p>
+</section>
+<section id="spritefontrenderer">
+<h4>SpriteFontRenderer<a class="headerlink" href="#spritefontrenderer" title="Permalink to this heading">¶</a></h4>
+<p>The other renderer option provided out of the box is <code class="docutils literal notranslate"><span class="pre">SpriteFontRenderer</span></code>, which allows you to
+provide a <code class="docutils literal notranslate"><span class="pre">SpriteFont</span></code> based off of a spritesheet. TODO</p>
+</section>
+<section id="debugtextrenderer">
+<h4>DebugTextRenderer<a class="headerlink" href="#debugtextrenderer" title="Permalink to this heading">¶</a></h4>
+<p>This renderer is intended to be used for Golden Tests. Rendering normal font-based text in Golden
+Tests is unreliable due to differences in font definitions across platforms and different algorithms
+used for anti-aliasing. This renderer will render text as if each word was a solid rectangle, making
+it possible to test the layout, positioning and sizing of the elements without having to rely on
+font-based rendering.</p>
+</section>
+</section>
+</section>
+<section id="text-elements">
+<h2>Text Elements<a class="headerlink" href="#text-elements" title="Permalink to this heading">¶</a></h2>
+<p>Text Elements are “pre-compiled”, formatted and laid-out pieces of text with a specific styling
+applied, ready to be rendered at any given position.</p>
+<p><code class="docutils literal notranslate"><span class="pre">TextElement</span></code> implements the <code class="docutils literal notranslate"><span class="pre">Element</span></code> interface and must implement their two methods, one that
+teaches how to translate it around and another on how to draw it to the canvas:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">translate</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dx</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">dy</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">draw</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>These methods are intended to be overwritten by the implementations of <code class="docutils literal notranslate"><span class="pre">TextElement</span></code> but probably
+will not be called directly by users; because a convenient <code class="docutils literal notranslate"><span class="pre">render</span></code> method is provided:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">,</span>
+<span class="w">    </span><span class="n">Vector2</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">Anchor</span><span class="w"> </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">,</span>
+<span class="w">  </span><span class="p">})</span>
+</pre></div>
+</div>
+<p>That allows the element to be rendered at a specific position, using a given anchor.</p>
+<p>The interface also mandates (and provides) a getter for the LineMetrics object associated with that
+<code class="docutils literal notranslate"><span class="pre">TextElement</span></code>, which allows you (and the <code class="docutils literal notranslate"><span class="pre">render</span></code> implementation) to access sizing information
+related to the element (width, height, ascend, etc).</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="n">LineMetrics</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">metrics</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="elements-nodes-and-styles">
+<h2>Elements, Nodes, and Styles<a class="headerlink" href="#elements-nodes-and-styles" title="Permalink to this heading">¶</a></h2>
+<p>While normal renderers always work with TextElements directly, there is a bigger underlying
+infrastructure that can be used to render more rich or formatter text.</p>
+<p>Elements are a superset of TextElements that represent an arbitrary rendering block within a
+rich-text document. Essentially, they are concrete and “physical”: they are objects that are ready
+to be rendered on a canvas.</p>
+<p>This property distinguishes them from Nodes, which are structured pieces of text, and from Styles,
+which are descriptors for how arbitrary pieces of text ought to be rendered.</p>
+<p>So a user would use Node to describe a desired document of rich text; define Styles to apply to it;
+and use that to generate an Element. Depending on the type of rendering, the Element generated will
+be a TextElement, which brings us back to the normal flow of the rendering pipeline. The unique
+property of the Text-type element is that it exposes a LineMetrics that can be used for advanced
+rendering; while the other elements only expose a simpler <code class="docutils literal notranslate"><span class="pre">draw</span></code> method which is unaware of sizing
+and positioning.</p>
+<p>However the other types of Elements, Nodes and Style must be used if the intent is to create an
+entire Document, enriched with formatted text. Currently these extra features of the system are not
+exposed through FCS, but can be used directly.</p>
+<p>An example of such usages can be seen in <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/rich_text_example.dart">this
+example</a>.</p>
 </section>
 </section>
 
@@ -456,11 +623,16 @@ its bounding box both vertically and horizontally.</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
-  <a href='#textrenderer' class='list-group-item level-1'>TextRenderer</a>
-  <a href='#textpaint' class='list-group-item level-1'>TextPaint</a>
   <a href='#text-components' class='list-group-item level-1'>Text Components</a>
   <a href='#textcomponent' class='list-group-item level-2'>TextComponent</a>
   <a href='#textboxcomponent' class='list-group-item level-2'>TextBoxComponent</a>
+  <a href='#infrastructure' class='list-group-item level-1'>Infrastructure</a>
+  <a href='#textrenderer' class='list-group-item level-2'>TextRenderer</a>
+  <a href='#textpaint' class='list-group-item level-3'>TextPaint</a>
+  <a href='#spritefontrenderer' class='list-group-item level-3'>SpriteFontRenderer</a>
+  <a href='#debugtextrenderer' class='list-group-item level-3'>DebugTextRenderer</a>
+  <a href='#text-elements' class='list-group-item level-1'>Text Elements</a>
+  <a href='#elements-nodes-and-styles' class='list-group-item level-1'>Elements, Nodes, and Styles</a>
 </div>
 
     </div>
