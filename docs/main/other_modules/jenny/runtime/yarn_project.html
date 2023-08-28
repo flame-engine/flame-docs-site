@@ -39,7 +39,7 @@
   <link rel="index" title="Index" href="../../../genindex.html" />
   <link rel="search" title="Search" href="../../../search.html" />
   <link rel="next" title="Oxygen" href="../../oxygen/oxygen.html" />
-  <link rel="prev" title="UserDefinedCommand" href="user_defined_command.html" />
+  <link rel="prev" title="VariableStorage" href="variable_storage.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -246,6 +246,7 @@
 <li class="toctree-l4"><a class="reference internal" href="markup_attribute.html">MarkupAttribute</a></li>
 <li class="toctree-l4"><a class="reference internal" href="node.html">Node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="user_defined_command.html">UserDefinedCommand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="variable_storage.html">VariableStorage</a></li>
 <li class="toctree-l4 current"><a class="current reference internal" href="#">YarnProject</a></li>
 </ul>
 </li>
@@ -376,6 +377,11 @@ they are encountered in scripts.</p>
 </dd>
 <dt><strong>trueValues</strong>, <strong>falseValues</strong> <code class="docutils literal notranslate"><span class="pre">Set&lt;String&gt;</span></code></dt><dd><p>The strings that can be recognized as <code class="docutils literal notranslate"><span class="pre">true</span></code>/<code class="docutils literal notranslate"><span class="pre">false</span></code> values respectively.</p>
 </dd>
+<dt><strong>variables</strong> <code class="docutils literal notranslate"><span class="pre">VariableStorage</span></code></dt><dd><p>The <a class="reference internal" href="variable_storage.html"><span class="std std-doc">container</span></a> for all variables declared and manipulated in your yarn scripts.
+This is also used for maintaining the visit counts for nodes that the user has visited. To
+implement a ‘save game’ feature it is possible to save the variables from
+<code class="docutils literal notranslate"><span class="pre">VariableStorage.variables</span></code> and later restore them again.</p>
+</dd>
 </dl>
 </section>
 <section id="methods">
@@ -397,11 +403,11 @@ existing ones.</p>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="user_defined_command.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="variable_storage.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">UserDefinedCommand</p>
+          <p class="prev-next-title">VariableStorage</p>
         </div>
       </a>
       <div class='expander'></div>
