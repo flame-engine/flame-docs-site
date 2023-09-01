@@ -1460,57 +1460,6 @@ radius is in comparison to the shortest edge of the of the bounding box defined 
 </div>
 </section>
 </section>
-<section id="tiledcomponent">
-<h2>TiledComponent<a class="headerlink" href="#tiledcomponent" title="Permalink to this heading">¶</a></h2>
-<p>Tiled is a free and open source, full-featured level and map editor for your platformer or
-RPG game. Currently we have an “in progress” implementation of a Tiled component. This API
-uses the lib <a class="reference external" href="https://github.com/flame-engine/tiled.dart">tiled.dart</a> to parse map files and
-render visible layers using the performant <code class="docutils literal notranslate"><span class="pre">SpriteBatch</span></code> for each layer.</p>
-<p>Supported map types include: Orthogonal, Isometric, Hexagonal, and Staggered.</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head text-center"><p>Orthogonal</p></th>
-<th class="head text-center"><p>Hexagonal</p></th>
-<th class="head text-center"><p>Isomorphic</p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td class="text-center"><p><img alt="An example of an orthogonal map" src="../_images/orthogonal.png" /></p></td>
-<td class="text-center"><p><img alt="An example of hexagonal map" src="../_images/pointy_hex_even.png" /></p></td>
-<td class="text-center"><p><img alt="An example of isomorphic map" src="../_images/tile_stack_single_move.png" /></p></td>
-</tr>
-</tbody>
-</table>
-<p>An example of how to use the API can be found
-<a class="reference external" href="https://github.com/flame-engine/flame_tiled/tree/main/example">here</a>.</p>
-<section id="tilestack">
-<h3>TileStack<a class="headerlink" href="#tilestack" title="Permalink to this heading">¶</a></h3>
-<p>Once a <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code> is loaded, you can select any column of (x,y) tiles in a <code class="docutils literal notranslate"><span class="pre">tileStack</span></code> to
-then add animation. Removing the stack will not remove the tiles from the map.</p>
-<blockquote>
-<div><p><strong>Note</strong>: This currently only supports position based effects.</p>
-</div></blockquote>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">stack</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">map</span><span class="p">.</span><span class="n">tileMap</span><span class="p">.</span><span class="n">tileStack</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nl">named:</span><span class="w"> </span><span class="p">{</span><span class="s1">&#39;floor_under&#39;</span><span class="p">});</span>
-<span class="w">  </span><span class="n">stack</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">    </span><span class="n">SequenceEffect</span><span class="p">(</span>
-<span class="w">      </span><span class="p">[</span>
-<span class="w">        </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span>
-<span class="w">          </span><span class="n">Vector2</span><span class="p">(</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
-<span class="w">          </span><span class="n">NoiseEffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nl">frequency:</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
-<span class="w">        </span><span class="p">),</span>
-<span class="w">        </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">(),</span><span class="w"> </span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">2</span><span class="p">)),</span>
-<span class="w">      </span><span class="p">],</span>
-<span class="w">      </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">      </span><span class="p">..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">stack</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">(),</span>
-<span class="w">  </span><span class="p">);</span>
-<span class="w">  </span><span class="n">map</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">stack</span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
-</section>
 <section id="isometrictilemapcomponent">
 <h2>IsometricTileMapComponent<a class="headerlink" href="#isometrictilemapcomponent" title="Permalink to this heading">¶</a></h2>
 <p>This component allows you to render an isometric map based on a cartesian matrix of blocks and an
@@ -1737,8 +1686,6 @@ own sprite animation based component, you can directly use a <code class="docuti
   <a href='#polygoncomponent' class='list-group-item level-2'>PolygonComponent</a>
   <a href='#rectanglecomponent' class='list-group-item level-2'>RectangleComponent</a>
   <a href='#circlecomponent' class='list-group-item level-2'>CircleComponent</a>
-  <a href='#tiledcomponent' class='list-group-item level-1'>TiledComponent</a>
-  <a href='#tilestack' class='list-group-item level-2'>TileStack</a>
   <a href='#isometrictilemapcomponent' class='list-group-item level-1'>IsometricTileMapComponent</a>
   <a href='#ninetileboxcomponent' class='list-group-item level-1'>NineTileBoxComponent</a>
   <a href='#custompaintercomponent' class='list-group-item level-1'>CustomPainterComponent</a>
