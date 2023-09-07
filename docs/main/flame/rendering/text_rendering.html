@@ -460,6 +460,32 @@ example</a>.</p>
 <p>For more details about the underlying mechanics of the text rendering pipeline, see “Text Elements,
 Text Nodes, and Text Styles” below.</p>
 </section>
+<section id="flame-markdown">
+<h3>Flame Markdown<a class="headerlink" href="#flame-markdown" title="Permalink to this heading">¶</a></h3>
+<p>In order to more easily create rich-text-based DocumentRoots, from simple strings with bold/italics
+to complete structured documents, Flame provides the <code class="docutils literal notranslate"><span class="pre">flame_markdown</span></code> bridge package that connects
+the <code class="docutils literal notranslate"><span class="pre">markdown</span></code> library with Flame’s text rendering infrastructure.</p>
+<p>Just use the <code class="docutils literal notranslate"><span class="pre">FlameMarkdown</span></code> helper class and the <code class="docutils literal notranslate"><span class="pre">toDocument</span></code> method to convert a markdown string
+into a DocumentRoot (which can then be used to create a <code class="docutils literal notranslate"><span class="pre">TextElementComponent</span></code>):</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/text.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_markdown/flame_markdown.dart&#39;</span><span class="p">;</span>
+
+<span class="c1">// ...</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TextElementComponent</span><span class="p">.</span><span class="n">fromDocument</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">document:</span><span class="w"> </span><span class="n">FlameMarkdown</span><span class="p">.</span><span class="n">toDocument</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;# Header</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="s1">&#39;This is a **bold** text, and this is *italic*.</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="s1">&#39;</span><span class="se">\n</span><span class="s1">&#39;</span>
+<span class="w">    </span><span class="s1">&#39;This is a second paragraph.</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="w">  </span><span class="nl">style:</span><span class="w"> </span><span class="p">...,</span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="p">...,</span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="p">...,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="infrastructure">
 <h2>Infrastructure<a class="headerlink" href="#infrastructure" title="Permalink to this heading">¶</a></h2>
@@ -844,6 +870,7 @@ FCS component for it.</p></li>
   <a href='#textcomponent' class='list-group-item level-2'>TextComponent</a>
   <a href='#textboxcomponent' class='list-group-item level-2'>TextBoxComponent</a>
   <a href='#textelementcomponent' class='list-group-item level-2'>TextElementComponent</a>
+  <a href='#flame-markdown' class='list-group-item level-2'>Flame Markdown</a>
   <a href='#infrastructure' class='list-group-item level-1'>Infrastructure</a>
   <a href='#textrenderer' class='list-group-item level-2'>TextRenderer</a>
   <a href='#textpaint' class='list-group-item level-3'>TextPaint</a>
