@@ -358,9 +358,54 @@ commands as the YarnProject parses the input scripts.</p>
 such character was not present.</p>
 </div>
 </div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="CharacterStorage-clear">
+<div class="docutils container">
+<span class="name">clear</span><span class="arguments"><span class="punct">(</span><span class="punct">)</span></span></div>
+</div>
+<div class="description doc2 docutils container">
+<p>Clear all characters from storage.</p>
+<p>This could be used between scenes in preparation for loading a new
+set of characters. It would not generally be used while a dialog is
+in progress.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="CharacterStorage-remove">
+<div class="docutils container">
+<span class="name">remove</span><span class="arguments"><span class="punct">(</span><span class="argument">String <span class="name">name</span></span><span class="punct">)</span></span></div>
+</div>
+<div class="description doc2 docutils container">
+<p>Remove a character by name. Its aliases will also be removed.</p>
+<p>This could be used if you are certain a character is no longer required.
+It would not generally be used while a dialog is in progress.</p>
+</div>
+</div>
 </section>
 </div>
 </div>
+<section id="accessing-character-storage">
+<h2>Accessing character storage<a class="headerlink" href="#accessing-character-storage" title="Permalink to this heading">¶</a></h2>
+<p>Character storage is accessed via the <a class="reference internal" href="yarn_project.html"><span class="std std-doc">YarnProject</span></a>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">characters</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">yarnProject</span><span class="p">.</span><span class="n">characters</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="removing-characters">
+<h2>Removing characters<a class="headerlink" href="#removing-characters" title="Permalink to this heading">¶</a></h2>
+<p>There may be situations where characters need to be removed from storage. For example, in a game
+with many scenes, characters could be removed after a scene and new characters loaded for the next
+scene.</p>
+<p>Remove all characters with <code class="docutils literal notranslate"><span class="pre">clear</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">yarnProject</span><span class="p">.</span><span class="n">characters</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Use <code class="docutils literal notranslate"><span class="pre">remove</span></code> to remove a single character. Pass in the name of the character or any of its
+aliases. The character and all its aliases will be removed.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">yarnProject</span><span class="p">.</span><span class="n">characters</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;Jenny&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -395,6 +440,8 @@ such character was not present.</p>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#properties' class='list-group-item level-1'>Properties</a>
   <a href='#methods' class='list-group-item level-1'>Methods</a>
+  <a href='#accessing-character-storage' class='list-group-item level-1'>Accessing character storage</a>
+  <a href='#removing-characters' class='list-group-item level-1'>Removing characters</a>
 </div>
 
     </div>
