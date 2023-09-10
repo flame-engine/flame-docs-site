@@ -17686,9 +17686,6 @@ s.d9(0,a)
 if(Math.sqrt(s.geF())<c)a.O(b)
 else{A.a4V(s,c)
 a.O(a.aV(0,s))}}},
-aew(a){var s=$.a8k().h(0,A.bw(a))
-if(s!=null)return a.a(s.$0())
-else throw A.c("Unknown implementation of TextRenderer: "+A.bw(a).j(0)+". Please register it under [TextRendererFactory.defaultRegistry].")},
 ajg(a,b,c){var s,r,q,p,o
 if(a===0)return A.a([-c/b],t.n)
 s=b*b-4*a*c
@@ -17697,6 +17694,9 @@ if(s>=0){q=Math.sqrt(s)
 p=-b
 o=2*a
 return A.a([(p-q)/o,(p+q)/o],r)}else return A.a([],r)},
+aew(a){var s=$.a8k().h(0,A.bw(a))
+if(s!=null)return a.a(s.$0())
+else throw A.c("Unknown implementation of TextRenderer: "+A.bw(a).j(0)+". Please register it under [TextRendererFactory.defaultRegistry].")},
 YE(a,b,c,d,e){return A.ahv(a,b,c,d,e,e)},
 ahv(a,b,c,d,e,f){var s=0,r=A.H(f),q
 var $async$YE=A.I(function(g,h){if(g===1)return A.E(h,r)
