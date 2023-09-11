@@ -324,7 +324,11 @@ documentation, FCS is used to reference this system.</p>
 argument, or from anywhere else with the <code class="docutils literal notranslate"><span class="pre">add</span></code>/<code class="docutils literal notranslate"><span class="pre">addAll</span></code> methods.</p>
 <p>A simple <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> implementation that adds two components, one in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and one directly in
 the constructor can look like this:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">/// A component that renders the crate sprite, with a 16 x 16 size.</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span>
+
+<span class="c1">/// A component that renders the crate sprite, with a 16 x 16 size.</span>
 <span class="kd">class</span><span class="w"> </span><span class="nc">MyCrate</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">MyCrate</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">));</span>
 
@@ -341,8 +345,8 @@ the constructor can look like this:</p>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">myGame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">(</span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span><span class="n">MyCrate</span><span class="p">]);</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">myGame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span>
 <span class="w">  </span><span class="n">runApp</span><span class="p">(</span>
 <span class="w">    </span><span class="n">GameWidget</span><span class="p">(</span>
 <span class="w">      </span><span class="nl">game:</span><span class="w"> </span><span class="n">myGame</span><span class="p">,</span>
