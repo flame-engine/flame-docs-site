@@ -7963,17 +7963,18 @@ ti:function ti(a,b){this.a=a
 this.$ti=b},
 am:function am(a){this.a=null
 this.b=a},
-j6:function j6(a,b,c,d,e,f,g){var _=this
+j6:function j6(a,b,c,d,e,f,g,h){var _=this
 _.ax=a
 _.ay=b
 _.ch=c
+_.CW=d
 _.a=0
 _.f=_.e=_.d=_.c=_.b=null
-_.r=d
+_.r=e
 _.w=!1
-_.y=e
-_.Q=f
-_.as=g},
+_.y=f
+_.Q=g
+_.as=h},
 w3:function w3(a,b,c,d,e,f){var _=this
 _.ax=a
 _.ay=b
@@ -28801,25 +28802,26 @@ return s==null?this.fX():s}}
 A.aZ.prototype={
 gA5(){var s=this.c5
 return s===$?this.c5=0:s},
-aa(){var s=0,r=A.I(t.H),q=this,p,o,n,m
+aa(){var s=0,r=A.I(t.H),q=this,p,o,n,m,l
 var $async$aa=A.J(function(a,b){if(a===1)return A.F(b,r)
 while(true)switch(s){case 0:s=2
 return A.M(A.lO(new A.a8(A.a(["block.png","ember.png","ground.png","heart_half.png","heart.png","star.png","water_enemy.png"],t.s),q.ch$.gNY(),t.f_),t.CP),$async$aa)
 case 2:p=q.eM
 o=new Float64Array(2)
 n=new Float64Array(2)
-o=new A.tg(new A.v(o),new A.v(n),0,null,new A.am([]),new A.am([]))
-n=t.po
-m=A.a([],n)
-o.F(0,m)
-m=A.e0()
-m=new A.w3(m,B.w,0,null,new A.am([]),new A.am([]))
-o=new A.j6(o,m,p,0,null,new A.am([]),new A.am([]))
+m=new Float64Array(2)
+n=new A.tg(new A.v(n),new A.v(m),0,null,new A.am([]),new A.am([]))
+m=t.po
+l=A.a([],m)
+n.F(0,l)
+l=A.e0()
+l=new A.w3(l,B.w,0,null,new A.am([]),new A.am([]))
+o=new A.j6(n,l,p,new A.v(o),0,null,new A.am([]),new A.am([]))
 q.eN!==$&&A.cz()
 q.eN=o
-m.ay=B.S
-m.rB()
-q.F(0,A.a([o,p],n))
+l.ay=B.S
+l.rB()
+q.F(0,A.a([o,p],m))
 q.zW(!0)
 return A.G(null,r)}})
 return A.H($async$aa,r)},
@@ -30624,7 +30626,8 @@ q=n[5]
 p=n[13]
 o=new A.v(new Float64Array(2))
 o.a4(m*k+j*l+s,r*k+q*l+p)
-return o},
+m=o
+return m},
 I7(){this.b=!0
 this.S()}}
 A.dE.prototype={

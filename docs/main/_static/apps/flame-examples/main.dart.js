@@ -39669,7 +39669,8 @@ q=n[5]
 p=n[13]
 o=new A.q(new Float64Array(2))
 o.U(m*k+j*l+s,r*k+q*l+p)
-return o},
+m=o
+return m},
 no(a){var s,r,q,p=this.gwm().a,o=p[0],n=p[5],m=p[1],l=p[4],k=o*n-m*l
 if(k!==0)k=1/k
 s=a.a
@@ -39677,7 +39678,8 @@ r=s[0]-p[12]
 s=s[1]-p[13]
 q=new A.q(new Float64Array(2))
 q.U((r*n-s*l)*k,(s*o-r*m)*k)
-return q},
+o=q
+return o},
 P4(){this.b=!0
 this.X()}}
 A.f8.prototype={
