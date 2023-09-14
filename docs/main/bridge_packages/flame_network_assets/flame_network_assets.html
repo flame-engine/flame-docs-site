@@ -328,7 +328,7 @@ optional arguments in the constructor.</p>
 </pre></div>
 </div>
 <p>To create a specific asset handler class, you just need to extend the <code class="docutils literal notranslate"><span class="pre">FlameNetworkAssets</span></code> class
-and define the <code class="docutils literal notranslate"><span class="pre">decodeAsset</span></code> and <code class="docutils literal notranslate"><span class="pre">endcodeAsset</span></code> arguments:</p>
+and define the <code class="docutils literal notranslate"><span class="pre">decodeAsset</span></code> and <code class="docutils literal notranslate"><span class="pre">encodeAsset</span></code> arguments:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">FlameNetworkCustomAsset</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameNetworkAssets</span><span class="o">&lt;</span><span class="n">CustomAsset</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">FlameNetworkImages</span><span class="p">({</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="kd">get</span><span class="p">,</span>
