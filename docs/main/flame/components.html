@@ -392,44 +392,47 @@ short.</p>
 <h3>Component lifecycle<a class="headerlink" href="#component-lifecycle" title="Permalink to this heading">¶</a></h3>
 <div class="mermaid">
             %%{init: { 'theme': 'dark' } }%%
-  
-  graph TD  
+
+  graph TD
 
    %% Node Color %%
    classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
-   classDef yellow fill:#F6BE00,color:#000;
+   classDef lightYellow fill:#523F00,stroke-width:2px;
+   classDef yellow fill:#F6BE00,color:#000000;
 
    %% Nodes  %%
-   x(Runs every time)
+   x(Runs Each Tick)
+   y(Runs On Add &amp; Resize):::lightYellow
    z(Runs Once):::yellow
 
         </div><div class="mermaid">
             %%{init: { 'theme': 'dark' } }%%
   graph LR
-  
+
    %% Node Color %%
    classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
-   classDef yellow fill:#F6BE00,color:#000;
+   classDef lightYellow fill:#523F00,stroke-width:2px;
+   classDef yellow fill:#F6BE00,color:#000000;
 
     %% Nodes %%
-    
+
     A(onLoad):::yellow
-    B(onGameResize)
-    C(onMount)
-    D(Update)
-    E(Render)
-    F(onRemove)
+    B(onGameResize):::lightYellow
+    C(onMount):::yellow
+    D(update)
+    E(render)
+    F(onRemove):::yellow
 
     %% Flow %%
- 
+
     A--&gt;B
     B--&gt;C
     C--&gt;D
     D--&gt;E
     E--&gt;D
-    D--&gt;F
-    F-. If added to a new parent .-&gt;B
-    
+    E-. If removed .-&gt;F
+    F-. If re-parented .-&gt;A
+
         </div><p>The <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> method is called whenever the screen is resized, and also when this component
 gets added into the component tree, before the <code class="docutils literal notranslate"><span class="pre">onMount</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onParentResize</span></code> method is similar: it is also called when the component is mounted into the
