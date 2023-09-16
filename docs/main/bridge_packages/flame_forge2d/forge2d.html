@@ -315,8 +315,8 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="forge2d">
 <h1>Forge2D<a class="headerlink" href="#forge2d" title="Permalink to this heading">¶</a></h1>
-<p>We (the Flame organization) maintain a ported version of the Box2D physics engine and our version
-is called Forge2D.</p>
+<p>Blue Fire maintains a ported version of the Box2D physics engine and our
+version is called Forge2D.</p>
 <p>If you want to use Forge2D specifically for Flame you should use our bridge library
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d">flame_forge2d</a> and if you
 just want to use it in a Dart project you can use the
@@ -330,19 +330,21 @@ instructions</a>](<a class="reference external" href="https://pub.dev/packages/f
 <h2>Forge2DGame<a class="headerlink" href="#forge2dgame" title="Permalink to this heading">¶</a></h2>
 <p>If you are going to use Forge2D in your project it can be a good idea to use the Forge2D-specific
 <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class, <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>.</p>
-<p>It is called <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> and it will control the adding and removal of Forge2D’s <code class="docutils literal notranslate"><span class="pre">BodyComponents</span></code>
-as well as your normal components.</p>
-<p>In <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> the <code class="docutils literal notranslate"><span class="pre">Camera</span></code> has a zoom level set to 10 by default, so your components will be a
-lot bigger than in a normal Flame game. This is due to the speed limit in the <code class="docutils literal notranslate"><span class="pre">Forge2D</span></code> world, which
-you would hit very quickly if you are using it with <code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">1.0</span></code>. You can easily change the zoom
-level either by calling <code class="docutils literal notranslate"><span class="pre">super(zoom:</span> <span class="pre">yourZoom)</span></code> in your constructor or doing <code class="docutils literal notranslate"><span class="pre">game.camera.zoom</span> <span class="pre">=</span> <span class="pre">yourZoom;</span></code> at a later stage.</p>
+<p>It is called <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> and supports both the special Forge2D components called <code class="docutils literal notranslate"><span class="pre">BodyComponents</span></code>
+as well as normal Flame components.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> has a built-in <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> and has a zoom level set to 10 by default, so your
+components will be a lot bigger than in a normal Flame game. This is due to the speed limit in the
+<code class="docutils literal notranslate"><span class="pre">Forge2D</span></code> world, which you would hit very quickly if you are using it with <code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">1.0</span></code>. You can
+easily change the zoom level either by calling <code class="docutils literal notranslate"><span class="pre">super(zoom:</span> <span class="pre">yourZoom)</span></code> in your constructor or
+doing <code class="docutils literal notranslate"><span class="pre">game.cameraComponent.viewfinder.zoom</span> <span class="pre">=</span> <span class="pre">yourZoom;</span></code> at a later stage.</p>
 <p>If you are previously familiar with Box2D it can be good to know that the whole concept of the
 Box2d world is mapped to <code class="docutils literal notranslate"><span class="pre">world</span></code> in the <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> component and every <code class="docutils literal notranslate"><span class="pre">Body</span></code> that you want to
-use as a component should be wrapped in a <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>, and added to your <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>.</p>
-<p>You can have for example a HUD and other non-physics-related components in your <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>’s
-component list along with your physical entities. When the update is called, it will use the Forge2D
-physics engine to properly update every <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> and other components in the game will be
-updated according to the normal <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> way.</p>
+use as a component should be wrapped in a <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>, and added to the <code class="docutils literal notranslate"><span class="pre">world</span></code> in your
+<code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>.</p>
+<p>You can have have non-physics-related components in your <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> world’s component list along
+with your physical entities. When the update is called, it will use the Forge2D physics engine to
+properly update every <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> and other components in the game will be updated according to
+the normal <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> way.</p>
 <p>In <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> the gravity is flipped compared to <code class="docutils literal notranslate"><span class="pre">Forge2D</span></code> to keep the same coordinate system as
 in Flame, so a positive y-axis in the gravity like <code class="docutils literal notranslate"><span class="pre">Vector2(0,</span> <span class="pre">10)</span></code> would be pulling bodies
 downwards, meanwhile, a negative y-axis would pull them upwards. The gravity can be set directly in
@@ -364,13 +366,12 @@ useful if you want to add for example animations or other components on top of y
 not according to the coordinate system of Forge2D (where the Y-axis is flipped).</p>
 <p>:exclamation: In Forge2D you shouldn’t add any bodies as children to other components,
 since Forge2D doesn’t have a concept of nested bodies.
-So bodies should live on the top level in the physics world.
-Instead of <code class="docutils literal notranslate"><span class="pre">add(Bullet()))</span></code>, <code class="docutils literal notranslate"><span class="pre">parent?.add(Bullet())</span></code> should be used (as bellow).</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Bullet</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w">  </span><span class="p">{</span>
+So bodies should live on the top level in the physics world, <code class="docutils literal notranslate"><span class="pre">Forge2DGame.world</span></code>.
+So instead of <code class="docutils literal notranslate"><span class="pre">add(Weapon()))</span></code>, <code class="docutils literal notranslate"><span class="pre">world.add(Weapon())</span></code> should be used (as below), and the <code class="docutils literal notranslate"><span class="pre">Player</span></code>
+should also of course initially be added to the world.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Weapon</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w">  </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="p">...</span>
-<span class="w">    </span><span class="n">isBullet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
 <span class="w">    </span><span class="p">...</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -378,11 +379,14 @@ Instead of <code class="docutils literal notranslate"><span class="pre">add(Bull
 <span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w">  </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">parent</span><span class="o">?</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Bullet</span><span class="p">());</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Weapon</span><span class="p">());</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Later you might want to add bullets coming from your weapon, these are added to the world in the
+same sense, but if they are going to be moving very fast, make sure that you set <code class="docutils literal notranslate"><span class="pre">isBullet</span> <span class="pre">=</span> <span class="pre">true</span></code>
+to avoid some tunneling problems.</p>
 </section>
 <section id="contact-callbacks">
 <h2>Contact callbacks<a class="headerlink" href="#contact-callbacks" title="Permalink to this heading">¶</a></h2>
@@ -427,13 +431,6 @@ set to a <code class="docutils literal notranslate"><span class="pre">ContactCal
 fixtures cease being in contact, <code class="docutils literal notranslate"><span class="pre">endContact</span></code> will be called.</p>
 <p>An implementation example can be seen in the <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/forge2d/utils/balls.dart">Flame Forge2D
 example</a>.</p>
-<section id="forge2dcamera-followbodycomponent">
-<h3>Forge2DCamera.followBodyComponent<a class="headerlink" href="#forge2dcamera-followbodycomponent" title="Permalink to this heading">¶</a></h3>
-<p>Just like with normal <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s you can make the <code class="docutils literal notranslate"><span class="pre">Forge2DCamera</span></code> follow <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>s
-by calling <code class="docutils literal notranslate"><span class="pre">camera.followBodyComponent(...)</span></code> which works the same as
-<a class="reference internal" href="../../flame/camera_and_viewport.html#camera-followcomponent"><span class="std std-ref">camera.followComponent</span></a>. When you want to
-stop following a <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> you should call <code class="docutils literal notranslate"><span class="pre">camera.unfollowBodyComponent</span></code>.</p>
-</section>
 </section>
 </section>
 
@@ -470,7 +467,6 @@ stop following a <code class="docutils literal notranslate"><span class="pre">Bo
   <a href='#forge2dgame' class='list-group-item level-1'>Forge2DGame</a>
   <a href='#bodycomponent' class='list-group-item level-1'>BodyComponent</a>
   <a href='#contact-callbacks' class='list-group-item level-1'>Contact callbacks</a>
-  <a href='#forge2dcamera-followbodycomponent' class='list-group-item level-2'>Forge2DCamera.followBodyComponent</a>
 </div>
 
     </div>
