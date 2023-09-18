@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Camera and Viewport &#8212; Flame</title>
+  <title>Camera and Viewport (Deprecated) &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
@@ -38,8 +38,8 @@
   <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="Camera component" href="camera_component.html" />
-  <link rel="prev" title="Effects" href="effects.html" />
+  <link rel="next" title="Bridge Packages" href="../bridge_packages/bridge_packages.html" />
+  <link rel="prev" title="Widgets" href="other/widgets.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -119,7 +119,6 @@
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera Component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
@@ -150,6 +149,7 @@
 <li class="toctree-l3"><a class="reference internal" href="other/widgets.html">Widgets</a></li>
 </ul>
 </li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Camera &amp; Viewport</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bridge_packages/bridge_packages.html">Bridge Packages</a><ul>
@@ -313,8 +313,13 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="camera-and-viewport">
-<h1>Camera and Viewport<a class="headerlink" href="#camera-and-viewport" title="Permalink to this heading">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="camera-and-viewport-deprecated">
+<h1>Camera and Viewport (Deprecated)<a class="headerlink" href="#camera-and-viewport-deprecated" title="Permalink to this heading">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This document describes the deprecated Camera API. The new <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> approach
+is described in <a class="reference internal" href="camera_component.html"><span class="std std-doc">Camera component</span></a>.</p>
+</div>
 <p>When rendering on Flutter, the regular coordinate space used are logical pixels. That means one
 pixel for Flutter is already not necessarily one real pixel on the device, because of the <a class="reference external" href="https://api.flutter.dev/flutter/widgets/MediaQueryData/devicePixelRatio.html">device’s
 pixel ratio</a>. When it
@@ -403,7 +408,7 @@ boundaries to how far the camera is allowed to move.</p>
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">someVector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">);</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">     </span><span class="n">camera</span><span class="p">.</span><span class="n">followVector2</span><span class="p">(</span><span class="n">someVector</span><span class="p">);</span>
+<span class="w">     </span><span class="n">oldCamera</span><span class="p">.</span><span class="n">followVector2</span><span class="p">(</span><span class="n">someVector</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -516,18 +521,18 @@ your given position:</p>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="effects.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="other/widgets.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Effects</p>
+          <p class="prev-next-title">Widgets</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="camera_component.html" title="next page">
+      <a class="right-next" id="next-link" href="../bridge_packages/bridge_packages.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Camera component</p>
+          <p class="prev-next-title">Bridge Packages</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>

@@ -119,7 +119,6 @@
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera Component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
@@ -150,6 +149,7 @@
 <li class="toctree-l3"><a class="reference internal" href="other/widgets.html">Widgets</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bridge_packages/bridge_packages.html">Bridge Packages</a><ul>
@@ -315,13 +315,14 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="flamegame">
 <h1>FlameGame<a class="headerlink" href="#flamegame" title="Permalink to this heading">¶</a></h1>
-<p><code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is the most commonly used <code class="docutils literal notranslate"><span class="pre">Game</span></code> class in Flame.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class implements a <code class="docutils literal notranslate"><span class="pre">Component</span></code> based <code class="docutils literal notranslate"><span class="pre">Game</span></code>. It has a tree of components
 and calls the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> methods of all components that have been added to the game.</p>
-<p>We refer to this component-based system as the Flame Component System (FCS).  Throughout the
+<p>We refer to this component-based system as the Flame Component System (FCS). Throughout the
 documentation, FCS is used to reference this system.</p>
 <p>Components can be added to the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> directly in the constructor with the named <code class="docutils literal notranslate"><span class="pre">children</span></code>
-argument, or from anywhere else with the <code class="docutils literal notranslate"><span class="pre">add</span></code>/<code class="docutils literal notranslate"><span class="pre">addAll</span></code> methods.</p>
+argument, or from anywhere else with the <code class="docutils literal notranslate"><span class="pre">add</span></code>/<code class="docutils literal notranslate"><span class="pre">addAll</span></code> methods. Most of the time however, you want
+to add your children to a <code class="docutils literal notranslate"><span class="pre">World</span></code>, the default world exist under <code class="docutils literal notranslate"><span class="pre">FlameGame.world</span></code> and you add
+components to it just like you would to any other component.</p>
 <p>A simple <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> implementation that adds two components, one in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and one directly in
 the constructor can look like this:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
@@ -338,7 +339,7 @@ the constructor can look like this:</p>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyWorld</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">MyCrate</span><span class="p">());</span>
@@ -346,11 +347,9 @@ the constructor can look like this:</p>
 <span class="p">}</span>
 
 <span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">myGame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">myGame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">(</span><span class="nl">world:</span><span class="w"> </span><span class="n">MyWorld</span><span class="p">());</span>
 <span class="w">  </span><span class="n">runApp</span><span class="p">(</span>
-<span class="w">    </span><span class="n">GameWidget</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">game:</span><span class="w"> </span><span class="n">myGame</span><span class="p">,</span>
-<span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">myGame</span><span class="p">),</span>
 <span class="w">  </span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
@@ -365,7 +364,7 @@ constructor.</p>
 </div>
 <p>To remove components from the list on a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> the <code class="docutils literal notranslate"><span class="pre">remove</span></code> or <code class="docutils literal notranslate"><span class="pre">removeAll</span></code> methods can be used.
 The first can be used if you just want to remove one component, and the second can be used when you
-want to remove a list of components.</p>
+want to remove a list of components. These methods exist on all <code class="docutils literal notranslate"><span class="pre">Component</span></code>s, including the world.</p>
 <section id="game-loop">
 <h2>Game Loop<a class="headerlink" href="#game-loop" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> module is a simple abstraction of the game loop concept. Basically, most games are
@@ -382,13 +381,8 @@ move to the next state.</p></li>
 <p>Every time the game needs to be resized, for example when the orientation is changed, <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>
 will call all of the <code class="docutils literal notranslate"><span class="pre">Component</span></code>s <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> methods and it will also pass this information to
 the camera and viewport.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">FlameGame.camera</span></code> controls which point in the coordinate space should be the top-left of the
-screen (it defaults to [0,0] like a regular <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>).</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Utilizing <code class="docutils literal notranslate"><span class="pre">FlameGame.camera.gameSize</span></code> in the <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> event should be done
-after the call to <code class="docutils literal notranslate"><span class="pre">super.onGameResize(canvasSize);</span></code>.</p>
-</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">FlameGame.camera</span></code> controls which point in the coordinate space that should be at the anchor of
+your viewfinder, [0,0] is in the center (<code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code>) of the viewport by default.</p>
 </section>
 <section id="lifecycle">
 <h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this heading">¶</a></h2>
@@ -544,8 +538,8 @@ to always finish loading the component.</p>
     E-- Extends --&gt;D
 
     C-- With --&gt;B
-        </div><p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> class is a low-level API that can be used when you want to implement the functionality of
-how the game engine should be structured. <code class="docutils literal notranslate"><span class="pre">Game</span></code> does not implement any <code class="docutils literal notranslate"><span class="pre">update</span></code> or
+        </div><p>The abstract <code class="docutils literal notranslate"><span class="pre">Game</span></code> class is a low-level API that can be used when you want to implement the
+functionality of how the game engine should be structured. <code class="docutils literal notranslate"><span class="pre">Game</span></code> does not implement any <code class="docutils literal notranslate"><span class="pre">update</span></code> or
 <code class="docutils literal notranslate"><span class="pre">render</span></code> function for example.</p>
 <p>The class also has the lifecycle methods <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>, <code class="docutils literal notranslate"><span class="pre">onMount</span></code> and <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> in it, which are
 called from the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> (or another parent) when the game is loaded + mounted, or removed.
@@ -588,9 +582,10 @@ are also missing out on all of the built-in features in Flame if you use it.</p>
 <li><p>With the use of the <code class="docutils literal notranslate"><span class="pre">pauseEngine</span></code> and <code class="docutils literal notranslate"><span class="pre">resumeEngine</span></code> methods.</p></li>
 <li><p>By changing the <code class="docutils literal notranslate"><span class="pre">paused</span></code> attribute.</p></li>
 </ul>
-<p>When pausing a Flame <code class="docutils literal notranslate"><span class="pre">Game</span></code>, the <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is effectively paused, meaning that no updates or new
-renders will happen until it is resumed.</p>
-<p>While the game is paused, it is possible to advanced it frame by frame using the <code class="docutils literal notranslate"><span class="pre">stepEngine</span></code> method.
+<p>When pausing a <code class="docutils literal notranslate"><span class="pre">Game</span></code>, the <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is effectively paused, meaning that no updates or new renders
+will happen until it is resumed.</p>
+<p>While the game is paused, it is possible to advanced it frame by frame using the <code class="docutils literal notranslate"><span class="pre">stepEngine</span></code>
+method.
 It might not be much useful in the final game, but can be very helpful in inspecting game state step
 by step during the development cycle.</p>
 </section>

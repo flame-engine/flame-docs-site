@@ -39,7 +39,7 @@
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
   <link rel="next" title="Inputs" href="inputs/inputs.html" />
-  <link rel="prev" title="Camera and Viewport" href="camera_and_viewport.html" />
+  <link rel="prev" title="Effects" href="effects.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -119,7 +119,6 @@
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Camera Component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
@@ -150,6 +149,7 @@
 <li class="toctree-l3"><a class="reference internal" href="other/widgets.html">Widgets</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bridge_packages/bridge_packages.html">Bridge Packages</a><ul>
@@ -318,12 +318,12 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This document describes a new camera API. The more traditional approach
-(which will be deprecated) for handling a camera is described in
-<a class="reference internal" href="camera_and_viewport.html"><span class="std std-doc">Camera and Viewport</span></a>.</p>
+(which is deprecated) for handling a camera is described in
+<a class="reference internal" href="camera_and_viewport.html"><span class="std std-doc">Camera and Viewport (Deprecated)</span></a>.</p>
 </div>
-<p>Camera-as-a-component is an alternative way of structuring a game, an approach
-that allows more flexibility in placing the camera, or even having more than
-one camera simultaneously.</p>
+<p>Camera-as-a-component is the new way of structuring a game, an approach that
+allows more flexibility in placing the camera, or even having more than one
+camera simultaneously.</p>
 <p>In order to understand how this approach works, imagine that your game world is
 an entity that exists <em>somewhere</em> independently from your application. Imagine
 that your game is merely a window through which you can look into that world.
@@ -342,8 +342,10 @@ the viewing location and angle.</p>
 <h2>World<a class="headerlink" href="#world" title="Permalink to this heading">¶</a></h2>
 <p>This component should be used to host all other components that comprise your
 game world. The main property of the <code class="docutils literal notranslate"><span class="pre">World</span></code> class is that it does not render
-through traditional means – instead, create one or more <a class="reference internal" href="#cameracomponent"><span class="std std-ref">CameraComponent</span></a>s
-to “look at” the world.</p>
+through traditional means – instead it is rendered by one or more
+<a class="reference internal" href="#cameracomponent"><span class="std std-ref">CameraComponent</span></a>s to “look at” the world. In the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class there is
+one <code class="docutils literal notranslate"><span class="pre">World</span></code> called <code class="docutils literal notranslate"><span class="pre">world</span></code> which is added by default and paired together with
+the default <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> called <code class="docutils literal notranslate"><span class="pre">camera</span></code>.</p>
 <p>A game can have multiple <code class="docutils literal notranslate"><span class="pre">World</span></code> instances that can be rendered either at the
 same time, or at different times. For example, if you have two worlds A and B
 and a single camera, then switching that camera’s target from A to B will
@@ -352,6 +354,21 @@ then mount B.</p>
 <p>Just like with most <code class="docutils literal notranslate"><span class="pre">Component</span></code>s, children can be added to <code class="docutils literal notranslate"><span class="pre">World</span></code> by using the
 <code class="docutils literal notranslate"><span class="pre">children</span></code> argument in its constructor, or by using the <code class="docutils literal notranslate"><span class="pre">add</span></code> or <code class="docutils literal notranslate"><span class="pre">addAll</span></code>
 methods.</p>
+<p>For many games you want to extend the world and create your logic in there,
+such a game structure could look like this:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="n">FlameGame</span><span class="p">(</span><span class="nl">world:</span><span class="w"> </span><span class="n">MyWorld</span><span class="p">())));</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyWorld</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Load all the assets that are needed in this world</span>
+<span class="w">    </span><span class="c1">// and add components etc.</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="cameracomponent">
 <h2>CameraComponent<a class="headerlink" href="#cameracomponent" title="Permalink to this heading">¶</a></h2>
@@ -359,6 +376,9 @@ methods.</p>
 reference to a <code class="docutils literal notranslate"><span class="pre">World</span></code> instance during construction; however later the target
 world can be replaced with another one. Multiple cameras can observe the same
 world at the same time.</p>
+<p>There is a default <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> called <code class="docutils literal notranslate"><span class="pre">camera</span></code> on the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class
+which is paired together with the default <code class="docutils literal notranslate"><span class="pre">world</span></code>, so you don’t need to create
+or add your own <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> if your game doesn’t need to.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has two other components inside: a <a class="reference internal" href="#viewport"><span class="std std-ref">Viewport</span></a> and a
 <a class="reference internal" href="#viewfinder"><span class="std std-ref">Viewfinder</span></a>. Unlike the <code class="docutils literal notranslate"><span class="pre">World</span></code> object, the camera owns the viewport and
 the viewfinder, which means those components are children of the camera.</p>
@@ -368,6 +388,19 @@ currently performs rendering. This is needed only for certain advanced use
 cases where the rendering of a component depends on the camera settings. For
 example, some components may decide to skip rendering themselves and their
 children if they are outside of the camera’s viewport.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class has a <code class="docutils literal notranslate"><span class="pre">camera</span></code> field in its constructor, so you can set
+what type of default camera that you want like this for example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span>
+<span class="w">    </span><span class="n">GameWidget</span><span class="p">(</span>
+<span class="w">      </span><span class="n">FlameGame</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">camera:</span><span class="w"> </span><span class="n">CameraComponent</span><span class="p">.</span><span class="n">withFixedResolution</span><span class="p">(</span><span class="nl">width:</span><span class="w"> </span><span class="m">800</span><span class="p">,</span><span class="w"> </span><span class="nl">height:</span><span class="w"> </span><span class="m">600</span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 <section id="cameracomponent-withfixedresolution">
 <h3>CameraComponent.withFixedResolution()<a class="headerlink" href="#cameracomponent-withfixedresolution" title="Permalink to this heading">¶</a></h3>
 <p>This factory constructor will let you pretend that the user’s device has a fixed resolution of your
@@ -474,9 +507,9 @@ This is useful for example to cull components that are not in view.</p>
 </div>
 </section>
 </section>
-<section id="comparison-to-the-traditional-camera">
-<h2>Comparison to the traditional camera<a class="headerlink" href="#comparison-to-the-traditional-camera" title="Permalink to this heading">¶</a></h2>
-<p>Compared to the normal <a class="reference internal" href="camera_and_viewport.html"><span class="std std-doc">Camera</span></a>, the <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code>
+<section id="comparison-to-the-deprecated-camera">
+<h2>Comparison to the deprecated camera<a class="headerlink" href="#comparison-to-the-deprecated-camera" title="Permalink to this heading">¶</a></h2>
+<p>Compared to the deprecated <a class="reference internal" href="camera_and_viewport.html"><span class="std std-doc">Camera</span></a>, the <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code>
 has several advantages:</p>
 <ul class="simple">
 <li><p>Multiple cameras can be added to the game at the same time;</p></li>
@@ -497,11 +530,11 @@ without having to unmount one world and then mount another;</p></li>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="camera_and_viewport.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="effects.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Camera and Viewport</p>
+          <p class="prev-next-title">Effects</p>
         </div>
       </a>
       <div class='expander'></div>
@@ -528,7 +561,7 @@ without having to unmount one world and then mount another;</p></li>
   <a href='#camera-controls' class='list-group-item level-1'>Camera controls</a>
   <a href='#visibleworldrect' class='list-group-item level-2'>visibleWorldRect</a>
   <a href='#check-if-a-component-is-visible-from-the-camera-point-of-view' class='list-group-item level-2'>Check if a component is visible from the camera point of view</a>
-  <a href='#comparison-to-the-traditional-camera' class='list-group-item level-1'>Comparison to the traditional camera</a>
+  <a href='#comparison-to-the-deprecated-camera' class='list-group-item level-1'>Comparison to the deprecated camera</a>
 </div>
 
     </div>
