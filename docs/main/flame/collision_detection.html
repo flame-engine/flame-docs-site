@@ -1057,31 +1057,6 @@ need some of the following things (since it is simpler to not involve Forge2D):<
 <li><p>Hitboxes that can tell what part of a component that collided with something</p></li>
 </ul>
 </section>
-<section id="migration-from-the-collision-detection-system-in-v1-0">
-<h2>Migration from the collision detection system in v1.0<a class="headerlink" href="#migration-from-the-collision-detection-system-in-v1-0" title="Permalink to this heading">¶</a></h2>
-<p>The collision detection system introduced in v1.1 is easier to use,
-and much more efficient than the one that was in v1.0,
-but while making these improvements some breaking changes had to be made.</p>
-<p>There is no longer a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> mixin, instead your game automatically knows when a hitbox has
-been added to one of your components when the <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> mixin is added to your game.</p>
-<p>To receive the callbacks from collisions that your component is involved in you should add the
-<code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to your component, and then override the same methods as you did
-previously.</p>
-<p>Since the hitboxes now are <code class="docutils literal notranslate"><span class="pre">Component</span></code>s you add them to your component with <code class="docutils literal notranslate"><span class="pre">add</span></code> instead of
-<code class="docutils literal notranslate"><span class="pre">addHitbox</span></code> which was used previously.</p>
-<section id="name-changes">
-<h3>Name changes<a class="headerlink" href="#name-changes" title="Permalink to this heading">¶</a></h3>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">HitboxCircle</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">CircleHitbox</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">HitboxRectangle</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">HitboxPolygon</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">PolygonHitbox</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Collidable</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> (Only needed when you want to receive the callbacks)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> (Only when you need hitboxes for gestures)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CollidableType</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">CollisionType</span></code></p></li>
-</ul>
-</section>
-</section>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
@@ -1140,8 +1115,6 @@ previously.</p>
   <a href='#raycastall' class='list-group-item level-3'>raycastAll</a>
   <a href='#ray-tracing' class='list-group-item level-2'>Ray tracing</a>
   <a href='#comparison-to-forge2d' class='list-group-item level-1'>Comparison to Forge2D</a>
-  <a href='#migration-from-the-collision-detection-system-in-v1-0' class='list-group-item level-1'>Migration from the collision detection system in v1.0</a>
-  <a href='#name-changes' class='list-group-item level-2'>Name changes</a>
   <a href='#examples' class='list-group-item level-1'>Examples</a>
 </div>
 
