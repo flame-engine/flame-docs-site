@@ -563,6 +563,24 @@ available eventually: after they are loaded and mounted. We can only assure
 that they will appear in the children list in the same order as they were
 scheduled for addition.</p>
 </section>
+<section id="access-to-the-world-from-a-component">
+<h3>Access to the World from a Component<a class="headerlink" href="#access-to-the-world-from-a-component" title="Permalink to this heading">¶</a></h3>
+<p>If a component that has a <code class="docutils literal notranslate"><span class="pre">World</span></code> as an ancestor and requires access to that <code class="docutils literal notranslate"><span class="pre">World</span></code> object, one can
+use the <code class="docutils literal notranslate"><span class="pre">HasWorldReference</span></code> mixin.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasWorldReference</span><span class="o">&lt;</span><span class="n">MyWorld</span><span class="o">&gt;</span><span class="p">,</span>
+<span class="w">    </span><span class="n">TapCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownEvent</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// world is of type MyWorld</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">AnotherComponent</span><span class="p">());</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you try to access <code class="docutils literal notranslate"><span class="pre">world</span></code> from a component that doesn’t have a <code class="docutils literal notranslate"><span class="pre">World</span></code>
+ancestor of the correct type an assertion error will be thrown.</p>
+</section>
 <section id="ensuring-a-component-has-a-given-parent">
 <h3>Ensuring a component has a given parent<a class="headerlink" href="#ensuring-a-component-has-a-given-parent" title="Permalink to this heading">¶</a></h3>
 <p>When a component requires to be added to a specific parent type the
@@ -1700,6 +1718,7 @@ own sprite animation based component, you can directly use a <code class="docuti
   <a href='#component-lifecycle' class='list-group-item level-2'>Component lifecycle</a>
   <a href='#priority' class='list-group-item level-2'>Priority</a>
   <a href='#composability-of-components' class='list-group-item level-2'>Composability of components</a>
+  <a href='#access-to-the-world-from-a-component' class='list-group-item level-2'>Access to the World from a Component</a>
   <a href='#ensuring-a-component-has-a-given-parent' class='list-group-item level-2'>Ensuring a component has a given parent</a>
   <a href='#ensuring-a-component-has-a-given-ancestor' class='list-group-item level-2'>Ensuring a component has a given ancestor</a>
   <a href='#component-keys' class='list-group-item level-2'>Component Keys</a>
