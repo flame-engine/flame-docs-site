@@ -588,6 +588,21 @@ will happen until it is resumed.</p>
 method.
 It might not be much useful in the final game, but can be very helpful in inspecting game state step
 by step during the development cycle.</p>
+<section id="backgrounding">
+<h3>Backgrounding<a class="headerlink" href="#backgrounding" title="Permalink to this heading">¶</a></h3>
+<p>The game will be automatically paused when the app is sent to the background,
+and resumed when it comes back to the foreground. This behavior can be disabled by setting
+<code class="docutils literal notranslate"><span class="pre">pauseWhenBackgrounded</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">pauseWhenBackgrounded</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>On the current Flutter stable (3.13), this flag is effectively ignored on
+non-mobile platforms including the web.</p>
+</section>
 </section>
 </section>
 
@@ -629,6 +644,7 @@ by step during the development cycle.</p>
   <a href='#singlegameinstance-mixin' class='list-group-item level-1'>SingleGameInstance mixin</a>
   <a href='#low-level-game-api' class='list-group-item level-1'>Low-level Game API</a>
   <a href='#pause-resuming-stepping-game-execution' class='list-group-item level-1'>Pause/Resuming/Stepping game execution</a>
+  <a href='#backgrounding' class='list-group-item level-2'>Backgrounding</a>
 </div>
 
     </div>
