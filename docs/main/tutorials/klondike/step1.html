@@ -375,13 +375,13 @@ folder of the project. At this point our project’s structure looks like this
  └─pubspec.yaml
 </pre></div>
 </div>
-<p>By the way, this kind of file is called the <strong>spritesheet</strong>: it’s just a
+<p>By the way, this kind of file is called the <strong>sprite sheet</strong>: it’s just a
 collection of multiple independent images in a single file. We are using a
-spritesheet here for the simple reason that loading a single large image is
+sprite sheet here for the simple reason that loading a single large image is
 faster than many small images. In addition, rendering sprites that were
 extracted from a single source image can be faster too, since Flutter will
 optimize multiple such drawing commands into a single <code class="docutils literal notranslate"><span class="pre">drawAtlas</span></code> command.</p>
-<p>Here are the contents of my spritesheet:</p>
+<p>Here are the contents of my sprite sheet:</p>
 <ul class="simple">
 <li><p>Numerals 2, 3, 4, …, K, A. In theory, we could have rendered these in the
 game as text strings, but then we would need to also include a font as an

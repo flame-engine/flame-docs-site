@@ -347,9 +347,9 @@ approach is to load it into the <code class="docutils literal notranslate"><span
 have been more difficult to access that image from other classes.</p>
 <p>Also note that I am <code class="docutils literal notranslate"><span class="pre">await</span></code>ing the image to finish loading before initializing
 anything else in the game. This is for convenience: it means that by the time
-all other components are initialized, they can assume the spritesheet is already
+all other components are initialized, they can assume the sprite sheet is already
 loaded. We can even add a helper function to extract a sprite from the common
-spritesheet:</p>
+sprite sheet:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Sprite</span><span class="w"> </span><span class="n">klondikeSprite</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">width</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span>
 <span class="w">    </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;klondike-sprites.png&#39;</span><span class="p">),</span>
@@ -477,7 +477,7 @@ not planning to change these values during the game:</p>
 <p>Next, we will create a <code class="docutils literal notranslate"><span class="pre">Stock</span></code> component, the <code class="docutils literal notranslate"><span class="pre">Waste</span></code>, four <code class="docutils literal notranslate"><span class="pre">Foundation</span></code>s and
 seven <code class="docutils literal notranslate"><span class="pre">Pile</span></code>s, setting their sizes and positions in the world. The positions
 are calculated using simple arithmetics. This should all happen inside the
-<code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method, after loading the spritesheet:</p>
+<code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method, after loading the sprite sheet:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">stock</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Stock</span><span class="p">()</span>
 <span class="w">      </span><span class="p">..</span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">cardSize</span>
 <span class="w">      </span><span class="p">..</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">cardGap</span><span class="p">,</span><span class="w"> </span><span class="n">cardGap</span><span class="p">);</span>

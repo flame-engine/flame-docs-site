@@ -577,21 +577,35 @@ SpriteSheets, with it you can load your sprite sheet image and extract animation
 a very simple example of how to use it:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/sprite.dart&#39;</span><span class="p">;</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">spritesheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteSheet</span><span class="p">(</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">spriteSheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteSheet</span><span class="p">(</span>
 <span class="w">  </span><span class="nl">image:</span><span class="w"> </span><span class="n">imageInstance</span><span class="p">,</span>
 <span class="w">  </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16.0</span><span class="p">),</span>
 <span class="p">);</span>
 
-<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spritesheet</span><span class="p">.</span><span class="n">createAnimation</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">spriteSheet</span><span class="p">.</span><span class="n">createAnimation</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Now you can use the animation directly or use it in an animation component.</p>
-<p>You can also get a single frame of the sprite sheet using the <code class="docutils literal notranslate"><span class="pre">getSprite</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">spritesheet</span><span class="p">.</span><span class="n">getSprite</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="c1">// row, column;</span>
+<p>You can also create a custom animation by retrieving individual <code class="docutils literal notranslate"><span class="pre">SpriteAnimationFrameData</span></code> using
+either <code class="docutils literal notranslate"><span class="pre">SpriteSheet.createFrameData</span></code> or <code class="docutils literal notranslate"><span class="pre">SpriteSheet.createFrameDataFromId</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span>
+<span class="w">  </span><span class="n">imageInstance</span><span class="p">,</span><span class="w"> </span>
+<span class="w">  </span><span class="n">SpriteAnimationData</span><span class="p">([</span>
+<span class="w">    </span><span class="n">spriteSheet</span><span class="p">.</span><span class="n">createFrameDataFromId</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">),</span><span class="w"> </span><span class="c1">// by id</span>
+<span class="w">    </span><span class="n">spriteSheet</span><span class="p">.</span><span class="n">createFrameData</span><span class="p">(</span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.3</span><span class="p">),</span><span class="w"> </span><span class="c1">// row, column</span>
+<span class="w">    </span><span class="n">spriteSheet</span><span class="p">.</span><span class="n">createFrameDataFromId</span><span class="p">(</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">),</span><span class="w"> </span><span class="c1">// by id</span>
+<span class="w">  </span><span class="p">]),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>If you don’t need any kind of animation and instead only want an instance of a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> on the
+<code class="docutils literal notranslate"><span class="pre">SpriteSheet</span></code> you can use the <code class="docutils literal notranslate"><span class="pre">getSprite</span></code> or <code class="docutils literal notranslate"><span class="pre">getSpriteById</span></code> methods:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">spriteSheet</span><span class="p">.</span><span class="n">getSpriteById</span><span class="p">(</span><span class="m">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// by id</span>
+<span class="n">spriteSheet</span><span class="p">.</span><span class="n">getSprite</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// row, column</span>
 </pre></div>
 </div>
 <p>You can see a full example of the <code class="docutils literal notranslate"><span class="pre">SpriteSheet</span></code> class
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/sprites/spritesheet_example.dart">here</a>.</p>
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/sprites/sprite_sheet_example.dart">here</a>.</p>
 </section>
 </section>
 
