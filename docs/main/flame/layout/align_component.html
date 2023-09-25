@@ -368,10 +368,10 @@ effectively be placed above the current component:</p>
 <div class="constructor docutils container">
 <div class="signature sig2 docutils container" id="AlignComponent-AlignComponent">
 <div class="docutils container">
-<span class="name">AlignComponent</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="keyword">required </span><span class="name">this.child</span></span><span class="punct">, </span><span class="argument"><span class="keyword">required </span>Anchor <span class="name">alignment</span></span><span class="punct">, </span><span class="argument"><span class="name">this.widthFactor</span></span><span class="punct">, </span><span class="argument"><span class="name">this.heightFactor</span></span><span class="punct">, </span><span class="argument"><span class="name">this.keepChildAnchor</span><span class="punct"> = </span><span class="default">false</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
+<span class="name">AlignComponent</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument">PositionComponent? <span class="name">child</span></span><span class="punct">, </span><span class="argument">Anchor <span class="name">alignment</span><span class="punct"> = </span><span class="default">Anchor.topLeft</span></span><span class="punct">, </span><span class="argument"><span class="name">this.widthFactor</span></span><span class="punct">, </span><span class="argument"><span class="name">this.heightFactor</span></span><span class="punct">, </span><span class="argument"><span class="name">this.keepChildAnchor</span><span class="punct"> = </span><span class="default">false</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
 </div>
 <div class="description doc2 docutils container">
-<p>Creates a component that keeps its <a class="reference internal" href="#AlignComponent-child"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">child</span></code></a> positioned according to the
+<p>Creates a component that keeps its <span class="param">child</span> positioned according to the
 <span class="param">alignment</span> within this component’s bounding box.</p>
 <p>More precisely, the child will be placed at <span class="param">alignment</span> relative position
 within the current component’s bounding box. The child’s anchor will also
@@ -381,9 +381,9 @@ be set to the <span class="param">alignment</span>, unless <a class="reference i
 </section>
 <section id="properties">
 <h2>Properties<a class="headerlink" href="#properties" title="Permalink to this heading">¶</a></h2>
-<div class="field docutils container">
+<div class="getter docutils container">
 <div class="signature sig2 docutils container" id="AlignComponent-child">
-<span class="name">child</span><span class="punct"> : </span>PositionComponent</div>
+<span class="name">child</span><span class="punct"> ←→ </span>PositionComponent?</div>
 <div class="description doc2 docutils container">
 <p>The component that will be positioned by this component. The <a class="reference internal" href="#AlignComponent-child"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">child</span></code></a> will
 be automatically mounted to the current component.</p>
@@ -422,8 +422,8 @@ multiplied by this factor.</p>
 <span class="name">keepChildAnchor</span><span class="punct"> : </span>bool</div>
 <div class="description doc2 docutils container">
 <p>If <code class="docutils literal notranslate"><span class="pre">false</span></code> (default), then the child’s <code class="docutils literal notranslate"><span class="pre">anchor</span></code> will be kept equal to the
-<a class="reference internal" href="#AlignComponent-alignment"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">alignment</span></code></a> value. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, then the <a class="reference internal" href="#AlignComponent-child"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">child</span></code></a> will be allowed to have its
-own <code class="docutils literal notranslate"><span class="pre">anchor</span></code> value independent from the parent.</p>
+<a class="reference internal" href="#AlignComponent-alignment"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">alignment</span></code></a> value. If <code class="docutils literal notranslate"><span class="pre">true</span></code>, then the <a class="reference internal" href="#AlignComponent-child"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">child</span></code></a> will be allowed to have
+its own <code class="docutils literal notranslate"><span class="pre">anchor</span></code> value independent from the parent.</p>
 </div>
 </div>
 </section>
