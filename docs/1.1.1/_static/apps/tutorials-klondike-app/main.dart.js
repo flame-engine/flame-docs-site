@@ -170,15 +170,16 @@ if(r==null)r=null
 s=r}r=A.ZG(A.UD(B.qp,s==null?"auto":s))
 return new A.ag(r,new A.Js(),A.ar(r).i("ag<1,n>"))},
 Z2(a,b){return b+a},
-xd(){var s=0,r=A.I(t.e),q,p
+xd(){var s=0,r=A.I(t.e),q,p,o
 var $async$xd=A.J(function(a,b){if(a===1)return A.F(b,r)
 while(true)switch(s){case 0:s=3
 return A.E(A.JD(A.XR()),$async$xd)
-case 3:s=4
-return A.E(A.d_(self.window.CanvasKitInit({locateFile:A.aa(A.Y8())}),t.e),$async$xd)
-case 4:p=b
-if(A.P_(p.ParagraphBuilder)&&!A.QH())throw A.d(A.b2("The CanvasKit variant you are using only works on Chromium browsers. Please use a different CanvasKit variant, or use a Chromium browser."))
-q=p
+case 3:p=t.e
+s=4
+return A.E(A.d_(self.window.CanvasKitInit(p.a({locateFile:A.aa(A.Y8())})),p),$async$xd)
+case 4:o=b
+if(A.P_(o.ParagraphBuilder)&&!A.QH())throw A.d(A.b2("The CanvasKit variant you are using only works on Chromium browsers. Please use a different CanvasKit variant, or use a Chromium browser."))
+q=o
 s=1
 break
 case 1:return A.G(q,r)}})
@@ -304,7 +305,7 @@ r=$.P7=new A.rm(new A.ex(s),Math.max(p,1),q,r)
 p=r}return p},
 TL(a,b){var s,r,q
 t.m2.a(a)
-s={}
+s=t.e.a({})
 r=A.Mf(a.a,a.b)
 s.fontFamilies=r
 s.heightMultiplier=a.d
@@ -321,7 +322,7 @@ s.forceStrutHeight=a.w
 s.strutEnabled=!0
 return s},
 L4(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,a0,a1){return new A.jK(b,c,d,e,f,m,k,a0,g,h,j,q,a1,o,p,r,a,n,s,i,l)},
-MN(a,b){var s={}
+MN(a,b){var s=t.e.a({})
 if(a!=null)s.weight=$.SQ()[6]
 return s},
 Mf(a,b){var s=A.c([],t.s)
@@ -11626,8 +11627,8 @@ return A.E(q.b.$0(),$async$f3)
 case 3:return A.G(null,r)}})
 return A.H($async$f3,r)},
 Hr(){var s=A.aa(new A.xE(this))
-return{initializeEngine:A.aa(new A.xF(this)),autoStart:s}},
-CI(){return{runApp:A.aa(new A.xB(this))}}}
+return t.e.a({initializeEngine:A.aa(new A.xF(this)),autoStart:s})},
+CI(){return t.e.a({runApp:A.aa(new A.xB(this))})}}
 A.xE.prototype={
 $0(){return A.R4(new A.xD(this.a).$0(),t.e)},
 $S:21}
@@ -11636,7 +11637,7 @@ $0(){var s=0,r=A.I(t.e),q,p=this
 var $async$$0=A.J(function(a,b){if(a===1)return A.F(b,r)
 while(true)switch(s){case 0:s=3
 return A.E(p.a.f3(),$async$$0)
-case 3:q={}
+case 3:q=t.e.a({})
 s=1
 break
 case 1:return A.G(q,r)}})
@@ -11674,7 +11675,7 @@ wi(a,b){var s=0,r=A.I(t.H),q=this
 var $async$$2=A.J(function(c,d){if(c===1)return A.F(d,r)
 while(true)switch(s){case 0:s=2
 return A.E(q.a.b.$0(),$async$$2)
-case 2:A.OR(a,{})
+case 2:A.OR(a,t.e.a({}))
 return A.G(null,r)}})
 return A.H($async$$2,r)},
 $S:97}
@@ -11970,7 +11971,7 @@ $1(a){var s=$.aB
 s=(s==null?$.aB=A.c_(self.window.flutterConfiguration):s).b
 if(s==null)s=null
 else{s=s.canvasKitBaseUrl
-if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/bd986c5ed20a62dc34b7718c50abc782beae4c33/":s)+a},
+if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/a794cf2681c6c9fe7b260e0e84de96298dc9c18b/":s)+a},
 $S:57}
 A.JC.prototype={
 $1(a){this.a.remove()
@@ -12826,7 +12827,7 @@ break
 case 1:return A.G(q,r)}})
 return A.H($async$fn,r)},
 tB(a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,a0,a1){return A.L4(t.yQ.a(a),b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,a0,a1)},
-tx(a,b,c,d,e,f,g,h,i,j,k,l){var s,r,q={},p=$.SU()[j.a]
+tx(a,b,c,d,e,f,g,h,i,j,k,l){var s,r=t.e,q=r.a({}),p=$.SU()[j.a]
 q.textAlign=p
 if(k!=null)q.textDirection=$.SV()[k.a]
 p=l==null
@@ -12834,7 +12835,7 @@ if(!p)q.textHeightBehavior=$.SW()[0]
 if(a!=null)q.ellipsis=a
 if(i!=null)q.strutStyle=A.TL(i,l)
 q.replaceTabCharacters=!0
-s={}
+s=r.a({})
 if(e!=null||!1)s.fontStyle=A.MN(e,d)
 if(c!=null)A.P2(s,c)
 A.P1(s,A.Mf(b,null))
@@ -13039,7 +13040,7 @@ r.dy!==$&&A.at()
 r.dy=s
 q=s}return q}}
 A.yn.prototype={
-$0(){var s,r,q,p=this.a,o=p.a,n=p.f,m=p.z,l=p.ch,k={}
+$0(){var s,r,q,p=this.a,o=p.a,n=p.f,m=p.z,l=p.ch,k=t.e.a({})
 if(l!=null){s=A.Rb(new A.aS(l.y))
 k.backgroundColor=s}if(o!=null){s=A.Rb(o)
 k.color=s}if(m!=null)A.P2(k,m)
@@ -15866,7 +15867,7 @@ s=1
 break}j=n.x
 j.d=null
 p=4
-m=new globalThis.window.ImageDecoder({type:n.a,data:n.b,premultiplyAlpha:"premultiply",colorSpaceConversion:"default",preferAnimation:!0})
+m=new globalThis.window.ImageDecoder(t.e.a({type:n.a,data:n.b,premultiplyAlpha:"premultiply",colorSpaceConversion:"default",preferAnimation:!0}))
 i=t.H
 s=7
 return A.E(A.d_(m.tracks.ready,i),$async$eU)
@@ -15904,7 +15905,7 @@ i=A
 s=4
 return A.E(p.eU(),$async$cT)
 case 4:s=3
-return A.E(i.d_(b.decode({frameIndex:p.r}),m),$async$cT)
+return A.E(i.d_(b.decode(m.a({frameIndex:p.r})),m),$async$cT)
 case 3:l=b.image
 k=p.r
 j=p.d
@@ -37553,7 +37554,7 @@ s($,"a1I","Su",()=>A.av([B.dE,A.QP("grapheme"),B.dF,A.QP("word")],A.a3("kr"),t.e
 s($,"a2u","T2",()=>A.QR())
 s($,"a2t","T1",()=>{var q=A.t(self.window,"trustedTypes")
 q.toString
-return A.XQ(q,"createPolicy",A.WB("flutter-engine"),{createScriptURL:A.O8(new A.JS())})})
+return A.XQ(q,"createPolicy",A.WB("flutter-engine"),t.e.a({createScriptURL:A.O8(new A.JS())}))})
 r($,"a2v","T3",()=>self.window.FinalizationRegistry!=null)
 s($,"a1F","Sq",()=>B.m.a9(A.av(["type","fontsChange"],t.N,t.z)))
 s($,"a2D","Nd",()=>{var q=A.QQ()
