@@ -418,6 +418,21 @@ command once.</p>
 <blockquote>
 <div><p>You do not need to run <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">pub</span> <span class="pre">get</span></code> once bootstrap has been completed.</p>
 </div></blockquote>
+<section id="cspell">
+<h4>CSpell<a class="headerlink" href="#cspell" title="Permalink to this heading">¶</a></h4>
+<p>If you want to run the spellchecker locally, you will have to install
+<a class="reference external" href="https://github.com/streetsidesoftware/cspell/tree/main/packages/cspell">cspell</a>;
+you can do so using npm or yarn:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>npm<span class="w"> </span>install<span class="w"> </span>-g<span class="w"> </span>cspell
+</pre></div>
+</div>
+<p>Then you can run it with the following arguments:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cspell<span class="w"> </span>--no-progress<span class="w"> </span>-c<span class="w"> </span>.github/cspell.json<span class="w"> </span><span class="s2">&quot;**/*.{md,dart}&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="markdown-lint">
+<h4>Markdown Lint<a class="headerlink" href="#markdown-lint" title="Permalink to this heading">¶</a></h4>
 <p>If you want to lint the markdown files you have to install
 <a class="reference external" href="https://github.com/igorshubovych/markdownlint-cli">markdownlint-cli</a> and once that is installed you
 can run <code class="docutils literal notranslate"><span class="pre">melos</span> <span class="pre">markdown-check</span></code> to check if the markdown follows the rules. Some markdown linting
@@ -427,6 +442,7 @@ option</a>. However, you can use other tools to
 circumvent this. For example, the extension <a class="reference external" href="https://stkb.github.io/Rewrap/">Rewrap</a> for VSCode, when
 <a class="reference external" href="https://stkb.github.io/Rewrap/configuration/">configured with</a> <code class="docutils literal notranslate"><span class="pre">rewrap.wrappingColumn=100</span></code>, will do
 the trick for you.</p>
+</section>
 </section>
 <section id="performing-changes">
 <h3>Performing changes<a class="headerlink" href="#performing-changes" title="Permalink to this heading">¶</a></h3>
@@ -556,6 +572,8 @@ sure that all the versions are correct.</p></li>
   <a href='#requirements' class='list-group-item level-2'>Requirements</a>
   <a href='#open-an-issue-and-fork-the-repository' class='list-group-item level-1'>Open an issue and fork the repository</a>
   <a href='#environment-setup' class='list-group-item level-2'>Environment Setup</a>
+  <a href='#cspell' class='list-group-item level-3'>CSpell</a>
+  <a href='#markdown-lint' class='list-group-item level-3'>Markdown Lint</a>
   <a href='#performing-changes' class='list-group-item level-2'>Performing changes</a>
   <a href='#breaking-changes' class='list-group-item level-2'>Breaking changes</a>
   <a href='#open-a-pull-request' class='list-group-item level-2'>Open a pull request</a>
