@@ -338,6 +338,13 @@ example at the root of your game class.</p>
 <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has a <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> and a <code class="docutils literal notranslate"><span class="pre">Viewfinder</span></code> inside, allowing both the
 flexibility of rendering the world at any place on the screen, and also control
 the viewing location and angle.</p>
+<p>If you add children to the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> they will appear as static HUDs in
+front of the world and if you add children to the <code class="docutils literal notranslate"><span class="pre">Viewfinder</span></code> they will appear
+statically in front of the viewport.</p>
+<p>To add static components behind the world you can add them to the <code class="docutils literal notranslate"><span class="pre">backdrop</span></code>
+component, or replace the <code class="docutils literal notranslate"><span class="pre">backdrop</span></code> component. This is for example useful if
+you want to have a static <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code> beneath a world that you can move
+around it.</p>
 <section id="world">
 <h2>World<a class="headerlink" href="#world" title="Permalink to this heading">¶</a></h2>
 <p>This component should be used to host all other components that comprise your
