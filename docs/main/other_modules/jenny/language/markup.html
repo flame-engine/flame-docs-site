@@ -313,7 +313,9 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="markup">
+  <!-- cSpell:ignore lorem ipsum dolor sit amet, consectetur adipiscing elit -->
+<!-- cSpell:ignore Malfoy -->
+<section class="tex2jax_ignore mathjax_ignore" id="markup">
 <h1>Markup<a class="headerlink" href="#markup" title="Permalink to this heading">¶</a></h1>
 <p><strong>Markup</strong> is a mechanism for annotating fragments of a dialogue line. They are somewhat similar to
 HTML tags, or you can imagine them as comments in a google document. Importantly, markup tags
@@ -334,14 +336,14 @@ markup range must be fully inside or fully outside another:</p>
 </div>
 <p>The special <strong>close-all</strong> markup tag <code class="docutils literal notranslate"><span class="pre">[/]</span></code> closes all currently opened markup ranges. It is also
 handy in situations where the name of the markup tag is long and you don’t want to repeat it:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Lorem ipsum dolor sit amet, <span class="sb">[Incididunt]</span>consectetur adipiscing elit<span class="sb">[/]</span>
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Lorem ipsum dolor sit amet, <span class="sb">[bold]</span>consectetur adipiscing elit<span class="sb">[/]</span>
 </pre></div>
 </div>
 <p>The <strong>self-closing</strong> markup tags have the form <code class="docutils literal notranslate"><span class="pre">[tag_name/]</span></code>. These tags mark a single location
 within the text. In addition, if such tag is surrounded by spaces on both sides, then a single
 space after the tag will be removed from the resulting text. If this is undesired, then simply
 add an extra space after the markup tag:</p>
-<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Lorem ipsum dolor sit amet, <span class="sb">[carramba/]</span><span class="w"> </span>consectetur adipiscing elit.
+<div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span>Lorem ipsum dolor sit amet, <span class="sb">[wave/]</span><span class="w"> </span>consectetur adipiscing elit.
 </pre></div>
 </div>
 <p>Markup tags also accept parameters, which are similar to HTML tag attributes. The names of these

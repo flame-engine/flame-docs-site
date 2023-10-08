@@ -358,6 +358,7 @@ The distance is <span class="p">{</span><span class="nb">plural</span><span clas
 the first word is the singular form, while others are different plurals – their meaning would
 depend on a particular language. For example, in Ukrainian locale (<code class="docutils literal notranslate"><span class="pre">uk</span></code>) the function <code class="docutils literal notranslate"><span class="pre">plural()</span></code>
 requires 3 words: the singular form, the “few” plural form, and the “many” plural form:</p>
+<!--- cSpell:ignore мене монета монети монет -->
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="c">// Assuming locale == &#39;uk&#39;</span>
 У мене є <span class="p">{</span><span class="nb">plural</span><span class="p">(</span><span class="nv">$coins</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% монета</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% монети</span><span class="s s-Delimeter">&quot;</span><span class="p">,</span><span class="w"> </span><span class="s s-Delimeter">&quot;</span><span class="s">% монет</span><span class="s s-Delimeter">&quot;</span><span class="p">)}</span>.
 
@@ -382,7 +383,7 @@ given name does not exist in the project, an exception will be thrown.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> LuckyWheel</span>
 <span class="p">---</span>
 <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="nb">visit_count</span><span class="p">(</span><span class="s s-Delimeter">&quot;</span><span class="s">LuckyWheel</span><span class="s s-Delimeter">&quot;</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">5</span><span class="p">&gt;&gt;</span>
-<span class="w">  </span><span class="nt">Clown</span><span class="p">: </span>Would you like to speen a wheel and get fabulous prizes?
+<span class="w">  </span><span class="nt">Clown</span><span class="p">: </span>Would you like to spin a wheel and get fabulous prizes?
 <span class="w">  </span><span class="p">-&gt;</span><span class="w"> </span>I sure do!
 <span class="w">     </span><span class="p">&lt;&lt;</span><span class="k">jump</span><span class="w"> </span><span class="nf">SpinLuckyWheel</span><span class="p">&gt;&gt;</span>
 <span class="w">  </span><span class="p">-&gt;</span><span class="w"> </span>I don&#39;t talk to strangers...
@@ -413,8 +414,8 @@ given name does not exist in the project, an exception will be thrown.</p>
 <span class="p">&lt;&lt;</span><span class="k">if</span><span class="w"> </span><span class="o">not</span><span class="w"> </span><span class="nb">visited</span><span class="p">(</span><span class="s s-Delimeter">&quot;</span><span class="s">MerchantDialogue</span><span class="s s-Delimeter">&quot;</span><span class="p">)&gt;&gt;</span>
 <span class="w">  </span><span class="c">// This part of the dialogue will run only during the first interaction</span>
 <span class="w">  </span><span class="c">// with the merchant.</span>
-<span class="w">  </span><span class="nt">Merchant</span><span class="p">: </span>Greetings! My name is Hazeem
-<span class="w">  </span><span class="nt">Merchant</span><span class="p">: </span>I offer exquisute wares for the most fastidious customers!
+<span class="w">  </span><span class="nt">Merchant</span><span class="p">: </span>Greetings! My name is Linn.
+<span class="w">  </span><span class="nt">Merchant</span><span class="p">: </span>I offer exquisite wares for the most fastidious customers!
 <span class="w">  </span><span class="nt">Player</span><span class="p">: </span>Hi. I&#39;m Bob. I like stuff.
 <span class="p">&lt;&lt;</span><span class="k">endif</span><span class="p">&gt;&gt;</span>
 ...
