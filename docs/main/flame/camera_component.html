@@ -333,18 +333,13 @@ same world (or different worlds) at the same time.</p>
 <p>With this mindset, we can now understand how camera-as-a-component works.</p>
 <p>First, there is the <a class="reference internal" href="#world"><span class="std std-ref">World</span></a> class, which contains all components that are
 inside your game world. The <code class="docutils literal notranslate"><span class="pre">World</span></code> component can be mounted anywhere, for
-example at the root of your game class.</p>
-<p>Then, a <a class="reference internal" href="#cameracomponent"><span class="std std-ref">CameraComponent</span></a> class that “looks at” the <code class="docutils literal notranslate"><span class="pre">World</span></code>. The
-<code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has a <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> and a <code class="docutils literal notranslate"><span class="pre">Viewfinder</span></code> inside, allowing both the
-flexibility of rendering the world at any place on the screen, and also control
-the viewing location and angle.</p>
-<p>If you add children to the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> they will appear as static HUDs in
-front of the world and if you add children to the <code class="docutils literal notranslate"><span class="pre">Viewfinder</span></code> they will appear
-statically in front of the viewport.</p>
-<p>To add static components behind the world you can add them to the <code class="docutils literal notranslate"><span class="pre">backdrop</span></code>
-component, or replace the <code class="docutils literal notranslate"><span class="pre">backdrop</span></code> component. This is for example useful if
-you want to have a static <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code> beneath a world that you can move
-around it.</p>
+example at the root of your game class, like the built-in <code class="docutils literal notranslate"><span class="pre">World</span></code> is.</p>
+<p>Then, a <a class="reference internal" href="#cameracomponent"><span class="std std-ref">CameraComponent</span></a> class that “looks at” the <a class="reference internal" href="#world"><span class="std std-ref">World</span></a>. The
+<code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has a <a class="reference internal" href="#viewport"><span class="std std-ref">Viewport</span></a> and a <a class="reference internal" href="#viewfinder"><span class="std std-ref">Viewfinder</span></a> inside, allowing
+both the flexibility of rendering the world at any place on the screen, and
+also control the viewing location and angle. The <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> also
+contains a <a class="reference internal" href="#backdrop"><span class="std std-ref">Backdrop</span></a> component which is statically rendered below the
+world.</p>
 <section id="world">
 <h2>World<a class="headerlink" href="#world" title="Permalink to this heading">¶</a></h2>
 <p>This component should be used to host all other components that comprise your
@@ -441,11 +436,14 @@ components.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">MaxViewport</span></code> (default) – this viewport expands to the maximum size allowed
 by the game, i.e. it will be equal to the size of the game canvas.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FixedResolutionViewport</span></code> – keeps the resolution and aspect ratio fixed, with black bars on the
+sides if it doesn’t match the aspect ratio.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">FixedSizeViewport</span></code> – a simple rectangular viewport with predefined size.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">FixedAspectRatioViewport</span></code> – a rectangular viewport which expands to fit
 into the game canvas, but preserving its aspect ratio.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">CircularViewport</span></code> – a viewport in the shape of a circle, fixed size.</p></li>
 </ul>
+<p>If you add children to the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> they will appear as static HUDs in front of the world.</p>
 </section>
 <section id="viewfinder">
 <h2>Viewfinder<a class="headerlink" href="#viewfinder" title="Permalink to this heading">¶</a></h2>
@@ -458,9 +456,27 @@ in side-scrolling action games it is common to have the camera focused on the
 main character who is displayed not in the center of the screen but closer to
 the lower-left corner. This off-center position would be the “logical center”
 of the camera, controlled by the viewfinder’s <code class="docutils literal notranslate"><span class="pre">anchor</span></code>.</p>
-<p>Components added to the <code class="docutils literal notranslate"><span class="pre">Viewfinder</span></code> as children will be rendered as if they
-were part of the world (but on top). It is more useful to add behavioral
-components to the viewfinder, for example <a class="reference internal" href="effects.html"><span class="std std-doc">Effects</span></a> or other controllers.</p>
+<p>If you add children to the <code class="docutils literal notranslate"><span class="pre">Viewfinder</span></code> they will appear will appear in front
+of the world, but behind the viewport and with the same transformations as are
+applied to the world, so these components are not static.</p>
+<p>You can also add behavioral components as children to the viewfinder, for
+example <a class="reference internal" href="effects.html"><span class="std std-doc">Effects</span></a> or other controllers. If you for example would add a
+<code class="docutils literal notranslate"><span class="pre">ScaleEffect</span></code> you would be able to achieve a smooth zoom in your game.</p>
+</section>
+<section id="backdrop">
+<h2>Backdrop<a class="headerlink" href="#backdrop" title="Permalink to this heading">¶</a></h2>
+<p>To add static components behind the world you can add them to the <code class="docutils literal notranslate"><span class="pre">backdrop</span></code>
+component, or replace the <code class="docutils literal notranslate"><span class="pre">backdrop</span></code> component. This is for example useful if
+you want to have a static <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code> beneath a world that you can move
+around it.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">camera</span><span class="p">.</span><span class="n">backdrop</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">MyStaticBackground</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">camera</span><span class="p">.</span><span class="n">backdrop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyStaticBackground</span><span class="p">();</span>
+</pre></div>
+</div>
 </section>
 <section id="camera-controls">
 <h2>Camera controls<a class="headerlink" href="#camera-controls" title="Permalink to this heading">¶</a></h2>
@@ -565,6 +581,7 @@ without having to unmount one world and then mount another;</p></li>
   <a href='#cameracomponent-withfixedresolution' class='list-group-item level-2'>CameraComponent.withFixedResolution()</a>
   <a href='#viewport' class='list-group-item level-1'>Viewport</a>
   <a href='#viewfinder' class='list-group-item level-1'>Viewfinder</a>
+  <a href='#backdrop' class='list-group-item level-1'>Backdrop</a>
   <a href='#camera-controls' class='list-group-item level-1'>Camera controls</a>
   <a href='#visibleworldrect' class='list-group-item level-2'>visibleWorldRect</a>
   <a href='#check-if-a-component-is-visible-from-the-camera-point-of-view' class='list-group-item level-2'>Check if a component is visible from the camera point of view</a>
