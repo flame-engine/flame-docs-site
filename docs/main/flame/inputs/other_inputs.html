@@ -444,6 +444,34 @@ else which isn’t a pure sprite.</p>
 <p>Flame has a separate plugin to support external game controllers (gamepads), check
 <a class="reference external" href="https://github.com/flame-engine/flame_gamepad">here</a> for more information.</p>
 </section>
+<section id="advancedbuttoncomponent">
+<h2>AdvancedButtonComponent<a class="headerlink" href="#advancedbuttoncomponent" title="Permalink to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">AdvancedButtonComponent</span></code> have separate states for each of the different pointer phases.
+The skin can be customized for each state and each skin is represented by a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p>
+<p>These are the fields that can be used to customize the looks of the <code class="docutils literal notranslate"><span class="pre">AdvancedButtonComponent</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">defaultSkin</span></code>: Component that will be displayed by default on the button.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">downSkin</span></code>: Component displayed when the button is clicked or tapped.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hoverSkin</span></code>: Component displayed when the button is hovered. (desktop and web).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">defaultLabel</span></code>: Component shown on top of skins. Automatically aligned to center.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">disabledSkin</span></code>: Component displayed when button is disabled.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">disabledLabel</span></code>: Component shown on top of skins when button is disabled.</p></li>
+</ul>
+</section>
+<section id="togglebuttoncomponent">
+<h2>ToggleButtonComponent<a class="headerlink" href="#togglebuttoncomponent" title="Permalink to this heading">¶</a></h2>
+<p>The [ToggleButtonComponent] is an [AdvancedButtonComponent] that can switch between selected
+and not selected.</p>
+<p>In addition to the already existing skins, the [ToggleButtonComponent] contains the following skins:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">defaultSelectedSkin</span></code>: The component to display when the button is selected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">downAndSelectedSkin</span></code>: The component that is displayed when the selectable button is selected and
+pressed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">hoverAndSelectedSkin</span></code>: Hover on selectable and selected button (desktop and web).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">disabledAndSelectedSkin</span></code>: For when the button is selected and in the disabled state.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">defaultSelectedLabel</span></code>: Component shown on top of the skins when button is selected.</p></li>
+</ul>
+</section>
 </section>
 
 
@@ -481,6 +509,8 @@ else which isn’t a pure sprite.</p>
   <a href='#spritebuttoncomponent' class='list-group-item level-1'>SpriteButtonComponent</a>
   <a href='#buttoncomponent' class='list-group-item level-1'>ButtonComponent</a>
   <a href='#gamepad' class='list-group-item level-1'>Gamepad</a>
+  <a href='#advancedbuttoncomponent' class='list-group-item level-1'>AdvancedButtonComponent</a>
+  <a href='#togglebuttoncomponent' class='list-group-item level-1'>ToggleButtonComponent</a>
 </div>
 
     </div>
