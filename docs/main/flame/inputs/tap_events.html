@@ -149,7 +149,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../other/widgets.html">Widgets</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../camera_and_viewport.html">Camera &amp; Viewport</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bridge_packages/bridge_packages.html">Bridge Packages</a><ul>
@@ -581,31 +580,36 @@ parent has implemented the <code class="docutils literal notranslate"><span clas
 </pre></div>
 </div>
 </section>
-<section id="hastappablesbridge">
-<h3>HasTappablesBridge<a class="headerlink" href="#hastappablesbridge" title="Permalink to this heading">¶</a></h3>
-<p>This marker mixin can be used to indicate that the game has both the “new-style” components that
-use the <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> mixin, and the “old-style” components that use the <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> mixin. In
-effect, every tap event will be propagated twice through the system: first trying to reach the
-components with <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> mixin, and then components with <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTappablesBridge</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">// ...</span>
-<span class="p">}</span>
+<section id="doubletapcallbacks">
+<h3>DoubleTapCallbacks<a class="headerlink" href="#doubletapcallbacks" title="Permalink to this heading">¶</a></h3>
+<p>Flame also offers a mixin named <code class="docutils literal notranslate"><span class="pre">DoubleTapCallbacks</span></code> to receive a double-tap event from the
+component. To start receiving double tap events in a component, add the
+<code class="docutils literal notranslate"><span class="pre">DoubleTapCallbacks</span></code> mixin to your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DoubleTapCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDoubleTapUp</span><span class="p">(</span><span class="n">DoubleTapEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">/// Do something</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDoubleTapCancel</span><span class="p">(</span><span class="n">DoubleTapCancelEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">/// Do something</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDoubleTapDown</span><span class="p">(</span><span class="n">DoubleTapDownEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">/// Do something</span>
+<span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
-<p>The purpose of this mixin is to ease the transition from the old event delivery system to the
-new one. With this mixin, you can transition your <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> components into using <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code>
-one by one, verifying that your game continues to work at every step.</p>
-<p>Use of this mixin for any new project is highly discouraged.</p>
 </section>
 </section>
 <section id="migration">
 <h2>Migration<a class="headerlink" href="#migration" title="Permalink to this heading">¶</a></h2>
-<p>If you have an existing game that uses <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>/<code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> mixins, then this section will
+<p>If you have an existing game that uses <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>/<code class="docutils literal notranslate"><span class="pre">Draggable</span></code> mixins, then this section will
 describe how to transition to the new API described in this document. Here’s what you need to do:</p>
-<ol class="arabic simple">
-<li><p>Replace the <code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> mixin with the <code class="docutils literal notranslate"><span class="pre">HasTappablesBridge</span></code> mixin on your game.
-Verify that your game continues to run as before.</p></li>
-<li><p>Pick any of your components that uses <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>, and replace that mixin with <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code>.
+<p>Take all of your components that uses these mixins, and replace them with
+<code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code>/<code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code>.
 The methods <code class="docutils literal notranslate"><span class="pre">onTapDown</span></code>, <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code>, <code class="docutils literal notranslate"><span class="pre">onTapCancel</span></code> and <code class="docutils literal notranslate"><span class="pre">onLongTapDown</span></code> will need to be adjusted
 for the new API:</p>
 <ul class="simple">
@@ -617,17 +621,9 @@ to the components below, then set <code class="docutils literal notranslate"><sp
 <li><p>If your component needs to know the coordinates of the point of touch, use
 <code class="docutils literal notranslate"><span class="pre">event.localPosition</span></code> instead of computing it manually. Properties <code class="docutils literal notranslate"><span class="pre">event.canvasPosition</span></code> and
 <code class="docutils literal notranslate"><span class="pre">event.devicePosition</span></code> are also available.</p></li>
-<li><p>If the component is a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, then make sure its size is set correctly (for
-example by turning on the debug mode). If the component does not derive from
-<code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> then make sure it implements the method <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code>.</p></li>
-<li><p>If the component is not attached to the root of the game, then make sure its ancestors also
-have correct size or implement <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code>.</p></li>
+<li><p>If the component is attached to a custom ancestor then make sure that ancestor also have the
+correct size or implement <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code>.</p></li>
 </ul>
-</li>
-<li><p>Run the game to verify that it works as before.</p></li>
-<li><p>Repeat step 2 until you have converted all <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> mixins into <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code>.</p></li>
-<li><p>Remove the <code class="docutils literal notranslate"><span class="pre">HasTappablesBridge</span></code> mixin from your top-level game.</p></li>
-</ol>
 </section>
 </section>
 
@@ -669,7 +665,7 @@ have correct size or implement <code class="docutils literal notranslate"><span 
   <a href='#demo' class='list-group-item level-2'>Demo</a>
   <a href='#mixins' class='list-group-item level-1'>Mixins</a>
   <a href='#tapcallbacks' class='list-group-item level-2'>TapCallbacks</a>
-  <a href='#hastappablesbridge' class='list-group-item level-2'>HasTappablesBridge</a>
+  <a href='#doubletapcallbacks' class='list-group-item level-2'>DoubleTapCallbacks</a>
   <a href='#migration' class='list-group-item level-1'>Migration</a>
 </div>
 

@@ -149,7 +149,6 @@
 <li class="toctree-l3"><a class="reference internal" href="other/widgets.html">Widgets</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="camera_and_viewport.html">Camera &amp; Viewport</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bridge_packages/bridge_packages.html">Bridge Packages</a><ul>
@@ -319,7 +318,7 @@
 <p class="admonition-title">Note</p>
 <p>This document describes a new camera API. The more traditional approach
 (which is deprecated) for handling a camera is described in
-<a class="reference internal" href="camera_and_viewport.html"><span class="std std-doc">Camera and Viewport (Deprecated)</span></a>.</p>
+<a class="reference internal" href="#camera_and_viewport.md"><code class="xref myst docutils literal notranslate"><span class="pre">camera_and_viewport.md</span></code></a>.</p>
 </div>
 <p>Camera-as-a-component is the new way of structuring a game, an approach that
 allows more flexibility in placing the camera, or even having more than one
@@ -530,20 +529,6 @@ This is useful for example to cull components that are not in view.</p>
 </div>
 </section>
 </section>
-<section id="comparison-to-the-deprecated-camera">
-<h2>Comparison to the deprecated camera<a class="headerlink" href="#comparison-to-the-deprecated-camera" title="Permalink to this heading">¶</a></h2>
-<p>Compared to the deprecated <a class="reference internal" href="camera_and_viewport.html"><span class="std std-doc">Camera</span></a>, the <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code>
-has several advantages:</p>
-<ul class="simple">
-<li><p>Multiple cameras can be added to the game at the same time;</p></li>
-<li><p>More flexibility in choosing the placement and the size of the viewport;</p></li>
-<li><p>Switching camera from one world to another can happen instantaneously,
-without having to unmount one world and then mount another;</p></li>
-<li><p>Support rotation of the world view;</p></li>
-<li><p>Effects can be applied either to the viewport, or to the viewfinder;</p></li>
-<li><p>More flexible camera controllers.</p></li>
-</ul>
-</section>
 </section>
 
 
@@ -585,7 +570,6 @@ without having to unmount one world and then mount another;</p></li>
   <a href='#camera-controls' class='list-group-item level-1'>Camera controls</a>
   <a href='#visibleworldrect' class='list-group-item level-2'>visibleWorldRect</a>
   <a href='#check-if-a-component-is-visible-from-the-camera-point-of-view' class='list-group-item level-2'>Check if a component is visible from the camera point of view</a>
-  <a href='#comparison-to-the-deprecated-camera' class='list-group-item level-1'>Comparison to the deprecated camera</a>
 </div>
 
     </div>

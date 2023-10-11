@@ -9680,7 +9680,7 @@ this.d=b},
 H8:function H8(a,b,c){var _=this
 _.a=67324752
 _.f=_.e=_.d=_.c=0
-_.x=_.r=null
+_.x=_.w=_.r=null
 _.y=""
 _.z=a
 _.Q=b
@@ -67880,52 +67880,58 @@ if(a.f7()===101010256){a.b=q+(r-q)
 return s}}throw A.d(A.dE("Could not find End of Central Directory Record"))}}
 A.aqW.prototype={}
 A.H8.prototype={
-anE(a,b,c){var s,r,q,p,o,n,m,l,k,j,i=this,h=a.f7()
-i.a=h
-if(h!==67324752)throw A.d(A.dE("Invalid Zip Signature"))
+anE(a,b,c){var s,r,q,p,o,n,m,l,k,j,i=this,h=null,g=a.f7()
+i.a=g
+if(g!==67324752)throw A.d(A.dE("Invalid Zip Signature"))
 a.e7()
 i.c=a.e7()
 i.d=a.e7()
 i.e=a.e7()
 i.f=a.e7()
 i.r=a.f7()
-a.f7()
+i.w=a.f7()
 i.x=a.f7()
 s=a.e7()
 r=a.e7()
 i.y=a.L7(s)
 i.z=a.mZ(r).jB()
+g=i.Q
+q=g==null
+p=q?h:g.w
+i.w=p==null?i.w:p
+q=q?h:g.x
+i.x=q==null?i.x:q
 i.ay=(i.c&1)!==0?1:0
 i.CW=c
-h=i.Q.w
-h.toString
-i.as=a.mZ(h)
-if(i.ay!==0&&r>2){q=A.p6(i.z,0,null,0)
-h=q.c
-while(!0){p=q.b
-o=q.e
-o===$&&A.c()
-if(!(p<h+o))break
-n=q.e7()
-m=q.e7()
-l=q.qS(q.b-h,m)
-p=q.b
-o=l.e
-o===$&&A.c()
-q.b=p+(o-(l.b-l.c))
+g=g.w
+g.toString
+i.as=a.mZ(g)
+if(i.ay!==0&&r>2){o=A.p6(i.z,0,h,0)
+g=o.c
+while(!0){q=o.b
+p=o.e
+p===$&&A.c()
+if(!(q<g+p))break
+n=o.e7()
+m=o.e7()
+l=o.qS(o.b-g,m)
+q=o.b
+p=l.e
+p===$&&A.c()
+o.b=q+(p-(l.b-l.c))
 if(n===39169){l.e7()
 l.L7(2)
-p=J.by(l.a,l.b++)
+q=J.by(l.a,l.b++)
 k=l.e7()
 i.ay=2
-i.ch=new A.aqW(p,k)
+i.ch=new A.aqW(q,k)
 i.d=k}}}if((i.c&8)!==0){j=a.f7()
 if(j===134695760)i.r=a.f7()
 else i.r=j
-a.f7()
-i.x=a.f7()}h=i.Q
-h=h==null?null:h.at
-i.y=h==null?i.y:h},
+i.w=a.f7()
+i.x=a.f7()}g=i.Q
+g=g==null?h:g.at
+i.y=g==null?i.y:g},
 gBV(a){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d,c=this,b=c.at
 if(b==null){if(c.ay!==0){b=c.as
 b===$&&A.c()

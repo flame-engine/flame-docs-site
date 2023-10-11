@@ -149,7 +149,6 @@
 <li class="toctree-l3"><a class="reference internal" href="../other/widgets.html">Widgets</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../camera_and_viewport.html">Camera &amp; Viewport</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bridge_packages/bridge_packages.html">Bridge Packages</a><ul>
@@ -315,11 +314,6 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="drag-events">
 <h1>Drag Events<a class="headerlink" href="#drag-events" title="Permalink to this heading">¶</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This document describes the new drag events API. The old (legacy) approach,
-which is still supported, is described in <a class="reference internal" href="gesture_input.html"><span class="std std-doc">Gesture Input</span></a>.</p>
-</div>
 <p><strong>Drag events</strong> occur when the user moves their finger across the screen of the device, or when they
 move the mouse while holding its button down.</p>
 <p>Multiple drag events can occur at the same time, if the user is using multiple fingers. Such cases
@@ -683,22 +677,6 @@ ancestors have all implemented the <code class="docutils literal notranslate"><s
 </pre></div>
 </div>
 </section>
-<section id="hasdraggablesbridge">
-<h3>HasDraggablesBridge<a class="headerlink" href="#hasdraggablesbridge" title="Permalink to this heading">¶</a></h3>
-<p>This marker mixin can be used to indicate that the game has both the “new-style” components that
-use the <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixin, and the “old-style” components that use the <code class="docutils literal notranslate"><span class="pre">Draggable</span></code> mixin. In
-effect, every drag event will be propagated twice through the system: first trying to reach the
-components with <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixin, and then components with <code class="docutils literal notranslate"><span class="pre">Draggable</span></code>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasDraggablesBridge</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="c1">// ...</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>The purpose of this mixin is to ease the transition from the old event delivery system to the
-new one. With this mixin, you can transition your <code class="docutils literal notranslate"><span class="pre">Draggable</span></code> components into using <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code>
-one by one, verifying that your game continues to work at every step.</p>
-<p>Use of this mixin for any new project is highly discouraged.</p>
-</section>
 </section>
 </section>
 
@@ -740,7 +718,6 @@ one by one, verifying that your game continues to work at every step.</p>
   <a href='#ondragcancel' class='list-group-item level-2'>onDragCancel</a>
   <a href='#mixins' class='list-group-item level-1'>Mixins</a>
   <a href='#dragcallbacks' class='list-group-item level-2'>DragCallbacks</a>
-  <a href='#hasdraggablesbridge' class='list-group-item level-2'>HasDraggablesBridge</a>
 </div>
 
     </div>
