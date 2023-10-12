@@ -326,13 +326,18 @@ programs on your computer (all of them are free):</p>
 <p>First, let’s verify that your Flutter SDK was installed correctly and is accessible from the command
 line:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>flutter<span class="w"> </span>doctor
-<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Flutter<span class="w"> </span><span class="o">(</span>Channel<span class="w"> </span>stable,<span class="w"> </span><span class="m">2</span>.10.0,<span class="w"> </span>on<span class="w"> </span>macOS<span class="w"> </span><span class="m">12</span>.3.1<span class="w"> </span>21E258<span class="w"> </span>darwin-x64,<span class="w"> </span>locale<span class="w"> </span>en<span class="o">)</span>
-<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Android<span class="w"> </span>toolchain<span class="w"> </span>-<span class="w"> </span>develop<span class="w"> </span><span class="k">for</span><span class="w"> </span>Android<span class="w"> </span>devices<span class="w"> </span><span class="o">(</span>Android<span class="w"> </span>SDK<span class="w"> </span>version<span class="w"> </span><span class="m">31</span>.0.0<span class="o">)</span>
-<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Xcode<span class="w"> </span>-<span class="w"> </span>develop<span class="w"> </span><span class="k">for</span><span class="w"> </span>iOS<span class="w"> </span>and<span class="w"> </span>macOS<span class="w"> </span><span class="o">(</span>Xcode<span class="w"> </span><span class="m">13</span>.1<span class="o">)</span>
+Doctor<span class="w"> </span>summary<span class="w"> </span><span class="o">(</span>to<span class="w"> </span>see<span class="w"> </span>all<span class="w"> </span>details,<span class="w"> </span>run<span class="w"> </span>flutter<span class="w"> </span>doctor<span class="w"> </span>-v<span class="o">)</span>:
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Flutter<span class="w"> </span><span class="o">(</span>Channel<span class="w"> </span>stable,<span class="w"> </span><span class="m">3</span>.13.7,<span class="w"> </span>on<span class="w"> </span>macOS<span class="w"> </span><span class="m">13</span>.6<span class="w"> </span>22G120<span class="w"> </span>darwin-arm64,<span class="w"> </span>locale<span class="w"> </span>en<span class="o">)</span>
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Android<span class="w"> </span>toolchain<span class="w"> </span>-<span class="w"> </span>develop<span class="w"> </span><span class="k">for</span><span class="w"> </span>Android<span class="w"> </span>devices<span class="w"> </span><span class="o">(</span>Android<span class="w"> </span>SDK<span class="w"> </span>version<span class="w"> </span><span class="m">33</span>.0.0<span class="o">)</span>
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Xcode<span class="w"> </span>-<span class="w"> </span>develop<span class="w"> </span><span class="k">for</span><span class="w"> </span>iOS<span class="w"> </span>and<span class="w"> </span>macOS<span class="w"> </span><span class="o">(</span>Xcode<span class="w"> </span><span class="m">15</span>.0<span class="o">)</span>
 <span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Chrome<span class="w"> </span>-<span class="w"> </span>develop<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>web
-<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Android<span class="w"> </span>Studio<span class="w"> </span><span class="o">(</span>version<span class="w"> </span><span class="m">2020</span>.3<span class="o">)</span>
-<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Connected<span class="w"> </span>device<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="w"> </span>available<span class="o">)</span>
-<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>HTTP<span class="w"> </span>Host<span class="w"> </span>Availability
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Android<span class="w"> </span>Studio<span class="w"> </span><span class="o">(</span>version<span class="w"> </span><span class="m">2021</span>.2<span class="o">)</span>
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>IntelliJ<span class="w"> </span>IDEA<span class="w"> </span>Community<span class="w"> </span>Edition<span class="w"> </span><span class="o">(</span>version<span class="w"> </span><span class="m">2022</span>.2.2<span class="o">)</span>
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>VS<span class="w"> </span>Code<span class="w"> </span><span class="o">(</span>version<span class="w"> </span><span class="m">1</span>.83.0<span class="o">)</span>
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Connected<span class="w"> </span>device<span class="w"> </span><span class="o">(</span><span class="m">2</span><span class="w"> </span>available<span class="o">)</span>
+<span class="o">[</span>✓<span class="o">]</span><span class="w"> </span>Network<span class="w"> </span>resources
+
+•<span class="w"> </span>No<span class="w"> </span>issues<span class="w"> </span>found!
 </pre></div>
 </div>
 <p>Your output will be slightly different, but the important thing is to verify that no errors are
@@ -389,8 +394,8 @@ rid of it.</p>
 <span class="nt">publish_to</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">none</span>
 
 <span class="nt">environment</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">sdk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^2.16.0</span>
-<span class="w">  </span><span class="nt">flutter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^2.10.0</span>
+<span class="w">  </span><span class="nt">sdk</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^3.0.0</span>
+<span class="w">  </span><span class="nt">flutter</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">^3.13.0</span>
 
 <span class="nt">dependencies</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">flutter</span><span class="p">:</span>

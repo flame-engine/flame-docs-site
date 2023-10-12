@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Other Inputs &#8212; Flame</title>
+  <title>Other Inputs and Helpers &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
@@ -312,8 +312,8 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="other-inputs">
-<h1>Other Inputs<a class="headerlink" href="#other-inputs" title="Permalink to this heading">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="other-inputs-and-helpers">
+<h1>Other Inputs and Helpers<a class="headerlink" href="#other-inputs-and-helpers" title="Permalink to this heading">¶</a></h1>
 <p>This includes documentation for input methods besides keyboard and mouse.</p>
 <p>For other input documents, see also:</p>
 <ul class="simple">
@@ -471,6 +471,15 @@ pressed.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">defaultSelectedLabel</span></code>: Component shown on top of the skins when button is selected.</p></li>
 </ul>
 </section>
+<section id="ignoreevents-mixin">
+<h2>IgnoreEvents mixin<a class="headerlink" href="#ignoreevents-mixin" title="Permalink to this heading">¶</a></h2>
+<p>If you don’t want a component subtree to receive events, you can use the <code class="docutils literal notranslate"><span class="pre">IgnoreEvents</span></code> mixin.
+Once you have added this mixin you can turn off events to reach a component and its descendants by
+setting <code class="docutils literal notranslate"><span class="pre">ignoreEvents</span> <span class="pre">=</span> <span class="pre">true</span></code> (default when the mixin is added), and then set it to <code class="docutils literal notranslate"><span class="pre">false</span></code> when you
+want to receive events again.</p>
+<p>This can be done for optimization purposes, since all events currently go through the whole
+component tree.</p>
+</section>
 </section>
 
 
@@ -510,6 +519,7 @@ pressed.</p></li>
   <a href='#gamepad' class='list-group-item level-1'>Gamepad</a>
   <a href='#advancedbuttoncomponent' class='list-group-item level-1'>AdvancedButtonComponent</a>
   <a href='#togglebuttoncomponent' class='list-group-item level-1'>ToggleButtonComponent</a>
+  <a href='#ignoreevents-mixin' class='list-group-item level-1'>IgnoreEvents mixin</a>
 </div>
 
     </div>
