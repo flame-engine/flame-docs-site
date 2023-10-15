@@ -501,14 +501,13 @@ are calculated using simple arithmetics. This should all happen inside the
 <span class="w">    </span><span class="p">);</span>
 </pre></div>
 </div>
-<p>Then we create the main <code class="docutils literal notranslate"><span class="pre">World</span></code> component, add to it all the components that
-we just created, and finally add the <code class="docutils literal notranslate"><span class="pre">world</span></code> to the game.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">world</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">World</span><span class="p">()</span>
-<span class="w">      </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">stock</span><span class="p">)</span>
-<span class="w">      </span><span class="p">..</span><span class="n">add</span><span class="p">(</span><span class="n">waste</span><span class="p">)</span>
-<span class="w">      </span><span class="p">..</span><span class="n">addAll</span><span class="p">(</span><span class="n">foundations</span><span class="p">)</span>
-<span class="w">      </span><span class="p">..</span><span class="n">addAll</span><span class="p">(</span><span class="n">piles</span><span class="p">);</span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">world</span><span class="p">);</span>
+<p>Since Flame version 1.9.0, <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> sets up default <code class="docutils literal notranslate"><span class="pre">world</span></code> and <code class="docutils literal notranslate"><span class="pre">camera</span></code>
+objects. <code class="docutils literal notranslate"><span class="pre">KlondikeGame</span></code> is an extension of <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, so we can add to that
+<code class="docutils literal notranslate"><span class="pre">world</span></code> all the components that we just created.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">stock</span><span class="p">)</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">waste</span><span class="p">)</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">foundations</span><span class="p">)</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">piles</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -524,11 +523,11 @@ proceed. This is not very common.</p>
 <p>If you don’t <code class="docutils literal notranslate"><span class="pre">await</span></code> the future from <code class="docutils literal notranslate"><span class="pre">.add()</span></code>, then the component will be added
 to the game anyways, and in the same amount of time.</p>
 </div>
-<p>Lastly, we create a camera object to look at the <code class="docutils literal notranslate"><span class="pre">world</span></code>. Internally, the camera
-consists of two parts: a <strong>viewport</strong> and a <strong>viewfinder</strong>. The default viewport
-is <code class="docutils literal notranslate"><span class="pre">MaxViewport</span></code>, which takes up the entire available screen size – this is
-exactly what we need for our game, so no need to change anything. The
-viewfinder, on the other hand, needs to be set up to properly take the
+<p>Lastly, we use FlameGame’s <code class="docutils literal notranslate"><span class="pre">camera</span></code> object to look at the <code class="docutils literal notranslate"><span class="pre">world</span></code>. Internally,
+the camera consists of two parts: a <strong>viewport</strong> and a <strong>viewfinder</strong>. The
+default viewport is <code class="docutils literal notranslate"><span class="pre">MaxViewport</span></code>, which takes up the entire available screen
+size – this is exactly what we need for our game, so no need to change
+anything. The viewfinder, on the other hand, needs to be set up to take the
 dimensions of the underlying world into account.</p>
 <p>We want the entire card layout to be visible on the screen without the need to
 scroll. In order to accomplish this, we specify that we want the entire world
@@ -552,12 +551,10 @@ because of how we want it to respond if the game size becomes too wide or
 too tall: in case of too wide we want it to be centered on the screen,
 but if the screen is too tall, we want the content to be aligned at the
 top.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraComponent</span><span class="p">(</span><span class="nl">world:</span><span class="w"> </span><span class="n">world</span><span class="p">)</span>
-<span class="w">      </span><span class="p">..</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">visibleGameSize</span><span class="w"> </span><span class="o">=</span>
-<span class="w">          </span><span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cardGap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cardHeight</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cardGap</span><span class="p">)</span>
-<span class="w">      </span><span class="p">..</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">3.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cardGap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)</span>
-<span class="w">      </span><span class="p">..</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">;</span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">camera</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">visibleGameSize</span><span class="w"> </span><span class="o">=</span>
+<span class="w">           </span><span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">7</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cardGap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cardHeight</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">cardGap</span><span class="p">);</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">cardWidth</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">3.5</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">cardGap</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>If you run the game now, you should see the placeholders for where the various
