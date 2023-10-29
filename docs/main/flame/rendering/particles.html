@@ -586,6 +586,24 @@ desired positioning.</p>
 </pre></div>
 </div>
 </section>
+<section id="scalingparticle">
+<h2>ScalingParticle<a class="headerlink" href="#scalingparticle" title="Permalink to this heading">¶</a></h2>
+<p>Scales the child <code class="docutils literal notranslate"><span class="pre">Particle</span></code> between <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">to</span></code> during its lifespan.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">ScalingParticle</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">lifespan:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">to:</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">child:</span><span class="w"> </span><span class="n">CircleParticle</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">radius:</span><span class="w"> </span><span class="m">2.0</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">paint:</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">,</span>
+<span class="w">      </span><span class="p">)</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
 <section id="spriteanimationparticle">
 <h2>SpriteAnimationParticle<a class="headerlink" href="#spriteanimationparticle" title="Permalink to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">Particle</span></code> which embeds a <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>.
@@ -745,6 +763,7 @@ randomly positioning its child during each frame:</p>
   <a href='#circleparticle' class='list-group-item level-1'>CircleParticle</a>
   <a href='#spriteparticle' class='list-group-item level-1'>SpriteParticle</a>
   <a href='#imageparticle' class='list-group-item level-1'>ImageParticle</a>
+  <a href='#scalingparticle' class='list-group-item level-1'>ScalingParticle</a>
   <a href='#spriteanimationparticle' class='list-group-item level-1'>SpriteAnimationParticle</a>
   <a href='#componentparticle' class='list-group-item level-1'>ComponentParticle</a>
   <a href='#computedparticle' class='list-group-item level-1'>ComputedParticle</a>
