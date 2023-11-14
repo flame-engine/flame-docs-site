@@ -44839,9 +44839,9 @@ bfB(a){return a},
 byl(a){return a},
 bC6(a){return a},
 beo(a,b){return(B.X0[(a^b)&255]^a>>>8)>>>0},
-bDa(a){var s,r,q=a
-try{s=q
-q=A.ne(s,0,s.length,B.L,!1)}catch(r){if(!(A.aW(r) instanceof A.mo))throw r}return A.le(B.di,q,B.L,!1)},
+bDa(a){var s,r
+try{s=A.ne(a,0,a.length,B.L,!1)
+if(!J.e(s,a))return a}catch(r){if(!(A.aW(r) instanceof A.mo))throw r}return A.le(B.di,a,B.L,!1)},
 bar(a,b,c){var s=0,r=A.t(t.H),q
 var $async$bar=A.u(function(d,e){if(d===1)return A.p(e,r)
 while(true)switch(s){case 0:q=a.ly(b,c,!1,t.H)
