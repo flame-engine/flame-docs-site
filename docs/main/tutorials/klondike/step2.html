@@ -38,7 +38,7 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="Cards" href="step3.html" />
+  <link rel="next" title="3. Cards" href="step3.html" />
   <link rel="prev" title="1. Preparation" href="step1.html" />
 </head>
 
@@ -264,7 +264,7 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">2. Scaffolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="step3.html">3. Cards</a></li>
 <li class="toctree-l3"><a class="reference internal" href="step4.html">4. Gameplay</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tbc.html">[To be continued]...</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step5.html">5. Additional features</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../platformer/platformer.html">Ember Quest</a><ul>
@@ -504,9 +504,9 @@ are calculated using simple arithmetics. This should all happen inside the
 <p>Since Flame version 1.9.0, <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> sets up default <code class="docutils literal notranslate"><span class="pre">world</span></code> and <code class="docutils literal notranslate"><span class="pre">camera</span></code>
 objects. <code class="docutils literal notranslate"><span class="pre">KlondikeGame</span></code> is an extension of <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, so we can add to that
 <code class="docutils literal notranslate"><span class="pre">world</span></code> all the components that we just created.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">stock</span><span class="p">)</span>
-<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">waste</span><span class="p">)</span>
-<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">foundations</span><span class="p">)</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">stock</span><span class="p">);</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">waste</span><span class="p">);</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">foundations</span><span class="p">);</span>
 <span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">piles</span><span class="p">);</span>
 </pre></div>
 </div>
@@ -705,7 +705,7 @@ the card objects, which are the most important visual objects in this game.</p>
       <a class="right-next" id="next-link" href="step3.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Cards</p>
+          <p class="prev-next-title">3. Cards</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>

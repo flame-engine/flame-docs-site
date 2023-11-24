@@ -264,7 +264,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step3.html">3. Cards</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step4.html">4. Gameplay</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/tbc.html">[To be continued]...</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step5.html">5. Additional features</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/platformer/platformer.html">Ember Quest</a><ul>
@@ -341,6 +341,40 @@ the <a class="reference internal" href="#fpstextcomponent"><span class="std std-
 <p>The <code class="docutils literal notranslate"><span class="pre">FpsTextComponent</span></code> is simply a <a class="reference internal" href="../rendering/text_rendering.html#textcomponent"><span class="std std-ref">TextComponent</span></a> that wraps an <code class="docutils literal notranslate"><span class="pre">FpsComponent</span></code>, since you most
 commonly want to show the current FPS somewhere when the <code class="docutils literal notranslate"><span class="pre">FpsComponent</span></code> is used.</p>
 </section>
+<section id="childcountercomponent">
+<h3>ChildCounterComponent<a class="headerlink" href="#childcountercomponent" title="Permalink to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">ChildCounterComponent</span></code> is a component that renders the number of children of
+type <code class="docutils literal notranslate"><span class="pre">T</span></code> from a component (<code class="docutils literal notranslate"><span class="pre">target</span></code>) every second. So for example:</p>
+<p>So for example, the following will render the number of <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> that are
+children of the game <code class="docutils literal notranslate"><span class="pre">world</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span>
+<span class="w">  </span><span class="n">ChildCounterComponent</span><span class="o">&lt;</span><span class="n">SpriteAnimationComponent</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">target:</span><span class="w"> </span><span class="n">world</span><span class="p">,</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="timetrackcomponent">
+<h3>TimeTrackComponent<a class="headerlink" href="#timetrackcomponent" title="Permalink to this heading">¶</a></h3>
+<p>This component allows developers to track time spent inside their code. This can be useful for
+performance debugging time spent in certain parts of the code.</p>
+<p>To use it, add it to your game somewhere (since this is a debug feature, we advise to only add the
+component in a debug build/flavor):</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="n">TimeTrackComponent</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>Then in the code section that you want to track time, do the following:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">TimeTrackComponent</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="s1">&#39;MyComponent.update&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// ...</span>
+<span class="w">  </span><span class="n">TimeTrackComponent</span><span class="p">.</span><span class="n">end</span><span class="p">(</span><span class="s1">&#39;MyComponent.update&#39;</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>With the calls above, the added <code class="docutils literal notranslate"><span class="pre">TimeTrackComponent</span></code> will render the elapsed time in
+microseconds.</p>
+</section>
 </section>
 </section>
 
@@ -378,6 +412,8 @@ commonly want to show the current FPS somewhere when the <code class="docutils l
   <a href='#fps' class='list-group-item level-1'>FPS</a>
   <a href='#fpscomponent' class='list-group-item level-2'>FpsComponent</a>
   <a href='#fpstextcomponent' class='list-group-item level-2'>FpsTextComponent</a>
+  <a href='#childcountercomponent' class='list-group-item level-2'>ChildCounterComponent</a>
+  <a href='#timetrackcomponent' class='list-group-item level-2'>TimeTrackComponent</a>
 </div>
 
     </div>
