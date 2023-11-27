@@ -1396,16 +1396,16 @@ color_effect.dart</div>
 <span class="linenos">18</span><span class="w">          </span><span class="n">ember</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
 <span class="linenos">19</span><span class="w">            </span><span class="n">ColorEffect</span><span class="p">(</span>
 <span class="linenos">20</span><span class="w">              </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF00FF00</span><span class="p">),</span>
-<span class="linenos">21</span><span class="w">              </span><span class="k">const</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.6</span><span class="p">),</span>
-<span class="linenos">22</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1.5</span><span class="p">),</span>
+<span class="linenos">21</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1.5</span><span class="p">),</span>
+<span class="linenos">22</span><span class="w">              </span><span class="nl">opacityTo:</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span>
 <span class="linenos">23</span><span class="w">            </span><span class="p">),</span>
 <span class="linenos">24</span><span class="w">          </span><span class="p">);</span>
 <span class="linenos">25</span><span class="w">        </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">26</span><span class="w">          </span><span class="n">ember</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
 <span class="linenos">27</span><span class="w">            </span><span class="n">ColorEffect</span><span class="p">(</span>
 <span class="linenos">28</span><span class="w">              </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF1039DB</span><span class="p">),</span>
-<span class="linenos">29</span><span class="w">              </span><span class="k">const</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.6</span><span class="p">),</span>
-<span class="linenos">30</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1.5</span><span class="p">),</span>
+<span class="linenos">29</span><span class="w">              </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1.5</span><span class="p">),</span>
+<span class="linenos">30</span><span class="w">              </span><span class="nl">opacityTo:</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span>
 <span class="linenos">31</span><span class="w">            </span><span class="p">),</span>
 <span class="linenos">32</span><span class="w">          </span><span class="p">);</span>
 <span class="linenos">33</span><span class="w">        </span><span class="p">}</span>
@@ -1421,13 +1421,14 @@ color_effect.dart</div>
 <button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-color_effect&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ColorEffect</span><span class="p">(</span>
 <span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF00FF00</span><span class="p">),</span>
-<span class="w">  </span><span class="k">const</span><span class="w"> </span><span class="n">Offset</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">),</span>
 <span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1.5</span><span class="p">),</span>
+<span class="w">  </span><span class="n">opacityFrom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">opacityTo:</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">Offset</span></code> argument will determine “how much” of the color that will be applied to the component,
-in this example the effect will start with 0% and will go up to 80%.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">opacityFrom</span></code> and <code class="docutils literal notranslate"><span class="pre">opacityTo</span></code> arguments will determine “how much” of the color that will be
+applied to the component. In this example the effect will start with 20% and will go up to 80%.</p>
 <p><strong>Note:</strong> Due to how this effect is implemented, and how Flutter’s <code class="docutils literal notranslate"><span class="pre">ColorFilter</span></code> class works, this
 effect can’t be mixed with other <code class="docutils literal notranslate"><span class="pre">ColorEffect</span></code>s, when more than one is added to the component, only
 the last one will have effect.</p>
