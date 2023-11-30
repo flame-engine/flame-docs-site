@@ -742,17 +742,11 @@ the card, so that it is rendered above all others. Without this, the card would 
 <p>During the drag, the <code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code> event will be called continuously. Using this callback we will
 be updating the position of the card so that it follows the movement of the finger (or the mouse).
 The <code class="docutils literal notranslate"><span class="pre">event</span></code> object passed to this callback contains the most recent coordinate of the point of
-touch, and also the <code class="docutils literal notranslate"><span class="pre">delta</span></code> property – which is the displacement vector since the previous call of
-<code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code>. The only problem is that this delta is measured in screen pixels, whereas we want
-it to be in game world units. The conversion between the two is given by the camera zoom level, so
-we will add an extra method to determine the zoom level:</p>
+touch, and also the <code class="docutils literal notranslate"><span class="pre">localDelta</span></code> property – which is the displacement vector since the previous
+call of <code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code>, considering the camera zoom.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">cameraZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">findGame</span><span class="p">()</span><span class="o">!</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">)</span>
-<span class="w">        </span><span class="p">.</span><span class="n">camera</span>
-<span class="w">        </span><span class="p">.</span><span class="n">viewfinder</span>
-<span class="w">        </span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span>
-<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">delta</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">cameraZoom</span><span class="p">;</span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">delta</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
@@ -831,11 +825,7 @@ to <code class="docutils literal notranslate"><span class="pre">false</span></co
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isDragged</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">return</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">cameraZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">findGame</span><span class="p">()</span><span class="o">!</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">)</span>
-<span class="w">        </span><span class="p">.</span><span class="n">camera</span>
-<span class="w">        </span><span class="p">.</span><span class="n">viewfinder</span>
-<span class="w">        </span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span>
-<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">delta</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">cameraZoom</span><span class="p">;</span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">delta</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
@@ -1124,11 +1114,7 @@ the <code class="docutils literal notranslate"><span class="pre">onDragUpdate</s
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isDragged</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="k">return</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">cameraZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">findGame</span><span class="p">()</span><span class="o">!</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">)</span>
-<span class="w">        </span><span class="p">.</span><span class="n">camera</span>
-<span class="w">        </span><span class="p">.</span><span class="n">viewfinder</span>
-<span class="w">        </span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">delta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">delta</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">cameraZoom</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">delta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">delta</span><span class="p">;</span>
 <span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
 <span class="w">    </span><span class="n">attachedCards</span><span class="p">.</span><span class="n">forEach</span><span class="p">((</span><span class="n">card</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">card</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">));</span>
 <span class="w">  </span><span class="p">}</span>
@@ -1427,43 +1413,42 @@ components/card.dart</div>
 <span class="linenos">241</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">_isDragging</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">242</span><span class="w">      </span><span class="k">return</span><span class="p">;</span>
 <span class="linenos">243</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">244</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">cameraZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findGame</span><span class="p">()</span><span class="o">!</span><span class="p">.</span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span>
-<span class="linenos">245</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">delta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">delta</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">cameraZoom</span><span class="p">;</span>
-<span class="linenos">246</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
-<span class="linenos">247</span><span class="w">    </span><span class="n">attachedCards</span><span class="p">.</span><span class="n">forEach</span><span class="p">((</span><span class="n">card</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">card</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">));</span>
-<span class="linenos">248</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">249</span>
-<span class="linenos">250</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">251</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">252</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
-<span class="linenos">253</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">_isDragging</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">254</span><span class="w">      </span><span class="k">return</span><span class="p">;</span>
-<span class="linenos">255</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">256</span><span class="w">    </span><span class="n">_isDragging</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="linenos">257</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">dropPiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="o">!</span>
-<span class="linenos">258</span><span class="w">        </span><span class="p">.</span><span class="n">componentsAtPoint</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
-<span class="linenos">259</span><span class="w">        </span><span class="p">.</span><span class="n">whereType</span><span class="o">&lt;</span><span class="n">Pile</span><span class="o">&gt;</span><span class="p">()</span>
-<span class="linenos">260</span><span class="w">        </span><span class="p">.</span><span class="n">toList</span><span class="p">();</span>
-<span class="linenos">261</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dropPiles</span><span class="p">.</span><span class="n">isNotEmpty</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">262</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dropPiles</span><span class="p">.</span><span class="n">first</span><span class="p">.</span><span class="n">canAcceptCard</span><span class="p">(</span><span class="k">this</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">263</span><span class="w">        </span><span class="n">pile</span><span class="o">!</span><span class="p">.</span><span class="n">removeCard</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-<span class="linenos">264</span><span class="w">        </span><span class="n">dropPiles</span><span class="p">.</span><span class="n">first</span><span class="p">.</span><span class="n">acquireCard</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-<span class="linenos">265</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">attachedCards</span><span class="p">.</span><span class="n">isNotEmpty</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">266</span><span class="w">          </span><span class="n">attachedCards</span><span class="p">.</span><span class="n">forEach</span><span class="p">((</span><span class="n">card</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">dropPiles</span><span class="p">.</span><span class="n">first</span><span class="p">.</span><span class="n">acquireCard</span><span class="p">(</span><span class="n">card</span><span class="p">));</span>
-<span class="linenos">267</span><span class="w">          </span><span class="n">attachedCards</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-<span class="linenos">268</span><span class="w">        </span><span class="p">}</span>
-<span class="linenos">269</span><span class="w">        </span><span class="k">return</span><span class="p">;</span>
-<span class="linenos">270</span><span class="w">      </span><span class="p">}</span>
-<span class="linenos">271</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">272</span><span class="w">    </span><span class="n">pile</span><span class="o">!</span><span class="p">.</span><span class="n">returnCard</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-<span class="linenos">273</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">attachedCards</span><span class="p">.</span><span class="n">isNotEmpty</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">274</span><span class="w">      </span><span class="n">attachedCards</span><span class="p">.</span><span class="n">forEach</span><span class="p">((</span><span class="n">card</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">pile</span><span class="o">!</span><span class="p">.</span><span class="n">returnCard</span><span class="p">(</span><span class="n">card</span><span class="p">));</span>
-<span class="linenos">275</span><span class="w">      </span><span class="n">attachedCards</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
-<span class="linenos">276</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">277</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">278</span>
-<span class="linenos">279</span><span class="w">  </span><span class="c1">//#endregion</span>
-<span class="linenos">280</span><span class="p">}</span>
+<span class="linenos">244</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">delta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">localDelta</span><span class="p">;</span>
+<span class="linenos">245</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
+<span class="linenos">246</span><span class="w">    </span><span class="n">attachedCards</span><span class="p">.</span><span class="n">forEach</span><span class="p">((</span><span class="n">card</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">card</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">));</span>
+<span class="linenos">247</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">248</span>
+<span class="linenos">249</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">250</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">251</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="linenos">252</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">_isDragging</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">253</span><span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="linenos">254</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">255</span><span class="w">    </span><span class="n">_isDragging</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos">256</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">dropPiles</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parent</span><span class="o">!</span>
+<span class="linenos">257</span><span class="w">        </span><span class="p">.</span><span class="n">componentsAtPoint</span><span class="p">(</span><span class="n">position</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span>
+<span class="linenos">258</span><span class="w">        </span><span class="p">.</span><span class="n">whereType</span><span class="o">&lt;</span><span class="n">Pile</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="linenos">259</span><span class="w">        </span><span class="p">.</span><span class="n">toList</span><span class="p">();</span>
+<span class="linenos">260</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dropPiles</span><span class="p">.</span><span class="n">isNotEmpty</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">261</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">dropPiles</span><span class="p">.</span><span class="n">first</span><span class="p">.</span><span class="n">canAcceptCard</span><span class="p">(</span><span class="k">this</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">262</span><span class="w">        </span><span class="n">pile</span><span class="o">!</span><span class="p">.</span><span class="n">removeCard</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="linenos">263</span><span class="w">        </span><span class="n">dropPiles</span><span class="p">.</span><span class="n">first</span><span class="p">.</span><span class="n">acquireCard</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="linenos">264</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">attachedCards</span><span class="p">.</span><span class="n">isNotEmpty</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">265</span><span class="w">          </span><span class="n">attachedCards</span><span class="p">.</span><span class="n">forEach</span><span class="p">((</span><span class="n">card</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">dropPiles</span><span class="p">.</span><span class="n">first</span><span class="p">.</span><span class="n">acquireCard</span><span class="p">(</span><span class="n">card</span><span class="p">));</span>
+<span class="linenos">266</span><span class="w">          </span><span class="n">attachedCards</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="linenos">267</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">268</span><span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="linenos">269</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">270</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">271</span><span class="w">    </span><span class="n">pile</span><span class="o">!</span><span class="p">.</span><span class="n">returnCard</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="linenos">272</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">attachedCards</span><span class="p">.</span><span class="n">isNotEmpty</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">273</span><span class="w">      </span><span class="n">attachedCards</span><span class="p">.</span><span class="n">forEach</span><span class="p">((</span><span class="n">card</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">pile</span><span class="o">!</span><span class="p">.</span><span class="n">returnCard</span><span class="p">(</span><span class="n">card</span><span class="p">));</span>
+<span class="linenos">274</span><span class="w">      </span><span class="n">attachedCards</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+<span class="linenos">275</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">276</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">277</span>
+<span class="linenos">278</span><span class="w">  </span><span class="c1">//#endregion</span>
+<span class="linenos">279</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="filename docutils container">
