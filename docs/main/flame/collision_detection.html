@@ -490,6 +490,36 @@ hitbox without triggering a collision. If you want to set your hitboxes to be so
 other way around. If there are no intersections with the edges on a solid hitbox the center
 position is instead returned.</p>
 </section>
+<section id="collision-order">
+<h3>Collision order<a class="headerlink" href="#collision-order" title="Permalink to this heading">¶</a></h3>
+<p>If a <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code> collides with more than one other <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code> within a given time step, then
+the <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> callbacks will be called in an essentially random order. In some cases this can
+be a problem, such as in a bouncing ball game where the trajectory of the ball can differ depending
+on which other object was hit first. To help resolve this the <code class="docutils literal notranslate"><span class="pre">collisionsCompletedNotifier</span></code>
+listener can be used - this triggers at the end of the collision detection process.</p>
+<p>An example of how this might be used is to add a local variable in your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> to save
+the other components with which it’s colliding:
+<code class="docutils literal notranslate"><span class="pre">List&lt;PositionComponent&gt;</span> <span class="pre">collisionComponents</span> <span class="pre">=</span> <span class="pre">[];</span></code>. The <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> callback is then used to
+save all the other <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s to this list:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">collisionComponents</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">other</span><span class="p">);</span>
+<span class="w">  </span><span class="k">super</span><span class="p">.</span><span class="n">onCollision</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Finally, one adds a listener to the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method of the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> to call a function
+which will resolve how the collisions should be dealt with:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">game</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="p">)</span>
+<span class="w">    </span><span class="p">.</span><span class="n">collisionDetection</span>
+<span class="w">    </span><span class="p">.</span><span class="n">collisionsCompletedNotifier</span>
+<span class="w">    </span><span class="p">.</span><span class="n">addListener</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">resolveCollisions</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<p>The list <code class="docutils literal notranslate"><span class="pre">collisionComponents</span></code> would need to be cleared in each call to <code class="docutils literal notranslate"><span class="pre">update</span></code>.</p>
+</section>
 </section>
 <section id="shapehitbox">
 <h2>ShapeHitbox<a class="headerlink" href="#shapehitbox" title="Permalink to this heading">¶</a></h2>
@@ -1106,6 +1136,7 @@ need some of the following things (since it is simpler to not involve Forge2D):<
   <a href='#mixins' class='list-group-item level-1'>Mixins</a>
   <a href='#hascollisiondetection' class='list-group-item level-2'>HasCollisionDetection</a>
   <a href='#collisioncallbacks' class='list-group-item level-2'>CollisionCallbacks</a>
+  <a href='#collision-order' class='list-group-item level-2'>Collision order</a>
   <a href='#shapehitbox' class='list-group-item level-1'>ShapeHitbox</a>
   <a href='#collisiontype' class='list-group-item level-2'>CollisionType</a>
   <a href='#polygonhitbox' class='list-group-item level-2'>PolygonHitbox</a>
