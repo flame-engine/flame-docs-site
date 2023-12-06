@@ -11621,7 +11621,7 @@ $1(a){var s=$.aB
 s=(s==null?$.aB=A.c1(self.window.flutterConfiguration):s).b
 if(s==null)s=null
 else{s=s.canvasKitBaseUrl
-if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/cf7a9d0800f2a5da166dbe0eb9fb2476018269b1/":s)+a},
+if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/54a7145303f0dd9d0f93424a2e124eb4abef5091/":s)+a},
 $S:71}
 A.Jg.prototype={
 $1(a){this.a.remove()
