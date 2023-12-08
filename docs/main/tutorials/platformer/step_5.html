@@ -333,7 +333,7 @@ appropriate mixins to the game class and Ember. Add the following:</p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">lib/actors/ember.dart</span></code></p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">EmberPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardHandler</span><span class="p">,</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardHandler</span><span class="p">,</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 </pre></div>
 </div>
 <p>Now we can add a new method:</p>
@@ -411,7 +411,7 @@ first thing we need to do is make the game aware that collisions are going to oc
 </div>
 <p>Next, add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to <code class="docutils literal notranslate"><span class="pre">lib/actors/ember.dart</span></code> like:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">EmberPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardHandler</span><span class="p">,</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="p">,</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardHandler</span><span class="p">,</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="p">,</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 </pre></div>
 </div>
 <p>If it did not auto-import, you will need the following:</p>
@@ -459,9 +459,7 @@ first thing we need to do is make the game aware that collisions are going to oc
 </div>
 <p>For the collisions to be activated for Ember, we need to add a <code class="docutils literal notranslate"><span class="pre">CircleHitbox</span></code>, so in the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>
 method, add the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">CircleHitbox</span><span class="p">(),</span>
-<span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="n">CircleHitbox</span><span class="p">());</span>
 </pre></div>
 </div>
 <p>Now that we have the basic collisions created, we can add gravity so Ember exists in a game world

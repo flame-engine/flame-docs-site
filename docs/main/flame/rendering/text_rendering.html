@@ -329,9 +329,12 @@ components:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> for rendering a single line of text</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> for bounding multi-line text within a sized box, including the possibility of a
 typing effect</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ScrollTextBoxComponent</span></code> enhances the functionality of <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> by adding scrolling
+capability when the text exceeds the boundaries of the enclosing box.</p></li>
 </ul>
-<p>Both components are showcased in <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/text_example.dart">this
-example</a>.</p>
+<p>Use the <code class="docutils literal notranslate"><span class="pre">onFinished</span></code> callback to get notified when the text is completely printed.</p>
+<p>All components are showcased in
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/text_example.dart">this example</a>.</p>
 <section id="textcomponent">
 <h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> is a simple component that renders a single line of text.</p>
@@ -342,7 +345,7 @@ example</a>.</p>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span>
 <span class="w">      </span><span class="n">TextComponent</span><span class="p">(</span>
 <span class="w">        </span><span class="nl">text:</span><span class="w"> </span><span class="s1">&#39;Hello, Flame&#39;</span><span class="p">,</span>
-<span class="w">        </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16.0</span><span class="p">),</span>
+<span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16.0</span><span class="p">),</span>
 <span class="w">      </span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
@@ -414,6 +417,25 @@ one as if being typed in real-time, you can provide the <code class="docutils li
 </div>
 <p>You can find all the options under <a class="reference external" href="https://pub.dev/documentation/flame/latest/components/TextBoxComponent-class.html">TextBoxComponent’s
 API</a>.</p>
+</section>
+<section id="scrolltextboxcomponent">
+<h3>ScrollTextBoxComponent<a class="headerlink" href="#scrolltextboxcomponent" title="Permalink to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">ScrollTextBoxComponent</span></code> is an advanced version of the <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code>,
+designed for displaying scrollable text within a defined area.
+This component is particularly useful for creating interfaces where large amounts of text
+need to be presented in a constrained space, such as dialogues or information panels.</p>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">align</span></code> property of <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> is not available.</p>
+<p>Example usage:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyScrollableText</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ScrollTextBoxComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">MyScrollableText</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">frameSize</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">frameSize</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">text:</span><span class="w"> </span><span class="n">text</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">regular</span><span class="p">,</span><span class="w"> </span>
+<span class="w">    </span><span class="nl">boxConfig:</span><span class="w"> </span><span class="n">TextBoxConfig</span><span class="p">(</span><span class="nl">timePerChar:</span><span class="w"> </span><span class="m">0.05</span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
 </section>
 <section id="textelementcomponent">
 <h3>TextElementComponent<a class="headerlink" href="#textelementcomponent" title="Permalink to this heading">¶</a></h3>
@@ -874,6 +896,7 @@ FCS component for it.</p></li>
   <a href='#text-components' class='list-group-item level-1'>Text Components</a>
   <a href='#textcomponent' class='list-group-item level-2'>TextComponent</a>
   <a href='#textboxcomponent' class='list-group-item level-2'>TextBoxComponent</a>
+  <a href='#scrolltextboxcomponent' class='list-group-item level-2'>ScrollTextBoxComponent</a>
   <a href='#textelementcomponent' class='list-group-item level-2'>TextElementComponent</a>
   <a href='#flame-markdown' class='list-group-item level-2'>Flame Markdown</a>
   <a href='#infrastructure' class='list-group-item level-1'>Infrastructure</a>

@@ -402,18 +402,13 @@ and loads them to cache.</p>
 </section>
 <section id="cameracomponent-and-world">
 <h2>CameraComponent and World<a class="headerlink" href="#cameracomponent-and-world" title="Permalink to this heading">¶</a></h2>
-<p>Since <code class="docutils literal notranslate"><span class="pre">FlameGame.camera</span></code> is deprecated, we want to add a <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> that we can move around,
-and a world that we can add all our components to and move around our player in.
-(The <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> will be built-in in Flame v2).</p>
+<p>To move around in the world we are going the use the built-in <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> and <code class="docutils literal notranslate"><span class="pre">World</span></code> that
+exists on the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class.
+We are going to add all our components to the <code class="docutils literal notranslate"><span class="pre">world</span></code> and follow the player with the <code class="docutils literal notranslate"><span class="pre">camera</span></code>.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">EmberQuestGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">EmberQuestGame</span><span class="p">();</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">world</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">World</span><span class="p">();</span>
-<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">CameraComponent</span><span class="w"> </span><span class="n">cameraComponent</span><span class="p">;</span>
-
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span>
@@ -426,12 +421,10 @@ and a world that we can add all our components to and move around our player in.
 <span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="p">]);</span>
 
-<span class="w">    </span><span class="n">cameraComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraComponent</span><span class="p">(</span><span class="nl">world:</span><span class="w"> </span><span class="n">world</span><span class="p">);</span>
 <span class="w">    </span><span class="c1">// Everything in this tutorial assumes that the position</span>
 <span class="w">    </span><span class="c1">// of the `CameraComponent`s viewfinder (where the camera is looking)</span>
 <span class="w">    </span><span class="c1">// is in the top left corner, that&#39;s why we set the anchor here.</span>
-<span class="w">    </span><span class="n">cameraComponent</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
-<span class="w">    </span><span class="n">addAll</span><span class="p">([</span><span class="n">cameraComponent</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -447,7 +440,7 @@ organized by how they will be involved in my game. So for Ember, let’s create 
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;../ember_quest.dart&#39;</span><span class="p">;</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">EmberPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">EmberPlayer</span><span class="p">({</span>
 <span class="w">    </span><span class="kd">required</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
 <span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64</span><span class="p">),</span><span class="w"> </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">);</span>
@@ -485,13 +478,8 @@ back to <code class="docutils literal notranslate"><span class="pre">ember_quest
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;actors/ember.dart&#39;</span><span class="p">;</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">EmberQuestGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">EmberQuestGame</span><span class="p">();</span>
-
 <span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="w"> </span><span class="n">_ember</span><span class="p">;</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">world</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">World</span><span class="p">();</span>
-<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">CameraComponent</span><span class="w"> </span><span class="n">cameraComponent</span><span class="p">;</span>
-
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span>
@@ -504,9 +492,7 @@ back to <code class="docutils literal notranslate"><span class="pre">ember_quest
 <span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="p">]);</span>
 
-<span class="w">    </span><span class="n">cameraComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraComponent</span><span class="p">(</span><span class="nl">world:</span><span class="w"> </span><span class="n">world</span><span class="p">);</span>
-<span class="w">    </span><span class="n">cameraComponent</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
-<span class="w">    </span><span class="n">addAll</span><span class="p">([</span><span class="n">cameraComponent</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="p">]);</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="n">_ember</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="p">(</span>
 <span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">128</span><span class="p">,</span><span class="w"> </span><span class="n">canvasSize</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">70</span><span class="p">),</span>

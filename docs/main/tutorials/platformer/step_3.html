@@ -339,15 +339,15 @@ let’s create a segment manager class.</p>
 so first create a new folder called <code class="docutils literal notranslate"><span class="pre">lib/objects</span></code>. In that folder, create 3 files called
 <code class="docutils literal notranslate"><span class="pre">ground_block.dart</span></code>, <code class="docutils literal notranslate"><span class="pre">platform_block.dart</span></code>, and <code class="docutils literal notranslate"><span class="pre">star.dart</span></code>. Those files just need basic
 boilerplate code for the class, so create the following in their respective files:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">GroundBlock</span><span class="p">{}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">GroundBlock</span><span class="w"> </span><span class="p">{}</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">PlatformBlock</span><span class="p">{}</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">PlatformBlock</span><span class="w"> </span><span class="p">{}</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">Star</span><span class="p">{}</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">Star</span><span class="w"> </span><span class="p">{}</span>
 </pre></div>
 </div>
 <p>Also, create <code class="docutils literal notranslate"><span class="pre">water_enemy.dart</span></code> in the <code class="docutils literal notranslate"><span class="pre">lib/actors</span></code> folder using this boilerplate code:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">WaterEnemy</span><span class="p">{}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">WaterEnemy</span><span class="w"> </span><span class="p">{}</span>
 </pre></div>
 </div>
 <p>Now we can create a file called <code class="docutils literal notranslate"><span class="pre">segment_manager.dart</span></code> which will be placed in a new folder called
@@ -593,10 +593,7 @@ as:</p>
 <span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="p">]);</span>
 <span class="w">    </span>
-<span class="w">    </span><span class="n">cameraComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraComponent</span><span class="p">(</span><span class="nl">world:</span><span class="w"> </span><span class="n">world</span><span class="p">);</span>
-<span class="w">    </span><span class="n">cameraComponent</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
-<span class="w">    </span><span class="n">addAll</span><span class="p">([</span><span class="n">cameraComponent</span><span class="p">,</span><span class="w"> </span><span class="n">world</span><span class="p">]);</span>
-
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
 <span class="w">    </span><span class="n">initializeGame</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span>
 </pre></div>
@@ -618,7 +615,7 @@ it’s an infinite level.</p>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;../ember_quest.dart&#39;</span><span class="p">;</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">PlatformBlock</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">gridPosition</span><span class="p">;</span>
 <span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">xOffset</span><span class="p">;</span>
 
@@ -704,11 +701,11 @@ will need to define <code class="docutils literal notranslate"><span class="pre"
 <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> and <code class="docutils literal notranslate"><span class="pre">xOffset</span></code> is a double as that will be used to calculate the x-axis offset for
 the block in a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>. So add the following to your <code class="docutils literal notranslate"><span class="pre">loadGameSegments</span></code> method:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">case</span><span class="w"> </span><span class="nl">PlatformBlock:</span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">PlatformBlock</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
-<span class="w">    </span><span class="p">));</span>
-<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+<span class="w">  </span><span class="n">add</span><span class="p">(</span><span class="n">PlatformBlock</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
+<span class="w">  </span><span class="p">));</span>
+<span class="w">  </span><span class="k">break</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>If you run your code, you should now see:</p>
@@ -720,7 +717,7 @@ background real quick so there is a nice blue sky. Just add the following code t
 
 <span class="nd">@override</span>
 <span class="n">Color</span><span class="w"> </span><span class="n">backgroundColor</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="n">fromARGB</span><span class="p">(</span><span class="m">255</span><span class="p">,</span><span class="w"> </span><span class="m">173</span><span class="p">,</span><span class="w"> </span><span class="m">223</span><span class="p">,</span><span class="w"> </span><span class="m">247</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="n">fromARGB</span><span class="p">(</span><span class="m">255</span><span class="p">,</span><span class="w"> </span><span class="m">173</span><span class="p">,</span><span class="w"> </span><span class="m">223</span><span class="p">,</span><span class="w"> </span><span class="m">247</span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>

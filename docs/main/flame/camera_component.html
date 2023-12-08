@@ -336,21 +336,21 @@ That you can close that window at any moment, and the game world would still be
 there. Or, on the contrary, you can open multiple windows that all look at the
 same world (or different worlds) at the same time.</p>
 <p>With this mindset, we can now understand how camera-as-a-component works.</p>
-<p>First, there is the <a class="reference internal" href="#world"><span class="std std-ref">World</span></a> class, which contains all components that are
+<p>First, there is the <a class="reference internal" href="#world">World</a> class, which contains all components that are
 inside your game world. The <code class="docutils literal notranslate"><span class="pre">World</span></code> component can be mounted anywhere, for
 example at the root of your game class, like the built-in <code class="docutils literal notranslate"><span class="pre">World</span></code> is.</p>
-<p>Then, a <a class="reference internal" href="#cameracomponent"><span class="std std-ref">CameraComponent</span></a> class that “looks at” the <a class="reference internal" href="#world"><span class="std std-ref">World</span></a>. The
-<code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has a <a class="reference internal" href="#viewport"><span class="std std-ref">Viewport</span></a> and a <a class="reference internal" href="#viewfinder"><span class="std std-ref">Viewfinder</span></a> inside, allowing
+<p>Then, a <a class="reference internal" href="#cameracomponent">CameraComponent</a> class that “looks at” the <a class="reference internal" href="#world">World</a>. The
+<code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has a <a class="reference internal" href="#viewport">Viewport</a> and a <a class="reference internal" href="#viewfinder">Viewfinder</a> inside, allowing
 both the flexibility of rendering the world at any place on the screen, and
 also control the viewing location and angle. The <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> also
-contains a <a class="reference internal" href="#backdrop"><span class="std std-ref">Backdrop</span></a> component which is statically rendered below the
+contains a <a class="reference internal" href="#backdrop">backdrop</a> component which is statically rendered below the
 world.</p>
 <section id="world">
 <h2>World<a class="headerlink" href="#world" title="Permalink to this heading">¶</a></h2>
 <p>This component should be used to host all other components that comprise your
 game world. The main property of the <code class="docutils literal notranslate"><span class="pre">World</span></code> class is that it does not render
 through traditional means – instead it is rendered by one or more
-<a class="reference internal" href="#cameracomponent"><span class="std std-ref">CameraComponent</span></a>s to “look at” the world. In the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class there is
+<a class="reference internal" href="#cameracomponent">CameraComponent</a>s to “look at” the world. In the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class there is
 one <code class="docutils literal notranslate"><span class="pre">World</span></code> called <code class="docutils literal notranslate"><span class="pre">world</span></code> which is added by default and paired together with
 the default <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> called <code class="docutils literal notranslate"><span class="pre">camera</span></code>.</p>
 <p>A game can have multiple <code class="docutils literal notranslate"><span class="pre">World</span></code> instances that can be rendered either at the
@@ -386,8 +386,8 @@ world at the same time.</p>
 <p>There is a default <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> called <code class="docutils literal notranslate"><span class="pre">camera</span></code> on the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class
 which is paired together with the default <code class="docutils literal notranslate"><span class="pre">world</span></code>, so you don’t need to create
 or add your own <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> if your game doesn’t need to.</p>
-<p>A <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has two other components inside: a <a class="reference internal" href="#viewport"><span class="std std-ref">Viewport</span></a> and a
-<a class="reference internal" href="#viewfinder"><span class="std std-ref">Viewfinder</span></a>. Unlike the <code class="docutils literal notranslate"><span class="pre">World</span></code> object, the camera owns the viewport and
+<p>A <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has two other components inside: a <a class="reference internal" href="#viewport">Viewport</a> and a
+<a class="reference internal" href="#viewfinder">Viewfinder</a>. Unlike the <code class="docutils literal notranslate"><span class="pre">World</span></code> object, the camera owns the viewport and
 the viewfinder, which means those components are children of the camera.</p>
 <p>There is also a static property <code class="docutils literal notranslate"><span class="pre">CameraComponent.currentCamera</span></code> which is not
 null only during the rendering stage, and it returns the camera object that
@@ -465,7 +465,7 @@ of the camera, controlled by the viewfinder’s <code class="docutils literal no
 of the world, but behind the viewport and with the same transformations as are
 applied to the world, so these components are not static.</p>
 <p>You can also add behavioral components as children to the viewfinder, for
-example <a class="reference internal" href="effects.html"><span class="std std-doc">Effects</span></a> or other controllers. If you for example would add a
+example <a class="reference internal" href="effects.html"><span class="std std-doc">effects</span></a> or other controllers. If you for example would add a
 <code class="docutils literal notranslate"><span class="pre">ScaleEffect</span></code> you would be able to achieve a smooth zoom in your game.</p>
 </section>
 <section id="backdrop">

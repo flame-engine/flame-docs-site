@@ -341,7 +341,7 @@ the game. Add the following code:</p>
 <span class="p">}</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">HeartHealthComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteGroupComponent</span><span class="o">&lt;</span><span class="n">HeartState</span><span class="o">&gt;</span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">heartNumber</span><span class="p">;</span>
 
 <span class="w">  </span><span class="n">HeartHealthComponent</span><span class="p">({</span>
@@ -399,7 +399,7 @@ unavailable.</p>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;../ember_quest.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;heart.dart&#39;</span><span class="p">;</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">Hud</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">Hud</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">Hud</span><span class="p">({</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">size</span><span class="p">,</span>
@@ -459,7 +459,7 @@ unavailable.</p>
 <p>In the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method, you can see where we loop from 1 to the <code class="docutils literal notranslate"><span class="pre">game.health</span></code> amount, to create
 the number of hearts necessary. The last step is to add the hud to the game.</p>
 <p>Go to <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> and add the following code in the <code class="docutils literal notranslate"><span class="pre">initializeGame</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">cameraComponent</span><span class="p">.</span><span class="n">viewport</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Hud</span><span class="p">());</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">camera</span><span class="p">.</span><span class="n">viewport</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Hud</span><span class="p">());</span>
 </pre></div>
 </div>
 <p>If the auto-import did not occur, you will need to add:</p>
