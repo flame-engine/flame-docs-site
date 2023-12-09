@@ -16826,7 +16826,7 @@ ahk:function ahk(){},
 ahl:function ahl(){},
 bLp(a){var s=new A.eM("Input",A.b([],t.C))
 a.c.push(s)
-s.aO(0,"Tappables",new A.b7p(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/tap_callbacks_example.dart","    In this example we show the `Tappable` mixin functionality. You can add the\n    `Tappable` mixin to any `PositionComponent`.\n\n\n    Tap the squares to see them change their angle around their anchor.\n  ")
+s.aO(0,"TapCallbacks",new A.b7p(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/tap_callbacks_example.dart","    In this example we show the `TapCallbacks` mixin functionality. You can add\n    the `TapCallbacks` mixin to any `PositionComponent`.\n\n\n    Tap the squares to see them change their angle around their anchor.\n  ")
 s.aO(0,"DragCallbacks",new A.b7q(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/drag_callbacks_example.dart","    In this example we show you can use the `DragCallbacks` mixin on\n    `PositionComponent`s. Drag around the Embers and see their position\n    changing.\n  ")
 s.aO(0,"Double Tap (Component)",new A.b7r(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/double_tap_callbacks_example.dart","  In this example, we show how you can use the `DoubleTapCallbacks` mixin on\n  a `Component`. Double tap Ember and see her color changing.\n  The example also adds white circles when double-tapping on the game area.\n")
 s.aO(0,"HoverCallbacks",new A.b7y(),"https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/hover_callbacks_example.dart","    This example shows how to use `HoverCallbacks`s.\n\n\n    Add more squares by clicking and hover them to change their color.\n  ")
