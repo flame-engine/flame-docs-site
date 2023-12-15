@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Controlling the player and adding some graphics &#8212; Flame</title>
+  <title>Adding animations and depth &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
@@ -38,8 +38,8 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="Adding animations and depth" href="step_3.html" />
-  <link rel="prev" title="Getting Started" href="step_1.html" />
+  <link rel="next" title="Development" href="../../development/development.html" />
+  <link rel="prev" title="Controlling the player and adding some graphics" href="step_2.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -340,8 +340,8 @@
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="space_shooter.html">Space Shooter</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="step_1.html">1. Getting Started</a></li>
-<li class="toctree-l3 current"><a class="current reference internal" href="#">2. Controlling the player and adding some graphics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="step_3.html">3. Adding animations and depth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_2.html">2. Controlling the player and adding some graphics</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3. Adding animations and depth</a></li>
 </ul>
 </li>
 </ul>
@@ -374,223 +374,190 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="controlling-the-player-and-adding-some-graphics">
-<h1>Controlling the player and adding some graphics<a class="headerlink" href="#controlling-the-player-and-adding-some-graphics" title="Permalink to this heading">¶</a></h1>
-<p>Now that we have the base for our game and a component for our player, let’s add some interactivity
-to it. We can begin by allowing the player to be controlled by mouse/touch gestures.</p>
-<p>There are a couple of ways of doing that in Flame. For this tutorial, we will do that by using one
-of Flame’s gesture detectors: <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code>.</p>
-<p>This detector will make our game class receive pan (or drag) events. To do so, we just need to add
-the <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> mixin to our game class and override its listener methods; in our case, we will
-use the <code class="docutils literal notranslate"><span class="pre">onPanUpdate</span></code> method. The updated code will look like the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">// omitted</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>At this point, our game should be receiving all the pan update inputs, but we are not doing anything
-with these events.</p>
-<p>We now need a way to move our player. That can be achieved by simply saving our <code class="docutils literal notranslate"><span class="pre">Player</span></code> component
-to a variable inside our game class, adding a method <code class="docutils literal notranslate"><span class="pre">move</span></code> to our <code class="docutils literal notranslate"><span class="pre">Player</span></code>, and just connect
-them:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="p">{</span><span class="w"> </span>
-<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">_paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">white</span><span class="p">;</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">toRect</span><span class="p">(),</span><span class="w"> </span><span class="n">_paint</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
-
+  <section class="tex2jax_ignore mathjax_ignore" id="adding-animations-and-depth">
+<h1>Adding animations and depth<a class="headerlink" href="#adding-animations-and-depth" title="Permalink to this heading">¶</a></h1>
+<p>We now have something that looks more like a game, having graphics for our spaceship and being
+able to directly control it.</p>
+<p>But our game so far is too boring, the starship is just a static sprite and the background is
+just a black screen.</p>
+<p>In this step we will look at how to improve that, we will replace the static graphics of the player
+to an animation and will create a cool sense of depth and movement by adding a parallax to the
+background of the game.</p>
+<p>So lets start by adding the animation to the player ship! For that, we will something that we
+call Sprite Animations, which is an animation that is composed by a collection of sprites, each
+one representing one frame, and the animation effect is achieved by rendering one sprite after
+the other over a time frame.</p>
+<p>To better visualize this, this is the animation that we will be using, note how the image holds 4
+individual images (or frames).</p>
+<p><img alt="" src="../../_images/player.png" /></p>
+<p>Flame provides us with a specialized classes to deal with such images: <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code> and its component
+wrapper <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> and changing our <code class="docutils literal notranslate"><span class="pre">Player</span></code> component to be an animation is quite
+simple, take a look at how the component will look like now:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Player</span><span class="p">()</span>
-<span class="w">      </span><span class="p">..</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span>
-<span class="w">      </span><span class="p">..</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span>
-<span class="w">      </span><span class="p">..</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
-<span class="w">      </span><span class="p">..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
+<span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;player.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">48</span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">game</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>That is it! If you drag the screen, the player should follow your movement and we have just
-implemented our very first interactive game!</p>
-<p>Before we move to our next step, let’s replace that boring white rectangle with some cool graphics.</p>
-<p>Flame provides many classes to help us with graphical rendering. For this step, we are going to use
-the <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> class.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Sprite</span></code>s are used in Flame to render static images or portions of them in the game. To render a
-<code class="docutils literal notranslate"><span class="pre">Sprite</span></code> inside a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, we should use the <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> class, which wraps the <code class="docutils literal notranslate"><span class="pre">Sprite</span></code>
-features into a component.</p>
-<p>So let’s refactor our current implementation, first, we can replace our inheritance from
-<code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> to <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> (which is a component that extends from
-<code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>) and load the sprite:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;?</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">playerSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;player-sprite.png&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Player</span><span class="p">()</span>
-<span class="w">      </span><span class="p">..</span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerSprite</span>
-<span class="w">      </span><span class="p">..</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span>
-<span class="w">      </span><span class="p">..</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span>
-<span class="w">      </span><span class="p">..</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span>
-<span class="w">      </span><span class="p">..</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
-<span class="w">      </span><span class="p">..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
-
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">game</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>And now, you should see a small blue spaceship on the screen!</p>
-<p>A couple of notes worth mentioning:</p>
-<ul class="simple">
-<li><p>Unlike <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> has an implementation for the <code class="docutils literal notranslate"><span class="pre">render</span></code> method, so we
-can delete the previous override.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> has a couple of methods for loading assets, like <code class="docutils literal notranslate"><span class="pre">loadSprite</span></code>. Those methods are
-quite useful, because when used, <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> will take care of cleaning any cache when the game is
-removed from the Flutter widget tree.</p></li>
-</ul>
-<p>Before we close this step, there is one small improvement that we can do. Right now, we are loading
-the sprite and passing it to our component. For now, this may seem fine, but imagine a game with
-a lot of components; if the game is responsible for loading assets for all components, our code can
-become a mess quite fast.</p>
-<p>Just like <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, components also have an <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method that can be overridden to do
-initializations. But before we implement our player’s load method, note that we use an attribute and
-the <code class="docutils literal notranslate"><span class="pre">loadSprite</span></code> method from the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class.</p>
-<p>That is not a problem! Every time our component needs to access things from its game class, we can
-mix our component with the <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code> mixin; that will add a new variable to our component called
-<code class="docutils literal notranslate"><span class="pre">gameRef</span></code> which will point to the game instance where the component is running. Now, let’s refactor
-our game a little bit:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-
-<span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;player-sprite.png&#39;</span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
 <span class="w">    </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
 <span class="w">    </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">150</span><span class="p">;</span>
 <span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span><span class="c1">// Other methods omitted</span>
 <span class="p">}</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
+</pre></div>
+</div>
+<p>So lets break down the changes:</p>
+<ul class="simple">
+<li><p>First we changed our <code class="docutils literal notranslate"><span class="pre">Player</span></code> component to extend from <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> instead of
+<code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code></p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method we are now using the <code class="docutils literal notranslate"><span class="pre">game.loadSpriteAnimation</span></code> helper instead of the
+<code class="docutils literal notranslate"><span class="pre">loadSprite</span></code> one, and setting the <code class="docutils literal notranslate"><span class="pre">animation</span></code> attribute with its returned value.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">SpriteAnimationData</span></code> class might look complicated at first glance, but it is actually quite
+simple, note how we used the <code class="docutils literal notranslate"><span class="pre">sequenced</span></code> constructor, which is a helper to load animation images
+where the frames are already layed down in the sequence that they will play, then:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">amount</span></code> defines how many frames the animation has, in this case <code class="docutils literal notranslate"><span class="pre">4</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stepTime</span></code> is the time in seconds that each frame will be rendered, before it gets replaced
+with the next one.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">textureSize</span></code> is the size in pixels which defines each frame of the image.</p></li>
+</ul>
+<p>With all of this information, the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> will now automatically play the
+animation!</p>
+<p>Now lets add some depth and energy to our game background. Of course there are many ways of
+doing so, in this tutorial we will explore the idea of parallax scrolling. If you never heard
+about it, it consist of a technique where background images move past the camera with different
+speeds, this not only creates the sensation of depth but also improves the movement feeling
+of the game a lot. If you want to read more about Parallax Scrolling, check this article
+from <a class="reference external" href="https://en.wikipedia.org/wiki/Parallax_scrolling">Wikipedia</a>.</p>
+<p>Flame provides classes to implement parallax scrolling out of the box, these classes are <code class="docutils literal notranslate"><span class="pre">Parallax</span></code> and
+<code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code>, so lets take a look at how we can add that new feature to the game:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">(</span>
+<span class="w">      </span><span class="p">[</span>
+<span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;stars_0.png&#39;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;stars_1.png&#39;</span><span class="p">),</span>
+<span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;stars_2.png&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">      </span><span class="nl">baseVelocity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">5</span><span class="p">),</span>
+<span class="w">      </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">velocityMultiplierDelta:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">parallax</span><span class="p">);</span>
 
 <span class="w">    </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Player</span><span class="p">();</span>
-
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">game</span><span class="p">);</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>If you run the game now, you will not notice any visual differences, but now we have a more scalable
-structure for developing our game. And that closes this step!</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/tutorials-space_shooter-app/index.html?step2&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step2">
+<p>Looking at the code above we notice that we are now using the <code class="docutils literal notranslate"><span class="pre">loadParallaxComponent</span></code> helper
+method from the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class to directly load a <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code> and add it to our game.</p>
+<p>The arguments used there are as follows:</p>
+<ul class="simple">
+<li><p>The first argument is a positional one, which should be a list of <code class="docutils literal notranslate"><span class="pre">ParallaxData</span></code>s. There are a
+couple of types of <code class="docutils literal notranslate"><span class="pre">ParallaxData</span></code>s in Flame, in this tutorial we are using the <code class="docutils literal notranslate"><span class="pre">ParallaxImageData</span></code>
+which describes a layer in the parallax scrolling effect that is an <code class="docutils literal notranslate"><span class="pre">image</span></code>. This list will tell
+Flame about all the layers that we want in our parallax.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">baseVelocity</span></code> is the base value for all the values, so by passing a <code class="docutils literal notranslate"><span class="pre">Vector2(0,</span> <span class="pre">-5)</span></code> to it
+means that the slower of the layers will move at 0 pixels per second on the <code class="docutils literal notranslate"><span class="pre">x</span></code> axis and <code class="docutils literal notranslate"><span class="pre">-5</span></code>
+pixels per second on the <code class="docutils literal notranslate"><span class="pre">y</span></code> axis.</p></li>
+<li><p>Finally <code class="docutils literal notranslate"><span class="pre">velocityMultiplierDelta</span></code> is a vector that is applied to the base value for each layer,
+and in our example the multiplication rate is <code class="docutils literal notranslate"><span class="pre">5</span></code> on only the <code class="docutils literal notranslate"><span class="pre">y</span></code> axis.</p></li>
+</ul>
+<p>Give it a try by running the game now, you will notice that it looks way more dynamic now, giving a
+more convincing feeling to the player that the spaceship is really crossing the stars!</p>
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/tutorials-space_shooter-app/index.html?step3&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step3">
 <div class="filename docutils container">
 main.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 8</span><span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">SpaceShooterGame</span><span class="p">()));</span>
-<span class="linenos"> 9</span><span class="p">}</span>
-<span class="linenos">10</span>
-<span class="linenos">11</span><span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">12</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
-<span class="linenos">13</span>
-<span class="linenos">14</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">15</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">16</span><span class="w">    </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Player</span><span class="p">();</span>
-<span class="linenos">17</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
-<span class="linenos">18</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">19</span>
-<span class="linenos">20</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">21</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">22</span><span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">);</span>
-<span class="linenos">23</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">24</span><span class="p">}</span>
-<span class="linenos">25</span>
-<span class="linenos">26</span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">27</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">28</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">29</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-<span class="linenos">30</span>
-<span class="linenos">31</span><span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;player-sprite.png&#39;</span><span class="p">);</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/parallax.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">SpaceShooterGame</span><span class="p">()));</span>
+<span class="linenos">10</span><span class="p">}</span>
+<span class="linenos">11</span>
+<span class="linenos">12</span><span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">13</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
+<span class="linenos">14</span>
+<span class="linenos">15</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">16</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">17</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">(</span>
+<span class="linenos">18</span><span class="w">      </span><span class="p">[</span>
+<span class="linenos">19</span><span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;stars_0.png&#39;</span><span class="p">),</span>
+<span class="linenos">20</span><span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;stars_1.png&#39;</span><span class="p">),</span>
+<span class="linenos">21</span><span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;stars_2.png&#39;</span><span class="p">),</span>
+<span class="linenos">22</span><span class="w">      </span><span class="p">],</span>
+<span class="linenos">23</span><span class="w">      </span><span class="nl">baseVelocity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">5</span><span class="p">),</span>
+<span class="linenos">24</span><span class="w">      </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span>
+<span class="linenos">25</span><span class="w">      </span><span class="nl">velocityMultiplierDelta:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="linenos">26</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">27</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">parallax</span><span class="p">);</span>
+<span class="linenos">28</span>
+<span class="linenos">29</span><span class="w">    </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Player</span><span class="p">();</span>
+<span class="linenos">30</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
+<span class="linenos">31</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">32</span>
-<span class="linenos">33</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
-<span class="linenos">34</span><span class="w">    </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
-<span class="linenos">35</span><span class="w">    </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">150</span><span class="p">;</span>
-<span class="linenos">36</span><span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
-<span class="linenos">37</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">33</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">34</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">35</span><span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">);</span>
+<span class="linenos">36</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">37</span><span class="p">}</span>
 <span class="linenos">38</span>
-<span class="linenos">39</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">40</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
-<span class="linenos">41</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">42</span><span class="p">}</span>
+<span class="linenos">39</span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="linenos">40</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">41</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">42</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">43</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">44</span>
+<span class="linenos">45</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
+<span class="linenos">46</span><span class="w">      </span><span class="s1">&#39;player.png&#39;</span><span class="p">,</span>
+<span class="linenos">47</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="linenos">48</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="linenos">49</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">50</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">48</span><span class="p">),</span>
+<span class="linenos">51</span><span class="w">      </span><span class="p">),</span>
+<span class="linenos">52</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
+<span class="linenos">55</span><span class="w">    </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
+<span class="linenos">56</span><span class="w">    </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">150</span><span class="p">;</span>
+<span class="linenos">57</span><span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
+<span class="linenos">58</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">59</span>
+<span class="linenos">60</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">61</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
+<span class="linenos">62</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">63</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
-<button class="flutter-app-button code" onclick="open_code_listings(&quot;tutorials-space_shooter-app-source-step2&quot;)">Code</button></section>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;tutorials-space_shooter-app-source-step3&quot;)">Code</button></section>
 
 
     </div>
@@ -599,18 +566,18 @@ main.dart</div>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="step_1.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="step_2.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Getting Started</p>
+          <p class="prev-next-title">Controlling the player and adding some graphics</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="step_3.html" title="next page">
+      <a class="right-next" id="next-link" href="../../development/development.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Adding animations and depth</p>
+          <p class="prev-next-title">Development</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
