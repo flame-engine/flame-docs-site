@@ -85467,7 +85467,7 @@ snL(a,b){var s,r=this
 r.at=b
 s=r.ch
 if(!b.ju(0,s)){s.u(r.at.gbx())
-r.a9(0,0)}},
+if(r.ax!=null)r.a9(0,0)}},
 aT(){var s,r=this,q=r.ax
 if(q==null){q=r.e
 q.toString
