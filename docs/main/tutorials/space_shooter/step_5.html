@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Inputs &#8212; Flame</title>
+  <title>Adding Enemies &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
@@ -38,8 +38,8 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="Drag Events" href="drag_events.html" />
-  <link rel="prev" title="Camera component" href="../camera_component.html" />
+  <link rel="next" title="Development" href="../../development/development.html" />
+  <link rel="prev" title="Adding bullets" href="step_4.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -165,43 +165,43 @@
 </li>
 </ul>
 <ul class="current">
-<li class="toctree-l1 current"><a class="reference internal" href="../flame.html">Flame</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../structure.html">File Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../game.html">Game Loop</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../router.html">Router</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../collision_detection.html">Collision Detection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../effects.html">Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../camera_component.html">Camera Component</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Inputs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="drag_events.html">Drag Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="gesture_input.html">Gesture Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="keyboard_input.html">Keyboard Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="other_inputs.html">Other Inputs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="tap_events.html">Tap Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../flame/flame.html">Flame</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">File Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">Game Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">Game Loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/camera_component.html">Camera Component</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/drag_events.html">Drag Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/gesture_input.html">Gesture Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/keyboard_input.html">Keyboard Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/other_inputs.html">Other Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap_events.html">Tap Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../rendering/rendering.html">Rendering</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../rendering/palette.html">Colors and Palette</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../rendering/decorators.html">Decorators</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../rendering/images.html">Images, Sprites and Animations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../rendering/layers.html">Layers and Snapshots</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../rendering/particles.html">Particles</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../rendering/text_rendering.html">Text Rendering</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/palette.html">Colors and Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/decorators.html">Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/images.html">Images, Sprites and Animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/layers.html">Layers and Snapshots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/particles.html">Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/text_rendering.html">Text Rendering</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../layout/layout.html">Layout</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../layout/align_component.html">AlignComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/layout/layout.html">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/layout/align_component.html">AlignComponent</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../overlays.html">Overlays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../other/other.html">Other</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../other/debug.html">Debugging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../other/util.html">Utils</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../other/widgets.html">Widgets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/overlays.html">Overlays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/other/other.html">Other</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/widgets.html">Widgets</a></li>
 </ul>
 </li>
 </ul>
@@ -318,32 +318,32 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step3.html">3. Cards</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step4.html">4. Gameplay</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step5.html">5. Additional features</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../klondike/klondike.html">Klondike</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../klondike/step1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klondike/step2.html">2. Scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klondike/step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klondike/step4.html">4. Gameplay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klondike/step5.html">5. Additional features</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/platformer/platformer.html">Ember Quest</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_1.html">1. Preparation</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_2.html">2. Start Coding</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_3.html">3. Building the World</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_4.html">4. Adding the Remaining Components</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../platformer/platformer.html">Ember Quest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_2.html">2. Start Coding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_3.html">3. Building the World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_4.html">4. Adding the Remaining Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_5.html">5. Controlling Movement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_6.html">6. Adding the HUD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_7.html">7. Adding Menus</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../tutorials/space_shooter/space_shooter.html">Space Shooter</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_1.html">1. Getting Started</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_2.html">2. Controlling the player and adding some graphics</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_3.html">3. Adding animations and depth</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_4.html">4. Adding Bullets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_5.html">5. Adding Enemies</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="space_shooter.html">Space Shooter</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="step_1.html">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_2.html">2. Controlling the player and adding some graphics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_3.html">3. Adding animations and depth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_4.html">4. Adding Bullets</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">5. Adding Enemies</a></li>
 </ul>
 </li>
 </ul>
@@ -376,18 +376,82 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="inputs">
-<h1>Inputs<a class="headerlink" href="#inputs" title="Permalink to this heading">¶</a></h1>
-<ul class="simple">
-<li><p><a class="reference internal" href="tap_events.html"><span class="std std-doc">Tap Events</span></a></p></li>
-<li><p><a class="reference internal" href="drag_events.html"><span class="std std-doc">Drag Events</span></a></p></li>
-<li><p><a class="reference internal" href="gesture_input.html"><span class="std std-doc">Gesture Input</span></a></p></li>
-<li><p><a class="reference internal" href="keyboard_input.html"><span class="std std-doc">Keyboard Input</span></a></p></li>
-<li><p><a class="reference internal" href="other_inputs.html"><span class="std std-doc">Other Inputs and Helpers</span></a></p></li>
-<li><p><a class="reference internal" href="hardware_keyboard_detector.html"><span class="std std-doc">Hardware Keyboard Detector</span></a></p></li>
-</ul>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="adding-enemies">
+<h1>Adding Enemies<a class="headerlink" href="#adding-enemies" title="Permalink to this heading">¶</a></h1>
+<p>Now that the starship is able to shoot, we need something for the player to shoot at! So for
+this step we will work on adding enemies to the game.</p>
+<p>So first things first, let’s create an <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class that will represent the enemies in game:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Enemy</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="n">Enemy</span><span class="p">({</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="n">enemySize</span><span class="p">));</span>
+
+<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">enemySize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50.0</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;enemy.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">;</span>
+<span class="w">    </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">;</span>
+<span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">250</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
 </div>
+<p>Note that for now, the <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class is super similar to the <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> one, the only differences are
+their sizes, animation information and that bullets travel from bottom to top, while enemies travel from
+top to bottom, so nothing new here.</p>
+<p>Next we need to make the enemies spawn in the game, the logic that we will do here will be simple,
+we will simply make enemies spawn from the top of the screen at a random position on the <code class="docutils literal notranslate"><span class="pre">x</span></code> axis.</p>
+<p>Once again, we could manually make all the time based event in the game’s <code class="docutils literal notranslate"><span class="pre">update</span></code> method, maintain
+a random instance to get the enemy x position and so on and so forth, but Flame provides us a
+way to avoid having to write all that by ourselves, we can use the <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code>! So in the
+<code class="docutils literal notranslate"><span class="pre">SpaceShooterGame.onLoad</span></code> method let’s add the following code:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
+<span class="w">      </span><span class="n">SpawnComponent</span><span class="p">(</span>
+<span class="w">        </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="n">Enemy</span><span class="p">();</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nl">period:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">area:</span><span class="w"> </span><span class="n">Rectangle</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">Enemy</span><span class="p">.</span><span class="n">enemySize</span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code> will take a couple of arguments, let’s review them as they appear in the code:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">factory</span></code> receives a function which has the index of the component that should be created. We
+don’t use the index in our code, but it is useful to create more advanced spawn routines.
+This function should return the created component, in our case a new instance of <code class="docutils literal notranslate"><span class="pre">Enemy</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">period</span></code> simply define the interval in which a new component will be spawned.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">area</span></code> defines the possible area where the components can be placed once created. In our case they
+should be placed in the area above the screen top, so they can be seen as they are arriving into the
+playable area.</p></li>
+</ul>
+<p>And this concludes this short step!</p>
 </section>
 
 
@@ -397,18 +461,18 @@
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="../camera_component.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="step_4.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Camera component</p>
+          <p class="prev-next-title">Adding bullets</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="drag_events.html" title="next page">
+      <a class="right-next" id="next-link" href="../../development/development.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Drag Events</p>
+          <p class="prev-next-title">Development</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
