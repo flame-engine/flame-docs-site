@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Oxygen &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
-  <script src="../_static/flutter_app.js"></script>
-  <script src="../_static/clipboard.min.js"></script>
-  <script src="../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../_static/versions.js"></script>
-  <script src="../_static/menu-expand.js"></script>
+  <script src="../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../_static/copybutton.js?v=f281be69"></script>
+  <script src="../_static/versions.js?v=58484017"></script>
+  <script src="../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -181,7 +179,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="oxygen">
-<h1>Oxygen<a class="headerlink" href="#oxygen" title="Permalink to this heading">¶</a></h1>
+<h1>Oxygen<a class="headerlink" href="#oxygen" title="Link to this heading">¶</a></h1>
 <p>We (the Flame organization) built an ECS (Entity Component System) named Oxygen.</p>
 <p>If you want to use Oxygen specifically for Flame as a replacement for the
 FCS(Flame Component System) you should use our bridge library
@@ -195,7 +193,7 @@ in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_oxygen/example">Oxygen example</a>
 and in the <code class="docutils literal notranslate"><span class="pre">pub.dev</span></code> <a class="reference external" href="https://pub.dev/packages/flame_oxygen">installation instructions</a>.</p>
 <section id="oxygengame-game-extension">
-<h2>OxygenGame (Game extension)<a class="headerlink" href="#oxygengame-game-extension" title="Permalink to this heading">¶</a></h2>
+<h2>OxygenGame (Game extension)<a class="headerlink" href="#oxygengame-game-extension" title="Link to this heading">¶</a></h2>
 <p>If you are going to use Oxygen in your project it can be a good idea to use the Oxygen specific
 extension of the <code class="docutils literal notranslate"><span class="pre">Game</span></code> class.</p>
 <p>It is called <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code> and it will give you full access to the Oxygen framework while also
@@ -210,7 +208,7 @@ default components on the entity. This is especially helpful when you are using 
 <a class="reference internal" href="#basesystem">BaseSystem</a> as your base.</p>
 </section>
 <section id="systems">
-<h2>Systems<a class="headerlink" href="#systems" title="Permalink to this heading">¶</a></h2>
+<h2>Systems<a class="headerlink" href="#systems" title="Link to this heading">¶</a></h2>
 <p>Systems define the logic of your game. In FCS you normally would add your logic inside a component
 with Oxygen we use systems for that. Oxygen itself is completely platform agnostic, meaning it has
 no render loop. It only knows <code class="docutils literal notranslate"><span class="pre">execute</span></code>, which is a method equal to the <code class="docutils literal notranslate"><span class="pre">update</span></code> method in Flame.</p>
@@ -228,7 +226,7 @@ to subclass it to your own system. For more information see the
 <p>Systems can be registered to the world using the <code class="docutils literal notranslate"><span class="pre">world.registerSystem</span></code> method on
 <a class="reference internal" href="#oxygengame-game-extension">OxygenGame</a>.</p>
 <section id="mixin-gameref">
-<h3>mixin GameRef<a class="headerlink" href="#mixin-gameref" title="Permalink to this heading">¶</a></h3>
+<h3>mixin GameRef<a class="headerlink" href="#mixin-gameref" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameRef</span></code> mixin allows a system to become aware of the <code class="docutils literal notranslate"><span class="pre">OxygenGame</span></code> instance its attached to. This
 allows easy access to the methods on the game class.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">YourSystem</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">System</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">GameRef</span><span class="o">&lt;</span><span class="n">YourGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
@@ -243,7 +241,7 @@ allows easy access to the methods on the game class.</p>
 </div>
 </section>
 <section id="mixin-rendersystem">
-<h3>mixin RenderSystem<a class="headerlink" href="#mixin-rendersystem" title="Permalink to this heading">¶</a></h3>
+<h3>mixin RenderSystem<a class="headerlink" href="#mixin-rendersystem" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">RenderSystem</span></code> mixin allows a system to be registered for the render loop.
 By adding a <code class="docutils literal notranslate"><span class="pre">render</span></code> method to the system you get full access to the canvas as
 you normally would in Flame.</p>
@@ -265,7 +263,7 @@ you normally would in Flame.</p>
 </div>
 </section>
 <section id="mixin-updatesystem">
-<h3>mixin UpdateSystem<a class="headerlink" href="#mixin-updatesystem" title="Permalink to this heading">¶</a></h3>
+<h3>mixin UpdateSystem<a class="headerlink" href="#mixin-updatesystem" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">MixinSystem</span></code> mixin allows a system to be registered for the update loop.
 By adding a <code class="docutils literal notranslate"><span class="pre">update</span></code> method to the system you get full access to the delta time as you
 normally would in Flame.</p>
@@ -287,7 +285,7 @@ normally would in Flame.</p>
 </div>
 </section>
 <section id="basesystem">
-<h3>BaseSystem<a class="headerlink" href="#basesystem" title="Permalink to this heading">¶</a></h3>
+<h3>BaseSystem<a class="headerlink" href="#basesystem" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> is an abstract class whoms logic can be compared to the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
 from FCS. The <code class="docutils literal notranslate"><span class="pre">BaseSystem</span></code> automatically filters all entities that have the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>
 and <code class="docutils literal notranslate"><span class="pre">SizeComponent</span></code> from <code class="docutils literal notranslate"><span class="pre">flame_oxygen</span></code>. On top of that you can add your own filters by defining
@@ -319,7 +317,7 @@ canvas:</p>
 </div>
 </section>
 <section id="particlesystem">
-<h3>ParticleSystem<a class="headerlink" href="#particlesystem" title="Permalink to this heading">¶</a></h3>
+<h3>ParticleSystem<a class="headerlink" href="#particlesystem" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ParticleSystem</span></code> is a simple system that brings the Particle API from Flame to Oxygen. This
 allows you to use the <a class="reference internal" href="#particlecomponent">ParticleComponent</a> without having to worry about how
 it will render or when to update it. As most of that logic is already contained in the Particle
@@ -335,7 +333,7 @@ itself.</p>
 </section>
 </section>
 <section id="components">
-<h2>Components<a class="headerlink" href="#components" title="Permalink to this heading">¶</a></h2>
+<h2>Components<a class="headerlink" href="#components" title="Link to this heading">¶</a></h2>
 <p>Components in Oxygen are different than the ones from FCS mainly because instead of containing
 logic they only contain data. This data is then used in systems which in turn define the logic.</p>
 <p>To accomdate people who are switching from FCS to Oxygen we implemented a few components to help
@@ -345,7 +343,7 @@ functionality, they are often accompanied by predefined systems that you can use
 <p>Components can be registered to the world using the <code class="docutils literal notranslate"><span class="pre">world.registerComponent</span></code> method on
 <a class="reference internal" href="#oxygengame-game-extension">OxygenGame</a>.</p>
 <section id="positioncomponent">
-<h3>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this heading">¶</a></h3>
+<h3>PositionComponent<a class="headerlink" href="#positioncomponent" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is as its name implies is a component that describe the position of an
 entity. And it is registered to the world by default.</p>
 <p>Creating a positioned entity using OxygenGame:</p>
@@ -362,7 +360,7 @@ entity. And it is registered to the world by default.</p>
 </div>
 </section>
 <section id="sizecomponent">
-<h3>SizeComponent<a class="headerlink" href="#sizecomponent" title="Permalink to this heading">¶</a></h3>
+<h3>SizeComponent<a class="headerlink" href="#sizecomponent" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">SizeComponent</span></code> is as its name implies is a component that describe the size of an entity.
 And it is registered to the world by default.</p>
 <p>Creating a sized entity using OxygenGame:</p>
@@ -379,7 +377,7 @@ And it is registered to the world by default.</p>
 </div>
 </section>
 <section id="anchorcomponent">
-<h3>AnchorComponent<a class="headerlink" href="#anchorcomponent" title="Permalink to this heading">¶</a></h3>
+<h3>AnchorComponent<a class="headerlink" href="#anchorcomponent" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">AnchorComponent</span></code> is as its name implies is a component that describe the anchor position of an
 entity. And it is registered to the world by default.</p>
 <p>This component is especially useful when you are using the <a class="reference internal" href="#basesystem">BaseSystem</a>. But can also
@@ -399,7 +397,7 @@ be used for your own anchoring logic.</p>
 </div>
 </section>
 <section id="anglecomponent">
-<h3>AngleComponent<a class="headerlink" href="#anglecomponent" title="Permalink to this heading">¶</a></h3>
+<h3>AngleComponent<a class="headerlink" href="#anglecomponent" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">AngleComponent</span></code> is as its name implies is a component that describe the angle of an entity.
 And it is registered to the world by default. The angle is in radians.</p>
 <p>This component is especially useful when you are using the <a class="reference internal" href="#basesystem">BaseSystem</a>. But can also
@@ -419,7 +417,7 @@ be used for your own angle logic.</p>
 </div>
 </section>
 <section id="flipcomponent">
-<h3>FlipComponent<a class="headerlink" href="#flipcomponent" title="Permalink to this heading">¶</a></h3>
+<h3>FlipComponent<a class="headerlink" href="#flipcomponent" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlipComponent</span></code> can be used to flip your rendering on either the X or Y axis. It is registered
 to the world by default.</p>
 <p>This component is especially useful when you are using the <a class="reference internal" href="#basesystem">BaseSystem</a>. But can also
@@ -439,7 +437,7 @@ be used for your own flipping logic.</p>
 </div>
 </section>
 <section id="spritecomponent">
-<h3>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this heading">¶</a></h3>
+<h3>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> is as its name implies is a component that describe the sprite of an entity.
 And it is registered to the world by default.</p>
 <p>This allows you to assigning a Sprite to an Entity.</p>
@@ -461,7 +459,7 @@ And it is registered to the world by default.</p>
 </div>
 </section>
 <section id="textcomponent">
-<h3>TextComponent<a class="headerlink" href="#textcomponent" title="Permalink to this heading">¶</a></h3>
+<h3>TextComponent<a class="headerlink" href="#textcomponent" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> is as its name implies is a component that adds a text component to an entity.
 And it is registered to the world by default.</p>
 <p>This allows you to add text to your entity, combined with the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> you can use it
@@ -490,7 +488,7 @@ as a text entity.</p>
 </div>
 </section>
 <section id="particlecomponent">
-<h3>ParticleComponent<a class="headerlink" href="#particlecomponent" title="Permalink to this heading">¶</a></h3>
+<h3>ParticleComponent<a class="headerlink" href="#particlecomponent" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code> wraps a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> from Flame. Combined with the
 <a class="reference internal" href="#particlesystem">ParticleSystem</a> you can easily add particles to your game without having to
 worry about how to render a particle or when/how to update one.</p>

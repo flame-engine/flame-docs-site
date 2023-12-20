@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>4. Adding the Remaining Components &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -304,9 +302,9 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="adding-the-remaining-components">
-<h1>4. Adding the Remaining Components<a class="headerlink" href="#adding-the-remaining-components" title="Permalink to this heading">¶</a></h1>
+<h1>4. Adding the Remaining Components<a class="headerlink" href="#adding-the-remaining-components" title="Link to this heading">¶</a></h1>
 <section id="star">
-<h2>Star<a class="headerlink" href="#star" title="Permalink to this heading">¶</a></h2>
+<h2>Star<a class="headerlink" href="#star" title="Link to this heading">¶</a></h2>
 <p>The star is pretty simple.  It is just like the Platform block except we are going to add an effect
 to make it pulse in size.  For the effect to look correct, we need to change the object’s <code class="docutils literal notranslate"><span class="pre">Anchor</span></code>
 to <code class="docutils literal notranslate"><span class="pre">center</span></code>.  This means we will need to adjust the position by half of the image size. For brevity,
@@ -391,7 +389,7 @@ by -24 pixels in both directions and we make it pulse infinitely using the <code
 <p>If you run your game, you should now see pulsing stars!</p>
 </section>
 <section id="water-enemy">
-<h2>Water Enemy<a class="headerlink" href="#water-enemy" title="Permalink to this heading">¶</a></h2>
+<h2>Water Enemy<a class="headerlink" href="#water-enemy" title="Link to this heading">¶</a></h2>
 <p>Now that we understand adding effects to our objects, let’s do the same for the water drop enemy.
 Open <code class="docutils literal notranslate"><span class="pre">lib/actors/water_enemy.dart</span></code> and add the following code:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span>
@@ -471,7 +469,7 @@ easier but could have been left as <code class="docutils literal notranslate"><s
 <p><img alt="Water Enemies" src="../../_images/Step4Enemies.jpg" /></p>
 </section>
 <section id="ground-blocks">
-<h2>Ground Blocks<a class="headerlink" href="#ground-blocks" title="Permalink to this heading">¶</a></h2>
+<h2>Ground Blocks<a class="headerlink" href="#ground-blocks" title="Link to this heading">¶</a></h2>
 <p>Finally, the last component that needs to be displayed is the Ground Block!  This component is more
 complex than the others as we need to identify two times during a block’s life cycle.</p>
 <ul class="simple">
@@ -558,7 +556,7 @@ the image (the anchor is bottom left and we want the next block to align right n
 10 pixels.  This will cause a little overlap, but due to the potential variance in <code class="docutils literal notranslate"><span class="pre">dt</span></code> this
 prevents gaps in the map as it loads while a player is moving.</p>
 <section id="loading-the-next-random-segment">
-<h3>Loading the Next Random Segment<a class="headerlink" href="#loading-the-next-random-segment" title="Permalink to this heading">¶</a></h3>
+<h3>Loading the Next Random Segment<a class="headerlink" href="#loading-the-next-random-segment" title="Link to this heading">¶</a></h3>
 <p>To load the next random segment, we will use the <code class="docutils literal notranslate"><span class="pre">Random()</span></code> function that is built-in to
 <code class="docutils literal notranslate"><span class="pre">dart:math</span></code>.  The following line of code gets a random integer from 0 (inclusive) to the max number
 in the passed parameter (exclusive).</p>

@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Layers &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -319,7 +317,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="layers">
-<h1>Layers<a class="headerlink" href="#layers" title="Permalink to this heading">¶</a></h1>
+<h1>Layers<a class="headerlink" href="#layers" title="Link to this heading">¶</a></h1>
 <p>At its simplest, layers can be retrieved from a Tilemap by invoking:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">getLayer</span><span class="o">&lt;</span><span class="n">ObjectGroup</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myObjectGroupLayer&quot;</span><span class="p">);</span>
 <span class="n">getLayer</span><span class="o">&lt;</span><span class="n">ImageLayer</span><span class="o">&gt;</span><span class="p">(</span><span class="s2">&quot;myImageLayer&quot;</span><span class="p">);</span>
@@ -329,7 +327,7 @@
 </div>
 <p>These methods will either return the requested layer type or null if it does not exist.</p>
 <section id="layer-properties">
-<h2>Layer properties<a class="headerlink" href="#layer-properties" title="Permalink to this heading">¶</a></h2>
+<h2>Layer properties<a class="headerlink" href="#layer-properties" title="Link to this heading">¶</a></h2>
 <p>The following Tiled properties are supported:</p>
 <ul class="contains-task-list simple">
 <li class="task-list-item"><p><input class="task-list-item-checkbox" checked="checked" disabled="disabled" type="checkbox"> Visible</p></li>
@@ -342,20 +340,20 @@
 </ul>
 </section>
 <section id="tiles-properties">
-<h2>Tiles properties<a class="headerlink" href="#tiles-properties" title="Permalink to this heading">¶</a></h2>
+<h2>Tiles properties<a class="headerlink" href="#tiles-properties" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Tiles can have custom properties accessible at <code class="docutils literal notranslate"><span class="pre">tile.properties</span></code>.</p></li>
 <li><p>Tiles can have a custom <code class="docutils literal notranslate"><span class="pre">type</span></code> (or <code class="docutils literal notranslate"><span class="pre">class</span></code> starting in Tiled v1.9) accessible at <code class="docutils literal notranslate"><span class="pre">tile.type</span></code>.</p></li>
 </ul>
 </section>
 <section id="other-features">
-<h2>Other features<a class="headerlink" href="#other-features" title="Permalink to this heading">¶</a></h2>
+<h2>Other features<a class="headerlink" href="#other-features" title="Link to this heading">¶</a></h2>
 <p>Other advanced features are not yet supported, but you can easily read the objects and other
 features of the TMX and add custom behavior (eg regions for triggers and walking areas, custom
 animated objects).</p>
 </section>
 <section id="full-example">
-<h2>Full Example<a class="headerlink" href="#full-example" title="Permalink to this heading">¶</a></h2>
+<h2>Full Example<a class="headerlink" href="#full-example" title="Link to this heading">¶</a></h2>
 <p>You can check a working example
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_tiled/example">here</a>.</p>
 </section>

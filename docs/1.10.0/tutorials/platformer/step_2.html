@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>2. Start Coding &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -313,9 +311,9 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="start-coding">
-<h1>2. Start Coding<a class="headerlink" href="#start-coding" title="Permalink to this heading">¶</a></h1>
+<h1>2. Start Coding<a class="headerlink" href="#start-coding" title="Link to this heading">¶</a></h1>
 <section id="the-plan">
-<h2>The Plan<a class="headerlink" href="#the-plan" title="Permalink to this heading">¶</a></h2>
+<h2>The Plan<a class="headerlink" href="#the-plan" title="Link to this heading">¶</a></h2>
 <p>Now that we have the assets loaded and a very rough idea of what classes we will need, we need to
 start thinking about how we will implement this game and our goals. To do this, let’s break down
 what the game should do:</p>
@@ -342,7 +340,7 @@ to explain the appropriate mechanics.</p>
 </div>
 </section>
 <section id="loading-assets">
-<h2>Loading Assets<a class="headerlink" href="#loading-assets" title="Permalink to this heading">¶</a></h2>
+<h2>Loading Assets<a class="headerlink" href="#loading-assets" title="Link to this heading">¶</a></h2>
 <p>For Ember to be displayed, we will need to load the assets. This can be done in <code class="docutils literal notranslate"><span class="pre">main.dart</span></code>, but by
 so doing, we will quickly clutter the file. To keep our game organized, we should create files that
 have a single focus. So let’s create a file in the <code class="docutils literal notranslate"><span class="pre">lib</span></code> folder called <code class="docutils literal notranslate"><span class="pre">ember_quest.dart</span></code>. In that
@@ -375,7 +373,7 @@ the game. <code class="docutils literal notranslate"><span class="pre">await</sp
 and loads them to cache.</p>
 </section>
 <section id="scaffolding">
-<h2>Scaffolding<a class="headerlink" href="#scaffolding" title="Permalink to this heading">¶</a></h2>
+<h2>Scaffolding<a class="headerlink" href="#scaffolding" title="Link to this heading">¶</a></h2>
 <p>So now that we have our game file, let’s prepare the <code class="docutils literal notranslate"><span class="pre">main.dart</span></code> file to receive our newly created
 <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>. Change your entire <code class="docutils literal notranslate"><span class="pre">main.dart</span></code> file to the following:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
@@ -395,7 +393,7 @@ and loads them to cache.</p>
 <p>You can run this file and you should just have a blank screen now. Let’s get Ember loaded!</p>
 </section>
 <section id="cameracomponent-and-world">
-<h2>CameraComponent and World<a class="headerlink" href="#cameracomponent-and-world" title="Permalink to this heading">¶</a></h2>
+<h2>CameraComponent and World<a class="headerlink" href="#cameracomponent-and-world" title="Link to this heading">¶</a></h2>
 <p>Since <code class="docutils literal notranslate"><span class="pre">FlameGame.camera</span></code> is deprecated, we want to add a <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> that we can move around,
 and a world that we can add all our components to and move around our player in.
 (The <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> will be built-in in Flame v2).</p>
@@ -432,7 +430,7 @@ and a world that we can add all our components to and move around our player in.
 </div>
 </section>
 <section id="ember-time">
-<h2>Ember Time<a class="headerlink" href="#ember-time" title="Permalink to this heading">¶</a></h2>
+<h2>Ember Time<a class="headerlink" href="#ember-time" title="Link to this heading">¶</a></h2>
 <p>Keeping your game files organized can always be a challenge. I like to keep things logically
 organized by how they will be involved in my game. So for Ember, let’s create the following folder,
 <code class="docutils literal notranslate"><span class="pre">lib/actors</span></code> and in that folder, create <code class="docutils literal notranslate"><span class="pre">ember.dart</span></code>. In that file, add the following code:</p>
@@ -513,7 +511,7 @@ back to <code class="docutils literal notranslate"><span class="pre">ember_quest
 <p>Run your game now and you should now see Ember flickering in the lower left-hand corner.</p>
 </section>
 <section id="building-blocks">
-<h2>Building Blocks<a class="headerlink" href="#building-blocks" title="Permalink to this heading">¶</a></h2>
+<h2>Building Blocks<a class="headerlink" href="#building-blocks" title="Link to this heading">¶</a></h2>
 <p>Now that we have Ember showing on screen and we know our basic environment is all working correctly,
 it’s time to create a world for Embers Quest! Proceed on to <a class="reference internal" href="step_3.html"><span class="std std-doc">3. Building the World</span></a>!</p>
 </section>

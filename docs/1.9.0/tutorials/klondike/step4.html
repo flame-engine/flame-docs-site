@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Gameplay &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -314,14 +312,14 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="gameplay">
-<h1>Gameplay<a class="headerlink" href="#gameplay" title="Permalink to this heading">¶</a></h1>
+<h1>Gameplay<a class="headerlink" href="#gameplay" title="Link to this heading">¶</a></h1>
 <p>In this chapter we will be implementing the core of Klondike’s gameplay: how the cards move between
 the stock and the waste, the piles and the foundations.</p>
 <p>Before we begin though, let’s clean up all those cards that we left scattered across the table in
 the previous chapter. Open the <code class="docutils literal notranslate"><span class="pre">KlondikeGame</span></code> class and erase the loop at the bottom of <code class="docutils literal notranslate"><span class="pre">onLoad()</span></code>
 that was adding 28 cards onto the table.</p>
 <section id="the-piles">
-<h2>The piles<a class="headerlink" href="#the-piles" title="Permalink to this heading">¶</a></h2>
+<h2>The piles<a class="headerlink" href="#the-piles" title="Link to this heading">¶</a></h2>
 <p>Another small refactoring that we need to do is to rename our components: <code class="docutils literal notranslate"><span class="pre">Stock</span></code> ⇒ <code class="docutils literal notranslate"><span class="pre">StockPile</span></code>,
 <code class="docutils literal notranslate"><span class="pre">Waste</span></code> ⇒ <code class="docutils literal notranslate"><span class="pre">WastePile</span></code>, <code class="docutils literal notranslate"><span class="pre">Foundation</span></code> ⇒ <code class="docutils literal notranslate"><span class="pre">FoundationPile</span></code>, and <code class="docutils literal notranslate"><span class="pre">Pile</span></code> ⇒ <code class="docutils literal notranslate"><span class="pre">TableauPile</span></code>. This is
 because these components have some common features in how they handle interactions with the cards,
@@ -336,7 +334,7 @@ habit to have.</p>
 </div>
 <p>After such a rename, we can begin implementing each of these components.</p>
 <section id="stock-pile">
-<h3>Stock pile<a class="headerlink" href="#stock-pile" title="Permalink to this heading">¶</a></h3>
+<h3>Stock pile<a class="headerlink" href="#stock-pile" title="Link to this heading">¶</a></h3>
 <p>The <strong>stock</strong> is a place in the top-left corner of the playing field which holds the cards that are
 not currently in play. We will need to build the following functionality for this component:</p>
 <ol class="arabic simple">
@@ -392,7 +390,7 @@ step, though, we need to have a waste pile – so let’s make a quick detour an
 <code class="docutils literal notranslate"><span class="pre">WastePile</span></code> class.</p>
 </section>
 <section id="waste-pile">
-<h3>Waste pile<a class="headerlink" href="#waste-pile" title="Permalink to this heading">¶</a></h3>
+<h3>Waste pile<a class="headerlink" href="#waste-pile" title="Link to this heading">¶</a></h3>
 <p>The <strong>waste</strong> is a pile next to the stock. During the course of the game we will be taking the cards
 from the top of the stock pile and putting them into the waste. The functionality of this class is
 quite simple: it holds a certain number of cards face up, fanning out the top 3.</p>
@@ -437,7 +435,7 @@ to be about 20% of the card’s width:</p>
 <p>Now that the waste pile is ready, let’s get back to the <code class="docutils literal notranslate"><span class="pre">StockPile</span></code>.</p>
 </section>
 <section id="stock-pile-tap-to-deal-cards">
-<h3>Stock pile – tap to deal cards<a class="headerlink" href="#stock-pile-tap-to-deal-cards" title="Permalink to this heading">¶</a></h3>
+<h3>Stock pile – tap to deal cards<a class="headerlink" href="#stock-pile-tap-to-deal-cards" title="Link to this heading">¶</a></h3>
 <p>The second item on our todo list is the first interactive functionality in the game: tap the stock
 pile to deal 3 cards onto the waste.</p>
 <p>Adding tap functionality to the components in Flame is quite simple: we just add the mixin
@@ -476,7 +474,7 @@ Aces. This doesn’t make a very exciting gameplay though, so add line</p>
 </div>
 </section>
 <section id="stock-pile-visual-representation">
-<h3>Stock pile – visual representation<a class="headerlink" href="#stock-pile-visual-representation" title="Permalink to this heading">¶</a></h3>
+<h3>Stock pile – visual representation<a class="headerlink" href="#stock-pile-visual-representation" title="Link to this heading">¶</a></h3>
 <p>Currently, when the stock pile has no cards, it simply shows an empty space – there is no visual
 cue that this is where the stock is. Such cue is needed, though, because we want the user to be
 able to click the stock pile when it is empty in order to move all the cards from the waste back to
@@ -515,7 +513,7 @@ the stock so that they can be dealt again.</p>
 for the stock cards.</p>
 </section>
 <section id="stock-pile-refill-from-the-waste">
-<h3>Stock pile – refill from the waste<a class="headerlink" href="#stock-pile-refill-from-the-waste" title="Permalink to this heading">¶</a></h3>
+<h3>Stock pile – refill from the waste<a class="headerlink" href="#stock-pile-refill-from-the-waste" title="Link to this heading">¶</a></h3>
 <p>The last piece of functionality to add, is to move the cards back from the waste pile into the stock
 pile when the user taps on an empty stock. To implement this, we will modify the <code class="docutils literal notranslate"><span class="pre">onTapUp()</span></code> method
 like so:</p>
@@ -557,7 +555,7 @@ dealt in the first run.</p>
 with the first one because it looks simpler.</p>
 </section>
 <section id="foundation-piles">
-<h3>Foundation piles<a class="headerlink" href="#foundation-piles" title="Permalink to this heading">¶</a></h3>
+<h3>Foundation piles<a class="headerlink" href="#foundation-piles" title="Link to this heading">¶</a></h3>
 <p>The <strong>foundation</strong> piles are the four piles in the top right corner of the game. This is where we
 will be building the ordered runs of cards from Ace to King. The functionality of this class is
 similar to the <code class="docutils literal notranslate"><span class="pre">StockPile</span></code> and the <code class="docutils literal notranslate"><span class="pre">WastePile</span></code>: it has to be able to hold cards face up, and there
@@ -622,7 +620,7 @@ is red or black because the original luminosity of those sprites is different. T
 pick two different colors in order to make them look the same in grayscale.</p>
 </section>
 <section id="tableau-piles">
-<h3>Tableau Piles<a class="headerlink" href="#tableau-piles" title="Permalink to this heading">¶</a></h3>
+<h3>Tableau Piles<a class="headerlink" href="#tableau-piles" title="Link to this heading">¶</a></h3>
 <p>The last piece of the game to be implemented is the <code class="docutils literal notranslate"><span class="pre">TableauPile</span></code> component. There are seven of
 these piles in total, and they are where the majority of the game play is happening.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">TableauPile</span></code> also needs a visual representation, in order to indicate that it’s a place where
@@ -701,7 +699,7 @@ presenting you the next section:</p>
 </section>
 </section>
 <section id="moving-the-cards">
-<h2>Moving the cards<a class="headerlink" href="#moving-the-cards" title="Permalink to this heading">¶</a></h2>
+<h2>Moving the cards<a class="headerlink" href="#moving-the-cards" title="Link to this heading">¶</a></h2>
 <p>Moving the cards is a somewhat more complicated topic than what we have had so far. We will split
 it into several smaller steps:</p>
 <ol class="arabic simple">
@@ -711,7 +709,7 @@ it into several smaller steps:</p>
 <li><p>Drag a run of cards.</p></li>
 </ol>
 <section id="simple-movement">
-<h3>1. Simple movement<a class="headerlink" href="#simple-movement" title="Permalink to this heading">¶</a></h3>
+<h3>1. Simple movement<a class="headerlink" href="#simple-movement" title="Link to this heading">¶</a></h3>
 <p>So, we want to be able to drag the cards on the screen. This is even simpler than making the
 <code class="docutils literal notranslate"><span class="pre">StockPile</span></code> tappable: just head over into the <code class="docutils literal notranslate"><span class="pre">Card</span></code> class and add the <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixin:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Card</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
@@ -751,7 +749,7 @@ however, is to be able to restrict where the card is allowed or not allowed to g
 the core of the logic of the game begins.</p>
 </section>
 <section id="move-only-allowed-cards">
-<h3>2. Move only allowed cards<a class="headerlink" href="#move-only-allowed-cards" title="Permalink to this heading">¶</a></h3>
+<h3>2. Move only allowed cards<a class="headerlink" href="#move-only-allowed-cards" title="Link to this heading">¶</a></h3>
 <p>The first restriction that we impose is that the user should only be able to drag the cards that we
 allow, which include: (1) the top card of a waste pile, (2) the top card of a foundation pile, and
 (3) any face-up card in a tableau pile.</p>
@@ -838,7 +836,7 @@ to <code class="docutils literal notranslate"><span class="pre">false</span></co
 so let’s work on that.</p>
 </section>
 <section id="dropping-the-cards-at-proper-locations">
-<h3>3. Dropping the cards at proper locations<a class="headerlink" href="#dropping-the-cards-at-proper-locations" title="Permalink to this heading">¶</a></h3>
+<h3>3. Dropping the cards at proper locations<a class="headerlink" href="#dropping-the-cards-at-proper-locations" title="Link to this heading">¶</a></h3>
 <p>At this point what we want to do is to figure out where the dragged card is being dropped. More
 specifically, we want to know into which <em>pile</em> it is being dropped. This can be achieved by using
 the <code class="docutils literal notranslate"><span class="pre">componentsAtPoint()</span></code> API, which allows you to query which components are located at a given
@@ -1025,7 +1023,7 @@ only thing that remains is to be able to move multiple cards at once between tab
 a short break, and then on to the next section!</p>
 </section>
 <section id="moving-a-run-of-cards">
-<h3>4. Moving a run of cards<a class="headerlink" href="#moving-a-run-of-cards" title="Permalink to this heading">¶</a></h3>
+<h3>4. Moving a run of cards<a class="headerlink" href="#moving-a-run-of-cards" title="Link to this heading">¶</a></h3>
 <p>In this section we will be implementing the necessary changes to allow us to move small stacks of
 cards between the tableau piles. Before we begin, though, we need to make a small fix first.</p>
 <p>You have probably noticed when running the game in the previous section that the cards in the

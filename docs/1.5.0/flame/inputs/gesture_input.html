@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Gesture Input &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -252,7 +250,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="gesture-input">
-<h1>Gesture Input<a class="headerlink" href="#gesture-input" title="Permalink to this heading">¶</a></h1>
+<h1>Gesture Input<a class="headerlink" href="#gesture-input" title="Link to this heading">¶</a></h1>
 <p>This includes documentation for gesture inputs, which is, mouse and touch pointers.</p>
 <p>For other input documents, see also:</p>
 <ul class="simple">
@@ -260,13 +258,13 @@
 <li><p><a class="reference internal" href="other_inputs.html"><span class="std std-doc">Other Inputs</span></a>: For joysticks, game pads, etc.</p></li>
 </ul>
 <section id="intro">
-<h2>Intro<a class="headerlink" href="#intro" title="Permalink to this heading">¶</a></h2>
+<h2>Intro<a class="headerlink" href="#intro" title="Link to this heading">¶</a></h2>
 <p>Inside <code class="docutils literal notranslate"><span class="pre">package:flame/gestures.dart</span></code> you can find a whole set of <code class="docutils literal notranslate"><span class="pre">mixin</span></code>s which can be included on
 your game class instance to be able to receive touch input events. Below you can see the full list
 of these <code class="docutils literal notranslate"><span class="pre">mixin</span></code>s and its methods:</p>
 </section>
 <section id="touch-and-mouse-detectors">
-<h2>Touch and mouse detectors<a class="headerlink" href="#touch-and-mouse-detectors" title="Permalink to this heading">¶</a></h2>
+<h2>Touch and mouse detectors<a class="headerlink" href="#touch-and-mouse-detectors" title="Link to this heading">¶</a></h2>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>- TapDetector
   - onTap
   - onTapCancel
@@ -355,7 +353,7 @@ also read more about Flutter’s gestures
 <a class="reference external" href="https://api.flutter.dev/flutter/gestures/gestures-library.html">here</a>.</p>
 </section>
 <section id="pandetector-and-scaledetector">
-<h2>PanDetector and ScaleDetector<a class="headerlink" href="#pandetector-and-scaledetector" title="Permalink to this heading">¶</a></h2>
+<h2>PanDetector and ScaleDetector<a class="headerlink" href="#pandetector-and-scaledetector" title="Link to this heading">¶</a></h2>
 <p>If you add a <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> together with a <code class="docutils literal notranslate"><span class="pre">ScaleDetector</span></code> you will be prompted with a quite cryptic
 assertion from Flutter that says:</p>
 <div class="admonition note">
@@ -394,7 +392,7 @@ on scale events:</p>
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/camera_and_viewport/zoom_example.dart">zoom example</a>.</p>
 </section>
 <section id="mouse-cursor">
-<h2>Mouse cursor<a class="headerlink" href="#mouse-cursor" title="Permalink to this heading">¶</a></h2>
+<h2>Mouse cursor<a class="headerlink" href="#mouse-cursor" title="Link to this heading">¶</a></h2>
 <p>It is also possible to change the current mouse cursor displayed on the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> region. To do
 so the following code can be used inside the <code class="docutils literal notranslate"><span class="pre">Game</span></code> class</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">mouseCursor</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SystemMouseCursors</span><span class="p">.</span><span class="n">move</span><span class="p">;</span>
@@ -409,29 +407,29 @@ so the following code can be used inside the <code class="docutils literal notra
 </div>
 </section>
 <section id="event-coordinate-system">
-<h2>Event coordinate system<a class="headerlink" href="#event-coordinate-system" title="Permalink to this heading">¶</a></h2>
+<h2>Event coordinate system<a class="headerlink" href="#event-coordinate-system" title="Link to this heading">¶</a></h2>
 <p>On events that have positions, like for example <code class="docutils literal notranslate"><span class="pre">Tap*</span></code> or <code class="docutils literal notranslate"><span class="pre">Drag</span></code>, you will notice that the <code class="docutils literal notranslate"><span class="pre">eventPosition</span></code>
 attribute includes 3 fields: <code class="docutils literal notranslate"><span class="pre">game</span></code>, <code class="docutils literal notranslate"><span class="pre">widget</span></code> and <code class="docutils literal notranslate"><span class="pre">global</span></code>. Below you will find a brief explanation
 about each one of them.</p>
 <section id="global">
-<h3>global<a class="headerlink" href="#global" title="Permalink to this heading">¶</a></h3>
+<h3>global<a class="headerlink" href="#global" title="Link to this heading">¶</a></h3>
 <p>The position where the event occurred considering the entire screen, same as
 <code class="docutils literal notranslate"><span class="pre">globalPosition</span></code> in Flutter’s native events.</p>
 </section>
 <section id="widget">
-<h3>widget<a class="headerlink" href="#widget" title="Permalink to this heading">¶</a></h3>
+<h3>widget<a class="headerlink" href="#widget" title="Link to this heading">¶</a></h3>
 <p>The position where the event occurred relative to the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> position and size
 , same as <code class="docutils literal notranslate"><span class="pre">localPosition</span></code> in Flutter’s native events.</p>
 </section>
 <section id="game">
-<h3>game<a class="headerlink" href="#game" title="Permalink to this heading">¶</a></h3>
+<h3>game<a class="headerlink" href="#game" title="Link to this heading">¶</a></h3>
 <p>The position where the event ocurred relative to the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> and with any
 transformations that the game applied to the game (e.g. camera). If the game doesn’t have any
 transformations, this will be equal to the <code class="docutils literal notranslate"><span class="pre">widget</span></code> attribute.</p>
 </section>
 </section>
 <section id="example">
-<h2>Example<a class="headerlink" href="#example" title="Permalink to this heading">¶</a></h2>
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapDetector</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Other methods omitted</span>
 
@@ -453,7 +451,7 @@ transformations, this will be equal to the <code class="docutils literal notrans
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/">here</a>.</p>
 </section>
 <section id="tappable-draggable-and-hoverable-components">
-<h2>Tappable, Draggable and Hoverable components<a class="headerlink" href="#tappable-draggable-and-hoverable-components" title="Permalink to this heading">¶</a></h2>
+<h2>Tappable, Draggable and Hoverable components<a class="headerlink" href="#tappable-draggable-and-hoverable-components" title="Link to this heading">¶</a></h2>
 <p>Any component derived from <code class="docutils literal notranslate"><span class="pre">Component</span></code> (most components) can add the <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>, the
 <code class="docutils literal notranslate"><span class="pre">Draggable</span></code>, and/or the <code class="docutils literal notranslate"><span class="pre">Hoverable</span></code> mixins to handle taps, drags and hovers on the component.</p>
 <p>All overridden methods return a boolean to control if the event should be passed down further along
@@ -464,7 +462,7 @@ you should return <code class="docutils literal notranslate"><span class="pre">t
 <p>The same applies if your component has children, then the event is first sent to the leaves in the
 children tree and then passed further down until a method returns <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
 <section id="tappable-components">
-<h3>Tappable components<a class="headerlink" href="#tappable-components" title="Permalink to this heading">¶</a></h3>
+<h3>Tappable components<a class="headerlink" href="#tappable-components" title="Link to this heading">¶</a></h3>
 <p>By adding the <code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> mixin to your game, and using the mixin <code class="docutils literal notranslate"><span class="pre">Tappable</span></code> on your
 components, you can override the following methods on your components:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">bool</span><span class="w"> </span><span class="n">onTapCancel</span><span class="p">();</span>
@@ -536,7 +534,7 @@ minimum amount of time. By default, that time is 300ms, but it can be adjusted b
 <code class="docutils literal notranslate"><span class="pre">longTapDelay</span></code> field of the <code class="docutils literal notranslate"><span class="pre">HasTappables</span></code> mixin.</p>
 </section>
 <section id="draggable-components">
-<h3>Draggable components<a class="headerlink" href="#draggable-components" title="Permalink to this heading">¶</a></h3>
+<h3>Draggable components<a class="headerlink" href="#draggable-components" title="Link to this heading">¶</a></h3>
 <p>Just like with <code class="docutils literal notranslate"><span class="pre">Tappable</span></code>, Flame offers a mixin for <code class="docutils literal notranslate"><span class="pre">Draggable</span></code>.</p>
 <p>By adding the <code class="docutils literal notranslate"><span class="pre">HasDraggables</span></code> mixin to your game, and by using the mixin <code class="docutils literal notranslate"><span class="pre">Draggable</span></code> on
 your components, they can override the simple methods that enable an easy to use drag api on your
@@ -627,7 +625,7 @@ also be applied to <code class="docutils literal notranslate"><span class="pre">
 </div>
 </section>
 <section id="hoverable-components">
-<h3>Hoverable components<a class="headerlink" href="#hoverable-components" title="Permalink to this heading">¶</a></h3>
+<h3>Hoverable components<a class="headerlink" href="#hoverable-components" title="Link to this heading">¶</a></h3>
 <p>Just like the others, this mixin allows for easy wiring of your component to listen to hover states
 and events.</p>
 <p>By adding the <code class="docutils literal notranslate"><span class="pre">HasHoverables</span></code> mixin to your base game, and by using the mixin <code class="docutils literal notranslate"><span class="pre">Hoverable</span></code> on
@@ -672,7 +670,7 @@ also be applied to <code class="docutils literal notranslate"><span class="pre">
 </div>
 </section>
 <section id="gesturehitboxes">
-<h3>GestureHitboxes<a class="headerlink" href="#gesturehitboxes" title="Permalink to this heading">¶</a></h3>
+<h3>GestureHitboxes<a class="headerlink" href="#gesturehitboxes" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin is used to more accurately recognize gestures on top of your
 <code class="docutils literal notranslate"><span class="pre">Component</span></code>s. Say that you have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you
 don’t want to register input that is in the corner of the image where the rock is not displayed,

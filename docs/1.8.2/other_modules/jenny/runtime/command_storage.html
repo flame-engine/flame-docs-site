@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>CommandStorage &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../../_static/jquery.js"></script>
-  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-  <script src="../../../_static/doctools.js"></script>
-  <script src="../../../_static/sphinx_highlight.js"></script>
-  <script src="../../../_static/flutter_app.js"></script>
-  <script src="../../../_static/clipboard.min.js"></script>
-  <script src="../../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../../_static/versions.js"></script>
-  <script src="../../../_static/menu-expand.js"></script>
+  <script src="../../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../../_static/versions.js?v=58484017"></script>
+  <script src="../../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -313,7 +311,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="commandstorage">
-<h1>CommandStorage<a class="headerlink" href="#commandstorage" title="Permalink to this heading">¶</a></h1>
+<h1>CommandStorage<a class="headerlink" href="#commandstorage" title="Link to this heading">¶</a></h1>
 <p>The <strong>CommandStorage</strong> is a part of <a class="reference internal" href="yarn_project.html"><span class="std std-doc">YarnProject</span></a> responsible for storing all <a class="reference internal" href="../language/commands/user_defined_commands.html"><span class="std std-doc">user-defined
 commands</span></a>. You can access it as the <code class="docutils literal notranslate"><span class="pre">YarnProject.commands</span></code> property.</p>
 <p>The command storage can be used to register any number of custom commands, making them available to
@@ -333,7 +331,7 @@ the number of function’s arguments.</p></li>
 considered optional and will default to <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
 </ul>
 <section id="methods">
-<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this heading">¶</a></h2>
+<h2>Methods<a class="headerlink" href="#methods" title="Link to this heading">¶</a></h2>
 <dl class="simple myst">
 <dt><strong>hasCommand</strong>(<code class="docutils literal notranslate"><span class="pre">String</span> <span class="pre">name</span></code>) → <code class="docutils literal notranslate"><span class="pre">bool</span></code></dt><dd><p>Returns the status of whether the command <code class="docutils literal notranslate"><span class="pre">name</span></code> has been added to the storage.</p>
 </dd>
@@ -351,9 +349,9 @@ delivered to <a class="reference internal" href="dialogue_view.html"><span class
 </dl>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <section id="startquest">
-<h3><code class="docutils literal notranslate"><span class="pre">&lt;&lt;StartQuest&gt;&gt;</span></code><a class="headerlink" href="#startquest" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">&lt;&lt;StartQuest&gt;&gt;</span></code><a class="headerlink" href="#startquest" title="Link to this heading">¶</a></h3>
 <p>Suppose we want to have a yarn command <code class="docutils literal notranslate"><span class="pre">&lt;&lt;StartQuest&gt;&gt;</span></code>, which would initiate a quest. The command
 would take the quest name and quest ID as arguments. Technically, just the ID should be enough –
 but then it would be really difficult to read the yarn script and understand what quest is being
@@ -389,7 +387,7 @@ Finally, we register the command with <code class="docutils literal notranslate"
 whatever names suit your programming style best.</p>
 </section>
 <section id="prompt">
-<h3><code class="docutils literal notranslate"><span class="pre">&lt;&lt;prompt&gt;&gt;</span></code><a class="headerlink" href="#prompt" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">&lt;&lt;prompt&gt;&gt;</span></code><a class="headerlink" href="#prompt" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">&lt;&lt;prompt&gt;&gt;</span></code> function will open a modal dialogue and ask the user to enter their response. This
 command will be waiting for the user’s input, so it must return a future. Also, we want to return
 the result of the prompt into the dialogue – but, unfortunately, the commands are not expressions,
@@ -427,7 +425,7 @@ and are not supposed to return values. So instead we will write the result into 
 </div>
 </section>
 <section id="give">
-<h3><code class="docutils literal notranslate"><span class="pre">&lt;&lt;give&gt;&gt;</span></code><a class="headerlink" href="#give" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">&lt;&lt;give&gt;&gt;</span></code><a class="headerlink" href="#give" title="Link to this heading">¶</a></h3>
 <p>Suppose that we want to make a command that will give the player a certain item, or a number of
 items. This command would take 3 arguments: the person who gives the items, the name of the item,
 and the quantity. For example:</p>
@@ -453,7 +451,7 @@ function:</p>
 </section>
 </section>
 <section id="see-also">
-<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
+<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The description of <a class="reference internal" href="../language/commands/user_defined_commands.html"><span class="std std-doc">user-defined commands</span></a> in the YarnSpinner language.</p></li>
 <li><p>The <a class="reference internal" href="user_defined_command.html"><span class="std std-doc">UserDefinedCommand</span></a> class, which is used to inform a <a class="reference internal" href="dialogue_view.html"><span class="std std-doc">DialogueView</span></a> that a custom command

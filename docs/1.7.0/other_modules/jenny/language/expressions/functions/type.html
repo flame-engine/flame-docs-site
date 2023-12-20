@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Type conversion functions &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../../../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../../../../_static/jquery.js"></script>
-  <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-  <script src="../../../../../_static/doctools.js"></script>
-  <script src="../../../../../_static/sphinx_highlight.js"></script>
-  <script src="../../../../../_static/flutter_app.js"></script>
-  <script src="../../../../../_static/clipboard.min.js"></script>
-  <script src="../../../../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../../../../_static/versions.js"></script>
-  <script src="../../../../../_static/menu-expand.js"></script>
+  <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../../../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../../../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../../../../_static/versions.js?v=58484017"></script>
+  <script src="../../../../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -312,12 +310,12 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="type-conversion-functions">
-<h1>Type conversion functions<a class="headerlink" href="#type-conversion-functions" title="Permalink to this heading">¶</a></h1>
+<h1>Type conversion functions<a class="headerlink" href="#type-conversion-functions" title="Link to this heading">¶</a></h1>
 <p>These functions convert values of one type into another type, if possible. All of these functions
 take a single argument of arbitrary type, and return the result of the type corresponding to the
 name of the function.</p>
 <section id="bool-x">
-<h2><code class="docutils literal notranslate"><span class="pre">bool(x)</span></code><a class="headerlink" href="#bool-x" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">bool(x)</span></code><a class="headerlink" href="#bool-x" title="Link to this heading">¶</a></h2>
 <p>Converts its argument into a boolean value.</p>
 <ul class="simple">
 <li><p>If <code class="docutils literal notranslate"><span class="pre">x</span></code> is already a boolean, then it returns the argument as-is.</p></li>
@@ -329,7 +327,7 @@ of <code class="docutils literal notranslate"><span class="pre">x</span></code>.
 </ul>
 </section>
 <section id="number-x">
-<h2><code class="docutils literal notranslate"><span class="pre">number(x)</span></code><a class="headerlink" href="#number-x" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">number(x)</span></code><a class="headerlink" href="#number-x" title="Link to this heading">¶</a></h2>
 <p>Converts its argument <code class="docutils literal notranslate"><span class="pre">x</span></code> into a numeric value.</p>
 <ul class="simple">
 <li><p>If <code class="docutils literal notranslate"><span class="pre">x</span></code> is boolean, then it returns <code class="docutils literal notranslate"><span class="pre">1</span></code> for <code class="docutils literal notranslate"><span class="pre">true</span></code> and <code class="docutils literal notranslate"><span class="pre">0</span></code> for <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p></li>
@@ -347,7 +345,7 @@ are recognized:</p>
 </ul>
 </section>
 <section id="string-x">
-<h2><code class="docutils literal notranslate"><span class="pre">string(x)</span></code><a class="headerlink" href="#string-x" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">string(x)</span></code><a class="headerlink" href="#string-x" title="Link to this heading">¶</a></h2>
 <p>Converts its argument <code class="docutils literal notranslate"><span class="pre">x</span></code> into a string value.</p>
 <ul class="simple">
 <li><p>If <code class="docutils literal notranslate"><span class="pre">x</span></code> is boolean, returns strings <code class="docutils literal notranslate"><span class="pre">&quot;true&quot;</span></code> or <code class="docutils literal notranslate"><span class="pre">&quot;false&quot;</span></code>.</p></li>

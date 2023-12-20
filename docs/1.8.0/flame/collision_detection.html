@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Collision Detection &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
-  <script src="../_static/flutter_app.js"></script>
-  <script src="../_static/clipboard.min.js"></script>
-  <script src="../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../_static/versions.js"></script>
-  <script src="../_static/menu-expand.js"></script>
+  <script src="../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../_static/copybutton.js?v=f281be69"></script>
+  <script src="../_static/versions.js?v=58484017"></script>
+  <script src="../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -313,7 +311,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="collision-detection">
-<h1>Collision Detection<a class="headerlink" href="#collision-detection" title="Permalink to this heading">¶</a></h1>
+<h1>Collision Detection<a class="headerlink" href="#collision-detection" title="Link to this heading">¶</a></h1>
 <p>Collision detection is needed in most games to detect and act upon two components intersecting each
 other. For example an arrow hitting an enemy or the player picking up a coin.</p>
 <p>In most collision detection systems you use something called hitboxes to create more precise
@@ -332,9 +330,9 @@ This behavior is called tunneling, if you want to read more about it.</p>
 <p>Also note that the collision detection system has a limitation that makes it not work properly if
 you have certain types of combinations of flips and scales of the ancestors of the hitboxes.</p>
 <section id="mixins">
-<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this heading">¶</a></h2>
+<h2>Mixins<a class="headerlink" href="#mixins" title="Link to this heading">¶</a></h2>
 <section id="hascollisiondetection">
-<h3>HasCollisionDetection<a class="headerlink" href="#hascollisiondetection" title="Permalink to this heading">¶</a></h3>
+<h3>HasCollisionDetection<a class="headerlink" href="#hascollisiondetection" title="Link to this heading">¶</a></h3>
 <p>If you want to use collision detection in your game you have to add the <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code>
 mixin to your game so that it can keep track of the components that can collide.</p>
 <p>Example:</p>
@@ -361,7 +359,7 @@ the closest parent that has the <code class="docutils literal notranslate"><span
 </div>
 </section>
 <section id="collisioncallbacks">
-<h3>CollisionCallbacks<a class="headerlink" href="#collisioncallbacks" title="Permalink to this heading">¶</a></h3>
+<h3>CollisionCallbacks<a class="headerlink" href="#collisioncallbacks" title="Link to this heading">¶</a></h3>
 <p>To react to a collision you should add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to your component.
 Example:</p>
 <div class="flutter-app-infobox docutils container">
@@ -484,7 +482,7 @@ position is instead returned.</p>
 </section>
 </section>
 <section id="shapehitbox">
-<h2>ShapeHitbox<a class="headerlink" href="#shapehitbox" title="Permalink to this heading">¶</a></h2>
+<h2>ShapeHitbox<a class="headerlink" href="#shapehitbox" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">ShapeHitbox</span></code>s are normal components, so you add them to the component that you want to add
 hitboxes to just like any other component:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="p">{</span>
@@ -509,7 +507,7 @@ and two <code class="docutils literal notranslate"><span class="pre">RectangleHi
 on top of components, see more regarding the latter in the section about the
 <a class="reference internal" href="inputs/gesture_input.html#gesturehitboxes"><span class="std std-ref">GestureHitboxes</span></a> mixin.</p>
 <section id="collisiontype">
-<h3>CollisionType<a class="headerlink" href="#collisiontype" title="Permalink to this heading">¶</a></h3>
+<h3>CollisionType<a class="headerlink" href="#collisiontype" title="Link to this heading">¶</a></h3>
 <p>The hitboxes have a field called <code class="docutils literal notranslate"><span class="pre">collisionType</span></code> which defines when a hitbox should collide with
 another. Usually you want to set as many hitboxes as possible to <code class="docutils literal notranslate"><span class="pre">CollisionType.passive</span></code> to make
 the collision detection more performant. By default the <code class="docutils literal notranslate"><span class="pre">CollisionType</span></code> is <code class="docutils literal notranslate"><span class="pre">active</span></code>.</p>
@@ -534,7 +532,7 @@ from the game.</p>
 them so don’t doubt to use them even if your use case isn’t listed here.</p>
 </section>
 <section id="polygonhitbox">
-<h3>PolygonHitbox<a class="headerlink" href="#polygonhitbox" title="Permalink to this heading">¶</a></h3>
+<h3>PolygonHitbox<a class="headerlink" href="#polygonhitbox" title="Link to this heading">¶</a></h3>
 <p>It should be noted that if you want to use collision detection or <code class="docutils literal notranslate"><span class="pre">containsPoint</span></code> on the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>,
 the polygon needs to be convex. So always use convex polygons or you will most likely run into
 problems if you don’t really know what you are doing. It should also be noted that you should always
@@ -547,18 +545,18 @@ definition in the constructor for this shape.</p>
 section for documentation regarding those.</p>
 </section>
 <section id="rectanglehitbox">
-<h3>RectangleHitbox<a class="headerlink" href="#rectanglehitbox" title="Permalink to this heading">¶</a></h3>
+<h3>RectangleHitbox<a class="headerlink" href="#rectanglehitbox" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code> has the same constructors as the <a class="reference internal" href="components.html#rectanglecomponent"><span class="std std-ref">RectangleComponent</span></a>, see
 that section for documentation regarding those.</p>
 </section>
 <section id="circlehitbox">
-<h3>CircleHitbox<a class="headerlink" href="#circlehitbox" title="Permalink to this heading">¶</a></h3>
+<h3>CircleHitbox<a class="headerlink" href="#circlehitbox" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">CircleHitbox</span></code> has the same constructors as the <a class="reference internal" href="components.html#circlecomponent"><span class="std std-ref">CircleComponent</span></a>, see that
 section for documentation regarding those.</p>
 </section>
 </section>
 <section id="screenhitbox">
-<h2>ScreenHitbox<a class="headerlink" href="#screenhitbox" title="Permalink to this heading">¶</a></h2>
+<h2>ScreenHitbox<a class="headerlink" href="#screenhitbox" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code> is a component which represents the edges of your viewport/screen. If you add a
 <code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code> to your game your other components with hitboxes will be notified when they
 collide with the edges. It doesn’t take any arguments, it only depends on the <code class="docutils literal notranslate"><span class="pre">size</span></code> of the game
@@ -568,14 +566,14 @@ want the <code class="docutils literal notranslate"><span class="pre">ScreenHitb
 <code class="docutils literal notranslate"><span class="pre">onStartCollisionCallback</span></code> and <code class="docutils literal notranslate"><span class="pre">onEndCollisionCallback</span></code> functions to that object if needed.</p>
 </section>
 <section id="compositehitbox">
-<h2>CompositeHitbox<a class="headerlink" href="#compositehitbox" title="Permalink to this heading">¶</a></h2>
+<h2>CompositeHitbox<a class="headerlink" href="#compositehitbox" title="Link to this heading">¶</a></h2>
 <p>In the <code class="docutils literal notranslate"><span class="pre">CompositeHitbox</span></code> you can add multiple hitboxes so that they emulate being one joined hitbox.</p>
 <p>If you want to form a hat for example you might want to use two <a class="reference internal" href="#rectanglehitbox"><span class="std std-ref">RectangleHitbox</span></a>s to follow that
 hat’s edges properly, then you can add those hitboxes to an instance of this class and react to
 collisions to the whole hat, instead of for just each hitbox separately.</p>
 </section>
 <section id="broad-phase">
-<h2>Broad phase<a class="headerlink" href="#broad-phase" title="Permalink to this heading">¶</a></h2>
+<h2>Broad phase<a class="headerlink" href="#broad-phase" title="Link to this heading">¶</a></h2>
 <p>If your game field is small and do not have a lot of collidable components - you don’t have to
 worry about the broad phase system that is used, so if the standard implementation is performant
 enough for you, you probably don’t have to read this section.</p>
@@ -600,7 +598,7 @@ sweep and prune, then you would do the following:</p>
 </div>
 </section>
 <section id="quad-tree-broad-phase">
-<h2>Quad Tree broad phase<a class="headerlink" href="#quad-tree-broad-phase" title="Permalink to this heading">¶</a></h2>
+<h2>Quad Tree broad phase<a class="headerlink" href="#quad-tree-broad-phase" title="Link to this heading">¶</a></h2>
 <p>If your game field is large and the game contains a lot of collidable
 components (more than a hundred), standard sweep and prune can
 become inefficient. If it does, you can try to use the quad tree broad phase.
@@ -678,7 +676,7 @@ Run <code class="docutils literal notranslate"><span class="pre">QuadTree.optimi
 </div>
 </section>
 <section id="ray-casting-and-ray-tracing">
-<h2>Ray casting and Ray tracing<a class="headerlink" href="#ray-casting-and-ray-tracing" title="Permalink to this heading">¶</a></h2>
+<h2>Ray casting and Ray tracing<a class="headerlink" href="#ray-casting-and-ray-tracing" title="Link to this heading">¶</a></h2>
 <p>Ray casting and ray tracing are methods for sending out rays from a point in your game and being
 able to see what these rays collide with and how they reflect after hitting something.</p>
 <p>For all of the following methods, if there are any hitboxes that you wish to ignore, you can add the
@@ -686,7 +684,7 @@ able to see what these rays collide with and how they reflect after hitting some
 This can be quite useful for example if you are casting rays from within a hitbox, which could be on
 your player or NPC; or if you don’t want a ray to bounce off a <code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code>.</p>
 <section id="ray-casting">
-<h3>Ray casting<a class="headerlink" href="#ray-casting" title="Permalink to this heading">¶</a></h3>
+<h3>Ray casting<a class="headerlink" href="#ray-casting" title="Link to this heading">¶</a></h3>
 <p>Ray casting is the operation of casting out one or more rays from a point and see if they hit
 anything, in Flame’s case, hitboxes.</p>
 <p>We provide two methods for doing so, <code class="docutils literal notranslate"><span class="pre">raycast</span></code> and <code class="docutils literal notranslate"><span class="pre">raycastAll</span></code>. The first one just casts out
@@ -807,7 +805,7 @@ to the method with the <code class="docutils literal notranslate"><span class="p
 object instead of creating a new one for each iteration. This can be good if you do a lot of
 ray casting in your <code class="docutils literal notranslate"><span class="pre">update</span></code> methods.</p>
 <section id="raycastall">
-<h4>raycastAll<a class="headerlink" href="#raycastall" title="Permalink to this heading">¶</a></h4>
+<h4>raycastAll<a class="headerlink" href="#raycastall" title="Link to this heading">¶</a></h4>
 <p>Sometimes you want to send out rays in all, or a limited range, of directions from an origin. This
 can have a lot of applications, for example you could calculate the field of view of a player or
 enemy, or it can also be used to create light sources.</p>
@@ -834,7 +832,7 @@ by the function by sending them in as a list with the <code class="docutils lite
 </section>
 </section>
 <section id="ray-tracing">
-<h3>Ray tracing<a class="headerlink" href="#ray-tracing" title="Permalink to this heading">¶</a></h3>
+<h3>Ray tracing<a class="headerlink" href="#ray-tracing" title="Link to this heading">¶</a></h3>
 <p>Ray tracing is similar to ray casting, but instead of just checking what the ray hits you can
 continue to trace the ray and see what its reflection ray (the ray bouncing off the hitbox) will
 hit and then what that casted reflection ray’s reflection ray will hit and so on, until you decide
@@ -975,7 +973,7 @@ by the function by sending them in as a list with the <code class="docutils lite
 </section>
 </section>
 <section id="comparison-to-forge2d">
-<h2>Comparison to Forge2D<a class="headerlink" href="#comparison-to-forge2d" title="Permalink to this heading">¶</a></h2>
+<h2>Comparison to Forge2D<a class="headerlink" href="#comparison-to-forge2d" title="Link to this heading">¶</a></h2>
 <p>If you want to have a full-blown physics engine in your game we recommend that you use
 Forge2D by adding <a class="reference external" href="https://github.com/flame-engine/flame_forge2d">flame_forge2d</a> as a dependency.
 But if you have a simpler use-case and just want to check for collisions of components and improve
@@ -997,7 +995,7 @@ need some of the following things (since it is simpler to not involve Forge2D):<
 </ul>
 </section>
 <section id="migration-from-the-collision-detection-system-in-v1-0">
-<h2>Migration from the collision detection system in v1.0<a class="headerlink" href="#migration-from-the-collision-detection-system-in-v1-0" title="Permalink to this heading">¶</a></h2>
+<h2>Migration from the collision detection system in v1.0<a class="headerlink" href="#migration-from-the-collision-detection-system-in-v1-0" title="Link to this heading">¶</a></h2>
 <p>The collision detection system introduced in v1.1 is easier to use, and much more efficient than the
 one that was in v1.0, but while making these improvements some breaking changes had to be made.</p>
 <p>There is no longer a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> mixin, instead your game automatically knows when a hitbox has
@@ -1008,7 +1006,7 @@ previously.</p>
 <p>Since the hitboxes now are <code class="docutils literal notranslate"><span class="pre">Component</span></code>s you add them to your component with <code class="docutils literal notranslate"><span class="pre">add</span></code> instead of
 <code class="docutils literal notranslate"><span class="pre">addHitbox</span></code> which was used previously.</p>
 <section id="name-changes">
-<h3>Name changes<a class="headerlink" href="#name-changes" title="Permalink to this heading">¶</a></h3>
+<h3>Name changes<a class="headerlink" href="#name-changes" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">ScreenHitbox</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">HitboxCircle</span></code> -&gt; <code class="docutils literal notranslate"><span class="pre">CircleHitbox</span></code></p></li>
@@ -1021,7 +1019,7 @@ previously.</p>
 </section>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>[https://examples.flame-engine.org/#/Collision%20Detection_Collidable%20AnimationComponent]</p></li>
 <li><p>[https://examples.flame-engine.org/#/Collision%20Detection_Circles]</p></li>

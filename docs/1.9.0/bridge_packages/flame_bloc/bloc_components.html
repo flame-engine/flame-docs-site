@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Components &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -314,9 +312,9 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="components">
-<h1>Components<a class="headerlink" href="#components" title="Permalink to this heading">¶</a></h1>
+<h1>Components<a class="headerlink" href="#components" title="Link to this heading">¶</a></h1>
 <section id="flameblocprovider">
-<h2>FlameBlocProvider<a class="headerlink" href="#flameblocprovider" title="Permalink to this heading">¶</a></h2>
+<h2>FlameBlocProvider<a class="headerlink" href="#flameblocprovider" title="Link to this heading">¶</a></h2>
 <p>FlameBlocProvider is a Component which creates and provides a bloc to its children.<br />
 The bloc will only live while this component is alive. It is used as a dependency injection (DI)
 widget so that a single instance of a bloc can be provided to multiple Components within a subtree.</p>
@@ -337,7 +335,7 @@ subtree.</p>
 </div>
 </section>
 <section id="flamemultiblocprovider">
-<h2>FlameMultiBlocProvider<a class="headerlink" href="#flamemultiblocprovider" title="Permalink to this heading">¶</a></h2>
+<h2>FlameMultiBlocProvider<a class="headerlink" href="#flamemultiblocprovider" title="Link to this heading">¶</a></h2>
 <p>Similar to FlameBlocProvider, but provides multiples blocs down to the component tree</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameMultiBlocProvider</span><span class="p">(</span>
 <span class="w">  </span><span class="nl">providers:</span><span class="w"> </span><span class="p">[</span>
@@ -354,7 +352,7 @@ subtree.</p>
 </div>
 </section>
 <section id="flamebloclistener">
-<h2>FlameBlocListener<a class="headerlink" href="#flamebloclistener" title="Permalink to this heading">¶</a></h2>
+<h2>FlameBlocListener<a class="headerlink" href="#flamebloclistener" title="Link to this heading">¶</a></h2>
 <p>FlameBlocListener is Component which can listen to changes in a Bloc state. It invokes
 the <code class="docutils literal notranslate"><span class="pre">onNewState</span></code> in response to state changes in the bloc. For fine-grained control over when
 the <code class="docutils literal notranslate"><span class="pre">onNewState</span></code> function is called an optional <code class="docutils literal notranslate"><span class="pre">listenWhen</span></code> can be provided. <code class="docutils literal notranslate"><span class="pre">listenWhen</span></code> takes the
@@ -375,7 +373,7 @@ be called with <code class="docutils literal notranslate"><span class="pre">stat
 </div>
 </section>
 <section id="flamebloclistenable">
-<h2>FlameBlocListenable<a class="headerlink" href="#flamebloclistenable" title="Permalink to this heading">¶</a></h2>
+<h2>FlameBlocListenable<a class="headerlink" href="#flamebloclistenable" title="Link to this heading">¶</a></h2>
 <p>FlameBlocListenable is an alternative to FlameBlocListener to listen state changes.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">ComponentA</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">FlameBlocListenable</span><span class="o">&lt;</span><span class="n">BlocA</span><span class="p">,</span><span class="w"> </span><span class="n">BlocAState</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
@@ -396,7 +394,7 @@ be called with <code class="docutils literal notranslate"><span class="pre">stat
 </div>
 </section>
 <section id="flameblocreader">
-<h2>FlameBlocReader<a class="headerlink" href="#flameblocreader" title="Permalink to this heading">¶</a></h2>
+<h2>FlameBlocReader<a class="headerlink" href="#flameblocreader" title="Link to this heading">¶</a></h2>
 <p>FlameBlocReader is mixin that allows you to read the current state of bloc on Component. It is
 Useful for components that needs to only read a bloc current state or to trigger an event on it. You
 can have only one reader on Component</p>

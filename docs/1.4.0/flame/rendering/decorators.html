@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Decorators &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -197,7 +195,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="decorators">
-<h1>Decorators<a class="headerlink" href="#decorators" title="Permalink to this heading">¶</a></h1>
+<h1>Decorators<a class="headerlink" href="#decorators" title="Link to this heading">¶</a></h1>
 <p><strong>Decorators</strong> are classes that can encapsulate certain visual effects and then apply those visual
 effects to a sequence of canvas drawing operations. Decorators are not <a class="reference internal" href="../components.html#component"><span class="std std-ref">Component</span></a>s, but they can
 be applied to components either manually or via the <a class="reference internal" href="#hasdecorator-mixin">HasDecorator</a> mixin. Likewise, decorators are
@@ -206,9 +204,9 @@ not <a class="reference internal" href="../effects.html"><span class="std std-do
 necessary. We are planning to add shader-based decorators once Flutter fully supports them on the
 web.</p>
 <section id="flame-built-in-decorators">
-<h2>Flame built-in decorators<a class="headerlink" href="#flame-built-in-decorators" title="Permalink to this heading">¶</a></h2>
+<h2>Flame built-in decorators<a class="headerlink" href="#flame-built-in-decorators" title="Link to this heading">¶</a></h2>
 <section id="paintdecorator-blur">
-<h3>PaintDecorator.blur<a class="headerlink" href="#paintdecorator-blur" title="Permalink to this heading">¶</a></h3>
+<h3>PaintDecorator.blur<a class="headerlink" href="#paintdecorator-blur" title="Link to this heading">¶</a></h3>
 <p>This decorator applies a Gaussian blur to the underlying component. The amount of blur can be
 different in the X and Y direction, though this is not very common.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">decorator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PaintDecorator</span><span class="p">.</span><span class="n">blur</span><span class="p">(</span><span class="m">3.0</span><span class="p">);</span>
@@ -224,7 +222,7 @@ different in the X and Y direction, though this is not very common.</p>
 </ul>
 </section>
 <section id="paintdecorator-grayscale">
-<h3>PaintDecorator.grayscale<a class="headerlink" href="#paintdecorator-grayscale" title="Permalink to this heading">¶</a></h3>
+<h3>PaintDecorator.grayscale<a class="headerlink" href="#paintdecorator-grayscale" title="Link to this heading">¶</a></h3>
 <p>This decorator converts the underlying image into the shades of grey, as if it was a
 black-and-white photograph. In addition, you can make the image semi-transparent to the desired
 level of <code class="docutils literal notranslate"><span class="pre">opacity</span></code>.</p>
@@ -239,7 +237,7 @@ level of <code class="docutils literal notranslate"><span class="pre">opacity</s
 </ul>
 </section>
 <section id="paintdecorator-tint">
-<h3>PaintDecorator.tint<a class="headerlink" href="#paintdecorator-tint" title="Permalink to this heading">¶</a></h3>
+<h3>PaintDecorator.tint<a class="headerlink" href="#paintdecorator-tint" title="Link to this heading">¶</a></h3>
 <p>This decorator <em>tints</em> the underlying image with the specified color, as if watching it through a
 colored glass. It is recommended that the <code class="docutils literal notranslate"><span class="pre">color</span></code> used by this decorator was semi-transparent, so
 that you can see the details of the image below.</p>
@@ -256,7 +254,7 @@ that you can see the details of the image below.</p>
 </ul>
 </section>
 <section id="rotate3ddecorator">
-<h3>Rotate3DDecorator<a class="headerlink" href="#rotate3ddecorator" title="Permalink to this heading">¶</a></h3>
+<h3>Rotate3DDecorator<a class="headerlink" href="#rotate3ddecorator" title="Link to this heading">¶</a></h3>
 <p>This decorator applies a 3D rotation to the underlying component. You can specify the angles of the
 rotation, as well as the pivot point and the amount of perspective distortion to apply.</p>
 <p>The decorator also supplies the <code class="docutils literal notranslate"><span class="pre">isFlipped</span></code> property, which allows you to determine whether the
@@ -278,7 +276,7 @@ to draw a component whose appearance is different in the front and in the back.<
 </ul>
 </section>
 <section id="shadow3ddecorator">
-<h3>Shadow3DDecorator<a class="headerlink" href="#shadow3ddecorator" title="Permalink to this heading">¶</a></h3>
+<h3>Shadow3DDecorator<a class="headerlink" href="#shadow3ddecorator" title="Link to this heading">¶</a></h3>
 <p>This decorator renders a shadow underneath the component, as if the component was a 3D object
 standing on a plane. This effect works best for games that use isometric camera projection.</p>
 <p>The shadow produced by this generator is quite flexible: you can control its angle, length, opacity,
@@ -300,16 +298,16 @@ decorator cannot handle shadows that fall onto walls or other vertical structure
 </section>
 </section>
 <section id="using-decorators">
-<h2>Using decorators<a class="headerlink" href="#using-decorators" title="Permalink to this heading">¶</a></h2>
+<h2>Using decorators<a class="headerlink" href="#using-decorators" title="Link to this heading">¶</a></h2>
 <section id="hasdecorator-mixin">
-<h3>HasDecorator mixin<a class="headerlink" href="#hasdecorator-mixin" title="Permalink to this heading">¶</a></h3>
+<h3>HasDecorator mixin<a class="headerlink" href="#hasdecorator-mixin" title="Link to this heading">¶</a></h3>
 <p>This <code class="docutils literal notranslate"><span class="pre">Component</span></code> mixin adds the <code class="docutils literal notranslate"><span class="pre">decorator</span></code> property, which is initially <code class="docutils literal notranslate"><span class="pre">null</span></code>. If you set this
 property to an actual <code class="docutils literal notranslate"><span class="pre">Decorator</span></code> object, then that decorator will apply its visual effect during
 the rendering of the component. In order to remove this visual effect, simply set the <code class="docutils literal notranslate"><span class="pre">decorator</span></code>
 property back to <code class="docutils literal notranslate"><span class="pre">null</span></code>.</p>
 </section>
 <section id="positioncomponent">
-<h3>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this heading">¶</a></h3>
+<h3>PositionComponent<a class="headerlink" href="#positioncomponent" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> (and all the derived classes) already has a <code class="docutils literal notranslate"><span class="pre">decorator</span></code> property, so for these
 components the <code class="docutils literal notranslate"><span class="pre">HasDecorator</span></code> mixin is not needed.</p>
 <p>In fact, the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> uses its decorator in order to properly position the component on
@@ -319,7 +317,7 @@ to be chained (see the <a class="reference internal" href="#multiple-decorators"
 an alternative logic for how the component shall be positioned on the screen.</p>
 </section>
 <section id="multiple-decorators">
-<h3>Multiple decorators<a class="headerlink" href="#multiple-decorators" title="Permalink to this heading">¶</a></h3>
+<h3>Multiple decorators<a class="headerlink" href="#multiple-decorators" title="Link to this heading">¶</a></h3>
 <p>It is possible to apply several decorators simultaneously to the same component: the <code class="docutils literal notranslate"><span class="pre">Decorator</span></code>
 class supports chaining. That is, if you have an existing decorator on a component and you want to
 add another one, then you can call <code class="docutils literal notranslate"><span class="pre">component.decorator.addLast(newDecorator)</span></code> – this will add

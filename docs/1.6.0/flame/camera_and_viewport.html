@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Camera and Viewport &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
-  <script src="../_static/flutter_app.js"></script>
-  <script src="../_static/clipboard.min.js"></script>
-  <script src="../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../_static/versions.js"></script>
-  <script src="../_static/menu-expand.js"></script>
+  <script src="../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../_static/copybutton.js?v=f281be69"></script>
+  <script src="../_static/versions.js?v=58484017"></script>
+  <script src="../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -304,7 +302,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="camera-and-viewport">
-<h1>Camera and Viewport<a class="headerlink" href="#camera-and-viewport" title="Permalink to this heading">¶</a></h1>
+<h1>Camera and Viewport<a class="headerlink" href="#camera-and-viewport" title="Link to this heading">¶</a></h1>
 <p>When rendering on Flutter, the regular coordinate space used are logical pixels. That means one
 pixel for Flutter is already not necessarily one real pixel on the device, because of the <a class="reference external" href="https://api.flutter.dev/flutter/widgets/MediaQueryData/devicePixelRatio.html">device’s
 pixel ratio</a>. When it
@@ -315,7 +313,7 @@ your game has some sort of game world with an intrinsic coordinate system that d
 screen coordinates. Flame adds two distinct concepts to help transform coordinate spaces. For the
 former, we have the Viewport class. And for the later, we have the Camera class.</p>
 <section id="viewport">
-<h2>Viewport<a class="headerlink" href="#viewport" title="Permalink to this heading">¶</a></h2>
+<h2>Viewport<a class="headerlink" href="#viewport" title="Link to this heading">¶</a></h2>
 <p>The Viewport is an attempt to unify multiple screen (or, rather, game widget) sizes into a single
 configuration for your game by translating and resizing the canvas.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> interface has multiple implementations and can be used from scratch on your <code class="docutils literal notranslate"><span class="pre">Game</span></code>
@@ -335,7 +333,7 @@ need to access the original real logical pixel size, you can use <code class="do
 description on what each <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> does and how it operates, check the documentation on its class.</p>
 </section>
 <section id="camera">
-<h2>Camera<a class="headerlink" href="#camera" title="Permalink to this heading">¶</a></h2>
+<h2>Camera<a class="headerlink" href="#camera" title="Link to this heading">¶</a></h2>
 <p>Unlike the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code>, the <code class="docutils literal notranslate"><span class="pre">Camera</span></code> is a more dynamic <code class="docutils literal notranslate"><span class="pre">Canvas</span></code> transformation that is normally
 dependent on:</p>
 <ul class="simple">
@@ -382,7 +380,7 @@ you when changing. The <code class="docutils literal notranslate"><span class="p
 (or, for some reasons, you might want to do the reverse). The Camera provides two functions,
 <code class="docutils literal notranslate"><span class="pre">screenToWorld</span></code> and <code class="docutils literal notranslate"><span class="pre">worldToScreen</span></code> to easily convert between these coordinate spaces.</p>
 <section id="camera-followvector2">
-<h3>Camera.followVector2<a class="headerlink" href="#camera-followvector2" title="Permalink to this heading">¶</a></h3>
+<h3>Camera.followVector2<a class="headerlink" href="#camera-followvector2" title="Link to this heading">¶</a></h3>
 <p>Immediately snaps the camera to start following a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>.</p>
 <p>This means that the camera will move so that the position vector is in a fixed position on the
 screen. That position is determined by a fraction of screen size defined by the <code class="docutils literal notranslate"><span class="pre">relativeOffset</span></code>
@@ -400,7 +398,7 @@ boundaries to how far the camera is allowed to move.</p>
 </div>
 </section>
 <section id="camera-followcomponent">
-<h3>Camera.followComponent<a class="headerlink" href="#camera-followcomponent" title="Permalink to this heading">¶</a></h3>
+<h3>Camera.followComponent<a class="headerlink" href="#camera-followcomponent" title="Link to this heading">¶</a></h3>
 <p>Immediately snaps the camera to start following a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p>
 <p>This means that the camera will move so that the position vector of the component is in a fixed
 position on the screen. That position is determined by a fraction of screen size defined by the
@@ -429,7 +427,7 @@ anchor to center.</p>
 </div>
 </section>
 <section id="using-the-camera-with-the-game-class">
-<h3>Using the camera with the Game class<a class="headerlink" href="#using-the-camera-with-the-game-class" title="Permalink to this heading">¶</a></h3>
+<h3>Using the camera with the Game class<a class="headerlink" href="#using-the-camera-with-the-game-class" title="Link to this heading">¶</a></h3>
 <p>If you are not using <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, but instead are using the <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixin, then you need to manage
 calling certain camera methods yourself. Let’s say we have the following game structure, and we
 want to add the camera functionality:</p>

@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Joints &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -377,7 +375,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="joints">
-<h1>Joints<a class="headerlink" href="#joints" title="Permalink to this heading">¶</a></h1>
+<h1>Joints<a class="headerlink" href="#joints" title="Link to this heading">¶</a></h1>
 <p>Joints are used to connect two different bodies together in various ways.
 They help to simulate interactions between objects to create hinges, wheels, ropes, chains etc.</p>
 <p>One <code class="docutils literal notranslate"><span class="pre">Body</span></code> in a joint may be of type <code class="docutils literal notranslate"><span class="pre">BodyType.static</span></code>. Joints between <code class="docutils literal notranslate"><span class="pre">BodyType.static</span></code> and/or
@@ -387,7 +385,7 @@ with its parameters.</p>
 <p>To register a <code class="docutils literal notranslate"><span class="pre">Joint</span></code> use <code class="docutils literal notranslate"><span class="pre">world.createJoint</span></code>and later use <code class="docutils literal notranslate"><span class="pre">world.destroyJoint</span></code> when you want to
 remove it.</p>
 <section id="built-in-joints">
-<h2>Built-in joints<a class="headerlink" href="#built-in-joints" title="Permalink to this heading">¶</a></h2>
+<h2>Built-in joints<a class="headerlink" href="#built-in-joints" title="Link to this heading">¶</a></h2>
 <p>Currently, Forge2D supports the following joints:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#constantvolumejoint"><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJoint</span></code></a></p></li>
@@ -404,7 +402,7 @@ remove it.</p>
 <li><p>WheelJoint</p></li>
 </ul>
 <section id="constantvolumejoint">
-<h3><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJoint</span></code><a class="headerlink" href="#constantvolumejoint" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJoint</span></code><a class="headerlink" href="#constantvolumejoint" title="Link to this heading">¶</a></h3>
 <p>This type of joint connects a group of bodies together and maintains a constant volume within them.
 Essentially, it is a set of <a class="reference internal" href="#distancejoint"><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code></a>s, that connects all bodies one after
 another.</p>
@@ -498,7 +496,7 @@ has two optional parameters:</p>
 </ul>
 </section>
 <section id="distancejoint">
-<h3><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code><a class="headerlink" href="#distancejoint" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code><a class="headerlink" href="#distancejoint" title="Link to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code> constrains two points on two bodies to remain at a fixed distance from each other.</p>
 <p>You can view this as a massless, rigid rod.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">distanceJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DistanceJointDef</span><span class="p">()</span>
@@ -583,7 +581,7 @@ to 0, the higher the value, the less springy the joint becomes.</p></li>
 </div>
 </section>
 <section id="frictionjoint">
-<h3><code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code><a class="headerlink" href="#frictionjoint" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code><a class="headerlink" href="#frictionjoint" title="Link to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code> is used for simulating friction in a top-down game. It provides 2D translational
 friction and angular friction.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code> isn’t related to the friction that occurs when two shapes collide in the x-y plane
@@ -674,7 +672,7 @@ values:</p>
 the friction when the body is spinning.</p>
 </section>
 <section id="gearjoint">
-<h3><code class="docutils literal notranslate"><span class="pre">GearJoint</span></code><a class="headerlink" href="#gearjoint" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">GearJoint</span></code><a class="headerlink" href="#gearjoint" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">GearJoint</span></code> is used to connect two joints together. Joints are required to be a
 <a class="reference internal" href="#revolutejoint"><code class="docutils literal notranslate"><span class="pre">RevoluteJoint</span></code></a> or a <a class="reference internal" href="#prismaticjoint"><code class="docutils literal notranslate"><span class="pre">PrismaticJoint</span></code></a> in any combination.</p>
 <div class="admonition warning">
@@ -840,7 +838,7 @@ be destroyed as well.</p>
 </div>
 </section>
 <section id="motorjoint">
-<h3><code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code><a class="headerlink" href="#motorjoint" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code><a class="headerlink" href="#motorjoint" title="Link to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code> is used to control the relative motion between two bodies. A typical usage is to
 control the movement of a dynamic body with respect to the fixed point, for example to create
 animations.</p>
@@ -991,7 +989,7 @@ body to rotate.</p>
 </div>
 </section>
 <section id="mousejoint">
-<h3><code class="docutils literal notranslate"><span class="pre">MouseJoint</span></code><a class="headerlink" href="#mousejoint" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">MouseJoint</span></code><a class="headerlink" href="#mousejoint" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">MouseJoint</span></code> is used to manipulate bodies with the mouse. It attempts to drive a point on a body
 towards the current position of the cursor. There is no restriction on rotation.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">MouseJoint</span></code> definition has a target point, maximum force, frequency, and damping ratio. The
@@ -1106,7 +1104,7 @@ initially.</p></li>
 </ul>
 </section>
 <section id="prismaticjoint">
-<h3><code class="docutils literal notranslate"><span class="pre">PrismaticJoint</span></code><a class="headerlink" href="#prismaticjoint" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">PrismaticJoint</span></code><a class="headerlink" href="#prismaticjoint" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">PrismaticJoint</span></code> provides a single degree of freedom, allowing for a relative translation of two
 bodies along an axis fixed in bodyA. Relative rotation is prevented.</p>
 <p><code class="docutils literal notranslate"><span class="pre">PrismaticJointDef</span></code> requires defining a line of motion using an axis and an anchor point.
@@ -1207,7 +1205,7 @@ prismatic_joint.dart</div>
 <p>In some cases you might wish to control the range of motion. For this, the <code class="docutils literal notranslate"><span class="pre">PrismaticJointDef</span></code> has
 optional parameters that allow you to simulate a joint limit and/or a motor.</p>
 <section id="prismatic-joint-limit">
-<h4>Prismatic Joint Limit<a class="headerlink" href="#prismatic-joint-limit" title="Permalink to this heading">¶</a></h4>
+<h4>Prismatic Joint Limit<a class="headerlink" href="#prismatic-joint-limit" title="Link to this heading">¶</a></h4>
 <p>You can limit the relative rotation with a joint limit that specifies a lower and upper translation.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">jointDef</span>
 <span class="w">  </span><span class="p">..</span><span class="n">enableLimit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
@@ -1226,7 +1224,7 @@ optional parameters that allow you to simulate a joint limit and/or a motor.</p>
 </div>
 </section>
 <section id="prismatic-joint-motor">
-<h4>Prismatic Joint Motor<a class="headerlink" href="#prismatic-joint-motor" title="Permalink to this heading">¶</a></h4>
+<h4>Prismatic Joint Motor<a class="headerlink" href="#prismatic-joint-motor" title="Link to this heading">¶</a></h4>
 <p>You can use a motor to drive the motion or to model joint friction. A maximum motor force is
 provided so that infinite forces are not generated.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">jointDef</span>
@@ -1253,7 +1251,7 @@ provided so that infinite forces are not generated.</p>
 </section>
 </section>
 <section id="pulleyjoint">
-<h3><code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code><a class="headerlink" href="#pulleyjoint" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code><a class="headerlink" href="#pulleyjoint" title="Link to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code> is used to create an idealized pulley. The pulley connects two bodies to the ground
 and to each other. As one body goes up, the other goes down. The total length of the pulley rope is
 conserved according to the initial configuration:</p>
@@ -1408,7 +1406,7 @@ with static shapes to prevent one side from going to zero length.</p>
 </div>
 </section>
 <section id="revolutejoint">
-<h3><code class="docutils literal notranslate"><span class="pre">RevoluteJoint</span></code><a class="headerlink" href="#revolutejoint" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">RevoluteJoint</span></code><a class="headerlink" href="#revolutejoint" title="Link to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">RevoluteJoint</span></code> forces two bodies to share a common anchor point, often called a hinge point.
 The revolute joint has a single degree of freedom: the relative rotation of the two bodies.</p>
 <p>To create a <code class="docutils literal notranslate"><span class="pre">RevoluteJoint</span></code>, provide two bodies and a common point to the <code class="docutils literal notranslate"><span class="pre">initialize</span></code> method.
@@ -1505,7 +1503,7 @@ revolute_joint.dart</div>
 <button class="flutter-app-button code" onclick="open_code_listings(&quot;examples-source-revolute_joint&quot;)">Code</button><p>In some cases you might wish to control the joint angle. For this, the <code class="docutils literal notranslate"><span class="pre">RevoluteJointDef</span></code> has
 optional parameters that allow you to simulate a joint limit and/or a motor.</p>
 <section id="revolute-joint-limit">
-<h4>Revolute Joint Limit<a class="headerlink" href="#revolute-joint-limit" title="Permalink to this heading">¶</a></h4>
+<h4>Revolute Joint Limit<a class="headerlink" href="#revolute-joint-limit" title="Link to this heading">¶</a></h4>
 <p>You can limit the relative rotation with a joint limit that specifies a lower and upper angle.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">jointDef</span>
 <span class="w">  </span><span class="p">..</span><span class="n">enableLimit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span>
@@ -1524,7 +1522,7 @@ optional parameters that allow you to simulate a joint limit and/or a motor.</p>
 </div>
 </section>
 <section id="revolute-joint-motor">
-<h4>Revolute Joint Motor<a class="headerlink" href="#revolute-joint-motor" title="Permalink to this heading">¶</a></h4>
+<h4>Revolute Joint Motor<a class="headerlink" href="#revolute-joint-motor" title="Link to this heading">¶</a></h4>
 <p>You can use a motor to drive the relative rotation about the shared point. A maximum motor torque is
 provided so that infinite forces are not generated.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">jointDef</span>
@@ -1551,7 +1549,7 @@ provided so that infinite forces are not generated.</p>
 </section>
 </section>
 <section id="ropejoint">
-<h3><code class="docutils literal notranslate"><span class="pre">RopeJoint</span></code><a class="headerlink" href="#ropejoint" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">RopeJoint</span></code><a class="headerlink" href="#ropejoint" title="Link to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">RopeJoint</span></code> restricts the maximum distance between two points on two bodies.</p>
 <p><code class="docutils literal notranslate"><span class="pre">RopeJointDef</span></code> requires two body anchor points and the maximum length.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">ropeJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RopeJointDef</span><span class="p">()</span>
@@ -1671,7 +1669,7 @@ See <code class="docutils literal notranslate"><span class="pre">DistanceJoint</
 </div>
 </section>
 <section id="weldjoint">
-<h3><code class="docutils literal notranslate"><span class="pre">WeldJoint</span></code><a class="headerlink" href="#weldjoint" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">WeldJoint</span></code><a class="headerlink" href="#weldjoint" title="Link to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">WeldJoint</span></code> is used to restrict all relative motion between two bodies, effectively joining them
 together.</p>
 <p><code class="docutils literal notranslate"><span class="pre">WeldJointDef</span></code> requires two bodies that will be connected, and a world anchor:</p>
@@ -1795,7 +1793,7 @@ weld_joint.dart</div>
 to 0, the higher the value, the less springy the joint becomes.</p></li>
 </ul>
 <section id="breakable-bodies-and-weldjoint">
-<h4>Breakable Bodies and WeldJoint<a class="headerlink" href="#breakable-bodies-and-weldjoint" title="Permalink to this heading">¶</a></h4>
+<h4>Breakable Bodies and WeldJoint<a class="headerlink" href="#breakable-bodies-and-weldjoint" title="Link to this heading">¶</a></h4>
 <p>Since the Forge2D constraint solver is iterative, joints are somewhat flexible. This means that the
 bodies connected by a WeldJoint may bend slightly. If you want to simulate a breakable body, it’s
 better to create a single body with multiple fixtures. When the body breaks, you can destroy a

@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Images &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -252,7 +250,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="images">
-<h1>Images<a class="headerlink" href="#images" title="Permalink to this heading">¶</a></h1>
+<h1>Images<a class="headerlink" href="#images" title="Link to this heading">¶</a></h1>
 <p>To start off you must have an appropriate folder structure and add the files to the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>
 file, like this:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span>
@@ -265,7 +263,7 @@ file, like this:</p>
 animated WebP, BMP, and WBMP. Other formats would require additional libraries. For example, SVG
 images can be loaded via the <code class="docutils literal notranslate"><span class="pre">flame_svg</span></code> library.</p>
 <section id="loading-images">
-<h2>Loading images<a class="headerlink" href="#loading-images" title="Permalink to this heading">¶</a></h2>
+<h2>Loading images<a class="headerlink" href="#loading-images" title="Link to this heading">¶</a></h2>
 <p>Flame bundles an utility class called <code class="docutils literal notranslate"><span class="pre">Images</span></code> that allows you to easily load and cache images from
 the assets directory into memory.</p>
 <p>Flutter has a handful of types related to images, and converting everything properly from a local
@@ -284,7 +282,7 @@ that the image should have in the cache.</p>
 <p>For <code class="docutils literal notranslate"><span class="pre">clear</span></code> and <code class="docutils literal notranslate"><span class="pre">clearCache</span></code>, do note that <code class="docutils literal notranslate"><span class="pre">dispose</span></code> is called for each removed image from the
 cache, so make sure that you don’t use the image afterwards.</p>
 <section id="standalone-usage">
-<h3>Standalone usage<a class="headerlink" href="#standalone-usage" title="Permalink to this heading">¶</a></h3>
+<h3>Standalone usage<a class="headerlink" href="#standalone-usage" title="Link to this heading">¶</a></h3>
 <p>It can manually be used by instantiating it:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/images.dart&#39;</span><span class="p">;</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">imagesLoader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Images</span><span class="p">();</span>
@@ -294,7 +292,7 @@ cache, so make sure that you don’t use the image afterwards.</p>
 <p>But Flame also offers two ways of using this class without instantiating it yourself.</p>
 </section>
 <section id="flame-images">
-<h3>Flame.images<a class="headerlink" href="#flame-images" title="Permalink to this heading">¶</a></h3>
+<h3>Flame.images<a class="headerlink" href="#flame-images" title="Link to this heading">¶</a></h3>
 <p>There is a singleton, provided by the <code class="docutils literal notranslate"><span class="pre">Flame</span></code> class, that can be used as a global image cache.</p>
 <p>Example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/flame.dart&#39;</span><span class="p">;</span>
@@ -308,7 +306,7 @@ cache, so make sure that you don’t use the image afterwards.</p>
 </div>
 </section>
 <section id="game-images">
-<h3>Game.images<a class="headerlink" href="#game-images" title="Permalink to this heading">¶</a></h3>
+<h3>Game.images<a class="headerlink" href="#game-images" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> class offers some utility methods for handling images loading too. It bundles an instance
 of the <code class="docutils literal notranslate"><span class="pre">Images</span></code> class, that can be used to load image assets to be used during the game. The game
 will automatically free the cache when the game widget is removed from the widget tree.</p>
@@ -350,7 +348,7 @@ will automatically free the cache when the game widget is removed from the widge
 </section>
 </section>
 <section id="sprite">
-<h2>Sprite<a class="headerlink" href="#sprite" title="Permalink to this heading">¶</a></h2>
+<h2>Sprite<a class="headerlink" href="#sprite" title="Link to this heading">¶</a></h2>
 <p>Flame offers a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> class that represents an image, or a region of an image.</p>
 <p>You can create a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> by providing it an <code class="docutils literal notranslate"><span class="pre">Image</span></code> and coordinates that defines the piece of the
 image that that sprite represents.</p>
@@ -388,7 +386,7 @@ render call.</p>
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/sprite_widget_example.dart">here</a>.</p>
 </section>
 <section id="spritebatch">
-<h2>SpriteBatch<a class="headerlink" href="#spritebatch" title="Permalink to this heading">¶</a></h2>
+<h2>SpriteBatch<a class="headerlink" href="#spritebatch" title="Link to this heading">¶</a></h2>
 <p>If you have a sprite sheet (also called an image atlas, which is an image with smaller images
 inside), and would like to render it effectively - <code class="docutils literal notranslate"><span class="pre">SpriteBatch</span></code> handles that job for you.</p>
 <p>Give it the filename of the image, and then add rectangles which describes various part of the
@@ -399,7 +397,7 @@ image, in addition to transforms (position, scale and rotation) and optional col
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/sprites/spritebatch_example.dart">here</a>.</p>
 </section>
 <section id="imagecomposition">
-<h2>ImageComposition<a class="headerlink" href="#imagecomposition" title="Permalink to this heading">¶</a></h2>
+<h2>ImageComposition<a class="headerlink" href="#imagecomposition" title="Link to this heading">¶</a></h2>
 <p>In some cases you may want to merge multiple images into a single image; this is called
 <a class="reference external" href="https://en.wikipedia.org/wiki/Compositing">Compositing</a>. This can be useful for example when
 working with the <a class="reference internal" href="#spritebatch">SpriteBatch</a> API to optimize your drawing calls.</p>
@@ -421,7 +419,7 @@ the performance badly. Instead we recommend to have your compositions pre-render
 reuse the output image.</p>
 </section>
 <section id="animation">
-<h2>Animation<a class="headerlink" href="#animation" title="Permalink to this heading">¶</a></h2>
+<h2>Animation<a class="headerlink" href="#animation" title="Link to this heading">¶</a></h2>
 <p>The Animation class helps you create a cyclic animation of sprites.</p>
 <p>You can create it by passing a list of equally sized sprites and the stepTime (that is, how many
 seconds it takes to move to the next frame):</p>
@@ -482,7 +480,7 @@ Animations can be created as well.</p>
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/sprite_animation_widget_example.dart">here</a>.</p>
 </section>
 <section id="flareanimation">
-<h2>FlareAnimation<a class="headerlink" href="#flareanimation" title="Permalink to this heading">¶</a></h2>
+<h2>FlareAnimation<a class="headerlink" href="#flareanimation" title="Link to this heading">¶</a></h2>
 <p>Do note that Flare is discontinued and <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_rive">Rive</a>
 is preferred.</p>
 <p>Flame provides a simple wrapper of <a class="reference external" href="https://flare.rive.app/">Flare</a> animations so you can use
@@ -528,7 +526,7 @@ them in Flame games.</p>
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_flare/example">here</a>.</p>
 </section>
 <section id="spritesheet">
-<h2>SpriteSheet<a class="headerlink" href="#spritesheet" title="Permalink to this heading">¶</a></h2>
+<h2>SpriteSheet<a class="headerlink" href="#spritesheet" title="Link to this heading">¶</a></h2>
 <p>Sprite sheets are big images with several frames of the same sprite on it and is a very good way to
 organize and keep your animations stored. Flame provides a very simple utility class to deal with
 SpriteSheets, with it you can load your sprite sheet image and extract animations from it. Below is

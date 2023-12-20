@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>5. Controlling Movement &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -377,10 +375,10 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="controlling-movement">
-<h1>5. Controlling Movement<a class="headerlink" href="#controlling-movement" title="Permalink to this heading">¶</a></h1>
+<h1>5. Controlling Movement<a class="headerlink" href="#controlling-movement" title="Link to this heading">¶</a></h1>
 <p>If you were waiting for some serious coding, this chapter is it. Prepare yourself as we dive in!</p>
 <section id="keyboard-controls">
-<h2>Keyboard Controls<a class="headerlink" href="#keyboard-controls" title="Permalink to this heading">¶</a></h2>
+<h2>Keyboard Controls<a class="headerlink" href="#keyboard-controls" title="Link to this heading">¶</a></h2>
 <p>The first step will be to allow control of Ember via the keyboard. We need to start by adding the
 appropriate mixins to the game class and Ember. Add the following:</p>
 <p><code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code></p>
@@ -458,7 +456,7 @@ following code at the end of your <code class="docutils literal notranslate"><sp
 <p>Now Ember looks in the direction they are traveling.</p>
 </section>
 <section id="collisions">
-<h2>Collisions<a class="headerlink" href="#collisions" title="Permalink to this heading">¶</a></h2>
+<h2>Collisions<a class="headerlink" href="#collisions" title="Link to this heading">¶</a></h2>
 <p>It is time to get into the thick of it with collisions. I highly suggest reading the
 <a class="reference internal" href="../../flame/collision_detection.html"><span class="std std-doc">documentation</span></a> to understand how collisions work in Flame. The
 first thing we need to do is make the game aware that collisions are going to occur using the
@@ -561,7 +559,7 @@ and gravity work with Ember, I like to add a little drop-in when you start the g
 </div>
 <p>If you run the game now, Ember should be created and fall to the ground; then you can jump around!</p>
 <section id="collisions-with-objects">
-<h3>Collisions with Objects<a class="headerlink" href="#collisions-with-objects" title="Permalink to this heading">¶</a></h3>
+<h3>Collisions with Objects<a class="headerlink" href="#collisions-with-objects" title="Link to this heading">¶</a></h3>
 <p>Adding the collisions with the other objects is fairly trivial. All we need to do is add the
 following to the bottom of the <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Star</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -612,7 +610,7 @@ collide with an enemy, Ember should blink.</p>
 </section>
 </section>
 <section id="adding-the-scrolling">
-<h2>Adding the Scrolling<a class="headerlink" href="#adding-the-scrolling" title="Permalink to this heading">¶</a></h2>
+<h2>Adding the Scrolling<a class="headerlink" href="#adding-the-scrolling" title="Link to this heading">¶</a></h2>
 <p>This is our last task with Ember. We need to restrict Ember’s movement because as of now, Ember can
 go off-screen and we never move the map. So to implement this feature, we simply need to add the
 following to the end of our <code class="docutils literal notranslate"><span class="pre">update</span></code> method:</p>

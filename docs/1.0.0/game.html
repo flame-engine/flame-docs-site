@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>FlameGame &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="_static/jquery.js"></script>
-  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-  <script src="_static/doctools.js"></script>
-  <script src="_static/sphinx_highlight.js"></script>
-  <script src="_static/flutter_app.js"></script>
-  <script src="_static/clipboard.min.js"></script>
-  <script src="_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="_static/versions.js"></script>
-  <script src="_static/menu-expand.js"></script>
+  <script src="_static/jquery.js?v=5d32c60e"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="_static/doctools.js?v=0b60eaae"></script>
+  <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="_static/flutter_app.js?v=3619378f"></script>
+  <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="_static/copybutton.js?v=f281be69"></script>
+  <script src="_static/versions.js?v=58484017"></script>
+  <script src="_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -168,7 +166,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="flamegame">
-<h1>FlameGame<a class="headerlink" href="#flamegame" title="Permalink to this heading">¶</a></h1>
+<h1>FlameGame<a class="headerlink" href="#flamegame" title="Link to this heading">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is the most basic and most commonly used <code class="docutils literal notranslate"><span class="pre">Game</span></code> class in Flame.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class implements a <code class="docutils literal notranslate"><span class="pre">Component</span></code> based <code class="docutils literal notranslate"><span class="pre">Game</span></code>. Basically it has a list of <code class="docutils literal notranslate"><span class="pre">Component</span></code>s
 and passes the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> calls to all <code class="docutils literal notranslate"><span class="pre">Component</span></code>s that have been added to the game.</p>
@@ -225,7 +223,7 @@ want to remove a list of components.</p>
 <p>Any component on which the <code class="docutils literal notranslate"><span class="pre">remove()</span></code> method has been called will also be removed. You can do this
 simply by doing <code class="docutils literal notranslate"><span class="pre">yourComponent.remove();</span></code>.</p>
 <section id="lifecycle">
-<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this heading">¶</a></h2>
+<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Link to this heading">¶</a></h2>
 <p><img alt="Game Lifecycle Diagram" src="_images/component_lifecycle.png" /></p>
 <p>When a game first is added to a Flutter widget tree the following lifecycle methods will be called
 in order: <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>, <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and <code class="docutils literal notranslate"><span class="pre">onMount</span></code>. After that it goes on to call <code class="docutils literal notranslate"><span class="pre">update</span></code> and
@@ -234,7 +232,7 @@ Once the <code class="docutils literal notranslate"><span class="pre">GameWidget
 component is removed from the component tree.</p>
 </section>
 <section id="changing-component-priorities-render-update-order">
-<h2>Changing component priorities (render/update order)<a class="headerlink" href="#changing-component-priorities-render-update-order" title="Permalink to this heading">¶</a></h2>
+<h2>Changing component priorities (render/update order)<a class="headerlink" href="#changing-component-priorities-render-update-order" title="Link to this heading">¶</a></h2>
 <p>To update a component with a new priority you have to call either <code class="docutils literal notranslate"><span class="pre">FlameGame.changePriority</span></code>, or
 <code class="docutils literal notranslate"><span class="pre">FlameGame.changePriorities</span></code> if you want to change the priorities of many components at once.
 This design is due to the fact that the components doesn’t always have access to the component list and
@@ -246,7 +244,7 @@ the screen since it will be rendered on top of any components with lower priorit
 before it.</p>
 </section>
 <section id="debug-mode">
-<h2>Debug mode<a class="headerlink" href="#debug-mode" title="Permalink to this heading">¶</a></h2>
+<h2>Debug mode<a class="headerlink" href="#debug-mode" title="Link to this heading">¶</a></h2>
 <p>Flame’s <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class provides a variable called <code class="docutils literal notranslate"><span class="pre">debugMode</span></code>, which by default is <code class="docutils literal notranslate"><span class="pre">false</span></code>. It can
 however, be set to <code class="docutils literal notranslate"><span class="pre">true</span></code> to enable debug features for the components of the game. <strong>Be aware</strong> that
 the value of this variable is passed through to its components when they are added to the game, so
@@ -255,7 +253,7 @@ if you change the <code class="docutils literal notranslate"><span class="pre">d
 </section>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="low-level-game-api">
-<h1>Low-level Game API<a class="headerlink" href="#low-level-game-api" title="Permalink to this heading">¶</a></h1>
+<h1>Low-level Game API<a class="headerlink" href="#low-level-game-api" title="Link to this heading">¶</a></h1>
 <p><img alt="Game low-level API" src="_images/game_mixin.png" /></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> mixin is a low-level API that can be used when you want to implement the functionality of
 how the game engine should be structured. <code class="docutils literal notranslate"><span class="pre">Game</span></code> does not implement any <code class="docutils literal notranslate"><span class="pre">update</span></code> or
@@ -294,7 +292,7 @@ missing out on all of the built-in features in Flame if you use it.</p>
 </div>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="gameloop">
-<h1>GameLoop<a class="headerlink" href="#gameloop" title="Permalink to this heading">¶</a></h1>
+<h1>GameLoop<a class="headerlink" href="#gameloop" title="Link to this heading">¶</a></h1>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> module is a simple abstraction over the game loop concept. Basically most games are
 built upon two methods:</p>
 <ul class="simple">
@@ -305,7 +303,7 @@ to the next state.</p></li>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is used by all of Flame’s <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementations.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="pause-resuming-game-execution">
-<h1>Pause/Resuming game execution<a class="headerlink" href="#pause-resuming-game-execution" title="Permalink to this heading">¶</a></h1>
+<h1>Pause/Resuming game execution<a class="headerlink" href="#pause-resuming-game-execution" title="Link to this heading">¶</a></h1>
 <p>A Flame <code class="docutils literal notranslate"><span class="pre">Game</span></code> can be paused and resumed in two ways:</p>
 <ul class="simple">
 <li><p>With the use of the <code class="docutils literal notranslate"><span class="pre">pauseEngine</span></code> and <code class="docutils literal notranslate"><span class="pre">resumeEngine</span></code> methods.</p></li>
@@ -315,7 +313,7 @@ to the next state.</p></li>
 renders will happen until it is resumed.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="flutter-widgets-and-game-instances">
-<h1>Flutter Widgets and Game instances<a class="headerlink" href="#flutter-widgets-and-game-instances" title="Permalink to this heading">¶</a></h1>
+<h1>Flutter Widgets and Game instances<a class="headerlink" href="#flutter-widgets-and-game-instances" title="Link to this heading">¶</a></h1>
 <p>Since a Flame game can be wrapped in a widget, it is quite easy to use it alongside other Flutter
 widgets. But still, there is the Widgets Overlay API that makes things even easier.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Game.overlays</span></code> enables any Flutter widget to be shown on top of a game instance, this makes it very

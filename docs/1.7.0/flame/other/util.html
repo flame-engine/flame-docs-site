@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Util &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -312,21 +310,21 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="util">
-<h1>Util<a class="headerlink" href="#util" title="Permalink to this heading">¶</a></h1>
+<h1>Util<a class="headerlink" href="#util" title="Link to this heading">¶</a></h1>
 <p>On this page you can find documentation for some utility classes and methods.</p>
 <section id="device-class">
-<h2>Device Class<a class="headerlink" href="#device-class" title="Permalink to this heading">¶</a></h2>
+<h2>Device Class<a class="headerlink" href="#device-class" title="Link to this heading">¶</a></h2>
 <p>This class can be accessed from <code class="docutils literal notranslate"><span class="pre">Flame.device</span></code> and it has some methods that can be used to control
 the state of the device, for instance you can change the screen orientation and set whether the
 application should be fullscreen or not.</p>
 <section id="flame-device-fullscreen">
-<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.fullScreen()</span></code><a class="headerlink" href="#flame-device-fullscreen" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.fullScreen()</span></code><a class="headerlink" href="#flame-device-fullscreen" title="Link to this heading">¶</a></h3>
 <p>When called, this disables all <code class="docutils literal notranslate"><span class="pre">SystemUiOverlay</span></code> making the app full screen.
 When called in the main method, it makes your app full screen (no top nor bottom bars).</p>
 <p><strong>Note:</strong> It has no effect when called on the web.</p>
 </section>
 <section id="flame-device-setlandscape">
-<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setLandscape()</span></code><a class="headerlink" href="#flame-device-setlandscape" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setLandscape()</span></code><a class="headerlink" href="#flame-device-setlandscape" title="Link to this heading">¶</a></h3>
 <p>This method sets the orientation of the whole application (effectively, also the game) to landscape
 and depending on operating system and device setting, should allow both left and right landscape
 orientations. To set the app orientation to landscape on a specific direction, use either
@@ -334,7 +332,7 @@ orientations. To set the app orientation to landscape on a specific direction, u
 <p><strong>Note:</strong> It has no effect when called on the web.</p>
 </section>
 <section id="flame-device-setportrait">
-<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setPortrait()</span></code><a class="headerlink" href="#flame-device-setportrait" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setPortrait()</span></code><a class="headerlink" href="#flame-device-setportrait" title="Link to this heading">¶</a></h3>
 <p>This method sets the orientation of the whole application (effectively, also the game) to portrait
 and depending on operating system and device setting, it should allow for both up and down portrait
 orientations. To set the app orientation to portrait for a specific direction, use either
@@ -342,7 +340,7 @@ orientations. To set the app orientation to portrait for a specific direction, u
 <p><strong>Note:</strong> It has no effect when called on the web.</p>
 </section>
 <section id="flame-device-setorientation-and-flame-device-setorientations">
-<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientation()</span></code> and <code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientations()</span></code><a class="headerlink" href="#flame-device-setorientation-and-flame-device-setorientations" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientation()</span></code> and <code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientations()</span></code><a class="headerlink" href="#flame-device-setorientation-and-flame-device-setorientations" title="Link to this heading">¶</a></h3>
 <p>If a finer control of the allowed orientations is required (without having to deal with
 <code class="docutils literal notranslate"><span class="pre">SystemChrome</span></code> directly), <code class="docutils literal notranslate"><span class="pre">setOrientation</span></code> (accepts a single <code class="docutils literal notranslate"><span class="pre">DeviceOrientation</span></code> as a parameter) and
 <code class="docutils literal notranslate"><span class="pre">setOrientations</span></code> (accepts a <code class="docutils literal notranslate"><span class="pre">List&lt;DeviceOrientation&gt;</span></code> for possible orientations) can be used.</p>
@@ -350,7 +348,7 @@ orientations. To set the app orientation to portrait for a specific direction, u
 </section>
 </section>
 <section id="timer">
-<h2>Timer<a class="headerlink" href="#timer" title="Permalink to this heading">¶</a></h2>
+<h2>Timer<a class="headerlink" href="#timer" title="Link to this heading">¶</a></h2>
 <p>Flame provides a simple utility class to help you handle countdowns and timer state changes like
 events.</p>
 <p>Countdown example:</p>
@@ -439,7 +437,7 @@ events.</p>
 </div>
 </section>
 <section id="time-scale">
-<h2>Time Scale<a class="headerlink" href="#time-scale" title="Permalink to this heading">¶</a></h2>
+<h2>Time Scale<a class="headerlink" href="#time-scale" title="Link to this heading">¶</a></h2>
 <p>In many games it is often desirable to create  slow-motion or fast-forward effects based on some in
 game events. A very common approach to achieve these results is to manipulate the in game time or
 tick rate.</p>
@@ -466,12 +464,12 @@ so will allow controlling time scale for all the component of the game from a si
 </div>
 </section>
 <section id="extensions">
-<h2>Extensions<a class="headerlink" href="#extensions" title="Permalink to this heading">¶</a></h2>
+<h2>Extensions<a class="headerlink" href="#extensions" title="Link to this heading">¶</a></h2>
 <p>Flame bundles a collection of utility extensions, these extensions are meant to help the developer
 with shortcuts and conversion methods, here you can find the summary of those extensions.</p>
 <p>They can all be imported from <code class="docutils literal notranslate"><span class="pre">package:flame/extensions.dart</span></code></p>
 <section id="canvas">
-<h3>Canvas<a class="headerlink" href="#canvas" title="Permalink to this heading">¶</a></h3>
+<h3>Canvas<a class="headerlink" href="#canvas" title="Link to this heading">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">scaleVector</span></code>: Just like <code class="docutils literal notranslate"><span class="pre">canvas</span> <span class="pre">scale</span></code> method, but takes a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> as an argument.</p></li>
@@ -483,7 +481,7 @@ functions to easily manipulate coordinates to render things on the correct place
 </ul>
 </section>
 <section id="color">
-<h3>Color<a class="headerlink" href="#color" title="Permalink to this heading">¶</a></h3>
+<h3>Color<a class="headerlink" href="#color" title="Link to this heading">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">darken</span></code>: Darken the shade of the color by an amount between 0 to 1.</p></li>
@@ -496,7 +494,7 @@ functions to easily manipulate coordinates to render things on the correct place
 </ul>
 </section>
 <section id="image">
-<h3>Image<a class="headerlink" href="#image" title="Permalink to this heading">¶</a></h3>
+<h3>Image<a class="headerlink" href="#image" title="Link to this heading">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">pixelsInUint8</span></code>: Retrieves the pixel data as a <code class="docutils literal notranslate"><span class="pre">Uint8List</span></code>, in the <code class="docutils literal notranslate"><span class="pre">ImageByteFormat.rawRgba</span></code>
@@ -508,7 +506,7 @@ pixel format, for the image.</p></li>
 </ul>
 </section>
 <section id="offset">
-<h3>Offset<a class="headerlink" href="#offset" title="Permalink to this heading">¶</a></h3>
+<h3>Offset<a class="headerlink" href="#offset" title="Link to this heading">¶</a></h3>
 <p>Methods;</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">toVector2</span></code>; Creates an <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> from the <code class="docutils literal notranslate"><span class="pre">Offset</span></code>.</p></li>
@@ -518,7 +516,7 @@ pixel format, for the image.</p></li>
 </ul>
 </section>
 <section id="rect">
-<h3>Rect<a class="headerlink" href="#rect" title="Permalink to this heading">¶</a></h3>
+<h3>Rect<a class="headerlink" href="#rect" title="Link to this heading">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">toOffset</span></code>: Creates an <code class="docutils literal notranslate"><span class="pre">Offset</span></code> from the <code class="docutils literal notranslate"><span class="pre">Rect</span></code>.</p></li>
@@ -538,14 +536,14 @@ pixel format, for the image.</p></li>
 </ul>
 </section>
 <section id="math-rectangle">
-<h3>math.Rectangle<a class="headerlink" href="#math-rectangle" title="Permalink to this heading">¶</a></h3>
+<h3>math.Rectangle<a class="headerlink" href="#math-rectangle" title="Link to this heading">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">toRect</span></code>: Converts this math <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> into an ui <code class="docutils literal notranslate"><span class="pre">Rect</span></code>.</p></li>
 </ul>
 </section>
 <section id="size">
-<h3>Size<a class="headerlink" href="#size" title="Permalink to this heading">¶</a></h3>
+<h3>Size<a class="headerlink" href="#size" title="Link to this heading">¶</a></h3>
 <p>Methods:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">toVector2</span></code>; Creates an <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> from the <code class="docutils literal notranslate"><span class="pre">Size</span></code>.</p></li>
@@ -555,7 +553,7 @@ pixel format, for the image.</p></li>
 </ul>
 </section>
 <section id="vector2">
-<h3>Vector2<a class="headerlink" href="#vector2" title="Permalink to this heading">¶</a></h3>
+<h3>Vector2<a class="headerlink" href="#vector2" title="Link to this heading">¶</a></h3>
 <p>This class comes from the <code class="docutils literal notranslate"><span class="pre">vector_math</span></code> package and we have some useful extension methods on top of
 what is offered by that package.</p>
 <p>Methods:</p>
@@ -584,7 +582,7 @@ right.</p></li>
 </ul>
 </section>
 <section id="matrix4">
-<h3>Matrix4<a class="headerlink" href="#matrix4" title="Permalink to this heading">¶</a></h3>
+<h3>Matrix4<a class="headerlink" href="#matrix4" title="Link to this heading">¶</a></h3>
 <p>This class comes from the <code class="docutils literal notranslate"><span class="pre">vector_math</span></code> package. We have created a few extension methods on top
 of what is already offered by <code class="docutils literal notranslate"><span class="pre">vector_math</span></code>.</p>
 <p>Methods:</p>

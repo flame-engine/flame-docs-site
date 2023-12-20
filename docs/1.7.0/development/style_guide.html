@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Flame Style Guide &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
-  <script src="../_static/flutter_app.js"></script>
-  <script src="../_static/clipboard.min.js"></script>
-  <script src="../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../_static/versions.js"></script>
-  <script src="../_static/menu-expand.js"></script>
+  <script src="../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../_static/copybutton.js?v=f281be69"></script>
+  <script src="../_static/versions.js?v=58484017"></script>
+  <script src="../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -312,7 +310,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="flame-style-guide">
-<h1>Flame Style Guide<a class="headerlink" href="#flame-style-guide" title="Permalink to this heading">¶</a></h1>
+<h1>Flame Style Guide<a class="headerlink" href="#flame-style-guide" title="Link to this heading">¶</a></h1>
 <p>This is a general style guide for writing code within Flame and adjacent projects. We strive to
 maintain the code clean and readable – both for the benefit of the users who will need to study
 this code in order to understand how a particular feature works or debug something that is breaking,
@@ -320,7 +318,7 @@ and for the benefit of the current and future maintainers.</p>
 <p>This guide extends upon the official <a class="reference external" href="https://dart.dev/guides/language/effective-dart">Dart’s style guide</a>. Please make sure to read
 that document first, as it is sure to improve your skill in Dart programming.</p>
 <section id="code-formatting">
-<h2>Code Formatting<a class="headerlink" href="#code-formatting" title="Permalink to this heading">¶</a></h2>
+<h2>Code Formatting<a class="headerlink" href="#code-formatting" title="Link to this heading">¶</a></h2>
 <p>Most of the code formatting rules are enforced automatically via the linter. Run the following
 commands to ensure the code is conformant and to fix any easy formatting problems:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">flutter analyze</span>
@@ -329,9 +327,9 @@ commands to ensure the code is conformant and to fix any easy formatting problem
 </div>
 </section>
 <section id="code-structure">
-<h2>Code Structure<a class="headerlink" href="#code-structure" title="Permalink to this heading">¶</a></h2>
+<h2>Code Structure<a class="headerlink" href="#code-structure" title="Link to this heading">¶</a></h2>
 <section id="imports">
-<h3>Imports<a class="headerlink" href="#imports" title="Permalink to this heading">¶</a></h3>
+<h3>Imports<a class="headerlink" href="#imports" title="Link to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>If you’re using an external symbol that’s defined in multiple libraries, prefer importing the
 smallest of them. For example, use <code class="docutils literal notranslate"><span class="pre">package:meta/meta.dart</span></code> to import annotations like
@@ -341,7 +339,7 @@ a much smaller library <code class="docutils literal notranslate"><span class="p
 </ul>
 </section>
 <section id="exports">
-<h3>Exports<a class="headerlink" href="#exports" title="Permalink to this heading">¶</a></h3>
+<h3>Exports<a class="headerlink" href="#exports" title="Link to this heading">¶</a></h3>
 <ul>
 <li><p>Strongly prefer to have only one public class per file, and name the file after that class.
 Having several private classes within the file is perfectly reasonable.</p></li>
@@ -365,7 +363,7 @@ the <code class="docutils literal notranslate"><span class="pre">export</span> <
 </ul>
 </section>
 <section id="assertions">
-<h3>Assertions<a class="headerlink" href="#assertions" title="Permalink to this heading">¶</a></h3>
+<h3>Assertions<a class="headerlink" href="#assertions" title="Link to this heading">¶</a></h3>
 <p>Use <code class="docutils literal notranslate"><span class="pre">assert</span></code>s to detect contract violations, or pre-condition/post-condition failures. Sometimes,
 however, using exceptions would be more appropriate. The following rules of thumb apply:</p>
 <ul>
@@ -397,7 +395,7 @@ their side?</p></li>
 </ul>
 </section>
 <section id="class-structure">
-<h3>Class structure<a class="headerlink" href="#class-structure" title="Permalink to this heading">¶</a></h3>
+<h3>Class structure<a class="headerlink" href="#class-structure" title="Link to this heading">¶</a></h3>
 <ul>
 <li><p>Consider putting all class constructors at the top of the class. This makes it much easier to see
 how the class ought to be used.</p></li>
@@ -442,7 +440,7 @@ to quickly see what data the class has.</p>
 </section>
 </section>
 <section id="documentation">
-<h2>Documentation<a class="headerlink" href="#documentation" title="Permalink to this heading">¶</a></h2>
+<h2>Documentation<a class="headerlink" href="#documentation" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Use dartdocs <code class="docutils literal notranslate"><span class="pre">///</span></code> to explain the meaning/purpose of a class, method, or a variable.</p></li>
 <li><p>Use regular comments <code class="docutils literal notranslate"><span class="pre">//</span></code> to explain implementation details of a particular code fragment. That
@@ -451,7 +449,7 @@ is, these comments explain HOW something works.</p></li>
 and especially how it fits into the overall Flame framework.</p></li>
 </ul>
 <section id="dartdocs">
-<h3>Dartdocs<a class="headerlink" href="#dartdocs" title="Permalink to this heading">¶</a></h3>
+<h3>Dartdocs<a class="headerlink" href="#dartdocs" title="Link to this heading">¶</a></h3>
 <ul>
 <li><p>Check the <a class="reference external" href="https://github.com/flutter/flutter/wiki/Style-guide-for-Flutter-repo#user-content-documentation-dartdocs-javadocs-etc">Flutter Documentation Guide</a> – it contains lots of great advice on writing good
 documentation.</p>
@@ -495,7 +493,7 @@ answer “how it will be constructed”.</p>
 </ul>
 </section>
 <section id="main-docs">
-<h3>Main docs<a class="headerlink" href="#main-docs" title="Permalink to this heading">¶</a></h3>
+<h3>Main docs<a class="headerlink" href="#main-docs" title="Link to this heading">¶</a></h3>
 <p>This refers to the docs on the main Flame Documentation website, the one you’re reading right now.
 The main documentation site serves as a place where people go to learn about various functionality
 available in Flame. If you’re adding a new class, then it must be documented both at the dartdocs

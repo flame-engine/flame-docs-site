@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>5. Animations, restarting, buttons and a New World &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -319,7 +317,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="animations-restarting-buttons-and-a-new-world">
-<h1>5. Animations, restarting, buttons and a New World<a class="headerlink" href="#animations-restarting-buttons-and-a-new-world" title="Permalink to this heading">¶</a></h1>
+<h1>5. Animations, restarting, buttons and a New World<a class="headerlink" href="#animations-restarting-buttons-and-a-new-world" title="Link to this heading">¶</a></h1>
 <p>In this chapter we will be showing various ways to make the Klondike game more fun and easier to
 play. The topics to be covered are:</p>
 <ul class="simple">
@@ -334,7 +332,7 @@ play. The topics to be covered are:</p>
 <li><p>Effects and EffectControllers</p></li>
 </ul>
 <section id="the-klondike-draw">
-<h2>The Klondike draw<a class="headerlink" href="#the-klondike-draw" title="Permalink to this heading">¶</a></h2>
+<h2>The Klondike draw<a class="headerlink" href="#the-klondike-draw" title="Link to this heading">¶</a></h2>
 <p>The Klondike patience game (or solitaire game in the USA) has two main variants: Draw 3 and Draw 1.
 Currently the Klondike Flame Game is Draw 3, which is a lot more difficult than Draw 1, because
 although you can see 3 cards, you can only move one of them and that move changes the “phase” of
@@ -412,7 +410,7 @@ incorporate Flutter widgets into a game and the next Tutorial (Ember) shows how 
 widget, as its final step.</p>
 </section>
 <section id="making-cards-move">
-<h2>Making cards move<a class="headerlink" href="#making-cards-move" title="Permalink to this heading">¶</a></h2>
+<h2>Making cards move<a class="headerlink" href="#making-cards-move" title="Link to this heading">¶</a></h2>
 <p>In Flame, if we need a component to do something, we use an <code class="docutils literal notranslate"><span class="pre">Effect</span></code> - a special component that can
 attach to another component, such as a card, and modify its properties. That includes any kind of
 motion (or change of <code class="docutils literal notranslate"><span class="pre">position</span></code>). We also need an <code class="docutils literal notranslate"><span class="pre">EffectController</span></code>, which provides timing for an
@@ -508,7 +506,7 @@ to Waste pile, turning cards over automatically on the tableau piles, and settli
 after a valid drag-and-drop. We will have a look at animating a flip first.</p>
 </section>
 <section id="animating-a-card-flip">
-<h2>Animating a card-flip<a class="headerlink" href="#animating-a-card-flip" title="Permalink to this heading">¶</a></h2>
+<h2>Animating a card-flip<a class="headerlink" href="#animating-a-card-flip" title="Link to this heading">¶</a></h2>
 <p>Flutter and Flame do not yet support 3-D effects (as at October 2023), but we can emulate them.
 To make a card look as if it is turning over, we will shrink the width of the back-view, switch
 to the front view and expand back to full width. The code uses quite a few features of Effects
@@ -608,7 +606,7 @@ However, when we tapped a non-empty Stock Pile, the executed code was:</p>
 animated flip is keeping the card face-down while the first half of the flip is occurring.</p>
 </section>
 <section id="model-and-view">
-<h2>Model and View<a class="headerlink" href="#model-and-view" title="Permalink to this heading">¶</a></h2>
+<h2>Model and View<a class="headerlink" href="#model-and-view" title="Link to this heading">¶</a></h2>
 <p>Clearly the card cannot be in two states at once: it is not Schrödinger’s cat! We can resolve the
 dilemma by using two definitions of “face-up”: a Model type and a View type. The View version is
 used in rendering and animation (i.e. what appears on the screen) and the Model version in the logic
@@ -637,7 +635,7 @@ in the View to catch up later, with no <code class="docutils literal notranslate
 the Stock Pile very rapidly, by tapping fast. However, that is beyond the scope of this Tutorial.</p>
 </section>
 <section id="ending-and-restarting-the-game">
-<h2>Ending and restarting the game<a class="headerlink" href="#ending-and-restarting-the-game" title="Permalink to this heading">¶</a></h2>
+<h2>Ending and restarting the game<a class="headerlink" href="#ending-and-restarting-the-game" title="Link to this heading">¶</a></h2>
 <p>As it stands, there is no easy way to finish the Klondike Tutorial game and start another, even if
 you have won. We can only close the app and start it again. And there is no “reward” for winning.</p>
 <p>There are various ways to tackle this, depending on the simplicity or complexity of your game and
@@ -670,9 +668,9 @@ and documentation proposed a completely new approach which avoids re-initializin
 creates all the Components from scratch, which is the preferred Flutter/Flame way of doing things.</p>
 </section>
 <section id="a-new-world">
-<h2>A New World<a class="headerlink" href="#a-new-world" title="Permalink to this heading">¶</a></h2>
+<h2>A New World<a class="headerlink" href="#a-new-world" title="Link to this heading">¶</a></h2>
 <section id="start-and-restart-actions">
-<h3>Start and restart actions<a class="headerlink" href="#start-and-restart-actions" title="Permalink to this heading">¶</a></h3>
+<h3>Start and restart actions<a class="headerlink" href="#start-and-restart-actions" title="Link to this heading">¶</a></h3>
 <p>We wish to provide the following actions in the Klondike game:</p>
 <ul class="simple">
 <li><p>A first start,</p></li>
@@ -686,7 +684,7 @@ FlameGame. The new world contains (almost) everything we need to play the game a
 re-created during each of the above actions.</p>
 </section>
 <section id="a-stripped-down-klondikegame-class">
-<h3>A stripped-down KlondikeGame class<a class="headerlink" href="#a-stripped-down-klondikegame-class" title="Permalink to this heading">¶</a></h3>
+<h3>A stripped-down KlondikeGame class<a class="headerlink" href="#a-stripped-down-klondikegame-class" title="Link to this heading">¶</a></h3>
 <p>Here is the new code for the KlondikeGame class (what is left of it).</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span><span class="w"> </span><span class="n">Action</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">newDeal</span><span class="p">,</span><span class="w"> </span><span class="n">sameDeal</span><span class="p">,</span><span class="w"> </span><span class="n">changeDraw</span><span class="p">,</span><span class="w"> </span><span class="n">haveFun</span><span class="w"> </span><span class="p">}</span>
 
@@ -728,14 +726,14 @@ the method is much the same as before, except that <code class="docutils literal
 in some <code class="docutils literal notranslate"><span class="pre">addButton()</span></code> references, but more on these later.</p>
 </section>
 <section id="using-a-random-number-generator-seed">
-<h3>Using a Random Number Generator seed<a class="headerlink" href="#using-a-random-number-generator-seed" title="Permalink to this heading">¶</a></h3>
+<h3>Using a Random Number Generator seed<a class="headerlink" href="#using-a-random-number-generator-seed" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">seed</span></code> is a common games-programming technique in any programming environment. Usually it allows
 you to start a Random Number Generator from a known point (called the seed) and give your game
 reproducible behavior when you are in the development and testing stage. Here it is used to
 provide exactly the same deal of the Klondike cards when the player requests <code class="docutils literal notranslate"><span class="pre">Same</span> <span class="pre">deal</span></code>.</p>
 </section>
 <section id="introducing-the-new-klondikeworld-class">
-<h3>Introducing the new KlondikeWorld class<a class="headerlink" href="#introducing-the-new-klondikeworld-class" title="Permalink to this heading">¶</a></h3>
+<h3>Introducing the new KlondikeWorld class<a class="headerlink" href="#introducing-the-new-klondikeworld-class" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">class</span> <span class="pre">KlondikeGame</span></code> declaration specifies that this extension of the FlameGame class must
 have a world of type KlondikeWorld (i.e. <code class="docutils literal notranslate"><span class="pre">FlameGame&lt;KlondikeWorld&gt;</span></code>). Didn’t know we could do
 that for a game, did we? So how does the first instance of KlondikeWorld get created? It’s all in
@@ -747,7 +745,7 @@ the KlondikeGame constructor code:</p>
 initialization sequence which creates our world for the first time.</p>
 </section>
 <section id="buttons">
-<h3>Buttons<a class="headerlink" href="#buttons" title="Permalink to this heading">¶</a></h3>
+<h3>Buttons<a class="headerlink" href="#buttons" title="Link to this heading">¶</a></h3>
 <p>We are going to use some buttons to activate the various ways of restarting the Klondike Game. First
 we extend Flame’s <code class="docutils literal notranslate"><span class="pre">ButtonComponent</span></code> to create class <code class="docutils literal notranslate"><span class="pre">FlatButton</span></code>, adapted from a Flat Button which
 used to be in Flame’s Examples pages. <code class="docutils literal notranslate"><span class="pre">ButtonComponent</span></code> uses two <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s, one for when
@@ -782,7 +780,7 @@ Foundation pile happens to be aligned around the top-center of the screen, so th
 is centred above it.</p>
 </section>
 <section id="anchors-and-co-ordinates">
-<h3>Anchors and co-ordinates<a class="headerlink" href="#anchors-and-co-ordinates" title="Permalink to this heading">¶</a></h3>
+<h3>Anchors and co-ordinates<a class="headerlink" href="#anchors-and-co-ordinates" title="Link to this heading">¶</a></h3>
 <p>The expressions here and in the <code class="docutils literal notranslate"><span class="pre">addButton()</span></code> method may seem odd because the cards and piles all
 have <code class="docutils literal notranslate"><span class="pre">Anchor.topLeft</span></code> but the buttons have <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code>. The <code class="docutils literal notranslate"><span class="pre">position</span></code> co-ordinates of a <code class="docutils literal notranslate"><span class="pre">Card</span></code>
 are where its top-left corner goes, but the <code class="docutils literal notranslate"><span class="pre">position</span></code> co-ordinates of a <code class="docutils literal notranslate"><span class="pre">FlatButton</span></code> are where its
@@ -790,7 +788,7 @@ are where its top-left corner goes, but the <code class="docutils literal notran
 These examples can give us some insight into how co-ordinate systems work in Flame.</p>
 </section>
 <section id="the-deal-method">
-<h3>The <code class="docutils literal notranslate"><span class="pre">deal()</span></code> method<a class="headerlink" href="#the-deal-method" title="Permalink to this heading">¶</a></h3>
+<h3>The <code class="docutils literal notranslate"><span class="pre">deal()</span></code> method<a class="headerlink" href="#the-deal-method" title="Link to this heading">¶</a></h3>
 <p>The last thing the KlondikeWorld’s <code class="docutils literal notranslate"><span class="pre">onLoad()</span></code> method does is call the <code class="docutils literal notranslate"><span class="pre">deal()</span></code> method to shuffle
 and deal the cards. This method is now in the KlondikeWorld class and so are the <code class="docutils literal notranslate"><span class="pre">checkWin()</span></code> and
 <code class="docutils literal notranslate"><span class="pre">letsCelebrate()</span></code> methods, but more about those later. The deal process is the same as before but
@@ -855,19 +853,19 @@ following printout of the deal shows how arrivals can get out of order. The <cod
 Tableau Pile number and <code class="docutils literal notranslate"><span class="pre">i</span></code> is the card’s position in the pile. The King of Hearts for Pile 6 is
 arriving before the Queen of Clubs that is the last card in Pile 5. And there are two more cards
 to go in Pile 6.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span>flutter: Move done, i 3, j 6, 6♠ 5 moving cards.
-flutter: Move done, i 4, j 5, 9♥ 4 moving cards.
-flutter: Move done, i 4, j 6, K♥ 3 moving cards.
-flutter: Move done, i 5, j 5, Q♣ 2 moving cards.
-flutter: Move done, i 5, j 6, 2♠ 1 moving cards.
-flutter: Move done, i 6, j 6, 10♠ 0 moving cards.
-flutter: Pile 0 [Q♦]
-flutter: Pile 1 [J♣, Q♥]
-flutter: Pile 2 [5♥, 5♦, J♦]
-flutter: Pile 3 [A♠, Q♠, A♥, 5♠]
-flutter: Pile 4 [8♦, 10♣, 7♥, 3♥, 4♥]
-flutter: Pile 5 [4♠, 8♣, 5♣, 2♥, 9♥, Q♣]
-flutter: Pile 6 [4♣, 3♦, K♦, 6♠, K♥, 2♠, 10♠]
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nl">flutter:</span><span class="w"> </span><span class="n">Move</span><span class="w"> </span><span class="n">done</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="m">3</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="err">♠</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="n">moving</span><span class="w"> </span><span class="n">cards</span><span class="p">.</span>
+<span class="nl">flutter:</span><span class="w"> </span><span class="n">Move</span><span class="w"> </span><span class="n">done</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">9</span><span class="err">♥</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="n">moving</span><span class="w"> </span><span class="n">cards</span><span class="p">.</span>
+<span class="nl">flutter:</span><span class="w"> </span><span class="n">Move</span><span class="w"> </span><span class="n">done</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">K</span><span class="err">♥</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="n">moving</span><span class="w"> </span><span class="n">cards</span><span class="p">.</span>
+<span class="nl">flutter:</span><span class="w"> </span><span class="n">Move</span><span class="w"> </span><span class="n">done</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="err">♣</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="n">moving</span><span class="w"> </span><span class="n">cards</span><span class="p">.</span>
+<span class="nl">flutter:</span><span class="w"> </span><span class="n">Move</span><span class="w"> </span><span class="n">done</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="err">♠</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="n">moving</span><span class="w"> </span><span class="n">cards</span><span class="p">.</span>
+<span class="nl">flutter:</span><span class="w"> </span><span class="n">Move</span><span class="w"> </span><span class="n">done</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="m">6</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="err">♠</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="n">moving</span><span class="w"> </span><span class="n">cards</span><span class="p">.</span>
+<span class="nl">flutter:</span><span class="w"> </span><span class="n">Pile</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="p">[</span><span class="n">Q</span><span class="err">♦</span><span class="p">]</span>
+<span class="nl">flutter:</span><span class="w"> </span><span class="n">Pile</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="p">[</span><span class="n">J</span><span class="err">♣</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="err">♥</span><span class="p">]</span>
+<span class="nl">flutter:</span><span class="w"> </span><span class="n">Pile</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="p">[</span><span class="m">5</span><span class="err">♥</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="err">♦</span><span class="p">,</span><span class="w"> </span><span class="n">J</span><span class="err">♦</span><span class="p">]</span>
+<span class="nl">flutter:</span><span class="w"> </span><span class="n">Pile</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="p">[</span><span class="n">A</span><span class="err">♠</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="err">♠</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="err">♥</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="err">♠</span><span class="p">]</span>
+<span class="nl">flutter:</span><span class="w"> </span><span class="n">Pile</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="p">[</span><span class="m">8</span><span class="err">♦</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="err">♣</span><span class="p">,</span><span class="w"> </span><span class="m">7</span><span class="err">♥</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="err">♥</span><span class="p">,</span><span class="w"> </span><span class="m">4</span><span class="err">♥</span><span class="p">]</span>
+<span class="nl">flutter:</span><span class="w"> </span><span class="n">Pile</span><span class="w"> </span><span class="m">5</span><span class="w"> </span><span class="p">[</span><span class="m">4</span><span class="err">♠</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="err">♣</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="err">♣</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="err">♥</span><span class="p">,</span><span class="w"> </span><span class="m">9</span><span class="err">♥</span><span class="p">,</span><span class="w"> </span><span class="n">Q</span><span class="err">♣</span><span class="p">]</span>
+<span class="nl">flutter:</span><span class="w"> </span><span class="n">Pile</span><span class="w"> </span><span class="m">6</span><span class="w"> </span><span class="p">[</span><span class="m">4</span><span class="err">♣</span><span class="p">,</span><span class="w"> </span><span class="m">3</span><span class="err">♦</span><span class="p">,</span><span class="w"> </span><span class="n">K</span><span class="err">♦</span><span class="p">,</span><span class="w"> </span><span class="m">6</span><span class="err">♠</span><span class="p">,</span><span class="w"> </span><span class="n">K</span><span class="err">♥</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="err">♠</span><span class="p">,</span><span class="w"> </span><span class="m">10</span><span class="err">♠</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>So we count off the cards in the <code class="docutils literal notranslate"><span class="pre">onComplete()</span></code> callback code as they arrive. Only when all 28 cards
@@ -876,7 +874,7 @@ completed our KlondikeWorld is also complete and ready for play.</p>
 </section>
 </section>
 <section id="more-animations-of-moves">
-<h2>More animations of moves<a class="headerlink" href="#more-animations-of-moves" title="Permalink to this heading">¶</a></h2>
+<h2>More animations of moves<a class="headerlink" href="#more-animations-of-moves" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Card</span></code> class’s <code class="docutils literal notranslate"><span class="pre">doMove()</span></code> and <code class="docutils literal notranslate"><span class="pre">turnFaceUp()</span></code> methods have been combined into a doMoveAndFlip()
 method, which is used to draw cards from the Stock Pile. The dropping of a card or cards onto a pile
 after drag-and-drop also uses <code class="docutils literal notranslate"><span class="pre">doMove()</span></code> to settle the drop more gracefully. Finally, there is a
@@ -906,7 +904,7 @@ winning the game! There is nothing new in the above code, except that if you tap
 the Stock Pile, the <code class="docutils literal notranslate"><span class="pre">Card</span></code> object receives the tap first and forwards it on to the <code class="docutils literal notranslate"><span class="pre">stock</span></code> object.</p>
 </section>
 <section id="a-graphics-glitch">
-<h2>A graphics glitch<a class="headerlink" href="#a-graphics-glitch" title="Permalink to this heading">¶</a></h2>
+<h2>A graphics glitch<a class="headerlink" href="#a-graphics-glitch" title="Link to this heading">¶</a></h2>
 <p>If you moved multiple cards from one Tableau Pile to another, the internal code of the <code class="docutils literal notranslate"><span class="pre">TableauPile</span></code>
 class would formerly (in Tutorial Step 4) move the cards into place abruptly, as soon as the
 drag-and-drop ended. In the new code (Step 5), drags and drops use essentially the same code as
@@ -922,7 +920,7 @@ concerns at Game Design time. When was that? Back in Klondike Tutorial Step 1 Pr
 Step 2 Scaffolding.</p>
 </section>
 <section id="winning-the-game">
-<h2>Winning the game<a class="headerlink" href="#winning-the-game" title="Permalink to this heading">¶</a></h2>
+<h2>Winning the game<a class="headerlink" href="#winning-the-game" title="Link to this heading">¶</a></h2>
 <p>You win the game when all cards in all suits, Ace to King, have been moved to the Foundation Piles,
 13 cards in each pile. The game now has code to recognize that event — an <code class="docutils literal notranslate"><span class="pre">isFull</span></code> test added to
 the <code class="docutils literal notranslate"><span class="pre">FoundationPile</span></code>’s <code class="docutils literal notranslate"><span class="pre">acquireCard()</span></code> method, a callback to <code class="docutils literal notranslate"><span class="pre">KlondikeWorld</span></code> and a test as
@@ -975,7 +973,7 @@ beyond the scope of this Tutorial, so for now it is up to the player to work out
 playing and try to win — or give up and press one of the buttons.</p>
 </section>
 <section id="ending-a-game-and-re-starting-it">
-<h2>Ending a game and re-starting it<a class="headerlink" href="#ending-a-game-and-re-starting-it" title="Permalink to this heading">¶</a></h2>
+<h2>Ending a game and re-starting it<a class="headerlink" href="#ending-a-game-and-re-starting-it" title="Link to this heading">¶</a></h2>
 <p>A game ends either after the player wins or they press and release one of the buttons. At that
 point the KlondikeGame class must hold all the data needed to start a new game, namely an <code class="docutils literal notranslate"><span class="pre">Action</span></code>
 value, a <code class="docutils literal notranslate"><span class="pre">klondikeDraw</span></code> value (1 or 3) and a <code class="docutils literal notranslate"><span class="pre">seed</span></code> from the previous game. Each button has an
@@ -1004,7 +1002,7 @@ trigger KlondikeWorld’s <code class="docutils literal notranslate"><span class
 </div>
 </section>
 <section id="the-have-fun-button">
-<h2>The <code class="docutils literal notranslate"><span class="pre">Have</span> <span class="pre">fun</span></code> button<a class="headerlink" href="#the-have-fun-button" title="Permalink to this heading">¶</a></h2>
+<h2>The <code class="docutils literal notranslate"><span class="pre">Have</span> <span class="pre">fun</span></code> button<a class="headerlink" href="#the-have-fun-button" title="Link to this heading">¶</a></h2>
 <p>When you win the Klondike Game, the <code class="docutils literal notranslate"><span class="pre">letsCelebrate()</span></code> method puts on a little display. To save you
 having to play and win a whole game before you see it — <strong>and</strong> to test the method, we have
 provided the <code class="docutils literal notranslate"><span class="pre">Have</span> <span class="pre">fun</span></code> button. Of course a real game could not have such a button…</p>

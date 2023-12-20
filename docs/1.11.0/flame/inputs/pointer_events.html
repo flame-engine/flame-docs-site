@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Pointer Events &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -311,7 +309,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="pointer-events">
-<h1>Pointer Events<a class="headerlink" href="#pointer-events" title="Permalink to this heading">¶</a></h1>
+<h1>Pointer Events<a class="headerlink" href="#pointer-events" title="Link to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This document describes the new events API. The old (legacy) approach,
@@ -345,7 +343,7 @@ Flame to know whether the event occurred within the component or not.</p>
 <code class="docutils literal notranslate"><span class="pre">onPointerMoveStop</span></code> will be fired once on the first mouse movement that leaves your component, so
 you can handle any exit conditions there.</p>
 <section id="hovercallbacks">
-<h2>HoverCallbacks<a class="headerlink" href="#hovercallbacks" title="Permalink to this heading">¶</a></h2>
+<h2>HoverCallbacks<a class="headerlink" href="#hovercallbacks" title="Link to this heading">¶</a></h2>
 <p>If you want to specifically know if your component is being hovered or not, or if you want to hook
 into hover enter and exist events, you can use a more dedicated mixin called <code class="docutils literal notranslate"><span class="pre">HoverCallbacks</span></code>.</p>
 <p>For example:</p>
@@ -373,7 +371,7 @@ into hover enter and exist events, you can use a more dedicated mixin called <co
 <p>Note that you can still listen to the “raw” onPointerMove methods for additional functionality, just
 make sure to call the <code class="docutils literal notranslate"><span class="pre">super</span></code> version to enable the <code class="docutils literal notranslate"><span class="pre">HoverCallbacks</span></code> behavior.</p>
 <section id="demo">
-<h3>Demo<a class="headerlink" href="#demo" title="Permalink to this heading">¶</a></h3>
+<h3>Demo<a class="headerlink" href="#demo" title="Link to this heading">¶</a></h3>
 <p>Play with the demo below to see the pointer hover events in action.</p>
 <iframe class="flutter-app-iframe" src="/1.11.0/_static/apps/flame-examples/index.html?pointer_events"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-pointer_events">
 <div class="filename docutils container">

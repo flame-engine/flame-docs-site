@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Cards &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -181,7 +179,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="cards">
-<h1>Cards<a class="headerlink" href="#cards" title="Permalink to this heading">¶</a></h1>
+<h1>Cards<a class="headerlink" href="#cards" title="Link to this heading">¶</a></h1>
 <p>In this chapter we will begin implementing the most visible component in the
 game – the <strong>Card</strong> component, which corresponds to a single real-life card.
 There will be 52 <code class="docutils literal notranslate"><span class="pre">Card</span></code> objects in the game.</p>
@@ -200,7 +198,7 @@ to the given rank. For suits, we need to know whether two suits are of different
 colors, and also produce a text label and a sprite. Given these requirements,
 I decided to represent both <code class="docutils literal notranslate"><span class="pre">Rank</span></code> and <code class="docutils literal notranslate"><span class="pre">Suit</span></code> as classes.</p>
 <section id="suit">
-<h2>Suit<a class="headerlink" href="#suit" title="Permalink to this heading">¶</a></h2>
+<h2>Suit<a class="headerlink" href="#suit" title="Link to this heading">¶</a></h2>
 <p>Create file <code class="docutils literal notranslate"><span class="pre">suit.dart</span></code> and declare an <code class="docutils literal notranslate"><span class="pre">&#64;immutable</span> <span class="pre">class</span> <span class="pre">Suit</span></code> there, with no
 parent. The <code class="docutils literal notranslate"><span class="pre">&#64;immutable</span></code> annotation here is just a hint for us that the objects
 of this class should not be modified after creation.</p>
@@ -254,7 +252,7 @@ into columns by alternating colors.</p>
 </div>
 </section>
 <section id="rank">
-<h2>Rank<a class="headerlink" href="#rank" title="Permalink to this heading">¶</a></h2>
+<h2>Rank<a class="headerlink" href="#rank" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Rank</span></code> class is very similar to <code class="docutils literal notranslate"><span class="pre">Suit</span></code>. The main difference is that <code class="docutils literal notranslate"><span class="pre">Rank</span></code>
 contains two sprites instead of one, separately for ranks of “red” and “black”
 colors. The full code for the <code class="docutils literal notranslate"><span class="pre">Rank</span></code> class is as follows:</p>
@@ -306,7 +304,7 @@ colors. The full code for the <code class="docutils literal notranslate"><span c
 </div>
 </section>
 <section id="card-component">
-<h2>Card component<a class="headerlink" href="#card-component" title="Permalink to this heading">¶</a></h2>
+<h2>Card component<a class="headerlink" href="#card-component" title="Link to this heading">¶</a></h2>
 <p>Now that we have the <code class="docutils literal notranslate"><span class="pre">Rank</span></code> and the <code class="docutils literal notranslate"><span class="pre">Suit</span></code> classes, we can finally start
 implementing the <strong>Card</strong> component. Create file <code class="docutils literal notranslate"><span class="pre">components/card.dart</span></code> and
 declare the <code class="docutils literal notranslate"><span class="pre">Card</span></code> class extending from the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>:</p>
@@ -359,7 +357,7 @@ the bottom of the <code class="docutils literal notranslate"><span class="pre">o
 <p>This snippet is a temporary code – we will remove it in the next chapter –
 but for now it lays down 28 random cards on the table, most of them facing up.</p>
 <section id="rendering">
-<h3>Rendering<a class="headerlink" href="#rendering" title="Permalink to this heading">¶</a></h3>
+<h3>Rendering<a class="headerlink" href="#rendering" title="Link to this heading">¶</a></h3>
 <p>In order to be able to see a card, we need to implement its <code class="docutils literal notranslate"><span class="pre">render()</span></code> method.
 Since the card has two distinct states – face up or down – we will
 implement rendering for these two states separately. Add the following methods
@@ -379,7 +377,7 @@ into the <code class="docutils literal notranslate"><span class="pre">Card</span
 </div>
 </section>
 <section id="renderback">
-<h3>renderBack()<a class="headerlink" href="#renderback" title="Permalink to this heading">¶</a></h3>
+<h3>renderBack()<a class="headerlink" href="#renderback" title="Link to this heading">¶</a></h3>
 <p>Since rendering the back of a card is simpler, we will do it first.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">render()</span></code> method of a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> operates in a local coordinate
 system, which means we don’t need to worry about where the card is located on
@@ -424,7 +422,7 @@ all 52 card objects, so we might as well save some resources by having them
 initialized only once.</p>
 </section>
 <section id="renderfront">
-<h3>renderFront()<a class="headerlink" href="#renderfront" title="Permalink to this heading">¶</a></h3>
+<h3>renderFront()<a class="headerlink" href="#renderfront" title="Link to this heading">¶</a></h3>
 <p>When rendering the face of a card, we will follow the standard card design: the
 rank and the suit in two opposite corners, plus the number of pips equal to the
 rank value. The court cards (jack, queen, king) will have special images in the

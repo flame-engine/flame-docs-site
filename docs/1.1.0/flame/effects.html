@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Effects &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
-  <script src="../_static/flutter_app.js"></script>
-  <script src="../_static/clipboard.min.js"></script>
-  <script src="../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../_static/versions.js"></script>
-  <script src="../_static/menu-expand.js"></script>
+  <script src="../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../_static/copybutton.js?v=f281be69"></script>
+  <script src="../_static/versions.js?v=58484017"></script>
+  <script src="../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -179,7 +177,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="effects">
-<h1>Effects<a class="headerlink" href="#effects" title="Permalink to this heading">¶</a></h1>
+<h1>Effects<a class="headerlink" href="#effects" title="Link to this heading">¶</a></h1>
 <p>An effect is a special component that can attach to another component in order to modify its
 properties or appearance.</p>
 <p>For example, suppose you are making a game with collectible power-up items. You want these power-ups
@@ -197,7 +195,7 @@ interesting item. And what’s more important, it didn’t result in an increase
 effects, once added, will work automatically, and then self-remove from the game tree when
 finished.</p>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>The function of an <code class="docutils literal notranslate"><span class="pre">Effect</span></code> is to effect a change over time in some component’s property. In order
 to achieve that, the <code class="docutils literal notranslate"><span class="pre">Effect</span></code> must know the initial value of the property, the final value, and how
 it should progress over time. The initial value is usually determined by an effect automatically,
@@ -244,9 +242,9 @@ the job of the effect controller is to map from the “physical” time, measure
 </ul>
 </section>
 <section id="built-in-effects">
-<h2>Built-in effects<a class="headerlink" href="#built-in-effects" title="Permalink to this heading">¶</a></h2>
+<h2>Built-in effects<a class="headerlink" href="#built-in-effects" title="Link to this heading">¶</a></h2>
 <section id="effect">
-<h3><code class="docutils literal notranslate"><span class="pre">Effect</span></code><a class="headerlink" href="#effect" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">Effect</span></code><a class="headerlink" href="#effect" title="Link to this heading">¶</a></h3>
 <p>The base <code class="docutils literal notranslate"><span class="pre">Effect</span></code> class is not usable on its own (it is abstract), but it provides some common
 functionality inherited by all other effects. This includes:</p>
 <ul class="simple">
@@ -263,7 +261,7 @@ completed its execution but before it is removed from the game.</p></li>
 </ul>
 </section>
 <section id="moveeffect-by">
-<h3><code class="docutils literal notranslate"><span class="pre">MoveEffect.by</span></code><a class="headerlink" href="#moveeffect-by" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">MoveEffect.by</span></code><a class="headerlink" href="#moveeffect-by" title="Link to this heading">¶</a></h3>
 <p>This effect applies to a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> and shifts it by a prescribed <code class="docutils literal notranslate"><span class="pre">offset</span></code> amount. This
 offset is relative to the current position of the target:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">10</span><span class="p">),</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.5</span><span class="p">));</span>
@@ -275,7 +273,7 @@ will be <code class="docutils literal notranslate"><span class="pre">Vector2(250
 superposition of all the individual effects.</p>
 </section>
 <section id="moveeffect-to">
-<h3><code class="docutils literal notranslate"><span class="pre">MoveEffect.to</span></code><a class="headerlink" href="#moveeffect-to" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">MoveEffect.to</span></code><a class="headerlink" href="#moveeffect-to" title="Link to this heading">¶</a></h3>
 <p>This effect moves a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> from its current position to the specified destination
 point in a straight line.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MoveEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">500</span><span class="p">),</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">3</span><span class="p">));</span>
@@ -284,7 +282,7 @@ point in a straight line.</p>
 <p>It is possible, but not recommended to attach multiple such effects to the same component.</p>
 </section>
 <section id="movealongpatheffect">
-<h3><code class="docutils literal notranslate"><span class="pre">MoveAlongPathEffect</span></code><a class="headerlink" href="#movealongpatheffect" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">MoveAlongPathEffect</span></code><a class="headerlink" href="#movealongpatheffect" title="Link to this heading">¶</a></h3>
 <p>This effect moves a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> along the specified path relative to the component’s
 current position. The path can have non-linear segments, but must be singly connected. It is
 recommended to start a path at <code class="docutils literal notranslate"><span class="pre">Vector2.zero()</span></code> in order to avoid sudden jumps in the component’s
@@ -303,7 +301,7 @@ itself in the direction the curve is facing at each point. With this flag the ef
 the move- and the rotate- effect at the same time.</p>
 </section>
 <section id="rotateeffect-by">
-<h3><code class="docutils literal notranslate"><span class="pre">RotateEffect.by</span></code><a class="headerlink" href="#rotateeffect-by" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">RotateEffect.by</span></code><a class="headerlink" href="#rotateeffect-by" title="Link to this heading">¶</a></h3>
 <p>Rotates the target clockwise by the specified angle relative to its current orientation. The angle
 is in radians. For example, the following effect will rotate the target 90º (=<a class="reference external" href="https://en.wikipedia.org/wiki/Tau_(mathematical_constant)">tau</a>/4 in radians)
 clockwise:</p>
@@ -312,7 +310,7 @@ clockwise:</p>
 </div>
 </section>
 <section id="rotateeffect-to">
-<h3><code class="docutils literal notranslate"><span class="pre">RotateEffect.to</span></code><a class="headerlink" href="#rotateeffect-to" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">RotateEffect.to</span></code><a class="headerlink" href="#rotateeffect-to" title="Link to this heading">¶</a></h3>
 <p>Rotates the target clockwise to the specified angle. For example, the following will rotate the
 target to look east (0º is north, 90º=<a class="reference external" href="https://en.wikipedia.org/wiki/Tau_(mathematical_constant)">tau</a>/4 east, 180º=tau/2 south, and 270º=tau*3/4 west):</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RotateEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">2</span><span class="p">));</span>
@@ -320,7 +318,7 @@ target to look east (0º is north, 90º=<a class="reference external" href="http
 </div>
 </section>
 <section id="scaleeffect-by">
-<h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.by</span></code><a class="headerlink" href="#scaleeffect-by" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.by</span></code><a class="headerlink" href="#scaleeffect-by" title="Link to this heading">¶</a></h3>
 <p>This effect will change the target’s scale by the specified amount. For example, this will cause
 the component to grow 50% larger:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">1.5</span><span class="p">),</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.3</span><span class="p">));</span>
@@ -328,14 +326,14 @@ the component to grow 50% larger:</p>
 </div>
 </section>
 <section id="scaleeffect-to">
-<h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.to</span></code><a class="headerlink" href="#scaleeffect-to" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.to</span></code><a class="headerlink" href="#scaleeffect-to" title="Link to this heading">¶</a></h3>
 <p>This effect works similar to <code class="docutils literal notranslate"><span class="pre">ScaleEffect.by</span></code>, but sets the absolute value of the target’s scale.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">(),</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.5</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
 <section id="sizeeffect-by">
-<h3><code class="docutils literal notranslate"><span class="pre">SizeEffect.by</span></code><a class="headerlink" href="#sizeeffect-by" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">SizeEffect.by</span></code><a class="headerlink" href="#sizeeffect-by" title="Link to this heading">¶</a></h3>
 <p>This effect will change the size of the target component, relative to its current size. For example,
 if the target has size <code class="docutils literal notranslate"><span class="pre">Vector2(100,</span> <span class="pre">100)</span></code>, then after the following effect is applied and runs its
 course, the new size will be <code class="docutils literal notranslate"><span class="pre">Vector2(120,</span> <span class="pre">50)</span></code>:</p>
@@ -350,14 +348,14 @@ to its children, if it has any. An alternative to <code class="docutils literal 
 more generally and scales the children components too.</p>
 </section>
 <section id="sizeeffect-to">
-<h3><code class="docutils literal notranslate"><span class="pre">SizeEffect.to</span></code><a class="headerlink" href="#sizeeffect-to" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">SizeEffect.to</span></code><a class="headerlink" href="#sizeeffect-to" title="Link to this heading">¶</a></h3>
 <p>Changes the size of the target component to the specified size. Target size cannot be negative:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SizeEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">120</span><span class="p">,</span><span class="w"> </span><span class="m">120</span><span class="p">),</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
 <section id="opacityeffect">
-<h3><code class="docutils literal notranslate"><span class="pre">OpacityEffect</span></code><a class="headerlink" href="#opacityeffect" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">OpacityEffect</span></code><a class="headerlink" href="#opacityeffect" title="Link to this heading">¶</a></h3>
 <p>This effect will change over time the opacity of the target to the specified alpha-value. Currently
 this effect can only be applied to components that have a <code class="docutils literal notranslate"><span class="pre">HasPaint</span></code> mixin. If the target component
 uses multiple paints, the effect can target any individual color using the <code class="docutils literal notranslate"><span class="pre">paintId</span></code> parameter.</p>
@@ -369,7 +367,7 @@ fully opaque. Convenience constructors <code class="docutils literal notranslate
 animate the target into full transparency / full visibility respectively.</p>
 </section>
 <section id="sequenceeffect">
-<h3><code class="docutils literal notranslate"><span class="pre">SequenceEffect</span></code><a class="headerlink" href="#sequenceeffect" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">SequenceEffect</span></code><a class="headerlink" href="#sequenceeffect" title="Link to this heading">¶</a></h3>
 <p>This effect can be used to run multiple other effects one after another. The constituent effects
 may have different types.</p>
 <p>The sequence effect can also be alternating (the sequence will first run forward, and then
@@ -384,7 +382,7 @@ backward); and also repeat a certain predetermined number of times, or infinitel
 </div>
 </section>
 <section id="removeeffect">
-<h3><code class="docutils literal notranslate"><span class="pre">RemoveEffect</span></code><a class="headerlink" href="#removeeffect" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">RemoveEffect</span></code><a class="headerlink" href="#removeeffect" title="Link to this heading">¶</a></h3>
 <p>This is a simple effect that can be attached to a component causing it to be removed from the game
 tree after the specified delay has passed:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RemoveEffect</span><span class="p">(</span><span class="nl">delay:</span><span class="w"> </span><span class="m">10.0</span><span class="p">);</span>
@@ -393,7 +391,7 @@ tree after the specified delay has passed:</p>
 </section>
 </section>
 <section id="coloreffect">
-<h2>ColorEffect<a class="headerlink" href="#coloreffect" title="Permalink to this heading">¶</a></h2>
+<h2>ColorEffect<a class="headerlink" href="#coloreffect" title="Link to this heading">¶</a></h2>
 <p>This effect will change the base color of the paint, causing the rendered component to be tinted by
 the provided color between a provided range.</p>
 <p>Usage example:</p>
@@ -411,7 +409,7 @@ effect can’t be mixed with other <code class="docutils literal notranslate"><s
 the last one will have effect.</p>
 </section>
 <section id="creating-new-effects">
-<h2>Creating new effects<a class="headerlink" href="#creating-new-effects" title="Permalink to this heading">¶</a></h2>
+<h2>Creating new effects<a class="headerlink" href="#creating-new-effects" title="Link to this heading">¶</a></h2>
 <p>Although Flame provides a wide array of built-in effects, eventually you may find them to be
 insufficient. Luckily, creating new effects is very simple.</p>
 <p>Each effect extends the base <code class="docutils literal notranslate"><span class="pre">Effect</span></code> class, possibly via one of the more specialized abstract
@@ -431,9 +429,9 @@ that property to a fixed value. This way multiple effects would be able to act o
 without interfering with each other.</p>
 </section>
 <section id="effect-controllers">
-<h2>Effect controllers<a class="headerlink" href="#effect-controllers" title="Permalink to this heading">¶</a></h2>
+<h2>Effect controllers<a class="headerlink" href="#effect-controllers" title="Link to this heading">¶</a></h2>
 <section id="effectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">EffectController</span></code><a class="headerlink" href="#effectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">EffectController</span></code><a class="headerlink" href="#effectcontroller" title="Link to this heading">¶</a></h3>
 <p>The base <code class="docutils literal notranslate"><span class="pre">EffectController</span></code> class provides a factory constructor capable of creating a variety of
 common controllers. The syntax of the constructor is the following:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">EffectController</span><span class="p">({</span>
@@ -503,7 +501,7 @@ example if the duration is random or infinite).</p></li>
 </ul>
 </section>
 <section id="lineareffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">LinearEffectController</span></code><a class="headerlink" href="#lineareffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">LinearEffectController</span></code><a class="headerlink" href="#lineareffectcontroller" title="Link to this heading">¶</a></h3>
 <p>This is the simplest effect controller that grows linearly from 0 to 1 over the specified
 <code class="docutils literal notranslate"><span class="pre">duration</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">3</span><span class="p">);</span>
@@ -511,7 +509,7 @@ example if the duration is random or infinite).</p></li>
 </div>
 </section>
 <section id="reverselineareffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">ReverseLinearEffectController</span></code><a class="headerlink" href="#reverselineareffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">ReverseLinearEffectController</span></code><a class="headerlink" href="#reverselineareffectcontroller" title="Link to this heading">¶</a></h3>
 <p>Similar to the <code class="docutils literal notranslate"><span class="pre">LinearEffectController</span></code>, but it goes in the opposite direction and grows linearly
 from 1 to 0 over the specified duration:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ReverseLinearEffectController</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
@@ -519,7 +517,7 @@ from 1 to 0 over the specified duration:</p>
 </div>
 </section>
 <section id="curvedeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">CurvedEffectController</span></code><a class="headerlink" href="#curvedeffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">CurvedEffectController</span></code><a class="headerlink" href="#curvedeffectcontroller" title="Link to this heading">¶</a></h3>
 <p>This effect controller grows non-linearly from 0 to 1 over the specified <code class="docutils literal notranslate"><span class="pre">duration</span></code> and following
 the provided <code class="docutils literal notranslate"><span class="pre">curve</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CurvedEffectController</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOut</span><span class="p">);</span>
@@ -527,7 +525,7 @@ the provided <code class="docutils literal notranslate"><span class="pre">curve<
 </div>
 </section>
 <section id="reversecurvedeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">ReverseCurvedEffectController</span></code><a class="headerlink" href="#reversecurvedeffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">ReverseCurvedEffectController</span></code><a class="headerlink" href="#reversecurvedeffectcontroller" title="Link to this heading">¶</a></h3>
 <p>Similar to the <code class="docutils literal notranslate"><span class="pre">CurvedEffectController</span></code>, but the controller grows down from 1 to 0 following the
 provided <code class="docutils literal notranslate"><span class="pre">curve</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ReverseCurvedEffectController</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">bounceInOut</span><span class="p">);</span>
@@ -535,7 +533,7 @@ provided <code class="docutils literal notranslate"><span class="pre">curve</spa
 </div>
 </section>
 <section id="pauseeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">PauseEffectController</span></code><a class="headerlink" href="#pauseeffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">PauseEffectController</span></code><a class="headerlink" href="#pauseeffectcontroller" title="Link to this heading">¶</a></h3>
 <p>This effect controller keeps the progress at a constant value for the specified time duration.
 Typically, the <code class="docutils literal notranslate"><span class="pre">progress</span></code> would be either 0 or 1:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PauseEffectController</span><span class="p">(</span><span class="m">1.5</span><span class="p">,</span><span class="w"> </span><span class="nl">progress:</span><span class="w"> </span><span class="m">0</span><span class="p">);</span>
@@ -543,7 +541,7 @@ Typically, the <code class="docutils literal notranslate"><span class="pre">prog
 </div>
 </section>
 <section id="repeatedeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">RepeatedEffectController</span></code><a class="headerlink" href="#repeatedeffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">RepeatedEffectController</span></code><a class="headerlink" href="#repeatedeffectcontroller" title="Link to this heading">¶</a></h3>
 <p>This is a composite effect controller. It takes another effect controller as a child, and repeats
 it multiple times, resetting before the start of each next cycle.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RepeatedEffectController</span><span class="p">(</span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">1</span><span class="p">),</span><span class="w"> </span><span class="m">10</span><span class="p">);</span>
@@ -553,14 +551,14 @@ it multiple times, resetting before the start of each next cycle.</p>
 re-initialized with new random values on each iteration.</p>
 </section>
 <section id="infiniteeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">InfiniteEffectController</span></code><a class="headerlink" href="#infiniteeffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">InfiniteEffectController</span></code><a class="headerlink" href="#infiniteeffectcontroller" title="Link to this heading">¶</a></h3>
 <p>Similar to the <code class="docutils literal notranslate"><span class="pre">RepeatedEffectController</span></code>, but repeats its child controller indefinitely.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">InfiniteEffectController</span><span class="p">(</span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">1</span><span class="p">));</span>
 </pre></div>
 </div>
 </section>
 <section id="sequenceeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">SequenceEffectController</span></code><a class="headerlink" href="#sequenceeffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">SequenceEffectController</span></code><a class="headerlink" href="#sequenceeffectcontroller" title="Link to this heading">¶</a></h3>
 <p>Executes a sequence of effect controllers, one after another. The list of controllers cannot be
 empty.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SequenceEffectController</span><span class="p">([</span>
@@ -572,7 +570,7 @@ empty.</p>
 </div>
 </section>
 <section id="speedeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">SpeedEffectController</span></code><a class="headerlink" href="#speedeffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">SpeedEffectController</span></code><a class="headerlink" href="#speedeffectcontroller" title="Link to this heading">¶</a></h3>
 <p>Alters the duration of its child effect controller so that the effect proceeds at the predefined
 speed. The initial duration of the child EffectController is irrelevant. The child controller must
 be the subclass of <code class="docutils literal notranslate"><span class="pre">DurationEffectController</span></code>.</p>
@@ -590,7 +588,7 @@ the units are radians.</p>
 </div>
 </section>
 <section id="delayedeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">DelayedEffectController</span></code><a class="headerlink" href="#delayedeffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">DelayedEffectController</span></code><a class="headerlink" href="#delayedeffectcontroller" title="Link to this heading">¶</a></h3>
 <p>Effect controller that executes its child controller after the prescribed <code class="docutils literal notranslate"><span class="pre">delay</span></code>. While the
 controller is executing the “delay” stage, the effect will be considered “not started”, i.e. its
 <code class="docutils literal notranslate"><span class="pre">.started</span></code> property will be returning <code class="docutils literal notranslate"><span class="pre">false</span></code>.</p>
@@ -599,7 +597,7 @@ controller is executing the “delay” stage, the effect will be considered “
 </div>
 </section>
 <section id="noiseeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">NoiseEffectController</span></code><a class="headerlink" href="#noiseeffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">NoiseEffectController</span></code><a class="headerlink" href="#noiseeffectcontroller" title="Link to this heading">¶</a></h3>
 <p>This effect controller exhibits noisy behavior, i.e. it oscillates randomly around zero. Such effect
 controller can be used to implement a variety of shake effects.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">ec</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">NoiseEffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.6</span><span class="p">,</span><span class="w"> </span><span class="nl">frequency:</span><span class="w"> </span><span class="m">10</span><span class="p">);</span>
@@ -607,7 +605,7 @@ controller can be used to implement a variety of shake effects.</p>
 </div>
 </section>
 <section id="randomeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">RandomEffectController</span></code><a class="headerlink" href="#randomeffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">RandomEffectController</span></code><a class="headerlink" href="#randomeffectcontroller" title="Link to this heading">¶</a></h3>
 <p>This controller wraps another controller and makes its duration random. The actual value for the
 duration is re-generated upon each reset, which makes this controller particularly useful within
 repeated contexts, such as <a class="reference internal" href="#repeatedeffectcontroller"><span class="std std-ref">RepeatedEffectController</span></a> or <a class="reference internal" href="#infiniteeffectcontroller"><span class="std std-ref">InfiniteEffectController</span></a>.</p>
@@ -623,7 +621,7 @@ of the produced random durations. Two distributions – <code class="docutils li
 any other can be implemented by the user.</p>
 </section>
 <section id="sineeffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">SineEffectController</span></code><a class="headerlink" href="#sineeffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">SineEffectController</span></code><a class="headerlink" href="#sineeffectcontroller" title="Link to this heading">¶</a></h3>
 <p>An effect controller that represents a single period of the sine function. Use this to create
 natural-looking harmonic oscillations. Two perpendicular move effects governed by
 <code class="docutils literal notranslate"><span class="pre">SineEffectControllers</span></code> with different periods, will create a <a class="reference external" href="https://en.wikipedia.org/wiki/Lissajous_curve">Lissajous curve</a>.</p>
@@ -632,7 +630,7 @@ natural-looking harmonic oscillations. Two perpendicular move effects governed b
 </div>
 </section>
 <section id="zigzageffectcontroller">
-<h3><code class="docutils literal notranslate"><span class="pre">ZigzagEffectController</span></code><a class="headerlink" href="#zigzageffectcontroller" title="Permalink to this heading">¶</a></h3>
+<h3><code class="docutils literal notranslate"><span class="pre">ZigzagEffectController</span></code><a class="headerlink" href="#zigzageffectcontroller" title="Link to this heading">¶</a></h3>
 <p>Simple alternating effect controller. Over the course of one <code class="docutils literal notranslate"><span class="pre">period</span></code>, this controller will proceed
 linearly from 0 to 1, then to -1, and then back to 0. Use this for oscillating effects where the
 starting position should be the center of the oscillations, rather than the extreme (as provided
@@ -643,7 +641,7 @@ by the standard alternating <code class="docutils literal notranslate"><span cla
 </section>
 </section>
 <section id="see-also">
-<h2>See also<a class="headerlink" href="#see-also" title="Permalink to this heading">¶</a></h2>
+<h2>See also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://examples.flame-engine.org/#/">Examples of various effects</a>.</p></li>
 </ul>

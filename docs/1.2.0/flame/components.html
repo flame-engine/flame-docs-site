@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Components &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
-  <script src="../_static/flutter_app.js"></script>
-  <script src="../_static/clipboard.min.js"></script>
-  <script src="../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../_static/versions.js"></script>
-  <script src="../_static/menu-expand.js"></script>
+  <script src="../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../_static/copybutton.js?v=f281be69"></script>
+  <script src="../_static/versions.js?v=58484017"></script>
+  <script src="../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -186,11 +184,11 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="components">
-<h1>Components<a class="headerlink" href="#components" title="Permalink to this heading">¶</a></h1>
+<h1>Components<a class="headerlink" href="#components" title="Link to this heading">¶</a></h1>
 <p><img alt="Component tree" src="../_images/component_tree.png" /></p>
 <p>This diagram might look intimidating, but don’t worry, it is not as complex as it looks.</p>
 <section id="component">
-<h2>Component<a class="headerlink" href="#component" title="Permalink to this heading">¶</a></h2>
+<h2>Component<a class="headerlink" href="#component" title="Link to this heading">¶</a></h2>
 <p>All components inherit from the abstract class <code class="docutils literal notranslate"><span class="pre">Component</span></code> and all components can have other
 <code class="docutils literal notranslate"><span class="pre">Component</span></code>s as children. This is the base of what we call the Flame Component System, or FCS for
 short.</p>
@@ -208,7 +206,7 @@ short.</p>
 <p>Every <code class="docutils literal notranslate"><span class="pre">Component</span></code> has a few methods that you can optionally implement, which are used by the
 <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class.</p>
 <section id="component-lifecycle">
-<h3>Component lifecycle<a class="headerlink" href="#component-lifecycle" title="Permalink to this heading">¶</a></h3>
+<h3>Component lifecycle<a class="headerlink" href="#component-lifecycle" title="Link to this heading">¶</a></h3>
 <p><img alt="Component Lifecycle Diagram" src="../_images/component_lifecycle.png" /></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> method is called whenever the screen is resized, and once in the beginning when
 the component is added to the game via the <code class="docutils literal notranslate"><span class="pre">add</span></code> method.</p>
@@ -233,7 +231,7 @@ on the rest of the game engine).</p>
 </ul>
 </section>
 <section id="priority">
-<h3>Priority<a class="headerlink" href="#priority" title="Permalink to this heading">¶</a></h3>
+<h3>Priority<a class="headerlink" href="#priority" title="Link to this heading">¶</a></h3>
 <p>In Flame the order components are rendered (and updated) in is called <code class="docutils literal notranslate"><span class="pre">priority</span></code>, this is sometimes
 referred to as <code class="docutils literal notranslate"><span class="pre">z-index</span></code> in other languages and frameworks. The higher the <code class="docutils literal notranslate"><span class="pre">priority</span></code> is set to, the
 closer the component will appear on the screen, since it will be rendered on top of any components
@@ -270,7 +268,7 @@ your component at compile time, then you can pass it in to the constructor.</p>
 the component we change the priority to 2.</p>
 </section>
 <section id="composability-of-components">
-<h3>Composability of components<a class="headerlink" href="#composability-of-components" title="Permalink to this heading">¶</a></h3>
+<h3>Composability of components<a class="headerlink" href="#composability-of-components" title="Link to this heading">¶</a></h3>
 <p>Sometimes it is useful to wrap other components inside of your component. For example by grouping
 visual components through a hierarchy. You can do this by adding child components to any component,
 for example <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p>
@@ -333,7 +331,7 @@ that they will appear in the children list in the same order as they were
 scheduled for addition.</p>
 </section>
 <section id="ensuring-a-component-has-a-given-parent">
-<h3>Ensuring a component has a given parent<a class="headerlink" href="#ensuring-a-component-has-a-given-parent" title="Permalink to this heading">¶</a></h3>
+<h3>Ensuring a component has a given parent<a class="headerlink" href="#ensuring-a-component-has-a-given-parent" title="Link to this heading">¶</a></h3>
 <p>When a component requires to be added to a specific parent type the
 <code class="docutils literal notranslate"><span class="pre">ParentIsA</span></code> mixin can be used to enforce a strongly typed parent.</p>
 <p>Example:</p>
@@ -350,7 +348,7 @@ scheduled for addition.</p>
 an assertion error will be thrown.</p>
 </section>
 <section id="querying-child-components">
-<h3>Querying child components<a class="headerlink" href="#querying-child-components" title="Permalink to this heading">¶</a></h3>
+<h3>Querying child components<a class="headerlink" href="#querying-child-components" title="Link to this heading">¶</a></h3>
 <p>The children that have been added to a component live in a <code class="docutils literal notranslate"><span class="pre">QueryableOrderedSet</span></code> called
 <code class="docutils literal notranslate"><span class="pre">children</span></code>. To query for a specific type of components in the set, the <code class="docutils literal notranslate"><span class="pre">query&lt;T&gt;()</span></code> function can be
 used. By default <code class="docutils literal notranslate"><span class="pre">strictMode</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code> in the children set, but if you set it to true, then the
@@ -375,7 +373,7 @@ the registered component type can be seen below.</p>
 </div>
 </section>
 <section id="querying-components-at-a-specific-point-on-the-screen">
-<h3>Querying components at a specific point on the screen<a class="headerlink" href="#querying-components-at-a-specific-point-on-the-screen" title="Permalink to this heading">¶</a></h3>
+<h3>Querying components at a specific point on the screen<a class="headerlink" href="#querying-components-at-a-specific-point-on-the-screen" title="Link to this heading">¶</a></h3>
 <p>The method <code class="docutils literal notranslate"><span class="pre">componentsAtPoint()</span></code> allows you to check which components were rendered at some point
 on the screen. The returned value is an iterable of components, but you can also obtain the
 coordinates of the initial point in each component’s local coordinate space by providing a writable
@@ -398,7 +396,7 @@ to implement the <code class="docutils literal notranslate"><span class="pre">co
 </div>
 </section>
 <section id="positiontype">
-<h3>PositionType<a class="headerlink" href="#positiontype" title="Permalink to this heading">¶</a></h3>
+<h3>PositionType<a class="headerlink" href="#positiontype" title="Link to this heading">¶</a></h3>
 <p>If you want to create a HUD (Head-up display) or another component that isn’t positioned in relation
 to the game coordinates, you can change the <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> of the component.
 The default <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> is <code class="docutils literal notranslate"><span class="pre">positionType</span> <span class="pre">=</span> <span class="pre">PositionType.game</span></code> and that can be changed to
@@ -422,34 +420,34 @@ the viewport.</p>
 </section>
 </section>
 <section id="positioncomponent">
-<h2>PositionComponent<a class="headerlink" href="#positioncomponent" title="Permalink to this heading">¶</a></h2>
+<h2>PositionComponent<a class="headerlink" href="#positioncomponent" title="Link to this heading">¶</a></h2>
 <p>This class represent a positioned object on the screen, being a floating rectangle or a rotating
 sprite. It can also represent a group of positioned components if children are added to it.</p>
 <p>The base of the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is that it has a <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">size</span></code>, <code class="docutils literal notranslate"><span class="pre">scale</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code> and
 <code class="docutils literal notranslate"><span class="pre">anchor</span></code> which transforms how the component is rendered.</p>
 <section id="position">
-<h3>Position<a class="headerlink" href="#position" title="Permalink to this heading">¶</a></h3>
+<h3>Position<a class="headerlink" href="#position" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">position</span></code> is just a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> which represents the position of the component’s anchor in
 relation to its parent; if the parent is a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, it is in relation to the viewport.</p>
 </section>
 <section id="size">
-<h3>Size<a class="headerlink" href="#size" title="Permalink to this heading">¶</a></h3>
+<h3>Size<a class="headerlink" href="#size" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">size</span></code> of the component when the zoom level of the camera is 1.0 (no zoom, default).
 The <code class="docutils literal notranslate"><span class="pre">size</span></code> is <em>not</em> in relation to the parent of the component.</p>
 </section>
 <section id="scale">
-<h3>Scale<a class="headerlink" href="#scale" title="Permalink to this heading">¶</a></h3>
+<h3>Scale<a class="headerlink" href="#scale" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">scale</span></code> is how much the component and its children should be scaled. Since it is represented
 by a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>, you can scale in a uniform way by changing <code class="docutils literal notranslate"><span class="pre">x</span></code> and <code class="docutils literal notranslate"><span class="pre">y</span></code> with the same amount, or in a
 non-uniform way, by change <code class="docutils literal notranslate"><span class="pre">x</span></code> or <code class="docutils literal notranslate"><span class="pre">y</span></code> by different amounts.</p>
 </section>
 <section id="angle">
-<h3>Angle<a class="headerlink" href="#angle" title="Permalink to this heading">¶</a></h3>
+<h3>Angle<a class="headerlink" href="#angle" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">angle</span></code> is the rotation angle around the anchor, represented as a double in radians. It is
 relative to the parent’s angle.</p>
 </section>
 <section id="anchor">
-<h3>Anchor<a class="headerlink" href="#anchor" title="Permalink to this heading">¶</a></h3>
+<h3>Anchor<a class="headerlink" href="#anchor" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">anchor</span></code> is where on the component that the position and rotation should be defined from (the
 default is <code class="docutils literal notranslate"><span class="pre">Anchor.topLeft</span></code>). So if you have the anchor set as <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code> the component’s
 position on the screen will be in the center of the component and if an <code class="docutils literal notranslate"><span class="pre">angle</span></code> is applied, it is
@@ -457,7 +455,7 @@ rotated around the anchor, so in this case around the center of the component. Y
 as the point within the component by which Flame “grabs” it.</p>
 </section>
 <section id="positioncomponent-children">
-<h3>PositionComponent children<a class="headerlink" href="#positioncomponent-children" title="Permalink to this heading">¶</a></h3>
+<h3>PositionComponent children<a class="headerlink" href="#positioncomponent-children" title="Link to this heading">¶</a></h3>
 <p>All children of the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> will be transformed in relation to the parent, which means
 that the <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code> and <code class="docutils literal notranslate"><span class="pre">scale</span></code> will be relative to the parents state.
 So if you, for example, wanted to position a child 50 logical pixels above the center of the parent
@@ -477,7 +475,7 @@ you would do this:</p>
 this pattern can be used in for example <a class="reference internal" href="#spritecomponent"><span class="std std-ref">SpriteComponent</span></a> and <a class="reference internal" href="#spriteanimationcomponent"><span class="std std-ref">SpriteAnimationComponent</span></a> too.</p>
 </section>
 <section id="render-positioncomponent">
-<h3>Render PositionComponent<a class="headerlink" href="#render-positioncomponent" title="Permalink to this heading">¶</a></h3>
+<h3>Render PositionComponent<a class="headerlink" href="#render-positioncomponent" title="Link to this heading">¶</a></h3>
 <p>When implementing the <code class="docutils literal notranslate"><span class="pre">render</span></code> method for a component that extends <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> remember to
 render from the top left corner (0.0). Your render method should not handle where on the screen your
 component should be rendered. To handle where and how your component should be rendered use the
@@ -494,7 +492,7 @@ component should be rendered. To handle where and how your component should be r
 </section>
 </section>
 <section id="spritecomponent">
-<h2>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Permalink to this heading">¶</a></h2>
+<h2>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Link to this heading">¶</a></h2>
 <p>The most commonly used implementation of <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code>, and it can be
 created with a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components/component.dart&#39;</span><span class="p">;</span>
@@ -518,7 +516,7 @@ created with a <code class="docutils literal notranslate"><span class="pre">Spri
 </div>
 </section>
 <section id="spriteanimationcomponent">
-<h2>SpriteAnimationComponent<a class="headerlink" href="#spriteanimationcomponent" title="Permalink to this heading">¶</a></h2>
+<h2>SpriteAnimationComponent<a class="headerlink" href="#spriteanimationcomponent" title="Link to this heading">¶</a></h2>
 <p>This class is used to represent a Component that has sprites that run in a single cyclic animation.</p>
 <p>This will create a simple three frame animation using 3 different images:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span>
@@ -586,7 +584,7 @@ and <code class="docutils literal notranslate"><span class="pre">onComplete</spa
 </div>
 </section>
 <section id="spriteanimationgroup">
-<h2>SpriteAnimationGroup<a class="headerlink" href="#spriteanimationgroup" title="Permalink to this heading">¶</a></h2>
+<h2>SpriteAnimationGroup<a class="headerlink" href="#spriteanimationgroup" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SpriteAnimationGroupComponent</span></code> is a simple wrapper around <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> which enables
 your component to hold several animations and change the current playing animation at runtime. Since
 this component is just a wrapper, the event listeners can be implemented as described in
@@ -617,7 +615,7 @@ single animation, this component receives a Map of a generic type <code class="d
 </div>
 </section>
 <section id="spritegroup">
-<h2>SpriteGroup<a class="headerlink" href="#spritegroup" title="Permalink to this heading">¶</a></h2>
+<h2>SpriteGroup<a class="headerlink" href="#spritegroup" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">SpriteGroupComponent</span></code> is pretty similar to its animation counterpart, but especially for sprites.</p>
 <p>Example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">ButtonComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteGroupComponent</span><span class="o">&lt;</span><span class="n">ButtonState</span><span class="o">&gt;</span>
@@ -641,7 +639,7 @@ single animation, this component receives a Map of a generic type <code class="d
 </div>
 </section>
 <section id="svgcomponent">
-<h2>SvgComponent<a class="headerlink" href="#svgcomponent" title="Permalink to this heading">¶</a></h2>
+<h2>SvgComponent<a class="headerlink" href="#svgcomponent" title="Link to this heading">¶</a></h2>
 <p><strong>Note</strong>: To use SVG with Flame, use the <a class="reference external" href="https://github.com/flame-engine/flame_svg"><code class="docutils literal notranslate"><span class="pre">flame_svg</span></code></a>
 package.</p>
 <p>This component uses an instance of <code class="docutils literal notranslate"><span class="pre">Svg</span></code> class to represent a Component that has a svg that is
@@ -656,7 +654,7 @@ rendered in the game:</p>
 </div>
 </section>
 <section id="flareactorcomponent">
-<h2>FlareActorComponent<a class="headerlink" href="#flareactorcomponent" title="Permalink to this heading">¶</a></h2>
+<h2>FlareActorComponent<a class="headerlink" href="#flareactorcomponent" title="Link to this heading">¶</a></h2>
 <p><strong>Note</strong>: The previous implementation of a Flare integration API using <code class="docutils literal notranslate"><span class="pre">FlareAnimation</span></code> and
 <code class="docutils literal notranslate"><span class="pre">FlareComponent</span></code> has been deprecated.</p>
 <p>To use Flare within Flame, use the <a class="reference external" href="https://github.com/flame-engine/flame_flare"><code class="docutils literal notranslate"><span class="pre">flame_flare</span></code></a>
@@ -709,7 +707,7 @@ FlareController that can play multiple animations and control nodes.</p>
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_flare/example">flame_flare repository</a>.</p>
 </section>
 <section id="parallaxcomponent">
-<h2>ParallaxComponent<a class="headerlink" href="#parallaxcomponent" title="Permalink to this heading">¶</a></h2>
+<h2>ParallaxComponent<a class="headerlink" href="#parallaxcomponent" title="Link to this heading">¶</a></h2>
 <p>This <code class="docutils literal notranslate"><span class="pre">Component</span></code> can be used to render backgrounds with a depth feeling by drawing several
 transparent images on top of each other, where each image or animation (<code class="docutils literal notranslate"><span class="pre">ParallaxRenderer</span></code>) is
 moving with a different velocity.</p>
@@ -811,7 +809,7 @@ It is also possible to create custom renderers by extending the <code class="doc
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/parallax">examples directory</a>.</p>
 </section>
 <section id="shapecomponents">
-<h2>ShapeComponents<a class="headerlink" href="#shapecomponents" title="Permalink to this heading">¶</a></h2>
+<h2>ShapeComponents<a class="headerlink" href="#shapecomponents" title="Link to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">ShapeComponent</span></code> is the base class for representing a scalable geometrical shape. The shapes have
 different ways of defining how they look, but they all have a size and angle that can be modified
 and the shape definition will scale or rotate the shape accordingly.</p>
@@ -819,7 +817,7 @@ and the shape definition will scale or rotate the shape accordingly.</p>
 with the collision detection system, where you want to use the
 <a class="reference internal" href="collision_detection.html#shapehitbox"><span class="std std-ref">ShapeHitbox</span></a>es.</p>
 <section id="polygoncomponent">
-<h3>PolygonComponent<a class="headerlink" href="#polygoncomponent" title="Permalink to this heading">¶</a></h3>
+<h3>PolygonComponent<a class="headerlink" href="#polygoncomponent" title="Link to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">PolygonComponent</span></code> is created by giving it a list of points in the constructor, called vertices.
 This list will be transformed into a polygon with a size, which can still be scaled and rotated.</p>
 <p>For example, this would create a square going from (50, 50) to (100, 100), with it’s center in
@@ -861,7 +859,7 @@ arrows.</p>
 system where the y-axis is flipped, otherwise it is clockwise).</p>
 </section>
 <section id="rectanglecomponent">
-<h3>RectangleComponent<a class="headerlink" href="#rectanglecomponent" title="Permalink to this heading">¶</a></h3>
+<h3>RectangleComponent<a class="headerlink" href="#rectanglecomponent" title="Link to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> is created very similarly to how a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is created, since it
 also has a bounding rectangle.</p>
 <p>Something like this for example:</p>
@@ -917,7 +915,7 @@ of a <code class="docutils literal notranslate"><span class="pre">Vector2</span>
 </div>
 </section>
 <section id="circlecomponent">
-<h3>CircleComponent<a class="headerlink" href="#circlecomponent" title="Permalink to this heading">¶</a></h3>
+<h3>CircleComponent<a class="headerlink" href="#circlecomponent" title="Link to this heading">¶</a></h3>
 <p>If you know how long your circle’s position and/or how long the radius is going to be from the start
 you can use the optional arguments <code class="docutils literal notranslate"><span class="pre">radius</span></code> and <code class="docutils literal notranslate"><span class="pre">position</span></code> to set those.</p>
 <p>The following would create a <code class="docutils literal notranslate"><span class="pre">CircleComponent</span></code> with its center in <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">100)</span></code> with a radius of 5,
@@ -939,7 +937,7 @@ radius is in comparison to the shortest edge of the of the bounding box defined 
 </section>
 </section>
 <section id="tiledcomponent">
-<h2>TiledComponent<a class="headerlink" href="#tiledcomponent" title="Permalink to this heading">¶</a></h2>
+<h2>TiledComponent<a class="headerlink" href="#tiledcomponent" title="Link to this heading">¶</a></h2>
 <p>Currently we have a very basic implementation of a Tiled component. This API uses the lib
 <a class="reference external" href="https://github.com/flame-engine/tiled.dart">tiled.dart</a> to parse map files and render visible
 layers.</p>
@@ -947,7 +945,7 @@ layers.</p>
 <a class="reference external" href="https://github.com/flame-engine/flame_tiled/tree/main/example">here</a>.</p>
 </section>
 <section id="isometrictilemapcomponent">
-<h2>IsometricTileMapComponent<a class="headerlink" href="#isometrictilemapcomponent" title="Permalink to this heading">¶</a></h2>
+<h2>IsometricTileMapComponent<a class="headerlink" href="#isometrictilemapcomponent" title="Link to this heading">¶</a></h2>
 <p>This component allows you to render an isometric map based on a cartesian matrix of blocks and an
 isometric tileset.</p>
 <p>A simple example on how to use it:</p>
@@ -975,7 +973,7 @@ selector. The code can be found
 and a live version can be seen <a class="reference external" href="https://examples.flame-engine.org/#/Rendering_Isometric%20Tile%20Map">here</a>.</p>
 </section>
 <section id="ninetileboxcomponent">
-<h2>NineTileBoxComponent<a class="headerlink" href="#ninetileboxcomponent" title="Permalink to this heading">¶</a></h2>
+<h2>NineTileBoxComponent<a class="headerlink" href="#ninetileboxcomponent" title="Link to this heading">¶</a></h2>
 <p>A Nine Tile Box is a rectangle drawn using a grid sprite.</p>
 <p>The grid sprite is a 3x3 grid and with 9 blocks, representing the 4 corners, the 4 sides and the
 middle.</p>
@@ -988,7 +986,7 @@ panels, dialogs, borders.</p>
 for details on how to use it.</p>
 </section>
 <section id="custompaintercomponent">
-<h2>CustomPainterComponent<a class="headerlink" href="#custompaintercomponent" title="Permalink to this heading">¶</a></h2>
+<h2>CustomPainterComponent<a class="headerlink" href="#custompaintercomponent" title="Link to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">CustomPainter</span></code> is a Flutter class used with the <code class="docutils literal notranslate"><span class="pre">CustomPaint</span></code> widget to render custom
 shapes inside a Flutter application.</p>
 <p>Flame provides a component that can render a <code class="docutils literal notranslate"><span class="pre">CustomPainter</span></code> called <code class="docutils literal notranslate"><span class="pre">CustomPainterComponent</span></code>, it
@@ -1000,7 +998,7 @@ widgets.</p>
 for details on how to use it.</p>
 </section>
 <section id="effects">
-<h2>Effects<a class="headerlink" href="#effects" title="Permalink to this heading">¶</a></h2>
+<h2>Effects<a class="headerlink" href="#effects" title="Link to this heading">¶</a></h2>
 <p>Flame provides a set of effects that can be applied to a certain type of components, these effects
 can be used to animate some properties of your components, like position or dimensions.
 You can check the list of those effects <a class="reference internal" href="effects.html"><span class="std std-doc">here</span></a>.</p>

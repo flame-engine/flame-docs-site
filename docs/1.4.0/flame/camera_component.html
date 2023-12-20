@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Camera component &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
-  <script src="../_static/flutter_app.js"></script>
-  <script src="../_static/clipboard.min.js"></script>
-  <script src="../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../_static/versions.js"></script>
-  <script src="../_static/menu-expand.js"></script>
+  <script src="../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../_static/copybutton.js?v=f281be69"></script>
+  <script src="../_static/versions.js?v=58484017"></script>
+  <script src="../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -197,7 +195,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="camera-component">
-<h1>Camera component<a class="headerlink" href="#camera-component" title="Permalink to this heading">¶</a></h1>
+<h1>Camera component<a class="headerlink" href="#camera-component" title="Link to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This document describes a new experimental API. The more traditional approach
@@ -221,7 +219,7 @@ example at the root of your game class.</p>
 flexibility of rendering the world at any place on the screen, and also control
 the viewing location and angle.</p>
 <section id="world">
-<h2>World<a class="headerlink" href="#world" title="Permalink to this heading">¶</a></h2>
+<h2>World<a class="headerlink" href="#world" title="Link to this heading">¶</a></h2>
 <p>This component should be used to host all other components that comprise your
 game world. The main property of the <code class="docutils literal notranslate"><span class="pre">World</span></code> class is that it does not render
 through traditional means – instead, create one or more <a class="reference internal" href="#cameracomponent"><span class="std std-ref">CameraComponent</span></a>s
@@ -233,7 +231,7 @@ instantaneously switch the view to world B without having to unmount A and
 then mount B.</p>
 </section>
 <section id="cameracomponent">
-<h2>CameraComponent<a class="headerlink" href="#cameracomponent" title="Permalink to this heading">¶</a></h2>
+<h2>CameraComponent<a class="headerlink" href="#cameracomponent" title="Link to this heading">¶</a></h2>
 <p>This is a component through which a <code class="docutils literal notranslate"><span class="pre">World</span></code> is rendered. It requires a
 reference to a <code class="docutils literal notranslate"><span class="pre">World</span></code> instance during construction; however later the target
 world can be replaced with another one. Multiple cameras can observe the same
@@ -249,7 +247,7 @@ example, some components may decide to skip rendering themselves and their
 children if they are outside of the camera’s viewport.</p>
 </section>
 <section id="viewport">
-<h2>Viewport<a class="headerlink" href="#viewport" title="Permalink to this heading">¶</a></h2>
+<h2>Viewport<a class="headerlink" href="#viewport" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> is a window through which the <code class="docutils literal notranslate"><span class="pre">World</span></code> is seen. That window
 has a certain size, shape, and position on the screen. There are multiple kinds
 of viewports available, and you can always implement your own.</p>
@@ -270,7 +268,7 @@ into the game canvas, but preserving its aspect ratio.</p></li>
 </ul>
 </section>
 <section id="viewfinder">
-<h2>Viewfinder<a class="headerlink" href="#viewfinder" title="Permalink to this heading">¶</a></h2>
+<h2>Viewfinder<a class="headerlink" href="#viewfinder" title="Link to this heading">¶</a></h2>
 <p>This part of the camera is responsible for knowing which location in the
 underlying game world we are currently looking at. The <code class="docutils literal notranslate"><span class="pre">Viewfinder</span></code> also
 controls the zoom level, and the rotation angle of the view.</p>
@@ -285,7 +283,7 @@ were part of the world (but on top). It is more useful to add behavioral
 components to the viewfinder, for example <a class="reference internal" href="effects.html"><span class="std std-doc">Effects</span></a> or other controllers.</p>
 </section>
 <section id="camera-controls">
-<h2>Camera controls<a class="headerlink" href="#camera-controls" title="Permalink to this heading">¶</a></h2>
+<h2>Camera controls<a class="headerlink" href="#camera-controls" title="Link to this heading">¶</a></h2>
 <p>There are several ways to modify camera’s settings at runtime:</p>
 <ol class="arabic simple">
 <li><p>Do it manually. You can always override the <code class="docutils literal notranslate"><span class="pre">CameraComponent.update()</span></code>
@@ -314,7 +312,7 @@ are in the form of a <code class="docutils literal notranslate"><span class="pre
 </ul>
 </section>
 <section id="comparison-to-the-traditional-camera">
-<h2>Comparison to the traditional camera<a class="headerlink" href="#comparison-to-the-traditional-camera" title="Permalink to this heading">¶</a></h2>
+<h2>Comparison to the traditional camera<a class="headerlink" href="#comparison-to-the-traditional-camera" title="Link to this heading">¶</a></h2>
 <p>Compared to the normal <a class="reference internal" href="camera_and_viewport.html"><span class="std std-doc">Camera</span></a>, the <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code>
 has several advantages and drawbacks.</p>
 <p>Pros:</p>

@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>FlameIsolate &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -312,7 +310,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="flameisolate">
-<h1>FlameIsolate<a class="headerlink" href="#flameisolate" title="Permalink to this heading">¶</a></h1>
+<h1>FlameIsolate<a class="headerlink" href="#flameisolate" title="Link to this heading">¶</a></h1>
 <p>The power of <a class="reference external" href="https://pub.dev/packages/integral_isolates">integral_isolates</a> neatly packaged in
 <a class="reference external" href="https://pub.dev/packages/flame_isolate">flame_isolate</a> for your Flame game.</p>
 <p>If you’ve ever used the <a class="reference external" href="https://api.flutter.dev/flutter/foundation/compute-constant.html">compute</a>
@@ -320,7 +318,7 @@ function before, you will feel right at home. This mixin allows you to run CPU-i
 isolate.</p>
 <p>To use it in your game you just need to add <code class="docutils literal notranslate"><span class="pre">flame_isolate</span></code> to your pubspec.yaml.</p>
 <section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p>Just add the mixin <code class="docutils literal notranslate"><span class="pre">FlameIsolate</span></code> to your component and start utilizing the power of an isolate as
 simple as running the <a class="reference external" href="https://api.flutter.dev/flutter/foundation/compute-constant.html">compute</a>
 function.</p>
@@ -339,7 +337,7 @@ function.</p>
 </pre></div>
 </div>
 <section id="performance-note">
-<h3>Performance note<a class="headerlink" href="#performance-note" title="Permalink to this heading">¶</a></h3>
+<h3>Performance note<a class="headerlink" href="#performance-note" title="Link to this heading">¶</a></h3>
 <p>Keep in mind that every component with <code class="docutils literal notranslate"><span class="pre">FlameIsolate</span></code> mixin that you create and add to your game
 will create a new isolate. This means you will probably want to create a manager component to
 manage a lot of “dumber” components. Think of it like ants, where the queen controls the worker
@@ -348,7 +346,7 @@ hence you would put it on the queen, which in turn tells all the worker ants wha
 <p>A simple example of this can be found in the example application for the FlameIsolate package.</p>
 </section>
 <section id="backpressure-strategies">
-<h3>Backpressure Strategies<a class="headerlink" href="#backpressure-strategies" title="Permalink to this heading">¶</a></h3>
+<h3>Backpressure Strategies<a class="headerlink" href="#backpressure-strategies" title="Link to this heading">¶</a></h3>
 <p>Backpressure strategies are a way to cope with the job queue when job items are produced more
 rapidly than the isolate can handle them. This presents the problem of what to do with such a
 growing backlog of unhandled jobs. To mitigate this problem this library funnels all jobs through a

@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>flame_tiled &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -314,7 +312,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="flame-tiled">
-<h1>flame_tiled<a class="headerlink" href="#flame-tiled" title="Permalink to this heading">¶</a></h1>
+<h1>flame_tiled<a class="headerlink" href="#flame-tiled" title="Link to this heading">¶</a></h1>
 <p><strong>flame_tiled</strong> is the bridge package that connects the flame game engine to <a class="reference external" href="https://www.mapeditor.org/">Tiled</a> maps by parsing
 TMX (XML) files and accessing the tiles, objects, and everything in there.</p>
 <p>To use this,</p>
@@ -331,7 +329,7 @@ TMX (XML) files and accessing the tiles, objects, and everything in there.</p>
 </pre></div>
 </div>
 <section id="tiledcomponent">
-<h2>TiledComponent<a class="headerlink" href="#tiledcomponent" title="Permalink to this heading">¶</a></h2>
+<h2>TiledComponent<a class="headerlink" href="#tiledcomponent" title="Link to this heading">¶</a></h2>
 <p>Tiled is a free and open source, full-featured level and map editor for your platformer or
 RPG game. Currently we have an “in progress” implementation of a Tiled component. This API
 uses the lib <a class="reference external" href="https://github.com/flame-engine/tiled.dart">tiled.dart</a> to parse map files and
@@ -354,7 +352,7 @@ render visible layers using the performant <code class="docutils literal notrans
 <p>An example of how to use the API can be found
 <a class="reference external" href="https://github.com/flame-engine/flame_tiled/tree/main/example">here</a>.</p>
 <section id="tilestack">
-<h3>TileStack<a class="headerlink" href="#tilestack" title="Permalink to this heading">¶</a></h3>
+<h3>TileStack<a class="headerlink" href="#tilestack" title="Link to this heading">¶</a></h3>
 <p>Once a <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code> is loaded, you can select any column of (x,y) tiles in a <code class="docutils literal notranslate"><span class="pre">tileStack</span></code> to
 then add animation. Removing the stack will not remove the tiles from the map.</p>
 <blockquote>
@@ -381,7 +379,7 @@ then add animation. Removing the stack will not remove the tiles from the map.</
 </div>
 </section>
 <section id="tileatlas">
-<h3>TileAtlas<a class="headerlink" href="#tileatlas" title="Permalink to this heading">¶</a></h3>
+<h3>TileAtlas<a class="headerlink" href="#tileatlas" title="Link to this heading">¶</a></h3>
 <p>When a tilemap has multiple images (from multiple tilesets) <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code> uses a <code class="docutils literal notranslate"><span class="pre">TileAtlas</span></code> to
 pack all those image into a single big image (a.k.a atlas). This helps in rendering the whole map in
 a single draw call. But is there a limit on how big this atlas can be based on the target platform
@@ -405,9 +403,9 @@ resizing the original tileset images so that when packed they fit with the limit
 </section>
 </section>
 <section id="limitations">
-<h2>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading">¶</a></h2>
+<h2>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">¶</a></h2>
 <section id="flip">
-<h3>Flip<a class="headerlink" href="#flip" title="Permalink to this heading">¶</a></h3>
+<h3>Flip<a class="headerlink" href="#flip" title="Link to this heading">¶</a></h3>
 <p><a class="reference external" href="https://www.mapeditor.org/">Tiled</a> has a feature that allows you to flip a tile horizontally or vertically, or even rotate it.</p>
 <p><code class="docutils literal notranslate"><span class="pre">flame_tiled</span></code> supports this but if you are using a large texture and have flipped tiles there will
 be a drop in performance. If you want to ignore any flips in your tilemap you can set the
@@ -423,7 +421,7 @@ where the sum of their dimensions are in the thousands.</p>
 </div>
 </section>
 <section id="clearing-images-cache">
-<h3>Clearing images cache<a class="headerlink" href="#clearing-images-cache" title="Permalink to this heading">¶</a></h3>
+<h3>Clearing images cache<a class="headerlink" href="#clearing-images-cache" title="Link to this heading">¶</a></h3>
 <p>If you have called <code class="docutils literal notranslate"><span class="pre">Flame.images.clearCache()</span></code> you also need to call <code class="docutils literal notranslate"><span class="pre">TiledAtlas.clearCache()</span></code> to
 remove disposed images from the tiled cache. It might be useful if your next game map have completely
 different tiles than the previous.</p>

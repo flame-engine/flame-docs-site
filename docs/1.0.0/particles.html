@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Particles &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="_static/jquery.js"></script>
-  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-  <script src="_static/doctools.js"></script>
-  <script src="_static/sphinx_highlight.js"></script>
-  <script src="_static/flutter_app.js"></script>
-  <script src="_static/clipboard.min.js"></script>
-  <script src="_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="_static/versions.js"></script>
-  <script src="_static/menu-expand.js"></script>
+  <script src="_static/jquery.js?v=5d32c60e"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="_static/doctools.js?v=0b60eaae"></script>
+  <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="_static/flutter_app.js?v=3619378f"></script>
+  <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="_static/copybutton.js?v=f281be69"></script>
+  <script src="_static/versions.js?v=58484017"></script>
+  <script src="_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -168,7 +166,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="particles">
-<h1>Particles<a class="headerlink" href="#particles" title="Permalink to this heading">¶</a></h1>
+<h1>Particles<a class="headerlink" href="#particles" title="Link to this heading">¶</a></h1>
 <p>Flame offers a basic, yet robust and extendable particle system. The core concept of this system is
 the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> class, which is very similar in its behavior to the <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code>.</p>
 <p>The most basic usage of a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> with <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> would look as following:</p>
@@ -267,7 +265,7 @@ needed.</p>
 <p>You can find more examples of how to use different built-in particles in various combinations
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/particles_example.dart">here</a>.</p>
 <section id="lifecycle">
-<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this heading">¶</a></h2>
+<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Link to this heading">¶</a></h2>
 <p>A behavior common to all <code class="docutils literal notranslate"><span class="pre">Particle</span></code>s is that all of them accept a <code class="docutils literal notranslate"><span class="pre">lifespan</span></code> argument. This value is
 used to make the <code class="docutils literal notranslate"><span class="pre">ParticleComponent</span></code> remove itself once its internal <code class="docutils literal notranslate"><span class="pre">Particle</span></code> has reached the end
 of its life. Time within the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> itself is tracked using the Flame <code class="docutils literal notranslate"><span class="pre">Timer</span></code> class. It can be
@@ -300,7 +298,7 @@ as the <code class="docutils literal notranslate"><span class="pre">value</span>
 the nesting behaviors.</p>
 </section>
 <section id="built-in-particles">
-<h2>Built-in particles<a class="headerlink" href="#built-in-particles" title="Permalink to this heading">¶</a></h2>
+<h2>Built-in particles<a class="headerlink" href="#built-in-particles" title="Link to this heading">¶</a></h2>
 <p>Flame ships with a few built-in <code class="docutils literal notranslate"><span class="pre">Particle</span></code> behaviors:</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">TranslatedParticle</span></code> translates its <code class="docutils literal notranslate"><span class="pre">child</span></code> by given <code class="docutils literal notranslate"><span class="pre">Vector2</span></code></p></li>
@@ -337,7 +335,7 @@ layer.</p>
 </div>
 </section>
 <section id="movingparticle">
-<h2>MovingParticle<a class="headerlink" href="#movingparticle" title="Permalink to this heading">¶</a></h2>
+<h2>MovingParticle<a class="headerlink" href="#movingparticle" title="Link to this heading">¶</a></h2>
 <p>Moves the child <code class="docutils literal notranslate"><span class="pre">Particle</span></code> between the <code class="docutils literal notranslate"><span class="pre">from</span></code> and <code class="docutils literal notranslate"><span class="pre">to</span></code> <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>s during its lifespan. Supports
 <code class="docutils literal notranslate"><span class="pre">Curve</span></code> via <code class="docutils literal notranslate"><span class="pre">CurvedParticle</span></code>.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
@@ -357,7 +355,7 @@ layer.</p>
 </div>
 </section>
 <section id="acceleratedparticle">
-<h2>AcceleratedParticle<a class="headerlink" href="#acceleratedparticle" title="Permalink to this heading">¶</a></h2>
+<h2>AcceleratedParticle<a class="headerlink" href="#acceleratedparticle" title="Link to this heading">¶</a></h2>
 <p>A basic physics particle which allows you to specify its initial <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">speed</span></code> and
 <code class="docutils literal notranslate"><span class="pre">acceleration</span></code> and lets the <code class="docutils literal notranslate"><span class="pre">update</span></code> cycle do the rest. All three are specified as <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>s, which
 you can think of as vectors. It works especially well for physics-based “bursts”, but it is not
@@ -386,7 +384,7 @@ move a child <code class="docutils literal notranslate"><span class="pre">Partic
 </div>
 </section>
 <section id="circleparticle">
-<h2>CircleParticle<a class="headerlink" href="#circleparticle" title="Permalink to this heading">¶</a></h2>
+<h2>CircleParticle<a class="headerlink" href="#circleparticle" title="Link to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">Particle</span></code> which renders a circle with given <code class="docutils literal notranslate"><span class="pre">Paint</span></code> at the zero offset of passed <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>. Use in
 conjunction with <code class="docutils literal notranslate"><span class="pre">TranslatedParticle</span></code>, <code class="docutils literal notranslate"><span class="pre">MovingParticle</span></code> or <code class="docutils literal notranslate"><span class="pre">AcceleratedParticle</span></code> in order to achieve
 desired positioning.</p>
@@ -402,7 +400,7 @@ desired positioning.</p>
 </div>
 </section>
 <section id="spriteparticle">
-<h2>SpriteParticle<a class="headerlink" href="#spriteparticle" title="Permalink to this heading">¶</a></h2>
+<h2>SpriteParticle<a class="headerlink" href="#spriteparticle" title="Link to this heading">¶</a></h2>
 <p>Allows you to embed a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> into your particle effects.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
 <span class="w">  </span><span class="n">ParticleComponent</span><span class="p">(</span>
@@ -416,7 +414,7 @@ desired positioning.</p>
 </div>
 </section>
 <section id="imageparticle">
-<h2>ImageParticle<a class="headerlink" href="#imageparticle" title="Permalink to this heading">¶</a></h2>
+<h2>ImageParticle<a class="headerlink" href="#imageparticle" title="Link to this heading">¶</a></h2>
 <p>Renders given <code class="docutils literal notranslate"><span class="pre">dart:ui</span></code> image within the particle tree.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// During game initialisation</span>
 <span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">loadAll</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="p">[</span>
@@ -440,7 +438,7 @@ desired positioning.</p>
 </div>
 </section>
 <section id="animationparticle">
-<h2>AnimationParticle<a class="headerlink" href="#animationparticle" title="Permalink to this heading">¶</a></h2>
+<h2>AnimationParticle<a class="headerlink" href="#animationparticle" title="Link to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">Particle</span></code> which embeds an <code class="docutils literal notranslate"><span class="pre">Animation</span></code>. By default, aligns the <code class="docutils literal notranslate"><span class="pre">Animation</span></code>’s <code class="docutils literal notranslate"><span class="pre">stepTime</span></code> so that
 it’s fully played during the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> lifespan. It’s possible to override this behavior with the
 <code class="docutils literal notranslate"><span class="pre">alignAnimationTime</span></code> argument.</p>
@@ -460,7 +458,7 @@ it’s fully played during the <code class="docutils literal notranslate"><span 
 </div>
 </section>
 <section id="componentparticle">
-<h2>ComponentParticle<a class="headerlink" href="#componentparticle" title="Permalink to this heading">¶</a></h2>
+<h2>ComponentParticle<a class="headerlink" href="#componentparticle" title="Link to this heading">¶</a></h2>
 <p>This <code class="docutils literal notranslate"><span class="pre">Particle</span></code> allows you to embed a <code class="docutils literal notranslate"><span class="pre">Component</span></code> within the particle effects. The <code class="docutils literal notranslate"><span class="pre">Component</span></code> could
 have its own <code class="docutils literal notranslate"><span class="pre">update</span></code> lifecycle and could be reused across different effect trees. If the only thing
 you need is to add some dynamics to an instance of a certain <code class="docutils literal notranslate"><span class="pre">Component</span></code>, please consider adding it
@@ -491,7 +489,7 @@ to the <code class="docutils literal notranslate"><span class="pre">game</span><
 </div>
 </section>
 <section id="flareparticle">
-<h2>FlareParticle<a class="headerlink" href="#flareparticle" title="Permalink to this heading">¶</a></h2>
+<h2>FlareParticle<a class="headerlink" href="#flareparticle" title="Link to this heading">¶</a></h2>
 <p>To use Flare within Flame, use the <a class="reference external" href="https://github.com/flame-engine/flame_flare"><code class="docutils literal notranslate"><span class="pre">flame_flare</span></code></a>
 package.</p>
 <p>It will provide a class called <code class="docutils literal notranslate"><span class="pre">FlareParticle</span></code> that is a container for <code class="docutils literal notranslate"><span class="pre">FlareActorAnimation</span></code>, it
@@ -514,7 +512,7 @@ propagates the <code class="docutils literal notranslate"><span class="pre">upda
 </div>
 </section>
 <section id="computedparticle">
-<h2>ComputedParticle<a class="headerlink" href="#computedparticle" title="Permalink to this heading">¶</a></h2>
+<h2>ComputedParticle<a class="headerlink" href="#computedparticle" title="Link to this heading">¶</a></h2>
 <p>A <code class="docutils literal notranslate"><span class="pre">Particle</span></code> which could help you when:</p>
 <ul class="simple">
 <li><p>Default behavior is not enough</p></li>
@@ -544,7 +542,7 @@ on each frame to perform necessary computations and render something to the <cod
 </div>
 </section>
 <section id="nesting-behavior">
-<h2>Nesting behavior<a class="headerlink" href="#nesting-behavior" title="Permalink to this heading">¶</a></h2>
+<h2>Nesting behavior<a class="headerlink" href="#nesting-behavior" title="Link to this heading">¶</a></h2>
 <p>Flame’s implementation of particles follows the same pattern of extreme composition as Flutter
 widgets. That is achieved by encapsulating small pieces of behavior in every particle and then
 nesting these behaviors together to achieve the desired visual effect.</p>

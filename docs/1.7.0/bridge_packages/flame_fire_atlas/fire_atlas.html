@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Flame fire atlas &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -312,15 +310,15 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="flame-fire-atlas">
-<h1>Flame fire atlas<a class="headerlink" href="#flame-fire-atlas" title="Permalink to this heading">¶</a></h1>
+<h1>Flame fire atlas<a class="headerlink" href="#flame-fire-atlas" title="Link to this heading">¶</a></h1>
 <p>Flame fire atlas is a texture atlas lib for Flame. By using <code class="docutils literal notranslate"><span class="pre">flame_fire_atlas</span></code> one can access images
 and animations stored in a <code class="docutils literal notranslate"><span class="pre">.fa</span></code> texture atlas by referring to them by their named keys.</p>
 <section id="fireatlas">
-<h2>FireAtlas<a class="headerlink" href="#fireatlas" title="Permalink to this heading">¶</a></h2>
+<h2>FireAtlas<a class="headerlink" href="#fireatlas" title="Link to this heading">¶</a></h2>
 <p>FireAtlas is a tool for handling texture atlases. Atlases can be created using the
 <a class="reference external" href="https://fire-atlas.flame-engine.org">Fire Atlas Editor</a>.</p>
 <section id="creating-atlas">
-<h3>Creating Atlas<a class="headerlink" href="#creating-atlas" title="Permalink to this heading">¶</a></h3>
+<h3>Creating Atlas<a class="headerlink" href="#creating-atlas" title="Link to this heading">¶</a></h3>
 <p>To create a texture atlas open <a class="reference external" href="https://fire-atlas.flame-engine.org">Fire Atlas Editor</a>.</p>
 <p>Select new atlas and give the atlas a name, tile width, tile height and an image and press okay.
 This will take you to the atlas editor.</p>
@@ -337,13 +335,13 @@ the <code class="docutils literal notranslate"><span class="pre">download</span>
 </section>
 </section>
 <section id="texture-atlas">
-<h2>Texture atlas<a class="headerlink" href="#texture-atlas" title="Permalink to this heading">¶</a></h2>
+<h2>Texture atlas<a class="headerlink" href="#texture-atlas" title="Link to this heading">¶</a></h2>
 <p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Texture_atlas">Texture atlas</a> is an image that contains data from
 several smaller images that have been packed together to reduce overall dimensions. With it, you
 reduce the number of images loaded and can speed up the loading time of the game.</p>
 </section>
 <section id="usage">
-<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<h2>Usage<a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p>To use the bridge library in your game you just need to add <code class="docutils literal notranslate"><span class="pre">flame_fire_atlas</span></code> to your pubspec.yaml,
 as can be seen in
 the <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_fire_atlas/example">Flame Fire Atlas example</a>
@@ -398,7 +396,7 @@ or a component. Then you can use <code class="docutils literal notranslate"><spa
 </div>
 </section>
 <section id="full-example">
-<h2>Full Example<a class="headerlink" href="#full-example" title="Permalink to this heading">¶</a></h2>
+<h2>Full Example<a class="headerlink" href="#full-example" title="Link to this heading">¶</a></h2>
 <p>You can check an example
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_fire_atlas/example">here</a>.</p>
 </section>

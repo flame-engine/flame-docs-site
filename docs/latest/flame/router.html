@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>RouterComponent &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
-  <script src="../_static/flutter_app.js"></script>
-  <script src="../_static/clipboard.min.js"></script>
-  <script src="../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../_static/versions.js"></script>
-  <script src="../_static/menu-expand.js"></script>
+  <script src="../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../_static/copybutton.js?v=f281be69"></script>
+  <script src="../_static/versions.js?v=58484017"></script>
+  <script src="../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -801,7 +799,7 @@ screens within the game. In addition, the “pause” button stops time and appl
 visual effects to the content of the page below it.</p>
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="routercomponent">
-<h1>RouterComponent<a class="headerlink" href="#routercomponent" title="Permalink to this heading">¶</a></h1>
+<h1>RouterComponent<a class="headerlink" href="#routercomponent" title="Link to this heading">¶</a></h1>
 <p>The <strong>RouterComponent</strong>’s job is to manage navigation across multiple screens within the game. It is
 similar in spirit to Flutter’s <a class="reference external" href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Navigator</a> class, except that it works with Flame
 components instead of Flutter widgets.</p>
@@ -846,7 +844,7 @@ dialogue UIs, etc.</p>
 <p>eg: <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">'package:flutter/material.dart'</span> <span class="pre">hide</span> <span class="pre">Route;</span></code></p>
 </div>
 <section id="route">
-<h2>Route<a class="headerlink" href="#route" title="Permalink to this heading">¶</a></h2>
+<h2>Route<a class="headerlink" href="#route" title="Link to this heading">¶</a></h2>
 <p>The <strong>Route</strong> component holds information about the content of a particular page. <code class="docutils literal notranslate"><span class="pre">Route</span></code>s are
 mounted as children to the <code class="docutils literal notranslate"><span class="pre">RouterComponent</span></code>.</p>
 <p>The main property of a <code class="docutils literal notranslate"><span class="pre">Route</span></code> is its <code class="docutils literal notranslate"><span class="pre">builder</span></code> – the function that creates the component with
@@ -863,7 +861,7 @@ and the <code class="docutils literal notranslate"><span class="pre">builder</sp
 simply executes <code class="docutils literal notranslate"><span class="pre">pop</span></code> on the current route and then <code class="docutils literal notranslate"><span class="pre">pushNamed</span></code> or <code class="docutils literal notranslate"><span class="pre">pushRoute</span></code>.</p>
 </section>
 <section id="overlayroute">
-<h2>OverlayRoute<a class="headerlink" href="#overlayroute" title="Permalink to this heading">¶</a></h2>
+<h2>OverlayRoute<a class="headerlink" href="#overlayroute" title="Link to this heading">¶</a></h2>
 <p>The <strong>OverlayRoute</strong> is a special route that allows adding game overlays via the router. These
 routes are transparent by default.</p>
 <p>There are two constructors for the <code class="docutils literal notranslate"><span class="pre">OverlayRoute</span></code>. The first constructor requires a builder function
@@ -892,7 +890,7 @@ make it more clear in your code that an overlay is being added instead of a regu
 <code class="docutils literal notranslate"><span class="pre">pushReplacementNamed</span></code> or <code class="docutils literal notranslate"><span class="pre">pushReplacement</span></code> based on the status of the overlay being pushed.</p>
 </section>
 <section id="valueroute">
-<h2>ValueRoute<a class="headerlink" href="#valueroute" title="Permalink to this heading">¶</a></h2>
+<h2>ValueRoute<a class="headerlink" href="#valueroute" title="Link to this heading">¶</a></h2>
 <div class="flutter-app-infobox docutils container">
 <iframe class="flutter-app-iframe" src="/1.13.0/_static/apps/flame-examples/index.html?value_route" style="width: 280px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-value_route">
 <div class="filename docutils container">

@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Collision detection &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="_static/jquery.js"></script>
-  <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-  <script src="_static/doctools.js"></script>
-  <script src="_static/sphinx_highlight.js"></script>
-  <script src="_static/flutter_app.js"></script>
-  <script src="_static/clipboard.min.js"></script>
-  <script src="_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="_static/versions.js"></script>
-  <script src="_static/menu-expand.js"></script>
+  <script src="_static/jquery.js?v=5d32c60e"></script>
+  <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="_static/doctools.js?v=0b60eaae"></script>
+  <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="_static/flutter_app.js?v=3619378f"></script>
+  <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="_static/copybutton.js?v=f281be69"></script>
+  <script src="_static/versions.js?v=58484017"></script>
+  <script src="_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -168,7 +166,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="collision-detection">
-<h1>Collision detection<a class="headerlink" href="#collision-detection" title="Permalink to this heading">¶</a></h1>
+<h1>Collision detection<a class="headerlink" href="#collision-detection" title="Link to this heading">¶</a></h1>
 <p>If you want to have a full-blown physics engine in your game we recommend that you use
 Forge2D by adding <a class="reference external" href="https://github.com/flame-engine/flame_forge2d">flame_forge2d</a> as a dependency.
 But if you have a simpler use-case and just want to check for collisions of components and improve
@@ -202,9 +200,9 @@ behaviour is called tunneling, if you want to read more about it.</p>
 <p>Also note that the collision detection system doesn’t work properly if you scale ancestors of the
 component that is <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>.</p>
 <section id="mixins">
-<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this heading">¶</a></h2>
+<h2>Mixins<a class="headerlink" href="#mixins" title="Link to this heading">¶</a></h2>
 <section id="hashitboxes">
-<h3>HasHitboxes<a class="headerlink" href="#hashitboxes" title="Permalink to this heading">¶</a></h3>
+<h3>HasHitboxes<a class="headerlink" href="#hashitboxes" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> mixin is mainly used for two things; to make detection of collisions with other
 hitboxes and to more accurately recognize gestures on top of your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s. Say that you
 have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you don’t want to register input
@@ -215,7 +213,7 @@ shape) for which the input should be within for the event to be registered on yo
 example.</p>
 </section>
 <section id="collidable">
-<h3>Collidable<a class="headerlink" href="#collidable" title="Permalink to this heading">¶</a></h3>
+<h3>Collidable<a class="headerlink" href="#collidable" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> mixin is added to a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> that has a <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code> and it is used for
 detecting collisions with other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s. If you do not add a shape to your <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code>
 component it will never collide with anything. If you want the component to have a default
@@ -276,7 +274,7 @@ shapes that were previously colliding no longer colliding with each other.</p>
 the predefined <a class="reference internal" href="#screencollidable">ScreenCollidable</a> class and since that one also is a <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>
 you can implement your own <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method for that class if needed.</p>
 <section id="collidabletype">
-<h4>CollidableType<a class="headerlink" href="#collidabletype" title="Permalink to this heading">¶</a></h4>
+<h4>CollidableType<a class="headerlink" href="#collidabletype" title="Link to this heading">¶</a></h4>
 <p>By default the <code class="docutils literal notranslate"><span class="pre">CollidableType</span></code> is <code class="docutils literal notranslate"><span class="pre">active</span></code> on your <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>, but there are two other types that
 you can set your collidable to too if you need to optimize the collision detection.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">CollidableType</span></code> enum contains the following values:</p>
@@ -298,7 +296,7 @@ them so don’t doubt to use them even if your use case isn’t listed here.</p>
 </section>
 </section>
 <section id="hascollidables">
-<h3>HasCollidables<a class="headerlink" href="#hascollidables" title="Permalink to this heading">¶</a></h3>
+<h3>HasCollidables<a class="headerlink" href="#hascollidables" title="Link to this heading">¶</a></h3>
 <p>If you want to use this collision detection in your game you have to add the <code class="docutils literal notranslate"><span class="pre">HasCollidables</span></code> mixin
 to your game so that the game knows that it should keep track of which components that can collide.</p>
 <p>Example:</p>
@@ -311,7 +309,7 @@ to your game so that the game knows that it should keep track of which component
 collisions.</p>
 </section>
 <section id="screencollidable">
-<h3>ScreenCollidable<a class="headerlink" href="#screencollidable" title="Permalink to this heading">¶</a></h3>
+<h3>ScreenCollidable<a class="headerlink" href="#screencollidable" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> is not a mixin, but a pre-made collidable component which represents the edges of
 your game/screen. If you add a <code class="docutils literal notranslate"><span class="pre">ScreenCollidable</span></code> to your game your other collidables will be
 notified when they collide with the edges. It doesn’t take any arguments, it only depends on the
@@ -322,23 +320,23 @@ with it. If you so want it to be notified, then you need to extend it and implem
 </section>
 </section>
 <section id="shapes">
-<h2>Shapes<a class="headerlink" href="#shapes" title="Permalink to this heading">¶</a></h2>
+<h2>Shapes<a class="headerlink" href="#shapes" title="Link to this heading">¶</a></h2>
 <section id="shape">
-<h3>Shape<a class="headerlink" href="#shape" title="Permalink to this heading">¶</a></h3>
+<h3>Shape<a class="headerlink" href="#shape" title="Link to this heading">¶</a></h3>
 <p>A Shape is the base class for representing a scalable geometrical shape. The shapes have different
 ways of defining how they look, but they all have a size and angle that can be modified and the
 shape definition will scale or rotate the shape accordingly.</p>
 <p>There are currently three shapes: <a class="reference internal" href="#polygon"><span class="std std-ref">Polygon</span></a>, <a class="reference internal" href="#rectangle"><span class="std std-ref">Rectangle</span></a> and <a class="reference internal" href="#circle"><span class="std std-ref">Circle</span></a>.</p>
 </section>
 <section id="hitboxshape">
-<h3>HitboxShape<a class="headerlink" href="#hitboxshape" title="Permalink to this heading">¶</a></h3>
+<h3>HitboxShape<a class="headerlink" href="#hitboxshape" title="Link to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code> is a <code class="docutils literal notranslate"><span class="pre">Shape</span></code> defined from the center position of the component that it is attached
 to and it has the same bounding size and angle as the component. You can set <code class="docutils literal notranslate"><span class="pre">localPosition</span></code> to have
 the position of the shape deviate from the center of the component. A <code class="docutils literal notranslate"><span class="pre">HitboxShape</span></code> is the type of
 shape that you add to your <code class="docutils literal notranslate"><span class="pre">HasHitboxes</span></code>, or <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>. Usually these types of shapes are the
 only ones that you need to use.</p>
 <section id="hitboxpolygon">
-<h4>HitboxPolygon<a class="headerlink" href="#hitboxpolygon" title="Permalink to this heading">¶</a></h4>
+<h4>HitboxPolygon<a class="headerlink" href="#hitboxpolygon" title="Link to this heading">¶</a></h4>
 <p>It should be noted that if you want to use collision detection or <code class="docutils literal notranslate"><span class="pre">containsPoint</span></code> on the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>,
 the polygon needs to be convex. So always use convex polygons or you will most likely run into
 problems if you don’t really know what you are doing. It should also be noted that you should always
@@ -368,7 +366,7 @@ the center of the polygon.</p>
 arrows.</p>
 </section>
 <section id="hitboxrectangle">
-<h4>HitboxRectangle<a class="headerlink" href="#hitboxrectangle" title="Permalink to this heading">¶</a></h4>
+<h4>HitboxRectangle<a class="headerlink" href="#hitboxrectangle" title="Link to this heading">¶</a></h4>
 <p>A <code class="docutils literal notranslate"><span class="pre">HitboxRectangle</span></code> is really just a simplified Polygon, but it can be defined more easily.
 To create rectangle you add a <code class="docutils literal notranslate"><span class="pre">relation</span></code> in the constructor which defines the relationship between
 the length of the horizontal and vertical side and the size of the bounding box. To create a
@@ -380,7 +378,7 @@ relation argument is the same as above your rectangle would be placed in the mid
 and be 200 pixels wide and 200 pixels tall.</p>
 </section>
 <section id="hitboxcircle">
-<h4>HitboxCircle<a class="headerlink" href="#hitboxcircle" title="Permalink to this heading">¶</a></h4>
+<h4>HitboxCircle<a class="headerlink" href="#hitboxcircle" title="Link to this heading">¶</a></h4>
 <p>When creating a <code class="docutils literal notranslate"><span class="pre">Circle</span></code> you can define how long the radius is in comparison to the shortest edge
 of the bounding box, this is the <code class="docutils literal notranslate"><span class="pre">definition</span></code> argument.</p>
 <p>So if you want to create a circle that is positioned as for example a head for your component that
@@ -390,16 +388,16 @@ on the top fourth of the component you would write something like this:</p>
 </section>
 </section>
 <section id="normal-shapes">
-<h3>Normal Shapes<a class="headerlink" href="#normal-shapes" title="Permalink to this heading">¶</a></h3>
+<h3>Normal Shapes<a class="headerlink" href="#normal-shapes" title="Link to this heading">¶</a></h3>
 <p>These shapes are meant as a tool for using geometrical shapes in a more general way than together
 with the collision detection system.</p>
 <section id="polygon">
-<h4>Polygon<a class="headerlink" href="#polygon" title="Permalink to this heading">¶</a></h4>
+<h4>Polygon<a class="headerlink" href="#polygon" title="Link to this heading">¶</a></h4>
 <p>You can also create you <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> by giving it a list of points in the constructor.
 This list will be transformed into a polygon with a size, which can still be scaled and rotated.</p>
 </section>
 <section id="rectangle">
-<h4>Rectangle<a class="headerlink" href="#rectangle" title="Permalink to this heading">¶</a></h4>
+<h4>Rectangle<a class="headerlink" href="#rectangle" title="Link to this heading">¶</a></h4>
 <p>Dart already has an excellent way to create rectangles and that class is called <code class="docutils literal notranslate"><span class="pre">Rect</span></code>, you can
 create a Flame <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> from a <code class="docutils literal notranslate"><span class="pre">Rect</span></code> by using the <code class="docutils literal notranslate"><span class="pre">Rectangle.fromRect</span></code> factory, and just like
 with the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> factory, your rectangle will be sized according to the <code class="docutils literal notranslate"><span class="pre">Rect</span></code> if you use this
@@ -407,7 +405,7 @@ factory.</p>
 <p>You can also use the default constructor to build your rectangle from a position, size and angle.</p>
 </section>
 <section id="circle">
-<h4>Circle<a class="headerlink" href="#circle" title="Permalink to this heading">¶</a></h4>
+<h4>Circle<a class="headerlink" href="#circle" title="Link to this heading">¶</a></h4>
 <p>If you know how long your circle’s position and/or how long the radius is going to be from the start
 you can use the optional arguments <code class="docutils literal notranslate"><span class="pre">radius</span></code> and <code class="docutils literal notranslate"><span class="pre">position</span></code> to set those, if the <code class="docutils literal notranslate"><span class="pre">radius</span></code> is set the
 <code class="docutils literal notranslate"><span class="pre">size</span></code> of the <code class="docutils literal notranslate"><span class="pre">Circle</span></code> will be automatically set too.</p>
@@ -415,7 +413,7 @@ you can use the optional arguments <code class="docutils literal notranslate"><s
 </section>
 </section>
 <section id="examples">
-<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<h2>Examples<a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>https://examples.flame-engine.org/#/Collision%20Detection_Circles</p></li>
 <li><p>https://examples.flame-engine.org/#/Collision%20Detection_Multiple%20shapes</p></li>

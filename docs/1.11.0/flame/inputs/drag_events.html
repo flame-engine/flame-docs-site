@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Drag Events &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -313,7 +311,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="drag-events">
-<h1>Drag Events<a class="headerlink" href="#drag-events" title="Permalink to this heading">¶</a></h1>
+<h1>Drag Events<a class="headerlink" href="#drag-events" title="Link to this heading">¶</a></h1>
 <p><strong>Drag events</strong> occur when the user moves their finger across the screen of the device, or when they
 move the mouse while holding its button down.</p>
 <p>Multiple drag events can occur at the same time, if the user is using multiple fingers. Such cases
@@ -339,7 +337,7 @@ allows Flame to know whether the event occurred within the component or not.</p>
 </pre></div>
 </div>
 <section id="demo">
-<h2>Demo<a class="headerlink" href="#demo" title="Permalink to this heading">¶</a></h2>
+<h2>Demo<a class="headerlink" href="#demo" title="Link to this heading">¶</a></h2>
 <p>In this example you can use drag gestures to either drag star-like shapes across the screen, or to
 draw curves inside the magenta rectangle.</p>
 <iframe class="flutter-app-iframe" src="/1.11.0/_static/apps/flame-examples/index.html?drag_events"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-drag_events">
@@ -595,9 +593,9 @@ drag_events.dart</div>
 </div>
 <button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-drag_events&quot;)">Code</button></section>
 <section id="drag-anatomy">
-<h2>Drag anatomy<a class="headerlink" href="#drag-anatomy" title="Permalink to this heading">¶</a></h2>
+<h2>Drag anatomy<a class="headerlink" href="#drag-anatomy" title="Link to this heading">¶</a></h2>
 <section id="ondragstart">
-<h3>onDragStart<a class="headerlink" href="#ondragstart" title="Permalink to this heading">¶</a></h3>
+<h3>onDragStart<a class="headerlink" href="#ondragstart" title="Link to this heading">¶</a></h3>
 <p>This is the first event that occurs in a drag sequence. Usually, the event will be delivered to the
 topmost component at the point of touch with the <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixin. However, by setting the flag
 <code class="docutils literal notranslate"><span class="pre">event.continuePropagation</span></code> to true, you can allow the event to propagate to the components below.</p>
@@ -610,7 +608,7 @@ local coordinate system.</p>
 events as well.</p>
 </section>
 <section id="ondragupdate">
-<h3>onDragUpdate<a class="headerlink" href="#ondragupdate" title="Permalink to this heading">¶</a></h3>
+<h3>onDragUpdate<a class="headerlink" href="#ondragupdate" title="Link to this heading">¶</a></h3>
 <p>This event is fired continuously as user drags their finger across the screen. It will not fire if
 the user is holding their finger still.</p>
 <p>The default implementation delivers this event to all the components that received the previous
@@ -626,20 +624,20 @@ start.</p>
 used, for example, to compute the speed of the movement.</p>
 </section>
 <section id="ondragend">
-<h3>onDragEnd<a class="headerlink" href="#ondragend" title="Permalink to this heading">¶</a></h3>
+<h3>onDragEnd<a class="headerlink" href="#ondragend" title="Link to this heading">¶</a></h3>
 <p>This event is fired when the user lifts their finger and thus stops the drag gesture. There is no
 position associated with this event.</p>
 </section>
 <section id="ondragcancel">
-<h3>onDragCancel<a class="headerlink" href="#ondragcancel" title="Permalink to this heading">¶</a></h3>
+<h3>onDragCancel<a class="headerlink" href="#ondragcancel" title="Link to this heading">¶</a></h3>
 <p>The precise semantics when this event occurs is not clear, so we provide a default implementation
 which simply converts this event into an <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code>.</p>
 </section>
 </section>
 <section id="mixins">
-<h2>Mixins<a class="headerlink" href="#mixins" title="Permalink to this heading">¶</a></h2>
+<h2>Mixins<a class="headerlink" href="#mixins" title="Link to this heading">¶</a></h2>
 <section id="dragcallbacks">
-<h3>DragCallbacks<a class="headerlink" href="#dragcallbacks" title="Permalink to this heading">¶</a></h3>
+<h3>DragCallbacks<a class="headerlink" href="#dragcallbacks" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixin can be added to any <code class="docutils literal notranslate"><span class="pre">Component</span></code> in order for that component to start
 receiving drag events.</p>
 <p>This mixin adds methods <code class="docutils literal notranslate"><span class="pre">onDragStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code>, <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code>, and <code class="docutils literal notranslate"><span class="pre">onDragCancel</span></code> to the

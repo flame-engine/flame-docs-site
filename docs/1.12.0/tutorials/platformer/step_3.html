@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>3. Building the World &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../_static/jquery.js"></script>
-  <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-  <script src="../../_static/doctools.js"></script>
-  <script src="../../_static/sphinx_highlight.js"></script>
-  <script src="../../_static/flutter_app.js"></script>
-  <script src="../../_static/clipboard.min.js"></script>
-  <script src="../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../_static/versions.js"></script>
-  <script src="../../_static/menu-expand.js"></script>
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -319,9 +317,9 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="building-the-world">
-<h1>3. Building the World<a class="headerlink" href="#building-the-world" title="Permalink to this heading">¶</a></h1>
+<h1>3. Building the World<a class="headerlink" href="#building-the-world" title="Link to this heading">¶</a></h1>
 <section id="creating-segments">
-<h2>Creating Segments<a class="headerlink" href="#creating-segments" title="Permalink to this heading">¶</a></h2>
+<h2>Creating Segments<a class="headerlink" href="#creating-segments" title="Link to this heading">¶</a></h2>
 <p>For this world to be infinite, the best way to approach this is to create segments that can be
 reloaded over and over. To do this, we need a rough sketch of what our level segments will look
 like. I have created the following sketch to show what the segments would look like and how they can
@@ -334,7 +332,7 @@ before an enemy, including if the segment wraps to another segment. This is beca
 have the enemies traverse back and forth for 3 blocks. Now that we have a plan for the segments,
 let’s create a segment manager class.</p>
 <section id="segment-manager">
-<h3>Segment Manager<a class="headerlink" href="#segment-manager" title="Permalink to this heading">¶</a></h3>
+<h3>Segment Manager<a class="headerlink" href="#segment-manager" title="Link to this heading">¶</a></h3>
 <p>To get started, we have to understand that we will be referencing our blocks in the segment manager,
 so first create a new folder called <code class="docutils literal notranslate"><span class="pre">lib/objects</span></code>. In that folder, create 3 files called
 <code class="docutils literal notranslate"><span class="pre">ground_block.dart</span></code>, <code class="docutils literal notranslate"><span class="pre">platform_block.dart</span></code>, and <code class="docutils literal notranslate"><span class="pre">star.dart</span></code>. Those files just need basic
@@ -526,7 +524,7 @@ very bottom left cell is x=0 and y=0 thus the <code class="docutils literal notr
 </div>
 </section>
 <section id="loading-the-segments-into-the-world">
-<h3>Loading the Segments into the World<a class="headerlink" href="#loading-the-segments-into-the-world" title="Permalink to this heading">¶</a></h3>
+<h3>Loading the Segments into the World<a class="headerlink" href="#loading-the-segments-into-the-world" title="Link to this heading">¶</a></h3>
 <p>Now that our segments are defined, we need to create a way to load these blocks into our world. To
 do that, we are going to start work in the <code class="docutils literal notranslate"><span class="pre">ember_quest.dart</span></code> file. We will create a <code class="docutils literal notranslate"><span class="pre">loadSegments</span></code>
 method that when given an index for the segments list, will then loop through that segment from
@@ -602,7 +600,7 @@ as:</p>
 worry, we will solve those right now.</p>
 </section>
 <section id="the-platform-block">
-<h3>The Platform Block<a class="headerlink" href="#the-platform-block" title="Permalink to this heading">¶</a></h3>
+<h3>The Platform Block<a class="headerlink" href="#the-platform-block" title="Link to this heading">¶</a></h3>
 <p>One of the easiest blocks to start with is the Platform Block. There are two things that we need to
 develop beyond getting the sprite to be displayed; that is, we need to place it in the correct
 position and as Ember moves across the screen, we need to remove the blocks once they are off the
@@ -695,7 +693,7 @@ game and we will subtract the <code class="docutils literal notranslate"><span c
 <p>Lastly, as we want Ember to be able to interact with the platform, we will add a <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code>
 with a <code class="docutils literal notranslate"><span class="pre">passive</span></code> <code class="docutils literal notranslate"><span class="pre">CollisionType</span></code>. Collisions will be explained more in a later chapter.</p>
 <section id="display-the-platform">
-<h4>Display the Platform<a class="headerlink" href="#display-the-platform" title="Permalink to this heading">¶</a></h4>
+<h4>Display the Platform<a class="headerlink" href="#display-the-platform" title="Link to this heading">¶</a></h4>
 <p>In our <code class="docutils literal notranslate"><span class="pre">loadGameSegments</span></code> method from earlier, we will need to add the call to add our block. We
 will need to define <code class="docutils literal notranslate"><span class="pre">gridPosition</span></code> and <code class="docutils literal notranslate"><span class="pre">xOffset</span></code> to be passed in. <code class="docutils literal notranslate"><span class="pre">gridPosition</span></code> will be a
 <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> and <code class="docutils literal notranslate"><span class="pre">xOffset</span></code> is a double as that will be used to calculate the x-axis offset for

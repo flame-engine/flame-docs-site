@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Camera component &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
-  <script src="../_static/flutter_app.js"></script>
-  <script src="../_static/clipboard.min.js"></script>
-  <script src="../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../_static/versions.js"></script>
-  <script src="../_static/menu-expand.js"></script>
+  <script src="../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../_static/copybutton.js?v=f281be69"></script>
+  <script src="../_static/versions.js?v=58484017"></script>
+  <script src="../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -319,7 +317,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="camera-component">
-<h1>Camera component<a class="headerlink" href="#camera-component" title="Permalink to this heading">¶</a></h1>
+<h1>Camera component<a class="headerlink" href="#camera-component" title="Link to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This document describes a new camera API. The more traditional approach
@@ -346,7 +344,7 @@ also control the viewing location and angle. The <code class="docutils literal n
 contains a <a class="reference internal" href="#backdrop">backdrop</a> component which is statically rendered below the
 world.</p>
 <section id="world">
-<h2>World<a class="headerlink" href="#world" title="Permalink to this heading">¶</a></h2>
+<h2>World<a class="headerlink" href="#world" title="Link to this heading">¶</a></h2>
 <p>This component should be used to host all other components that comprise your
 game world. The main property of the <code class="docutils literal notranslate"><span class="pre">World</span></code> class is that it does not render
 through traditional means – instead it is rendered by one or more
@@ -378,7 +376,7 @@ such a game structure could look like this:</p>
 </div>
 </section>
 <section id="cameracomponent">
-<h2>CameraComponent<a class="headerlink" href="#cameracomponent" title="Permalink to this heading">¶</a></h2>
+<h2>CameraComponent<a class="headerlink" href="#cameracomponent" title="Link to this heading">¶</a></h2>
 <p>This is a component through which a <code class="docutils literal notranslate"><span class="pre">World</span></code> is rendered. It requires a
 reference to a <code class="docutils literal notranslate"><span class="pre">World</span></code> instance during construction; however later the target
 world can be replaced with another one. Multiple cameras can observe the same
@@ -409,7 +407,7 @@ what type of default camera that you want like this for example:</p>
 </pre></div>
 </div>
 <section id="cameracomponent-withfixedresolution">
-<h3>CameraComponent.withFixedResolution()<a class="headerlink" href="#cameracomponent-withfixedresolution" title="Permalink to this heading">¶</a></h3>
+<h3>CameraComponent.withFixedResolution()<a class="headerlink" href="#cameracomponent-withfixedresolution" title="Link to this heading">¶</a></h3>
 <p>This factory constructor will let you pretend that the user’s device has a fixed resolution of your
 choice. For example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">camera</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CameraComponent</span><span class="p">.</span><span class="n">withFixedResolution</span><span class="p">(</span>
@@ -427,7 +425,7 @@ screen space, unless their device happens to have the same pixel ratio as your c
 </section>
 </section>
 <section id="viewport">
-<h2>Viewport<a class="headerlink" href="#viewport" title="Permalink to this heading">¶</a></h2>
+<h2>Viewport<a class="headerlink" href="#viewport" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> is a window through which the <code class="docutils literal notranslate"><span class="pre">World</span></code> is seen. That window
 has a certain size, shape, and position on the screen. There are multiple kinds
 of viewports available, and you can always implement your own.</p>
@@ -451,7 +449,7 @@ into the game canvas, but preserving its aspect ratio.</p></li>
 <p>If you add children to the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> they will appear as static HUDs in front of the world.</p>
 </section>
 <section id="viewfinder">
-<h2>Viewfinder<a class="headerlink" href="#viewfinder" title="Permalink to this heading">¶</a></h2>
+<h2>Viewfinder<a class="headerlink" href="#viewfinder" title="Link to this heading">¶</a></h2>
 <p>This part of the camera is responsible for knowing which location in the
 underlying game world we are currently looking at. The <code class="docutils literal notranslate"><span class="pre">Viewfinder</span></code> also
 controls the zoom level, and the rotation angle of the view.</p>
@@ -469,7 +467,7 @@ example <a class="reference internal" href="effects.html"><span class="std std-d
 <code class="docutils literal notranslate"><span class="pre">ScaleEffect</span></code> you would be able to achieve a smooth zoom in your game.</p>
 </section>
 <section id="backdrop">
-<h2>Backdrop<a class="headerlink" href="#backdrop" title="Permalink to this heading">¶</a></h2>
+<h2>Backdrop<a class="headerlink" href="#backdrop" title="Link to this heading">¶</a></h2>
 <p>To add static components behind the world you can add them to the <code class="docutils literal notranslate"><span class="pre">backdrop</span></code>
 component, or replace the <code class="docutils literal notranslate"><span class="pre">backdrop</span></code> component. This is for example useful if
 you want to have a static <code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code> beneath a world that you can move
@@ -484,7 +482,7 @@ around it.</p>
 </div>
 </section>
 <section id="camera-controls">
-<h2>Camera controls<a class="headerlink" href="#camera-controls" title="Permalink to this heading">¶</a></h2>
+<h2>Camera controls<a class="headerlink" href="#camera-controls" title="Link to this heading">¶</a></h2>
 <p>There are several ways to modify camera’s settings at runtime:</p>
 <ol class="arabic simple">
 <li><p>Do it manually. You can always override the <code class="docutils literal notranslate"><span class="pre">CameraComponent.update()</span></code>
@@ -515,7 +513,7 @@ cancelled.</p></li>
 are in the form of a <code class="docutils literal notranslate"><span class="pre">Shape</span></code>, which is commonly a rectangle, but can also be any other shape.</p></li>
 </ul>
 <section id="visibleworldrect">
-<h3>visibleWorldRect<a class="headerlink" href="#visibleworldrect" title="Permalink to this heading">¶</a></h3>
+<h3>visibleWorldRect<a class="headerlink" href="#visibleworldrect" title="Link to this heading">¶</a></h3>
 <p>The camera exposes property <code class="docutils literal notranslate"><span class="pre">visibleWorldRect</span></code>, which is a rect that describes the world’s region
 which is currently visible through the camera. This region can be used in order to avoid rendering
 components that are out of view, or updating objects that are far away from the player less
@@ -524,7 +522,7 @@ frequently.</p>
 moves or the viewport changes its size.</p>
 </section>
 <section id="check-if-a-component-is-visible-from-the-camera-point-of-view">
-<h3>Check if a component is visible from the camera point of view<a class="headerlink" href="#check-if-a-component-is-visible-from-the-camera-point-of-view" title="Permalink to this heading">¶</a></h3>
+<h3>Check if a component is visible from the camera point of view<a class="headerlink" href="#check-if-a-component-is-visible-from-the-camera-point-of-view" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has a method called <code class="docutils literal notranslate"><span class="pre">canSee</span></code> which can be used to check
 if a component is visible from the camera point of view.
 This is useful for example to cull components that are not in view.</p>

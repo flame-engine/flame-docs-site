@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Bare Flame game &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
-  <script src="../_static/flutter_app.js"></script>
-  <script src="../_static/clipboard.min.js"></script>
-  <script src="../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../_static/versions.js"></script>
-  <script src="../_static/menu-expand.js"></script>
+  <script src="../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../_static/copybutton.js?v=f281be69"></script>
+  <script src="../_static/versions.js?v=58484017"></script>
+  <script src="../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -304,7 +302,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="bare-flame-game">
-<h1>Bare Flame game<a class="headerlink" href="#bare-flame-game" title="Permalink to this heading">¶</a></h1>
+<h1>Bare Flame game<a class="headerlink" href="#bare-flame-game" title="Link to this heading">¶</a></h1>
 <p>This tutorial assumes that you have basic familiarity with using the command line, and the following
 programs on your computer (all of them are free):</p>
 <ul class="simple">
@@ -313,7 +311,7 @@ programs on your computer (all of them are free):</p>
 <li><p><a class="reference external" href="https://git-scm.com/downloads">git</a> (optional), to save your project on GitHub.</p></li>
 </ul>
 <section id="check-flutter-installation">
-<h2>1. Check flutter installation<a class="headerlink" href="#check-flutter-installation" title="Permalink to this heading">¶</a></h2>
+<h2>1. Check flutter installation<a class="headerlink" href="#check-flutter-installation" title="Link to this heading">¶</a></h2>
 <p>First, let’s verify that your Flutter SDK was installed correctly and is accessible from the command
 line:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>flutter<span class="w"> </span>doctor
@@ -330,7 +328,7 @@ line:</p>
 reported and that your Flutter version is at least <strong>3.3.0</strong>.</p>
 </section>
 <section id="create-the-project-directory">
-<h2>2. Create the Project Directory<a class="headerlink" href="#create-the-project-directory" title="Permalink to this heading">¶</a></h2>
+<h2>2. Create the Project Directory<a class="headerlink" href="#create-the-project-directory" title="Link to this heading">¶</a></h2>
 <p>Now you need to come up with a name for your project. The name can only use lowercase Latin letters,
 digits, and underscores. It must also be a valid Dart identifier (thus, for example, it cannot be a
 keyword). In this tutorial, we’re going to call the project <strong>syzygy</strong>, which is a totally real
@@ -342,7 +340,7 @@ non-made-up word.</p>
 </div>
 </section>
 <section id="initialize-empty-flutter-project">
-<h2>3. Initialize empty Flutter project<a class="headerlink" href="#initialize-empty-flutter-project" title="Permalink to this heading">¶</a></h2>
+<h2>3. Initialize empty Flutter project<a class="headerlink" href="#initialize-empty-flutter-project" title="Link to this heading">¶</a></h2>
 <p>To turn this barren directory into an actual Flutter project, run the following command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">flutter create .</span>
 </pre></div>
@@ -356,7 +354,7 @@ non-made-up word.</p>
 </div>
 </section>
 <section id="open-the-project-in-android-studio">
-<h2>4. Open the project in Android Studio<a class="headerlink" href="#open-the-project-in-android-studio" title="Permalink to this heading">¶</a></h2>
+<h2>4. Open the project in Android Studio<a class="headerlink" href="#open-the-project-in-android-studio" title="Link to this heading">¶</a></h2>
 <p>Launch Android Studio, then in the project selection window choose <code class="docutils literal notranslate"><span class="pre">[Open]</span></code> and navigate to your
 project directory. With any luck, the project will now look like this:</p>
 <p><img alt="Project in Android Studio" src="../_images/android-studio-screenshot-1.webp" /></p>
@@ -369,7 +367,7 @@ project window should now look like this:</p>
 <p>The important part is that you should be able to see all files in your project directory.</p>
 </section>
 <section id="clean-up-the-project-files">
-<h2>5. Clean up the project files<a class="headerlink" href="#clean-up-the-project-files" title="Permalink to this heading">¶</a></h2>
+<h2>5. Clean up the project files<a class="headerlink" href="#clean-up-the-project-files" title="Link to this heading">¶</a></h2>
 <p>The default project created by Flutter is not very useful for making a Flame game, so we should get
 rid of it.</p>
 <p>First, open the file <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> and replace it with the following code (adjusting the <code class="docutils literal notranslate"><span class="pre">name</span></code> and
@@ -405,7 +403,7 @@ future, you should run <code class="docutils literal notranslate"><span class="p
 <p>Lastly, remove the file <code class="docutils literal notranslate"><span class="pre">test/widget_test.dart</span></code> completely.</p>
 </section>
 <section id="run-the-project">
-<h2>6. Run the project<a class="headerlink" href="#run-the-project" title="Permalink to this heading">¶</a></h2>
+<h2>6. Run the project<a class="headerlink" href="#run-the-project" title="Link to this heading">¶</a></h2>
 <p>Let’s verify that everything is working as intended, and the project can run.</p>
 <p>In the menu bar at the top of the window find a dropdown that says <code class="docutils literal notranslate"><span class="pre">&lt;no</span> <span class="pre">device</span> <span class="pre">selected&gt;</span></code>. In that
 dropdown choose <code class="docutils literal notranslate"><span class="pre">&lt;Chrome</span> <span class="pre">(web)&gt;</span></code> instead.</p>
@@ -416,7 +414,7 @@ window. For now, it will simply show a black screen, which is expected because w
 in its simplest blank configuration.</p>
 </section>
 <section id="sync-to-github">
-<h2>7. Sync to GitHub<a class="headerlink" href="#sync-to-github" title="Permalink to this heading">¶</a></h2>
+<h2>7. Sync to GitHub<a class="headerlink" href="#sync-to-github" title="Link to this heading">¶</a></h2>
 <p>The last step is to upload your project to GitHub. This is not required but strongly recommended as
 it will serve as a backup for your code. This step assumes that you already have a GitHub account.</p>
 <p>Log into your GitHub account, select <code class="docutils literal notranslate"><span class="pre">[Your</span> <span class="pre">repositories]</span></code> from your profile dropdown, and press the
@@ -436,7 +434,7 @@ replace the URL with the link to the repository that you just created):</p>
 files are there.</p>
 </section>
 <section id="done">
-<h2>8. Done<a class="headerlink" href="#done" title="Permalink to this heading">¶</a></h2>
+<h2>8. Done<a class="headerlink" href="#done" title="Link to this heading">¶</a></h2>
 <p>That’s it! By this point you have</p>
 <ul class="simple">
 <li><p>Created an initial blank state Flame project;</p></li>

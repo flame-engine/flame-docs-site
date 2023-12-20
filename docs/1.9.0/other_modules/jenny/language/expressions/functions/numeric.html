@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Numeric functions &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../../../../../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../../../../../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../../../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../../../../../_static/jquery.js"></script>
-  <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-  <script src="../../../../../_static/doctools.js"></script>
-  <script src="../../../../../_static/sphinx_highlight.js"></script>
-  <script src="../../../../../_static/flutter_app.js"></script>
-  <script src="../../../../../_static/clipboard.min.js"></script>
-  <script src="../../../../../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../../../../../_static/versions.js"></script>
-  <script src="../../../../../_static/menu-expand.js"></script>
+  <script src="../../../../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../../../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../../../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../../../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../../../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../../../../_static/versions.js?v=58484017"></script>
+  <script src="../../../../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -314,11 +312,11 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="numeric-functions">
-<h1>Numeric functions<a class="headerlink" href="#numeric-functions" title="Permalink to this heading">¶</a></h1>
+<h1>Numeric functions<a class="headerlink" href="#numeric-functions" title="Link to this heading">¶</a></h1>
 <p>These functions are used to manipulate numeric values. Most of them take a single numeric argument
 and produce a numeric result.</p>
 <section id="ceil-x">
-<h2><code class="docutils literal notranslate"><span class="pre">ceil(x)</span></code><a class="headerlink" href="#ceil-x" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">ceil(x)</span></code><a class="headerlink" href="#ceil-x" title="Link to this heading">¶</a></h2>
 <p>Returns the value <code class="docutils literal notranslate"><span class="pre">x</span></code> rounded up towards positive infinity. In other words, this returns the
 smallest integer value greater than or equal to <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> ceil</span>
@@ -341,7 +339,7 @@ smallest integer value greater than or equal to <code class="docutils literal no
 </div>
 </section>
 <section id="dec-x">
-<h2><code class="docutils literal notranslate"><span class="pre">dec(x)</span></code><a class="headerlink" href="#dec-x" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">dec(x)</span></code><a class="headerlink" href="#dec-x" title="Link to this heading">¶</a></h2>
 <p>Returns the value <code class="docutils literal notranslate"><span class="pre">x</span></code> reduced towards the previous integer. Thus, if <code class="docutils literal notranslate"><span class="pre">x</span></code> is already an integer
 this returns <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">-</span> <span class="pre">1</span></code>, but if <code class="docutils literal notranslate"><span class="pre">x</span></code> is not an integer then this returns <code class="docutils literal notranslate"><span class="pre">floor(x)</span></code>.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> dec</span>
@@ -363,7 +361,7 @@ this returns <code class="docutils literal notranslate"><span class="pre">x</spa
 </div>
 </section>
 <section id="decimal-x">
-<h2><code class="docutils literal notranslate"><span class="pre">decimal(x)</span></code><a class="headerlink" href="#decimal-x" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">decimal(x)</span></code><a class="headerlink" href="#decimal-x" title="Link to this heading">¶</a></h2>
 <p>Returns a fractional part of <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">x</span></code> is positive, then the returned value will be between <code class="docutils literal notranslate"><span class="pre">0</span></code> (inclusive) and <code class="docutils literal notranslate"><span class="pre">1</span></code> (exclusive).
 If <code class="docutils literal notranslate"><span class="pre">x</span></code> is negative, then the returned value will be between <code class="docutils literal notranslate"><span class="pre">0</span></code> and <code class="docutils literal notranslate"><span class="pre">-1</span></code>. In all cases it should
@@ -387,7 +385,7 @@ hold that <code class="docutils literal notranslate"><span class="pre">x</span> 
 </div>
 </section>
 <section id="floor-x">
-<h2><code class="docutils literal notranslate"><span class="pre">floor(x)</span></code><a class="headerlink" href="#floor-x" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">floor(x)</span></code><a class="headerlink" href="#floor-x" title="Link to this heading">¶</a></h2>
 <p>Returns the value <code class="docutils literal notranslate"><span class="pre">x</span></code> rounded down towards negative infinity. In other words, this returns the
 largest integer value less than or equal to <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> floor</span>
@@ -410,7 +408,7 @@ largest integer value less than or equal to <code class="docutils literal notran
 </div>
 </section>
 <section id="inc-x">
-<h2><code class="docutils literal notranslate"><span class="pre">inc(x)</span></code><a class="headerlink" href="#inc-x" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">inc(x)</span></code><a class="headerlink" href="#inc-x" title="Link to this heading">¶</a></h2>
 <p>Returns the value <code class="docutils literal notranslate"><span class="pre">x</span></code> increased towards the next integer. Thus, if <code class="docutils literal notranslate"><span class="pre">x</span></code> is already an integer
 this returns <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">+</span> <span class="pre">1</span></code>, but if <code class="docutils literal notranslate"><span class="pre">x</span></code> is not an integer then this returns <code class="docutils literal notranslate"><span class="pre">ceil(x)</span></code>.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> inc</span>
@@ -432,7 +430,7 @@ this returns <code class="docutils literal notranslate"><span class="pre">x</spa
 </div>
 </section>
 <section id="int-x">
-<h2><code class="docutils literal notranslate"><span class="pre">int(x)</span></code><a class="headerlink" href="#int-x" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">int(x)</span></code><a class="headerlink" href="#int-x" title="Link to this heading">¶</a></h2>
 <p>Truncates the fractional part of <code class="docutils literal notranslate"><span class="pre">x</span></code>, rounding it towards zero, and returns just the integer part
 of the argument <code class="docutils literal notranslate"><span class="pre">x</span></code>.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> int</span>
@@ -455,7 +453,7 @@ of the argument <code class="docutils literal notranslate"><span class="pre">x</
 </div>
 </section>
 <section id="round-x">
-<h2><code class="docutils literal notranslate"><span class="pre">round(x)</span></code><a class="headerlink" href="#round-x" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">round(x)</span></code><a class="headerlink" href="#round-x" title="Link to this heading">¶</a></h2>
 <p>Rounds the value <code class="docutils literal notranslate"><span class="pre">x</span></code> towards a nearest integer.</p>
 <p>The values that end with <code class="docutils literal notranslate"><span class="pre">.5</span></code> are rounded up if <code class="docutils literal notranslate"><span class="pre">x</span></code> is positive, and down if <code class="docutils literal notranslate"><span class="pre">x</span></code> is negative.</p>
 <div class="highlight-yarn notranslate"><div class="highlight"><pre><span></span><span class="nb">title</span><span class="p">:</span><span class="nv"> round</span>
@@ -479,7 +477,7 @@ of the argument <code class="docutils literal notranslate"><span class="pre">x</
 </div>
 </section>
 <section id="round-places-x-n">
-<h2><code class="docutils literal notranslate"><span class="pre">round_places(x,</span> <span class="pre">n)</span></code><a class="headerlink" href="#round-places-x-n" title="Permalink to this heading">¶</a></h2>
+<h2><code class="docutils literal notranslate"><span class="pre">round_places(x,</span> <span class="pre">n)</span></code><a class="headerlink" href="#round-places-x-n" title="Link to this heading">¶</a></h2>
 <p>Rounds the value <code class="docutils literal notranslate"><span class="pre">x</span></code> to <code class="docutils literal notranslate"><span class="pre">n</span></code> decimal places.</p>
 <p>The value <code class="docutils literal notranslate"><span class="pre">x</span></code> can be either positive, negative, or zero, but it must be an integer. Rounding to
 <code class="docutils literal notranslate"><span class="pre">0</span></code> decimal places is equivalent to the regular <code class="docutils literal notranslate"><span class="pre">round(x)</span></code> function. If <code class="docutils literal notranslate"><span class="pre">n</span></code> is positive, then the

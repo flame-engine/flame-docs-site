@@ -5,28 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>FlameGame &#8212; Flame</title>
   <!-- Stylesheets -->
-  <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/basic.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
   <link rel="stylesheet" type="text/css" href="../_static/dart_domain.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/package.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/flames.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
-  <script src="../_static/jquery.js"></script>
-  <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-  <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-  <script src="../_static/doctools.js"></script>
-  <script src="../_static/sphinx_highlight.js"></script>
-  <script src="../_static/flutter_app.js"></script>
-  <script src="../_static/clipboard.min.js"></script>
-  <script src="../_static/copybutton.js"></script>
-  <script src="https://unpkg.com/mermaid@9.4.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
-  <script src="../_static/versions.js"></script>
-  <script src="../_static/menu-expand.js"></script>
+  <script src="../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../_static/copybutton.js?v=f281be69"></script>
+  <script src="../_static/versions.js?v=58484017"></script>
+  <script src="../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
   <!-- Links -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -195,7 +193,7 @@
     <div class="document" role="main">
       
   <section class="tex2jax_ignore mathjax_ignore" id="flamegame">
-<h1>FlameGame<a class="headerlink" href="#flamegame" title="Permalink to this heading">¶</a></h1>
+<h1>FlameGame<a class="headerlink" href="#flamegame" title="Link to this heading">¶</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is the most most commonly used <code class="docutils literal notranslate"><span class="pre">Game</span></code> class in Flame.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class implements a <code class="docutils literal notranslate"><span class="pre">Component</span></code> based <code class="docutils literal notranslate"><span class="pre">Game</span></code>. Basically it has a tree of <code class="docutils literal notranslate"><span class="pre">Component</span></code>s
 and calls the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> methods of all <code class="docutils literal notranslate"><span class="pre">Component</span></code>s that have been added to the game.</p>
@@ -242,7 +240,7 @@ it is done in the example above.</p>
 The first can be used if you just want to remove one component, and the second can be used when you
 want to remove a list of components.</p>
 <section id="resizing">
-<h2>Resizing<a class="headerlink" href="#resizing" title="Permalink to this heading">¶</a></h2>
+<h2>Resizing<a class="headerlink" href="#resizing" title="Link to this heading">¶</a></h2>
 <p>Every time the game needs to be resized, for example when the orientation is changed,
 <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> will call all of the <code class="docutils literal notranslate"><span class="pre">Component</span></code>s <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> methods and it will also pass this
 information to the camera and viewport.</p>
@@ -250,7 +248,7 @@ information to the camera and viewport.</p>
 screen (it defaults to [0,0] like a regular <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>).</p>
 </section>
 <section id="lifecycle">
-<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Permalink to this heading">¶</a></h2>
+<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Link to this heading">¶</a></h2>
 <p><img alt="Game Lifecycle Diagram" src="../_images/component_lifecycle.png" /></p>
 <p>When a game first is added to a Flutter widget tree the following lifecycle methods will be called
 in order: <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>, <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and <code class="docutils literal notranslate"><span class="pre">onMount</span></code>. After that it goes on to call <code class="docutils literal notranslate"><span class="pre">update</span></code> and
@@ -259,7 +257,7 @@ Once the <code class="docutils literal notranslate"><span class="pre">GameWidget
 component is removed from the component tree.</p>
 </section>
 <section id="debug-mode">
-<h2>Debug mode<a class="headerlink" href="#debug-mode" title="Permalink to this heading">¶</a></h2>
+<h2>Debug mode<a class="headerlink" href="#debug-mode" title="Link to this heading">¶</a></h2>
 <p>Flame’s <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class provides a variable called <code class="docutils literal notranslate"><span class="pre">debugMode</span></code>, which by default is <code class="docutils literal notranslate"><span class="pre">false</span></code>. It can
 however, be set to <code class="docutils literal notranslate"><span class="pre">true</span></code> to enable debug features for the components of the game. <strong>Be aware</strong> that
 the value of this variable is passed through to its components when they are added to the game, so
@@ -267,7 +265,7 @@ if you change the <code class="docutils literal notranslate"><span class="pre">d
 <p>To read more about the <code class="docutils literal notranslate"><span class="pre">debugMode</span></code> on Flame, please refer to the <a class="reference internal" href="other/debug.html"><span class="std std-doc">Debug Docs</span></a></p>
 </section>
 <section id="change-background-color">
-<h2>Change background color<a class="headerlink" href="#change-background-color" title="Permalink to this heading">¶</a></h2>
+<h2>Change background color<a class="headerlink" href="#change-background-color" title="Link to this heading">¶</a></h2>
 <p>To change the background color of your <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> you have to override <code class="docutils literal notranslate"><span class="pre">backgroundColor()</span></code>.</p>
 <p>In the following example the background color is set to be fully transparent, so that you can see
 the widgets that are behind the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>. The default it opaque black.</p>
@@ -281,7 +279,7 @@ the widgets that are behind the <code class="docutils literal notranslate"><span
 just draw a background that covers the whole canvas if you would want it to change dynamically.</p>
 </section>
 <section id="singlegameinstance-mixin">
-<h2>SingleGameInstance mixin<a class="headerlink" href="#singlegameinstance-mixin" title="Permalink to this heading">¶</a></h2>
+<h2>SingleGameInstance mixin<a class="headerlink" href="#singlegameinstance-mixin" title="Link to this heading">¶</a></h2>
 <p>An optional mixin <code class="docutils literal notranslate"><span class="pre">SingleGameInstance</span></code> can be applied to your game if you are making a single-game
 application. This is a common scenario when building games: there is a single full-screen
 <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> which hosts a single <code class="docutils literal notranslate"><span class="pre">Game</span></code> instance.</p>
@@ -297,7 +295,7 @@ to always finish loading the component.</p>
 </div>
 </section>
 <section id="low-level-game-api">
-<h2>Low-level Game API<a class="headerlink" href="#low-level-game-api" title="Permalink to this heading">¶</a></h2>
+<h2>Low-level Game API<a class="headerlink" href="#low-level-game-api" title="Link to this heading">¶</a></h2>
 <p><img alt="Game low-level API" src="../_images/game_mixin.png" /></p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> class is a low-level API that can be used when you want to implement the functionality of
 how the game engine should be structured. <code class="docutils literal notranslate"><span class="pre">Game</span></code> does not implement any <code class="docutils literal notranslate"><span class="pre">update</span></code> or
@@ -337,7 +335,7 @@ missing out on all of the built-in features in Flame if you use it.</p>
 </div>
 </section>
 <section id="game-loop">
-<h2>Game Loop<a class="headerlink" href="#game-loop" title="Permalink to this heading">¶</a></h2>
+<h2>Game Loop<a class="headerlink" href="#game-loop" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> module is a simple abstraction over the game loop concept. Basically most games are
 built upon two methods:</p>
 <ul class="simple">
@@ -348,7 +346,7 @@ to the next state.</p></li>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is used by all of Flame’s <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementations.</p>
 </section>
 <section id="pause-resuming-game-execution">
-<h2>Pause/Resuming game execution<a class="headerlink" href="#pause-resuming-game-execution" title="Permalink to this heading">¶</a></h2>
+<h2>Pause/Resuming game execution<a class="headerlink" href="#pause-resuming-game-execution" title="Link to this heading">¶</a></h2>
 <p>A Flame <code class="docutils literal notranslate"><span class="pre">Game</span></code> can be paused and resumed in two ways:</p>
 <ul class="simple">
 <li><p>With the use of the <code class="docutils literal notranslate"><span class="pre">pauseEngine</span></code> and <code class="docutils literal notranslate"><span class="pre">resumeEngine</span></code> methods.</p></li>
@@ -358,7 +356,7 @@ to the next state.</p></li>
 renders will happen until it is resumed.</p>
 </section>
 <section id="flutter-widgets-and-game-instances">
-<h2>Flutter Widgets and Game instances<a class="headerlink" href="#flutter-widgets-and-game-instances" title="Permalink to this heading">¶</a></h2>
+<h2>Flutter Widgets and Game instances<a class="headerlink" href="#flutter-widgets-and-game-instances" title="Link to this heading">¶</a></h2>
 <p>Since a Flame game can be wrapped in a widget, it is quite easy to use it alongside other Flutter
 widgets. But still, there is the Widgets Overlay API that makes things even easier.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Game.overlays</span></code> enables any Flutter widget to be shown on top of a game instance, this makes it very
