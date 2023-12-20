@@ -490,6 +490,15 @@ where the sum of their dimensions are in the thousands.</p>
 <p>If you have called <code class="docutils literal notranslate"><span class="pre">Flame.images.clearCache()</span></code> you also need to call <code class="docutils literal notranslate"><span class="pre">TiledAtlas.clearCache()</span></code> to
 remove disposed images from the tiled cache. It might be useful if your next game map have completely
 different tiles than the previous.</p>
+</section>
+</section>
+<section id="troubleshooting">
+<h2>Troubleshooting<a class="headerlink" href="#troubleshooting" title="Permalink to this heading">¶</a></h2>
+<section id="my-game-shows-lines-and-artifacts-between-the-map-tiles">
+<h3>My game shows “lines” and artifacts between the map tiles<a class="headerlink" href="#my-game-shows-lines-and-artifacts-between-the-map-tiles" title="Permalink to this heading">¶</a></h3>
+<p>This is caused by the imprecision found in float-pointing numbers in computer science.</p>
+<p>Check this <a class="reference external" href="https://verygood.ventures/blog/solving-super-dashs-rendering-challenges-eliminating-ghost-lines-for-a-seamless-gaming-experience">Article</a>
+to learn more about the issue and how it can be solved.</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>
@@ -532,6 +541,8 @@ different tiles than the previous.</p>
   <a href='#limitations' class='list-group-item level-1'>Limitations</a>
   <a href='#flip' class='list-group-item level-2'>Flip</a>
   <a href='#clearing-images-cache' class='list-group-item level-2'>Clearing images cache</a>
+  <a href='#troubleshooting' class='list-group-item level-1'>Troubleshooting</a>
+  <a href='#my-game-shows-lines-and-artifacts-between-the-map-tiles' class='list-group-item level-2'>My game shows “lines” and artifacts between the map tiles</a>
 </div>
 
     </div>
