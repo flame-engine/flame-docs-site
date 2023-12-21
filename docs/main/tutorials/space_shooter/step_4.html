@@ -333,7 +333,10 @@ shots in the game.</p>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">Bullet</span><span class="p">({</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
-<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">));</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span>
+<span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="w">        </span><span class="p">);</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
@@ -347,10 +350,6 @@ shots in the game.</p>
 <span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
 <span class="w">      </span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">25</span><span class="p">;</span>
-<span class="w">    </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span><span class="p">;</span>
-<span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -364,7 +363,10 @@ and make it happen:</p>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">Bullet</span><span class="p">({</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
-<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">));</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span>
+<span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="w">        </span><span class="p">);</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>

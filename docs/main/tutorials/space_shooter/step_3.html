@@ -342,6 +342,12 @@ wrapper <code class="docutils literal notranslate"><span class="pre">SpriteAnima
 simple, take a look at how the component will look like now:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="n">Player</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
+<span class="w">    </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="w">  </span><span class="p">);</span>
+
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
@@ -356,9 +362,6 @@ simple, take a look at how the component will look like now:</p>
 <span class="w">    </span><span class="p">);</span>
 
 <span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
-<span class="w">    </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
-<span class="w">    </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">150</span><span class="p">;</span>
-<span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="c1">// Other methods omitted</span>
@@ -478,29 +481,32 @@ main.dart</div>
 <span class="linenos">38</span>
 <span class="linenos">39</span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
 <span class="linenos">40</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">41</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">42</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">43</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-<span class="linenos">44</span>
-<span class="linenos">45</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
-<span class="linenos">46</span><span class="w">      </span><span class="s1">&#39;player.png&#39;</span><span class="p">,</span>
-<span class="linenos">47</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
-<span class="linenos">48</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
-<span class="linenos">49</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
-<span class="linenos">50</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">48</span><span class="p">),</span>
-<span class="linenos">51</span><span class="w">      </span><span class="p">),</span>
-<span class="linenos">52</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">53</span>
-<span class="linenos">54</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
-<span class="linenos">55</span><span class="w">    </span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
-<span class="linenos">56</span><span class="w">    </span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">150</span><span class="p">;</span>
-<span class="linenos">57</span><span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
-<span class="linenos">58</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">41</span><span class="w">  </span><span class="n">Player</span><span class="p">()</span>
+<span class="linenos">42</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="linenos">43</span><span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
+<span class="linenos">44</span><span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">45</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">46</span>
+<span class="linenos">47</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">48</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">49</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">50</span>
+<span class="linenos">51</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
+<span class="linenos">52</span><span class="w">      </span><span class="s1">&#39;player.png&#39;</span><span class="p">,</span>
+<span class="linenos">53</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="linenos">54</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="linenos">55</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">56</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">48</span><span class="p">),</span>
+<span class="linenos">57</span><span class="w">      </span><span class="p">),</span>
+<span class="linenos">58</span><span class="w">    </span><span class="p">);</span>
 <span class="linenos">59</span>
-<span class="linenos">60</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">61</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
-<span class="linenos">62</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">63</span><span class="p">}</span>
+<span class="linenos">60</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
+<span class="linenos">61</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">62</span>
+<span class="linenos">63</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">64</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
+<span class="linenos">65</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">66</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>

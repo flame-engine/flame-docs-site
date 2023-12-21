@@ -388,7 +388,12 @@ we remove both the current <code class="docutils literal notranslate"><span clas
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">Explosion</span><span class="p">({</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
-<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">150</span><span class="p">));</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">150</span><span class="p">),</span>
+<span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="w">          </span><span class="nl">removeOnFinish:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="p">);</span>
+
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
@@ -403,16 +408,13 @@ we remove both the current <code class="docutils literal notranslate"><span clas
 <span class="w">        </span><span class="nl">loop:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="w">      </span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
-<span class="w">    </span><span class="n">removeOnFinish</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <p>There is not much new in it, the biggest difference compared to the other animation components is
 that we are passing <code class="docutils literal notranslate"><span class="pre">loop:</span> <span class="pre">false</span></code> in the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationData.sequenced</span></code> constructor and that we are
-setting <code class="docutils literal notranslate"><span class="pre">removeOnFinish</span> <span class="pre">=</span> <span class="pre">true;</span></code>. We do that so that when the animation is finished, it will
+setting <code class="docutils literal notranslate"><span class="pre">removeOnFinish:</span> <span class="pre">true;</span></code>. We do that so that when the animation is finished, it will
 automatically be removed from the game!</p>
 <p>And finally, we make a small change in the <code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> method from the <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class
 in order to add the explosion to the game:</p>
