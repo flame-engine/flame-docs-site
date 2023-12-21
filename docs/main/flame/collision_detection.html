@@ -592,9 +592,9 @@ another. Usually you want to set as many hitboxes as possible to <code class="do
 the collision detection more performant. By default the <code class="docutils literal notranslate"><span class="pre">CollisionType</span></code> is <code class="docutils literal notranslate"><span class="pre">active</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">CollisionType</span></code> enum contains the following values:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">active</span></code> collides with other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s of type active or passive</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">passive</span></code> collides with other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s of type active</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">inactive</span></code> will not collide with any other <code class="docutils literal notranslate"><span class="pre">Collidable</span></code>s</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">active</span></code> collides with other <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code>es of type active or passive</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">passive</span></code> collides with other <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code>es of type active</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inactive</span></code> will not collide with any other <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code>es</p></li>
 </ul>
 <p>So if you have hitboxes that you don’t need to check collisions against each other you can mark
 them as passive by setting <code class="docutils literal notranslate"><span class="pre">collisionType:</span> <span class="pre">CollisionType.passive</span></code> in the constructor,
