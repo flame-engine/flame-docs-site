@@ -520,17 +520,17 @@ reuse the output image.</p>
 <p>The Animation class helps you create a cyclic animation of sprites.</p>
 <p>You can create it by passing a list of equally sized sprites and the stepTime (that is, how many
 seconds it takes to move to the next frame):</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span><span class="n">sprites</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.02</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationTicker</span><span class="p">(</span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span><span class="n">sprites</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.02</span><span class="p">));</span>
 </pre></div>
 </div>
 <p>After the animation is created, you need to call its <code class="docutils literal notranslate"><span class="pre">update</span></code> method and render the current frame’s
 sprite on your game instance.</p>
 <p>Example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">SpriteAnimation</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
+<span class="w">  </span><span class="n">SpriteAnimationTicker</span><span class="w"> </span><span class="n">a</span><span class="p">;</span>
 
 <span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">(...);</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationTicker</span><span class="p">(</span><span class="n">SpriteAnimation</span><span class="p">(...));</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
