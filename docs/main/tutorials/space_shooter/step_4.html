@@ -439,29 +439,30 @@ movement:</p>
 <p>We now have everything set up, so let’s write the shooting routine in our player class.</p>
 <p>Remember, the shooting behavior will be adding bullets through time intervals when the player is
 dragging the starship.</p>
-<p>We could very likely implement the time interval code manually, but Flame provides a component
-out of the box for that, the <code class="docutils literal notranslate"><span class="pre">TimerComponent</span></code>, so let’s take advantage of it:</p>
+<p>We could implement the time interval code and the spawning manually, but Flame
+provides a component out of the box for that, the <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code>, so let’s take advantage of it:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">TimerComponent</span><span class="w"> </span><span class="n">_bulletSpawner</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">SpawnComponent</span><span class="w"> </span><span class="n">_bulletSpawner</span><span class="p">;</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Loading animation omitted</span>
 
-<span class="w">    </span><span class="n">_bulletSpawner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TimerComponent</span><span class="p">(</span>
+<span class="w">    </span><span class="n">_bulletSpawner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpawnComponent</span><span class="p">(</span>
 <span class="w">      </span><span class="nl">period:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">onTick:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">bullet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Bullet</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">selfPositioning:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Bullet</span><span class="p">(</span>
 <span class="w">          </span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">+</span>
 <span class="w">              </span><span class="n">Vector2</span><span class="p">(</span>
 <span class="w">                </span><span class="m">0</span><span class="p">,</span>
 <span class="w">                </span><span class="o">-</span><span class="n">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
 <span class="w">              </span><span class="p">),</span>
 <span class="w">        </span><span class="p">);</span>
-<span class="w">        </span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">bullet</span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">bullet</span><span class="p">;</span>
 <span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="nl">repeat:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">      </span><span class="nl">autoStart:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="w">    </span><span class="p">);</span>
 
@@ -484,13 +485,15 @@ out of the box for that, the <code class="docutils literal notranslate"><span cl
 </div>
 <p>Hopefully the code above speaks for itself, but let’s look at it in more detail:</p>
 <ul class="simple">
-<li><p>First we declared a <code class="docutils literal notranslate"><span class="pre">TimerComponent</span></code> called <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> in our game class, we needed it
+<li><p>First we declared a <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code> called <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> in our game class, we needed it
 to be an variable accessible to the whole component since we will be accessing it in the
 <code class="docutils literal notranslate"><span class="pre">startShooting</span></code> and <code class="docutils literal notranslate"><span class="pre">stopShooting</span></code> methods.</p></li>
 <li><p>We initialize our <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> in the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method. In the first argument, <code class="docutils literal notranslate"><span class="pre">period</span></code>, we set
 how much time in seconds it will take between calls, and we choose <code class="docutils literal notranslate"><span class="pre">.2</span></code> seconds for now.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">onTick</span></code> attribute receives a function that will be called every time the <code class="docutils literal notranslate"><span class="pre">period</span></code> is reached.</p></li>
-<li><p>We say that it should loop forever by setting <code class="docutils literal notranslate"><span class="pre">repeat</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p></li>
+<li><p>We set <code class="docutils literal notranslate"><span class="pre">selfPositioning:</span> <span class="pre">true</span></code> so the spawn component don’t try to position the created
+component itself since we want to handle that ourselves to make the bullets spawn out of the ship.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">factory</span></code> attribute receives a function that will be called every time the <code class="docutils literal notranslate"><span class="pre">period</span></code> is reached.
+and must return the create component.</p></li>
 <li><p>Then we set that it should not auto start by default.</p></li>
 <li><p>Finally we add the <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> to our component, so it can be processed in the game loop.</p></li>
 </ul>
