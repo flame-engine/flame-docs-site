@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Getting Started &#8212; Flame</title>
+  <title>Enemies and Bullets collision &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
@@ -36,8 +36,8 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="Controlling the player and adding some graphics" href="step_2.html" />
-  <link rel="prev" title="Space Shooter Game Tutorial" href="space_shooter.html" />
+  <link rel="next" title="Development" href="../../development/development.html" />
+  <link rel="prev" title="Adding Enemies" href="step_5.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -283,12 +283,12 @@
 </ul>
 </li>
 <li class="toctree-l2 current"><a class="reference internal" href="space_shooter.html">Space Shooter</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_1.html">1. Getting Started</a></li>
 <li class="toctree-l3"><a class="reference internal" href="step_2.html">2. Controlling the player and adding some graphics</a></li>
 <li class="toctree-l3"><a class="reference internal" href="step_3.html">3. Adding animations and depth</a></li>
 <li class="toctree-l3"><a class="reference internal" href="step_4.html">4. Adding Bullets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="step_5.html">5. Adding Enemies</a></li>
-<li class="toctree-l3"><a class="reference internal" href="step_6.html">6. Enemy and Bullet collisions</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">6. Enemy and Bullet collisions</a></li>
 </ul>
 </li>
 </ul>
@@ -321,115 +321,122 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="getting-started">
-<h1>Getting Started<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h1>
-<p>This tutorial will guide you on the development of a full Flame game, starting from the ground up,
-step by step. By the end of it, you will have built a classic Space Shooter game, featuring
-animations, input using gestures, mouse and keyboard controls, collision detections, and so on.</p>
-<p>This first part will introduce you to:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>: The base class for games using the Flame Component System.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>: The <code class="docutils literal notranslate"><span class="pre">Widget</span></code> that will insert your game into the Flutter widget tree.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>: One of the most basic Flame components holds both a position and
-dimension in the game space.</p></li>
-</ul>
-<p>Let’s start by creating our game class and the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> that will run it.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
-<span class="p">}</span>
-
-<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">SpaceShooterGame</span><span class="p">()));</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="enemies-and-bullets-collision">
+<h1>Enemies and Bullets collision<a class="headerlink" href="#enemies-and-bullets-collision" title="Link to this heading">¶</a></h1>
+<p>Right, we are really close to a playable game, we have enemies and we have the ability to shoot bullets
+at them! We now need to do something when a bullet hits an enemy.</p>
+<p>Flame provides a collision detection system out of the box, which we will use to implement our
+logic that will handle when a bullet and an enemy comes into contact. The result will be that
+both are removed!</p>
+<p>First we need to let our <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> know that we want collisions between components to
+be checked. In order to do so, simply add the <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> mixin to the declaration
+of the game class:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="p">,</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// ...</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>That is it! If you run this, you will only see an empty black screen for now, from that, we can
-start implementing our game.</p>
-<p>Next, let’s create our player component. To do so, we will create a new class based on Flame’s
-<code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>. This component is the base for all components that have a position and a size
-on the game screen. For now, our component will only render a white square; it could be
-implemented as follows:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<p>With that, Flame now will start to check if components has collided with each other. Next we need to
+identify which components can cause collisions.</p>
+<p>In our case those are the <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> and <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> components and we need to add hitboxes to them.</p>
+<p>A hitbox is nothing more than a defined part of the component’s area that can hit
+other objects. Flame offers a collection of classes to define a hitbox, the simplest of them is
+the <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code>, which like the name implies will make a rectangular area as the component’s
+hitbox.</p>
+<p>Hitboxes are also components, so in order to add them to our components we can simply add
+the following line on both the <code class="docutils literal notranslate"><span class="pre">Bullet</span></code>’s and <code class="docutils literal notranslate"><span class="pre">Enemy</span></code>’s <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="n">RectangleHitbox</span><span class="p">());</span>
+</pre></div>
+</div>
+<p>From this point on, Flame will take care of checking the collision between those two components,
+we now need to do something when they come in contact.</p>
+<p>We can start that by receiving the collision events in one of the classes. I will choose the
+<code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class to be the one responsible for listening to events, since in theory, there will
+mostly likely be fewer enemies than bullets, so we can do less checking if we keep that logic
+in the enemy class.</p>
+<p>To listen to collision events we need to add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to the component.
+By doing so we will be able to override some methods like <code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> and <code class="docutils literal notranslate"><span class="pre">onCollisionEnd</span></code>.</p>
+<p>So let’s do that and make a few changes to the <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Enemy</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="w"> </span><span class="p">{</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">_paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">white</span><span class="p">;</span>
+<span class="w">  </span><span class="c1">// Other methods omitted</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">toRect</span><span class="p">(),</span><span class="w"> </span><span class="n">_paint</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionStart</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Bullet</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="w">      </span><span class="n">other</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Now, let’s add our new component to the game. Adding any component on game startup should be done
-in the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method, so let’s override <code class="docutils literal notranslate"><span class="pre">FlameGame.onLoad</span></code> and add our logic there. The modified
-code will look like the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<p>As you can see, we added the mixin to the class, overrode the <code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> method,
+where we check whether the component that collided with us was a <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> and if it was, then
+we remove both the current <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> instance and the <code class="docutils literal notranslate"><span class="pre">Bullet</span></code>.</p>
+<p>If you run the game now you will finally be able to defeat the enemies crawling down the screen!</p>
+<p>To add some final touches, let’s add some explosion animations and add more action to the game!</p>
+<p>First, let’s create the explosion class:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Explosion</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Explosion</span><span class="p">({</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">150</span><span class="p">));</span>
+
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">add</span><span class="p">(</span>
-<span class="w">      </span><span class="n">Player</span><span class="p">()</span>
-<span class="w">        </span><span class="p">..</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span>
-<span class="w">        </span><span class="p">..</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span>
-<span class="w">        </span><span class="p">..</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
-<span class="w">        </span><span class="p">..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;explosion.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">6</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="p">.</span><span class="m">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span>
+<span class="w">        </span><span class="nl">loop:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">      </span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
+<span class="w">    </span><span class="n">removeOnFinish</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>If you run this, you will now see a white rectangle being rendered in the center of the screen.</p>
-<p>A couple of points worth commenting:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">size</span></code> is a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> variable from the game class and it holds the current dimension of the game
-area, where <code class="docutils literal notranslate"><span class="pre">x</span></code> is the horizontal dimension or the width, and <code class="docutils literal notranslate"><span class="pre">y</span></code> is the vertical dimension or the
-height.</p></li>
-<li><p>By default, Flame follows Flutter’s canvas anchoring, which means that (0, 0) is anchored on the
-top left corner of the canvas. So the game and all components use that same anchor by default. We
-can change this by changing our component’s <code class="docutils literal notranslate"><span class="pre">anchor</span></code> attribute to <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code>, which will make
-our life way easier if you want to center the component on the screen.</p></li>
-</ul>
-<p>And that is it for this first part! In this first step, we learned the basics of how to create a
-game class, insert it into the Flutter widget tree, and render a simple component.</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/tutorials-space_shooter-app/index.html?step1&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step1">
-<div class="filename docutils container">
-main.dart</div>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 4</span>
-<span class="linenos"> 5</span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 6</span><span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">SpaceShooterGame</span><span class="p">()));</span>
-<span class="linenos"> 7</span><span class="p">}</span>
-<span class="linenos"> 8</span>
-<span class="linenos"> 9</span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">10</span><span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">_paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">white</span><span class="p">;</span>
-<span class="linenos">11</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">12</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">13</span><span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">toRect</span><span class="p">(),</span><span class="w"> </span><span class="n">_paint</span><span class="p">);</span>
-<span class="linenos">14</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">15</span><span class="p">}</span>
-<span class="linenos">16</span>
-<span class="linenos">17</span><span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">18</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">19</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">20</span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
-<span class="linenos">21</span><span class="w">      </span><span class="n">Player</span><span class="p">()</span>
-<span class="linenos">22</span><span class="w">        </span><span class="p">..</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span>
-<span class="linenos">23</span><span class="w">        </span><span class="p">..</span><span class="n">width</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50</span>
-<span class="linenos">24</span><span class="w">        </span><span class="p">..</span><span class="n">height</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span>
-<span class="linenos">25</span><span class="w">        </span><span class="p">..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos">26</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">27</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">28</span><span class="p">}</span>
+<p>There is not much new in it, the biggest difference compared to the other animation components is
+that we are passing <code class="docutils literal notranslate"><span class="pre">loop:</span> <span class="pre">false</span></code> in the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationData.sequenced</span></code> constructor and that we are
+setting <code class="docutils literal notranslate"><span class="pre">removeOnFinish</span> <span class="pre">=</span> <span class="pre">true;</span></code>. We do that so that when the animation is finished, it will
+automatically be removed from the game!</p>
+<p>And finally, we make a small change in the <code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> method from the <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class
+in order to add the explosion to the game:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
+<span class="w">    </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionStart</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Bullet</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="w">      </span><span class="n">other</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Explosion</span><span class="p">(</span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="p">));</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
-</div>
-<button class="flutter-app-button code" onclick="open_code_listings(&quot;tutorials-space_shooter-app-source-step1&quot;)">Code</button></section>
+<p>And that is it! We finally have a game which provides all the minimum necessary elements for a space
+shooter, from here you can use what you learned to build more features in the game like making
+the player suffer damage if it clashes with an enemy, or make the enemies shoot back, or maybe
+both?</p>
+<p>Good hunting pilot, and happy coding!</p>
+</section>
 
 
     </div>
@@ -438,18 +445,18 @@ main.dart</div>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="space_shooter.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="step_5.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Space Shooter Game Tutorial</p>
+          <p class="prev-next-title">Adding Enemies</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="step_2.html" title="next page">
+      <a class="right-next" id="next-link" href="../../development/development.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Controlling the player and adding some graphics</p>
+          <p class="prev-next-title">Development</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
