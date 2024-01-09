@@ -451,7 +451,7 @@ component tree, and also whenever the parent of the current component changes it
 it is only run once even if the component is removed both by using the parents remove method and
 the <code class="docutils literal notranslate"><span class="pre">Component</span></code> remove method.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method can be overridden to run asynchronous initialization code for the component,
-like loading an image for example. This method is executed after <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>, but before
+like loading an image for example. This method is executed before <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> and
 <code class="docutils literal notranslate"><span class="pre">onMount</span></code>. This method is guaranteed to execute only once during the lifetime of the component, so
 you can think of it as an “asynchronous constructor”.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onMount</span></code> method runs every time when the component is mounted into a game tree. This means that
