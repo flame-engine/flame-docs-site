@@ -48877,7 +48877,7 @@ return r!=null?r*s:q},
 bKP(a){var s,r,q,p,o,n,m,l=A.b([],t.n)
 for(s=a.length,r="",q=0;q<s;++q){p=a[q]
 o=p===" "||p==="-"||p===","
-n=q>0&&a[q-1]==="e"
+n=q>0&&a[q-1].toLowerCase()==="e"
 if(o&&!n){if(r!==""){m=A.iJ(r,!1)
 m.toString
 l.push(m)}r=p==="-"?"-":""}else{if(p===".")if(A.Cu(r,".",0)){m=A.iJ(r,!1)
@@ -67318,7 +67318,7 @@ $1$fontWeight(a){return this.a6(this,A.U("$1$fontWeight","$1$fontWeight",0,[a],[
 $1$fontStyle(a){return this.a6(this,A.U("$1$fontStyle","$1$fontStyle",0,[a],["fontStyle"],0))},
 $1$decoration(a){return this.a6(this,A.U("$1$decoration","$1$decoration",0,[a],["decoration"],0))},
 $2$out(a,b){return this.a6(this,A.U("$2$out","$2$out",0,[a,b],["out"],0))},
-$3$ignoreHitboxes$out(a,b,c){return this.a6(this,A.U("$3$ignoreHitboxes$out","$3$ignoreHitboxes$out",0,[a,b,c],["ignoreHitboxes","out"],0))},
+$4$hitboxFilter$ignoreHitboxes$out(a,b,c,d){return this.a6(this,A.U("$4$hitboxFilter$ignoreHitboxes$out","$4$hitboxFilter$ignoreHitboxes$out",0,[a,b,c,d],["hitboxFilter","ignoreHitboxes","out"],0))},
 $3$maxDistance$out(a,b,c){return this.a6(this,A.U("$3$maxDistance$out","$3$maxDistance$out",0,[a,b,c],["maxDistance","out"],0))},
 $1$rootComponent(a){return this.a6(this,A.U("$1$rootComponent","$1$rootComponent",0,[a],["rootComponent"],0))},
 $1$2$eventHandler$rootComponent(a,b,c){return this.a6(this,A.U("$1$2$eventHandler$rootComponent","$1$2$eventHandler$rootComponent",0,[a,b,c],["eventHandler","rootComponent"],1))},
@@ -80855,7 +80855,7 @@ m.a5=A.bcT(s,q)},
 a9(a,b){var s,r=this,q=r.a5
 q===$&&A.c()
 s=r.af
-r.dF$.aSy(q,50,s)
+r.dF$.aSx(q,50,s)
 if(s.b!=null){q=r.k4.ax
 if(q.gbS(q).px(0,t.j1).length===0){q=r.k4
 s=new A.a(new Float64Array(2))
@@ -86507,20 +86507,20 @@ $ieD:1,
 guR(){return this.t3$},
 gLN(){return this.p5$}}
 A.B8.prototype={
-WK(a,b,c,a0){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d=null
-a0.b=null
+WK(a,b,c,a0,a1){var s,r,q,p,o,n,m,l,k,j,i,h,g,f,e,d=null
+a1.b=null
 s=a.a.a
 r=s[0]
 q=s[1]
-s=c==null
+s=a0==null
 if(!s){p=a.b.a
-o=r+p[0]*c
-n=q+p[1]*c}else{p=a.b.a
+o=r+p[0]*a0
+n=q+p[1]*a0}else{p=a.b.a
 o=p[0]>0?1/0:-1/0
 n=p[1]>0?1/0:-1/0}p=$.bfQ()
 p.a.q(Math.min(r,o),Math.min(q,n))
 p.b.q(Math.max(r,o),Math.max(q,n))
-for(p=this.a,p=p.gaco(p),m=p.length,l=a0,k=0;k<p.length;p.length===m||(0,A.E)(p),++k){j=p[k]
+for(p=this.a,p=p.gaco(p),m=p.length,l=a1,k=0;k<p.length;p.length===m||(0,A.E)(p),++k){j=p[k]
 i=j.hf$?j.i8$:j.k6()
 if(!i.ac3($.bfQ()))continue
 h=j.adX(a,$.bu7())
@@ -86533,7 +86533,7 @@ g=i<g
 i=g}else i=!0
 if(i){i=h.b!=null?h.d:d
 i.toString
-i=i<=(s?1/0:c)}else i=!1}else i=!1
+i=i<=(s?1/0:a0)}else i=!1}else i=!1
 if(i){i=h.b
 g=i!=null
 i=g?i:d
@@ -86542,8 +86542,8 @@ e=g?h.e:d
 g=g?h.d:d
 l.N0(g,i,h.a,e,f)}}s=l.b!=null
 return s===!0?l:d},
-aSx(a,b,c){return this.WK(a,b,null,c)},
-aSy(a,b,c){return this.WK(a,null,b,c)},
+aSy(a,b,c,d){return this.WK(a,b,c,null,d)},
+aSx(a,b,c){return this.WK(a,null,null,b,c)},
 WL(a,b,c,d){var s,r,q,p,o,n,m=null,l=6.283185307179586/(b+(Math.abs(0)<0.0001?0:-1)),k=A.b([],t.eF),j=new Float64Array(2),i=new A.a(j)
 i.q(1,0)
 for(s=t.sD,r=0;r<b;++r){q=d.length
@@ -86563,7 +86563,7 @@ if(r<(q==null?0:q))o=c[r]
 else{q=A.a7B()
 n=new A.a(new Float64Array(2))
 o=new A.og(!1,m,q,17976931348623157e292,n,s)
-c.push(o)}o=this.WK(p,m,m,o)
+c.push(o)}o=this.WK(p,m,m,m,o)
 if(o!=null)k.push(o)}return k},
 adZ(a,b,c){return new A.eP(this.aSA(a,b,c),t.Wi)},
 aSA(a,b,c){var s=this
@@ -86578,7 +86578,7 @@ h=(i==null?0:i)>j
 if(h)g=p[j]
 else{i=A.a7B()
 f=new A.a(new Float64Array(2))
-g=new A.og(!1,null,i,17976931348623157e292,f,l)}o=s.aSx(k,null,g)!=null?5:7
+g=new A.og(!1,null,i,17976931348623157e292,f,l)}o=s.aSy(k,null,null,g)!=null?5:7
 break
 case 5:i=g.b!=null?g.c:null
 i.toString

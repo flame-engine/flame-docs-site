@@ -48749,7 +48749,7 @@ return r!=null?r*s:q},
 bKp(a){var s,r,q,p,o,n,m,l=A.b([],t.n)
 for(s=a.length,r="",q=0;q<s;++q){p=a[q]
 o=p===" "||p==="-"||p===","
-n=q>0&&a[q-1]==="e"
+n=q>0&&a[q-1].toLowerCase()==="e"
 if(o&&!n){if(r!==""){m=A.iI(r,!1)
 m.toString
 l.push(m)}r=p==="-"?"-":""}else{if(p===".")if(A.Cs(r,".",0)){m=A.iI(r,!1)
