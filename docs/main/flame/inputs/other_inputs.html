@@ -335,13 +335,7 @@
 To use this feature, you need to create a <code class="docutils literal notranslate"><span class="pre">JoystickComponent</span></code>, configure it the way you want, and
 add it to your game.</p>
 <p>Check this example to get a better understanding:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasDraggables</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">joystick</span><span class="p">.</span><span class="n">addObserver</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">joystick</span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
@@ -370,8 +364,8 @@ add it to your game.</p>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">JoystickPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">JoystickPlayer</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">joystick</span><span class="p">)</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Player</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">joystick</span><span class="p">)</span>
 <span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
 <span class="w">        </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
 <span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100.0</span><span class="p">),</span>
@@ -391,7 +385,7 @@ add it to your game.</p>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">direction</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">JoystickDirection</span><span class="p">.</span><span class="n">idle</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">velocity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">maxSpeed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span>
+<span class="w">      </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">joystick</span><span class="p">.</span><span class="n">relativeDelta</span><span class="w">  </span><span class="o">*</span><span class="w"> </span><span class="n">maxSpeed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span>
 <span class="w">      </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">joystick</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">screenAngle</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
@@ -407,7 +401,7 @@ These are the fields that should be used to know the state of the joystick:</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">intensity</span></code>: The percentage [0.0, 1.0] that the knob is dragged from the epicenter to the edge of
 the joystick (or <code class="docutils literal notranslate"><span class="pre">knobRadius</span></code> if that is set).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">delta</span></code>: The absolute amount (defined as a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>) that the knob is dragged from its epicenter.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">velocity</span></code>: The percentage, presented as a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>, and direction that the knob is currently
+<li><p><code class="docutils literal notranslate"><span class="pre">relativeDelta</span></code>: The percentage, presented as a <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>, and direction that the knob is currently
 pulled from its base position to a edge of the joystick.</p></li>
 </ul>
 <p>If you want to create buttons to go with your joystick, check out
