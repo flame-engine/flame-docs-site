@@ -466,7 +466,7 @@ provides a component out of the box for that, the <code class="docutils literal 
 <span class="w">      </span><span class="nl">autoStart:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="w">    </span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">_bulletSpawner</span><span class="p">);</span>
+<span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">_bulletSpawner</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -496,6 +496,8 @@ component itself since we want to handle that ourselves to make the bullets spaw
 and must return the create component.</p></li>
 <li><p>Then we set that it should not auto start by default.</p></li>
 <li><p>Finally we add the <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> to our component, so it can be processed in the game loop.</p></li>
+<li><p>Note how the <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> is added to the game instead of the player, since the bullets
+are part of the whole game and not the player itself.</p></li>
 </ul>
 <p>With the <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> all setup, the only missing piece now is to start the
 <code class="docutils literal notranslate"><span class="pre">_bulletSpawner.timer</span></code> at <code class="docutils literal notranslate"><span class="pre">startShooting</span></code> and stop it in the <code class="docutils literal notranslate"><span class="pre">stopShooting</span></code>!</p>
@@ -591,7 +593,7 @@ main.dart</div>
 <span class="linenos"> 86</span><span class="w">      </span><span class="nl">autoStart:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="linenos"> 87</span><span class="w">    </span><span class="p">);</span>
 <span class="linenos"> 88</span>
-<span class="linenos"> 89</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">_bulletSpawner</span><span class="p">);</span>
+<span class="linenos"> 89</span><span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">_bulletSpawner</span><span class="p">);</span>
 <span class="linenos"> 90</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos"> 91</span>
 <span class="linenos"> 92</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
