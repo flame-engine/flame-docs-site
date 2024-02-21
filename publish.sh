@@ -102,7 +102,7 @@ function generate_docs_for_version {
   
   cp -r $tmp_flame_src/doc/_build/html "docs/$version"
   no_index_string="<meta name=\"robots\" content=\"noindex\">"
-  sed -i "/<head>/a  $no_index_string" docs/$version/index.html
+  find "docs/$version" -type f -name "*.html" -exec sed -i "/<head>/a  $no_index_string" {} +
 
   echo "$version" >> docs/versions.txt
 }
