@@ -40668,7 +40668,7 @@ return A.G($async$bo,r)},
 ac(a){var s,r,q=this.aE
 q===$&&A.d()
 s=this.a5.a
-r=A.da(B.c.cL(255*Math.max(q.aA(0,a),0.00392156862745098)),s>>>16&255,s>>>8&255,s&255)
+r=A.da(B.c.cL(255*Math.min(Math.max(q.aA(0,a),0),1)),s>>>16&255,s>>>8&255,s&255)
 s=this.p1
 s===$&&A.d()
 s.ic(null).siB(new A.rn(r,B.bf))},

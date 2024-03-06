@@ -342,7 +342,7 @@ For each we have a mixin that can me added to a <code class="docutils literal no
 <p>To make a <code class="docutils literal notranslate"><span class="pre">Game</span></code> sub class sensitive to key stroke, mix it with <code class="docutils literal notranslate"><span class="pre">KeyboardEvents</span></code>.</p>
 <p>After that, it will be possible to override an <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> method.</p>
 <p>This method receives two parameters, first the
-<a class="reference external" href="https://api.flutter.dev/flutter/services/RawKeyEvent-class.html"><code class="docutils literal notranslate"><span class="pre">RawKeyEvent</span></code></a>
+<a class="reference external" href="https://api.flutter.dev/flutter/services/KeyEvent-class.html"><code class="docutils literal notranslate"><span class="pre">KeyEvent</span></code></a>
 that triggers the callback in the first place. The second is a set of the currently pressed
 <a class="reference external" href="https://api.flutter.dev/flutter/services/LogicalKeyboardKey-class.html"><code class="docutils literal notranslate"><span class="pre">LogicalKeyboardKey</span></code></a>.</p>
 <p>The return value is a
@@ -359,10 +359,10 @@ skip any other handler widget and will straight up play the alert sound.</p>
 <span class="w">  </span><span class="c1">// ...</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">KeyEventResult</span><span class="w"> </span><span class="n">onKeyEvent</span><span class="p">(</span>
-<span class="w">    </span><span class="n">RawKeyEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span>
+<span class="w">    </span><span class="n">KeyEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span>
 <span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">LogicalKeyboardKey</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">,</span>
 <span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">isKeyDown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">RawKeyDownEvent</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">isKeyDown</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">KeyDownEvent</span><span class="p">;</span>
 
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">isSpace</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">space</span><span class="p">);</span>
 
@@ -393,7 +393,7 @@ from the game mixin list to avoid conflicts.</p>
 </div></blockquote>
 <p>After applying <code class="docutils literal notranslate"><span class="pre">KeyboardHandler</span></code>, it will be possible to override an <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> method.</p>
 <p>This method receives two parameters. First the
-<a class="reference external" href="https://api.flutter.dev/flutter/services/RawKeyEvent-class.html"><code class="docutils literal notranslate"><span class="pre">RawKeyEvent</span></code></a>
+<a class="reference external" href="https://api.flutter.dev/flutter/services/KeyEvent-class.html"><code class="docutils literal notranslate"><span class="pre">KeyEvent</span></code></a>
 that triggered the callback in the first place. The second is a set of the currently pressed
 <a class="reference external" href="https://api.flutter.dev/flutter/services/LogicalKeyboardKey-class.html"><code class="docutils literal notranslate"><span class="pre">LogicalKeyboardKey</span></code></a>s.</p>
 <p>The returned value should be <code class="docutils literal notranslate"><span class="pre">true</span></code> to allow the continuous propagation of the key event among other
