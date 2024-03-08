@@ -11800,7 +11800,7 @@ A.IY.prototype={
 $1(a){var s=A.bY().b
 if(s==null)s=null
 else{s=s.canvasKitBaseUrl
-if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/04817c99c9fd4956f27505204f7e344335810aed/":s)+a},
+if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/2e4ba9c6fb499ccd4e81420543783cc7267ae406/":s)+a},
 $S:71}
 A.J7.prototype={
 $1(a){this.a.remove()
