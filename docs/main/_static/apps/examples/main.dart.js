@@ -91406,6 +91406,7 @@ case 2:q.f=b
 q.a=B.uJ
 return A.q(null,r)}})
 return A.r($async$H_,r)},
+gF(a){return this.c.length},
 So(a,b,c,d){var s,r,q,p,o,n,m,l,k=this
 if(d==null){d=k.y
 if(d==null)d=A.bcE(1,0,0,0)
