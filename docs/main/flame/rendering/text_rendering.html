@@ -334,11 +334,11 @@ components:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> for rendering a single line of text</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> for bounding multi-line text within a sized box, including the possibility of a
-typing effect</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">ScrollTextBoxComponent</span></code> enhances the functionality of <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> by adding scrolling
-capability when the text exceeds the boundaries of the enclosing box.</p></li>
+typing effect. You can use the <code class="docutils literal notranslate"><span class="pre">newLineNotifier</span></code> to be notified when a new line is added. Use the
+<code class="docutils literal notranslate"><span class="pre">onComplete</span></code> callback to execute a function when the text is completely printed.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ScrollTextBoxComponent</span></code> enhances the functionality of <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> by adding vertical
+scrolling capability when the text exceeds the boundaries of the enclosing box.</p></li>
 </ul>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">onFinished</span></code> callback to get notified when the text is completely printed.</p>
 <p>All components are showcased in
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/text_example.dart">this example</a>.</p>
 <section id="textcomponent">
