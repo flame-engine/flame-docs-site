@@ -301,7 +301,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.16.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.17.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -332,7 +332,12 @@ directory in addition to some children: <code class="docutils literal notranslat
 <span class="w">  </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
 <span class="w">  </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;enemy.png&#39;</span><span class="p">);</span>
 <span class="w">  </span>
-<span class="w">  </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;level.tmx&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">tileSize</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">map1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;level.tmx&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">tileSize</span><span class="p">);</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">map2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">SpriteFusionTilemapComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">mapJsonFile:</span><span class="w"> </span><span class="s1">&#39;map.json&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">spriteSheetFile:</span><span class="w"> </span><span class="s1">&#39;spritesheet.png&#39;</span>
+<span class="w">  </span><span class="p">);</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -343,9 +348,11 @@ directory in addition to some children: <code class="docutils literal notranslat
     │   └── explosion.mp3
     ├── images
     │   ├── enemy.png
-    │   └── player.png
+    │   ├── player.png
+    │   └── spritesheet.png
     └── tiles
-        └── level.tmx
+        ├── level.tmx
+        └── map.json
 </pre></div>
 </div>
 <p>Optionally you can split your <code class="docutils literal notranslate"><span class="pre">audio</span></code> folder into two subfolders, one for <code class="docutils literal notranslate"><span class="pre">music</span></code> and one for <code class="docutils literal notranslate"><span class="pre">sfx</span></code>.</p>

@@ -303,7 +303,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.16.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.17.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -614,6 +614,18 @@ and resumed when it comes back to the foreground. This behavior can be disabled 
 non-mobile platforms including the web.</p>
 </section>
 </section>
+<section id="hasperformancetracker-mixin">
+<h2>HasPerformanceTracker mixin<a class="headerlink" href="#hasperformancetracker-mixin" title="Link to this heading">¶</a></h2>
+<p>While optimizing a game, it can be useful to track the time it took for the game to update and render
+each frame. This data can help in detecting areas of the code that are running hot. It can also help
+in detecting visual areas of the game that are taking the most time to render.</p>
+<p>To get the update and render times, just add the <code class="docutils literal notranslate"><span class="pre">HasPerformanceTracker</span></code> mixin to the game class.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasPerformanceTracker</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// access `updateTime` and `renderTime` getters.</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -655,6 +667,7 @@ non-mobile platforms including the web.</p>
   <a href='#low-level-game-api' class='list-group-item level-1'>Low-level Game API</a>
   <a href='#pause-resuming-stepping-game-execution' class='list-group-item level-1'>Pause/Resuming/Stepping game execution</a>
   <a href='#backgrounding' class='list-group-item level-2'>Backgrounding</a>
+  <a href='#hasperformancetracker-mixin' class='list-group-item level-1'>HasPerformanceTracker mixin</a>
 </div>
 
     </div>
