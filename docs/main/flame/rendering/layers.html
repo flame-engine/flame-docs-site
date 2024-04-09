@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
   <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
   <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=ac7bdd72" />
   <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
   <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -74,8 +74,8 @@
     });
   </script>
 
-  <a href="../../index.html" class="logo_image">
-    <img src="../../_static/logo_flame.png">
+  <a href="../../index.html" class="logo_image" aria-label="Navigate to home page">
+    <img src="../../_static/logo_flame.png" alt="Flame logo: a fiery symbol along with the FLAME wordmark.">
   </a>  
   <div class="highlight-box" role="alert" style="display:none">
     <div>
@@ -424,7 +424,7 @@ during the game, like a background for example.</p>
 entire layer. At the moment, out of the box, only the <code class="docutils literal notranslate"><span class="pre">ShadowProcessor</span></code> is available, this processor
 renders a back drop shadow on your layer.</p>
 <p>To add processors to your layer, just add them to the layer <code class="docutils literal notranslate"><span class="pre">preProcessors</span></code> or <code class="docutils literal notranslate"><span class="pre">postProcessors</span></code>
-list. For example:</p>
+list, like so:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Works the same for both DynamicLayer and PreRenderedLayer</span>
 <span class="kd">class</span><span class="w"> </span><span class="nc">BackgroundLayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PreRenderedLayer</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Sprite</span><span class="w"> </span><span class="n">sprite</span><span class="p">;</span>
@@ -440,8 +440,7 @@ list. For example:</p>
 </pre></div>
 </div>
 <p>Custom processors can be created by extending the <code class="docutils literal notranslate"><span class="pre">LayerProcessor</span></code> class.</p>
-<p>You can check a working example of layers
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/layers_example.dart">here</a>.</p>
+<p>See <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/layers_example.dart">a working example of layers</a>.</p>
 </section>
 </section>
 <section id="snapshots">
@@ -465,8 +464,8 @@ list. For example:</p>
 <h3>Render as a snapshot<a class="headerlink" href="#render-as-a-snapshot" title="Link to this heading">¶</a></h3>
 <p>Setting <code class="docutils literal notranslate"><span class="pre">renderSnapshot</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code> (the default) on a snapshot-enabled component behaves similarly
 to a <code class="docutils literal notranslate"><span class="pre">PreRenderedLayer</span></code>. The component is rendered only once, cached in memory and then just
-replicated on the game canvas afterwards. They are useful for caching content that doesn’t change
-during the game, like a background for example.</p>
+replicated on the game canvas afterwards. This is useful for caching content that doesn’t change
+during the game, like a background.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SnapshotComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Snapshot</span><span class="w"> </span><span class="p">{}</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
@@ -542,7 +541,7 @@ component is at position (0,0) and has no scale or rotation applied.</p>
 </section>
 <section id="snapshots-that-are-cropped-or-off-center">
 <h3>Snapshots that are cropped or off-center<a class="headerlink" href="#snapshots-that-are-cropped-or-off-center" title="Link to this heading">¶</a></h3>
-<p>Sometimes your snapshot <code class="docutils literal notranslate"><span class="pre">Image</span></code> may appear cropped, or not in the position that is expected.</p>
+<p>Sometimes your snapshot <code class="docutils literal notranslate"><span class="pre">Image</span></code> may appear cropped, or not in the position you expected.</p>
 <p>This is because the contents of a <code class="docutils literal notranslate"><span class="pre">Picture</span></code> can be positioned anywhere with respect to the origin,
 but when it is converted to an <code class="docutils literal notranslate"><span class="pre">Image</span></code>, the image always starts from <code class="docutils literal notranslate"><span class="pre">0,0</span></code>. This means that
 anything with a -ve position will be cropped.</p>
@@ -550,7 +549,7 @@ anything with a -ve position will be cropped.</p>
 <code class="docutils literal notranslate"><span class="pre">0,0</span></code> with respect to your game and you never move it. This means that the image will usually
 contain what you expect it to.</p>
 <p>However, this is not always possible. To move (or rotate, or scale etc) the snapshot before
-converting it to an image, pass a transformation matrix to <code class="docutils literal notranslate"><span class="pre">snapshotToImage</span></code>.</p>
+converting it to an image, pass a transformation matrix to <code class="docutils literal notranslate"><span class="pre">snapshotToImage</span></code> like so:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Call something like this to take an image snapshot at any time.</span>
 <span class="kt">void</span><span class="w"> </span><span class="n">takeSnapshot</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Prepare a matrix to move the snapshot by 200,50.</span>

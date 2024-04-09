@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
   <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
   <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
-  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=37920019" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=ac7bdd72" />
   <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
   <!-- Scripts -->
   <script src="../../_static/jquery.js?v=5d32c60e"></script>
@@ -74,8 +74,8 @@
     });
   </script>
 
-  <a href="../../index.html" class="logo_image">
-    <img src="../../_static/logo_flame.png">
+  <a href="../../index.html" class="logo_image" aria-label="Navigate to home page">
+    <img src="../../_static/logo_flame.png" alt="Flame logo: a fiery symbol along with the FLAME wordmark.">
   </a>  
   <div class="highlight-box" role="alert" style="display:none">
     <div>
@@ -335,7 +335,7 @@
 <p>Flame provides a component capable of creating a virtual joystick for taking input for your game.
 To use this feature, you need to create a <code class="docutils literal notranslate"><span class="pre">JoystickComponent</span></code>, configure it the way you want, and
 add it to your game.</p>
-<p>Check this example to get a better understanding:</p>
+<p>Check out the following example to get a better understanding:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">  </span><span class="nd">@override</span>
@@ -393,11 +393,11 @@ add it to your game.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>So in this example, we create the classes <code class="docutils literal notranslate"><span class="pre">MyGame</span></code> and <code class="docutils literal notranslate"><span class="pre">Player</span></code>. <code class="docutils literal notranslate"><span class="pre">MyGame</span></code> creates a joystick which is
-passed to the <code class="docutils literal notranslate"><span class="pre">Player</span></code> when it is created. In the <code class="docutils literal notranslate"><span class="pre">Player</span></code> class we act upon the current state of
-the joystick.</p>
-<p>The joystick has a few fields that change depending on what state it is in.
-These are the fields that should be used to know the state of the joystick:</p>
+<p>In this example, we created the classes <code class="docutils literal notranslate"><span class="pre">MyGame</span></code> and <code class="docutils literal notranslate"><span class="pre">Player</span></code>.
+<code class="docutils literal notranslate"><span class="pre">MyGame</span></code> creates a joystick which is passed to the <code class="docutils literal notranslate"><span class="pre">Player</span></code> when the latter is created.
+In the <code class="docutils literal notranslate"><span class="pre">Player</span></code> class we act upon the current state of the joystick.</p>
+<p>The joystick has a few fields that change depending on what state it is in.</p>
+<p>Following fields should be used to know the state of the joystick:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">intensity</span></code>: The percentage [0.0, 1.0] that the knob is dragged from the epicenter to the edge of
 the joystick (or <code class="docutils literal notranslate"><span class="pre">knobRadius</span></code> if that is set).</p></li>
@@ -407,12 +407,15 @@ pulled from its base position to a edge of the joystick.</p></li>
 </ul>
 <p>If you want to create buttons to go with your joystick, check out
 <a class="reference internal" href="#hudbuttoncomponent"><code class="docutils literal notranslate"><span class="pre">HudButtonComponent</span></code></a>.</p>
-<p>A full examples of how to use it can be found
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/joystick_example.dart">here</a>.
-And it can be seen running <a class="reference external" href="https://examples.flame-engine.org/#/Input_Joystick">here</a>.</p>
-<p>There is also a more advanced example
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/joystick_advanced_example.dart">here</a>
-which is running <a class="reference external" href="https://examples.flame-engine.org/#/Input_Joystick_Advanced">here</a>.</p>
+<p>For the complete code on implementing the joystick, check out the
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/joystick_example.dart">Joystick Example</a>.
+You can also view the
+<a class="reference external" href="https://examples.flame-engine.org/#/Input_Joystick">JoystickComponent in action</a>
+to see a live example of the joystick input function integrated into a game.</p>
+<p>For an additional challenge, explore the
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/joystick_advanced_example.dart">Advanced Joystick Example</a>.
+See what else the advanced features can do in the
+<a class="reference external" href="https://examples.flame-engine.org/#/Input_Joystick_Advanced">live demo</a>.</p>
 </section>
 <section id="hudbuttoncomponent">
 <h2>HudButtonComponent<a class="headerlink" href="#hudbuttoncomponent" title="Link to this heading">¶</a></h2>
@@ -444,8 +447,8 @@ else which isn’t a pure sprite.</p>
 </section>
 <section id="gamepad">
 <h2>Gamepad<a class="headerlink" href="#gamepad" title="Link to this heading">¶</a></h2>
-<p>Flame has a separate plugin to support external game controllers (gamepads), check
-<a class="reference external" href="https://github.com/flame-engine/flame_gamepad">here</a> for more information.</p>
+<p>Flame has a dedicated plugin to support external game controllers (gamepads).
+Find more information in the <a class="reference external" href="https://github.com/flame-engine/gamepad">Gamepads repository</a>.</p>
 </section>
 <section id="advancedbuttoncomponent">
 <h2>AdvancedButtonComponent<a class="headerlink" href="#advancedbuttoncomponent" title="Link to this heading">¶</a></h2>
