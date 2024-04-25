@@ -12602,7 +12602,7 @@ s=new A.cD(new A.mw(s,r,new A.zX(o),p,t.bt),n,m,l,k,$,e,e,e,$,!1,!1,$,B.P,j,!1,i
 s.fo(e,e,e,t.B)
 A.kf(A.ld(s,t.vY))
 s=e
-break $label0$0}s=A.kf(A.Pl(new A.tz('Error: unknown page name "'+b+'"',e),B.i))
+break $label0$0}s=A.kf(A.Pl(new A.tz('Error: unknown page. Pass "step{1,6}" as a GET param; \ne.g: '+A.j(window.location)+"?step1",e),B.i))
 break $label0$0}return s}},B={}
 var w=[A,J,B]
 var $={}

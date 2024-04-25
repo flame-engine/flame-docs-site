@@ -326,7 +326,7 @@
 <h1>Adding Enemies<a class="headerlink" href="#adding-enemies" title="Link to this heading">¶</a></h1>
 <p>Now that the starship is able to shoot, we need something for the player to shoot at! So for
 this step we will work on adding enemies to the game.</p>
-<p>So first things first, let’s create an <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class that will represent the enemies in game:</p>
+<p>First, let’s create an <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class that will represent the enemies in game:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Enemy</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 
@@ -370,12 +370,12 @@ this step we will work on adding enemies to the game.</p>
 <p>Note that for now, the <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class is super similar to the <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> one, the only differences are
 their sizes, animation information and that bullets travel from bottom to top, while enemies travel from
 top to bottom, so nothing new here.</p>
-<p>Next we need to make the enemies spawn in the game, the logic that we will do here will be simple,
-we will simply make enemies spawn from the top of the screen at a random position on the <code class="docutils literal notranslate"><span class="pre">x</span></code> axis.</p>
-<p>Once again, we could manually make all the time based event in the game’s <code class="docutils literal notranslate"><span class="pre">update</span></code> method, maintain
-a random instance to get the enemy x position and so on and so forth, but Flame provides us a
-way to avoid having to write all that by ourselves, we can use the <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code>! So in the
-<code class="docutils literal notranslate"><span class="pre">SpaceShooterGame.onLoad</span></code> method let’s add the following code:</p>
+<p>Next we need to make the enemies spawn in the game, the logic here will be simple:
+we will make enemies spawn from the top of the screen at a random position on the <code class="docutils literal notranslate"><span class="pre">x</span></code> axis.</p>
+<p>Once again, we could manually add all the time based events in the game’s <code class="docutils literal notranslate"><span class="pre">update()</span></code> method, maintain
+a random instance to get the enemy x position and so on and so forth, but Flame provides us with a
+way to avoid having to write all that by ourselves: we can use the <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code>! So in the
+<code class="docutils literal notranslate"><span class="pre">SpaceShooterGame.onLoad()</span></code> method let’s add the following code:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
 <span class="w">      </span><span class="n">SpawnComponent</span><span class="p">(</span>
 <span class="w">        </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -590,7 +590,8 @@ main.dart</div>
 </pre></div>
 </div>
 </div>
-<button class="flutter-app-button code" onclick="open_code_listings(&quot;tutorials-space_shooter-app-source-step5&quot;)">Code</button></section>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;tutorials-space_shooter-app-source-step5&quot;)">Code</button><p><a class="reference internal" href="step_6.html"><span class="std std-doc">Next step: Collision Detection</span></a></p>
+</section>
 
 
     </div>

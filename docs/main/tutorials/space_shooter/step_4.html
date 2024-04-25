@@ -326,10 +326,9 @@
 <h1>Adding bullets<a class="headerlink" href="#adding-bullets" title="Link to this heading">¶</a></h1>
 <p>For this next step we will add a very important feature to any space shooter game, shooting!</p>
 <p>Here is how we will implement it: since we already control our space ship by dragging on the screen
-with the mouse/fingers, we will make the ship auto shoot when the player stars the dragging and
-stops shooting when the gesture/input has ended.</p>
-<p>So let’s start, to begin let’s first create a <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> component that will represent the
-shots in the game.</p>
+with the mouse/fingers, we will make the ship auto shoot when the player starts dragging and
+stop shooting when the gesture/input has ended.</p>
+<p>First, let’s create a <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> component that will represent the shots in the game.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Bullet</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">Bullet</span><span class="p">({</span>
@@ -395,8 +394,8 @@ in the y axis means getting closer to <code class="docutils literal notranslate"
 completely off the screen and it can be removed.</p></li>
 </ul>
 <p>Right, we now have a <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> class ready, so lets start to implement the action of shooting.
-First thing, let’s create two empty methods in the <code class="docutils literal notranslate"><span class="pre">Player</span></code> class, <code class="docutils literal notranslate"><span class="pre">startShooting</span></code> and
-<code class="docutils literal notranslate"><span class="pre">stopShooting</span></code>.</p>
+First thing, let’s create two empty methods in the <code class="docutils literal notranslate"><span class="pre">Player</span></code> class, <code class="docutils literal notranslate"><span class="pre">startShooting()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">stopShooting()</span></code>.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 
@@ -412,8 +411,8 @@ First thing, let’s create two empty methods in the <code class="docutils liter
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>And let’s hook into those methods from the game class, we will do that by using the <code class="docutils literal notranslate"><span class="pre">onPanStart</span></code>
-and <code class="docutils literal notranslate"><span class="pre">onPanEnd</span></code> methods from the <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> mixin that we already have been using for the ship
+<p>And let’s hook into those methods from the game class by using the <code class="docutils literal notranslate"><span class="pre">onPanStart()</span></code>
+and <code class="docutils literal notranslate"><span class="pre">onPanEnd()</span></code> methods from the <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> mixin that we already have been using for the ship
 movement:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
@@ -491,17 +490,17 @@ to be an variable accessible to the whole component since we will be accessing i
 <code class="docutils literal notranslate"><span class="pre">startShooting</span></code> and <code class="docutils literal notranslate"><span class="pre">stopShooting</span></code> methods.</p></li>
 <li><p>We initialize our <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> in the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method. In the first argument, <code class="docutils literal notranslate"><span class="pre">period</span></code>, we set
 how much time in seconds it will take between calls, and we choose <code class="docutils literal notranslate"><span class="pre">.2</span></code> seconds for now.</p></li>
-<li><p>We set <code class="docutils literal notranslate"><span class="pre">selfPositioning:</span> <span class="pre">true</span></code> so the spawn component don’t try to position the created
-component itself since we want to handle that ourselves to make the bullets spawn out of the ship.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">factory</span></code> attribute receives a function that will be called every time the <code class="docutils literal notranslate"><span class="pre">period</span></code> is reached.
-and must return the create component.</p></li>
-<li><p>Then we set that it should not auto start by default.</p></li>
+<li><p>We set <code class="docutils literal notranslate"><span class="pre">selfPositioning:</span> <span class="pre">true</span></code> so the spawn component doesn’t try to position the created component
+since we want to handle that ourselves to make the bullets spawn out of the ship.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">factory</span></code> attribute receives a function that will be called every time the <code class="docutils literal notranslate"><span class="pre">period</span></code> is<br />
+reached and return the created component.</p></li>
+<li><p>We set <code class="docutils literal notranslate"><span class="pre">autoStart:</span> <span class="pre">false</span></code> so it does not start by default.</p></li>
 <li><p>Finally we add the <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> to our component, so it can be processed in the game loop.</p></li>
 <li><p>Note how the <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> is added to the game instead of the player, since the bullets
 are part of the whole game and not the player itself.</p></li>
 </ul>
-<p>With the <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> all setup, the only missing piece now is to start the
-<code class="docutils literal notranslate"><span class="pre">_bulletSpawner.timer</span></code> at <code class="docutils literal notranslate"><span class="pre">startShooting</span></code> and stop it in the <code class="docutils literal notranslate"><span class="pre">stopShooting</span></code>!</p>
+<p>With the <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> all set up, the only missing piece now is starting the
+<code class="docutils literal notranslate"><span class="pre">_bulletSpawner.timer</span></code> in <code class="docutils literal notranslate"><span class="pre">startShooting()</span></code> and stopping it in the <code class="docutils literal notranslate"><span class="pre">stopShooting()</span></code>!</p>
 <p>And that closes this step, putting us real close to a real game!</p>
 <button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/tutorials-space_shooter-app/index.html?step4&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step4">
 <div class="filename docutils container">
@@ -647,7 +646,8 @@ main.dart</div>
 </pre></div>
 </div>
 </div>
-<button class="flutter-app-button code" onclick="open_code_listings(&quot;tutorials-space_shooter-app-source-step4&quot;)">Code</button></section>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;tutorials-space_shooter-app-source-step4&quot;)">Code</button><p><a class="reference internal" href="step_5.html"><span class="std std-doc">Next step: Adding Enemies</span></a></p>
+</section>
 
 
     </div>
