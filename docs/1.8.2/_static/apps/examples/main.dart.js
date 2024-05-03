@@ -43208,8 +43208,8 @@ aBB:function aBB(a){this.a=a},
 aOd:function aOd(){},
 aOe:function aOe(a,b){this.a=a
 this.b=b},
-Xf(){var s=0,r=A.r(t.x6),q,p,o,n,m,l
-var $async$Xf=A.t(function(a,b){if(a===1)return A.o(b,r)
+Xf(a){var s=0,r=A.r(t.x6),q,p,o,n,m,l
+var $async$Xf=A.t(function(b,c){if(b===1)return A.o(c,r)
 while(true)switch(s){case 0:o=$.bns
 s=o==null?3:4
 break
@@ -43306,8 +43306,8 @@ l=A
 s=7
 return A.z($.le().cZ(0,"packages/spine_flutter/lib/assets/libspine_flutter.wasm"),$async$Xf)
 case 7:s=6
-return A.z(m.ayG(l.cA(b.buffer,0,null),"libspine_flutter"),$async$Xf)
-case 6:o=n.bns=b
+return A.z(m.ayG(l.cA(c.buffer,0,null),"libspine_flutter"),$async$Xf)
+case 6:o=n.bns=c
 case 4:if(o!=null){p=A.byx(o)
 q=new A.a8V(p,p.a)
 s=1
@@ -43319,7 +43319,7 @@ this.b=b},
 aqD(){var s=0,r=A.r(t.H),q,p
 var $async$aqD=A.t(function(a,b){if(a===1)return A.o(b,r)
 while(true)switch(s){case 0:s=3
-return A.z(A.Xf(),$async$aqD)
+return A.z(A.Xf(!1),$async$aqD)
 case 3:p=b
 $.bX.b=new A.aOU(p.a.gaQc())
 $.wK.b=p.b

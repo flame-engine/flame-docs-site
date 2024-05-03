@@ -44322,8 +44322,8 @@ aCG:function aCG(a){this.a=a},
 aPe:function aPe(){},
 aPf:function aPf(a,b){this.a=a
 this.b=b},
-XA(){var s=0,r=A.t(t.x6),q,p,o,n,m,l,k
-var $async$XA=A.u(function(a,b){if(a===1)return A.p(b,r)
+XA(a){var s=0,r=A.t(t.x6),q,p,o,n,m,l,k
+var $async$XA=A.u(function(b,c){if(b===1)return A.p(c,r)
 while(true)switch(s){case 0:o=$.bov
 s=o==null?3:4
 break
@@ -44421,8 +44421,8 @@ k=J
 s=7
 return A.A($.lq().cT(0,"packages/spine_flutter/lib/assets/libspine_flutter.wasm"),$async$XA)
 case 7:s=6
-return A.A(m.azO(l.x0(k.nD(b)),"libspine_flutter"),$async$XA)
-case 6:o=n.bov=b
+return A.A(m.azO(l.x0(k.nD(c)),"libspine_flutter"),$async$XA)
+case 6:o=n.bov=c
 case 4:if(o!=null){p=A.bzL(o)
 q=new A.a9G(p,p.a)
 s=1
@@ -44434,7 +44434,7 @@ this.b=b},
 arN(){var s=0,r=A.t(t.H),q,p
 var $async$arN=A.u(function(a,b){if(a===1)return A.p(b,r)
 while(true)switch(s){case 0:s=3
-return A.A(A.XA(),$async$arN)
+return A.A(A.XA(!1),$async$arN)
 case 3:p=b
 $.c0.b=new A.aPZ(p.a.gaQW())
 $.wQ.b=p.b
