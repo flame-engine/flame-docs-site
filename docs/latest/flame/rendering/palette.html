@@ -301,7 +301,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.17.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.18.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -353,11 +353,11 @@ want to use in your game.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Paint</span><span class="w"> </span><span class="n">green</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFF00FF00</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>To help you with this and to also keep your game’s color palette consistent, Flame adds the <code class="docutils literal notranslate"><span class="pre">Palette</span></code>
-class. You can use it to easily access both <code class="docutils literal notranslate"><span class="pre">Color</span></code>s and <code class="docutils literal notranslate"><span class="pre">Paint</span></code>s where needed and also to define
-the colors your game use as constants, so you don’t get those mixed up.</p>
+<p>To help you with this and also keep your game’s color palette consistent, Flame adds the <code class="docutils literal notranslate"><span class="pre">Palette</span></code>
+class. You can use it to easily access both <code class="docutils literal notranslate"><span class="pre">Color</span></code>s and <code class="docutils literal notranslate"><span class="pre">Paint</span></code>s where needed and also define
+the colors your game use as constants, so that you don’t get those mixed up.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">BasicPalette</span></code> class is an example of what a palette can look like, and adds black and white as
-colors. So to use black or white you can access those directly from the <code class="docutils literal notranslate"><span class="pre">BasicPalette</span></code>; for example,
+colors. So you can access black or white directly from the <code class="docutils literal notranslate"><span class="pre">BasicPalette</span></code>; for example,
 using <code class="docutils literal notranslate"><span class="pre">color</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">TextConfig</span><span class="w"> </span><span class="n">regular</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextConfig</span><span class="p">(</span><span class="nl">color:</span><span class="w"> </span><span class="n">BasicPalette</span><span class="p">.</span><span class="n">white</span><span class="p">.</span><span class="n">color</span><span class="p">);</span>
 </pre></div>
@@ -368,8 +368,8 @@ using <code class="docutils literal notranslate"><span class="pre">color</span><
 </div>
 <p>However, the idea is that you can create your own palette, following the <code class="docutils literal notranslate"><span class="pre">BasicPalette</span></code> example, and
 add the color palette/scheme of your game. Then you will be able to statically access any color in
-your components and classes. Below is an example of a <code class="docutils literal notranslate"><span class="pre">Palette</span></code> implementation, from the example
-game <a class="reference external" href="https://github.com/bluefireteam/bgug/blob/master/lib/palette.dart">BGUG</a>:</p>
+your components and classes. Below is an example of a <code class="docutils literal notranslate"><span class="pre">Palette</span></code> implementation, from the <a class="reference external" href="https://github.com/bluefireteam/bgug/blob/master/lib/palette.dart">example
+game BGUG</a>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
 
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/palette.dart&#39;</span><span class="p">;</span>

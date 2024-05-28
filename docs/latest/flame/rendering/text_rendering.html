@@ -303,7 +303,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.17.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.18.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -338,8 +338,7 @@ typing effect. You can use the <code class="docutils literal notranslate"><span 
 <li><p><code class="docutils literal notranslate"><span class="pre">ScrollTextBoxComponent</span></code> enhances the functionality of <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> by adding vertical
 scrolling capability when the text exceeds the boundaries of the enclosing box.</p></li>
 </ul>
-<p>All components are showcased in
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/text_example.dart">this example</a>.</p>
+<p>All components are showcased in <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/text_example.dart">this example</a>.</p>
 <section id="textcomponent">
 <h3>TextComponent<a class="headerlink" href="#textcomponent" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> is a simple component that renders a single line of text.</p>
@@ -393,7 +392,7 @@ text inside a bounding box, creating line breaks according to the provided box s
 <p>You can decide if the box should grow as the text is written or if it should be static by the
 <code class="docutils literal notranslate"><span class="pre">growingBox</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>. A static box could either have a fixed size (setting
 the <code class="docutils literal notranslate"><span class="pre">size</span></code> property of the <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code>), or to automatically shrink to fit the text content.</p>
-<p>In addition, the <code class="docutils literal notranslate"><span class="pre">align</span></code> property allows you to control the the horizontal and vertical alignment of
+<p>In addition, the <code class="docutils literal notranslate"><span class="pre">align</span></code> property allows you to control the horizontal and vertical alignment of
 the text content. For example, setting <code class="docutils literal notranslate"><span class="pre">align</span></code> to <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code> will center the text within its
 bounding box both vertically and horizontally.</p>
 <p>If you want to change the margins of the box use the <code class="docutils literal notranslate"><span class="pre">margins</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>.</p>
@@ -487,8 +486,8 @@ well):</p>
 <span class="w">  </span><span class="p">);</span>
 </pre></div>
 </div>
-<p>For a more elaborate example of rich-text, formatted text blocks rendering, check <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/rich_text_example.dart">this
-example</a>.</p>
+<p>See a more elaborate <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/rich_text_example.dart">example of rich-text, formatted
+text blocks rendering</a>.</p>
 <p>For more details about the underlying mechanics of the text rendering pipeline, see “Text Elements,
 Text Nodes, and Text Styles” below.</p>
 </section>
@@ -625,16 +624,16 @@ the same name:</p>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="w"> </span><span class="k">hide</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">;</span>
 </pre></div>
 </div>
-<p>Some common properties of <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code> are the following (here is the <a class="reference external" href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">full
-list</a>):</p>
+<p>Following are some common properties of <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code>(see the <a class="reference external" href="https://api.flutter.dev/flutter/painting/TextStyle-class.html">full
+list of <code class="docutils literal notranslate"><span class="pre">TextStyle</span></code> properties</a>):</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">fontFamily</span></code>: a commonly available font, like Arial (default), or a custom font added in your
-pubspec (see <a class="reference external" href="https://docs.flutter.dev/cookbook/design/fonts">here</a> how to do it).</p></li>
+pubspec (see <a class="reference external" href="https://docs.flutter.dev/cookbook/design/fonts">how to add a custom font</a>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">fontSize</span></code>: font size, in pts (default <code class="docutils literal notranslate"><span class="pre">24.0</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">height</span></code>: height of text line, as a multiple of font size (default <code class="docutils literal notranslate"><span class="pre">null</span></code>).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">color</span></code>: the color, as a <code class="docutils literal notranslate"><span class="pre">ui.Color</span></code> (default white).</p></li>
 </ul>
-<p>For more information regarding colors and how to create then, see the <a class="reference internal" href="palette.html"><span class="std std-doc">Colors and the
+<p>For more information regarding colors and how to create them, see the <a class="reference internal" href="palette.html"><span class="std std-doc">Colors and
 Palette</span></a> guide.</p>
 </section>
 <section id="spritefontrenderer">
@@ -698,8 +697,7 @@ elements only expose a simpler <code class="docutils literal notranslate"><span 
 <p>However, the other types of Text Elements, Text Nodes, and Text Styles must be used if the intent is
 to create an entire document (multiple blocks or paragraphs), enriched with formatted text. In order
 to render an arbitrary TextElement, you can alternatively use the <code class="docutils literal notranslate"><span class="pre">TextElementComponent</span></code> (see above).</p>
-<p>An example of such usages can be seen in <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/rich_text_example.dart">this
-example</a>.</p>
+<p>See <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/rich_text_example.dart">examples of such usage</a>.</p>
 <section id="text-nodes-and-the-document-root">
 <h3>Text Nodes and the Document Root<a class="headerlink" href="#text-nodes-and-the-document-root" title="Link to this heading">¶</a></h3>
 <p>A <code class="docutils literal notranslate"><span class="pre">DocumentRoot</span></code> is not a <code class="docutils literal notranslate"><span class="pre">TextNode</span></code> (inheritance-wise) in itself but represents a grouping of

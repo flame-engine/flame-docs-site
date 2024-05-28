@@ -301,7 +301,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.17.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.18.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -326,8 +326,7 @@
 <p>Right, we are really close to a playable game, we have enemies and we have the ability to shoot bullets
 at them! We now need to do something when a bullet hits an enemy.</p>
 <p>Flame provides a collision detection system out of the box, which we will use to implement our
-logic that will handle when a bullet and an enemy comes into contact. The result will be that
-both are removed!</p>
+logic when a bullet and an enemy come into contact. The result will be that both are removed!</p>
 <p>First we need to let our <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> know that we want collisions between components to
 be checked. In order to do so, simply add the <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> mixin to the declaration
 of the game class:</p>
@@ -337,16 +336,15 @@ of the game class:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>With that, Flame now will start to check if components has collided with each other. Next we need to
+<p>With that, Flame now will start to check if components have collided with each other. Next we need to
 identify which components can cause collisions.</p>
 <p>In our case those are the <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> and <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> components and we need to add hitboxes to them.</p>
 <p>A hitbox is nothing more than a defined part of the component’s area that can hit
 other objects. Flame offers a collection of classes to define a hitbox, the simplest of them is
-the <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code>, which like the name implies will make a rectangular area as the component’s
+the <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code>, which like the name implies, will set a rectangular area as the component’s
 hitbox.</p>
-<p>Hitboxes are also components, so in order to add them to our components we can simply add
-them to the components that we want to have hitboxes, so let’s do it, let’s start by adding the
-following line to the <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class:</p>
+<p>Hitboxes are also components, so we can simply add them to the components that we want to have hitboxes.
+Let’s start by adding the following line to the <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">add</span><span class="p">(</span><span class="n">RectangleHitbox</span><span class="p">());</span>
 </pre></div>
 </div>
@@ -362,23 +360,23 @@ following line to the <code class="docutils literal notranslate"><span class="pr
 performance!</p>
 <p>There are three types of collisions in Flame:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">active</span></code> collides with other <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code>es of type active or passive</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">passive</span></code> collides with other <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code>es of type active</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">inactive</span></code> will not collide with any other <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code>es</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">active</span></code> collides with other hitboxes of type active or passive</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">passive</span></code> collides with other hitboxes of type active</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">inactive</span></code> will not collide with any other hitbox</p></li>
 </ul>
-<p>Usually it is smart to mark hitboxes from components that will have a higher number of instances
+<p>Usually it is smart to mark <code class="docutils literal notranslate"><span class="pre">hitboxes</span></code> from components that will have a higher number of instances
 as passive, so they will be taken into account for collision, but they themselves will not check
 their own collisions, drastically reducing the number of checking, giving a better performance
 to the game!</p>
-<p>And since in this game we anticipate that there will be more bullets than enemies, we choose the
+<p>And since in this game we anticipate that there will be more bullets than enemies, we set the
 bullets to have a passive collision type!</p>
-<p>From this point on, Flame will take care of checking the collision between those two components,
-we now need to do something when they come in contact.</p>
-<p>We can start that by receiving the collision events in one of the classes. Since <code class="docutils literal notranslate"><span class="pre">Bullet</span></code>s have a
+<p>From this point on, Flame will take care of checking the collision between those two components and
+we now need to do something when this occurs.</p>
+<p>We start by receiving the collision events in one of the classes. Since <code class="docutils literal notranslate"><span class="pre">Bullet</span></code>s have a
 passive collision type, we will also add the collision checking logic to the <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class.</p>
-<p>To listen to collision events we need to add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to the component.
-By doing so we will be able to override some methods like <code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> and <code class="docutils literal notranslate"><span class="pre">onCollisionEnd</span></code>.</p>
-<p>So let’s do that and make a few changes to the <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class:</p>
+<p>To listen for collision events we need to add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to the component.
+By doing so we will be able to override some methods like <code class="docutils literal notranslate"><span class="pre">onCollisionStart()</span></code> and <code class="docutils literal notranslate"><span class="pre">onCollisionEnd()</span></code>.</p>
+<p>So let’s make a few changes to the <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Enemy</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="w"> </span><span class="p">{</span>
 
@@ -403,7 +401,7 @@ By doing so we will be able to override some methods like <code class="docutils 
 where we check whether the component that collided with us was a <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> and if it was, then
 we remove both the current <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> instance and the <code class="docutils literal notranslate"><span class="pre">Bullet</span></code>.</p>
 <p>If you run the game now you will finally be able to defeat the enemies crawling down the screen!</p>
-<p>To add some final touches, let’s add some explosion animations and add more action to the game!</p>
+<p>To add some final touches, let’s add some explosion animations to introduce more action to the game!</p>
 <p>First, let’s create the explosion class:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Explosion</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
@@ -437,7 +435,7 @@ we remove both the current <code class="docutils literal notranslate"><span clas
 that we are passing <code class="docutils literal notranslate"><span class="pre">loop:</span> <span class="pre">false</span></code> in the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationData.sequenced</span></code> constructor and that we are
 setting <code class="docutils literal notranslate"><span class="pre">removeOnFinish:</span> <span class="pre">true;</span></code>. We do that so that when the animation is finished, it will
 automatically be removed from the game!</p>
-<p>And finally, we make a small change in the <code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> method from the <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class
+<p>And finally, we make a small change in the <code class="docutils literal notranslate"><span class="pre">onCollisionStart()</span></code> method in the <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class
 in order to add the explosion to the game:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span>
@@ -459,7 +457,7 @@ shooter, from here you can use what you learned to build more features in the ga
 the player suffer damage if it clashes with an enemy, or make the enemies shoot back, or maybe
 both?</p>
 <p>Good hunting pilot, and happy coding!</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/1.17.0/_static/apps/tutorials-space_shooter-app/index.html?step6&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step6">
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/1.18.0/_static/apps/tutorials-space_shooter-app/index.html?step6&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step6">
 <div class="filename docutils container">
 main.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span>

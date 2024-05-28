@@ -301,7 +301,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.17.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.18.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -475,9 +475,9 @@ the full width/height of the source image).</p>
 <p>All render methods from the <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> class can receive a <code class="docutils literal notranslate"><span class="pre">Paint</span></code> instance as the optional named
 parameter <code class="docutils literal notranslate"><span class="pre">overridePaint</span></code> that parameter will override the current <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> paint instance for that
 render call.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Sprite</span></code>s can also be used as widgets, to do so just use <code class="docutils literal notranslate"><span class="pre">SpriteWidget</span></code> class.</p>
-<p>A complete example using sprite as widgets can be found
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/sprite_widget_example.dart">here</a>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Sprite</span></code>s can also be used as widgets, to do so just use <code class="docutils literal notranslate"><span class="pre">SpriteWidget</span></code> class.
+Here is a complete
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/sprite_widget_example.dart">example using sprite as widgets</a>.</p>
 </section>
 <section id="spritebatch">
 <h2>SpriteBatch<a class="headerlink" href="#spritebatch" title="Link to this heading">¶</a></h2>
@@ -487,8 +487,8 @@ inside), and would like to render it effectively - <code class="docutils literal
 image, in addition to transforms (position, scale and rotation) and optional colors.</p>
 <p>You render it with a <code class="docutils literal notranslate"><span class="pre">Canvas</span></code> and an optional <code class="docutils literal notranslate"><span class="pre">Paint</span></code>, <code class="docutils literal notranslate"><span class="pre">BlendMode</span></code> and <code class="docutils literal notranslate"><span class="pre">CullRect</span></code>.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">SpriteBatchComponent</span></code> is also available for your convenience.</p>
-<p>See the examples
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/sprites/sprite_batch_example.dart">here</a>.</p>
+<p>See how to use it in the
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/sprites/sprite_batch_example.dart">SpriteBatch examples</a></p>
 </section>
 <section id="imagecomposition">
 <h2>ImageComposition<a class="headerlink" href="#imagecomposition" title="Link to this heading">¶</a></h2>
@@ -574,15 +574,15 @@ way, it will have the trimmed size, not the sprite original size.</p>
 and the former ticks the internal clock to update the frames.</p>
 <p>Animations are normally used inside <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code>s, but custom components with several
 Animations can be created as well.</p>
-<p>A complete example of using animations as widgets can be found
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/sprite_animation_widget_example.dart">here</a>.</p>
+<p>To learn more, check out the full example code of
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/sprite_animation_widget_example.dart">using animations as widgets</a>.</p>
 </section>
 <section id="spritesheet">
 <h2>SpriteSheet<a class="headerlink" href="#spritesheet" title="Link to this heading">¶</a></h2>
 <p>Sprite sheets are big images with several frames of the same sprite on it and is a very good way to
-organize and keep your animations stored. Flame provides a very simple utility class to deal with
-SpriteSheets, with it you can load your sprite sheet image and extract animations from it. Below is
-a very simple example of how to use it:</p>
+organize and store your animations. Flame provides a very simple utility class to deal with
+SpriteSheets, using which you can load your sprite sheet image and extract animations from it as
+well. Following is a simple example of how to use it:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/sprite.dart&#39;</span><span class="p">;</span>
 
 <span class="kd">final</span><span class="w"> </span><span class="n">spriteSheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteSheet</span><span class="p">(</span>
@@ -612,8 +612,8 @@ either <code class="docutils literal notranslate"><span class="pre">SpriteSheet.
 <span class="n">spriteSheet</span><span class="p">.</span><span class="n">getSprite</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span><span class="w"> </span><span class="c1">// row, column</span>
 </pre></div>
 </div>
-<p>You can see a full example of the <code class="docutils literal notranslate"><span class="pre">SpriteSheet</span></code> class
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/sprites/sprite_sheet_example.dart">here</a>.</p>
+<p>See a full example of the <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/sprites/sprite_sheet_example.dart"><code class="docutils literal notranslate"><span class="pre">SpriteSheet</span></code> class</a>
+for more details on how to work with it.</p>
 </section>
 </section>
 

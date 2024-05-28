@@ -303,7 +303,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.17.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.18.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -871,7 +871,7 @@ to pi/2 radians. Following are some common directions and their corresponding na
 <section id="anchor">
 <h3>Anchor<a class="headerlink" href="#anchor" title="Link to this heading">¶</a></h3>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/1.17.0/_static/apps/flame-examples/index.html?anchor"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor">
+<iframe class="flutter-app-iframe" src="/1.18.0/_static/apps/flame-examples/index.html?anchor"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor">
 <div class="filename docutils container">
 anchor.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:async&#39;</span><span class="p">;</span>
@@ -1550,7 +1550,7 @@ isometric tileset.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Creates a tileset, the block ids are automatically assigned sequentially</span>
 <span class="c1">// starting at 0, from left to right and then top to bottom.</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">tilesetImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;tileset.png&#39;</span><span class="p">);</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">tileset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IsometricTileset</span><span class="p">(</span><span class="n">tilesetImage</span><span class="p">,</span><span class="w"> </span><span class="m">32</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">tileset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteSheet</span><span class="p">(</span><span class="nl">image:</span><span class="w"> </span><span class="n">tilesetImage</span><span class="p">,</span><span class="w"> </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">));</span>
 <span class="c1">// Each element is a block id, -1 means nothing</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]];</span>
 <span class="n">add</span><span class="p">(</span><span class="n">IsometricTileMapComponent</span><span class="p">(</span><span class="n">tileset</span><span class="p">,</span><span class="w"> </span><span class="n">matrix</span><span class="p">));</span>
@@ -1568,7 +1568,7 @@ the height colored in the darker tone:</p>
 <p>Flame’s Example app contains a more in-depth example, featuring how to parse coordinates to make a
 selector. The code can be found
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/isometric_tile_map_example.dart">here</a>,
-and a live version can be seen <a class="reference external" href="https://examples.flame-engine.org/#/Rendering_Isometric%20Tile%20Map">here</a>.</p>
+and a live version can be seen <a class="reference external" href="https://examples.flame-engine.org/#/Rendering_Isometric_Tile_Map">here</a>.</p>
 </section>
 <section id="ninetileboxcomponent">
 <h2>NineTileBoxComponent<a class="headerlink" href="#ninetileboxcomponent" title="Link to this heading">¶</a></h2>
