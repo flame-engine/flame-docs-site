@@ -20158,7 +20158,7 @@ A.YJ.prototype={
 $1(a){var s=A.cC().b
 if(s==null)s=null
 else{s=s.canvasKitBaseUrl
-if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/55eae6864b296dd9f43b2cc7577ec256e5c32a8d/":s)+a},
+if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/edd8546116457bdf1c5bdfb13ecb9463d2bb5ed4/":s)+a},
 $S:60}
 A.YY.prototype={
 $1(a){this.a.remove()
