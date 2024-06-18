@@ -709,35 +709,6 @@ to implement the <code class="docutils literal notranslate"><span class="pre">co
 </pre></div>
 </div>
 </section>
-<section id="positiontype">
-<h3>PositionType<a class="headerlink" href="#positiontype" title="Link to this heading">¶</a></h3>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you are using the <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> you should not use <code class="docutils literal notranslate"><span class="pre">PositionType</span></code>, but
-instead adding your components directly to the viewport for example if you
-want to use them as a HUD.</p>
-</div>
-<p>If you want to create a HUD (Head-up display) or another component that isn’t positioned in relation
-to the game coordinates, you can change the <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> of the component.
-The default <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> is <code class="docutils literal notranslate"><span class="pre">positionType</span> <span class="pre">=</span> <span class="pre">PositionType.game</span></code> and that can be changed to
-either <code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code> or <code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> depending on how you want to position
-the component.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.game</span></code> (Default) - Respects camera and viewport.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code> - Respects viewport only (ignores camera).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> - Position in relation to the coordinate system of the Flutter game
-widget (i.e. the raw canvas).</p></li>
-</ul>
-<p>Most of your components will probably be positioned according to <code class="docutils literal notranslate"><span class="pre">PositionType.game</span></code>, since you
-want them to respect the <code class="docutils literal notranslate"><span class="pre">Camera</span></code> and the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code>. But quite often you want for example buttons
-and text to always show on the screen, no matter if you move the camera, then you want to use
-<code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code>. In some rare cases you want to use <code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> to position
-your widgets, when you don’t want the component to respect the camera nor the viewport; this could
-for example be for controls or joysticks that would not be ergonomic to use if they had to stay
-within the viewport.</p>
-<p>Do note that this setting is only respected if the component is added directly to the root
-<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> and not as a child component of another component.</p>
-</section>
 <section id="visibility-of-components">
 <h3>Visibility of components<a class="headerlink" href="#visibility-of-components" title="Link to this heading">¶</a></h3>
 <p>The recommended way to hide or show a component is usually to add or remove it from the tree
@@ -1749,7 +1720,6 @@ own sprite animation based component, you can directly use a <code class="docuti
   <a href='#component-keys' class='list-group-item level-2'>Component Keys</a>
   <a href='#querying-child-components' class='list-group-item level-2'>Querying child components</a>
   <a href='#querying-components-at-a-specific-point-on-the-screen' class='list-group-item level-2'>Querying components at a specific point on the screen</a>
-  <a href='#positiontype' class='list-group-item level-2'>PositionType</a>
   <a href='#visibility-of-components' class='list-group-item level-2'>Visibility of components</a>
   <a href='#positioncomponent' class='list-group-item level-1'>PositionComponent</a>
   <a href='#position' class='list-group-item level-2'>Position</a>
