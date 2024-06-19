@@ -295,6 +295,16 @@ int32_t spine_atlas_get_num_image_paths(spine_atlas atlas) {
 	return ((_spine_atlas *) atlas)->numImagePaths;
 }
 
+spine_bool spine_atlas_is_pma(spine_atlas atlas) {
+	if (!atlas) return 0;
+	Atlas *_atlas = static_cast<Atlas *>(((_spine_atlas *) atlas)->atlas);
+	if (_atlas->getPages().size() > 0) {
+		return _atlas->getPages()[0]->pma;
+	} else {
+		return 0;
+	}
+}
+
 utf8 *spine_atlas_get_image_path(spine_atlas atlas, int32_t index) {
 	if (!atlas) return nullptr;
 	return ((_spine_atlas *) atlas)->imagePaths[index];
@@ -1412,6 +1422,18 @@ float spine_track_entry_get_track_complete(spine_track_entry entry) {
 	return _entry->getTrackComplete();
 }
 
+spine_bool spine_track_entry_was_applied(spine_track_entry entry) {
+    if (entry == nullptr) return false;
+    TrackEntry *_entry = (TrackEntry *) entry;
+    return _entry->wasApplied();
+}
+
+spine_bool spine_track_entry_is_next_ready(spine_track_entry entry) {
+    if (entry == nullptr) return false;
+    TrackEntry *_entry = (TrackEntry *) entry;
+    return _entry->isNextReady();
+}
+
 // Skeleton
 
 void spine_skeleton_update_cache(spine_skeleton skeleton) {
@@ -1907,7 +1929,7 @@ void spine_slot_data_set_dark_color(spine_slot_data slot, float r, float g, floa
 	_slot->getDarkColor().set(r, g, b, a);
 }
 
-spine_bool spine_slot_data_has_dark_color(spine_slot_data slot) {
+spine_bool spine_slot_data_get_has_dark_color(spine_slot_data slot) {
 	if (slot == nullptr) return 0;
 	SlotData *_slot = (SlotData *) slot;
 	return _slot->hasDarkColor() ? -1 : 0;
@@ -2161,7 +2183,7 @@ void spine_bone_data_set_inherit(spine_bone_data data, spine_inherit inherit) {
 	_data->setInherit((Inherit) inherit);
 }
 
-spine_bool spine_bone_data_is_skin_required(spine_bone_data data) {
+spine_bool spine_bone_data_get_is_skin_required(spine_bone_data data) {
 	if (data == nullptr) return 0;
 	BoneData *_data = (BoneData *) data;
 	return _data->isSkinRequired() ? -1 : 0;
@@ -2491,7 +2513,7 @@ float spine_bone_get_a_shear_y(spine_bone bone) {
 	return _bone->getAShearY();
 }
 
-void spine_bone_set_shear_a_y(spine_bone bone, float shearY) {
+void spine_bone_set_a_shear_y(spine_bone bone, float shearY) {
 	if (bone == nullptr) return;
 	Bone *_bone = (Bone *) bone;
 	_bone->setAShearY(shearY);
@@ -3375,6 +3397,12 @@ spine_bool spine_ik_constraint_data_get_uniform(spine_ik_constraint_data data) {
 	if (data == nullptr) return 0;
 	IkConstraintData *_data = (IkConstraintData *) data;
 	return _data->getUniform() ? -1 : 0;
+}
+
+void spine_ik_constraint_data_set_uniform(spine_ik_constraint_data data, spine_bool uniform) {
+	if (data == nullptr) return;
+	IkConstraintData *_data = (IkConstraintData *) data;
+	_data->setUniform(uniform);
 }
 
 float spine_ik_constraint_data_get_mix(spine_ik_constraint_data data) {
@@ -4662,7 +4690,7 @@ float spine_physics_constraint_get_last_time(spine_physics_constraint constraint
 	return _constraint->getLastTime();
 }
 
-void spine_physics_constraint_reset(spine_physics_constraint constraint) {
+void spine_physics_constraint_reset_fully(spine_physics_constraint constraint) {
 	if (constraint == nullptr) return;
 	PhysicsConstraint *_constraint = (PhysicsConstraint *) constraint;
 	_constraint->reset();
