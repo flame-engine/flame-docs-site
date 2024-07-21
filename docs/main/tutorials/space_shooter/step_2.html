@@ -147,6 +147,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/performance.html">Performance</a></li>
 </ul>
 </li>
 </ul>
@@ -332,6 +333,7 @@ of Flame’s gesture detectors: <code class="docutils literal notranslate"><span
 the <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> mixin to our game class and override its listener methods; in our case, we will
 use the <code class="docutils literal notranslate"><span class="pre">onPanUpdate</span></code> method. The updated code will look like the following:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>

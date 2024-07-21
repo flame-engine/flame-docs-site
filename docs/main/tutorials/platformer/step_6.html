@@ -147,6 +147,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/performance.html">Performance</a></li>
 </ul>
 </li>
 </ul>
@@ -391,7 +392,7 @@ the game. Add the following code:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">HeartHealthComponent</span></code> is just a <a class="reference internal" href="../../flame/components.html#spritegroup"><span class="std std-ref">SpriteGroupComponent</span></a>
+<p>The <code class="docutils literal notranslate"><span class="pre">HeartHealthComponent</span></code> is just a <a class="reference internal" href="../../flame/components.html#spritegroupcomponent"><span class="std std-ref">SpriteGroupComponent</span></a>
 that uses the heart images that were created early on. The unique thing that is being done, is when
 the component is created, it requires a <code class="docutils literal notranslate"><span class="pre">heartNumber</span></code>, so in the <code class="docutils literal notranslate"><span class="pre">update</span></code> method, we check to see if
 the <code class="docutils literal notranslate"><span class="pre">game.health</span></code> is less than the <code class="docutils literal notranslate"><span class="pre">heartNumber</span></code> and if so, change the state of the component to
