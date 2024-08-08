@@ -515,44 +515,6 @@ time. Setting it to <code class="docutils literal notranslate"><span class="pre"
 it tick at half the speed as compared to real life time.</p>
 <p>Since <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is a <code class="docutils literal notranslate"><span class="pre">Component</span></code> too, this mixin can be attached to the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> as well. Doing
 so will allow controlling time scale for all the component of the game from a single place.</p>
-<div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/1.13.0/_static/apps/flame-examples/index.html?time_scale" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-time_scale">
-<div class="filename docutils container">
-time_scale.dart</div>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:async&#39;</span><span class="p">;</span>
-<span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kd">class</span><span class="w"> </span><span class="nc">TimeScaleGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTimeScale</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 8</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">_timeScales</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="m">2.0</span><span class="p">];</span>
-<span class="linenos"> 9</span><span class="w">  </span><span class="kd">var</span><span class="w"> </span><span class="n">_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
-<span class="linenos">10</span>
-<span class="linenos">11</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">12</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">13</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span>
-<span class="linenos">14</span><span class="w">      </span><span class="n">EmberPlayer</span><span class="p">(</span>
-<span class="linenos">15</span><span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
-<span class="linenos">16</span><span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
-<span class="linenos">17</span><span class="w">        </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">p0</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">timeScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getNextTimeScale</span><span class="p">(),</span>
-<span class="linenos">18</span><span class="w">      </span><span class="p">),</span>
-<span class="linenos">19</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">20</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-<span class="linenos">21</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">22</span>
-<span class="linenos">23</span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">getNextTimeScale</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">24</span><span class="w">    </span><span class="o">++</span><span class="n">_index</span><span class="p">;</span>
-<span class="linenos">25</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">_index</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">_timeScales</span><span class="p">.</span><span class="n">length</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">26</span><span class="w">      </span><span class="n">_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="linenos">27</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">28</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">_timeScales</span><span class="p">[</span><span class="n">_index</span><span class="p">];</span>
-<span class="linenos">29</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">30</span><span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-time_scale&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 

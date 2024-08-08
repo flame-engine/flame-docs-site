@@ -387,64 +387,7 @@ make sure to call the <code class="docutils literal notranslate"><span class="pr
 <section id="demo">
 <h3>Demo<a class="headerlink" href="#demo" title="Link to this heading">¶</a></h3>
 <p>Play with the demo below to see the pointer hover events in action.</p>
-<iframe class="flutter-app-iframe" src="/1.16.0/_static/apps/flame-examples/index.html?pointer_events"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-pointer_events">
-<div class="filename docutils container">
-pointer_events.dart</div>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:math&#39;</span><span class="p">;</span>
-<span class="linenos"> 2</span>
-<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/rendering.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 7</span>
-<span class="linenos"> 8</span><span class="kd">class</span><span class="w"> </span><span class="nc">PointerEventsGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapCallbacks</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 9</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">10</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">11</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">HoverTarget</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">)));</span>
-<span class="linenos">12</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">HoverTarget</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">300</span><span class="p">,</span><span class="w"> </span><span class="m">300</span><span class="p">)));</span>
-<span class="linenos">13</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">HoverTarget</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">400</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">)));</span>
-<span class="linenos">14</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">15</span>
-<span class="linenos">16</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">17</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">18</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">HoverTarget</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">localPosition</span><span class="p">));</span>
-<span class="linenos">19</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">20</span><span class="p">}</span>
-<span class="linenos">21</span>
-<span class="linenos">22</span><span class="kd">class</span><span class="w"> </span><span class="nc">HoverTarget</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HoverCallbacks</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">23</span><span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">Random</span><span class="w"> </span><span class="n">_random</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
-<span class="linenos">24</span>
-<span class="linenos">25</span><span class="w">  </span><span class="n">HoverTarget</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">position</span><span class="p">)</span>
-<span class="linenos">26</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
-<span class="linenos">27</span><span class="w">          </span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="p">,</span>
-<span class="linenos">28</span><span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">50</span><span class="p">),</span>
-<span class="linenos">29</span><span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos">30</span><span class="w">        </span><span class="p">);</span>
-<span class="linenos">31</span>
-<span class="linenos">32</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">_paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()</span>
-<span class="linenos">33</span><span class="w">    </span><span class="p">..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HSLColor</span><span class="p">.</span><span class="n">fromAHSL</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">_random</span><span class="p">.</span><span class="n">nextDouble</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">360</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span>
-<span class="linenos">34</span><span class="w">        </span><span class="p">.</span><span class="n">toColor</span><span class="p">()</span>
-<span class="linenos">35</span><span class="w">        </span><span class="p">.</span><span class="n">withOpacity</span><span class="p">(</span><span class="m">0.5</span><span class="p">);</span>
-<span class="linenos">36</span>
-<span class="linenos">37</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">38</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">39</span><span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">toRect</span><span class="p">(),</span><span class="w"> </span><span class="n">_paint</span><span class="p">);</span>
-<span class="linenos">40</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">41</span>
-<span class="linenos">42</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">43</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onHoverEnter</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">44</span><span class="w">    </span><span class="n">_paint</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_paint</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">withOpacity</span><span class="p">(</span><span class="m">1</span><span class="p">);</span>
-<span class="linenos">45</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">46</span>
-<span class="linenos">47</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">48</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onHoverExit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">49</span><span class="w">    </span><span class="n">_paint</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_paint</span><span class="p">.</span><span class="n">color</span><span class="p">.</span><span class="n">withOpacity</span><span class="p">(</span><span class="m">0.5</span><span class="p">);</span>
-<span class="linenos">50</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">51</span><span class="p">}</span>
-</pre></div>
-</div>
-</div>
-<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-pointer_events&quot;)">Code</button></section>
+</section>
 </section>
 </section>
 
