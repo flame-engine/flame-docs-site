@@ -146,6 +146,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/performance.html">Performance</a></li>
 </ul>
 </li>
 </ul>
@@ -301,7 +302,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.18.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.19.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -1015,7 +1016,7 @@ provided the <code class="docutils literal notranslate"><span class="pre">Have</
 <p>We could do more, but this game <strong>is</strong> a Tutorial above all else. Press the buttons below to see
 what the final code looks like, or to play it live.</p>
 <p>But it is also time to have a look at the Ember Tutorial!</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/1.18.0/_static/apps/tutorials-klondike-app/index.html?step5&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-klondike-app-source-step5">
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/1.19.0/_static/apps/tutorials-klondike-app/index.html?step5&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-klondike-app-source-step5">
 <div class="filename docutils container">
 components/card.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:math&#39;</span><span class="p">;</span>
@@ -1781,7 +1782,7 @@ components/tableau_pile.dart</div>
 <span class="linenos"> 12</span><span class="w">  </span><span class="c1">/// Which cards are currently placed onto this pile.</span>
 <span class="linenos"> 13</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Card</span><span class="o">&gt;</span><span class="w"> </span><span class="n">_cards</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[];</span>
 <span class="linenos"> 14</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">_fanOffset1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">KlondikeGame</span><span class="p">.</span><span class="n">cardHeight</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.05</span><span class="p">);</span>
-<span class="linenos"> 15</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">_fanOffset2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">KlondikeGame</span><span class="p">.</span><span class="n">cardHeight</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.20</span><span class="p">);</span>
+<span class="linenos"> 15</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">_fanOffset2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">KlondikeGame</span><span class="p">.</span><span class="n">cardHeight</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">0.2</span><span class="p">);</span>
 <span class="linenos"> 16</span>
 <span class="linenos"> 17</span><span class="w">  </span><span class="c1">//#region Pile API</span>
 <span class="linenos"> 18</span>

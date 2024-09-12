@@ -148,6 +148,7 @@
 <li class="toctree-l3"><a class="reference internal" href="other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="other/util.html">Utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="other/widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="other/performance.html">Performance</a></li>
 </ul>
 </li>
 </ul>
@@ -303,7 +304,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.18.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.19.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -382,9 +383,8 @@ graph TD
         </div><p>This diagram might look intimidating, but don’t worry, it is not as complex as it looks.</p>
 <section id="component">
 <h2>Component<a class="headerlink" href="#component" title="Link to this heading">¶</a></h2>
-<p>All components inherit from the abstract class <code class="docutils literal notranslate"><span class="pre">Component</span></code> and all components can have other
-<code class="docutils literal notranslate"><span class="pre">Component</span></code>s as children. This is the base of what we call the Flame Component System, or FCS for
-short.</p>
+<p>All components inherit from the <code class="docutils literal notranslate"><span class="pre">Component</span></code> class and can have other <code class="docutils literal notranslate"><span class="pre">Component</span></code>s as children.
+This is the base of what we call the Flame Component System, or FCS for short.</p>
 <p>Children can be added either with the <code class="docutils literal notranslate"><span class="pre">add(Component</span> <span class="pre">c)</span></code> method or directly in the constructor.</p>
 <p>Example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -708,35 +708,6 @@ to implement the <code class="docutils literal notranslate"><span class="pre">co
 </pre></div>
 </div>
 </section>
-<section id="positiontype">
-<h3>PositionType<a class="headerlink" href="#positiontype" title="Link to this heading">¶</a></h3>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>If you are using the <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> you should not use <code class="docutils literal notranslate"><span class="pre">PositionType</span></code>, but
-instead adding your components directly to the viewport for example if you
-want to use them as a HUD.</p>
-</div>
-<p>If you want to create a HUD (Head-up display) or another component that isn’t positioned in relation
-to the game coordinates, you can change the <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> of the component.
-The default <code class="docutils literal notranslate"><span class="pre">PositionType</span></code> is <code class="docutils literal notranslate"><span class="pre">positionType</span> <span class="pre">=</span> <span class="pre">PositionType.game</span></code> and that can be changed to
-either <code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code> or <code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> depending on how you want to position
-the component.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.game</span></code> (Default) - Respects camera and viewport.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code> - Respects viewport only (ignores camera).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> - Position in relation to the coordinate system of the Flutter game
-widget (i.e. the raw canvas).</p></li>
-</ul>
-<p>Most of your components will probably be positioned according to <code class="docutils literal notranslate"><span class="pre">PositionType.game</span></code>, since you
-want them to respect the <code class="docutils literal notranslate"><span class="pre">Camera</span></code> and the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code>. But quite often you want for example buttons
-and text to always show on the screen, no matter if you move the camera, then you want to use
-<code class="docutils literal notranslate"><span class="pre">PositionType.viewport</span></code>. In some rare cases you want to use <code class="docutils literal notranslate"><span class="pre">PositionType.widget</span></code> to position
-your widgets, when you don’t want the component to respect the camera nor the viewport; this could
-for example be for controls or joysticks that would not be ergonomic to use if they had to stay
-within the viewport.</p>
-<p>Do note that this setting is only respected if the component is added directly to the root
-<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> and not as a child component of another component.</p>
-</section>
 <section id="visibility-of-components">
 <h3>Visibility of components<a class="headerlink" href="#visibility-of-components" title="Link to this heading">¶</a></h3>
 <p>The recommended way to hide or show a component is usually to add or remove it from the tree
@@ -871,7 +842,7 @@ to pi/2 radians. Following are some common directions and their corresponding na
 <section id="anchor">
 <h3>Anchor<a class="headerlink" href="#anchor" title="Link to this heading">¶</a></h3>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/1.18.0/_static/apps/flame-examples/index.html?anchor"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor">
+<iframe class="flutter-app-iframe" src="/1.19.0/_static/apps/flame-examples/index.html?anchor"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor">
 <div class="filename docutils container">
 anchor.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:async&#39;</span><span class="p">;</span>
@@ -1748,7 +1719,6 @@ own sprite animation based component, you can directly use a <code class="docuti
   <a href='#component-keys' class='list-group-item level-2'>Component Keys</a>
   <a href='#querying-child-components' class='list-group-item level-2'>Querying child components</a>
   <a href='#querying-components-at-a-specific-point-on-the-screen' class='list-group-item level-2'>Querying components at a specific point on the screen</a>
-  <a href='#positiontype' class='list-group-item level-2'>PositionType</a>
   <a href='#visibility-of-components' class='list-group-item level-2'>Visibility of components</a>
   <a href='#positioncomponent' class='list-group-item level-1'>PositionComponent</a>
   <a href='#position' class='list-group-item level-2'>Position</a>

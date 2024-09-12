@@ -146,6 +146,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/performance.html">Performance</a></li>
 </ul>
 </li>
 </ul>
@@ -301,7 +302,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.18.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.19.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -438,7 +439,7 @@ and in our example the multiplication rate is <code class="docutils literal notr
 </ul>
 <p>Give it a try by running the game now, you will notice that it looks way more dynamic now, giving a
 more convincing feeling to the player that the spaceship is really crossing the stars!</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/1.18.0/_static/apps/tutorials-space_shooter-app/index.html?step3&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step3">
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/1.19.0/_static/apps/tutorials-space_shooter-app/index.html?step3&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step3">
 <div class="filename docutils container">
 main.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
@@ -495,7 +496,7 @@ main.dart</div>
 <span class="linenos">52</span><span class="w">      </span><span class="s1">&#39;player.png&#39;</span><span class="p">,</span>
 <span class="linenos">53</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
 <span class="linenos">54</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
-<span class="linenos">55</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">55</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
 <span class="linenos">56</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">48</span><span class="p">),</span>
 <span class="linenos">57</span><span class="w">      </span><span class="p">),</span>
 <span class="linenos">58</span><span class="w">    </span><span class="p">);</span>

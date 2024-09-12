@@ -146,6 +146,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/performance.html">Performance</a></li>
 </ul>
 </li>
 </ul>
@@ -301,7 +302,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.18.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.19.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -501,7 +502,7 @@ are part of the whole game and not the player itself.</p></li>
 <p>With the <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> all set up, the only missing piece now is starting the
 <code class="docutils literal notranslate"><span class="pre">_bulletSpawner.timer</span></code> in <code class="docutils literal notranslate"><span class="pre">startShooting()</span></code> and stopping it in the <code class="docutils literal notranslate"><span class="pre">stopShooting()</span></code>!</p>
 <p>And that closes this step, putting us real close to a real game!</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/1.18.0/_static/apps/tutorials-space_shooter-app/index.html?step4&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step4">
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/1.19.0/_static/apps/tutorials-space_shooter-app/index.html?step4&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step4">
 <div class="filename docutils container">
 main.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
@@ -570,7 +571,7 @@ main.dart</div>
 <span class="linenos"> 64</span><span class="w">      </span><span class="s1">&#39;player.png&#39;</span><span class="p">,</span>
 <span class="linenos"> 65</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
 <span class="linenos"> 66</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
-<span class="linenos"> 67</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
+<span class="linenos"> 67</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
 <span class="linenos"> 68</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">48</span><span class="p">),</span>
 <span class="linenos"> 69</span><span class="w">      </span><span class="p">),</span>
 <span class="linenos"> 70</span><span class="w">    </span><span class="p">);</span>
@@ -578,7 +579,7 @@ main.dart</div>
 <span class="linenos"> 72</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
 <span class="linenos"> 73</span>
 <span class="linenos"> 74</span><span class="w">    </span><span class="n">_bulletSpawner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpawnComponent</span><span class="p">(</span>
-<span class="linenos"> 75</span><span class="w">      </span><span class="nl">period:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
+<span class="linenos"> 75</span><span class="w">      </span><span class="nl">period:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
 <span class="linenos"> 76</span><span class="w">      </span><span class="nl">selfPositioning:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="linenos"> 77</span><span class="w">      </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 78</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Bullet</span><span class="p">(</span>
@@ -625,7 +626,7 @@ main.dart</div>
 <span class="linenos">119</span><span class="w">      </span><span class="s1">&#39;bullet.png&#39;</span><span class="p">,</span>
 <span class="linenos">120</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
 <span class="linenos">121</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
-<span class="linenos">122</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">122</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
 <span class="linenos">123</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
 <span class="linenos">124</span><span class="w">      </span><span class="p">),</span>
 <span class="linenos">125</span><span class="w">    </span><span class="p">);</span>

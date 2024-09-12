@@ -146,6 +146,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/other/widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/performance.html">Performance</a></li>
 </ul>
 </li>
 </ul>
@@ -301,7 +302,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.18.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.19.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -611,7 +612,7 @@ requires us to place similar code in all of our components. So let’s get start
 <h2>Congratulations<a class="headerlink" href="#congratulations" title="Link to this heading">¶</a></h2>
 <p>You made it! You have a working Ember Quest. Press the button below to see what the resulting code
 looks like or to play it live.</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/1.18.0/_static/apps/tutorials-platformer-app/index.html?&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-platformer-app-source-">
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/1.19.0/_static/apps/tutorials-platformer-app/index.html?&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-platformer-app-source-">
 <div class="filename docutils container">
 actors/ember.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span>
@@ -810,7 +811,7 @@ actors/water_enemy.dart</div>
 <span class="linenos">23</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
 <span class="linenos">24</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
 <span class="linenos">25</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span>
-<span class="linenos">26</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.70</span><span class="p">,</span>
+<span class="linenos">26</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.7</span><span class="p">,</span>
 <span class="linenos">27</span><span class="w">      </span><span class="p">),</span>
 <span class="linenos">28</span><span class="w">    </span><span class="p">);</span>
 <span class="linenos">29</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span>
@@ -903,19 +904,19 @@ ember_quest.dart</div>
 <span class="linenos"> 57</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">loadGameSegments</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">segmentIndex</span><span class="p">,</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 58</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">segments</span><span class="p">[</span><span class="n">segmentIndex</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 59</span><span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">block</span><span class="p">.</span><span class="n">blockType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 60</span><span class="w">        </span><span class="n">GroundBlock</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">GroundBlock</span><span class="p">(</span>
+<span class="linenos"> 60</span><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="p">(</span><span class="n">GroundBlock</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">GroundBlock</span><span class="p">(</span>
 <span class="linenos"> 61</span><span class="w">            </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
 <span class="linenos"> 62</span><span class="w">            </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
 <span class="linenos"> 63</span><span class="w">          </span><span class="p">),</span>
-<span class="linenos"> 64</span><span class="w">        </span><span class="n">PlatformBlock</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">PlatformBlock</span><span class="p">(</span>
+<span class="linenos"> 64</span><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="p">(</span><span class="n">PlatformBlock</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">PlatformBlock</span><span class="p">(</span>
 <span class="linenos"> 65</span><span class="w">            </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
 <span class="linenos"> 66</span><span class="w">            </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
 <span class="linenos"> 67</span><span class="w">          </span><span class="p">),</span>
-<span class="linenos"> 68</span><span class="w">        </span><span class="n">Star</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Star</span><span class="p">(</span>
+<span class="linenos"> 68</span><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="p">(</span><span class="n">Star</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Star</span><span class="p">(</span>
 <span class="linenos"> 69</span><span class="w">            </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
 <span class="linenos"> 70</span><span class="w">            </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
 <span class="linenos"> 71</span><span class="w">          </span><span class="p">),</span>
-<span class="linenos"> 72</span><span class="w">        </span><span class="n">WaterEnemy</span><span class="w"> </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">WaterEnemy</span><span class="p">(</span>
+<span class="linenos"> 72</span><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="p">(</span><span class="n">WaterEnemy</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">WaterEnemy</span><span class="p">(</span>
 <span class="linenos"> 73</span><span class="w">            </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
 <span class="linenos"> 74</span><span class="w">            </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
 <span class="linenos"> 75</span><span class="w">          </span><span class="p">),</span>
@@ -1236,10 +1237,10 @@ objects/star.dart</div>
 <span class="linenos">27</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RectangleHitbox</span><span class="p">(</span><span class="nl">collisionType:</span><span class="w"> </span><span class="n">CollisionType</span><span class="p">.</span><span class="n">passive</span><span class="p">));</span>
 <span class="linenos">28</span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
 <span class="linenos">29</span><span class="w">      </span><span class="n">SizeEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span>
-<span class="linenos">30</span><span class="w">        </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">24</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">24</span><span class="p">),</span>
+<span class="linenos">30</span><span class="w">        </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="o">-</span><span class="m">24</span><span class="p">),</span>
 <span class="linenos">31</span><span class="w">        </span><span class="n">EffectController</span><span class="p">(</span>
-<span class="linenos">32</span><span class="w">          </span><span class="nl">duration:</span><span class="w"> </span><span class="p">.</span><span class="m">75</span><span class="p">,</span>
-<span class="linenos">33</span><span class="w">          </span><span class="nl">reverseDuration:</span><span class="w"> </span><span class="p">.</span><span class="m">5</span><span class="p">,</span>
+<span class="linenos">32</span><span class="w">          </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.75</span><span class="p">,</span>
+<span class="linenos">33</span><span class="w">          </span><span class="nl">reverseDuration:</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span>
 <span class="linenos">34</span><span class="w">          </span><span class="nl">infinite:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="linenos">35</span><span class="w">          </span><span class="nl">curve:</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOut</span><span class="p">,</span>
 <span class="linenos">36</span><span class="w">        </span><span class="p">),</span>

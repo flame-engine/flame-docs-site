@@ -146,6 +146,7 @@
 <li class="toctree-l3"><a class="reference internal" href="debug.html">Debugging</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html">Performance</a></li>
 </ul>
 </li>
 </ul>
@@ -301,7 +302,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.18.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.19.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -458,11 +459,17 @@ tick rate.</p>
 to any Flame <code class="docutils literal notranslate"><span class="pre">Component</span></code> and exposes a simple get/set API for <code class="docutils literal notranslate"><span class="pre">timeScale</span></code>. The default value of
 <code class="docutils literal notranslate"><span class="pre">timeScale</span></code> is <code class="docutils literal notranslate"><span class="pre">1</span></code>, implying in-game time of the component is running at the same speed as real life
 time. Setting it to <code class="docutils literal notranslate"><span class="pre">2</span></code> will make the component tick twice as fast and setting it to <code class="docutils literal notranslate"><span class="pre">0.5</span></code> will make
-it tick at half the speed as compared to real life time.</p>
+it tick at half the speed as compared to real life time. This mixin also provides <code class="docutils literal notranslate"><span class="pre">pause</span></code> and <code class="docutils literal notranslate"><span class="pre">resume</span></code>
+methods, which can be used instead of manually setting the timeScale to 0 and 1 respectively.</p>
 <p>Since <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is a <code class="docutils literal notranslate"><span class="pre">Component</span></code> too, this mixin can be attached to the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> as well. Doing
 so will allow controlling time scale for all the component of the game from a single place.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>HasTimeScale cannot control the movement of BodyComponent from flame_forge2d individually.
+It is only useful if the whole Game or Forge2DWorld is to be time scaled.</p>
+</div>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/1.18.0/_static/apps/flame-examples/index.html?time_scale" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-time_scale">
+<iframe class="flutter-app-iframe" src="/1.19.0/_static/apps/flame-examples/index.html?time_scale" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-time_scale">
 <div class="filename docutils container">
 time_scale.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:async&#39;</span><span class="p">;</span>
