@@ -11613,7 +11613,7 @@ A.Kf.prototype={
 $1(a){var s=A.bJ().b
 if(s==null)s=null
 else{s=s.canvasKitBaseUrl
-if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/a6bd3f1de158bb61090e0c8053df93a10cb548e1/":s)+a},
+if(s==null)s=null}return(s==null?"https://www.gstatic.com/flutter-canvaskit/36335019a8eab588c3c2ea783c618d90505be233/":s)+a},
 $S:58}
 A.oc.prototype={
 bI(a){B.c.J(this.a.a.save())},
