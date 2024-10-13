@@ -302,7 +302,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.19.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.20.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -350,7 +350,8 @@ multiple <code class="docutils literal notranslate"><span class="pre">load()</sp
 <p>To synchronously retrieve a previously cached image, the <code class="docutils literal notranslate"><span class="pre">fromCache</span></code> method can be used. If an image
 with that key was not previously loaded, it will throw an exception.</p>
 <p>To add an already loaded image to the cache, the <code class="docutils literal notranslate"><span class="pre">add</span></code> method can be used and you can set the key
-that the image should have in the cache.</p>
+that the image should have in the cache. You can retrieve all the keys in the cache using the <code class="docutils literal notranslate"><span class="pre">keys</span></code>
+getter.</p>
 <p>You can also use <code class="docutils literal notranslate"><span class="pre">ImageExtension.fromPixels()</span></code> to dynamically create an image during the game.</p>
 <p>For <code class="docutils literal notranslate"><span class="pre">clear</span></code> and <code class="docutils literal notranslate"><span class="pre">clearCache</span></code>, do note that <code class="docutils literal notranslate"><span class="pre">dispose</span></code> is called for each removed image from the
 cache, so make sure that you don’t use the image afterwards.</p>
