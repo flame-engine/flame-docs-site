@@ -146991,12 +146991,12 @@ $S(){return A.v(this.a).h("F(kB.E)")}}
 A.xu.prototype={
 gY(a){var s=this.b
 return s.gY(s)},
-H(){var s,r=this.b
-if((r==null?null:r.H())!==!0){r=this.a
-s=r.H()
-if(s){r=J.aD(r.gY(0))
-r.H()
-this.b=r}return s}return!0}}
+H(){var s=this.b
+if((s==null?null:s.H())!==!0){s=this.a
+if(!s.H())return!1
+s=J.aD(s.gY(0))
+this.b=s
+return s.H()}return!0}}
 A.xd.prototype={}
 A.jY.prototype={
 z9(a,b){var s=this.f

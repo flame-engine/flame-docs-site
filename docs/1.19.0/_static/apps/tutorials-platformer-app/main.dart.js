@@ -39673,12 +39673,12 @@ $1(a){return a===this.b},
 $S(){return A.l(this.a).h("K(dq.E)")}}
 A.kw.prototype={
 gv(){return this.b.gv()},
-l(){var s,r=this.b
-if((r==null?null:r.l())!==!0){r=this.a
-s=r.l()
-if(s){r=J.ae(r.gv())
-r.l()
-this.b=r}return s}return!0}}
+l(){var s=this.b
+if((s==null?null:s.l())!==!0){s=this.a
+if(!s.l())return!1
+s=J.ae(s.gv())
+this.b=s
+return s.l()}return!0}}
 A.cH.prototype={
 q(a,b){if(this.CC(0,b)){this.f.K(0,new A.HG(this,b))
 return!0}return!1},

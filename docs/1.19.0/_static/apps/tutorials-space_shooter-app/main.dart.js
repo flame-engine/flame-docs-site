@@ -33934,12 +33934,12 @@ $S(){return A.t(this.a).h("L(d9.E)")}}
 A.jA.prototype={
 gt(a){var s=this.b
 return s.gt(s)},
-l(){var s,r=this.b
-if((r==null?null:r.l())!==!0){r=this.a
-s=r.l()
-if(s){r=J.aa(r.gt(0))
-r.l()
-this.b=r}return s}return!0}}
+l(){var s=this.b
+if((s==null?null:s.l())!==!0){s=this.a
+if(!s.l())return!1
+s=J.aa(s.gt(0))
+this.b=s
+return s.l()}return!0}}
 A.ck.prototype={
 p(a,b){if(this.ys(0,b)){this.f.E(0,new A.EO(this,b))
 return!0}return!1},

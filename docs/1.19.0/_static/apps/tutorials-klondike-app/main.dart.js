@@ -34982,12 +34982,12 @@ $S(){return A.r(this.a).h("B(d5.E)")}}
 A.jq.prototype={
 gt(a){var s=this.b
 return s.gt(s)},
-l(){var s,r=this.b
-if((r==null?null:r.l())!==!0){r=this.a
-s=r.l()
-if(s){r=J.ab(r.gt(0))
-r.l()
-this.b=r}return s}return!0}}
+l(){var s=this.b
+if((s==null?null:s.l())!==!0){s=this.a
+if(!s.l())return!1
+s=J.ab(s.gt(0))
+this.b=s
+return s.l()}return!0}}
 A.cg.prototype={
 lk(a,b){this.f.i(0,A.aU(b))
 return this.yx(0,b)},
