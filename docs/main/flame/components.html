@@ -429,10 +429,10 @@ This is the base of what we call the Flame Component System, or FCS for short.</
 
     A(onLoad):::yellow
     B(onGameResize):::lightYellow
-    C(onMount):::yellow
+    C(onMount):::lightYellow
     D(update)
     E(render)
-    F(onRemove):::yellow
+    F(onRemove):::lightYellow
 
     %% Flow %%
 
@@ -442,7 +442,7 @@ This is the base of what we call the Flame Component System, or FCS for short.</
     D--&gt;E
     E--&gt;D
     E-. If removed .-&gt;F
-    F-. If re-parented .-&gt;A
+    F-. If re-parented .-&gt;B
 
         </div><p>The <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> method is called whenever the screen is resized, and also when this component
 gets added into the component tree, before the <code class="docutils literal notranslate"><span class="pre">onMount</span></code>.</p>
