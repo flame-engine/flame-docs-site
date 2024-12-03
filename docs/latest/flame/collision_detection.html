@@ -302,7 +302,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.21.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.22.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -377,7 +377,7 @@ the closest parent that has the <code class="docutils literal notranslate"><span
 <p>To react to a collision you should add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to your component.
 Example:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/1.21.0/_static/apps/flame-examples/index.html?collision_detection" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-collision_detection">
+<iframe class="flutter-app-iframe" src="/1.22.0/_static/apps/flame-examples/index.html?collision_detection" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-collision_detection">
 <div class="filename docutils container">
 collision_detection.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
@@ -616,9 +616,7 @@ them so don’t doubt to use them even if your use case isn’t listed here.</p>
 <h3>PolygonHitbox<a class="headerlink" href="#polygonhitbox" title="Link to this heading">¶</a></h3>
 <p>It should be noted that if you want to use collision detection or <code class="docutils literal notranslate"><span class="pre">containsPoint</span></code> on the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>,
 the polygon needs to be convex. So always use convex polygons or you will most likely run into
-problems if you don’t really know what you are doing.
-It should also be noted that you should always define the vertices in your polygon
-in a counter-clockwise order.</p>
+problems if you don’t really know what you are doing.</p>
 <p>The other hitbox shapes don’t have any mandatory constructor, that is because they can have a
 default calculated from the size of the collidable that they are attached to, but since a
 polygon can be made in an infinite number of ways inside of a bounding box you have to add the
@@ -800,7 +798,7 @@ range. For such cases, an optional <code class="docutils literal notranslate"><s
 game. After you have added that you can call <code class="docutils literal notranslate"><span class="pre">collisionDetection.raycast(...)</span></code> on your game class.</p>
 <p>Example:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/1.21.0/_static/apps/flame-examples/index.html?ray_cast" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_cast">
+<iframe class="flutter-app-iframe" src="/1.22.0/_static/apps/flame-examples/index.html?ray_cast" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_cast">
 <div class="filename docutils container">
 ray_cast.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span>
@@ -941,7 +939,7 @@ that you have traced the ray for long enough. If you imagine how a pool ball wou
 table for example, that information could be retrieved with the help of ray tracing.</p>
 <p>Example:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/1.21.0/_static/apps/flame-examples/index.html?ray_trace" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_trace">
+<iframe class="flutter-app-iframe" src="/1.22.0/_static/apps/flame-examples/index.html?ray_trace" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_trace">
 <div class="filename docutils container">
 ray_trace.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:math&#39;</span><span class="p">;</span>

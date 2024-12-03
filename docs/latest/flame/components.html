@@ -304,7 +304,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.21.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.22.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -428,10 +428,10 @@ This is the base of what we call the Flame Component System, or FCS for short.</
 
     A(onLoad):::yellow
     B(onGameResize):::lightYellow
-    C(onMount):::yellow
+    C(onMount):::lightYellow
     D(update)
     E(render)
-    F(onRemove):::yellow
+    F(onRemove):::lightYellow
 
     %% Flow %%
 
@@ -441,7 +441,7 @@ This is the base of what we call the Flame Component System, or FCS for short.</
     D--&gt;E
     E--&gt;D
     E-. If removed .-&gt;F
-    F-. If re-parented .-&gt;A
+    F-. If re-parented .-&gt;B
 
         </div><p>The <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> method is called whenever the screen is resized, and also when this component
 gets added into the component tree, before the <code class="docutils literal notranslate"><span class="pre">onMount</span></code>.</p>
@@ -842,7 +842,7 @@ to pi/2 radians. Following are some common directions and their corresponding na
 <section id="anchor">
 <h3>Anchor<a class="headerlink" href="#anchor" title="Link to this heading">¶</a></h3>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/1.21.0/_static/apps/flame-examples/index.html?anchor"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor">
+<iframe class="flutter-app-iframe" src="/1.22.0/_static/apps/flame-examples/index.html?anchor"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor">
 <div class="filename docutils container">
 anchor.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:async&#39;</span><span class="p">;</span>
@@ -1415,9 +1415,9 @@ in relation to the given size, most often the size of the intended parent.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">PolygonComponent</span><span class="p">.</span><span class="n">relative</span><span class="p">(</span>
 <span class="w">    </span><span class="p">[</span>
-<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of top wall</span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1.0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of top wall</span>
 <span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of right wall</span>
-<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">1.0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of bottom wall</span>
+<span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="m">1.0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of bottom wall</span>
 <span class="w">      </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="m">0.0</span><span class="p">),</span><span class="w"> </span><span class="c1">// Middle of left wall</span>
 <span class="w">    </span><span class="p">],</span>
 <span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span>
@@ -1432,8 +1432,6 @@ the center of the polygon.</p>
 <p><img alt="An example of how to define a polygon shape" src="../_images/polygon_shape.png" /></p>
 <p>In the image you can see how the polygon shape formed by the purple arrows is defined by the red
 arrows.</p>
-<p>Remember to define the lists in a counter clockwise manner (if you think in the screen coordinate
-system where the y-axis is flipped, otherwise it is clockwise).</p>
 </section>
 <section id="rectanglecomponent">
 <h3>RectangleComponent<a class="headerlink" href="#rectanglecomponent" title="Link to this heading">¶</a></h3>

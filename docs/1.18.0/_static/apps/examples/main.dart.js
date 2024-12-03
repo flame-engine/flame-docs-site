@@ -152420,7 +152420,7 @@ i=d
 h=i}s=c==="none"?B.iV:new A.qU(!1,g)
 k=e.aBw(q,d)
 f=e.a
-return new A.RS(e.f,s,h,e.aBF(p,d),k,A.j2(o,!1),A.fX(n,f,!1),e.aBy(m),A.fX(l,f,!1),i,r)},
+return new A.RS(e.f,s,h,e.aBF(p,d),k,A.j2(o,!1),A.fX(n,f,!0),e.aBy(m),A.fX(l,f,!1),i,r)},
 aBB(a,b,c,d){var s,r,q,p,o,n=this,m=null,l=a.i(0,"fill")
 if(l==null)l=""
 s=a.i(0,"fill-opacity")
