@@ -796,7 +796,8 @@ how far it lies from the ray origin.
 But in some use cases, it might be interesting to find hits only within a certain
 range. For such cases, an optional <code class="docutils literal notranslate"><span class="pre">maxDistance</span></code> can be provided.</p>
 <p>To use the ray casting functionality you have to have the <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> mixin on your
-game. After you have added that you can call <code class="docutils literal notranslate"><span class="pre">collisionDetection.raycast(...)</span></code> on your game class.</p>
+game. After you have added that, you can call <code class="docutils literal notranslate"><span class="pre">collisionDetection.raycast(...)</span></code> on your game class,
+or with the <code class="docutils literal notranslate"><span class="pre">HasGameReference</span></code> Mixin from other components as well.</p>
 <p>Example:</p>
 <div class="flutter-app-infobox docutils container">
 <iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?ray_cast" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_cast">
