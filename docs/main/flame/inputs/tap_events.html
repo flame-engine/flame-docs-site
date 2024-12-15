@@ -110,15 +110,15 @@
     <div class="nav-left" role="navigation" aria-label="Main">
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="../flame.html">Flame</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="../structure.html">File Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">Game Loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../effects.html">Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../camera_component.html">Camera Component</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Inputs</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gesture_input.html">Gesture Input</a></li>
@@ -539,7 +539,7 @@ tap_events.dart</div>
 <span class="linenos">115</span><span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
 <span class="linenos">116</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">117</span><span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">opacity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">radius</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">maxRadius</span><span class="p">;</span>
-<span class="linenos">118</span><span class="w">      </span><span class="n">_paint</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_baseColor</span><span class="p">.</span><span class="n">withOpacity</span><span class="p">(</span><span class="n">opacity</span><span class="p">);</span>
+<span class="linenos">118</span><span class="w">      </span><span class="n">_paint</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_baseColor</span><span class="p">.</span><span class="n">withValues</span><span class="p">(</span><span class="nl">alpha:</span><span class="w"> </span><span class="n">opacity</span><span class="p">);</span>
 <span class="linenos">119</span><span class="w">      </span><span class="n">_paint</span><span class="p">.</span><span class="n">strokeWidth</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_outerRadius</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">_innerRadius</span><span class="p">;</span>
 <span class="linenos">120</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">121</span><span class="w">  </span><span class="p">}</span>

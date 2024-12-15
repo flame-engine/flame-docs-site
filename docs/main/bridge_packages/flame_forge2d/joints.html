@@ -110,15 +110,15 @@
     <div class="nav-left" role="navigation" aria-label="Main">
       <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../flame/flame.html">Flame</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">File Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">Game Loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">Assets Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/effects.html">Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/camera_component.html">Camera Component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/gesture_input.html">Gesture Input</a></li>
@@ -1010,33 +1010,34 @@ mouse_joint.dart</div>
 <span class="linenos">38</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">39</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragStart</span><span class="p">(</span><span class="n">DragStartEvent</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">40</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragStart</span><span class="p">(</span><span class="n">info</span><span class="p">);</span>
-<span class="linenos">41</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">mouseJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MouseJointDef</span><span class="p">()</span>
-<span class="linenos">42</span><span class="w">      </span><span class="p">..</span><span class="n">maxForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ball</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">mass</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">10</span>
-<span class="linenos">43</span><span class="w">      </span><span class="p">..</span><span class="n">dampingRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span>
-<span class="linenos">44</span><span class="w">      </span><span class="p">..</span><span class="n">frequencyHz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
-<span class="linenos">45</span><span class="w">      </span><span class="p">..</span><span class="n">target</span><span class="p">.</span><span class="n">setFrom</span><span class="p">(</span><span class="n">ball</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">position</span><span class="p">)</span>
-<span class="linenos">46</span><span class="w">      </span><span class="p">..</span><span class="n">collideConnected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
-<span class="linenos">47</span><span class="w">      </span><span class="p">..</span><span class="n">bodyA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">groundBody</span>
-<span class="linenos">48</span><span class="w">      </span><span class="p">..</span><span class="n">bodyB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ball</span><span class="p">.</span><span class="n">body</span><span class="p">;</span>
-<span class="linenos">49</span>
-<span class="linenos">50</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mouseJoint</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">51</span><span class="w">      </span><span class="n">mouseJoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MouseJoint</span><span class="p">(</span><span class="n">mouseJointDef</span><span class="p">);</span>
-<span class="linenos">52</span><span class="w">      </span><span class="n">createJoint</span><span class="p">(</span><span class="n">mouseJoint</span><span class="o">!</span><span class="p">);</span>
-<span class="linenos">53</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">54</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">55</span>
-<span class="linenos">56</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">57</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">58</span><span class="w">    </span><span class="n">mouseJoint</span><span class="o">?</span><span class="p">.</span><span class="n">setTarget</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">localEndPosition</span><span class="p">);</span>
-<span class="linenos">59</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">60</span>
-<span class="linenos">61</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">62</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndEvent</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">63</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">info</span><span class="p">);</span>
-<span class="linenos">64</span><span class="w">    </span><span class="n">destroyJoint</span><span class="p">(</span><span class="n">mouseJoint</span><span class="o">!</span><span class="p">);</span>
-<span class="linenos">65</span><span class="w">    </span><span class="n">mouseJoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="linenos">66</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">67</span><span class="p">}</span>
+<span class="linenos">41</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mouseJoint</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">42</span><span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="linenos">43</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">44</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">mouseJointDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MouseJointDef</span><span class="p">()</span>
+<span class="linenos">45</span><span class="w">      </span><span class="p">..</span><span class="n">maxForce</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">3000</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">ball</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">mass</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">10</span>
+<span class="linenos">46</span><span class="w">      </span><span class="p">..</span><span class="n">dampingRatio</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.1</span>
+<span class="linenos">47</span><span class="w">      </span><span class="p">..</span><span class="n">frequencyHz</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span>
+<span class="linenos">48</span><span class="w">      </span><span class="p">..</span><span class="n">target</span><span class="p">.</span><span class="n">setFrom</span><span class="p">(</span><span class="n">ball</span><span class="p">.</span><span class="n">body</span><span class="p">.</span><span class="n">position</span><span class="p">)</span>
+<span class="linenos">49</span><span class="w">      </span><span class="p">..</span><span class="n">collideConnected</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span>
+<span class="linenos">50</span><span class="w">      </span><span class="p">..</span><span class="n">bodyA</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">groundBody</span>
+<span class="linenos">51</span><span class="w">      </span><span class="p">..</span><span class="n">bodyB</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ball</span><span class="p">.</span><span class="n">body</span><span class="p">;</span>
+<span class="linenos">52</span>
+<span class="linenos">53</span><span class="w">    </span><span class="n">mouseJoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MouseJoint</span><span class="p">(</span><span class="n">mouseJointDef</span><span class="p">);</span>
+<span class="linenos">54</span><span class="w">    </span><span class="n">createJoint</span><span class="p">(</span><span class="n">mouseJoint</span><span class="o">!</span><span class="p">);</span>
+<span class="linenos">55</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">56</span>
+<span class="linenos">57</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">58</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">59</span><span class="w">    </span><span class="n">mouseJoint</span><span class="o">?</span><span class="p">.</span><span class="n">setTarget</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">localEndPosition</span><span class="p">);</span>
+<span class="linenos">60</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">61</span>
+<span class="linenos">62</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">63</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndEvent</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">64</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">info</span><span class="p">);</span>
+<span class="linenos">65</span><span class="w">    </span><span class="n">destroyJoint</span><span class="p">(</span><span class="n">mouseJoint</span><span class="o">!</span><span class="p">);</span>
+<span class="linenos">66</span><span class="w">    </span><span class="n">mouseJoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="linenos">67</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">68</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>

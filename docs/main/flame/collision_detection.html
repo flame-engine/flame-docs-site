@@ -110,15 +110,15 @@
     <div class="nav-left" role="navigation" aria-label="Main">
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="flame.html">Flame</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="structure.html">File Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game Loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="structure.html">Assets Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera Component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/gesture_input.html">Gesture Input</a></li>
@@ -818,7 +818,7 @@ ray_cast.dart</div>
 <span class="linenos">13</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">60</span><span class="p">;</span>
 <span class="linenos">14</span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">resetPosition</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="o">-</span><span class="n">canvasSize</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
 <span class="linenos">15</span>
-<span class="linenos">16</span><span class="w">  </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">withOpacity</span><span class="p">(</span><span class="m">0.6</span><span class="p">);</span>
+<span class="linenos">16</span><span class="w">  </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">withValues</span><span class="p">(</span><span class="nl">alpha:</span><span class="w"> </span><span class="m">0.6</span><span class="p">);</span>
 <span class="linenos">17</span>
 <span class="linenos">18</span><span class="w">  </span><span class="n">RaycastResult</span><span class="o">&lt;</span><span class="n">ShapeHitbox</span><span class="o">&gt;?</span><span class="w"> </span><span class="n">result</span><span class="p">;</span>
 <span class="linenos">19</span>
@@ -956,7 +956,7 @@ ray_trace.dart</div>
 <span class="linenos">10</span>
 <span class="linenos">11</span><span class="kd">class</span><span class="w"> </span><span class="nc">RayTraceExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span>
 <span class="linenos">12</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="p">,</span><span class="w"> </span><span class="n">TapDetector</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">13</span><span class="w">  </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">withOpacity</span><span class="p">(</span><span class="m">0.6</span><span class="p">);</span>
+<span class="linenos">13</span><span class="w">  </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">withValues</span><span class="p">(</span><span class="nl">alpha:</span><span class="w"> </span><span class="m">0.6</span><span class="p">);</span>
 <span class="linenos">14</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">isClicked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 <span class="linenos">15</span>
 <span class="linenos">16</span><span class="w">  </span><span class="n">Vector2</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">origin</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>

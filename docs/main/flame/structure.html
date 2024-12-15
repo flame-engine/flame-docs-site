@@ -4,7 +4,7 @@
 <meta name="robots" content="noindex">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Structure &#8212; Flame</title>
+  <title>Assets Directory Structure &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
   <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
@@ -37,8 +37,8 @@
   <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="Game Widget" href="game_widget.html" />
-  <link rel="prev" title="Flame" href="flame.html" />
+  <link rel="next" title="RouterComponent" href="router.html" />
+  <link rel="prev" title="Camera &amp; World" href="camera.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -110,15 +110,15 @@
     <div class="nav-left" role="navigation" aria-label="Main">
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="flame.html">Flame</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">File Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">Game Loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Assets Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="camera_component.html">Camera Component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/gesture_input.html">Gesture Input</a></li>
@@ -323,23 +323,25 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="structure">
-<h1>Structure<a class="headerlink" href="#structure" title="Link to this heading">¶</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="assets-directory-structure">
+<h1>Assets Directory Structure<a class="headerlink" href="#assets-directory-structure" title="Link to this heading">¶</a></h1>
 <p>Flame has a proposed structure for your project that includes the standard Flutter <code class="docutils literal notranslate"><span class="pre">assets</span></code>
 directory in addition to some children: <code class="docutils literal notranslate"><span class="pre">audio</span></code>, <code class="docutils literal notranslate"><span class="pre">images</span></code> and <code class="docutils literal notranslate"><span class="pre">tiles</span></code>.</p>
 <p>If using the following example code:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span>
 
-<span class="w">  </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
-<span class="w">  </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;enemy.png&#39;</span><span class="p">);</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">map1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;level.tmx&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">tileSize</span><span class="p">);</span>
-<span class="w">  </span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">map2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">SpriteFusionTilemapComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">mapJsonFile:</span><span class="w"> </span><span class="s1">&#39;map.json&#39;</span><span class="p">,</span>
-<span class="w">    </span><span class="nl">spriteSheetFile:</span><span class="w"> </span><span class="s1">&#39;spritesheet.png&#39;</span>
-<span class="w">  </span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Load some images</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;enemy.png&#39;</span><span class="p">);</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="c1">// Or load all images in your images folder</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">loadAllImages</span><span class="p">();</span>
+
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">map1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;level.tmx&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">tileSize</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
@@ -383,18 +385,18 @@ like the file system for example.</p>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="flame.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="camera.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Flame</p>
+          <p class="prev-next-title">Camera &amp; World</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="game_widget.html" title="next page">
+      <a class="right-next" id="next-link" href="router.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Game Widget</p>
+          <p class="prev-next-title">RouterComponent</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
