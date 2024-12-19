@@ -328,6 +328,12 @@
 <p>On this page you can find documentation for some utility classes and methods.</p>
 <section id="device-class">
 <h2>Device Class<a class="headerlink" href="#device-class" title="Link to this heading">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Many methods in this class only work on mobile platforms (Android and iOS).</p>
+<p>Using these methods on other platforms will not have any effect and you will
+get a warning printed on your console when running in debug mode.</p>
+</div>
 <p>This class can be accessed from <code class="docutils literal notranslate"><span class="pre">Flame.device</span></code> and it has some methods that can be used to control
 the state of the device, for instance you can change the screen orientation and set whether the
 application should be fullscreen or not.</p>
