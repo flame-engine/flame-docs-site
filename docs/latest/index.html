@@ -108,15 +108,15 @@
     <div class="nav-left" role="navigation" aria-label="Main">
       <ul>
 <li class="toctree-l1"><a class="reference internal" href="flame/flame.html">Flame</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="flame/structure.html">File Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flame/game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flame/game.html">Game Loop</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flame/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flame/structure.html">Assets Structure</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flame/router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flame/platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flame/collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flame/effects.html">Effects</a></li>
-<li class="toctree-l2"><a class="reference internal" href="flame/camera_component.html">Camera Component</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="flame/inputs/drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="flame/inputs/gesture_input.html">Gesture Input</a></li>
@@ -301,7 +301,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.22.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.23.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -354,10 +354,113 @@ reach out, open issues and PRs as well as make suggestions.</p>
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/doc/tutorials">tutorials folder</a>.</p>
 <p>Simple examples for all features can be found in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples">examples folder</a>.</p>
-<p>You can also check out the <a class="reference external" href="https://github.com/flame-engine/awesome-flame#user-content-articles--tutorials">awesome flame
-repository</a>,
-it contains quite a lot of good tutorials and articles written by the community
-to get you started with Flame.</p>
+<p>To run Flame you need use the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>, which is just another widget that can live anywhere in
+your widget tree. You can use it as the root widget of your app, or as a child of another widget.</p>
+<p>Here is a simple example of how to use the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span>
+<span class="w">    </span><span class="n">GameWidget</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">game:</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">(),</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In Flame we provide a concept called the Flame Component System (FCS), which is a way to organize
+your game objects in a way that makes it easy to manage them. You can read more about it in the
+<a class="reference internal" href="flame/components.html"><span class="std std-doc">Components</span></a> section.</p>
+<p>When you want to start a new game you either have to extend the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class or the <code class="docutils literal notranslate"><span class="pre">World</span></code>
+class. The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is the root of your game and is responsible for managing the game loop and
+the components. The <code class="docutils literal notranslate"><span class="pre">World</span></code> class is a component that can be used to create a world in your game.</p>
+<p>So to create a simple game you can do something like this:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/widgets.dart&#39;</span><span class="p">;</span>
+
+<span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">runApp</span><span class="p">(</span>
+<span class="w">    </span><span class="n">GameWidget</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">game:</span><span class="w"> </span><span class="n">FlameGame</span><span class="p">(</span><span class="nl">world:</span><span class="w"> </span><span class="n">MyWorld</span><span class="p">()),</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyWorld</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">Player</span><span class="p">(</span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">)));</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>As you can see, we have created a <code class="docutils literal notranslate"><span class="pre">MyWorld</span></code> class that extends the <code class="docutils literal notranslate"><span class="pre">World</span></code> class. We have overridden
+the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method to add a <code class="docutils literal notranslate"><span class="pre">Player</span></code> component (which doesn’t exist yet) to the world. In the
+<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class we by default have a <code class="docutils literal notranslate"><span class="pre">camera</span></code> that is watching the world, and by default it is
+looking at the (0, 0) position of the world in the center of the screen, to learn more about the
+camera and the world you can read the <a class="reference internal" href="flame/camera.html"><span class="std std-doc">Camera Component</span></a> section.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Player</span></code> component can be whatever type of component that you want, to get started we recommend
+to use the <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> class, which is a component that can render a sprite (image) on the
+screen.</p>
+<p>For example something like this:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/geometry.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/extensions.dart&#39;</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Player</span><span class="p">({</span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">})</span><span class="w"> </span><span class="o">:</span>
+<span class="w">    </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">200</span><span class="p">),</span><span class="w"> </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this example, we have created a <code class="docutils literal notranslate"><span class="pre">Player</span></code> class that extends the <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> class. We have
+overridden the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method to set the sprite of the component to a sprite that we load from an
+image file called <code class="docutils literal notranslate"><span class="pre">player.png</span></code>. The image has to be in the <code class="docutils literal notranslate"><span class="pre">assets/images</span></code> directory in your project
+(see the <a class="reference internal" href="flame/structure.html"><span class="std std-doc">Assets Directory Structure</span></a>) and you have to add it to the
+<a class="reference external" href="https://docs.flutter.dev/ui/assets/assets-and-images">assets section</a> of your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file.
+In this class we also set the size of the component to 200x200 and the <a class="reference internal" href="flame/components.html#anchor"><span class="std std-ref">anchor</span></a>
+to the center of the component by sending them to the <code class="docutils literal notranslate"><span class="pre">super</span></code> constructor. We also let the user of
+the <code class="docutils literal notranslate"><span class="pre">Player</span></code> class set the position of the component when creating it
+(<code class="docutils literal notranslate"><span class="pre">Player(position:</span> <span class="pre">Vector2(0,</span> <span class="pre">0))</span></code>).</p>
+<p>To handle input on a component you can add any of our <a class="reference internal" href="flame/inputs/inputs.html"><span class="std std-doc">input mixins</span></a> to the
+component. For example, if you want to handle tap input you can add the <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> mixin to the
+player component, and receive tap events within the bounds of the player component. Or if you want
+to handle tap input on the whole world you can add the <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> mixin to the extended <code class="docutils literal notranslate"><span class="pre">World</span></code>
+class.</p>
+<p>The following example handles taps on the player component, and when the player component is
+tapped the size of the player will increase by 50 pixels in both width and height.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/geometry.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/extensions.dart&#39;</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Player</span><span class="p">({</span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">})</span><span class="w"> </span><span class="o">:</span>
+<span class="w">    </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">200</span><span class="p">),</span><span class="w"> </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">);</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="w">  </span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">size</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">50</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This is just a simple example of how to get started with Flame, there are many more features that you
+can use (and probably need) to create your game, but this should give you a good starting point.</p>
+<p>You can also check out the <a class="reference external" href="https://github.com/flame-engine/awesome-flame#user-content-articles--tutorials">awesome flame repository</a>,
+it contains quite a lot of good tutorials and articles written by the community to get you started
+with Flame.</p>
 </section>
 <section id="outside-of-the-scope-of-the-engine">
 <h2>Outside of the scope of the engine<a class="headerlink" href="#outside-of-the-scope-of-the-engine" title="Link to this heading">¶</a></h2>
