@@ -1204,9 +1204,14 @@ where the components should be spawned within (or along the edges of).</p>
 spawn components along the edges of the shape set the <code class="docutils literal notranslate"><span class="pre">within</span></code> argument to false (defaults to true).</p>
 <p>This would for example spawn new components of the type <code class="docutils literal notranslate"><span class="pre">MyComponent</span></code> every 0.5 seconds randomly
 within the defined circle:</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">factory</span></code> function takes an <code class="docutils literal notranslate"><span class="pre">int</span></code> as an argument, which is the index of the component that is
-being spawned, so if for example 4 components have been spawned already the 5th component will have
-the index 4, since the indexing starts at 0.</p>
+<p>The component supports two types of factories. The <code class="docutils literal notranslate"><span class="pre">factory</span></code> returns a single component and the
+<code class="docutils literal notranslate"><span class="pre">multiFactory</span></code> returns a list of components that are added in a single step.</p>
+<p>The factory functions takes an <code class="docutils literal notranslate"><span class="pre">int</span></code> as an argument, which is the number of components that have
+been spawned, so if for example 4 components have been spawned already the 5th call of the factory
+method will be called with the <code class="docutils literal notranslate"><span class="pre">amount=4</span></code>, since the counting starts at 0 for the first call.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">factory</span></code> with a single component is for backward compatibility, so you should use the
+<code class="docutils literal notranslate"><span class="pre">multiFactory</span></code> if in doubt. A single component <code class="docutils literal notranslate"><span class="pre">factory</span></code> will be wrapped internally to return a
+single item list and then used as the <code class="docutils literal notranslate"><span class="pre">multiFactory</span></code>.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpawnComponent</span><span class="p">(</span>
 <span class="w">  </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">MyComponent</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">)),</span>
 <span class="w">  </span><span class="nl">period:</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span>
