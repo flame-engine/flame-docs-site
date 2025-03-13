@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Adding bullets &#8212; Flame</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
+  <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=ac7bdd72" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
+  <!-- Scripts -->
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
+  <!--script src="searchindex.js" defer></script-->
+  <!-- Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../_static/fontawesome/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../_static/fontawesome/fa-solid-900.woff2">
+  <link rel="stylesheet" href="../../_static/fontawesome/all.min.css">
+  <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" />
+  <link rel="next" title="Adding Enemies" href="step_5.html" />
+  <link rel="prev" title="Adding animations and depth" href="step_3.html" />
+</head>
+
+<body data-spy="scroll" data-target="#toc-local" data-offset="80">
+
+<div class="top-bar">
+  <button id="menu-button" class="btn" title="Toggle menu"><i class="fa fa-bars"></i></button>
+  <script type="text/javascript">
+    jQuery(function(){
+      $("#menu-button").click(function() {
+        $(this).toggleClass("active");
+        $(".sidebar-left-area").toggleClass("active");
+      });
+
+      $('div.nav-left li > a:not(:only-child)').wrap('<div class=submenu></div>');
+      $('div.nav-left div.submenu').prepend('<a class=arrow>&nbsp;</a>');
+      $('div.nav-left div.submenu > a.arrow')
+        .click(function() {
+          $(this.parentElement.parentElement).toggleClass('current');
+        });
+
+      // This function ensures that when navigating to internal targets within the page (such as
+      // a section header), those targets will be visible to the user and not obscured by the menu
+      // bar at the top of the page.
+      function scrollToHashTarget() {
+        if (location.hash !== location.oldHash) {
+          window.scrollBy(0, -60);
+          location.oldHash = location.hash;
+        }
+      }
+      window.location.oldHash = '';
+      window.addEventListener('hashchange', scrollToHashTarget);
+      scrollToHashTarget();
+    });
+  </script>
+
+  <a href="../../index.html" class="logo_image" aria-label="Navigate to home page">
+    <img src="../../_static/logo_flame.png" alt="Flame logo: a fiery symbol along with the FLAME wordmark.">
+  </a>  
+  <div class="highlight-box" role="alert" style="display:none">
+    <div>
+      <div class="title">highlighted:</div>
+      <div class="content" id="highlight-content"></div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Dismiss">×</button>
+  </div>
+  <div class="expander"></div>
+
+  <div class="versions-placeholder"></div>
+  <a href="https://discord.com/invite/pxrBmy4" id="discord-button" class="btn"
+     title="Blue Fire Discord server">
+    <i class="fab fa-discord"></i>
+  </a>
+  <a href="https://github.com/flame-engine/flame/" id="github-button" class="btn"
+     title="GitHub repository">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+
+<div class="sidebar-left-area">
+  <div class="sidebar-left-bg"></div>
+  <div class="sidebar-left">
+    <div class="searchbox" role="search">
+      <form id="search-form" action="../../search.html" method="get">
+        <i class="icon fa fa-search"></i>
+        <input type="search" class="form-control" id="search-input" name="q"
+               placeholder="Search the docs..." autocomplete="off" />
+      </form>
+    </div>
+    <div class="nav-left" role="navigation" aria-label="Main">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../flame/flame.html">Flame</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">Game Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">Game Loop</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">Assets Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/drag_events.html">Drag Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/gesture_input.html">Gesture Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/keyboard_input.html">Keyboard Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/other_inputs.html">Other Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap_events.html">Tap Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/pointer_events.html">Pointer Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/palette.html">Colors and Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/decorators.html">Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/images.html">Images, Sprites and Animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/layers.html">Layers and Snapshots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/particles.html">Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/text_rendering.html">Text Rendering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/layout/layout.html">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/layout/align_component.html">AlignComponent</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/overlays.html">Overlays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/other/other.html">Other</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/performance.html">Performance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../bridge_packages/bridge_packages.html">Bridge Packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_audio/flame_audio.html">flame_audio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/audio.html">General audio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/bgm.html">Background music</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/audio_pool.html">AudioPool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_bloc/flame_bloc.html">flame_bloc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_bloc/bloc.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_bloc/bloc_components.html">Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_fire_atlas/flame_fire_atlas.html">flame_fire_atlas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_fire_atlas/fire_atlas.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_forge2d/forge2d.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_forge2d/joints.html">Joints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_isolate/flame_isolate.html">flame_isolate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_lottie/flame_lottie.html">flame_lottie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_network_assets/flame_network_assets.html">flame_network_assets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_rive/flame_rive.html">flame_rive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_rive/rive.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_riverpod/flame_riverpod.html">flame_riverpod</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_riverpod/riverpod.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_riverpod/component.html">Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_riverpod/widget.html">Widget</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_splash_screen/flame_splash_screen.html">flame_splash_screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_spine/flame_spine.html">flame_spine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_svg/flame_svg.html">flame_svg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_svg/svg.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/jenny/jenny.html">jenny</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/jenny/language/language.html">YarnSpinner language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/nodes.html">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/options.html">Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/commands/commands.html">Commands</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/character.html">&lt;&lt;character&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/declare.html">&lt;&lt;declare&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/if.html">&lt;&lt;if&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/local.html">&lt;&lt;local&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/set.html">&lt;&lt;set&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/stop.html">&lt;&lt;stop&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/visit.html">&lt;&lt;visit&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/wait.html">&lt;&lt;wait&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/user_defined_commands.html">User-defined commands</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/expressions/expressions.html">Expressions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/expressions/variables.html">Variables</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/expressions/operators.html">Operators</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/functions.html">Functions</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/random.html">Random functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/numeric.html">Numeric functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/type.html">Type conversion functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/misc.html">Miscellaneous functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/markup.html">Markup</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/jenny/runtime/jenny_runtime.html">Jenny API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/character.html">Character</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/character_storage.html">CharacterStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/command_storage.html">CommandStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_choice.html">DialogueChoice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_line.html">DialogueLine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_option.html">DialogueOption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_runner.html">DialogueRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_view.html">DialogueView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/function_storage.html">FunctionStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/markup_attribute.html">MarkupAttribute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/node.html">Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/user_defined_command.html">UserDefinedCommand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/variable_storage.html">VariableStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/yarn_project.html">YarnProject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen/oxygen.html">oxygen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/oxygen/components.html">Components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../klondike/klondike.html">Klondike</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../klondike/step1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klondike/step2.html">2. Scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klondike/step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klondike/step4.html">4. Gameplay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../klondike/step5.html">5. Additional features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../platformer/platformer.html">Ember Quest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_2.html">2. Start Coding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_3.html">3. Building the World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_4.html">4. Adding the Remaining Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_5.html">5. Controlling Movement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_6.html">6. Adding the HUD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../platformer/step_7.html">7. Adding Menus</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="space_shooter.html">Space Shooter</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="step_1.html">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_2.html">2. Controlling the player and adding some graphics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_3.html">3. Adding animations and depth</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4. Adding Bullets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_5.html">5. Adding Enemies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="step_6.html">6. Enemy and Bullet collisions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/testing_guide.html">Tests Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.26.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="main-area">
+  <div class="document-wrapper">
+    <div class="warning hidden" id="version-warning">
+      <p><strong>Warning:</strong> you are currently viewing the docs for an older
+      version <span class="version"></span> of Flame.</p>
+      <p>Please <a href="/">click here</a> to go see the documentation for the latest
+      released version.</p>
+    </div>
+    <div class="document" role="main">
+      
+  <section class="tex2jax_ignore mathjax_ignore" id="adding-bullets">
+<h1>Adding bullets<a class="headerlink" href="#adding-bullets" title="Link to this heading">¶</a></h1>
+<p>For this next step we will add a very important feature to any space shooter game, shooting!</p>
+<p>Here is how we will implement it: since we already control our space ship by dragging on the screen
+with the mouse/fingers, we will make the ship auto shoot when the player starts dragging and
+stop shooting when the gesture/input has ended.</p>
+<p>First, let’s create a <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> component that will represent the shots in the game.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Bullet</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Bullet</span><span class="p">({</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span>
+<span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+
+<span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;bullet.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>So far, this does not introduce any new concepts, we just created a component and set
+up its animations attributes.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> behavior is a simple one, it always moves towards the top of the screen and should
+be removed from the game if it is not visible anymore, so let’s add an <code class="docutils literal notranslate"><span class="pre">update</span></code> method to it
+and make it happen:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Bullet</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Bullet</span><span class="p">({</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span>
+<span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Omitted</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="m">500</span><span class="p">;</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The above code should be straight forward, but lets break it down:</p>
+<ul class="simple">
+<li><p>We add to the bullet’s y axis position at a rate of -500 pixels per second. Remember going up
+in the y axis means getting closer to <code class="docutils literal notranslate"><span class="pre">0</span></code> since the top left corner of the screen is <code class="docutils literal notranslate"><span class="pre">0,</span> <span class="pre">0</span></code>.</p></li>
+<li><p>If the y is smaller than the negative value of the bullet’s height, means that the component is
+completely off the screen and it can be removed.</p></li>
+</ul>
+<p>Right, we now have a <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> class ready, so lets start to implement the action of shooting.
+First thing, let’s create two empty methods in the <code class="docutils literal notranslate"><span class="pre">Player</span></code> class, <code class="docutils literal notranslate"><span class="pre">startShooting()</span></code> and
+<code class="docutils literal notranslate"><span class="pre">stopShooting()</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="c1">// Rest of implementation omitted</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">startShooting</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// TODO</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">stopShooting</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// TODO</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>And let’s hook into those methods from the game class by using the <code class="docutils literal notranslate"><span class="pre">onPanStart()</span></code>
+and <code class="docutils literal notranslate"><span class="pre">onPanEnd()</span></code> methods from the <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> mixin that we already have been using for the ship
+movement:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
+
+<span class="w">  </span><span class="c1">// Rest of implementation omitted</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanStart</span><span class="p">(</span><span class="n">DragStartInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">startShooting</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanEnd</span><span class="p">(</span><span class="n">DragEndInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">stopShooting</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>We now have everything set up, so let’s write the shooting routine in our player class.</p>
+<p>Remember, the shooting behavior will be adding bullets through time intervals when the player is
+dragging the starship.</p>
+<p>We could implement the time interval code and the spawning manually, but Flame
+provides a component out of the box for that, the <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code>, so let’s take advantage of it:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">SpawnComponent</span><span class="w"> </span><span class="n">_bulletSpawner</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Loading animation omitted</span>
+
+<span class="w">    </span><span class="n">_bulletSpawner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpawnComponent</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">period:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">selfPositioning:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">      </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Bullet</span><span class="p">(</span>
+<span class="w">          </span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">+</span>
+<span class="w">              </span><span class="n">Vector2</span><span class="p">(</span>
+<span class="w">                </span><span class="m">0</span><span class="p">,</span>
+<span class="w">                </span><span class="o">-</span><span class="n">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">              </span><span class="p">),</span>
+<span class="w">        </span><span class="p">);</span>
+
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">bullet</span><span class="p">;</span>
+<span class="w">      </span><span class="p">},</span>
+<span class="w">      </span><span class="nl">autoStart:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">_bulletSpawner</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">startShooting</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_bulletSpawner</span><span class="p">.</span><span class="n">timer</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">stopShooting</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">_bulletSpawner</span><span class="p">.</span><span class="n">timer</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Hopefully the code above speaks for itself, but let’s look at it in more detail:</p>
+<ul class="simple">
+<li><p>First we declared a <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code> called <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> in our game class, we needed it
+to be an variable accessible to the whole component since we will be accessing it in the
+<code class="docutils literal notranslate"><span class="pre">startShooting</span></code> and <code class="docutils literal notranslate"><span class="pre">stopShooting</span></code> methods.</p></li>
+<li><p>We initialize our <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> in the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method. In the first argument, <code class="docutils literal notranslate"><span class="pre">period</span></code>, we set
+how much time in seconds it will take between calls, and we choose <code class="docutils literal notranslate"><span class="pre">.2</span></code> seconds for now.</p></li>
+<li><p>We set <code class="docutils literal notranslate"><span class="pre">selfPositioning:</span> <span class="pre">true</span></code> so the spawn component doesn’t try to position the created component
+since we want to handle that ourselves to make the bullets spawn out of the ship.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">factory</span></code> attribute receives a function that will be called every time the <code class="docutils literal notranslate"><span class="pre">period</span></code> is<br />
+reached and return the created component.</p></li>
+<li><p>We set <code class="docutils literal notranslate"><span class="pre">autoStart:</span> <span class="pre">false</span></code> so it does not start by default.</p></li>
+<li><p>Finally we add the <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> to our component, so it can be processed in the game loop.</p></li>
+<li><p>Note how the <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> is added to the game instead of the player, since the bullets
+are part of the whole game and not the player itself.</p></li>
+</ul>
+<p>With the <code class="docutils literal notranslate"><span class="pre">_bulletSpawner</span></code> all set up, the only missing piece now is starting the
+<code class="docutils literal notranslate"><span class="pre">_bulletSpawner.timer</span></code> in <code class="docutils literal notranslate"><span class="pre">startShooting()</span></code> and stopping it in the <code class="docutils literal notranslate"><span class="pre">stopShooting()</span></code>!</p>
+<p>And that closes this step, putting us real close to a real game!</p>
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/v1.26.0/_static/apps/tutorials-space_shooter-app/index.html?step4&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step4">
+<div class="filename docutils container">
+main.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/parallax.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
+<span class="linenos">  7</span>
+<span class="linenos">  8</span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">  9</span><span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">SpaceShooterGame</span><span class="p">()));</span>
+<span class="linenos"> 10</span><span class="p">}</span>
+<span class="linenos"> 11</span>
+<span class="linenos"> 12</span><span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 13</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
+<span class="linenos"> 14</span>
+<span class="linenos"> 15</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos"> 16</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 17</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">(</span>
+<span class="linenos"> 18</span><span class="w">      </span><span class="p">[</span>
+<span class="linenos"> 19</span><span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;stars_0.png&#39;</span><span class="p">),</span>
+<span class="linenos"> 20</span><span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;stars_1.png&#39;</span><span class="p">),</span>
+<span class="linenos"> 21</span><span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;stars_2.png&#39;</span><span class="p">),</span>
+<span class="linenos"> 22</span><span class="w">      </span><span class="p">],</span>
+<span class="linenos"> 23</span><span class="w">      </span><span class="nl">baseVelocity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">5</span><span class="p">),</span>
+<span class="linenos"> 24</span><span class="w">      </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span>
+<span class="linenos"> 25</span><span class="w">      </span><span class="nl">velocityMultiplierDelta:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="linenos"> 26</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos"> 27</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">parallax</span><span class="p">);</span>
+<span class="linenos"> 28</span>
+<span class="linenos"> 29</span><span class="w">    </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Player</span><span class="p">();</span>
+<span class="linenos"> 30</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
+<span class="linenos"> 31</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 32</span>
+<span class="linenos"> 33</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos"> 34</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 35</span><span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">);</span>
+<span class="linenos"> 36</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 37</span>
+<span class="linenos"> 38</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos"> 39</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanStart</span><span class="p">(</span><span class="n">DragStartInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 40</span><span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">startShooting</span><span class="p">();</span>
+<span class="linenos"> 41</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 42</span>
+<span class="linenos"> 43</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos"> 44</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanEnd</span><span class="p">(</span><span class="n">DragEndInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 45</span><span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">stopShooting</span><span class="p">();</span>
+<span class="linenos"> 46</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 47</span><span class="p">}</span>
+<span class="linenos"> 48</span>
+<span class="linenos"> 49</span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="linenos"> 50</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 51</span><span class="w">  </span><span class="n">Player</span><span class="p">()</span>
+<span class="linenos"> 52</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="linenos"> 53</span><span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
+<span class="linenos"> 54</span><span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos"> 55</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos"> 56</span>
+<span class="linenos"> 57</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">SpawnComponent</span><span class="w"> </span><span class="n">_bulletSpawner</span><span class="p">;</span>
+<span class="linenos"> 58</span>
+<span class="linenos"> 59</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos"> 60</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 61</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos"> 62</span>
+<span class="linenos"> 63</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
+<span class="linenos"> 64</span><span class="w">      </span><span class="s1">&#39;player.png&#39;</span><span class="p">,</span>
+<span class="linenos"> 65</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="linenos"> 66</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="linenos"> 67</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
+<span class="linenos"> 68</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32</span><span class="p">,</span><span class="w"> </span><span class="m">48</span><span class="p">),</span>
+<span class="linenos"> 69</span><span class="w">      </span><span class="p">),</span>
+<span class="linenos"> 70</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos"> 71</span>
+<span class="linenos"> 72</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
+<span class="linenos"> 73</span>
+<span class="linenos"> 74</span><span class="w">    </span><span class="n">_bulletSpawner</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpawnComponent</span><span class="p">(</span>
+<span class="linenos"> 75</span><span class="w">      </span><span class="nl">period:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
+<span class="linenos"> 76</span><span class="w">      </span><span class="nl">selfPositioning:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos"> 77</span><span class="w">      </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 78</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Bullet</span><span class="p">(</span>
+<span class="linenos"> 79</span><span class="w">          </span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos"> 80</span><span class="w">              </span><span class="n">Vector2</span><span class="p">(</span>
+<span class="linenos"> 81</span><span class="w">                </span><span class="m">0</span><span class="p">,</span>
+<span class="linenos"> 82</span><span class="w">                </span><span class="o">-</span><span class="n">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos"> 83</span><span class="w">              </span><span class="p">),</span>
+<span class="linenos"> 84</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos"> 85</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos"> 86</span><span class="w">      </span><span class="nl">autoStart:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos"> 87</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos"> 88</span>
+<span class="linenos"> 89</span><span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">_bulletSpawner</span><span class="p">);</span>
+<span class="linenos"> 90</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 91</span>
+<span class="linenos"> 92</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 93</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
+<span class="linenos"> 94</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">startShooting</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="n">_bulletSpawner</span><span class="p">.</span><span class="n">timer</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="linenos"> 98</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 99</span>
+<span class="linenos">100</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">stopShooting</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">101</span><span class="w">    </span><span class="n">_bulletSpawner</span><span class="p">.</span><span class="n">timer</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+<span class="linenos">102</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">103</span><span class="p">}</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span><span class="kd">class</span><span class="w"> </span><span class="nc">Bullet</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="linenos">106</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">107</span><span class="w">  </span><span class="n">Bullet</span><span class="p">({</span>
+<span class="linenos">108</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<span class="linenos">109</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="linenos">110</span><span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span>
+<span class="linenos">111</span><span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">112</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">113</span>
+<span class="linenos">114</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">115</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">116</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">117</span>
+<span class="linenos">118</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
+<span class="linenos">119</span><span class="w">      </span><span class="s1">&#39;bullet.png&#39;</span><span class="p">,</span>
+<span class="linenos">120</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="linenos">121</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="linenos">122</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
+<span class="linenos">123</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
+<span class="linenos">124</span><span class="w">      </span><span class="p">),</span>
+<span class="linenos">125</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">126</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">127</span>
+<span class="linenos">128</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">129</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">130</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="linenos">131</span>
+<span class="linenos">132</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="m">500</span><span class="p">;</span>
+<span class="linenos">133</span>
+<span class="linenos">134</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">135</span><span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="linenos">136</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">137</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">138</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;tutorials-space_shooter-app-source-step4&quot;)">Code</button><p><a class="reference internal" href="step_5.html"><span class="std std-doc">Next step: Adding Enemies</span></a></p>
+</section>
+
+
+    </div>
+    <div class="copyright">
+      The content on this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 License</a>,
+      and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
+    </div>
+    <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="step_3.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">Adding animations and depth</p>
+        </div>
+      </a>
+      <div class='expander'></div>
+      <a class="right-next" id="next-link" href="step_5.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">Adding Enemies</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-right">
+    
+    <div class="nav-right" role="navigation" aria-label="table of contents">
+      <div id='toc-local' class='list-group'>
+ <div class='header'><i class='fa fa-list'></i> Contents</div>
+</div>
+
+    </div>
+  </div>
+
+  <div class="expander"></div>
+</div>
+
+
+
+
+</body>
+</html>

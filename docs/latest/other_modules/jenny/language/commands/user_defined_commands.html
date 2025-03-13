@@ -302,7 +302,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.25.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.26.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -352,7 +352,7 @@ expressions need to be placed in curly brackets.</p>
 <p>Then, at runtime the expression is evaluated, and (assuming <code class="docutils literal notranslate"><span class="pre">$multiplier</span></code> is 1.5) the command’s
 argument string becomes <code class="docutils literal notranslate"><span class="pre">&quot;Gold</span> <span class="pre">150&quot;</span></code>. The string is then broken at white spaces and each argument
 is parsed according to its type in the backing Dart function. For example, if the function’s
-signature is <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">give(String</span> <span class="pre">item,</span> <span class="pre">int?</span> <span class="pre">amount)</span></code>, then it will be invoked as <code class="docutils literal notranslate"><span class="pre">give(&quot;Gold&quot;,</span> <span class="pre">150)</span></code>.
+signature is <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">give(String</span> <span class="pre">item,</span> <span class="pre">int</span> <span class="pre">amount)</span></code>, then it will be invoked as <code class="docutils literal notranslate"><span class="pre">give(&quot;Gold&quot;,</span> <span class="pre">150)</span></code>.
 If, on the other hand, the number or types of arguments do not match the expected signature, then
 a <code class="docutils literal notranslate"><span class="pre">DialogueException</span></code> will be raised.</p>
 </section>

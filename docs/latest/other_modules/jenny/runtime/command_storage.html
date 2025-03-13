@@ -302,7 +302,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.25.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.26.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -336,7 +336,7 @@ then that future will be awaited before proceeding to the next step of the dialo
 possible to create commands that take a certain time to unfold in the game, for example
 <code class="docutils literal notranslate"><span class="pre">&lt;&lt;walk&gt;&gt;</span></code>, <code class="docutils literal notranslate"><span class="pre">&lt;&lt;moveCamera&gt;&gt;</span></code>, or <code class="docutils literal notranslate"><span class="pre">&lt;&lt;prompt&gt;&gt;</span></code>.</p></li>
 <li><p>The function’s arguments must be of types that are known to Yarn: <code class="docutils literal notranslate"><span class="pre">String</span></code>, <code class="docutils literal notranslate"><span class="pre">num</span></code>, <code class="docutils literal notranslate"><span class="pre">int</span></code>,
-<code class="docutils literal notranslate"><span class="pre">double</span></code>, or <code class="docutils literal notranslate"><span class="pre">bool</span></code>. All arguments must be positional, with no defaults.</p></li>
+<code class="docutils literal notranslate"><span class="pre">double</span></code>, or <code class="docutils literal notranslate"><span class="pre">bool</span></code>. All arguments must be positional, non-nullable and can’t have any defaults.</p></li>
 <li><p>In order to register the function, use methods <code class="docutils literal notranslate"><span class="pre">addCommand0()</span></code> … <code class="docutils literal notranslate"><span class="pre">addCommand5()</span></code>, according to
 the number of function’s arguments.</p></li>
 <li><p>If the function’s signature has 1 or more booleans at the end, then those arguments will be
