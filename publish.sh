@@ -11,7 +11,8 @@ function main {
   # created from git tags, skipping the versions that started with 0.
   section "List of versions to build:"
   cd $tmp_flame_src
-  list=$(git tag | grep '^[1-9][^-]*$' | sort -rV)
+  # Removes all the old versions that doesn't support Melos 7 and pub workspaces.
+  list=$(git for-each-ref --sort=creatordate --format '%(refname:short)' 'refs/tags/v*' | sed -n '29,$p' | sort -rV)
   cd -
   echo "$list"
   latest_version=$(head -n 1 <<< "$list")
@@ -44,7 +45,6 @@ function prepare_flame_repo {
   git clone https://github.com/flame-engine/flame.git $tmp_flame_src
   mkdir $tmp_stash
   cp -r $tmp_flame_src/doc/_sphinx $tmp_stash
-  cp $tmp_flame_src/melos.yaml $tmp_stash
   cp -r $tmp_flame_src/scripts $tmp_stash
   cp $tmp_flame_src/pubspec.yaml $tmp_stash
 }
@@ -67,28 +67,12 @@ function generate_docs_for_version {
   cd -
   rm -rf $tmp_flame_src/doc/_sphinx
   cp -r $tmp_stash/_sphinx $tmp_flame_src/doc/
-  cp -r $tmp_stash/melos.yaml $tmp_flame_src/
-  # Since the scripts used in melos.yaml are the scripts from main we have to
+  # Since the scripts used in pubspec.yaml are the scripts from main we have to
   # replace the script directory with the newest one.
   rm -rf $tmp_flame_src/scripts
   cp -r $tmp_stash/scripts $tmp_flame_src
-  # This is a very fragile work around for the fact that older versions don't
-  # have a pubspec.yaml in the root which is required by Melos 3.
-  cp -r $tmp_stash/pubspec.yaml $tmp_flame_src/
 
   cd $tmp_flame_src
-
-  # This is due to both these examples having the name "example" in v1.0.0
-  sed -i "s/name: example/name: flame_audio_example/g" packages/flame_audio/example/pubspec.yaml
-  sed -i "s/name: example/name: flame_bloc_example/g" packages/flame_bloc/example/pubspec.yaml
-  sed -i "s/name: example/name: flame_fire_atlas_example/g" packages/flame_fire_atlas/example/pubspec.yaml
-  sed -i "s/name: example/name: flame_flare_example/g" packages/flame_flare/example/pubspec.yaml || true
-  sed -i "s/name: example/name: flame_forge2d_example/g" packages/flame_forge2d/example/pubspec.yaml
-  sed -i "s/name: example/name: flame_oxygen_example/g" packages/flame_oxygen/example/pubspec.yaml
-  sed -i "s/name: example/name: flame_rive_example/g" packages/flame_rive/example/pubspec.yaml
-  sed -i "s/name: example/name: flame_svg_example/g" packages/flame_svg/example/pubspec.yaml
-  sed -i "s/name: example/name: flame_test_example/g" packages/flame_test/example/pubspec.yaml
-  sed -i "s/name: example/name: flame_tiled_example/g" packages/flame_tiled/example/pubspec.yaml
 
   melos bootstrap || echo "Melos bootstrapping failed, trying without"
   melos run doc-setup
