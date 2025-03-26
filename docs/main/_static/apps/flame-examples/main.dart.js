@@ -33378,11 +33378,7 @@ return A.G($async$C,r)}}
 A.o3.prototype={
 C(a){var s=0,r=A.H(t.H),q=this,p,o
 var $async$C=A.D(function(b,c){if(b===1)return A.E(c,r)
-while(true)switch(s){case 0:p=A.SH(new A.Ov(q),B.ri,B.rb,null,"Rate me")
-o=p.at.d
-o.aq(q.gcL().k4.at.gK(0).ah(0,2))
-o.P()
-q.S(p)
+while(true)switch(s){case 0:q.S(A.SH(new A.Ov(q),B.ri,B.rb,q.gcL().k4.at.gK(0).ah(0,2),"Rate me"))
 p=q.gcL().k4.at.gK(0).ah(0,2)
 o=new A.d(new Float64Array(2))
 o.R(0,30)
@@ -33431,9 +33427,6 @@ r=this.gcL().k4.at.gK(0).ah(0,2)
 g=g[0]
 q=new A.d(new Float64Array(2))
 q.R(g/2,100)
-g=this.at.d
-g.aq(q)
-g.P()
 q=A.a([A.SH(new A.RN(this),B.aG,B.F,q,"Ok")],t.V)
 for(p=0;p<5;p=o){o=p+1
 g=new Float64Array(2)
