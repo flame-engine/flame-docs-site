@@ -302,7 +302,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.26.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.27.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -367,6 +367,7 @@ the final value is provided by the user explicitly, and progression over time is
 <li><p><a class="reference internal" href="#coloreffect"><code class="docutils literal notranslate"><span class="pre">ColorEffect</span></code></a></p></li>
 <li><p><a class="reference internal" href="#sequenceeffect"><code class="docutils literal notranslate"><span class="pre">SequenceEffect</span></code></a></p></li>
 <li><p><a class="reference internal" href="#removeeffect"><code class="docutils literal notranslate"><span class="pre">RemoveEffect</span></code></a></p></li>
+<li><p><a class="reference internal" href="#functioneffect"><code class="docutils literal notranslate"><span class="pre">FunctionEffect</span></code></a></p></li>
 </ul>
 <p>An <code class="docutils literal notranslate"><span class="pre">EffectController</span></code> is an object that describes how the effect should evolve over time. If you
 think of the initial value of the effect as 0% progress, and the final value as 100% progress, then
@@ -414,7 +415,7 @@ completed its execution but before it is removed from the game.</p></li>
 <p>This effect applies to a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> and shifts it by a prescribed <code class="docutils literal notranslate"><span class="pre">offset</span></code> amount. This
 offset is relative to the current position of the target:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?move_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-move_by_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?move_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-move_by_effect">
 <div class="filename docutils container">
 move_by_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -461,7 +462,7 @@ superposition of all the individual effects.</p>
 <p>This effect moves a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> from its current position to the specified destination
 point in a straight line.</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?move_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-move_to_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?move_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-move_to_effect">
 <div class="filename docutils container">
 move_to_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -508,7 +509,7 @@ current position. The path can have non-linear segments, but must be singly conn
 recommended to start a path at <code class="docutils literal notranslate"><span class="pre">Vector2.zero()</span></code> in order to avoid sudden jumps in the component’s
 position.</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?move_along_path_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-move_along_path_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?move_along_path_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-move_along_path_effect">
 <div class="filename docutils container">
 move_along_path_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
@@ -562,7 +563,7 @@ the move- and the rotate- effect at the same time.</p>
 the specified center. The angle is in radians. For example, the following effect will rotate the
 target 90º (=<a class="reference external" href="https://en.wikipedia.org/wiki/Tau_(mathematical_constant)">tau</a>/4 in radians) clockwise around (100, 100).</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?rotate_around_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rotate_around_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?rotate_around_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rotate_around_effect">
 <div class="filename docutils container">
 rotate_around_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -610,7 +611,7 @@ rotate_around_effect.dart</div>
 is in radians. For example, the following effect will rotate the target 90º (=<a class="reference external" href="https://en.wikipedia.org/wiki/Tau_(mathematical_constant)">tau</a>/4 in radians)
 clockwise:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?rotate_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rotate_by_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?rotate_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rotate_by_effect">
 <div class="filename docutils container">
 rotate_by_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -655,7 +656,7 @@ rotate_by_effect.dart</div>
 <p>Rotates the target clockwise to the specified angle. For example, the following will rotate the
 target to look east (0º is north, 90º=<a class="reference external" href="https://en.wikipedia.org/wiki/Tau_(mathematical_constant)">tau</a>/4 east, 180º=tau/2 south, and 270º=tau*3/4 west):</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?rotate_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rotate_to_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?rotate_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rotate_to_effect">
 <div class="filename docutils container">
 rotate_to_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -700,7 +701,7 @@ rotate_to_effect.dart</div>
 <p>This effect will change the target’s scale by the specified amount. For example, this will cause
 the component to grow 50% larger:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?scale_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-scale_by_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?scale_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-scale_by_effect">
 <div class="filename docutils container">
 scale_by_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -748,7 +749,7 @@ scale_by_effect.dart</div>
 <h3><code class="docutils literal notranslate"><span class="pre">ScaleEffect.to</span></code><a class="headerlink" href="#scaleeffect-to" title="Link to this heading">¶</a></h3>
 <p>This effect works similar to <code class="docutils literal notranslate"><span class="pre">ScaleEffect.by</span></code>, but sets the absolute value of the target’s scale.</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?scale_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-scale_to_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?scale_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-scale_to_effect">
 <div class="filename docutils container">
 scale_to_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -798,7 +799,7 @@ scale_to_effect.dart</div>
 if the target has size <code class="docutils literal notranslate"><span class="pre">Vector2(100,</span> <span class="pre">100)</span></code>, then after the following effect is applied and runs its
 course, the new size will be <code class="docutils literal notranslate"><span class="pre">Vector2(120,</span> <span class="pre">50)</span></code>:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?size_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-size_by_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?size_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-size_by_effect">
 <div class="filename docutils container">
 size_by_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
@@ -850,7 +851,7 @@ target component and its children.</p>
 <h3><code class="docutils literal notranslate"><span class="pre">SizeEffect.to</span></code><a class="headerlink" href="#sizeeffect-to" title="Link to this heading">¶</a></h3>
 <p>Changes the size of the target component to the specified size. Target size cannot be negative:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?size_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-size_to_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?size_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-size_to_effect">
 <div class="filename docutils container">
 size_to_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
@@ -895,7 +896,7 @@ size_to_effect.dart</div>
 <p>Changes the location of the target’s anchor by the specified offset. This effect can also be created
 using <code class="docutils literal notranslate"><span class="pre">AnchorEffect.by()</span></code>.</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?anchor_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor_by_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?anchor_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor_by_effect">
 <div class="filename docutils container">
 anchor_by_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -939,7 +940,7 @@ anchor_by_effect.dart</div>
 <p>Changes the location of the target’s anchor. This effect can also be created using
 <code class="docutils literal notranslate"><span class="pre">AnchorEffect.to()</span></code>.</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?anchor_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor_to_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?anchor_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor_to_effect">
 <div class="filename docutils container">
 anchor_to_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -981,7 +982,7 @@ anchor_to_effect.dart</div>
 <p>This effect will change the opacity of the target over time to the specified alpha-value.
 It can only be applied to components that implement the <code class="docutils literal notranslate"><span class="pre">OpacityProvider</span></code>.</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?opacity_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-opacity_to_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?opacity_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-opacity_to_effect">
 <div class="filename docutils container">
 opacity_to_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -1036,7 +1037,7 @@ using the <code class="docutils literal notranslate"><span class="pre">target</s
 to easily create providers for desired paintIds. For single paintId <code class="docutils literal notranslate"><span class="pre">opacityProviderOf</span></code> can be used
 and for multiple paintIds and <code class="docutils literal notranslate"><span class="pre">opacityProviderOfList</span></code> can be used.</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?opacity_effect_with_target" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-opacity_effect_with_target">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?opacity_effect_with_target" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-opacity_effect_with_target">
 <div class="filename docutils container">
 opacity_effect_with_target.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -1108,7 +1109,7 @@ animate the target into full transparency / full visibility respectively.</p>
 <p>This effect will change the opacity of the target relative to the specified alpha-value. For example,
 the following effect will change the opacity of the target by <code class="docutils literal notranslate"><span class="pre">90%</span></code>:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?opacity_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-opacity_by_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?opacity_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-opacity_by_effect">
 <div class="filename docutils container">
 opacity_by_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
@@ -1161,7 +1162,7 @@ uses multiple paints, the effect can target any individual color using the <code
 <code class="docutils literal notranslate"><span class="pre">glow-strength</span></code>. The color of shade will be targets paint color. For example, the following effect
 will apply the glowing shade around target by strength of <code class="docutils literal notranslate"><span class="pre">10</span></code>:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?glow_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-glow_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?glow_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-glow_effect">
 <div class="filename docutils container">
 glow_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
@@ -1212,7 +1213,7 @@ may have different types.</p>
 <p>The sequence effect can also be alternating (the sequence will first run forward, and then
 backward); and also repeat a certain predetermined number of times, or infinitely.</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?sequence_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-sequence_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?sequence_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-sequence_effect">
 <div class="filename docutils container">
 sequence_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -1285,7 +1286,7 @@ sequence_effect.dart</div>
 <p>This is a simple effect that can be attached to a component causing it to be removed from the game
 tree after the specified delay has passed:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?remove_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-remove_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?remove_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-remove_effect">
 <div class="filename docutils container">
 remove_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
@@ -1343,7 +1344,7 @@ remove_effect.dart</div>
 the provided color between a provided range.</p>
 <p>Usage example:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.26.0/_static/apps/flame-examples/index.html?color_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-color_effect">
+<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?color_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-color_effect">
 <div class="filename docutils container">
 color_effect.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
@@ -1393,6 +1394,38 @@ applied to the component. In this example the effect will start with 20% and wil
 <p><strong>Note:</strong> Due to how this effect is implemented, and how Flutter’s <code class="docutils literal notranslate"><span class="pre">ColorFilter</span></code> class works, this
 effect can’t be mixed with other <code class="docutils literal notranslate"><span class="pre">ColorEffect</span></code>s, when more than one is added to the component, only
 the last one will have effect.</p>
+<section id="functioneffect">
+<h3><code class="docutils literal notranslate"><span class="pre">FunctionEffect</span></code><a class="headerlink" href="#functioneffect" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">FunctionEffect</span></code> class is a very generic Effect that allows you to do almost anything without
+having to define a new effect.</p>
+<p>It runs a function that takes the target and the progress of the effect and then the user can
+decide what to do with that input.</p>
+<p>This could for example be used to make game state changes that happen over time, but that isn’t
+necessarily visual, like most other effects are.</p>
+<p>In the following example we have a <code class="docutils literal notranslate"><span class="pre">PlayerState</span></code> enum that we want to change over time. We want to
+change the state to <code class="docutils literal notranslate"><span class="pre">yawn</span></code> when the progress is over 50% and then back to <code class="docutils literal notranslate"><span class="pre">idle</span></code> when the progress
+is over 80%.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span><span class="w"> </span><span class="n">PlayerState</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">idle</span><span class="p">,</span>
+<span class="w">  </span><span class="n">yawn</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FunctionEffect</span><span class="o">&lt;</span><span class="n">SpriteAnimationGroupComponent</span><span class="o">&lt;</span><span class="n">PlayerState</span><span class="o">&gt;&gt;</span><span class="p">(</span>
+<span class="w">  </span><span class="p">(</span><span class="n">target</span><span class="p">,</span><span class="w"> </span><span class="n">progress</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">progress</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">target</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PlayerState</span><span class="p">.</span><span class="n">yawn</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="p">(</span><span class="n">progress</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.8</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">target</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PlayerState</span><span class="p">.</span><span class="n">idle</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="n">EffectController</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">duration:</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">infinite:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="creating-new-effects">
 <h2>Creating new effects<a class="headerlink" href="#creating-new-effects" title="Link to this heading">¶</a></h2>
@@ -1691,6 +1724,7 @@ by the standard alternating <code class="docutils literal notranslate"><span cla
   <a href='#sequenceeffect' class='list-group-item level-2'>SequenceEffect</a>
   <a href='#removeeffect' class='list-group-item level-2'>RemoveEffect</a>
   <a href='#coloreffect' class='list-group-item level-1'>ColorEffect</a>
+  <a href='#functioneffect' class='list-group-item level-2'>FunctionEffect</a>
   <a href='#creating-new-effects' class='list-group-item level-1'>Creating new effects</a>
   <a href='#effect-controllers' class='list-group-item level-1'>Effect controllers</a>
   <a href='#effectcontroller' class='list-group-item level-2'>EffectController</a>
