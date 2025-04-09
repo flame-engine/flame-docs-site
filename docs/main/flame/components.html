@@ -1102,6 +1102,15 @@ and <code class="docutils literal notranslate"><span class="pre">onComplete</spa
 <span class="w">  </span><span class="p">};</span>
 </pre></div>
 </div>
+<p>To reset the animation to the first frame when the component is removed, you can set
+<code class="docutils literal notranslate"><span class="pre">resetOnRemove</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpriteAnimationComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">animation:</span><span class="w"> </span><span class="n">animation</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">resetOnRemove:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
 </section>
 <section id="spriteanimationgroupcomponent">
 <h2>SpriteAnimationGroupComponent<a class="headerlink" href="#spriteanimationgroupcomponent" title="Link to this heading">¶</a></h2>

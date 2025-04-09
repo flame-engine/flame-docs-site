@@ -189,6 +189,10 @@ typedef enum spine_physics {
 
 typedef int32_t spine_bool;
 
+typedef void* (*spine_texture_loader_load_func)(const char *path);
+
+typedef void (*spine_texture_loader_unload_func)(void *texture);
+
 // @start: function_declarations
 
 SPINE_CPP_LITE_EXPORT int32_t spine_major_version();
@@ -210,6 +214,8 @@ SPINE_CPP_LITE_EXPORT float spine_vector_get_x(spine_vector vector);
 SPINE_CPP_LITE_EXPORT float spine_vector_get_y(spine_vector vector);
 
 SPINE_CPP_LITE_EXPORT spine_atlas spine_atlas_load(const utf8 *atlasData);
+// @ignore
+SPINE_CPP_LITE_EXPORT spine_atlas spine_atlas_load_callback(const utf8 *atlasData, const utf8 *atlasDir, spine_texture_loader_load_func load, spine_texture_loader_unload_func unload);
 SPINE_CPP_LITE_EXPORT int32_t spine_atlas_get_num_image_paths(spine_atlas atlas);
 SPINE_CPP_LITE_EXPORT utf8 *spine_atlas_get_image_path(spine_atlas atlas, int32_t index);
 SPINE_CPP_LITE_EXPORT spine_bool spine_atlas_is_pma(spine_atlas atlas);

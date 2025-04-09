@@ -206,6 +206,44 @@ spine_atlas spine_atlas_load(const utf8 *atlasData) {
 	return (spine_atlas) result;
 }
 
+class CallbackTextureLoad : public TextureLoader {
+	spine_texture_loader_load_func loadCb;
+	spine_texture_loader_unload_func unloadCb;
+
+public:
+	CallbackTextureLoad() : loadCb(nullptr), unloadCb(nullptr) {}
+
+	void setCallbacks(spine_texture_loader_load_func load, spine_texture_loader_unload_func unload) {
+		loadCb = load;
+		unloadCb = unload;
+	}
+
+	void load(AtlasPage &page, const String &path) {
+		page.texture = this->loadCb(path.buffer());
+	}
+
+	void unload(void *texture) {
+		this->unloadCb(texture);
+	}
+};
+
+CallbackTextureLoad callbackLoader;
+
+spine_atlas spine_atlas_load_callback(const utf8 *atlasData, const utf8 *atlasDir, spine_texture_loader_load_func load, spine_texture_loader_unload_func unload) {
+	if (!atlasData) return nullptr;
+	int32_t length = (int32_t) strlen(atlasData);
+	callbackLoader.setCallbacks(load, unload);
+	auto atlas = new (__FILE__, __LINE__) Atlas(atlasData, length, (const char *) atlasDir, &callbackLoader, true);
+	_spine_atlas *result = SpineExtension::calloc<_spine_atlas>(1, __FILE__, __LINE__);
+	result->atlas = atlas;
+	result->numImagePaths = (int32_t) atlas->getPages().size();
+	result->imagePaths = SpineExtension::calloc<utf8 *>(result->numImagePaths, __FILE__, __LINE__);
+	for (int i = 0; i < result->numImagePaths; i++) {
+		result->imagePaths[i] = (utf8 *) strdup(atlas->getPages()[i]->texturePath.buffer());
+	}
+	return (spine_atlas) result;
+}
+
 int32_t spine_atlas_get_num_image_paths(spine_atlas atlas) {
 	if (!atlas) return 0;
 	return ((_spine_atlas *) atlas)->numImagePaths;
