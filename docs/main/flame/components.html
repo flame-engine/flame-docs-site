@@ -773,6 +773,39 @@ overridden, a manual check for <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </section>
+<section id="render-contexts">
+<h3>Render Contexts<a class="headerlink" href="#render-contexts" title="Link to this heading">¶</a></h3>
+<p>If you want a parent component to pass render-specific properties down its children tree, you
+can override the <code class="docutils literal notranslate"><span class="pre">renderContext</span></code> property on the parent component. You can return a custom
+class that inherits from <code class="docutils literal notranslate"><span class="pre">RenderContext</span></code>, and then use <code class="docutils literal notranslate"><span class="pre">findRenderContext</span></code> on the children
+while rendering. Render Contexts are stored as a stack and propagated whenever the render
+tree is navigated for rendering.</p>
+<p>For example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">IntContext</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ComponentRenderContext</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">IntContext</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">value</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">ParentWithContext</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">IntContext</span><span class="w"> </span><span class="n">renderContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IntContext</span><span class="p">(</span><span class="m">42</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">ChildReadsContext</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findRenderContext</span><span class="o">&lt;</span><span class="n">IntContext</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// context.value available</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Each component will have access to the context of any parent that is above it in the
+component tree. If multiple components add the contexts matching the selected type
+<code class="docutils literal notranslate"><span class="pre">T</span></code>, the “closest” one will be returned (though typically you would create a unique
+context type for each component).</p>
+</section>
 </section>
 <section id="positioncomponent">
 <h2>PositionComponent<a class="headerlink" href="#positioncomponent" title="Link to this heading">¶</a></h2>
@@ -1733,6 +1766,7 @@ own sprite animation based component, you can directly use a <code class="docuti
   <a href='#querying-child-components' class='list-group-item level-2'>Querying child components</a>
   <a href='#querying-components-at-a-specific-point-on-the-screen' class='list-group-item level-2'>Querying components at a specific point on the screen</a>
   <a href='#visibility-of-components' class='list-group-item level-2'>Visibility of components</a>
+  <a href='#render-contexts' class='list-group-item level-2'>Render Contexts</a>
   <a href='#positioncomponent' class='list-group-item level-1'>PositionComponent</a>
   <a href='#position' class='list-group-item level-2'>Position</a>
   <a href='#size' class='list-group-item level-2'>Size</a>
