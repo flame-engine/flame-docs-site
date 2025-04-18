@@ -543,6 +543,26 @@ This is useful for example to cull components that are not in view.</p>
 </pre></div>
 </div>
 </section>
+<section id="post-processing">
+<h3>Post processing<a class="headerlink" href="#post-processing" title="Link to this heading">¶</a></h3>
+<p><a class="reference internal" href="post_processing.html"><span class="std std-doc">Post processing</span></a> is a technique used in game development to apply visual
+effects to a component tree after it has been rendered. This can be added to the camera via the
+<code class="docutils literal notranslate"><span class="pre">postProcess</span></code> property.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">camera</span><span class="p">.</span><span class="n">postProcess</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PostProcessGroup</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">postProcesses:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="n">PostProcessSequentialGroup</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">postProcesses:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">        </span><span class="n">FireflyPostProcess</span><span class="p">(),</span>
+<span class="w">        </span><span class="n">WaterPostProcess</span><span class="p">(),</span>
+<span class="w">      </span><span class="p">],</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="n">ForegroundFogPostProcess</span><span class="p">(),</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Read more about this on <a class="reference internal" href="post_processing.html"><span class="std std-doc">Post processing</span></a>.</p>
+</section>
 </section>
 </section>
 
@@ -585,6 +605,7 @@ This is useful for example to cull components that are not in view.</p>
   <a href='#camera-controls' class='list-group-item level-1'>Camera controls</a>
   <a href='#visibleworldrect' class='list-group-item level-2'>visibleWorldRect</a>
   <a href='#cansee' class='list-group-item level-2'>canSee</a>
+  <a href='#post-processing' class='list-group-item level-2'>Post processing</a>
 </div>
 
     </div>
