@@ -300,7 +300,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.27.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.28.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -339,7 +339,7 @@ show the console when pressed.</p>
 <span class="w">    </span><span class="nl">body:</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">(</span>
 <span class="w">      </span><span class="nl">game:</span><span class="w"> </span><span class="n">_game</span><span class="p">,</span>
 <span class="w">      </span><span class="nl">overlayBuilderMap:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="s1">&#39;console&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">ConsoleView</span><span class="p">(</span>
+<span class="w">        </span><span class="s1">&#39;console&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">FlameConsoleView</span><span class="p">(</span>
 <span class="w">              </span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">,</span>
 <span class="w">              </span><span class="nl">onClose:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">                </span><span class="n">_game</span><span class="p">.</span><span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;console&#39;</span><span class="p">);</span>

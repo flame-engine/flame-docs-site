@@ -304,7 +304,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.27.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.28.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -772,6 +772,39 @@ overridden, a manual check for <code class="docutils literal notranslate"><span 
 </pre></div>
 </div>
 </section>
+<section id="render-contexts">
+<h3>Render Contexts<a class="headerlink" href="#render-contexts" title="Link to this heading">¶</a></h3>
+<p>If you want a parent component to pass render-specific properties down its children tree, you
+can override the <code class="docutils literal notranslate"><span class="pre">renderContext</span></code> property on the parent component. You can return a custom
+class that inherits from <code class="docutils literal notranslate"><span class="pre">RenderContext</span></code>, and then use <code class="docutils literal notranslate"><span class="pre">findRenderContext</span></code> on the children
+while rendering. Render Contexts are stored as a stack and propagated whenever the render
+tree is navigated for rendering.</p>
+<p>For example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">IntContext</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ComponentRenderContext</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="p">;</span>
+
+<span class="w">  </span><span class="n">IntContext</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">value</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">ParentWithContext</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">IntContext</span><span class="w"> </span><span class="n">renderContext</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IntContext</span><span class="p">(</span><span class="m">42</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">ChildReadsContext</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">context</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">findRenderContext</span><span class="o">&lt;</span><span class="n">IntContext</span><span class="o">&gt;</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// context.value available</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Each component will have access to the context of any parent that is above it in the
+component tree. If multiple components add the contexts matching the selected type
+<code class="docutils literal notranslate"><span class="pre">T</span></code>, the “closest” one will be returned (though typically you would create a unique
+context type for each component).</p>
+</section>
 </section>
 <section id="positioncomponent">
 <h2>PositionComponent<a class="headerlink" href="#positioncomponent" title="Link to this heading">¶</a></h2>
@@ -842,7 +875,7 @@ to pi/2 radians. Following are some common directions and their corresponding na
 <section id="anchor">
 <h3>Anchor<a class="headerlink" href="#anchor" title="Link to this heading">¶</a></h3>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.27.0/_static/apps/flame-examples/index.html?anchor"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor">
+<iframe class="flutter-app-iframe" src="/v1.28.0/_static/apps/flame-examples/index.html?anchor"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor">
 <div class="filename docutils container">
 anchor.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:async&#39;</span><span class="p">;</span>
@@ -1099,6 +1132,15 @@ and <code class="docutils literal notranslate"><span class="pre">onComplete</spa
 <span class="w">      </span><span class="c1">// Do something for the second frame.</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">};</span>
+</pre></div>
+</div>
+<p>To reset the animation to the first frame when the component is removed, you can set
+<code class="docutils literal notranslate"><span class="pre">resetOnRemove</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpriteAnimationComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">animation:</span><span class="w"> </span><span class="n">animation</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">resetOnRemove:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -1624,7 +1666,7 @@ order to do so, we need that the <code class="docutils literal notranslate"><spa
 </pre></div>
 </div>
 <p>Then our hud component could look like:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Hud</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Hud</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
@@ -1723,6 +1765,7 @@ own sprite animation based component, you can directly use a <code class="docuti
   <a href='#querying-child-components' class='list-group-item level-2'>Querying child components</a>
   <a href='#querying-components-at-a-specific-point-on-the-screen' class='list-group-item level-2'>Querying components at a specific point on the screen</a>
   <a href='#visibility-of-components' class='list-group-item level-2'>Visibility of components</a>
+  <a href='#render-contexts' class='list-group-item level-2'>Render Contexts</a>
   <a href='#positioncomponent' class='list-group-item level-1'>PositionComponent</a>
   <a href='#position' class='list-group-item level-2'>Position</a>
   <a href='#size' class='list-group-item level-2'>Size</a>
