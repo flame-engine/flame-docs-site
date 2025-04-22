@@ -373,9 +373,9 @@ show the console when pressed.</p>
 </section>
 <section id="custom-commands">
 <h2>Custom commands<a class="headerlink" href="#custom-commands" title="Link to this heading">¶</a></h2>
-<p>Custom commands can be created by extending the <code class="docutils literal notranslate"><span class="pre">ConsoleCommand</span></code> class and adding them to the
+<p>Custom commands can be created by extending the <code class="docutils literal notranslate"><span class="pre">FlameConsoleCommand</span></code> class and adding them to the
 the <code class="docutils literal notranslate"><span class="pre">customCommands</span></code> list in the <code class="docutils literal notranslate"><span class="pre">ConsoleView</span></code> widget.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCustomCommand</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ConsoleCommand</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCustomCommand</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameConsoleCommand</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w"> </span><span class="n">MyCustomCommand</span><span class="p">();</span>
 
 <span class="w"> </span><span class="nd">@override</span>
