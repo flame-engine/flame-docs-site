@@ -443,67 +443,66 @@ post_process.dart</div>
 <span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 7</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/post_process.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 8</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter_shaders/flutter_shaders.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 9</span>
-<span class="linenos">10</span><span class="kd">class</span><span class="w"> </span><span class="nc">PostProcessGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">11</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">12</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">13</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-<span class="linenos">14</span>
-<span class="linenos">15</span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="linenos">16</span><span class="w">      </span><span class="n">PostProcessComponent</span><span class="p">(</span>
-<span class="linenos">17</span><span class="w">        </span><span class="nl">postProcess:</span><span class="w"> </span><span class="n">PixelationPostProcess</span><span class="p">(),</span>
-<span class="linenos">18</span><span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
-<span class="linenos">19</span><span class="w">        </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos">20</span><span class="w">        </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
-<span class="linenos">21</span><span class="w">          </span><span class="n">EmberPlayer</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">)),</span>
-<span class="linenos">22</span><span class="w">        </span><span class="p">],</span>
-<span class="linenos">23</span><span class="w">      </span><span class="p">),</span>
-<span class="linenos">24</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">25</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">26</span><span class="p">}</span>
-<span class="linenos">27</span>
-<span class="linenos">28</span><span class="kd">class</span><span class="w"> </span><span class="nc">PixelationPostProcess</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PostProcess</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">29</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">30</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">31</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-<span class="linenos">32</span>
-<span class="linenos">33</span><span class="w">    </span><span class="n">_fragmentProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FragmentProgram</span><span class="p">.</span><span class="n">fromAsset</span><span class="p">(</span>
-<span class="linenos">34</span><span class="w">      </span><span class="s1">&#39;packages/flutter_shaders/shaders/pixelation.frag&#39;</span><span class="p">,</span>
-<span class="linenos">35</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">36</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">37</span>
-<span class="linenos">38</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">FragmentProgram</span><span class="w"> </span><span class="n">_fragmentProgram</span><span class="p">;</span>
-<span class="linenos">39</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">FragmentShader</span><span class="w"> </span><span class="n">_fragmentShader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_fragmentProgram</span><span class="p">.</span><span class="n">fragmentShader</span><span class="p">();</span>
-<span class="linenos">40</span>
-<span class="linenos">41</span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="linenos">42</span>
-<span class="linenos">43</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">44</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">45</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
-<span class="linenos">46</span><span class="w">    </span><span class="n">_time</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
-<span class="linenos">47</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">48</span>
-<span class="linenos">49</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">myPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">shader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_fragmentShader</span><span class="p">;</span>
-<span class="linenos">50</span>
-<span class="linenos">51</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">52</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">postProcess</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">53</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">preRenderedSubtree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rasterizeSubtree</span><span class="p">();</span>
-<span class="linenos">54</span>
-<span class="linenos">55</span><span class="w">    </span><span class="n">_fragmentShader</span><span class="p">.</span><span class="n">setFloatUniforms</span><span class="p">((</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">56</span><span class="w">      </span><span class="n">value</span>
-<span class="linenos">57</span><span class="w">        </span><span class="p">..</span><span class="n">setVector</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">20</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">_time</span><span class="p">)))</span>
-<span class="linenos">58</span><span class="w">        </span><span class="p">..</span><span class="n">setVector</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
-<span class="linenos">59</span><span class="w">    </span><span class="p">});</span>
-<span class="linenos">60</span>
-<span class="linenos">61</span><span class="w">    </span><span class="n">_fragmentShader</span><span class="p">.</span><span class="n">setImageSampler</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">preRenderedSubtree</span><span class="p">);</span>
-<span class="linenos">62</span>
-<span class="linenos">63</span><span class="w">    </span><span class="n">canvas</span>
-<span class="linenos">64</span><span class="w">      </span><span class="p">..</span><span class="n">save</span><span class="p">()</span>
-<span class="linenos">65</span><span class="w">      </span><span class="p">..</span><span class="n">drawRect</span><span class="p">(</span><span class="n">Offset</span><span class="p">.</span><span class="n">zero</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">toSize</span><span class="p">(),</span><span class="w"> </span><span class="n">myPaint</span><span class="p">)</span>
-<span class="linenos">66</span><span class="w">      </span><span class="p">..</span><span class="n">restore</span><span class="p">();</span>
-<span class="linenos">67</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">68</span><span class="p">}</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="kd">class</span><span class="w"> </span><span class="nc">PostProcessGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">10</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">11</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">12</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">13</span>
+<span class="linenos">14</span><span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">15</span><span class="w">      </span><span class="n">PostProcessComponent</span><span class="p">(</span>
+<span class="linenos">16</span><span class="w">        </span><span class="nl">postProcess:</span><span class="w"> </span><span class="n">PixelationPostProcess</span><span class="p">(),</span>
+<span class="linenos">17</span><span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="linenos">18</span><span class="w">        </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">19</span><span class="w">        </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
+<span class="linenos">20</span><span class="w">          </span><span class="n">EmberPlayer</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">)),</span>
+<span class="linenos">21</span><span class="w">        </span><span class="p">],</span>
+<span class="linenos">22</span><span class="w">      </span><span class="p">),</span>
+<span class="linenos">23</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">25</span><span class="p">}</span>
+<span class="linenos">26</span>
+<span class="linenos">27</span><span class="kd">class</span><span class="w"> </span><span class="nc">PixelationPostProcess</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PostProcess</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">28</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">29</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">30</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="w">    </span><span class="n">_fragmentProgram</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FragmentProgram</span><span class="p">.</span><span class="n">fromAsset</span><span class="p">(</span>
+<span class="linenos">33</span><span class="w">      </span><span class="s1">&#39;packages/flutter_shaders/shaders/pixelation.frag&#39;</span><span class="p">,</span>
+<span class="linenos">34</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">35</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">36</span>
+<span class="linenos">37</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">FragmentProgram</span><span class="w"> </span><span class="n">_fragmentProgram</span><span class="p">;</span>
+<span class="linenos">38</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">FragmentShader</span><span class="w"> </span><span class="n">_fragmentShader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_fragmentProgram</span><span class="p">.</span><span class="n">fragmentShader</span><span class="p">();</span>
+<span class="linenos">39</span>
+<span class="linenos">40</span><span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">_time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">43</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">44</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="linenos">45</span><span class="w">    </span><span class="n">_time</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="linenos">46</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">47</span>
+<span class="linenos">48</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">myPaint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">shader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_fragmentShader</span><span class="p">;</span>
+<span class="linenos">49</span>
+<span class="linenos">50</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">51</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">postProcess</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">52</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">preRenderedSubtree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">rasterizeSubtree</span><span class="p">();</span>
+<span class="linenos">53</span>
+<span class="linenos">54</span><span class="w">    </span><span class="n">_fragmentShader</span><span class="p">.</span><span class="n">setFloatUniforms</span><span class="p">((</span><span class="n">value</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">55</span><span class="w">      </span><span class="n">value</span>
+<span class="linenos">56</span><span class="w">        </span><span class="p">..</span><span class="n">setVector</span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="m">20</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">sin</span><span class="p">(</span><span class="n">_time</span><span class="p">)))</span>
+<span class="linenos">57</span><span class="w">        </span><span class="p">..</span><span class="n">setVector</span><span class="p">(</span><span class="n">size</span><span class="p">);</span>
+<span class="linenos">58</span><span class="w">    </span><span class="p">});</span>
+<span class="linenos">59</span>
+<span class="linenos">60</span><span class="w">    </span><span class="n">_fragmentShader</span><span class="p">.</span><span class="n">setImageSampler</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">preRenderedSubtree</span><span class="p">);</span>
+<span class="linenos">61</span>
+<span class="linenos">62</span><span class="w">    </span><span class="n">canvas</span>
+<span class="linenos">63</span><span class="w">      </span><span class="p">..</span><span class="n">save</span><span class="p">()</span>
+<span class="linenos">64</span><span class="w">      </span><span class="p">..</span><span class="n">drawRect</span><span class="p">(</span><span class="n">Offset</span><span class="p">.</span><span class="n">zero</span><span class="w"> </span><span class="o">&amp;</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">toSize</span><span class="p">(),</span><span class="w"> </span><span class="n">myPaint</span><span class="p">)</span>
+<span class="linenos">65</span><span class="w">      </span><span class="p">..</span><span class="n">restore</span><span class="p">();</span>
+<span class="linenos">66</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">67</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
