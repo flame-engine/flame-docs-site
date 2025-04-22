@@ -376,19 +376,17 @@ show the console when pressed.</p>
 <p>Custom commands can be created by extending the <code class="docutils literal notranslate"><span class="pre">FlameConsoleCommand</span></code> class and adding them to the
 the <code class="docutils literal notranslate"><span class="pre">customCommands</span></code> list in the <code class="docutils literal notranslate"><span class="pre">ConsoleView</span></code> widget.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCustomCommand</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameConsoleCommand</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w"> </span><span class="n">MyCustomCommand</span><span class="p">();</span>
-
 <span class="w"> </span><span class="nd">@override</span>
 <span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;my_command&#39;</span><span class="p">;</span>
 
 <span class="w"> </span><span class="nd">@override</span>
 <span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Description of my command&#39;</span><span class="p">;</span>
 
-<span class="w"> </span><span class="c1">// The execute method is supposed to return a tuple where the first</span>
-<span class="w"> </span><span class="c1">// element is an error message in case of failure, and the second</span>
+<span class="w"> </span><span class="c1">// The execute method should return a tuple where the first</span>
+<span class="w"> </span><span class="c1">// element is an error message (in case of failure), and the second</span>
 <span class="w"> </span><span class="c1">// element is the output of the command.</span>
 <span class="w"> </span><span class="nd">@override</span>
-<span class="w"> </span><span class="p">(</span><span class="kt">String</span><span class="o">?</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="n">execute</span><span class="p">(</span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="p">(</span><span class="kt">String</span><span class="o">?</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="n">execute</span><span class="p">(</span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">ArgResults</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">   </span><span class="c1">// do something on the game</span>
 <span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
 <span class="w"> </span><span class="p">}</span>
@@ -398,10 +396,10 @@ the <code class="docutils literal notranslate"><span class="pre">customCommands<
 <p>Then when creating the <code class="docutils literal notranslate"><span class="pre">ConsoleView</span></code> widget, add the custom command to the <code class="docutils literal notranslate"><span class="pre">customCommands</span></code> list.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">ConsoleView</span><span class="p">(</span>
 <span class="w">  </span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">customCommands:</span><span class="w"> </span><span class="p">[</span><span class="n">MyCustomCommand</span><span class="p">()],</span>
 <span class="w">  </span><span class="nl">onClose:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">_game</span><span class="p">.</span><span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;console&#39;</span><span class="p">);</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nl">customCommands:</span><span class="w"> </span><span class="p">[</span><span class="n">MyCustomCommand</span><span class="p">()],</span>
 <span class="p">),</span>
 </pre></div>
 </div>
