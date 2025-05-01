@@ -326,16 +326,171 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="audiopool">
 <h1>AudioPool<a class="headerlink" href="#audiopool" title="Link to this heading">¶</a></h1>
-<p>An AudioPool is a provider of AudioPlayers that are pre-loaded with
-local assets to minimize delays.</p>
-<p>A single AudioPool always plays the same sound, usually a quick sound
-effect, like a laser shooting from your ship or a jump sound for your
-platformer.</p>
-<p>The advantage of using Audio Pool is that by configuring a minimum
-(starting) size, and a maximum size, the pool will create and preload
-some players, and allow them to be re-used many times.</p>
-<p>You can use the helper method <code class="docutils literal notranslate"><span class="pre">FlameAudio.createPool</span></code> to create AudioPool
-instances using the same global <code class="docutils literal notranslate"><span class="pre">FlameAudio.audioCache</span></code>.</p>
+<p>An AudioPool is a provider of AudioPlayers that are pre-loaded with local assets to minimize audio
+playback delays. This is particularly useful in fast-paced games where sound effects need to trigger
+quickly and potentially overlap with each other.</p>
+<p>A single AudioPool always plays the same sound, usually a quick sound effect that might need to be
+played repeatedly or simultaneously, such as:</p>
+<ul class="simple">
+<li><p>Shooting sounds in a space shooter</p></li>
+<li><p>Jump sounds in a platformer</p></li>
+<li><p>Explosion effects</p></li>
+<li><p>Collecting coins or items</p></li>
+<li><p>Enemy hit sounds</p></li>
+</ul>
+<section id="how-it-works">
+<h2>How It Works<a class="headerlink" href="#how-it-works" title="Link to this heading">¶</a></h2>
+<p>AudioPool works by creating and pre-loading a pool of AudioPlayer instances that are all configured
+to play the same sound. When you need to play the sound:</p>
+<ol class="arabic simple">
+<li><p>The pool gives you an available player from its collection</p></li>
+<li><p>If no player is available, a new player is created on demand</p></li>
+<li><p>When a sound finishes playing or is stopped manually, the player is returned to the pool for reuse,
+unless the pool already has reached its maximum size limit, in which case the player is released</p></li>
+</ol>
+<p>This approach significantly reduces latency compared to creating new AudioPlayer instances on demand,
+while also managing memory by limiting the maximum size of the pool.</p>
+</section>
+<section id="creating-an-audiopool">
+<h2>Creating an AudioPool<a class="headerlink" href="#creating-an-audiopool" title="Link to this heading">¶</a></h2>
+<p>There are multiple ways to create an AudioPool:</p>
+<section id="using-flameaudio-helper">
+<h3>Using FlameAudio Helper<a class="headerlink" href="#using-flameaudio-helper" title="Link to this heading">¶</a></h3>
+<p>The simplest approach is to use the helper method in <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code>, which conveniently uses Flame’s
+global audio cache:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_audio/flame_audio.dart&#39;</span><span class="p">;</span>
+
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">loadSounds</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Create a pool with minimum 1 player and maximum 2 players</span>
+<span class="w">  </span><span class="c1">// This automatically uses Flame&#39;s global audio cache</span>
+<span class="w">  </span><span class="n">AudioPool</span><span class="w"> </span><span class="n">explosionSoundPool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">createPool</span><span class="p">(</span>
+<span class="w">    </span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">minPlayers:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">maxPlayers:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-directly-with-source">
+<h3>Creating Directly with Source<a class="headerlink" href="#creating-directly-with-source" title="Link to this heading">¶</a></h3>
+<p>You can also create an AudioPool by directly using the static factory methods:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:audioplayers/audioplayers.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_audio/flame_audio.dart&#39;</span><span class="p">;</span>
+
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">loadSounds</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Create a pool with a specific Source</span>
+<span class="w">  </span><span class="n">AudioPool</span><span class="w"> </span><span class="n">explosionSoundPool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">AudioPool</span><span class="p">.</span><span class="n">create</span><span class="p">(</span>
+<span class="w">    </span><span class="k">source</span><span class="o">:</span><span class="w"> </span><span class="n">AssetSource</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="nl">minPlayers:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">maxPlayers:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">audioCache:</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">,</span><span class="w"> </span><span class="c1">// Optional</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="creating-from-asset-path">
+<h3>Creating from Asset Path<a class="headerlink" href="#creating-from-asset-path" title="Link to this heading">¶</a></h3>
+<p>For convenience, you can create an AudioPool from just the asset path:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_audio/flame_audio.dart&#39;</span><span class="p">;</span>
+
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">loadSounds</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">AudioPool</span><span class="w"> </span><span class="n">explosionSoundPool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">AudioPool</span><span class="p">.</span><span class="n">createFromAsset</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">path:</span><span class="w"> </span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">minPlayers:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">maxPlayers:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">audioCache:</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">,</span><span class="w"> </span><span class="c1">// Optional</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The parameters are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">source</span></code> or <code class="docutils literal notranslate"><span class="pre">path</span></code>: The audio source to play (either as a Source object or asset path)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">minPlayers</span></code>: The initial number of AudioPlayers to create and preload (default: 1)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxPlayers</span></code>: The maximum number of AudioPlayers that can be kept in the pool</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">audioCache</span></code>: Optional AudioCache instance to use</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">audioContext</span></code>: Optional audio context to be used by all players in the pool</p></li>
+</ul>
+</section>
+</section>
+<section id="using-an-audiopool">
+<h2>Using an AudioPool<a class="headerlink" href="#using-an-audiopool" title="Link to this heading">¶</a></h2>
+<p>Once you’ve created an AudioPool, you can start playing sounds:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Play the sound with default volume (1.0)</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">stopFunction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">audioPool</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+
+<span class="c1">// Play the sound with custom volume</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">stopFunction</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">audioPool</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="nl">volume:</span><span class="w"> </span><span class="m">0.5</span><span class="p">);</span>
+
+<span class="c1">// Later, you can stop the sound if needed</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">stopFunction</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">start()</span></code> method returns a <code class="docutils literal notranslate"><span class="pre">StopFunction</span></code> that you can call to stop the sound before it completes
+naturally.</p>
+</section>
+<section id="managing-the-pool">
+<h2>Managing the Pool<a class="headerlink" href="#managing-the-pool" title="Link to this heading">¶</a></h2>
+<p>AudioPool provides a <code class="docutils literal notranslate"><span class="pre">dispose()</span></code> method to release resources when you no longer need the pool:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// When you&#39;re done with the pool</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">audioPool</span><span class="p">.</span><span class="n">dispose</span><span class="p">();</span>
+</pre></div>
+</div>
+</section>
+<section id="example-usage">
+<h2>Example Usage<a class="headerlink" href="#example-usage" title="Link to this heading">¶</a></h2>
+<p>Here’s a complete example showing how to use AudioPools in a Flame game:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_audio/flame_audio.dart&#39;</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">AudioPool</span><span class="w"> </span><span class="n">laserSound</span><span class="p">;</span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">AudioPool</span><span class="w"> </span><span class="n">explosionSound</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Load sound effects into audio pools</span>
+<span class="w">    </span><span class="n">laserSound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">createPool</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;laser.mp3&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">minPlayers:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">maxPlayers:</span><span class="w"> </span><span class="m">6</span><span class="p">,</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">explosionSound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">createPool</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">minPlayers:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">maxPlayers:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">fireLaser</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Play the laser sound effect - can be called rapidly</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">stop</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">laserSound</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// If you need to stop the sound early:</span>
+<span class="w">    </span><span class="c1">// await stop();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">enemyDestroyed</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Play explosion sound effect</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">explosionSound</span><span class="p">.</span><span class="n">start</span><span class="p">(</span><span class="nl">volume:</span><span class="w"> </span><span class="m">0.7</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onRemove</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onRemove</span><span class="p">();</span>
+
+<span class="w">    </span><span class="c1">// Clean up resources when the game component is removed</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">laserSound</span><span class="p">.</span><span class="n">dispose</span><span class="p">();</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">explosionSound</span><span class="p">.</span><span class="n">dispose</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can also find the interactive example in <a class="reference external" href="https://examples.flame-engine.org/">Flame Basic</a></p>
+</section>
 </section>
 
 
@@ -368,6 +523,14 @@ instances using the same global <code class="docutils literal notranslate"><span
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#how-it-works' class='list-group-item level-1'>How It Works</a>
+  <a href='#creating-an-audiopool' class='list-group-item level-1'>Creating an AudioPool</a>
+  <a href='#using-flameaudio-helper' class='list-group-item level-2'>Using FlameAudio Helper</a>
+  <a href='#creating-directly-with-source' class='list-group-item level-2'>Creating Directly with Source</a>
+  <a href='#creating-from-asset-path' class='list-group-item level-2'>Creating from Asset Path</a>
+  <a href='#using-an-audiopool' class='list-group-item level-1'>Using an AudioPool</a>
+  <a href='#managing-the-pool' class='list-group-item level-1'>Managing the Pool</a>
+  <a href='#example-usage' class='list-group-item level-1'>Example Usage</a>
 </div>
 
     </div>
