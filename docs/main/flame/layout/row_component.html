@@ -4,7 +4,7 @@
 <meta name="robots" content="noindex">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>&lt;no title&gt; &#8212; Flame</title>
+  <title>RowComponent &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
@@ -24,8 +24,6 @@
   <script src="../../_static/flutter_app.js?v=3619378f"></script>
   <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
   <script src="../../_static/copybutton.js?v=f281be69"></script>
-  <script src="https://unpkg.com/mermaid@10.2.0/dist/mermaid.min.js"></script>
-  <script>mermaid.initialize({startOnLoad:true});</script>
   <script src="../../_static/versions.js?v=58484017"></script>
   <script src="../../_static/menu-expand.js?v=8e297497"></script>
   <!--script src="searchindex.js" defer></script-->
@@ -140,8 +138,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../rendering/text_rendering.html">Text Rendering</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../layout/layout.html">Layout</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../layout/align_component.html">AlignComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="layout.html">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="align_component.html">AlignComponent</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overlays.html">Overlays</a></li>
@@ -325,50 +323,54 @@
     </div>
     <div class="document" role="main">
       
-  <div class="mermaid">
-            %%{init: { 'theme': 'dark' } }%%
+  <section class="tex2jax_ignore mathjax_ignore" id="rowcomponent">
+<h1>RowComponent<a class="headerlink" href="#rowcomponent" title="Link to this heading">¶</a></h1>
+<div class="dartdoc docutils container">
+<div class="class docutils container">
+<div class="signature sig1 docutils container" id="RowComponent">
+<div class="docutils container">
+<span class="keyword">class </span><span class="name">RowComponent</span></div>
+<div class="modifier docutils container">
+<span class="keyword">extends</span> <span>LayoutComponent</span></div>
+</div>
+<div class="description doc1 docutils container">
+<p>RowComponent is a layout component that arranges its children in a
+horizontal row.</p>
+<p>The <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">children</span></code> are laid out along the horizontal axis, with spacing between
+them defined by the <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">gap</span></code> parameter.
+The alignment of the children along the horizontal axis is controlled by
+<code class="xref dart dart-ref docutils literal notranslate"><span class="pre">mainAxisAlignment</span></code>, while their alignment along the vertical axis is
+controlled by <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">crossAxisAlignment</span></code>.</p>
+<p>If <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">shrinkWrap</span></code> is set to true, the size of the row will shrink to fit its
+children. Otherwise, the size of the row will be determined by the <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code>
+parameter or the size of its parent.</p>
+<p>Example usage:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">RowComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">gap:</span><span class="w"> </span><span class="m">10.0</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">mainAxisAlignment:</span><span class="w"> </span><span class="n">MainAxisAlignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">crossAxisAlignment:</span><span class="w"> </span><span class="n">CrossAxisAlignment</span><span class="p">.</span><span class="n">start</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="n">TextComponent</span><span class="p">(</span><span class="s1">&#39;Child 1&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">TextComponent</span><span class="p">(</span><span class="s1">&#39;Child 2&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">TextComponent</span><span class="p">(</span><span class="s1">&#39;Child 3&#39;</span><span class="p">),</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<section id="constructors">
+<h2>Constructors<a class="headerlink" href="#constructors" title="Link to this heading">¶</a></h2>
+<div class="constructor docutils container">
+<div class="signature sig2 docutils container" id="RowComponent-RowComponent">
+<div class="docutils container">
+<span class="name">RowComponent</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="name">super.mainAxisAlignment</span><span class="punct"> = </span><span class="default">MainAxisAlignment.start</span></span><span class="punct">, </span><span class="argument"><span class="name">super.crossAxisAlignment</span><span class="punct"> = </span><span class="default">CrossAxisAlignment.start</span></span><span class="punct">, </span><span class="argument"><span class="name">super.gap</span><span class="punct"> = </span><span class="default">0.0</span></span><span class="punct">, </span><span class="argument"><span class="name">super.shrinkWrap</span><span class="punct"> = </span><span class="default">false</span></span><span class="punct">, </span><span class="argument"><span class="name">super.size</span></span><span class="punct">, </span><span class="argument"><span class="name">super.position</span></span><span class="punct">, </span><span class="argument"><span class="name">super.children</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</section>
 
-  graph TD
-
-   %% Node Color %%
-   classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
-   classDef lightYellow fill:#523F00,stroke-width:2px;
-   classDef yellow fill:#F6BE00,color:#000000;
-
-   %% Nodes  %%
-   x(Runs Each Tick)
-   y(Runs On Add &amp; Resize):::lightYellow
-   z(Runs Once):::yellow
-
-        </div><div class="mermaid">
-            %%{init: { 'theme': 'dark' } }%%
-  graph LR
-
-   %% Node Color %%
-   classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
-   classDef lightYellow fill:#523F00,stroke-width:2px;
-   classDef yellow fill:#F6BE00,color:#000000;
-
-    %% Nodes %%
-
-    A(onLoad):::yellow
-    B(onGameResize):::lightYellow
-    C(onMount):::lightYellow
-    D(update)
-    E(render)
-    F(onRemove):::lightYellow
-
-    %% Flow %%
-
-    A--&gt;B
-    B--&gt;C
-    C--&gt;D
-    D--&gt;E
-    E--&gt;D
-    E-. If removed .-&gt;F
-    F-. If re-parented .-&gt;B
-
-        </div>
 
     </div>
     <div class="copyright">
@@ -383,7 +385,11 @@
   <div class="sidebar-right">
     
     <div class="nav-right" role="navigation" aria-label="table of contents">
-      
+      <div id='toc-local' class='list-group'>
+ <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#constructors' class='list-group-item level-1'>Constructors</a>
+</div>
+
     </div>
   </div>
 

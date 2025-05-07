@@ -40,7 +40,7 @@
   <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="Components" href="components.html" />
+  <link rel="next" title="Assets Directory Structure" href="structure.html" />
   <link rel="prev" title="Game Widget" href="game_widget.html" />
 </head>
 
@@ -113,25 +113,26 @@
     <div class="nav-left" role="navigation" aria-label="Main">
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="flame.html">Flame</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../README.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game_widget.html">Game Widget</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Game Loop</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
-<li class="toctree-l2"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="router.html">Router</a></li>
-<li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision Detection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/gesture_input.html">Gesture Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/other_inputs.html">Other Inputs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/pointer_events.html">Pointer Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="router.html">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rendering/rendering.html">Rendering</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="rendering/palette.html">Colors and Palette</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rendering/decorators.html">Decorators</a></li>
@@ -328,10 +329,11 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="flamegame">
 <h1>FlameGame<a class="headerlink" href="#flamegame" title="Link to this heading">¶</a></h1>
+<p>The base of almost all Flame games is the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class, this is the root of your component
+tree. We refer to this component-based system as the Flame Component System (FCS). Throughout the
+documentation, FCS is used to reference this system.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class implements a <code class="docutils literal notranslate"><span class="pre">Component</span></code> based <code class="docutils literal notranslate"><span class="pre">Game</span></code>. It has a tree of components
 and calls the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> methods of all components that have been added to the game.</p>
-<p>We refer to this component-based system as the Flame Component System (FCS). Throughout the
-documentation, FCS is used to reference this system.</p>
 <p>Components can be added to the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> directly in the constructor with the named <code class="docutils literal notranslate"><span class="pre">children</span></code>
 argument, or from anywhere else with the <code class="docutils literal notranslate"><span class="pre">add</span></code>/<code class="docutils literal notranslate"><span class="pre">addAll</span></code> methods. Most of the time however, you want
 to add your children to a <code class="docutils literal notranslate"><span class="pre">World</span></code>, the default world exist under <code class="docutils literal notranslate"><span class="pre">FlameGame.world</span></code> and you add
@@ -378,6 +380,8 @@ constructor.</p>
 <p>To remove components from the list on a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> the <code class="docutils literal notranslate"><span class="pre">remove</span></code> or <code class="docutils literal notranslate"><span class="pre">removeAll</span></code> methods can be used.
 The first can be used if you just want to remove one component, and the second can be used when you
 want to remove a list of components. These methods exist on all <code class="docutils literal notranslate"><span class="pre">Component</span></code>s, including the world.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> has a built-in <code class="docutils literal notranslate"><span class="pre">World</span></code> called <code class="docutils literal notranslate"><span class="pre">world</span></code> and a <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> instance called
+<code class="docutils literal notranslate"><span class="pre">camera</span></code>, you can read more about those in the <a class="reference internal" href="camera.html"><span class="std std-doc">Camera section</span></a>.</p>
 <section id="game-loop">
 <h2>Game Loop<a class="headerlink" href="#game-loop" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> module is a simple abstraction of the game loop concept. Basically, most games are
@@ -646,10 +650,10 @@ in detecting visual areas of the game that are taking the most time to render.</
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="components.html" title="next page">
+      <a class="right-next" id="next-link" href="structure.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Components</p>
+          <p class="prev-next-title">Assets Directory Structure</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
