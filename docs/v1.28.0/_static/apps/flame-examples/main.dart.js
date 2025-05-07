@@ -47236,7 +47236,7 @@ s=3
 return A.U(new A.nw(new A.fI(a,b.h("fI<1>"))).JO(),$async$ml)
 case 3:m=b0
 p=5
-b=self.window
+b=self
 a=a8.b
 a0=a.j(0)
 a1=!J.r_(m)?m:null

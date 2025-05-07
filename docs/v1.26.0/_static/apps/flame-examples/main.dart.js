@@ -46697,7 +46697,7 @@ s=3
 return A.Q(new A.n7(new A.fS(a,b.h("fS<1>"))).Ha(),$async$lC)
 case 3:m=b1
 p=5
-b=self.window
+b=self
 a=a9.b
 a0=a.j(0)
 a1=!J.im(m)?m:null

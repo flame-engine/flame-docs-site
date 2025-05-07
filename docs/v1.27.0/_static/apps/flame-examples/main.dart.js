@@ -46358,7 +46358,7 @@ s=3
 return A.R(new A.ni(new A.fF(a,b.h("fF<1>"))).Jx(),$async$me)
 case 3:m=b0
 p=5
-b=self.window
+b=self
 a=a8.b
 a0=a.j(0)
 a1=!J.qK(m)?m:null
