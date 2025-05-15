@@ -34879,7 +34879,7 @@ if((r&4)!==0||(r&32)!==0){if((r&8)===0){s=s.ax.q5()
 s.a=B.eV
 s.b=a
 s.c=q
-a.a|=8}}else{s.Xl(a,q)
+a.a|=8}}else if((r&16)===0){s.Xl(a,q)
 a.e=null}}else{s=q.f
 if(s!=null)s.v(0,a)
 a.e=null}},
@@ -34976,8 +34976,10 @@ q.f.K(0)
 for(p=$.nI.length,s=0;s<$.nI.length;$.nI.length===p||(0,A.y)($.nI),++s){r=$.nI[s]
 r.e=null
 q.X(r)}B.b.K($.nI)}},
-B0(){this.e.gam().v(0,this)
-new A.aA(this.qy(!0,!0),t.xI).dv(0,new A.My())},
+B0(){var s=this
+s.e.gam().v(0,s)
+new A.aA(s.qy(!0,!0),t.xI).dv(0,new A.My())
+s.e=null},
 gy6(){return null},
 gns(){var s,r=this,q=r.as,p=t.t_
 if(!q.x5(A.a([r.gk7()],p))){s=$.a1().av()
@@ -35031,7 +35033,6 @@ a.a=s
 a.a=s|16
 a.d=null
 a.e.toString
-a.e=null
 return!0},
 $S:25}
 A.l8.prototype={}

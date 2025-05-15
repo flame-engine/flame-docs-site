@@ -22822,7 +22822,7 @@ if((r&4)!==0||(r&32)!==0){if((r&8)===0){s=s.ax.kg()
 s.a=B.dz
 s.b=q
 s.c=p
-q.a|=8}}else{s.Hj(q,p)
+q.a|=8}}else if((r&16)===0){s.Hj(q,p)
 q.e=null}}else{p=p.f
 if(p!=null)p.t(0,q)
 q.e=null}return null},
@@ -22919,8 +22919,10 @@ q.f.D(0)
 for(p=$.i8.length,s=0;s<$.i8.length;$.i8.length===p||(0,A.t)($.i8),++s){r=$.i8[s]
 r.e=null
 q.ao(r)}B.b.D($.i8)}},
-rd(){this.e.gbe().t(0,this)
-new A.aV(this.nT(!0,!0),t.on).bq(0,new A.yo())},
+rd(){var s=this
+s.e.gbe().t(0,s)
+new A.aV(s.nT(!0,!0),t.on).bq(0,new A.yo())
+s.e=null},
 gxq(){return null},
 gnP(){var s,r=this.as,q=t.bk
 if(!r.wI(A.c([B.ac],q))){s=$.an().b_()
@@ -22974,7 +22976,6 @@ a.a=s
 a.a=s|16
 a.d=null
 a.e.toString
-a.e=null
 return!0},
 $S:32}
 A.i7.prototype={}
