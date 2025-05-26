@@ -350,6 +350,59 @@ applied independently.</p></li>
 the output of the previous one.</p></li>
 </ul>
 </section>
+<section id="postprocesscomponent">
+<h2>PostProcessComponent<a class="headerlink" href="#postprocesscomponent" title="Link to this heading">¶</a></h2>
+<div class="dartdoc docutils container">
+<div class="class docutils container">
+<div class="signature sig1 docutils container" id="PostProcessComponent">
+<div class="docutils container">
+<span class="keyword">class </span><span class="name">PostProcessComponent</span><span class="types"><span class="punct">&lt;</span><span class="name">T</span><span class="keyword"> extends </span>PostProcess<span class="punct">&gt;</span></span></div>
+<div class="modifier docutils container">
+<span class="keyword">extends</span> <span>PositionComponent</span></div>
+</div>
+<div class="description doc1 docutils container">
+<p>A <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">PositionComponent</span></code> that applies a post-processing effect to its children.
+This component is useful for applying effects such as bloom, blur, other
+fragment shader effects to a group of components.</p>
+<p>As opposed to <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">CameraComponent.postProcess</span></code>, this only applies the post
+process to the children of this component. This means that if you want to
+apply a post process to the whole screen, you should use
+<code class="xref dart dart-ref docutils literal notranslate"><span class="pre">CameraComponent.postProcess</span></code> instead.</p>
+<p>During the rendering process, children of this component can verify if they
+are being rendered within a post process by using
+<code class="xref dart dart-ref docutils literal notranslate"><span class="pre">PostProcessingContextFinder.findPostProcessFromContext</span></code>.</p>
+<p>If a specific <a class="reference internal" href="#PostProcessComponent-size"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code></a> is provided the component will be rendered with that
+size, otherwise it will calculate the size based on the bounding box of
+its children.</p>
+<p>See also:</p>
+<ul class="simple">
+<li><p><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">PostProcess</span></code> for the base class for post processes and more information
+about how to create them.</p></li>
+<li><p><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">PostProcessGroup</span></code> for a group of post processes that will be applied
+in parallel</p></li>
+<li><p><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">CameraComponent.postProcess</span></code> for a way to apply post processes to the
+whole screen.</p></li>
+</ul>
+</div>
+<section id="constructors">
+<h3>Constructors<a class="headerlink" href="#constructors" title="Link to this heading">¶</a></h3>
+<div class="constructor docutils container">
+<div class="signature sig2 docutils container" id="PostProcessComponent-PostProcessComponent">
+<div class="docutils container">
+<span class="name">PostProcessComponent</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="keyword">required </span><span class="name">this.postProcess</span></span><span class="punct">, </span><span class="argument"><span class="name">super.position</span></span><span class="punct">, </span><span class="argument"><span class="name">super.size</span></span><span class="punct">, </span><span class="argument"><span class="name">super.scale</span></span><span class="punct">, </span><span class="argument"><span class="name">super.angle</span></span><span class="punct">, </span><span class="argument"><span class="name">super.nativeAngle</span></span><span class="punct">, </span><span class="argument"><span class="name">super.anchor</span></span><span class="punct">, </span><span class="argument"><span class="name">super.children</span></span><span class="punct">, </span><span class="argument"><span class="name">super.priority</span></span><span class="punct">, </span><span class="argument"><span class="name">super.key</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
+</div>
+</div>
+</section>
+<section id="properties">
+<h3>Properties<a class="headerlink" href="#properties" title="Link to this heading">¶</a></h3>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="PostProcessComponent-postProcess">
+<span class="name">postProcess</span><span class="punct"> : </span>T</div>
+</div>
+</section>
+</div>
+</div>
+</section>
 <section id="creating-a-custom-post-process">
 <h2>Creating a Custom Post Process<a class="headerlink" href="#creating-a-custom-post-process" title="Link to this heading">¶</a></h2>
 <p>To implement a custom post process:</p>
@@ -590,6 +643,9 @@ group.</p></li>
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#key-components-of-the-post-processing-system' class='list-group-item level-1'>Key Components of the Post Processing System</a>
+  <a href='#postprocesscomponent' class='list-group-item level-1'>PostProcessComponent</a>
+  <a href='#constructors' class='list-group-item level-2'>Constructors</a>
+  <a href='#properties' class='list-group-item level-2'>Properties</a>
   <a href='#creating-a-custom-post-process' class='list-group-item level-1'>Creating a Custom Post Process</a>
   <a href='#example-pixelation' class='list-group-item level-1'>Example: pixelation</a>
   <a href='#advanced-example-crystal-ball' class='list-group-item level-1'>Advanced Example: Crystal Ball</a>

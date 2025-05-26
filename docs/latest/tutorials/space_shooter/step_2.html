@@ -110,25 +110,26 @@
     <div class="nav-left" role="navigation" aria-label="Main">
       <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../flame/flame.html">Flame</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">Game Widget</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">Game Loop</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/gesture_input.html">Gesture Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/other_inputs.html">Other Inputs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/pointer_events.html">Pointer Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/rendering/rendering.html">Rendering</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/palette.html">Colors and Palette</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/decorators.html">Decorators</a></li>
@@ -303,7 +304,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.28.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.29.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -450,10 +451,10 @@ become a mess quite fast.</p>
 initializations. But before we implement our player’s load method, note that we use an attribute and
 the <code class="docutils literal notranslate"><span class="pre">loadSprite</span></code> method from the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class.</p>
 <p>That is not a problem! Every time our component needs to access things from its game class, we can
-mix our component with the <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code> mixin; that will add a new variable to our component called
-<code class="docutils literal notranslate"><span class="pre">gameRef</span></code> which will point to the game instance where the component is running. Now, let’s refactor
+mix our component with the <code class="docutils literal notranslate"><span class="pre">HasGameReference</span></code> mixin; that will add a new variable to our component called
+<code class="docutils literal notranslate"><span class="pre">game</span></code> which will point to the game instance where the component is running. Now, let’s refactor
 our game a little bit:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">  </span><span class="n">Player</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
 <span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
@@ -464,9 +465,9 @@ our game a little bit:</p>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;player-sprite.png&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;player-sprite.png&#39;</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -495,7 +496,7 @@ our game a little bit:</p>
 </div>
 <p>If you run the game now, you will not notice any visual differences, but now we have a more scalable
 structure for developing our game. And that closes this step!</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/v1.28.0/_static/apps/tutorials-space_shooter-app/index.html?step2&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step2">
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/v1.29.0/_static/apps/tutorials-space_shooter-app/index.html?step2&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step2">
 <div class="filename docutils container">
 main.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>

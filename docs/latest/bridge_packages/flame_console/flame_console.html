@@ -108,25 +108,26 @@
     <div class="nav-left" role="navigation" aria-label="Main">
       <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../flame/flame.html">Flame</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">Game Widget</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">Game Loop</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/gesture_input.html">Gesture Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/other_inputs.html">Other Inputs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/pointer_events.html">Pointer Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/rendering/rendering.html">Rendering</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/palette.html">Colors and Palette</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/decorators.html">Decorators</a></li>
@@ -301,7 +302,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.28.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.29.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -373,22 +374,20 @@ show the console when pressed.</p>
 </section>
 <section id="custom-commands">
 <h2>Custom commands<a class="headerlink" href="#custom-commands" title="Link to this heading">¶</a></h2>
-<p>Custom commands can be created by extending the <code class="docutils literal notranslate"><span class="pre">ConsoleCommand</span></code> class and adding them to the
+<p>Custom commands can be created by extending the <code class="docutils literal notranslate"><span class="pre">FlameConsoleCommand</span></code> class and adding them to the
 the <code class="docutils literal notranslate"><span class="pre">customCommands</span></code> list in the <code class="docutils literal notranslate"><span class="pre">ConsoleView</span></code> widget.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCustomCommand</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">ConsoleCommand</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="w"> </span><span class="n">MyCustomCommand</span><span class="p">();</span>
-
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCustomCommand</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameConsoleCommand</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w"> </span><span class="nd">@override</span>
 <span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">name</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;my_command&#39;</span><span class="p">;</span>
 
 <span class="w"> </span><span class="nd">@override</span>
 <span class="w"> </span><span class="kt">String</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">description</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="s1">&#39;Description of my command&#39;</span><span class="p">;</span>
 
-<span class="w"> </span><span class="c1">// The execute method is supposed to return a tuple where the first</span>
-<span class="w"> </span><span class="c1">// element is an error message in case of failure, and the second</span>
+<span class="w"> </span><span class="c1">// The execute method should return a tuple where the first</span>
+<span class="w"> </span><span class="c1">// element is an error message (in case of failure), and the second</span>
 <span class="w"> </span><span class="c1">// element is the output of the command.</span>
 <span class="w"> </span><span class="nd">@override</span>
-<span class="w"> </span><span class="p">(</span><span class="kt">String</span><span class="o">?</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="n">execute</span><span class="p">(</span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">List</span><span class="o">&lt;</span><span class="kt">String</span><span class="o">&gt;</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="p">(</span><span class="kt">String</span><span class="o">?</span><span class="p">,</span><span class="w"> </span><span class="kt">String</span><span class="p">)</span><span class="w"> </span><span class="n">execute</span><span class="p">(</span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">,</span><span class="w"> </span><span class="n">ArgResults</span><span class="w"> </span><span class="n">args</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">   </span><span class="c1">// do something on the game</span>
 <span class="w">   </span><span class="k">return</span><span class="w"> </span><span class="p">(</span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
 <span class="w"> </span><span class="p">}</span>
@@ -398,10 +397,10 @@ the <code class="docutils literal notranslate"><span class="pre">customCommands<
 <p>Then when creating the <code class="docutils literal notranslate"><span class="pre">ConsoleView</span></code> widget, add the custom command to the <code class="docutils literal notranslate"><span class="pre">customCommands</span></code> list.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">ConsoleView</span><span class="p">(</span>
 <span class="w">  </span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">customCommands:</span><span class="w"> </span><span class="p">[</span><span class="n">MyCustomCommand</span><span class="p">()],</span>
 <span class="w">  </span><span class="nl">onClose:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">_game</span><span class="p">.</span><span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;console&#39;</span><span class="p">);</span>
 <span class="w">  </span><span class="p">},</span>
-<span class="w">  </span><span class="nl">customCommands:</span><span class="w"> </span><span class="p">[</span><span class="n">MyCustomCommand</span><span class="p">()],</span>
 <span class="p">),</span>
 </pre></div>
 </div>

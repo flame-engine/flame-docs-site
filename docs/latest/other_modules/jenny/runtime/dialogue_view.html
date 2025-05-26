@@ -110,25 +110,26 @@
     <div class="nav-left" role="navigation" aria-label="Main">
       <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../../../flame/flame.html">Flame</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../../README.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/game_widget.html">Game Widget</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../flame/game.html">Game Loop</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../flame/components.html">Components</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../flame/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../flame/game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../flame/router.html">Router</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../flame/platforms.html">Platforms</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../flame/collision_detection.html">Collision Detection</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../flame/components.html">Components</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/gesture_input.html">Gesture Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/other_inputs.html">Other Inputs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/pointer_events.html">Pointer Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../../flame/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../flame/collision_detection.html">Collision Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../flame/router.html">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../flame/platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../../flame/rendering/rendering.html">Rendering</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/rendering/palette.html">Colors and Palette</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../../flame/rendering/decorators.html">Decorators</a></li>
@@ -303,7 +304,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.28.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.29.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -552,13 +553,22 @@ one of the dialogue views.</p>
 <div class="description doc2 docutils container">
 <p>Called when the dialogue encounters a <a class="reference internal" href="user_defined_command.html"><span class="std std-doc">user-defined command</span></a>.</p>
 <p>This method is invoked immediately after the command itself is executed,
-but before the result of the execution was awaited. Thus, if the command’s
-effect is asynchronous, then it will be send to dialogue views and
-executed <em>at the same time</em>.</p>
+but before the result of the execution was awaited.
+(See <a class="reference internal" href="#DialogueView-onCommandFinish"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">onCommandFinish</span></code></a>) Thus, if the command’s effect is asynchronous,
+then it will be send to dialogue views and executed <em>at the same time</em>.</p>
 <p>In cases when the command’s effect occurs within the game, implementing
 this method may not be necessary. However, if you want to have a command
 that affects the dialogue views themselves, then this method provides
 a way of achieving that.</p>
+</div>
+</div>
+<div class="method docutils container">
+<div class="signature sig2 docutils container" id="DialogueView-onCommandFinish">
+<div class="docutils container">
+<span class="name">onCommandFinish</span><span class="arguments"><span class="punct">(</span><span class="argument">UserDefinedCommand <span class="name">command</span></span><span class="punct">)</span></span><span class="punct"> → </span>FutureOr&lt;void&gt;</div>
+</div>
+<div class="description doc2 docutils container">
+<p>Called after the result of the <span class="param">command</span> has been awaited.</p>
 </div>
 </div>
 </section>
