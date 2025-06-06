@@ -11664,7 +11664,7 @@ return n}}
 A.JB.prototype={
 $1(a){var s=A.bL().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/18818009497c581ede5d8a3b8b833b81d00cebb7/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/109150893958777c8f2215f6cfd3e89e984e8dea/":s)+a},
 $S:59}
 A.o2.prototype={
 dJ(a,b){this.a.dJ(a,b)},

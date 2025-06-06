@@ -13724,7 +13724,7 @@ return n}}
 A.QA.prototype={
 $1(a){var s=A.cq().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/18818009497c581ede5d8a3b8b833b81d00cebb7/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/109150893958777c8f2215f6cfd3e89e984e8dea/":s)+a},
 $S:64}
 A.qH.prototype={
 d4(a,b){this.a.d4(a,b)},
@@ -27257,7 +27257,7 @@ return A.b([q],t.eO)}}return A.b([],t.eO)},
 ih(a){var s,r=this.b,q=this.a,p=r.W(0,q),o=a.a,n=q.a,m=o[1]-n[1],l=p.a,k=l[0]
 n=o[0]-n[0]
 l=l[1]
-if(Math.abs(m*k-n*l)>0.000001)return!1
+if(Math.abs(m*k-n*l)>0.01)return!1
 s=n*k+m*l
 if(s<0)return!1
 if(s>q.zr(r))return!1
