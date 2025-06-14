@@ -19847,7 +19847,7 @@ return n}}
 A.ZK.prototype={
 $1(a){var s=A.dI().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/109150893958777c8f2215f6cfd3e89e984e8dea/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/8cd19e509d6bece8ccd74aef027c4ca947363095/":s)+a},
 $S:103}
 A.y8.prototype={
 fE(a,b){var s,r=this.a

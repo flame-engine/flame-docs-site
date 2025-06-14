@@ -13625,7 +13625,7 @@ return n}}
 A.Qh.prototype={
 $1(a){var s=A.cl().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/109150893958777c8f2215f6cfd3e89e984e8dea/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/8cd19e509d6bece8ccd74aef027c4ca947363095/":s)+a},
 $S:97}
 A.qn.prototype={
 d1(a,b){this.a.d1(a,b)},
