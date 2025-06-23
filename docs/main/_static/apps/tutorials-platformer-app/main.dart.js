@@ -26304,10 +26304,9 @@ q.f.F(0)
 for(p=$.jK.length,s=0;s<$.jK.length;$.jK.length===p||(0,A.u)($.jK),++s){r=$.jK[s]
 r.e=null
 q.bD(r)}B.b.F($.jK)}},
-vp(){var s=this
-s.e.ghX().t(0,s)
-s.AZ(new A.DA(),!0,t.iQ)
-s.e=null},
+vp(a){a.ghX().t(0,this)
+this.AZ(new A.DA(),!0,t.iQ)
+this.e=null},
 gBi(){return null},
 gjP(){var s,r=this,q=r.as,p=t.bk
 if(!q.rg(A.b([r.gh5()],p))){$.ab()
@@ -26366,7 +26365,7 @@ return}}throw A.e(A.dQ("Cannot find a lifecycle event Add(child="+a.j(0)+", pare
 My(a){var s,r,q
 for(s=this.ax,s.hT(),s.d=-2,r=s.e;s.l();){q=r[s.d]
 if(q.a===B.fe&&q.b===a)q.a=B.bS}},
-PQ(){var s,r,q,p,o,n,m,l,k=A.ah(t.iQ),j=new A.Dz(k)
+PQ(){var s,r,q,p,o,n,m,l,k,j=A.ah(t.iQ),i=new A.Dz(j)
 for(s=this.ay,r=this.ax,q=r.e,p=!0;p;){for(r.hT(),r.d=-2,p=!1;r.l();){o=q[r.d]
 n=o.b
 n.toString
@@ -26376,15 +26375,16 @@ if(s.v(0,A.fE(n))||s.v(0,A.fE(m)))continue
 switch(o.a.a){case 1:l=n.ND(m)
 break
 case 2:if(n.e==null){l=m.f
-if(l!=null)l.t(0,n)}else n.vp()
+if(l!=null)l.t(0,n)}else n.vp(m)
 l=B.aL
 break
-case 3:if(n.e!=null)n.vp()
+case 3:k=n.e
+if(k!=null)n.vp(k)
 if((m.a&4)!==0){n.e=m
 n.wC()}else m.bD(n)
 l=B.aL
 break
-case 4:l=j.$1(m)
+case 4:l=i.$1(m)
 break
 case 0:l=B.aL
 break
@@ -26401,7 +26401,7 @@ p=!0
 break
 case 1:s.q(0,A.fE(n))
 s.q(0,A.fE(m))
-break}}s.F(0)}for(s=A.co(k,k.r,k.$ti.c),r=s.$ti.c;s.l();){q=s.d
+break}}s.F(0)}for(s=A.co(j,j.r,j.$ti.c),r=s.$ti.c;s.l();){q=s.d
 q=(q==null?r.a(q):q).f
 if(q!=null){n=A.W(q,q.$ti.h("l.E"))
 n.$flags=1

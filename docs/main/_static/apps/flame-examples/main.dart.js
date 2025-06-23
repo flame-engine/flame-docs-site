@@ -35539,10 +35539,9 @@ q.f.L(0)
 for(p=$.nU.length,s=0;s<$.nU.length;$.nU.length===p||(0,A.t)($.nU),++s){r=$.nU[s]
 r.e=null
 q.Y(r)}B.b.L($.nU)}},
-B3(){var s=this
-s.e.gl6().A(0,s)
-new A.at(s.qz(!0,!0),t.xI).dr(0,new A.MO())
-s.e=null},
+B3(a){a.gl6().A(0,this)
+new A.at(this.qz(!0,!0),t.xI).dr(0,new A.MO())
+this.e=null},
 gy7(){return null},
 gnz(){var s,r=this,q=r.as,p=t.t_
 if(!q.x0(A.a([r.gk6()],p))){$.a3()
@@ -35612,7 +35611,7 @@ return}}throw A.j(A.fW("Cannot find a lifecycle event Add(child="+a.j(0)+", pare
 Xf(a){var s,r,q
 for(s=this.ax,s.l2(),s.d=-2,r=s.e;s.k();){q=r[s.d]
 if(q.a===B.fe&&q.b===a)q.a=B.bF}},
-a_G(){var s,r,q,p,o,n,m,l,k=A.k(t.F),j=new A.MN(k)
+a_G(){var s,r,q,p,o,n,m,l,k,j=A.k(t.F),i=new A.MN(j)
 for(s=this.ay,r=this.ax,q=r.e,p=!0;p;){for(r.l2(),r.d=-2,p=!1;r.k();){o=q[r.d]
 n=o.b
 n.toString
@@ -35622,15 +35621,16 @@ if(s.E(0,A.jG(n))||s.E(0,A.jG(m)))continue
 switch(o.a.a){case 1:l=n.Yv(m)
 break
 case 2:if(n.e==null){l=m.f
-if(l!=null)l.A(0,n)}else n.B3()
+if(l!=null)l.A(0,n)}else n.B3(m)
 l=B.aA
 break
-case 3:if(n.e!=null)n.B3()
+case 3:k=n.e
+if(k!=null)n.B3(k)
 if((m.a&4)!==0){n.e=m
 n.Ci()}else m.Y(n)
 l=B.aA
 break
-case 4:l=j.$1(m)
+case 4:l=i.$1(m)
 break
 case 0:l=B.aA
 break
@@ -35647,7 +35647,7 @@ p=!0
 break
 case 1:s.q(0,A.jG(n))
 s.q(0,A.jG(m))
-break}}s.L(0)}for(s=A.aH(k,k.r,k.$ti.c),r=s.$ti.c;s.k();){q=s.d
+break}}s.L(0)}for(s=A.aH(j,j.r,j.$ti.c),r=s.$ti.c;s.k();){q=s.d
 q=(q==null?r.a(q):q).f
 if(q!=null){n=A.Y(q,q.$ti.h("n.E"))
 n.$flags=1
