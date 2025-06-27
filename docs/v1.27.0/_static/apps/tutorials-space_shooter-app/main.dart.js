@@ -11753,7 +11753,7 @@ return n}}
 A.Jq.prototype={
 $1(a){var s=A.bM().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/8cd19e509d6bece8ccd74aef027c4ca947363095/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/dd93de6fb1776398bf586cbd477deade1391c7e4/":s)+a},
 $S:60}
 A.nZ.prototype={
 dH(a,b){this.a.dH(a,b)},

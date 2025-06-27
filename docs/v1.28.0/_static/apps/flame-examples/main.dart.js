@@ -21230,7 +21230,7 @@ return n}}
 A.a_M.prototype={
 $1(a){var s=A.dM().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/8cd19e509d6bece8ccd74aef027c4ca947363095/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/dd93de6fb1776398bf586cbd477deade1391c7e4/":s)+a},
 $S:81}
 A.za.prototype={
 fY(a,b){var s,r=this.a
