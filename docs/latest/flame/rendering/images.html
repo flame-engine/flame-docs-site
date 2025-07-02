@@ -304,7 +304,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.29.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.30.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -482,6 +482,88 @@ render call.</p>
 <p><code class="docutils literal notranslate"><span class="pre">Sprite</span></code>s can also be used as widgets, to do so just use <code class="docutils literal notranslate"><span class="pre">SpriteWidget</span></code> class.
 Here is a complete
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/sprite_widget_example.dart">example using sprite as widgets</a>.</p>
+<section id="sprite-bleeding">
+<h3>Sprite Bleeding<a class="headerlink" href="#sprite-bleeding" title="Link to this heading">¶</a></h3>
+<p>In some cases when rendering sprites next to each other, when the edges of the sprites are touching,
+you may see a rendering artifact called “ghost lines” between them.</p>
+<p>This happens especially when the sprites are positioned in coordinates that are not whole numbers,
+or when scaling is applied to the canvas.</p>
+<p>Those lines appear because floating-point numbers aren’t 100% accurate in computer science. Due
+to rounding errors, even though the sprites are supposed to be touching, they are not rendered that
+way.</p>
+<p>One way to avoid this is to use a technique called “bleeding”, which consists of adding a very small
+margin to the edges of the sprites, so that when they are rendered, they will overlap a bit and thus
+avoid rendering the ghost lines.</p>
+<p>Flame provides a way to do this by using the <code class="docutils literal notranslate"><span class="pre">bleed</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> render method. This
+is a double value that represents the amount of bleeding to be applied to the edges of the sprite.</p>
+<p>For example, if you do:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">playerFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span>
+<span class="w">  </span><span class="n">image</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">srcPosition:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32.0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">16.0</span><span class="p">,</span><span class="w"> </span><span class="m">16.0</span><span class="p">),</span>
+<span class="p">);</span>
+<span class="n">playerFrame</span><span class="p">.</span><span class="n">render</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="m">16.0</span><span class="p">,</span><span class="w"> </span><span class="m">16.0</span><span class="p">,</span><span class="w"> </span><span class="nl">bleed:</span><span class="w"> </span><span class="m">1.0</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The sprite will be rendered with a bleed amount of 1.0, meaning that it will have
+a value of 1 pixels added to each edge of the sprite.</p>
+<p>For users of the <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code>, using the bleeding feature is also quite simple, it is just
+a matter of passing a value to the <code class="docutils literal notranslate"><span class="pre">bleed</span></code> attribute in the component constructor:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(...);</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">spriteComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">sprite</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16.0</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">bleed:</span><span class="w"> </span><span class="m">1.0</span><span class="p">,</span><span class="w"> </span><span class="c1">// bleed value</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Note that the amount of the bleed value depends on the size of the sprite, so a bleed value of 1.0
+might not make much difference for a sprite of 100x100.</p>
+</section>
+<section id="sprite-rasterization">
+<h3>Sprite Rasterization<a class="headerlink" href="#sprite-rasterization" title="Link to this heading">¶</a></h3>
+<p>Rasterizing a sprite is the process of extracting the selected area of the image from that sprite,
+storing it in memory, and returning a new Sprite that contains that rasterized image.</p>
+<p>That can be used for a variety of reasons, one of the most useful ones is to avoid texture leaking
+when using a sprite sheet.</p>
+<p>Texture leaking can happen for the same reason as in the issue explained above (floating point
+rounding errors), and it causes parts outside of a sprite selection to also be rendered.</p>
+<p>Extracting the sprite selection and rasterizing it before rendering is a way to avoid this issue,
+since it then renders an image that only contains the selected area.</p>
+<p>Example of using a <code class="docutils literal notranslate"><span class="pre">RasterSpriteComponent</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;flame.png&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">rasterSpriteComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RasterSpriteComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">sprite</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16.0</span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>When using the <code class="docutils literal notranslate"><span class="pre">RasterSpriteComponent</span></code>, it will automatically rasterize the sprite when it is
+loaded.</p>
+<p>If you need to rasterize a sprite manually, you can use the <code class="docutils literal notranslate"><span class="pre">Sprite.rasterize</span></code> method:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">playerFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span>
+<span class="w">  </span><span class="n">image</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">srcPosition:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32.0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">16.0</span><span class="p">,</span><span class="w"> </span><span class="m">16.0</span><span class="p">),</span>
+<span class="p">);</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">rasterizedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">playerFrame</span><span class="p">.</span><span class="n">rasterize</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>By default, the <code class="docutils literal notranslate"><span class="pre">rasterize</span></code> method will use <code class="docutils literal notranslate"><span class="pre">Flame.images</span></code> to cache the rasterized image,
+auto generating a key based on the sprite’s source position and size. If you want to use a custom
+key for the rasterized image, or use a different cache object, you can pass it as an optional
+parameter:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">rasterizedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">playerFrame</span><span class="p">.</span><span class="n">rasterize</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">cacheKey:</span><span class="w"> </span><span class="s1">&#39;custom_key_for_rasterized_image&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">images:</span><span class="w"> </span><span class="n">Images</span><span class="p">(),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="spritebatch">
 <h2>SpriteBatch<a class="headerlink" href="#spritebatch" title="Link to this heading">¶</a></h2>
@@ -657,6 +739,8 @@ for more details on how to work with it.</p>
   <a href='#game-images' class='list-group-item level-2'>Game.images</a>
   <a href='#loading-images-over-the-network' class='list-group-item level-1'>Loading images over the network</a>
   <a href='#sprite' class='list-group-item level-1'>Sprite</a>
+  <a href='#sprite-bleeding' class='list-group-item level-2'>Sprite Bleeding</a>
+  <a href='#sprite-rasterization' class='list-group-item level-2'>Sprite Rasterization</a>
   <a href='#spritebatch' class='list-group-item level-1'>SpriteBatch</a>
   <a href='#imagecomposition' class='list-group-item level-1'>ImageComposition</a>
   <a href='#animation' class='list-group-item level-1'>Animation</a>

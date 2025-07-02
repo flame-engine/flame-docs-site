@@ -306,7 +306,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.29.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/v1.30.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -877,7 +877,7 @@ to pi/2 radians. Following are some common directions and their corresponding na
 <section id="anchor">
 <h3>Anchor<a class="headerlink" href="#anchor" title="Link to this heading">¶</a></h3>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.29.0/_static/apps/flame-examples/index.html?anchor"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor">
+<iframe class="flutter-app-iframe" src="/v1.30.0/_static/apps/flame-examples/index.html?anchor"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-anchor">
 <div class="filename docutils container">
 anchor.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:async&#39;</span><span class="p">;</span>
@@ -1255,6 +1255,11 @@ method will be called with the <code class="docutils literal notranslate"><span 
 <p>The <code class="docutils literal notranslate"><span class="pre">factory</span></code> with a single component is for backward compatibility, so you should use the
 <code class="docutils literal notranslate"><span class="pre">multiFactory</span></code> if in doubt. A single component <code class="docutils literal notranslate"><span class="pre">factory</span></code> will be wrapped internally to return a
 single item list and then used as the <code class="docutils literal notranslate"><span class="pre">multiFactory</span></code>.</p>
+<p>If you only want to spawn a certain amount of components, you can use the <code class="docutils literal notranslate"><span class="pre">spawnCount</span></code> argument,
+and once the limit is reached the <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code> will stop spawning and remove itself.</p>
+<p>By default, the <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code> will spawn components to its parent, but if you want to spawn
+components to another component you can set the <code class="docutils literal notranslate"><span class="pre">target</span></code> argument. Remember that it should be a
+<code class="docutils literal notranslate"><span class="pre">Component</span></code> that has a size if you don’t use the <code class="docutils literal notranslate"><span class="pre">area</span></code> or <code class="docutils literal notranslate"><span class="pre">selfPositioning</span></code> arguments.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpawnComponent</span><span class="p">(</span>
 <span class="w">  </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">MyComponent</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">)),</span>
 <span class="w">  </span><span class="nl">period:</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span>
