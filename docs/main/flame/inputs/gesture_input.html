@@ -445,21 +445,27 @@ but for all pan/drag events too. So if you need to use both of those detectors y
 both of their logic inside <code class="docutils literal notranslate"><span class="pre">onScaleUpdate</span></code> (+<code class="docutils literal notranslate"><span class="pre">onScaleStart</span></code> and <code class="docutils literal notranslate"><span class="pre">onScaleEnd</span></code>).</p>
 <p>For example you could do something like this if you want to move the camera on pan events and zoom
 on scale events:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">startZoom</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">clampZoom</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="m">3.0</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">startZoom</span><span class="p">;</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleStart</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">startZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span>
+<span class="w">    </span><span class="n">startZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleUpdate</span><span class="p">(</span><span class="n">ScaleUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">currentScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">info</span><span class="p">.</span><span class="n">scale</span><span class="p">.</span><span class="n">global</span><span class="p">;</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">currentScale</span><span class="p">.</span><span class="n">isIdentity</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">camera</span><span class="p">.</span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startZoom</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">currentScale</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+<span class="w">      </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startZoom</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">currentScale</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+<span class="w">      </span><span class="n">clampZoom</span><span class="p">();</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">camera</span><span class="p">.</span><span class="n">translateBy</span><span class="p">(</span><span class="o">-</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">);</span>
-<span class="w">      </span><span class="n">camera</span><span class="p">.</span><span class="n">snap</span><span class="p">();</span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">delta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">..</span><span class="n">negate</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">zoom</span><span class="p">;</span>
+<span class="w">      </span><span class="n">camera</span><span class="p">.</span><span class="n">moveBy</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
 <span class="w">    </span><span class="p">}</span>
 <span class="w">  </span><span class="p">}</span>
 </pre></div>
