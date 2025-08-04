@@ -1,11 +1,11 @@
 # Resources
 
-- [Flame API](https://pub.dev/documentation/flame/v1.27.0/)
+- [Flame API](https://pub.dev/documentation/flame/1.27.0/)
 - [Flame Examples](https://examples.flame-engine.org/#/)
 
 ```{toctree}
 :hidden:
 
-Flame API        <https://pub.dev/documentation/flame/v1.27.0/>
+Flame API        <https://pub.dev/documentation/flame/1.27.0/>
 Flame Examples   <https://examples.flame-engine.org/#/>
 ```

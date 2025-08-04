@@ -107,7 +107,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flame: ^v1.27.0
+  flame: ^1.27.0
 ```
 
 After that, press the `[Pub get]` button at the top of the window, or you could run command `flutter
