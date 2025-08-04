@@ -105,7 +105,7 @@ function pre_process {
     find .. -name "*.md" -exec sed -i "/<VERSION>.*/a $output" {} \;
     find .. -name "*.md" -exec sed -i "s/ <VERSION>//" {} \;
   else
-    find .. -name "*.md" -exec sed -i "s/--VERSION--/$version/" {} \;
+    find .. -name "*.md" -exec sed -i "s/--VERSION--/${version#v}/" {} \;
     find .. -name "*.md" -exec sed -i "s/<VERSION>/$version/" {} \;
   fi
 }
