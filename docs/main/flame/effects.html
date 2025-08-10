@@ -1186,14 +1186,14 @@ glow_effect.dart</div>
 <span class="linenos">16</span><span class="w">        </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
 <span class="linenos">17</span><span class="w">        </span><span class="nl">paint:</span><span class="w"> </span><span class="n">paint</span><span class="p">,</span>
 <span class="linenos">18</span><span class="w">      </span><span class="p">)..</span><span class="n">add</span><span class="p">(</span>
-<span class="linenos">19</span><span class="w">          </span><span class="n">GlowEffect</span><span class="p">(</span>
-<span class="linenos">20</span><span class="w">            </span><span class="m">10.0</span><span class="p">,</span>
-<span class="linenos">21</span><span class="w">            </span><span class="n">EffectController</span><span class="p">(</span>
-<span class="linenos">22</span><span class="w">              </span><span class="nl">duration:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
-<span class="linenos">23</span><span class="w">              </span><span class="nl">infinite:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="linenos">24</span><span class="w">            </span><span class="p">),</span>
-<span class="linenos">25</span><span class="w">          </span><span class="p">),</span>
-<span class="linenos">26</span><span class="w">        </span><span class="p">),</span>
+<span class="linenos">19</span><span class="w">        </span><span class="n">GlowEffect</span><span class="p">(</span>
+<span class="linenos">20</span><span class="w">          </span><span class="m">10.0</span><span class="p">,</span>
+<span class="linenos">21</span><span class="w">          </span><span class="n">EffectController</span><span class="p">(</span>
+<span class="linenos">22</span><span class="w">            </span><span class="nl">duration:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">23</span><span class="w">            </span><span class="nl">infinite:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos">24</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos">25</span><span class="w">        </span><span class="p">),</span>
+<span class="linenos">26</span><span class="w">      </span><span class="p">),</span>
 <span class="linenos">27</span><span class="w">    </span><span class="p">);</span>
 <span class="linenos">28</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">29</span><span class="p">}</span>
@@ -1327,8 +1327,8 @@ remove_effect.dart</div>
 <span class="linenos">33</span>
 <span class="linenos">34</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">35</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">36</span><span class="w">    </span><span class="n">textComponent</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span>
-<span class="linenos">37</span><span class="w">        </span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="n">controller</span><span class="p">.</span><span class="n">progress</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">delayTime</span><span class="p">).</span><span class="n">toStringAsFixed</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
+<span class="linenos">36</span><span class="w">    </span><span class="n">textComponent</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">effect</span><span class="p">.</span><span class="n">controller</span><span class="p">.</span><span class="n">progress</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">delayTime</span><span class="p">)</span>
+<span class="linenos">37</span><span class="w">        </span><span class="p">.</span><span class="n">toStringAsFixed</span><span class="p">(</span><span class="m">2</span><span class="p">);</span>
 <span class="linenos">38</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
 <span class="linenos">39</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">40</span><span class="p">}</span>
