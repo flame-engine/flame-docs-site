@@ -127,7 +127,9 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/camera.html">Camera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/effects/effects.html">Effects</a><ul class="simple">
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
@@ -399,7 +401,7 @@ I am going to add the whole class and explain the additional changes after.</p>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">SizeEffect</span></code> is best explained by going to their
-<a class="reference internal" href="../../flame/effects.html#sizeeffect-by"><span class="std std-ref">docs</span></a>. In short, we simply reduce the size of the star
+<a class="reference internal" href="#../../flame/effects.md#sizeeffectby"><span class="xref myst">docs</span></a>. In short, we simply reduce the size of the star
 by -24 pixels in both directions and we make it pulse infinitely using the <code class="docutils literal notranslate"><span class="pre">EffectController</span></code>.</p>
 <p>Don’t forget to add the star to your <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> file by doing:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">case</span><span class="w"> </span><span class="nl">Star:</span>
@@ -475,7 +477,7 @@ Open <code class="docutils literal notranslate"><span class="pre">lib/actors/wat
 <p>The water drop enemy is an animation just like Ember, so this class is extending the
 <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> class but it uses all of the previous code we have used for the Star and
 the Platform. The only difference will be instead of the <code class="docutils literal notranslate"><span class="pre">SizeEffect</span></code>, we are going to use the
-<code class="docutils literal notranslate"><span class="pre">MoveEffect</span></code>. The best resource for information will be their <a class="reference internal" href="../../flame/effects.html#sizeeffect-by"><span class="std std-ref">help
+<code class="docutils literal notranslate"><span class="pre">MoveEffect</span></code>. The best resource for information will be their <a class="reference internal" href="#../../flame/effects.md#sizeeffectby"><span class="xref myst">help
 docs</span></a>.</p>
 <p>In short, the <code class="docutils literal notranslate"><span class="pre">MoveEffect</span></code> will last for 3 seconds, alternate directions, and run infinitely. It
 will move our enemy to the left, 128 pixels (-2 x image width).</p>
