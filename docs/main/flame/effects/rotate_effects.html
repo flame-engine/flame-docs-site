@@ -348,6 +348,40 @@ radians, and the effects can be applied to any component that has a rotation pro
 <p>Rotates the target clockwise by the specified angle relative to its current orientation. The angle
 is in radians. For example, the following effect will rotate the target 90º (=<a class="reference external" href="https://en.wikipedia.org/wiki/Tau_(mathematical_constant)">tau</a>/4 in radians)
 clockwise:</p>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?rotate_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rotate_by_effect">
+<div class="filename docutils container">
+rotate_by_effect.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/geometry.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kd">class</span><span class="w"> </span><span class="nc">RotateByEffectGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">10</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">11</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">flower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flower</span><span class="p">(</span>
+<span class="linenos">12</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="m">60</span><span class="p">,</span>
+<span class="linenos">13</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">14</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">flower</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">15</span><span class="w">        </span><span class="n">flower</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">16</span><span class="w">          </span><span class="n">RotateEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span>
+<span class="linenos">17</span><span class="w">            </span><span class="n">reset</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">tau</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="n">tau</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="linenos">18</span><span class="w">            </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="linenos">19</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos">20</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">21</span><span class="w">        </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">reset</span><span class="p">;</span>
+<span class="linenos">22</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">23</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">flower</span><span class="p">);</span>
+<span class="linenos">25</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">26</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-rotate_by_effect&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RotateEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span>
 <span class="w">  </span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span>
 <span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
@@ -359,6 +393,40 @@ clockwise:</p>
 <h2><code class="docutils literal notranslate"><span class="pre">RotateEffect.to</span></code><a class="headerlink" href="#rotateeffect-to" title="Link to this heading">¶</a></h2>
 <p>Rotates the target clockwise to the specified angle. For example, the following will rotate the
 target to look east (0º is north, 90º=<a class="reference external" href="https://en.wikipedia.org/wiki/Tau_(mathematical_constant)">tau</a>/4 east, 180º=tau/2 south, and 270º=tau*3/4 west):</p>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?rotate_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rotate_to_effect">
+<div class="filename docutils container">
+rotate_to_effect.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/geometry.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kd">class</span><span class="w"> </span><span class="nc">RotateToEffectGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">10</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">11</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">flower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flower</span><span class="p">(</span>
+<span class="linenos">12</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="m">60</span><span class="p">,</span>
+<span class="linenos">13</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">14</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">flower</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">15</span><span class="w">        </span><span class="n">flower</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">16</span><span class="w">          </span><span class="n">RotateEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span>
+<span class="linenos">17</span><span class="w">            </span><span class="n">reset</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">tau</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="n">tau</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="linenos">18</span><span class="w">            </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
+<span class="linenos">19</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos">20</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">21</span><span class="w">        </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">reset</span><span class="p">;</span>
+<span class="linenos">22</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">23</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">24</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">flower</span><span class="p">);</span>
+<span class="linenos">25</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">26</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-rotate_to_effect&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RotateEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span>
 <span class="w">  </span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span>
 <span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
@@ -371,6 +439,41 @@ target to look east (0º is north, 90º=<a class="reference external" href="http
 <p>Rotates the target clockwise by the specified angle relative to its current orientation around
 the specified center. The angle is in radians. For example, the following effect will rotate the
 target 90º (=<a class="reference external" href="https://en.wikipedia.org/wiki/Tau_(mathematical_constant)">tau</a>/4 in radians) clockwise around (100, 100).</p>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?rotate_around_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rotate_around_effect">
+<div class="filename docutils container">
+rotate_around_effect.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/geometry.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kd">class</span><span class="w"> </span><span class="nc">RotateAroundEffectGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos"> 8</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">10</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">11</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">flower</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flower</span><span class="p">(</span>
+<span class="linenos">12</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="m">60</span><span class="p">,</span>
+<span class="linenos">13</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="linenos">14</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">flower</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">15</span><span class="w">        </span><span class="n">flower</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">16</span><span class="w">          </span><span class="n">RotateAroundEffect</span><span class="p">(</span>
+<span class="linenos">17</span><span class="w">            </span><span class="n">reset</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">reset</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">tau</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="o">-</span><span class="n">tau</span><span class="p">,</span>
+<span class="linenos">18</span><span class="w">            </span><span class="nl">center:</span><span class="w"> </span><span class="n">canvasSize</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">19</span><span class="w">            </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="linenos">20</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos">21</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">22</span><span class="w">        </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">reset</span><span class="p">;</span>
+<span class="linenos">23</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">24</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">25</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">flower</span><span class="p">);</span>
+<span class="linenos">26</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">27</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-rotate_around_effect&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RotateAroundEffect</span><span class="p">(</span>
 <span class="w">  </span><span class="n">tau</span><span class="o">/</span><span class="m">4</span><span class="p">,</span>
 <span class="w">  </span><span class="nl">center:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span>

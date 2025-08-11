@@ -350,6 +350,40 @@ changes the size of the target component, while scale changes the “size” of 
 <p>This effect will change the size of the target component, relative to its current size. For example,
 if the target has size <code class="docutils literal notranslate"><span class="pre">Vector2(100,</span> <span class="pre">100)</span></code>, then after the following effect is applied and runs its
 course, the new size will be <code class="docutils literal notranslate"><span class="pre">Vector2(120,</span> <span class="pre">50)</span></code>:</p>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?size_by_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-size_by_effect">
+<div class="filename docutils container">
+size_by_effect.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kd">class</span><span class="w"> </span><span class="nc">SizeByEffectGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">10</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">ember</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="p">(</span>
+<span class="linenos">11</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">12</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="m">40</span><span class="p">),</span>
+<span class="linenos">13</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">ember</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">14</span><span class="w">        </span><span class="n">ember</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">15</span><span class="w">          </span><span class="n">SizeEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span>
+<span class="linenos">16</span><span class="w">            </span><span class="n">reset</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">30</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">30</span><span class="p">),</span>
+<span class="linenos">17</span><span class="w">            </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.75</span><span class="p">),</span>
+<span class="linenos">18</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos">19</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">20</span><span class="w">        </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">reset</span><span class="p">;</span>
+<span class="linenos">21</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">22</span><span class="w">    </span><span class="p">)..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">ember</span><span class="p">);</span>
+<span class="linenos">25</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">26</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-size_by_effect&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SizeEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span>
 <span class="w">   </span><span class="n">Vector2</span><span class="p">(</span><span class="o">-</span><span class="m">15</span><span class="p">,</span><span class="w"> </span><span class="m">30</span><span class="p">),</span>
 <span class="w">   </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
@@ -368,6 +402,40 @@ target component and its children.</p>
 <section id="sizeeffect-to">
 <h2><code class="docutils literal notranslate"><span class="pre">SizeEffect.to</span></code><a class="headerlink" href="#sizeeffect-to" title="Link to this heading">¶</a></h2>
 <p>Changes the size of the target component to the specified size. Target size cannot be negative:</p>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?size_to_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-size_to_effect">
+<div class="filename docutils container">
+size_to_effect.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kd">class</span><span class="w"> </span><span class="nc">SizeToEffectGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">10</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">ember</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="p">(</span>
+<span class="linenos">11</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">12</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="m">40</span><span class="p">),</span>
+<span class="linenos">13</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">ember</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">14</span><span class="w">        </span><span class="n">ember</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">15</span><span class="w">          </span><span class="n">SizeEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span>
+<span class="linenos">16</span><span class="w">            </span><span class="n">reset</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">45</span><span class="p">,</span><span class="w"> </span><span class="m">40</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">90</span><span class="p">,</span><span class="w"> </span><span class="m">80</span><span class="p">),</span>
+<span class="linenos">17</span><span class="w">            </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.75</span><span class="p">),</span>
+<span class="linenos">18</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos">19</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">20</span><span class="w">        </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">!</span><span class="n">reset</span><span class="p">;</span>
+<span class="linenos">21</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">22</span><span class="w">    </span><span class="p">)..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">ember</span><span class="p">);</span>
+<span class="linenos">25</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">26</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-size_to_effect&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SizeEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span>
 <span class="w">  </span><span class="n">Vector2</span><span class="p">(</span><span class="m">90</span><span class="p">,</span><span class="w"> </span><span class="m">80</span><span class="p">),</span>
 <span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
