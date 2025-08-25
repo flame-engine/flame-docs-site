@@ -126,11 +126,24 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/camera.html">Camera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/effects/effects.html">Effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/effect_controllers.html">Effect Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/move_effects.html">Move Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/rotate_effects.html">Rotate Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/scale_effects.html">Scale Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/size_effects.html">Size Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/anchor_effects.html">Anchor Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/color_effects.html">Color Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/remove_effect.html">Remove Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/function_effect.html">Function Effect</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/post_processing.html">Post Processing and Shaders</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/palette.html">Colors and Palette</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/decorators.html">Decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/images.html">Images, Sprites and Animations</a></li>
@@ -304,7 +317,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.30.1/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.31.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -448,7 +461,7 @@ and in our example the multiplication rate is <code class="docutils literal notr
 </ul>
 <p>Give it a try by running the game now, you will notice that it looks way more dynamic now, giving a
 more convincing feeling to the player that the spaceship is really crossing the stars!</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/v1.30.1/_static/apps/tutorials-space_shooter-app/index.html?step3&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step3">
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/v1.31.0/_static/apps/tutorials-space_shooter-app/index.html?step3&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step3">
 <div class="filename docutils container">
 main.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
@@ -492,10 +505,10 @@ main.dart</div>
 <span class="linenos">39</span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
 <span class="linenos">40</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">41</span><span class="w">  </span><span class="n">Player</span><span class="p">()</span>
-<span class="linenos">42</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
-<span class="linenos">43</span><span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
-<span class="linenos">44</span><span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos">45</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">42</span><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="linenos">43</span><span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
+<span class="linenos">44</span><span class="w">        </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">45</span><span class="w">      </span><span class="p">);</span>
 <span class="linenos">46</span>
 <span class="linenos">47</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">48</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>

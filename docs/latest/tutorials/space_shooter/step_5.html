@@ -126,11 +126,24 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/camera.html">Camera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/effects/effects.html">Effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/effect_controllers.html">Effect Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/move_effects.html">Move Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/rotate_effects.html">Rotate Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/scale_effects.html">Scale Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/size_effects.html">Size Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/anchor_effects.html">Anchor Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/color_effects.html">Color Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/remove_effect.html">Remove Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/function_effect.html">Function Effect</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/post_processing.html">Post Processing and Shaders</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/palette.html">Colors and Palette</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/decorators.html">Decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/images.html">Images, Sprites and Animations</a></li>
@@ -304,7 +317,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.30.1/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.31.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -400,7 +413,7 @@ should be placed in the area above the screen top, so they can be seen as they a
 playable area.</p></li>
 </ul>
 <p>And this concludes this short step!</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/v1.30.1/_static/apps/tutorials-space_shooter-app/index.html?step5&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step5">
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/v1.31.0/_static/apps/tutorials-space_shooter-app/index.html?step5&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step5">
 <div class="filename docutils container">
 main.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
@@ -465,10 +478,10 @@ main.dart</div>
 <span class="linenos"> 60</span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
 <span class="linenos"> 61</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 62</span><span class="w">  </span><span class="n">Player</span><span class="p">()</span>
-<span class="linenos"> 63</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
-<span class="linenos"> 64</span><span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
-<span class="linenos"> 65</span><span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos"> 66</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos"> 63</span><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="linenos"> 64</span><span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
+<span class="linenos"> 65</span><span class="w">        </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos"> 66</span><span class="w">      </span><span class="p">);</span>
 <span class="linenos"> 67</span>
 <span class="linenos"> 68</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">SpawnComponent</span><span class="w"> </span><span class="n">_bulletSpawner</span><span class="p">;</span>
 <span class="linenos"> 69</span>
@@ -492,103 +505,104 @@ main.dart</div>
 <span class="linenos"> 87</span><span class="w">      </span><span class="nl">selfPositioning:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="linenos"> 88</span><span class="w">      </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 89</span><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Bullet</span><span class="p">(</span>
-<span class="linenos"> 90</span><span class="w">          </span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">+</span>
-<span class="linenos"> 91</span><span class="w">              </span><span class="n">Vector2</span><span class="p">(</span>
-<span class="linenos"> 92</span><span class="w">                </span><span class="m">0</span><span class="p">,</span>
-<span class="linenos"> 93</span><span class="w">                </span><span class="o">-</span><span class="n">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
-<span class="linenos"> 94</span><span class="w">              </span><span class="p">),</span>
-<span class="linenos"> 95</span><span class="w">        </span><span class="p">);</span>
-<span class="linenos"> 96</span><span class="w">      </span><span class="p">},</span>
-<span class="linenos"> 97</span><span class="w">      </span><span class="nl">autoStart:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
-<span class="linenos"> 98</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos"> 99</span>
-<span class="linenos">100</span><span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">_bulletSpawner</span><span class="p">);</span>
-<span class="linenos">101</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">102</span>
-<span class="linenos">103</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">104</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
-<span class="linenos">105</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">106</span>
-<span class="linenos">107</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">startShooting</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">108</span><span class="w">    </span><span class="n">_bulletSpawner</span><span class="p">.</span><span class="n">timer</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
-<span class="linenos">109</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">110</span>
-<span class="linenos">111</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">stopShooting</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">112</span><span class="w">    </span><span class="n">_bulletSpawner</span><span class="p">.</span><span class="n">timer</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
-<span class="linenos">113</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">114</span><span class="p">}</span>
-<span class="linenos">115</span>
-<span class="linenos">116</span><span class="kd">class</span><span class="w"> </span><span class="nc">Bullet</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
-<span class="linenos">117</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">118</span><span class="w">  </span><span class="n">Bullet</span><span class="p">({</span>
-<span class="linenos">119</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
-<span class="linenos">120</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
-<span class="linenos">121</span><span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span>
-<span class="linenos">122</span><span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos">123</span><span class="w">        </span><span class="p">);</span>
-<span class="linenos">124</span>
-<span class="linenos">125</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">126</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">127</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-<span class="linenos">128</span>
-<span class="linenos">129</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
-<span class="linenos">130</span><span class="w">      </span><span class="s1">&#39;bullet.png&#39;</span><span class="p">,</span>
-<span class="linenos">131</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
-<span class="linenos">132</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
-<span class="linenos">133</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
-<span class="linenos">134</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
-<span class="linenos">135</span><span class="w">      </span><span class="p">),</span>
-<span class="linenos">136</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">137</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">138</span>
-<span class="linenos">139</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">140</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">141</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
-<span class="linenos">142</span>
-<span class="linenos">143</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="m">500</span><span class="p">;</span>
-<span class="linenos">144</span>
-<span class="linenos">145</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">146</span><span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
-<span class="linenos">147</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">148</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">149</span><span class="p">}</span>
-<span class="linenos">150</span>
-<span class="linenos">151</span><span class="kd">class</span><span class="w"> </span><span class="nc">Enemy</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
-<span class="linenos">152</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">153</span><span class="w">  </span><span class="n">Enemy</span><span class="p">({</span>
-<span class="linenos">154</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
-<span class="linenos">155</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
-<span class="linenos">156</span><span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="n">enemySize</span><span class="p">),</span>
-<span class="linenos">157</span><span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos">158</span><span class="w">        </span><span class="p">);</span>
-<span class="linenos">159</span>
-<span class="linenos">160</span><span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">enemySize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50.0</span><span class="p">;</span>
-<span class="linenos">161</span>
-<span class="linenos">162</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">163</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">164</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-<span class="linenos">165</span>
-<span class="linenos">166</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
-<span class="linenos">167</span><span class="w">      </span><span class="s1">&#39;enemy.png&#39;</span><span class="p">,</span>
-<span class="linenos">168</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
-<span class="linenos">169</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
-<span class="linenos">170</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
-<span class="linenos">171</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span>
-<span class="linenos">172</span><span class="w">      </span><span class="p">),</span>
-<span class="linenos">173</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">174</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">175</span>
-<span class="linenos">176</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">177</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">178</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
-<span class="linenos">179</span>
-<span class="linenos">180</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">250</span><span class="p">;</span>
-<span class="linenos">181</span>
-<span class="linenos">182</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">183</span><span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
-<span class="linenos">184</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">185</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">186</span><span class="p">}</span>
+<span class="linenos"> 90</span><span class="w">          </span><span class="nl">position:</span>
+<span class="linenos"> 91</span><span class="w">              </span><span class="n">position</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos"> 92</span><span class="w">              </span><span class="n">Vector2</span><span class="p">(</span>
+<span class="linenos"> 93</span><span class="w">                </span><span class="m">0</span><span class="p">,</span>
+<span class="linenos"> 94</span><span class="w">                </span><span class="o">-</span><span class="n">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos"> 95</span><span class="w">              </span><span class="p">),</span>
+<span class="linenos"> 96</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos"> 97</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos"> 98</span><span class="w">      </span><span class="nl">autoStart:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="linenos"> 99</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span><span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">_bulletSpawner</span><span class="p">);</span>
+<span class="linenos">102</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">103</span>
+<span class="linenos">104</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">105</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
+<span class="linenos">106</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">107</span>
+<span class="linenos">108</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">startShooting</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">109</span><span class="w">    </span><span class="n">_bulletSpawner</span><span class="p">.</span><span class="n">timer</span><span class="p">.</span><span class="n">start</span><span class="p">();</span>
+<span class="linenos">110</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">111</span>
+<span class="linenos">112</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">stopShooting</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">113</span><span class="w">    </span><span class="n">_bulletSpawner</span><span class="p">.</span><span class="n">timer</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span>
+<span class="linenos">114</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">115</span><span class="p">}</span>
+<span class="linenos">116</span>
+<span class="linenos">117</span><span class="kd">class</span><span class="w"> </span><span class="nc">Bullet</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="linenos">118</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">119</span><span class="w">  </span><span class="n">Bullet</span><span class="p">({</span>
+<span class="linenos">120</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<span class="linenos">121</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="linenos">122</span><span class="w">         </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">25</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span>
+<span class="linenos">123</span><span class="w">         </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">124</span><span class="w">       </span><span class="p">);</span>
+<span class="linenos">125</span>
+<span class="linenos">126</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">127</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">128</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">129</span>
+<span class="linenos">130</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
+<span class="linenos">131</span><span class="w">      </span><span class="s1">&#39;bullet.png&#39;</span><span class="p">,</span>
+<span class="linenos">132</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="linenos">133</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="linenos">134</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
+<span class="linenos">135</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">16</span><span class="p">),</span>
+<span class="linenos">136</span><span class="w">      </span><span class="p">),</span>
+<span class="linenos">137</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">138</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">139</span>
+<span class="linenos">140</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">141</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">142</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="linenos">143</span>
+<span class="linenos">144</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="o">-</span><span class="m">500</span><span class="p">;</span>
+<span class="linenos">145</span>
+<span class="linenos">146</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="n">height</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">147</span><span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="linenos">148</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">149</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">150</span><span class="p">}</span>
+<span class="linenos">151</span>
+<span class="linenos">152</span><span class="kd">class</span><span class="w"> </span><span class="nc">Enemy</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
+<span class="linenos">153</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">154</span><span class="w">  </span><span class="n">Enemy</span><span class="p">({</span>
+<span class="linenos">155</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
+<span class="linenos">156</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="linenos">157</span><span class="w">         </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="n">enemySize</span><span class="p">),</span>
+<span class="linenos">158</span><span class="w">         </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">159</span><span class="w">       </span><span class="p">);</span>
+<span class="linenos">160</span>
+<span class="linenos">161</span><span class="w">  </span><span class="kd">static</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">enemySize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">50.0</span><span class="p">;</span>
+<span class="linenos">162</span>
+<span class="linenos">163</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">164</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">165</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">166</span>
+<span class="linenos">167</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
+<span class="linenos">168</span><span class="w">      </span><span class="s1">&#39;enemy.png&#39;</span><span class="p">,</span>
+<span class="linenos">169</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="linenos">170</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="linenos">171</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
+<span class="linenos">172</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span>
+<span class="linenos">173</span><span class="w">      </span><span class="p">),</span>
+<span class="linenos">174</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">175</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">176</span>
+<span class="linenos">177</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">178</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">179</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="linenos">180</span>
+<span class="linenos">181</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">250</span><span class="p">;</span>
+<span class="linenos">182</span>
+<span class="linenos">183</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">184</span><span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="linenos">185</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">186</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">187</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>

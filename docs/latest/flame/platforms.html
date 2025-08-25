@@ -126,11 +126,24 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="effects/effects.html">Effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="effects/effect_controllers.html">Effect Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/move_effects.html">Move Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/rotate_effects.html">Rotate Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/scale_effects.html">Scale Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/size_effects.html">Size Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/anchor_effects.html">Anchor Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/color_effects.html">Color Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/remove_effect.html">Remove Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/function_effect.html">Function Effect</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="router.html">Router</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rendering/post_processing.html">Post Processing and Shaders</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rendering/palette.html">Colors and Palette</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rendering/decorators.html">Decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rendering/images.html">Images, Sprites and Animations</a></li>
@@ -304,7 +317,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.30.1/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.31.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -400,6 +413,53 @@ deployed game.</p>
 game jam page too (many get confused by this).</p>
 <p>Further instructions can be found on
 <a class="reference external" href="https://itch.io/docs/creators/html5#getting-started/zip-file">itch.io</a>.</p>
+</section>
+<section id="deploy-your-game-to-cloudflare-pages">
+<h2>Deploy your game to Cloudflare Pages<a class="headerlink" href="#deploy-your-game-to-cloudflare-pages" title="Link to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Automated deployment to Cloudflare Pages is only available for GitHub and GitLab
+repositories.</p>
+</div>
+<p><a class="reference external" href="https://pages.cloudflare.com/">Cloudflare pages</a> is another interesting option to host your
+Flame game online.</p>
+<p>Setting up an automated deployment on it is super simple and can be achieved in a few steps:</p>
+<p>First, create your account on Cloudflare, and once you are logged in, use the <code class="docutils literal notranslate"><span class="pre">+</span> <span class="pre">Add</span></code> button on
+the top right corner to create your page project.</p>
+<p><img alt="Cloudflare add menu screenshot" src="images/add_button.png" /></p>
+<p>Next follow the steps to connect your repository, you can choose between GitHub and GitLab.</p>
+<p>You should then be presented with a screen to configure your project name, which should be
+pre-filled with the name of your repository, and the production branch, which will also
+be pre-filled with <code class="docutils literal notranslate"><span class="pre">main</span></code>.</p>
+<p>Scrolling down you will see the build settings panel, which should look like this:</p>
+<p><img alt="Cloudflare build settings screenshot" src="images/build_form.png" /></p>
+<p>Leave the <code class="docutils literal notranslate"><span class="pre">Framework</span> <span class="pre">preset</span></code> as <code class="docutils literal notranslate"><span class="pre">None</span></code> since Flutter is not supported out of the box.</p>
+<p>Then on the <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">command</span></code> field, enter the following command:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>flutter<span class="p">;</span><span class="w"> </span><span class="k">then</span><span class="w"> </span>git<span class="w"> </span>pull<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..<span class="p">;</span><span class="k">else</span>
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/flutter/flutter.git<span class="p">;</span><span class="w"> </span><span class="k">fi</span><span class="w"> </span><span class="o">&amp;&amp;</span>
+../flutter/bin/flutter<span class="w"> </span>doctor<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>../flutter/bin/flutter<span class="w"> </span>clean<span class="w"> </span><span class="o">&amp;&amp;</span>
+../flutter/bin/flutter<span class="w"> </span>build<span class="w"> </span>web<span class="w"> </span>--release
+</pre></div>
+</div>
+<p>It should be entered as a single line, but below you can see it split into multiple lines for
+better readability:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>flutter<span class="p">;</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span>git<span class="w"> </span>pull<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
+<span class="k">else</span>
+<span class="w">  </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/flutter/flutter.git
+<span class="k">fi</span>
+../flutter/bin/flutter<span class="w"> </span>doctor
+../flutter/bin/flutter<span class="w"> </span>clean
+../flutter/bin/flutter<span class="w"> </span>build<span class="w"> </span>web<span class="w"> </span>--release
+</pre></div>
+</div>
+<p>Some people might prefer to create a bash script in the root of their repository with the above
+commands and use it instead of entering the commands directly in the field, so it is up to you.</p>
+<p>Set the Build output directory to <code class="docutils literal notranslate"><span class="pre">build/web</span></code>.</p>
+<p>If needed use the advanced options to set environment variables.</p>
+<p>Finally, click on the <code class="docutils literal notranslate"><span class="pre">Save</span> <span class="pre">and</span> <span class="pre">Deploy</span></code> button to start the deployment and that is it. You should
+have automation ready to deploy your game to Cloudflare Pages every time you push to your
+repository.</p>
 <section id="web-support">
 <h3>Web support<a class="headerlink" href="#web-support" title="Link to this heading">¶</a></h3>
 <p>When using Flame on the web some methods may not work. For example <code class="docutils literal notranslate"><span class="pre">Flame.device.setOrientation</span></code> and
@@ -452,6 +512,7 @@ the web.</p>
   <a href='#flame-web' class='list-group-item level-1'>Flame web</a>
   <a href='#deploy-your-game-to-github-pages' class='list-group-item level-1'>Deploy your game to GitHub Pages</a>
   <a href='#deploy-your-game-to-itch-io' class='list-group-item level-1'>Deploy your game to itch.io</a>
+  <a href='#deploy-your-game-to-cloudflare-pages' class='list-group-item level-1'>Deploy your game to Cloudflare Pages</a>
   <a href='#web-support' class='list-group-item level-2'>Web support</a>
 </div>
 

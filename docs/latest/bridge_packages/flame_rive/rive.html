@@ -126,11 +126,24 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/camera.html">Camera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/effects/effects.html">Effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/effect_controllers.html">Effect Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/move_effects.html">Move Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/rotate_effects.html">Rotate Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/scale_effects.html">Scale Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/size_effects.html">Size Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/anchor_effects.html">Anchor Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/color_effects.html">Color Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/remove_effect.html">Remove Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/function_effect.html">Function Effect</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/post_processing.html">Post Processing and Shaders</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/palette.html">Colors and Palette</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/decorators.html">Decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/images.html">Images, Sprites and Animations</a></li>
@@ -304,7 +317,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.30.1/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.31.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -339,7 +352,7 @@ the animation to the game using the <code class="docutils literal notranslate"><
 <code class="docutils literal notranslate"><span class="pre">StateMachineController</span></code> from the artboard and add a controller to it. Then you can create a
 <code class="docutils literal notranslate"><span class="pre">RiveComponent</span></code> using that artboard.</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.30.1/_static/apps/flame-examples/index.html?rive_example" style="width: 200px; height: 200px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rive_example">
+<iframe class="flutter-app-iframe" src="/v1.31.0/_static/apps/flame-examples/index.html?rive_example" style="width: 200px; height: 200px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rive_example">
 <div class="filename docutils container">
 rive_example.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:async&#39;</span><span class="p">;</span>
@@ -353,29 +366,30 @@ rive_example.dart</div>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">11</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">12</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">skillsArtboard</span><span class="w"> </span><span class="o">=</span>
-<span class="linenos">13</span><span class="w">        </span><span class="kd">await</span><span class="w"> </span><span class="n">loadArtboard</span><span class="p">(</span><span class="n">RiveFile</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span><span class="s1">&#39;assets/skills.riv&#39;</span><span class="p">));</span>
-<span class="linenos">14</span>
-<span class="linenos">15</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StateMachineController</span><span class="p">.</span><span class="n">fromArtboard</span><span class="p">(</span>
-<span class="linenos">16</span><span class="w">      </span><span class="n">skillsArtboard</span><span class="p">,</span>
-<span class="linenos">17</span><span class="w">      </span><span class="s2">&quot;Designer&#39;s Test&quot;</span><span class="p">,</span>
-<span class="linenos">18</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">19</span>
-<span class="linenos">20</span><span class="w">    </span><span class="n">skillsArtboard</span><span class="p">.</span><span class="n">addController</span><span class="p">(</span><span class="n">controller</span><span class="o">!</span><span class="p">);</span>
-<span class="linenos">21</span>
-<span class="linenos">22</span><span class="w">    </span><span class="n">levelInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">controller</span><span class="p">.</span><span class="n">findInput</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;Level&#39;</span><span class="p">);</span>
-<span class="linenos">23</span>
-<span class="linenos">24</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RiveComponent</span><span class="p">(</span><span class="nl">artboard:</span><span class="w"> </span><span class="n">skillsArtboard</span><span class="p">,</span><span class="w"> </span><span class="nl">size:</span><span class="w"> </span><span class="n">canvasSize</span><span class="p">));</span>
-<span class="linenos">25</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">26</span>
-<span class="linenos">27</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">28</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTap</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">29</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onTap</span><span class="p">();</span>
-<span class="linenos">30</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">levelInput</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">31</span><span class="w">      </span><span class="n">levelInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">levelInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">3</span><span class="p">;</span>
-<span class="linenos">32</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">33</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">34</span><span class="p">}</span>
+<span class="linenos">12</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">skillsArtboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadArtboard</span><span class="p">(</span>
+<span class="linenos">13</span><span class="w">      </span><span class="n">RiveFile</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span><span class="s1">&#39;assets/skills.riv&#39;</span><span class="p">),</span>
+<span class="linenos">14</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">15</span>
+<span class="linenos">16</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StateMachineController</span><span class="p">.</span><span class="n">fromArtboard</span><span class="p">(</span>
+<span class="linenos">17</span><span class="w">      </span><span class="n">skillsArtboard</span><span class="p">,</span>
+<span class="linenos">18</span><span class="w">      </span><span class="s2">&quot;Designer&#39;s Test&quot;</span><span class="p">,</span>
+<span class="linenos">19</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">20</span>
+<span class="linenos">21</span><span class="w">    </span><span class="n">skillsArtboard</span><span class="p">.</span><span class="n">addController</span><span class="p">(</span><span class="n">controller</span><span class="o">!</span><span class="p">);</span>
+<span class="linenos">22</span>
+<span class="linenos">23</span><span class="w">    </span><span class="n">levelInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">controller</span><span class="p">.</span><span class="n">findInput</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;Level&#39;</span><span class="p">);</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RiveComponent</span><span class="p">(</span><span class="nl">artboard:</span><span class="w"> </span><span class="n">skillsArtboard</span><span class="p">,</span><span class="w"> </span><span class="nl">size:</span><span class="w"> </span><span class="n">canvasSize</span><span class="p">));</span>
+<span class="linenos">26</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">27</span>
+<span class="linenos">28</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">29</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTap</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">30</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onTap</span><span class="p">();</span>
+<span class="linenos">31</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">levelInput</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">32</span><span class="w">      </span><span class="n">levelInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">levelInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">3</span><span class="p">;</span>
+<span class="linenos">33</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">34</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">35</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>

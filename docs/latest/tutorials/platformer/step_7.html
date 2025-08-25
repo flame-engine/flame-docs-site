@@ -126,11 +126,24 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/camera.html">Camera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/effects/effects.html">Effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/effect_controllers.html">Effect Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/move_effects.html">Move Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/rotate_effects.html">Rotate Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/scale_effects.html">Scale Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/size_effects.html">Size Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/anchor_effects.html">Anchor Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/color_effects.html">Color Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/remove_effect.html">Remove Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/function_effect.html">Function Effect</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/post_processing.html">Post Processing and Shaders</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/palette.html">Colors and Palette</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/decorators.html">Decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/images.html">Images, Sprites and Animations</a></li>
@@ -304,7 +317,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.30.1/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.31.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -614,7 +627,7 @@ requires us to place similar code in all of our components. So let’s get start
 <h2>Congratulations<a class="headerlink" href="#congratulations" title="Link to this heading">¶</a></h2>
 <p>You made it! You have a working Ember Quest. Press the button below to see what the resulting code
 looks like or to play it live.</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/v1.30.1/_static/apps/tutorials-platformer-app/index.html?&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-platformer-app-source-">
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/v1.31.0/_static/apps/tutorials-platformer-app/index.html?&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-platformer-app-source-">
 <div class="filename docutils container">
 actors/ember.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span>
@@ -665,125 +678,129 @@ actors/ember.dart</div>
 <span class="linenos"> 46</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos"> 47</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onKeyEvent</span><span class="p">(</span><span class="n">KeyEvent</span><span class="w"> </span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">LogicalKeyboardKey</span><span class="o">&gt;</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 48</span><span class="w">    </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="linenos"> 49</span><span class="w">    </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">keyA</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
-<span class="linenos"> 50</span><span class="w">            </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">arrowLeft</span><span class="p">))</span>
-<span class="linenos"> 51</span><span class="w">        </span><span class="o">?</span><span class="w"> </span><span class="o">-</span><span class="m">1</span>
-<span class="linenos"> 52</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="linenos"> 53</span><span class="w">    </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">keyD</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
-<span class="linenos"> 54</span><span class="w">            </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">arrowRight</span><span class="p">))</span>
-<span class="linenos"> 55</span><span class="w">        </span><span class="o">?</span><span class="w"> </span><span class="m">1</span>
-<span class="linenos"> 56</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="linenos"> 57</span>
-<span class="linenos"> 58</span><span class="w">    </span><span class="n">hasJumped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">space</span><span class="p">);</span>
-<span class="linenos"> 59</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="linenos"> 60</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos"> 61</span>
-<span class="linenos"> 62</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos"> 63</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 64</span><span class="w">    </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">moveSpeed</span><span class="p">;</span>
-<span class="linenos"> 65</span><span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="linenos"> 66</span><span class="w">    </span><span class="c1">// Prevent ember from going backwards at screen edge.</span>
-<span class="linenos"> 67</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">36</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 68</span><span class="w">      </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="linenos"> 69</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos"> 70</span><span class="w">    </span><span class="c1">// Prevent ember from going beyond half screen.</span>
-<span class="linenos"> 71</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 72</span><span class="w">      </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="linenos"> 73</span><span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">moveSpeed</span><span class="p">;</span>
-<span class="linenos"> 74</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos"> 75</span>
-<span class="linenos"> 76</span><span class="w">    </span><span class="c1">// Apply basic gravity.</span>
-<span class="linenos"> 77</span><span class="w">    </span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">gravity</span><span class="p">;</span>
-<span class="linenos"> 78</span>
-<span class="linenos"> 79</span><span class="w">    </span><span class="c1">// Determine if ember has jumped.</span>
-<span class="linenos"> 80</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hasJumped</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 81</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isOnGround</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 82</span><span class="w">        </span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">jumpSpeed</span><span class="p">;</span>
-<span class="linenos"> 83</span><span class="w">        </span><span class="n">isOnGround</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="linenos"> 84</span><span class="w">      </span><span class="p">}</span>
-<span class="linenos"> 85</span><span class="w">      </span><span class="n">hasJumped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="linenos"> 86</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos"> 87</span>
-<span class="linenos"> 88</span><span class="w">    </span><span class="c1">// Prevent ember from jumping to crazy fast.</span>
-<span class="linenos"> 89</span><span class="w">    </span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="o">-</span><span class="n">jumpSpeed</span><span class="p">,</span><span class="w"> </span><span class="n">terminalVelocity</span><span class="p">);</span>
-<span class="linenos"> 90</span>
-<span class="linenos"> 91</span><span class="w">    </span><span class="c1">// Adjust ember position.</span>
-<span class="linenos"> 92</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
-<span class="linenos"> 93</span>
-<span class="linenos"> 94</span><span class="w">    </span><span class="c1">// If ember fell in pit, then game over.</span>
-<span class="linenos"> 95</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 96</span><span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="linenos"> 97</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos"> 98</span>
-<span class="linenos"> 99</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">health</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">100</span><span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
-<span class="linenos">101</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">102</span>
-<span class="linenos">103</span><span class="w">    </span><span class="c1">// Flip ember if needed.</span>
-<span class="linenos">104</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">scale</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">105</span><span class="w">      </span><span class="n">flipHorizontally</span><span class="p">();</span>
-<span class="linenos">106</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">scale</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 49</span><span class="w">    </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">+=</span>
+<span class="linenos"> 50</span><span class="w">        </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">keyA</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="linenos"> 51</span><span class="w">            </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">arrowLeft</span><span class="p">))</span>
+<span class="linenos"> 52</span><span class="w">        </span><span class="o">?</span><span class="w"> </span><span class="o">-</span><span class="m">1</span>
+<span class="linenos"> 53</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="linenos"> 54</span><span class="w">    </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">+=</span>
+<span class="linenos"> 55</span><span class="w">        </span><span class="p">(</span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">keyD</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<span class="linenos"> 56</span><span class="w">            </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">arrowRight</span><span class="p">))</span>
+<span class="linenos"> 57</span><span class="w">        </span><span class="o">?</span><span class="w"> </span><span class="m">1</span>
+<span class="linenos"> 58</span><span class="w">        </span><span class="o">:</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="linenos"> 59</span>
+<span class="linenos"> 60</span><span class="w">    </span><span class="n">hasJumped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">keysPressed</span><span class="p">.</span><span class="n">contains</span><span class="p">(</span><span class="n">LogicalKeyboardKey</span><span class="p">.</span><span class="n">space</span><span class="p">);</span>
+<span class="linenos"> 61</span><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos"> 62</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos"> 63</span>
+<span class="linenos"> 64</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos"> 65</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 66</span><span class="w">    </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">moveSpeed</span><span class="p">;</span>
+<span class="linenos"> 67</span><span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="linenos"> 68</span><span class="w">    </span><span class="c1">// Prevent ember from going backwards at screen edge.</span>
+<span class="linenos"> 69</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">36</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 70</span><span class="w">      </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="linenos"> 71</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 72</span><span class="w">    </span><span class="c1">// Prevent ember from going beyond half screen.</span>
+<span class="linenos"> 73</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 74</span><span class="w">      </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="linenos"> 75</span><span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">moveSpeed</span><span class="p">;</span>
+<span class="linenos"> 76</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 77</span>
+<span class="linenos"> 78</span><span class="w">    </span><span class="c1">// Apply basic gravity.</span>
+<span class="linenos"> 79</span><span class="w">    </span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">gravity</span><span class="p">;</span>
+<span class="linenos"> 80</span>
+<span class="linenos"> 81</span><span class="w">    </span><span class="c1">// Determine if ember has jumped.</span>
+<span class="linenos"> 82</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">hasJumped</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 83</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isOnGround</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 84</span><span class="w">        </span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">jumpSpeed</span><span class="p">;</span>
+<span class="linenos"> 85</span><span class="w">        </span><span class="n">isOnGround</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos"> 86</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos"> 87</span><span class="w">      </span><span class="n">hasJumped</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos"> 88</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos"> 89</span>
+<span class="linenos"> 90</span><span class="w">    </span><span class="c1">// Prevent ember from jumping to crazy fast.</span>
+<span class="linenos"> 91</span><span class="w">    </span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">velocity</span><span class="p">.</span><span class="n">y</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="o">-</span><span class="n">jumpSpeed</span><span class="p">,</span><span class="w"> </span><span class="n">terminalVelocity</span><span class="p">);</span>
+<span class="linenos"> 92</span>
+<span class="linenos"> 93</span><span class="w">    </span><span class="c1">// Adjust ember position.</span>
+<span class="linenos"> 94</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
+<span class="linenos"> 95</span>
+<span class="linenos"> 96</span><span class="w">    </span><span class="c1">// If ember fell in pit, then game over.</span>
+<span class="linenos"> 97</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 98</span><span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="linenos"> 99</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">100</span>
+<span class="linenos">101</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">health</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">102</span><span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="linenos">103</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">104</span>
+<span class="linenos">105</span><span class="w">    </span><span class="c1">// Flip ember if needed.</span>
+<span class="linenos">106</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">scale</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">107</span><span class="w">      </span><span class="n">flipHorizontally</span><span class="p">();</span>
-<span class="linenos">108</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">109</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
-<span class="linenos">110</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">111</span>
-<span class="linenos">112</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">113</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">114</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">GroundBlock</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">PlatformBlock</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">115</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">116</span><span class="w">        </span><span class="c1">// Calculate the collision normal and separation distance.</span>
-<span class="linenos">117</span><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">.</span><span class="n">elementAt</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
-<span class="linenos">118</span><span class="w">                </span><span class="n">intersectionPoints</span><span class="p">.</span><span class="n">elementAt</span><span class="p">(</span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span>
-<span class="linenos">119</span><span class="w">            </span><span class="m">2</span><span class="p">;</span>
-<span class="linenos">120</span>
-<span class="linenos">121</span><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">collisionNormal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">absoluteCenter</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span>
-<span class="linenos">122</span><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">separationDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">collisionNormal</span><span class="p">.</span><span class="n">length</span><span class="p">;</span>
-<span class="linenos">123</span><span class="w">        </span><span class="n">collisionNormal</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span>
-<span class="linenos">124</span>
-<span class="linenos">125</span><span class="w">        </span><span class="c1">// If collision normal is almost upwards,</span>
-<span class="linenos">126</span><span class="w">        </span><span class="c1">// ember must be on ground.</span>
-<span class="linenos">127</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fromAbove</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">collisionNormal</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.9</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">128</span><span class="w">          </span><span class="n">isOnGround</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="linenos">129</span><span class="w">        </span><span class="p">}</span>
-<span class="linenos">130</span>
-<span class="linenos">131</span><span class="w">        </span><span class="c1">// Resolve collision by moving ember along</span>
-<span class="linenos">132</span><span class="w">        </span><span class="c1">// collision normal by separation distance.</span>
-<span class="linenos">133</span><span class="w">        </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">collisionNormal</span><span class="p">.</span><span class="n">scaled</span><span class="p">(</span><span class="n">separationDistance</span><span class="p">);</span>
-<span class="linenos">134</span><span class="w">      </span><span class="p">}</span>
-<span class="linenos">135</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">136</span>
-<span class="linenos">137</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Star</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">138</span><span class="w">      </span><span class="n">other</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">();</span>
-<span class="linenos">139</span><span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">starsCollected</span><span class="o">++</span><span class="p">;</span>
-<span class="linenos">140</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">141</span>
-<span class="linenos">142</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">WaterEnemy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">143</span><span class="w">      </span><span class="n">hit</span><span class="p">();</span>
-<span class="linenos">144</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">145</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollision</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
-<span class="linenos">146</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">147</span>
-<span class="linenos">148</span><span class="w">  </span><span class="c1">// This method runs an opacity effect on ember</span>
-<span class="linenos">149</span><span class="w">  </span><span class="c1">// to make it blink.</span>
-<span class="linenos">150</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">hit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">151</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">hitByEnemy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">152</span><span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">health</span><span class="o">--</span><span class="p">;</span>
-<span class="linenos">153</span><span class="w">      </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="linenos">154</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">155</span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
-<span class="linenos">156</span><span class="w">      </span><span class="n">OpacityEffect</span><span class="p">.</span><span class="n">fadeOut</span><span class="p">(</span>
-<span class="linenos">157</span><span class="w">        </span><span class="n">EffectController</span><span class="p">(</span>
-<span class="linenos">158</span><span class="w">          </span><span class="nl">alternate:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
-<span class="linenos">159</span><span class="w">          </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span>
-<span class="linenos">160</span><span class="w">          </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
-<span class="linenos">161</span><span class="w">        </span><span class="p">),</span>
-<span class="linenos">162</span><span class="w">      </span><span class="p">)..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">163</span><span class="w">          </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="linenos">164</span><span class="w">        </span><span class="p">},</span>
-<span class="linenos">165</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">166</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">167</span><span class="p">}</span>
+<span class="linenos">108</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">scale</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">109</span><span class="w">      </span><span class="n">flipHorizontally</span><span class="p">();</span>
+<span class="linenos">110</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">111</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="linenos">112</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">113</span>
+<span class="linenos">114</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">115</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">116</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">GroundBlock</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">PlatformBlock</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">117</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">.</span><span class="n">length</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">118</span><span class="w">        </span><span class="c1">// Calculate the collision normal and separation distance.</span>
+<span class="linenos">119</span><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">mid</span><span class="w"> </span><span class="o">=</span>
+<span class="linenos">120</span><span class="w">            </span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">.</span><span class="n">elementAt</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="o">+</span>
+<span class="linenos">121</span><span class="w">                </span><span class="n">intersectionPoints</span><span class="p">.</span><span class="n">elementAt</span><span class="p">(</span><span class="m">1</span><span class="p">))</span><span class="w"> </span><span class="o">/</span>
+<span class="linenos">122</span><span class="w">            </span><span class="m">2</span><span class="p">;</span>
+<span class="linenos">123</span>
+<span class="linenos">124</span><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">collisionNormal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">absoluteCenter</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">mid</span><span class="p">;</span>
+<span class="linenos">125</span><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">separationDistance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">collisionNormal</span><span class="p">.</span><span class="n">length</span><span class="p">;</span>
+<span class="linenos">126</span><span class="w">        </span><span class="n">collisionNormal</span><span class="p">.</span><span class="n">normalize</span><span class="p">();</span>
+<span class="linenos">127</span>
+<span class="linenos">128</span><span class="w">        </span><span class="c1">// If collision normal is almost upwards,</span>
+<span class="linenos">129</span><span class="w">        </span><span class="c1">// ember must be on ground.</span>
+<span class="linenos">130</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">fromAbove</span><span class="p">.</span><span class="n">dot</span><span class="p">(</span><span class="n">collisionNormal</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.9</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">131</span><span class="w">          </span><span class="n">isOnGround</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos">132</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">133</span>
+<span class="linenos">134</span><span class="w">        </span><span class="c1">// Resolve collision by moving ember along</span>
+<span class="linenos">135</span><span class="w">        </span><span class="c1">// collision normal by separation distance.</span>
+<span class="linenos">136</span><span class="w">        </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">collisionNormal</span><span class="p">.</span><span class="n">scaled</span><span class="p">(</span><span class="n">separationDistance</span><span class="p">);</span>
+<span class="linenos">137</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">138</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">139</span>
+<span class="linenos">140</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Star</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">141</span><span class="w">      </span><span class="n">other</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="linenos">142</span><span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">starsCollected</span><span class="o">++</span><span class="p">;</span>
+<span class="linenos">143</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">144</span>
+<span class="linenos">145</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">WaterEnemy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">146</span><span class="w">      </span><span class="n">hit</span><span class="p">();</span>
+<span class="linenos">147</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">148</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollision</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
+<span class="linenos">149</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">150</span>
+<span class="linenos">151</span><span class="w">  </span><span class="c1">// This method runs an opacity effect on ember</span>
+<span class="linenos">152</span><span class="w">  </span><span class="c1">// to make it blink.</span>
+<span class="linenos">153</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">hit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">154</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">hitByEnemy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">155</span><span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">health</span><span class="o">--</span><span class="p">;</span>
+<span class="linenos">156</span><span class="w">      </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos">157</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">158</span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">159</span><span class="w">      </span><span class="n">OpacityEffect</span><span class="p">.</span><span class="n">fadeOut</span><span class="p">(</span>
+<span class="linenos">160</span><span class="w">          </span><span class="n">EffectController</span><span class="p">(</span>
+<span class="linenos">161</span><span class="w">            </span><span class="nl">alternate:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="linenos">162</span><span class="w">            </span><span class="nl">duration:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span>
+<span class="linenos">163</span><span class="w">            </span><span class="nl">repeatCount:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span>
+<span class="linenos">164</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos">165</span><span class="w">        </span><span class="p">)</span>
+<span class="linenos">166</span><span class="w">        </span><span class="p">..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">167</span><span class="w">          </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos">168</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos">169</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">170</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">171</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="filename docutils container">
@@ -907,21 +924,21 @@ ember_quest.dart</div>
 <span class="linenos"> 58</span><span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">final</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="n">segments</span><span class="p">[</span><span class="n">segmentIndex</span><span class="p">])</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 59</span><span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">block</span><span class="p">.</span><span class="n">blockType</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 60</span><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="p">(</span><span class="n">GroundBlock</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">GroundBlock</span><span class="p">(</span>
-<span class="linenos"> 61</span><span class="w">            </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
-<span class="linenos"> 62</span><span class="w">            </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
-<span class="linenos"> 63</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos"> 61</span><span class="w">          </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
+<span class="linenos"> 62</span><span class="w">          </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
+<span class="linenos"> 63</span><span class="w">        </span><span class="p">),</span>
 <span class="linenos"> 64</span><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="p">(</span><span class="n">PlatformBlock</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">PlatformBlock</span><span class="p">(</span>
-<span class="linenos"> 65</span><span class="w">            </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
-<span class="linenos"> 66</span><span class="w">            </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
-<span class="linenos"> 67</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos"> 65</span><span class="w">          </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
+<span class="linenos"> 66</span><span class="w">          </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
+<span class="linenos"> 67</span><span class="w">        </span><span class="p">),</span>
 <span class="linenos"> 68</span><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="p">(</span><span class="n">Star</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Star</span><span class="p">(</span>
-<span class="linenos"> 69</span><span class="w">            </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
-<span class="linenos"> 70</span><span class="w">            </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
-<span class="linenos"> 71</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos"> 69</span><span class="w">          </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
+<span class="linenos"> 70</span><span class="w">          </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
+<span class="linenos"> 71</span><span class="w">        </span><span class="p">),</span>
 <span class="linenos"> 72</span><span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="p">(</span><span class="n">WaterEnemy</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">WaterEnemy</span><span class="p">(</span>
-<span class="linenos"> 73</span><span class="w">            </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
-<span class="linenos"> 74</span><span class="w">            </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
-<span class="linenos"> 75</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos"> 73</span><span class="w">          </span><span class="nl">gridPosition:</span><span class="w"> </span><span class="n">block</span><span class="p">.</span><span class="n">gridPosition</span><span class="p">,</span>
+<span class="linenos"> 74</span><span class="w">          </span><span class="nl">xOffset:</span><span class="w"> </span><span class="n">xPositionOffset</span><span class="p">,</span>
+<span class="linenos"> 75</span><span class="w">        </span><span class="p">),</span>
 <span class="linenos"> 76</span><span class="w">        </span><span class="n">_</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">throw</span><span class="w"> </span><span class="n">UnimplementedError</span><span class="p">(),</span>
 <span class="linenos"> 77</span><span class="w">      </span><span class="p">};</span>
 <span class="linenos"> 78</span><span class="w">      </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">component</span><span class="p">);</span>

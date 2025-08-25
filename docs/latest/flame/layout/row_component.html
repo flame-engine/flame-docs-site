@@ -124,11 +124,24 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../camera.html">Camera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../effects/effects.html">Effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../effects/effect_controllers.html">Effect Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/move_effects.html">Move Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/rotate_effects.html">Rotate Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/scale_effects.html">Scale Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/size_effects.html">Size Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/anchor_effects.html">Anchor Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/color_effects.html">Color Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/remove_effect.html">Remove Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/function_effect.html">Function Effect</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/post_processing.html">Post Processing and Shaders</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../rendering/palette.html">Colors and Palette</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../rendering/decorators.html">Decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../rendering/images.html">Images, Sprites and Animations</a></li>
@@ -302,7 +315,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.30.1/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.31.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -330,7 +343,7 @@
 <div class="docutils container">
 <span class="keyword">class </span><span class="name">RowComponent</span></div>
 <div class="modifier docutils container">
-<span class="keyword">extends</span> <span>LayoutComponent</span></div>
+<span class="keyword">extends</span> <span>LinearLayoutComponent</span></div>
 </div>
 <div class="description doc1 docutils container">
 <p>RowComponent is a layout component that arranges its children in a
@@ -340,9 +353,11 @@ them defined by the <code class="xref dart dart-ref docutils literal notranslate
 The alignment of the children along the horizontal axis is controlled by
 <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">mainAxisAlignment</span></code>, while their alignment along the vertical axis is
 controlled by <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">crossAxisAlignment</span></code>.</p>
-<p>If <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">shrinkWrap</span></code> is set to true, the size of the row will shrink to fit its
-children. Otherwise, the size of the row will be determined by the <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code>
-parameter or the size of its parent.</p>
+<p>If <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code> is non-null, behaves as normal explicit sizing.
+If <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code> is null, sets the size to the minimum size that containing all
+the children. This is similar to setting the <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code> to <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">inherentSize</span></code>, but
+the distinct in that sizing will respond to changes in children, other
+properties, etc…</p>
 <p>Example usage:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">RowComponent</span><span class="p">(</span>
 <span class="w">  </span><span class="nl">gap:</span><span class="w"> </span><span class="m">10.0</span><span class="p">,</span>
@@ -362,7 +377,7 @@ parameter or the size of its parent.</p>
 <div class="constructor docutils container">
 <div class="signature sig2 docutils container" id="RowComponent-RowComponent">
 <div class="docutils container">
-<span class="name">RowComponent</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="name">super.mainAxisAlignment</span><span class="punct"> = </span><span class="default">MainAxisAlignment.start</span></span><span class="punct">, </span><span class="argument"><span class="name">super.crossAxisAlignment</span><span class="punct"> = </span><span class="default">CrossAxisAlignment.start</span></span><span class="punct">, </span><span class="argument"><span class="name">super.gap</span><span class="punct"> = </span><span class="default">0.0</span></span><span class="punct">, </span><span class="argument"><span class="name">super.shrinkWrap</span><span class="punct"> = </span><span class="default">false</span></span><span class="punct">, </span><span class="argument"><span class="name">super.size</span></span><span class="punct">, </span><span class="argument"><span class="name">super.position</span></span><span class="punct">, </span><span class="argument"><span class="name">super.children</span></span><span class="punct">, </span><span class="argument"><span class="name">super.priority</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
+<span class="name">RowComponent</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="name">super.mainAxisAlignment</span><span class="punct"> = </span><span class="default">MainAxisAlignment.start</span></span><span class="punct">, </span><span class="argument"><span class="name">super.crossAxisAlignment</span><span class="punct"> = </span><span class="default">CrossAxisAlignment.start</span></span><span class="punct">, </span><span class="argument"><span class="name">super.gap</span><span class="punct"> = </span><span class="default">0.0</span></span><span class="punct">, </span><span class="argument"><span class="name">super.size</span></span><span class="punct">, </span><span class="argument"><span class="name">super.position</span></span><span class="punct">, </span><span class="argument"><span class="name">super.children</span></span><span class="punct">, </span><span class="argument"><span class="name">super.priority</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
 </div>
 </div>
 </section>

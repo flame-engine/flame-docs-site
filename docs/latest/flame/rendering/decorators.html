@@ -126,11 +126,24 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../camera.html">Camera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../effects/effects.html">Effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../effects/effect_controllers.html">Effect Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/move_effects.html">Move Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/rotate_effects.html">Rotate Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/scale_effects.html">Scale Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/size_effects.html">Size Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/anchor_effects.html">Anchor Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/color_effects.html">Color Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/remove_effect.html">Remove Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/function_effect.html">Function Effect</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../collision_detection.html">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="rendering.html">Rendering</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="post_processing.html">Post Processing and Shaders</a></li>
 <li class="toctree-l3"><a class="reference internal" href="palette.html">Colors and Palette</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="images.html">Images, Sprites and Animations</a></li>
@@ -304,7 +317,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.30.1/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.31.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -329,7 +342,7 @@
 <p><strong>Decorators</strong> are classes that can encapsulate certain visual effects and then apply those visual
 effects to a sequence of canvas drawing operations. Decorators are not <a class="reference internal" href="../components.html#component"><span class="std std-ref">Component</span></a>s, but they can
 be applied to components either manually or via the <a class="reference internal" href="#hasdecorator-mixin">HasDecorator</a> mixin. Likewise, decorators are
-not <a class="reference internal" href="../effects.html"><span class="std std-doc">Effect</span></a>s, although they can be used to implement certain <code class="docutils literal notranslate"><span class="pre">Effect</span></code>s.</p>
+not <a class="reference internal" href="#../../flame/effects.md"><span class="xref myst">Effect</span></a>s, although they can be used to implement certain <code class="docutils literal notranslate"><span class="pre">Effect</span></code>s.</p>
 <p>There are a certain number of decorators available in Flame, and it is simple to add one’s own if
 necessary. We are planning to add shader-based decorators once Flutter fully supports them on the
 web.</p>
@@ -338,7 +351,7 @@ web.</p>
 <section id="paintdecorator-blur">
 <h3>PaintDecorator.blur<a class="headerlink" href="#paintdecorator-blur" title="Link to this heading">¶</a></h3>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.30.1/_static/apps/flame-examples/index.html?decorator_blur" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-decorator_blur">
+<iframe class="flutter-app-iframe" src="/v1.31.0/_static/apps/flame-examples/index.html?decorator_blur" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-decorator_blur">
 <div class="filename docutils container">
 decorator_blur.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -392,7 +405,7 @@ different in the X and Y direction, though this is not very common.</p>
 <section id="paintdecorator-grayscale">
 <h3>PaintDecorator.grayscale<a class="headerlink" href="#paintdecorator-grayscale" title="Link to this heading">¶</a></h3>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.30.1/_static/apps/flame-examples/index.html?decorator_grayscale" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-decorator_grayscale">
+<iframe class="flutter-app-iframe" src="/v1.31.0/_static/apps/flame-examples/index.html?decorator_grayscale" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-decorator_grayscale">
 <div class="filename docutils container">
 decorator_grayscale.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -447,7 +460,7 @@ level of <code class="docutils literal notranslate"><span class="pre">opacity</s
 <section id="paintdecorator-tint">
 <h3>PaintDecorator.tint<a class="headerlink" href="#paintdecorator-tint" title="Link to this heading">¶</a></h3>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.30.1/_static/apps/flame-examples/index.html?decorator_tint" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-decorator_tint">
+<iframe class="flutter-app-iframe" src="/v1.31.0/_static/apps/flame-examples/index.html?decorator_tint" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-decorator_tint">
 <div class="filename docutils container">
 decorator_tint.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>
@@ -508,7 +521,7 @@ that you can see the details of the image below.</p>
 <section id="rotate3ddecorator">
 <h3>Rotate3DDecorator<a class="headerlink" href="#rotate3ddecorator" title="Link to this heading">¶</a></h3>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.30.1/_static/apps/flame-examples/index.html?decorator_rotate3d" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-decorator_rotate3d">
+<iframe class="flutter-app-iframe" src="/v1.31.0/_static/apps/flame-examples/index.html?decorator_rotate3d" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-decorator_rotate3d">
 <div class="filename docutils container">
 decorator_rotate3d.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/flower.dart&#39;</span><span class="p">;</span>
@@ -578,7 +591,7 @@ to draw a component whose appearance is different in the front and in the back.<
 <section id="shadow3ddecorator">
 <h3>Shadow3DDecorator<a class="headerlink" href="#shadow3ddecorator" title="Link to this heading">¶</a></h3>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.30.1/_static/apps/flame-examples/index.html?decorator_shadow3d" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-decorator_shadow3d">
+<iframe class="flutter-app-iframe" src="/v1.31.0/_static/apps/flame-examples/index.html?decorator_shadow3d" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-decorator_shadow3d">
 <div class="filename docutils container">
 decorator_shadow3d.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:ui&#39;</span><span class="p">;</span>

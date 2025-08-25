@@ -38,7 +38,7 @@
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
   <link rel="next" title="RouterComponent" href="router.html" />
-  <link rel="prev" title="Effects" href="effects.html" />
+  <link rel="prev" title="Function Effect" href="effects/function_effect.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -126,11 +126,24 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="camera.html">Camera</a></li>
-<li class="toctree-l2"><a class="reference internal" href="effects.html">Effects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="effects/effects.html">Effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="effects/effect_controllers.html">Effect Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/move_effects.html">Move Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/rotate_effects.html">Rotate Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/scale_effects.html">Scale Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/size_effects.html">Size Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/anchor_effects.html">Anchor Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/color_effects.html">Color Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/remove_effect.html">Remove Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/function_effect.html">Function Effect</a></li>
+</ul>
+</li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Collision Detection</a></li>
 <li class="toctree-l2"><a class="reference internal" href="router.html">Router</a></li>
 <li class="toctree-l2"><a class="reference internal" href="platforms.html">Platforms</a></li>
 <li class="toctree-l2"><a class="reference internal" href="rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="rendering/post_processing.html">Post Processing and Shaders</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rendering/palette.html">Colors and Palette</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rendering/decorators.html">Decorators</a></li>
 <li class="toctree-l3"><a class="reference internal" href="rendering/images.html">Images, Sprites and Animations</a></li>
@@ -304,7 +317,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.30.1/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.31.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -379,7 +392,7 @@ the closest parent that has the <code class="docutils literal notranslate"><span
 <p>To react to a collision you should add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to your component.
 Example:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.30.1/_static/apps/flame-examples/index.html?collision_detection" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-collision_detection">
+<iframe class="flutter-app-iframe" src="/v1.31.0/_static/apps/flame-examples/index.html?collision_detection" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-collision_detection">
 <div class="filename docutils container">
 collision_detection.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
@@ -420,11 +433,11 @@ collision_detection.dart</div>
 <span class="linenos">36</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">ShapeHitbox</span><span class="w"> </span><span class="n">hitbox</span><span class="p">;</span>
 <span class="linenos">37</span>
 <span class="linenos">38</span><span class="w">  </span><span class="n">RectangleCollidable</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">position</span><span class="p">)</span>
-<span class="linenos">39</span><span class="w">      </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
-<span class="linenos">40</span><span class="w">          </span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="p">,</span>
-<span class="linenos">41</span><span class="w">          </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">50</span><span class="p">),</span>
-<span class="linenos">42</span><span class="w">          </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos">43</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">39</span><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="linenos">40</span><span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="p">,</span>
+<span class="linenos">41</span><span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">50</span><span class="p">),</span>
+<span class="linenos">42</span><span class="w">        </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">43</span><span class="w">      </span><span class="p">);</span>
 <span class="linenos">44</span>
 <span class="linenos">45</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">46</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
@@ -801,7 +814,7 @@ game. After you have added that, you can call <code class="docutils literal notr
 or with the <code class="docutils literal notranslate"><span class="pre">HasGameReference</span></code> Mixin from other components as well.</p>
 <p>Example:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.30.1/_static/apps/flame-examples/index.html?ray_cast" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_cast">
+<iframe class="flutter-app-iframe" src="/v1.31.0/_static/apps/flame-examples/index.html?ray_cast" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_cast">
 <div class="filename docutils container">
 ray_cast.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span>
@@ -942,7 +955,7 @@ that you have traced the ray for long enough. If you imagine how a pool ball wou
 table for example, that information could be retrieved with the help of ray tracing.</p>
 <p>Example:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.30.1/_static/apps/flame-examples/index.html?ray_trace" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_trace">
+<iframe class="flutter-app-iframe" src="/v1.31.0/_static/apps/flame-examples/index.html?ray_trace" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_trace">
 <div class="filename docutils container">
 ray_trace.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:math&#39;</span><span class="p">;</span>
@@ -1115,11 +1128,11 @@ need some of the following things (since it is simpler to not involve Forge2D):<
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="effects.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="effects/function_effect.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Effects</p>
+          <p class="prev-next-title">Function Effect</p>
         </div>
       </a>
       <div class='expander'></div>
