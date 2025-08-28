@@ -3351,6 +3351,7 @@ SUCH DAMAGE.
 cross_file
 flutter_markdown
 flutter_shaders
+google_fonts
 path_provider
 path_provider_android
 path_provider_foundation
@@ -6067,7 +6068,6 @@ You may obtain a copy of this library's Source Code Form from: https://dart.goog
 
 --------------------------------------------------------------------------------
 fast_noise
-google_fonts
 
                                  Apache License
                            Version 2.0, January 2004
