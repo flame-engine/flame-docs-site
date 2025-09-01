@@ -317,7 +317,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.31.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.32.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -346,20 +346,6 @@ supported by Flutter.</p>
 <h2>Flutter channels<a class="headerlink" href="#flutter-channels" title="Link to this heading">¶</a></h2>
 <p>Flame keeps it support on the stable channel. The dev, beta and master channel should work, but we
 don’t support them. This means that issues happening outside the stable channel are not a priority.</p>
-</section>
-<section id="flame-web">
-<h2>Flame web<a class="headerlink" href="#flame-web" title="Link to this heading">¶</a></h2>
-<p>To use Flame on web you need to make sure your game is using the CanvasKit/<a class="reference external" href="https://skia.org/">Skia</a>
-renderer. This will increase performance on the web, as it will use the <code class="docutils literal notranslate"><span class="pre">canvas</span></code> element instead of
-separate DOM elements.</p>
-<p>To run your game using skia, use the following command:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flutter<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>chrome<span class="w"> </span>--web-renderer<span class="w"> </span>canvaskit
-</pre></div>
-</div>
-<p>To build the game for production, using skia, use the following:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flutter<span class="w"> </span>build<span class="w"> </span>web<span class="w"> </span>--release<span class="w"> </span>--web-renderer<span class="w"> </span>canvaskit
-</pre></div>
-</div>
 </section>
 <section id="deploy-your-game-to-github-pages">
 <h2>Deploy your game to GitHub Pages<a class="headerlink" href="#deploy-your-game-to-github-pages" title="Link to this heading">¶</a></h2>
@@ -509,7 +495,6 @@ the web.</p>
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#flutter-channels' class='list-group-item level-1'>Flutter channels</a>
-  <a href='#flame-web' class='list-group-item level-1'>Flame web</a>
   <a href='#deploy-your-game-to-github-pages' class='list-group-item level-1'>Deploy your game to GitHub Pages</a>
   <a href='#deploy-your-game-to-itch-io' class='list-group-item level-1'>Deploy your game to itch.io</a>
   <a href='#deploy-your-game-to-cloudflare-pages' class='list-group-item level-1'>Deploy your game to Cloudflare Pages</a>
