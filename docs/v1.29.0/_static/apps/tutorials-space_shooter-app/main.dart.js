@@ -12133,7 +12133,7 @@ return n}}
 A.JP.prototype={
 $1(a){var s=A.bj().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/a8bfdfc394deaed5c57bd45a64ac4294dc976a72/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/ddf47dd3ff96dbde6d9c614db0d7f019d7c7a2b7/":s)+a},
 $S:59}
 A.oi.prototype={
 dO(a,b){this.a.dO(a,b)},
