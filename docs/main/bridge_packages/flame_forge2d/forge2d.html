@@ -377,6 +377,17 @@ the constructor of the <code class="docutils literal notranslate"><span class="p
 <p>A simple <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> implementation example can be seen in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d/example">examples folder</a>.</p>
 </section>
+<section id="forge2dworld">
+<h2>Forge2DWorld<a class="headerlink" href="#forge2dworld" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">Forge2DWorld</span></code> is a the world that all your [<code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>]s live in. In the <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>
+there is a <code class="docutils literal notranslate"><span class="pre">Forge2DWorld</span></code> instance called <code class="docutils literal notranslate"><span class="pre">world</span></code> by default, which is where you should add your
+<code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>s.</p>
+<p>If you want to swap between worlds you can create your own <code class="docutils literal notranslate"><span class="pre">Forge2DWorld</span></code> instance and assign it
+to the <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> instance’s <code class="docutils literal notranslate"><span class="pre">world</span></code> property, <code class="docutils literal notranslate"><span class="pre">game.world</span> <span class="pre">=</span> <span class="pre">Forge2DWorld()</span></code>.</p>
+<p>If you would like to re-use a world later and have it keep its physics state you have to make sure
+that the bodies aren’t destroyed when the world is removed from the game. You can do this by
+setting <code class="docutils literal notranslate"><span class="pre">world.destroyOnRemove</span></code> to false, like <code class="docutils literal notranslate"><span class="pre">game.world.destroyOnRemove</span> <span class="pre">=</span> <span class="pre">false;</span></code>.</p>
+</section>
 <section id="bodycomponent">
 <h2>BodyComponent<a class="headerlink" href="#bodycomponent" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> is a wrapper for the <code class="docutils literal notranslate"><span class="pre">Forge2D</span></code> body, which is the body that the physics engine
@@ -496,6 +507,7 @@ example</a>.</p>
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#forge2dgame' class='list-group-item level-1'>Forge2DGame</a>
+  <a href='#forge2dworld' class='list-group-item level-1'>Forge2DWorld</a>
   <a href='#bodycomponent' class='list-group-item level-1'>BodyComponent</a>
   <a href='#contact-callbacks' class='list-group-item level-1'>Contact callbacks</a>
 </div>
