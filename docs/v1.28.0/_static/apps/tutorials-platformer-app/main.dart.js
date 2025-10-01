@@ -16875,7 +16875,7 @@ return n}}
 A.V7.prototype={
 $1(a){var s=A.c7().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/c29809135135e262a912cf583b2c90deb9ded610/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/d3d45dcf251823c1769909cd43698d126db38deb/":s)+a},
 $S:70}
 A.tv.prototype={
 d0(a,b){var s,r=this.a
