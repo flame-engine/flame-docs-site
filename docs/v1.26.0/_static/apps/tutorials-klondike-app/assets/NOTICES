@@ -6767,7 +6767,6 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 --------------------------------------------------------------------------------
 flutter_markdown
 path_provider
-path_provider_android
 path_provider_foundation
 path_provider_linux
 path_provider_platform_interface
@@ -11409,6 +11408,7 @@ FROM,OUT OF OR IN CONNECTION WITH THE MATERIALS OR THE USE OR OTHER DEALINGS
 IN THE MATERIALS.
 --------------------------------------------------------------------------------
 google_fonts
+path_provider_android
 shared_preferences_android
 url_launcher_android
 
