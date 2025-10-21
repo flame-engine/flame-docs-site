@@ -4,7 +4,7 @@
 <meta name="robots" content="noindex">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Flame SVG &#8212; Flame</title>
+  <title>Getting Started 🚀 &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
@@ -38,8 +38,8 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="flame_tiled" href="../flame_tiled/flame_tiled.html" />
-  <link rel="prev" title="flame_svg" href="flame_svg.html" />
+  <link rel="next" title="flame_bloc" href="../flame_bloc/flame_bloc.html" />
+  <link rel="prev" title="flame_behaviors" href="flame_behaviors.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -174,8 +174,8 @@
 <li class="toctree-l3"><a class="reference internal" href="../flame_audio/audio_pool.html">AudioPool</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../flame_behaviors/flame_behaviors.html">flame_behaviors</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../flame_behaviors/getting_started.html">Getting Started</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="flame_behaviors.html">flame_behaviors</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Getting Started</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_bloc/flame_bloc.html">flame_bloc</a><ul>
@@ -213,8 +213,8 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_splash_screen/flame_splash_screen.html">flame_splash_screen</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_spine/flame_spine.html">flame_spine</a></li>
-<li class="toctree-l2 current"><a class="reference internal" href="flame_svg.html">flame_svg</a><ul class="current">
-<li class="toctree-l3 current"><a class="current reference internal" href="#">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_svg/flame_svg.html">flame_svg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_svg/svg.html">Overview</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_tiled/flame_tiled.html">flame_tiled</a><ul>
@@ -342,46 +342,116 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="flame-svg">
-<h1>Flame SVG<a class="headerlink" href="#flame-svg" title="Link to this heading">¶</a></h1>
-<p>flame_svg provides a simple API for rendering SVG images in your game.</p>
-<section id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
-<p>Svg support is provided by the <code class="docutils literal notranslate"><span class="pre">flame_svg</span></code> bridge package, be sure to put it in your pubspec file
-to use it.</p>
-<p>If you want to know more about the installation visit
-<a class="reference external" href="https://pub.dev/packages/flame_svg/install">flame_svg on pub.dev</a>.</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="getting-started">
+<h1>Getting Started 🚀<a class="headerlink" href="#getting-started" title="Link to this heading">¶</a></h1>
+<section id="prerequisites">
+<h2>Prerequisites 📝<a class="headerlink" href="#prerequisites" title="Link to this heading">¶</a></h2>
+<p>In order to use Flame Behaviors you must have the <a class="reference external" href="https://pub.dev/packages/flame">Flame package</a> added to
+your project.</p>
+<blockquote>
+<div><p><strong>Note</strong>: Flame Behaviors requires Flame <code class="docutils literal notranslate"><span class="pre">&quot;&gt;=1.10.0</span> <span class="pre">&lt;2.0.0&quot;</span></code></p>
+</div></blockquote>
 </section>
-<section id="how-to-use-flame-svg">
-<h2>How to use flame_svg<a class="headerlink" href="#how-to-use-flame-svg" title="Link to this heading">¶</a></h2>
-<p>To use it just import the <code class="docutils literal notranslate"><span class="pre">Svg</span></code> class from <code class="docutils literal notranslate"><span class="pre">'package:flame_svg/flame_svg.dart'</span></code>, and use the
-following snippet to render it on the canvas:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">svgInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Svg</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;android.svg&#39;</span><span class="p">);</span>
-
-<span class="kd">final</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">);</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">300</span><span class="p">,</span><span class="w"> </span><span class="m">300</span><span class="p">);</span>
-
-<span class="n">svgInstance</span><span class="p">.</span><span class="n">renderPosition</span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">);</span>
+<section id="installing">
+<h2>Installing 🧑‍💻<a class="headerlink" href="#installing" title="Link to this heading">¶</a></h2>
+<p>Let’s start by adding the <a class="reference external" href="https://pub.dev/packages/flame_behaviors"><code class="docutils literal notranslate"><span class="pre">flame_behaviors</span></code></a> package:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span><span class="c1"># 📦 Add the flame_behaviors package from pub.dev to your project</span>
+flutter<span class="w"> </span>pub<span class="w"> </span>add<span class="w"> </span>flame_behaviors
 </pre></div>
 </div>
-<p>or use the <code class="docutils literal notranslate"><span class="pre">SvgComponent</span></code> and add it to the component tree:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="nd">@override</span>
+</section>
+<section id="entity">
+<h2>Entity<a class="headerlink" href="#entity" title="Link to this heading">¶</a></h2>
+<p>The entity is the building block of a game. It represents a visual game object that can hold
+multiple <code class="docutils literal notranslate"><span class="pre">Behavior</span></code>s, which in turn define how the entity behaves.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Define a custom entity by extending `Entity`.</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyEntity</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Entity</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">MyEntity</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">behaviors:</span><span class="w"> </span><span class="p">[</span><span class="n">MyBehavior</span><span class="p">()]);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="types-of-entities">
+<h3>Types of Entities<a class="headerlink" href="#types-of-entities" title="Link to this heading">¶</a></h3>
+<p>There are two types of entities in Flame Behaviors:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Entity</span></code>: A generic entity that can be used to represent any game object.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">PositionedEntity</span></code>: An entity that has a position and size, it is based on the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p></li>
+</ul>
+<p>These entities use the <code class="docutils literal notranslate"><span class="pre">EntityMixin</span></code> which is a mixin that provides the basic functionality
+for an entity.</p>
+<p>If you want to turn any component into an entity, you can use this mixin. For instance, if you want
+to turn a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> into an entity, you can do the following:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MySpriteEntity</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">EntityMixin</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">svgInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Svg</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;android.svg&#39;</span><span class="p">);</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">);</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">svgComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SvgComponent</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">svg:</span><span class="w"> </span><span class="n">svgInstance</span><span class="p">,</span>
-<span class="w">    </span><span class="p">);</span>
-
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">svgComponent</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Add behaviors to the entity.</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">MyBehavior</span><span class="p">());</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>You can even turn a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> into an entity:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">EntityMixin</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Add behaviors to the entity.</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">MyGameBehavior</span><span class="p">());</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="behavior">
+<h2>Behavior<a class="headerlink" href="#behavior" title="Link to this heading">¶</a></h2>
+<p>A behavior is a component that defines how an entity behaves. It can be attached to any component
+that uses the <code class="docutils literal notranslate"><span class="pre">EntityMixin</span></code> and handle a specific behavior for that entity. Behaviors can either
+be generic for any entity or you can specify the specific type of entity that a behavior requires:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Can be added to any type of Entity.</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGenericBehavior</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Behavior</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">}</span>
+
+<span class="c1">// Can only be added to MyEntity and subclasses of it.</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MySpecificBehavior</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Behavior</span><span class="o">&lt;</span><span class="n">MyEntity</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="p">...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<section id="behavior-composition">
+<h3>Behavior Composition<a class="headerlink" href="#behavior-composition" title="Link to this heading">¶</a></h3>
+<p>Each behavior can have its own <code class="docutils literal notranslate"><span class="pre">Component</span></code>s for adding extra functionality related to the behavior.
+For instance a <code class="docutils literal notranslate"><span class="pre">TimerComponent</span></code> can implement a time-based behavioral activity:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyBehavior</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Behavior</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">TimerComponent</span><span class="p">(</span><span class="nl">period:</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="nl">repeat:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nl">onTick:</span><span class="w"> </span><span class="n">_onTick</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">_onTick</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Do something every 5 seconds.</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>[!NOTE]
+A <code class="docutils literal notranslate"><span class="pre">Behavior</span></code> is a non-visual component that describes how a visual component (Entity)
+behaves therefore, a behavior can’t have its own <code class="docutils literal notranslate"><span class="pre">Behavior</span></code>s.</p>
+</div></blockquote>
+</section>
+</section>
+<section id="whats-next">
+<h2>What’s Next<a class="headerlink" href="#whats-next" title="Link to this heading">¶</a></h2>
+<p>The following sections will show you how to use Flame Behaviors for common game development tasks:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="event-behaviors.html"><span class="std std-doc">Handling Game Input</span></a></p></li>
+<li><p><a class="reference internal" href="collision-detection.html"><span class="std std-doc">Handling Collisions</span></a></p></li>
+</ul>
+<p>Flame Behaviors also provides some conventions on how to name and organize your code:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="conventions/naming-conventions.html"><span class="std std-doc">Naming Conventions</span></a></p></li>
+<li><p><a class="reference internal" href="conventions/coding-conventions.html"><span class="std std-doc">Code Conventions</span></a></p></li>
+</ul>
+<p>To learn more about how to use Flame Behaviors, check out our <a class="reference external" href="https://verygood.ventures/blog/build-games-with-flame-behaviors">article</a>.</p>
 </section>
 </section>
 
@@ -392,18 +462,18 @@ following snippet to render it on the canvas:</p>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="flame_svg.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="flame_behaviors.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">flame_svg</p>
+          <p class="prev-next-title">flame_behaviors</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="../flame_tiled/flame_tiled.html" title="next page">
+      <a class="right-next" id="next-link" href="../flame_bloc/flame_bloc.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">flame_tiled</p>
+          <p class="prev-next-title">flame_bloc</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
@@ -415,8 +485,13 @@ following snippet to render it on the canvas:</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
-  <a href='#installation' class='list-group-item level-1'>Installation</a>
-  <a href='#how-to-use-flame-svg' class='list-group-item level-1'>How to use flame_svg</a>
+  <a href='#prerequisites' class='list-group-item level-1'>Prerequisites 📝</a>
+  <a href='#installing' class='list-group-item level-1'>Installing 🧑‍💻</a>
+  <a href='#entity' class='list-group-item level-1'>Entity</a>
+  <a href='#types-of-entities' class='list-group-item level-2'>Types of Entities</a>
+  <a href='#behavior' class='list-group-item level-1'>Behavior</a>
+  <a href='#behavior-composition' class='list-group-item level-2'>Behavior Composition</a>
+  <a href='#whats-next' class='list-group-item level-1'>What’s Next</a>
 </div>
 
     </div>
