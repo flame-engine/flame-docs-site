@@ -38,6 +38,8 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
+  <link rel="next" title="ExpandedComponent" href="expanded_component.html" />
+  <link rel="prev" title="RowComponent" href="row_component.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -107,8 +109,8 @@
       </form>
     </div>
     <div class="nav-left" role="navigation" aria-label="Main">
-      <ul>
-<li class="toctree-l1"><a class="reference internal" href="../flame.html">Flame</a><ul>
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../flame.html">Flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../README.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
@@ -151,8 +153,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../rendering/text_rendering.html">Text Rendering</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="layout.html">Layout</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="layout.html">Layout</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="align_component.html">AlignComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="row_component.html">RowComponent</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">ColumnComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="expanded_component.html">Expanded Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="padding_component.html">Padding Component</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overlays.html">Overlays</a></li>
@@ -351,6 +357,7 @@
 <span class="keyword">extends</span> <span>LinearLayoutComponent</span></div>
 </div>
 <div class="description doc1 docutils container">
+<p>Warning: Experimental. API and behavior may change.</p>
 <p>ColumnComponent is a layout component that arranges its children in a
 vertical column.</p>
 <p>The <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">children</span></code> are laid out along the vertical axis, with spacing between
@@ -361,7 +368,7 @@ controlled by <code class="xref dart dart-ref docutils literal notranslate"><spa
 <p>If <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code> is non-null, behaves as normal explicit sizing.
 If <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code> is null, sets the size to the minimum size that containing all
 the children. This is similar to setting the <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code> to <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">intrinsicSize</span></code>, but
-the distinct in that sizing will respond to changes in children, other
+distinct in that sizing will respond to changes in children, other
 properties, etc…</p>
 <p>Example usage:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">ColumnComponent</span><span class="p">(</span>
@@ -397,7 +404,21 @@ properties, etc…</p>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="row_component.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">RowComponent</p>
+        </div>
+      </a>
       <div class='expander'></div>
+      <a class="right-next" id="next-link" href="expanded_component.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">ExpandedComponent</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
     </div>
   </div>
 
