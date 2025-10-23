@@ -154,6 +154,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../layout/layout.html">Layout</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../layout/align_component.html">AlignComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/row_component.html">RowComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/column_component.html">ColumnComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/expanded_component.html">Expanded Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/padding_component.html">Padding Component</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overlays.html">Overlays</a></li>
@@ -171,6 +175,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/bgm.html">Background music</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/audio_pool.html">AudioPool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_behaviors/flame_behaviors.html">flame_behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_behaviors/getting_started.html">Getting Started</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_bloc/flame_bloc.html">flame_bloc</a><ul>
@@ -317,7 +325,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.32.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -388,7 +396,6 @@ events.</p>
 <p>Countdown example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
@@ -420,7 +427,6 @@ events.</p>
 <p>Interval example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
@@ -496,7 +502,7 @@ so will allow controlling time scale for all the component of the game from a si
 It is only useful if the whole Game or Forge2DWorld is to be time scaled.</p>
 </div>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.32.0/_static/apps/flame-examples/index.html?time_scale" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-time_scale">
+<iframe class="flutter-app-iframe" src="/v1.33.0/_static/apps/flame-examples/index.html?time_scale" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-time_scale">
 <div class="filename docutils container">
 time_scale.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:async&#39;</span><span class="p">;</span>

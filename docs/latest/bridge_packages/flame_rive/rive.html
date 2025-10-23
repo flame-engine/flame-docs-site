@@ -154,6 +154,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/layout/layout.html">Layout</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/layout/align_component.html">AlignComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/layout/row_component.html">RowComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/layout/column_component.html">ColumnComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/layout/expanded_component.html">Expanded Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/layout/padding_component.html">Padding Component</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/overlays.html">Overlays</a></li>
@@ -171,6 +175,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame_audio/audio_pool.html">AudioPool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_behaviors/flame_behaviors.html">flame_behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_behaviors/getting_started.html">Getting Started</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_bloc/flame_bloc.html">flame_bloc</a><ul>
@@ -317,7 +325,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.32.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -352,7 +360,7 @@ the animation to the game using the <code class="docutils literal notranslate"><
 <code class="docutils literal notranslate"><span class="pre">StateMachineController</span></code> from the artboard and add a controller to it. Then you can create a
 <code class="docutils literal notranslate"><span class="pre">RiveComponent</span></code> using that artboard.</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.32.0/_static/apps/flame-examples/index.html?rive_example" style="width: 200px; height: 200px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rive_example">
+<iframe class="flutter-app-iframe" src="/v1.33.0/_static/apps/flame-examples/index.html?rive_example" style="width: 200px; height: 200px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rive_example">
 <div class="filename docutils container">
 rive_example.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:async&#39;</span><span class="p">;</span>
@@ -361,7 +369,7 @@ rive_example.dart</div>
 <span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_rive/flame_rive.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kd">class</span><span class="w"> </span><span class="nc">RiveExampleGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="kd">class</span><span class="w"> </span><span class="nc">RiveExampleGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapCallbacks</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 8</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">SMIInput</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;?</span><span class="w"> </span><span class="n">levelInput</span><span class="p">;</span>
 <span class="linenos"> 9</span>
 <span class="linenos">10</span><span class="w">  </span><span class="nd">@override</span>
@@ -383,13 +391,12 @@ rive_example.dart</div>
 <span class="linenos">26</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">27</span>
 <span class="linenos">28</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">29</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTap</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">30</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onTap</span><span class="p">();</span>
-<span class="linenos">31</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">levelInput</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">32</span><span class="w">      </span><span class="n">levelInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">levelInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">3</span><span class="p">;</span>
-<span class="linenos">33</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">34</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">35</span><span class="p">}</span>
+<span class="linenos">29</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">30</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">levelInput</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">31</span><span class="w">      </span><span class="n">levelInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">levelInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">3</span><span class="p">;</span>
+<span class="linenos">32</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">33</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">34</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>

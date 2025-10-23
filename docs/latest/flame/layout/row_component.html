@@ -37,6 +37,8 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
+  <link rel="next" title="ColumnComponent" href="column_component.html" />
+  <link rel="prev" title="AlignComponent" href="align_component.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -106,8 +108,8 @@
       </form>
     </div>
     <div class="nav-left" role="navigation" aria-label="Main">
-      <ul>
-<li class="toctree-l1"><a class="reference internal" href="../flame.html">Flame</a><ul>
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../flame.html">Flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../../README.html">Getting Started</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
@@ -150,8 +152,12 @@
 <li class="toctree-l3"><a class="reference internal" href="../rendering/text_rendering.html">Text Rendering</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="layout.html">Layout</a><ul>
+<li class="toctree-l2 current"><a class="reference internal" href="layout.html">Layout</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="align_component.html">AlignComponent</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">RowComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="column_component.html">ColumnComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="expanded_component.html">Expanded Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="padding_component.html">Padding Component</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overlays.html">Overlays</a></li>
@@ -169,6 +175,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/bgm.html">Background music</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/audio_pool.html">AudioPool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_behaviors/flame_behaviors.html">flame_behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_behaviors/getting_started.html">Getting Started</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_bloc/flame_bloc.html">flame_bloc</a><ul>
@@ -315,7 +325,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.32.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -346,6 +356,7 @@
 <span class="keyword">extends</span> <span>LinearLayoutComponent</span></div>
 </div>
 <div class="description doc1 docutils container">
+<p>Warning: Experimental. API and behavior may change.</p>
 <p>RowComponent is a layout component that arranges its children in a
 horizontal row.</p>
 <p>The <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">children</span></code> are laid out along the horizontal axis, with spacing between
@@ -355,8 +366,8 @@ The alignment of the children along the horizontal axis is controlled by
 controlled by <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">crossAxisAlignment</span></code>.</p>
 <p>If <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code> is non-null, behaves as normal explicit sizing.
 If <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code> is null, sets the size to the minimum size that containing all
-the children. This is similar to setting the <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code> to <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">inherentSize</span></code>, but
-the distinct in that sizing will respond to changes in children, other
+the children. This is similar to setting the <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">size</span></code> to <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">intrinsicSize</span></code>, but
+distinct in that sizing will respond to changes in children, other
 properties, etc…</p>
 <p>Example usage:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">RowComponent</span><span class="p">(</span>
@@ -377,7 +388,7 @@ properties, etc…</p>
 <div class="constructor docutils container">
 <div class="signature sig2 docutils container" id="RowComponent-RowComponent">
 <div class="docutils container">
-<span class="name">RowComponent</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="name">super.mainAxisAlignment</span><span class="punct"> = </span><span class="default">MainAxisAlignment.start</span></span><span class="punct">, </span><span class="argument"><span class="name">super.crossAxisAlignment</span><span class="punct"> = </span><span class="default">CrossAxisAlignment.start</span></span><span class="punct">, </span><span class="argument"><span class="name">super.gap</span><span class="punct"> = </span><span class="default">0.0</span></span><span class="punct">, </span><span class="argument"><span class="name">super.size</span></span><span class="punct">, </span><span class="argument"><span class="name">super.position</span></span><span class="punct">, </span><span class="argument"><span class="name">super.children</span></span><span class="punct">, </span><span class="argument"><span class="name">super.priority</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
+<span class="name">RowComponent</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="name">super.key</span></span><span class="punct">, </span><span class="argument"><span class="name">super.mainAxisAlignment</span><span class="punct"> = </span><span class="default">MainAxisAlignment.start</span></span><span class="punct">, </span><span class="argument"><span class="name">super.crossAxisAlignment</span><span class="punct"> = </span><span class="default">CrossAxisAlignment.start</span></span><span class="punct">, </span><span class="argument"><span class="name">super.gap</span><span class="punct"> = </span><span class="default">0.0</span></span><span class="punct">, </span><span class="argument"><span class="name">super.size</span></span><span class="punct">, </span><span class="argument"><span class="name">super.position</span></span><span class="punct">, </span><span class="argument"><span class="name">super.anchor</span></span><span class="punct">, </span><span class="argument"><span class="name">super.priority</span></span><span class="punct">, </span><span class="argument"><span class="name">super.children</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
 </div>
 </div>
 </section>
@@ -392,7 +403,21 @@ properties, etc…</p>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="align_component.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">AlignComponent</p>
+        </div>
+      </a>
       <div class='expander'></div>
+      <a class="right-next" id="next-link" href="column_component.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">ColumnComponent</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
     </div>
   </div>
 

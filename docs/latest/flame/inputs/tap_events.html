@@ -154,6 +154,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../layout/layout.html">Layout</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../layout/align_component.html">AlignComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/row_component.html">RowComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/column_component.html">ColumnComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/expanded_component.html">Expanded Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/padding_component.html">Padding Component</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overlays.html">Overlays</a></li>
@@ -171,6 +175,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/bgm.html">Background music</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/audio_pool.html">AudioPool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_behaviors/flame_behaviors.html">flame_behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_behaviors/getting_started.html">Getting Started</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_bloc/flame_bloc.html">flame_bloc</a><ul>
@@ -317,7 +325,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.32.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -432,7 +440,7 @@ starts making the circle. The thickness of the circle will be proportional to th
 tap: after <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code> the circle’s stroke width will no longer grow. There will be a thin white
 stripe at the moment the <code class="docutils literal notranslate"><span class="pre">onLongTapDown</span></code> fires. Lastly, the circle will implode and disappear if
 you cause the <code class="docutils literal notranslate"><span class="pre">onTapCancel</span></code> event by moving the finger.</p>
-<iframe class="flutter-app-iframe" src="/v1.32.0/_static/apps/flame-examples/index.html?tap_events"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-tap_events">
+<iframe class="flutter-app-iframe" src="/v1.33.0/_static/apps/flame-examples/index.html?tap_events"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-tap_events">
 <div class="filename docutils container">
 tap_events.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:math&#39;</span><span class="p">;</span>
@@ -611,6 +619,31 @@ parent has implemented the <code class="docutils literal notranslate"><span clas
 </pre></div>
 </div>
 </section>
+<section id="secondarytapcallbacks">
+<h3>SecondaryTapCallbacks<a class="headerlink" href="#secondarytapcallbacks" title="Link to this heading">¶</a></h3>
+<p>In addition to the primary tap events (i.e. left mouse button on desktop), Flame also supports
+secondary tap events (i.e. right mouse button on desktop). To receive these events, add the
+<code class="docutils literal notranslate"><span class="pre">SecondaryTapCallbacks</span></code> mixin to your <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">SecondaryTapCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onSecondaryTapUp</span><span class="p">(</span><span class="n">SecondaryTapUpEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">/// Do something</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onSecondaryTapCancel</span><span class="p">(</span><span class="n">SecondaryTapCancelEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">/// Do something</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onSecondaryTapDown</span><span class="p">(</span><span class="n">SecondaryTapDownEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">/// Do something</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
+<p>You can extend both <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> and <code class="docutils literal notranslate"><span class="pre">SecondaryTapCallbacks</span></code> in the same component to
+receive both primary and secondary tap events.</p>
+</section>
 <section id="doubletapcallbacks">
 <h3>DoubleTapCallbacks<a class="headerlink" href="#doubletapcallbacks" title="Link to this heading">¶</a></h3>
 <p>Flame also offers a mixin named <code class="docutils literal notranslate"><span class="pre">DoubleTapCallbacks</span></code> to receive a double-tap event from the
@@ -696,6 +729,7 @@ correct size or implement <code class="docutils literal notranslate"><span class
   <a href='#demo' class='list-group-item level-2'>Demo</a>
   <a href='#mixins' class='list-group-item level-1'>Mixins</a>
   <a href='#tapcallbacks' class='list-group-item level-2'>TapCallbacks</a>
+  <a href='#secondarytapcallbacks' class='list-group-item level-2'>SecondaryTapCallbacks</a>
   <a href='#doubletapcallbacks' class='list-group-item level-2'>DoubleTapCallbacks</a>
   <a href='#migration' class='list-group-item level-1'>Migration</a>
 </div>

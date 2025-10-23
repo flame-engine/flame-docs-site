@@ -154,6 +154,10 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="layout/layout.html">Layout</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="layout/align_component.html">AlignComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="layout/row_component.html">RowComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="layout/column_component.html">ColumnComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="layout/expanded_component.html">Expanded Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="layout/padding_component.html">Padding Component</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="overlays.html">Overlays</a></li>
@@ -171,6 +175,10 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_audio/audio.html">General audio</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_audio/bgm.html">Background music</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_audio/audio_pool.html">AudioPool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_behaviors/flame_behaviors.html">flame_behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_behaviors/getting_started.html">Getting Started</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_bloc/flame_bloc.html">flame_bloc</a><ul>
@@ -317,7 +325,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.32.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -392,7 +400,7 @@ the closest parent that has the <code class="docutils literal notranslate"><span
 <p>To react to a collision you should add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to your component.
 Example:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.32.0/_static/apps/flame-examples/index.html?collision_detection" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-collision_detection">
+<iframe class="flutter-app-iframe" src="/v1.33.0/_static/apps/flame-examples/index.html?collision_detection" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-collision_detection">
 <div class="filename docutils container">
 collision_detection.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
@@ -814,7 +822,7 @@ game. After you have added that, you can call <code class="docutils literal notr
 or with the <code class="docutils literal notranslate"><span class="pre">HasGameReference</span></code> Mixin from other components as well.</p>
 <p>Example:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.32.0/_static/apps/flame-examples/index.html?ray_cast" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_cast">
+<iframe class="flutter-app-iframe" src="/v1.33.0/_static/apps/flame-examples/index.html?ray_cast" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_cast">
 <div class="filename docutils container">
 ray_cast.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/collisions.dart&#39;</span><span class="p">;</span>
@@ -955,7 +963,7 @@ that you have traced the ray for long enough. If you imagine how a pool ball wou
 table for example, that information could be retrieved with the help of ray tracing.</p>
 <p>Example:</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.32.0/_static/apps/flame-examples/index.html?ray_trace" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_trace">
+<iframe class="flutter-app-iframe" src="/v1.33.0/_static/apps/flame-examples/index.html?ray_trace" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_trace">
 <div class="filename docutils container">
 ray_trace.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:math&#39;</span><span class="p">;</span>
@@ -969,7 +977,7 @@ ray_trace.dart</div>
 <span class="linenos"> 9</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
 <span class="linenos">10</span>
 <span class="linenos">11</span><span class="kd">class</span><span class="w"> </span><span class="nc">RayTraceExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span>
-<span class="linenos">12</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="p">,</span><span class="w"> </span><span class="n">TapDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">12</span><span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="p">,</span><span class="w"> </span><span class="n">TapCallbacks</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">13</span><span class="w">  </span><span class="n">Paint</span><span class="w"> </span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">withValues</span><span class="p">(</span><span class="nl">alpha:</span><span class="w"> </span><span class="m">0.6</span><span class="p">);</span>
 <span class="linenos">14</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">isClicked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 <span class="linenos">15</span>
@@ -1039,15 +1047,14 @@ ray_trace.dart</div>
 <span class="linenos">79</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">80</span>
 <span class="linenos">81</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">82</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTap</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">83</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onTap</span><span class="p">();</span>
-<span class="linenos">84</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isClicked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">85</span><span class="w">      </span><span class="n">isClicked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="linenos">86</span><span class="w">      </span><span class="k">return</span><span class="p">;</span>
-<span class="linenos">87</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">88</span><span class="w">    </span><span class="n">_timePassed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="linenos">89</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">90</span><span class="p">}</span>
+<span class="linenos">82</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">83</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">isClicked</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">84</span><span class="w">      </span><span class="n">isClicked</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos">85</span><span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="linenos">86</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">87</span><span class="w">    </span><span class="n">_timePassed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="linenos">88</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">89</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
