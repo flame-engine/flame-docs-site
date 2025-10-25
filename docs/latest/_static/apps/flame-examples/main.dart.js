@@ -21400,7 +21400,7 @@ return n}}
 A.a09.prototype={
 $1(a){var s=A.cV().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/d2913632a4578ee4d0b8b1c4a69888c8a0672c4b/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/035316565ad77281a75305515e4682e6c4c6f7ca/":s)+a},
 $S:68}
 A.zv.prototype={
 h4(a,b){var s,r=this.a
