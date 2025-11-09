@@ -1502,7 +1502,7 @@ in relation to the given size, most often the size of the intended parent.</p>
 </pre></div>
 </div>
 <p>The vertices in the example defines percentages of the length from the center to the edge of the
-screen in both x and y axis, so for our first item in our list (<code class="docutils literal notranslate"><span class="pre">Vector2(0.0,</span> <span class="pre">1.0)</span></code>) we are pointing
+screen in both x and y axis, so for our first item in our list (<code class="docutils literal notranslate"><span class="pre">Vector2(0.0,</span> <span class="pre">-1.0)</span></code>) we are pointing
 on the middle of the top wall of the bounding box, since the coordinate system here is defined from
 the center of the polygon.</p>
 <p><img alt="An example of how to define a polygon shape" src="../_images/polygon_shape.png" /></p>
@@ -1525,8 +1525,8 @@ also has a bounding rectangle.</p>
 </pre></div>
 </div>
 <p>Dart also already has an excellent way to create rectangles and that class is called <code class="docutils literal notranslate"><span class="pre">Rect</span></code>, you can
-create a Flame <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> from a <code class="docutils literal notranslate"><span class="pre">Rect</span></code> by using the <code class="docutils literal notranslate"><span class="pre">Rectangle.fromRect</span></code> factory, and
-just like when setting the vertices of the <code class="docutils literal notranslate"><span class="pre">PolygonComponent</span></code>, your rectangle will be sized
+create a Flame <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> from a <code class="docutils literal notranslate"><span class="pre">Rect</span></code> by using the <code class="docutils literal notranslate"><span class="pre">RectangleComponent.fromRect</span></code> factory,
+and just like when setting the vertices of the <code class="docutils literal notranslate"><span class="pre">PolygonComponent</span></code>, your rectangle will be sized
 according to the <code class="docutils literal notranslate"><span class="pre">Rect</span></code> if you use this constructor.</p>
 <p>The following would create a <code class="docutils literal notranslate"><span class="pre">RectangleComponent</span></code> with its top left corner in <code class="docutils literal notranslate"><span class="pre">(10,</span> <span class="pre">10)</span></code> and a size
 of <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">50)</span></code>.</p>
