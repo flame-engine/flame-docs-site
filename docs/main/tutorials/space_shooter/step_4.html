@@ -477,15 +477,7 @@ provides a component out of the box for that, the <code class="docutils literal 
 <span class="w">      </span><span class="nl">period:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
 <span class="w">      </span><span class="nl">selfPositioning:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="w">      </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Bullet</span><span class="p">(</span>
-<span class="w">          </span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">+</span>
-<span class="w">              </span><span class="n">Vector2</span><span class="p">(</span>
-<span class="w">                </span><span class="m">0</span><span class="p">,</span>
-<span class="w">                </span><span class="o">-</span><span class="n">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
-<span class="w">              </span><span class="p">),</span>
-<span class="w">        </span><span class="p">);</span>
-
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">bullet</span><span class="p">;</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Bullet</span><span class="p">(</span><span class="nl">position:</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">height</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">));</span>
 <span class="w">      </span><span class="p">},</span>
 <span class="w">      </span><span class="nl">autoStart:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
 <span class="w">    </span><span class="p">);</span>
