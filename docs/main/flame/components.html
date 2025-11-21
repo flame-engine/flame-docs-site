@@ -471,8 +471,8 @@ This is the base of what we call the Flame Component System, or FCS for short.</
 gets added into the component tree, before the <code class="docutils literal notranslate"><span class="pre">onMount</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onParentResize</span></code> method is similar: it is also called when the component is mounted into the
 component tree, and also whenever the parent of the current component changes its size.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> method can be overridden to run code before the component is removed from the game,
-it is only run once even if the component is removed both by using the parents remove method and
+<p>The <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> method can be overridden to run code before the component is removed from the game.
+It is only run once even if the component is removed both by using the parents remove method and
 the <code class="docutils literal notranslate"><span class="pre">Component</span></code> remove method.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method can be overridden to run asynchronous initialization code for the component,
 like loading an image for example. This method is executed before <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> and
@@ -541,7 +541,7 @@ visual components through a hierarchy. You can do this by adding child component
 for example <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p>
 <p>When you have child components on a component every time the parent is updated and rendered, all the
 children are rendered and updated with the same conditions.</p>
-<p>Example of usage, where visibility of two components are handled by a wrapper:</p>
+<p>Here’s an example where visibility of two components are handled by a wrapper:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">GameOverPanel</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">visible</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Image</span><span class="w"> </span><span class="n">spriteImage</span><span class="p">;</span>
@@ -999,7 +999,7 @@ and <code class="docutils literal notranslate"><span class="pre">absolutePositio
 <span class="kd">final</span><span class="w"> </span><span class="n">p2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">component</span><span class="p">.</span><span class="n">positionOfAnchor</span><span class="p">(</span><span class="n">Anchor</span><span class="p">.</span><span class="n">bottomRight</span><span class="p">);</span>
 </pre></div>
 </div>
-<p>A common pitfall when using <code class="docutils literal notranslate"><span class="pre">anchor</span></code> is confusing it for as being the attachment point for children
+<p>A common pitfall when using <code class="docutils literal notranslate"><span class="pre">anchor</span></code> is confusing it as being the attachment point for children
 components. For example, setting <code class="docutils literal notranslate"><span class="pre">anchor</span></code> to <code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code> for a parent component does not mean
 that the children components will be placed w.r.t the center of parent.</p>
 <div class="admonition note">
@@ -1111,10 +1111,10 @@ class (check more details on <a class="reference internal" href="rendering/image
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>All animation components internally maintains a <code class="docutils literal notranslate"><span class="pre">SpriteAnimationTicker</span></code> which ticks the <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>.
+<p>All animation components internally maintain a <code class="docutils literal notranslate"><span class="pre">SpriteAnimationTicker</span></code> which ticks the <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>.
 This allows multiple components to share the same animation object.</p>
 <p>Example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="cm">/*You sprite list here*/</span><span class="p">];</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="cm">/*Your sprite list here*/</span><span class="p">];</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span><span class="n">sprites</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.01</span><span class="p">);</span>
 
 <span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationTicker</span><span class="p">(</span><span class="n">animation</span><span class="p">);</span>
