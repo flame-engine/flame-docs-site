@@ -12166,7 +12166,7 @@ $ixS:1}
 A.K_.prototype={
 $1(a){var s=A.b5().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/b5990e5ccc5e325fd24f0746e7d6689bbebc7c65/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/13e658725ddaa270601426d1485636157e38c34c/":s)+a},
 $S:54}
 A.rj.prototype={
 go9(){var s=this.b
