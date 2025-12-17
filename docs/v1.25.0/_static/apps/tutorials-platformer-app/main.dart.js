@@ -16993,7 +16993,7 @@ $iET:1}
 A.Vj.prototype={
 $1(a){var s=A.bS().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/a5cb96369ef86c7e85abf5d662a1ca5d89775053/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/1527ae0ec577a4ef50e65f6fefcfc1326707d9bf/":s)+a},
 $S:80}
 A.xq.prototype={
 grR(){var s=this.b

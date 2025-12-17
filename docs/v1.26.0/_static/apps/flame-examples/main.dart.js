@@ -20233,7 +20233,7 @@ $iLZ:1}
 A.a_t.prototype={
 $1(a){var s=A.cC().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/a5cb96369ef86c7e85abf5d662a1ca5d89775053/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/1527ae0ec577a4ef50e65f6fefcfc1326707d9bf/":s)+a},
 $S:111}
 A.BE.prototype={
 gA(a){var s=this.a
