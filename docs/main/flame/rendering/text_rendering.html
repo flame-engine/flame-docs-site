@@ -425,6 +425,11 @@ bounding box both vertically and horizontally.</p>
 <p>If you want to change the margins of the box use the <code class="docutils literal notranslate"><span class="pre">margins</span></code> variable in the <code class="docutils literal notranslate"><span class="pre">TextBoxConfig</span></code>.</p>
 <p>Finally, if you want to simulate a “typing” effect, by showing each character of the string one by
 one as if being typed in real-time, you can provide the <code class="docutils literal notranslate"><span class="pre">boxConfig.timePerChar</span></code> parameter.</p>
+<p>To control the typing effect, call <code class="docutils literal notranslate"><span class="pre">skip</span></code> to show the entire text at once, and <code class="docutils literal notranslate"><span class="pre">resetAnimation</span></code> to
+reset the typing effect back to the beginning without having to recreate the component. Do note
+that <code class="docutils literal notranslate"><span class="pre">skip</span></code> sets <code class="docutils literal notranslate"><span class="pre">boxConfig.timePerChar</span></code> to <code class="docutils literal notranslate"><span class="pre">0</span></code> so when attempting to replay the typing effect
+after calling <code class="docutils literal notranslate"><span class="pre">skip</span></code>, make sure to re-set the <code class="docutils literal notranslate"><span class="pre">boxConfig.timePerChar</span></code> right before or after
+calling <code class="docutils literal notranslate"><span class="pre">resetAnimation</span></code>.</p>
 <p>Example usage:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyTextBox</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">TextBoxComponent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">MyTextBox</span><span class="p">(</span><span class="kt">String</span><span class="w"> </span><span class="n">text</span><span class="p">)</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
