@@ -72,6 +72,11 @@ function generate_docs_for_version {
   rm -rf $tmp_flame_src/scripts
   cp -r $tmp_stash/scripts $tmp_flame_src
 
+  # Remove dartdoc dependency from flame_test if present, since docs are built
+  # with Sphinx and dartdoc can cause analyzer version conflicts with newer
+  # Flutter SDKs.
+  find $tmp_flame_src -path "*/flame_test/pubspec.yaml" -exec sed -i '/dartdoc:/d' {} +
+
   cd $tmp_flame_src
 
   melos bootstrap || echo "Melos bootstrapping failed, trying without"
