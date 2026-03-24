@@ -115,7 +115,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/drag_events.html">Drag Events</a></li>
@@ -228,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
@@ -291,6 +299,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -350,6 +366,11 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="effects">
 <h1>Effects<a class="headerlink" href="#effects" title="Link to this heading">¶</a></h1>
+<p>In game development, smoothly animating properties over time (moving a character, fading an element,
+scaling a power-up) is a constant need. Writing manual interpolation code in every <code class="docutils literal notranslate"><span class="pre">update</span></code> method
+is repetitive and error-prone. Effects provide a declarative way to describe these time-based
+changes: you attach an effect to a component, and it automatically handles the animation, then
+removes itself when finished.</p>
 <p>An effect is a special component that can attach to another component in order to modify its
 properties or appearance.</p>
 <p>For example, suppose you are making a game with collectible power-up items. You want these power-ups
@@ -433,6 +454,19 @@ the target property by incrementing/decrementing its current value, rather than 
 that property to a fixed value. This way multiple effects would be able to act on the same component
 without interfering with each other.</p>
 </section>
+<section id="effects-vs-decorators">
+<h2>Effects vs Decorators<a class="headerlink" href="#effects-vs-decorators" title="Link to this heading">¶</a></h2>
+<p>While effects and decorators can sometimes achieve similar visual results (like changing opacity
+or color), they have different performance and visual characteristics:</p>
+<ul class="simple">
+<li><p><strong>Effects</strong> are fast and generally change a property on a single component. When applied to
+a group, they affect each child individually.</p></li>
+<li><p><strong>Decorators</strong> are more powerful but slower. They use <code class="docutils literal notranslate"><span class="pre">saveLayer</span></code> to flatten a whole
+component subtree into a single layer before applying an effect. This is essential for
+correctly rendering composite objects with transparency or complex filters.</p></li>
+</ul>
+<p>See the <a class="reference internal" href="../rendering/decorators.html"><span class="std std-doc">Decorators documentation</span></a> for a more detailed comparison.</p>
+</section>
 <section id="see-also">
 <h2>See also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
 <ul class="simple">
@@ -476,6 +510,7 @@ without interfering with each other.</p>
   <a href='#overview' class='list-group-item level-1'>Overview</a>
   <a href='#effect' class='list-group-item level-2'>Effect</a>
   <a href='#creating-new-effects' class='list-group-item level-1'>Creating new effects</a>
+  <a href='#effects-vs-decorators' class='list-group-item level-1'>Effects vs Decorators</a>
   <a href='#see-also' class='list-group-item level-1'>See also</a>
 </div>
 

@@ -114,7 +114,14 @@
 <li class="toctree-l2"><a class="reference internal" href="game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
@@ -135,6 +142,7 @@
 <li class="toctree-l3"><a class="reference internal" href="effects/anchor_effects.html">Anchor Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="effects/color_effects.html">Color Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/combined_effect.html">Combined Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="effects/remove_effect.html">Remove Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="effects/function_effect.html">Function Effect</a></li>
 </ul>
@@ -220,6 +228,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_svg/svg.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_tiled/layers.html">Layers</a></li>
@@ -288,6 +297,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -325,7 +342,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -347,6 +364,12 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="camera-world">
 <h1>Camera &amp; World<a class="headerlink" href="#camera-world" title="Link to this heading">¶</a></h1>
+<p>In most games the world is larger than what fits on screen at once. The camera controls which
+portion of the game world is visible and how it is projected onto the player’s display, handling
+panning, zooming, and following characters. This is similar to how a
+<a class="reference external" href="https://api.flutter.dev/flutter/rendering/RenderViewport-class.html"><code class="docutils literal notranslate"><span class="pre">Viewport</span></code></a> in Flutter determines
+which part of a scrollable area is visible, but tailored for the free-form 2D coordinate space of
+a game.</p>
 <p>Example of a simple game structure:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>FlameGame
 ├── World
@@ -372,14 +395,14 @@ example at the root of your game class, like the built-in <code class="docutils 
 <p>Then, a <a class="reference internal" href="#cameracomponent">CameraComponent</a> class that “looks at” the <a class="reference internal" href="#world">World</a>. The
 <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has a <a class="reference internal" href="#viewport">Viewport</a> and a <a class="reference internal" href="#viewfinder">Viewfinder</a>
 inside of it, allowing both the flexibility of rendering the world at any place
-on the screen, and also control the viewing location and angle. The
+on the screen, and also controlling the viewing location and angle. The
 <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> also contains a <a class="reference internal" href="#backdrop">backdrop</a> component which is
 statically rendered below the world.</p>
 <section id="world">
 <h2>World<a class="headerlink" href="#world" title="Link to this heading">¶</a></h2>
 <p>This component should be used to host all other components that comprise your
 game world. The main property of the <code class="docutils literal notranslate"><span class="pre">World</span></code> class is that it does not render
-through traditional means – instead it is rendered by one or more
+through traditional means; instead it is rendered by one or more
 <a class="reference internal" href="#cameracomponent">CameraComponent</a>s to “look at” the world. In the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class there is
 one <code class="docutils literal notranslate"><span class="pre">World</span></code> called <code class="docutils literal notranslate"><span class="pre">world</span></code> which is added by default and paired together with
 the default <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> called <code class="docutils literal notranslate"><span class="pre">camera</span></code>.</p>
@@ -415,7 +438,7 @@ observe the same world at the same time.</p>
 which is paired together with the default <code class="docutils literal notranslate"><span class="pre">world</span></code>, so you don’t need to create
 or add your own <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> if your game doesn’t need to.</p>
 <p>A <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> has two other components inside: a <a class="reference internal" href="#viewport">Viewport</a> and a
-<a class="reference internal" href="#viewfinder">Viewfinder</a>, those components are always children of a camera.</p>
+<a class="reference internal" href="#viewfinder">Viewfinder</a>. Those components are always children of a camera.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class has a <code class="docutils literal notranslate"><span class="pre">camera</span></code> field in its constructor, so you can set
 what type of default camera that you want, like this camera with a
 <a class="reference internal" href="#cameracomponent-with-fixed-resolution">fixed resolution</a> for example:</p>
@@ -450,8 +473,8 @@ choice. For example:</p>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>This will create a camera with a viewport centered in the middle of the screen, taking as much
-space as possible while still maintaining the 4:3 (800x600) aspect ratio, and showing a game world region
+<p>This will create a camera with a viewport centered in the middle of the screen, taking as much space
+as possible while still maintaining the 4:3 (800x600) aspect ratio, and showing a game world region
 of size 800 x 600.</p>
 <p>A “fixed resolution” is very simple to work with, but it will underutilize the user’s available
 screen space, unless their device happens to have the same aspect ratio as your chosen dimensions.</p>
@@ -470,14 +493,14 @@ its children are things that you can put on top of the window.</p>
 components.</p>
 <p>The following viewports are available:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">MaxViewport</span></code> (default) – this viewport expands to the maximum size allowed
+<li><p><code class="docutils literal notranslate"><span class="pre">MaxViewport</span></code> (default): this viewport expands to the maximum size allowed
 by the game, i.e. it will be equal to the size of the game canvas.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">FixedResolutionViewport</span></code> – keeps the resolution and aspect ratio fixed, with black bars on the
+<li><p><code class="docutils literal notranslate"><span class="pre">FixedResolutionViewport</span></code>: keeps the resolution and aspect ratio fixed, with black bars on the
 sides if it doesn’t match the aspect ratio.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">FixedSizeViewport</span></code> – a simple rectangular viewport with predefined size.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">FixedAspectRatioViewport</span></code> – a rectangular viewport which expands to fit
+<li><p><code class="docutils literal notranslate"><span class="pre">FixedSizeViewport</span></code>: a simple rectangular viewport with predefined size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FixedAspectRatioViewport</span></code>: a rectangular viewport which expands to fit
 into the game canvas, but preserving its aspect ratio.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">CircularViewport</span></code> – a viewport in the shape of a circle, fixed size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CircularViewport</span></code>: a viewport in the shape of a circle, fixed size.</p></li>
 </ul>
 <p>If you add children to the <code class="docutils literal notranslate"><span class="pre">Viewport</span></code> they will appear as static HUDs in front of the world.</p>
 </section>

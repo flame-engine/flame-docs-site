@@ -117,7 +117,14 @@
 <li class="toctree-l2"><a class="reference internal" href="game_widget.html">Game Widget</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
@@ -230,6 +237,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
@@ -293,6 +301,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -352,14 +368,19 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="flamegame">
 <h1>FlameGame<a class="headerlink" href="#flamegame" title="Link to this heading">¶</a></h1>
-<p>The base of almost all Flame games is the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class, this is the root of your component
+<p>Every game needs a central object that owns the game loop, the continuous cycle of updating state
+and rendering frames that drives all real-time games. In Flame, <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> fills that role while
+also serving as the root of the component tree. If you are familiar with Flutter, think of
+<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> as the equivalent of <code class="docutils literal notranslate"><span class="pre">MaterialApp</span></code>: the top-level entry point that everything else
+hangs off of.</p>
+<p>The base of almost all Flame games is the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class. It is the root of your component
 tree. We refer to this component-based system as the Flame Component System (FCS). Throughout the
 documentation, FCS is used to reference this system.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class implements a <code class="docutils literal notranslate"><span class="pre">Component</span></code> based <code class="docutils literal notranslate"><span class="pre">Game</span></code>. It has a tree of components
 and calls the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> methods of all components that have been added to the game.</p>
 <p>Components can be added to the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> directly in the constructor with the named <code class="docutils literal notranslate"><span class="pre">children</span></code>
 argument, or from anywhere else with the <code class="docutils literal notranslate"><span class="pre">add</span></code>/<code class="docutils literal notranslate"><span class="pre">addAll</span></code> methods. Most of the time however, you want
-to add your children to a <code class="docutils literal notranslate"><span class="pre">World</span></code>, the default world exist under <code class="docutils literal notranslate"><span class="pre">FlameGame.world</span></code> and you add
+to add your children to a <code class="docutils literal notranslate"><span class="pre">World</span></code>, the default world exists under <code class="docutils literal notranslate"><span class="pre">FlameGame.world</span></code> and you add
 components to it just like you would to any other component.</p>
 <p>A simple <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> implementation that adds two components, one in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and one directly in
 the constructor can look like this:</p>
@@ -392,6 +413,30 @@ the constructor can look like this:</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<section id="custom-world-type">
+<h2>Custom World type<a class="headerlink" href="#custom-world-type" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> has a generic type parameter <code class="docutils literal notranslate"><span class="pre">W</span></code> that defaults to <code class="docutils literal notranslate"><span class="pre">World</span></code>. By specifying a custom world
+type, the <code class="docutils literal notranslate"><span class="pre">world</span></code> getter on your game will return your specific world type directly, without needing
+to cast it.</p>
+<p>This is useful when you have a custom <code class="docutils literal notranslate"><span class="pre">World</span></code> subclass and want to access its properties or methods
+from within your game class:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyWorld</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">score</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="o">&lt;</span><span class="n">MyWorld</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">world:</span><span class="w"> </span><span class="n">MyWorld</span><span class="p">());</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">incrementScore</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// No cast needed, `world` is already typed as `MyWorld`.</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">score</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>When using this generic parameter, you <strong>must</strong> pass a matching world instance to the <code class="docutils literal notranslate"><span class="pre">super</span></code>
+constructor. If the generic type is specified but no world is provided, a runtime assertion error
+will be thrown.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you instantiate your game in a build method your game will be rebuilt every
@@ -402,16 +447,17 @@ constructor.</p>
 </div>
 <p>To remove components from the list on a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> the <code class="docutils literal notranslate"><span class="pre">remove</span></code> or <code class="docutils literal notranslate"><span class="pre">removeAll</span></code> methods can be used.
 The first can be used if you just want to remove one component, and the second can be used when you
-want to remove a list of components. These methods exist on all <code class="docutils literal notranslate"><span class="pre">Component</span></code>s, including the world.</p>
+want to remove a list of components. These methods exist on all <code class="docutils literal notranslate"><span class="pre">Component</span></code>s, including the <code class="docutils literal notranslate"><span class="pre">World</span></code>.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> has a built-in <code class="docutils literal notranslate"><span class="pre">World</span></code> called <code class="docutils literal notranslate"><span class="pre">world</span></code> and a <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> instance called
 <code class="docutils literal notranslate"><span class="pre">camera</span></code>, you can read more about those in the <a class="reference internal" href="camera.html"><span class="std std-doc">Camera section</span></a>.</p>
+</section>
 <section id="game-loop">
 <h2>Game Loop<a class="headerlink" href="#game-loop" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> module is a simple abstraction of the game loop concept. Basically, most games are
 built upon two methods:</p>
 <ul class="simple">
 <li><p>The render method takes the canvas for drawing the current state of the game.</p></li>
-<li><p>The update method receives the delta time in microseconds since the last update and allows you to
+<li><p>The update method receives the delta time in seconds since the last update and allows you to
 move to the next state.</p></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is used by all of Flame’s <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementations.</p>
@@ -419,7 +465,7 @@ move to the next state.</p></li>
 <section id="resizing">
 <h2>Resizing<a class="headerlink" href="#resizing" title="Link to this heading">¶</a></h2>
 <p>Every time the game needs to be resized, for example when the orientation is changed, <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>
-will call all of the <code class="docutils literal notranslate"><span class="pre">Component</span></code>s <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> methods and it will also pass this information to
+will call all of the <code class="docutils literal notranslate"><span class="pre">Component</span></code>’s <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> methods and it will also pass this information to
 the camera and viewport.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">FlameGame.camera</span></code> controls which point in the coordinate space that should be at the anchor of
 your viewfinder, [0,0] is in the center (<code class="docutils literal notranslate"><span class="pre">Anchor.center</span></code>) of the viewport by default.</p>
@@ -436,11 +482,13 @@ your viewfinder, [0,0] is in the center (<code class="docutils literal notransla
    classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
    classDef lightYellow fill:#523F00,stroke-width:2px;
    classDef yellow fill:#F6BE00,color:#000000;
+   classDef green fill:#00523F,stroke:#F6BE00,stroke-width:2px;
 
    %% Nodes  %%
    x(Runs Each Tick)
    y(Runs On Add &amp; Resize):::lightYellow
    z(Runs Once):::yellow
+   w(Runs On Hot Reload):::green
 
         </div><div class="mermaid">
             %%{init: { 'theme': 'dark' } }%%
@@ -450,6 +498,7 @@ your viewfinder, [0,0] is in the center (<code class="docutils literal notransla
    classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
    classDef lightYellow fill:#523F00,stroke-width:2px;
    classDef yellow fill:#F6BE00,color:#000000;
+   classDef green fill:#00523F,stroke:#F6BE00,stroke-width:2px;
 
     %% Nodes %%
 
@@ -459,6 +508,7 @@ your viewfinder, [0,0] is in the center (<code class="docutils literal notransla
     D(update)
     E(render)
     F(onRemove):::yellow
+    G(onHotReload):::green
 
     %% Flow %%
 
@@ -469,14 +519,16 @@ your viewfinder, [0,0] is in the center (<code class="docutils literal notransla
     E--&gt;D
     E-. If removed .-&gt;F
     F-. If re-parented .-&gt;A
+    D-. If hot reloaded .-&gt;G
+    G-.-&gt;D
 
         </div><p>When a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is first added to a <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> the lifecycle methods <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>, <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>
 and <code class="docutils literal notranslate"><span class="pre">onMount</span></code> will be called in that order. Then <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> are called in sequence for
-every game tick.  If the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is removed from the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>  then <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> is called.
+every game tick. If the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is removed from the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> then <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> is called.
 If the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is added to a new <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> the sequence repeats from <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The order of <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>and <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> are reversed from that of other
+<p>The order of <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> and <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> are reversed from that of other
 <code class="docutils literal notranslate"><span class="pre">Component</span></code>s. This is to allow game element sizes to be calculated before
 resources are loaded or generated.</p>
 </div>
@@ -497,6 +549,43 @@ resources are loaded or generated.</p>
 <p>Clean-up of children and resources in a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is not done automatically
 and must be explicitly added to the <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> call.</p>
 </div>
+<section id="onhotreload">
+<h3>onHotReload<a class="headerlink" href="#onhotreload" title="Link to this heading">¶</a></h3>
+<p>When Flutter’s hot reload is triggered (debug mode only), the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> calls <code class="docutils literal notranslate"><span class="pre">onHotReload</span></code> on
+the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, which automatically propagates the notification to every component in the tree that
+is loading or loaded. Override this method on any component to reload assets, refresh cached values,
+or react to source code changes during development:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onHotReload</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Refresh game-level state affected by code changes.</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onHotReload</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">onHotReload</span></code> is only called in debug mode. Components that are still in the
+lifecycle queue (loading but not yet mounted) also receive the notification.
+Always call <code class="docutils literal notranslate"><span class="pre">super.onHotReload()</span></code> so the event continues to propagate to
+children.</p>
+</div>
+</section>
+<section id="dispose">
+<h3>dispose()<a class="headerlink" href="#dispose" title="Link to this heading">¶</a></h3>
+<p>As a convenience, <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> provides a <code class="docutils literal notranslate"><span class="pre">dispose()</span></code> method that handles all of the common cleanup
+in a single call:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">dispose</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>This removes all children from the game (triggering <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> on every component in the tree),
+processes all pending lifecycle events, and clears the <code class="docutils literal notranslate"><span class="pre">images</span></code> and <code class="docutils literal notranslate"><span class="pre">assets</span></code> caches.</p>
+<p>The difference between <code class="docutils literal notranslate"><span class="pre">dispose()</span></code> and <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> is that <code class="docutils literal notranslate"><span class="pre">dispose()</span></code> is a method you call
+explicitly to perform cleanup, while <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> is a lifecycle callback that is invoked
+automatically when the game is removed from a <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>. You can use <code class="docutils literal notranslate"><span class="pre">dispose()</span></code> from within
+<code class="docutils literal notranslate"><span class="pre">onRemove</span></code>, or call it independently whenever you need to reset the game state.</p>
+</section>
 </section>
 <section id="debug-mode">
 <h2>Debug mode<a class="headerlink" href="#debug-mode" title="Link to this heading">¶</a></h2>
@@ -591,7 +680,7 @@ the class is removed from a parent.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Game</span></code> class allows for more freedom of how to implement things, but you
 are also missing out on all of the built-in features in Flame if you use it.</p>
 </div>
-<p>An example of how a <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementation could look like is:</p>
+<p>An example of what a <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementation could look like:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGameSubClass</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Game</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -624,10 +713,9 @@ are also missing out on all of the built-in features in Flame if you use it.</p>
 </ul>
 <p>When pausing a <code class="docutils literal notranslate"><span class="pre">Game</span></code>, the <code class="docutils literal notranslate"><span class="pre">GameLoop</span></code> is effectively paused, meaning that no updates or new renders
 will happen until it is resumed.</p>
-<p>While the game is paused, it is possible to advanced it frame by frame using the <code class="docutils literal notranslate"><span class="pre">stepEngine</span></code>
-method.
-It might not be much useful in the final game, but can be very helpful in inspecting game state step
-by step during the development cycle.</p>
+<p>While the game is paused, it is possible to advance it frame by frame using the <code class="docutils literal notranslate"><span class="pre">stepEngine</span></code>
+method. It might not be very useful in the final game, but it can be very helpful for inspecting
+game state step by step during the development cycle.</p>
 <section id="backgrounding">
 <h3>Backgrounding<a class="headerlink" href="#backgrounding" title="Link to this heading">¶</a></h3>
 <p>The game will be automatically paused when the app is sent to the background,
@@ -640,14 +728,14 @@ and resumed when it comes back to the foreground. This behavior can be disabled 
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>On the current Flutter stable (3.13), this flag is effectively ignored on
-non-mobile platforms including the web.</p>
+<p>This flag currently only works on Android and iOS.</p>
 </section>
 </section>
 <section id="hasperformancetracker-mixin">
 <h2>HasPerformanceTracker mixin<a class="headerlink" href="#hasperformancetracker-mixin" title="Link to this heading">¶</a></h2>
-<p>While optimizing a game, it can be useful to track the time it took for the game to update and render
-each frame. This data can help in detecting areas of the code that are running hot. It can also help
+<p>While optimizing a game, it can be useful to track the time it took for the game to update and
+render each frame. This data can help in detecting areas of the code that are running hot. It can
+also help
 in detecting visual areas of the game that are taking the most time to render.</p>
 <p>To get the update and render times, just add the <code class="docutils literal notranslate"><span class="pre">HasPerformanceTracker</span></code> mixin to the game class.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasPerformanceTracker</span><span class="w"> </span><span class="p">{</span>
@@ -688,9 +776,12 @@ in detecting visual areas of the game that are taking the most time to render.</
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#custom-world-type' class='list-group-item level-1'>Custom World type</a>
   <a href='#game-loop' class='list-group-item level-1'>Game Loop</a>
   <a href='#resizing' class='list-group-item level-1'>Resizing</a>
   <a href='#lifecycle' class='list-group-item level-1'>Lifecycle</a>
+  <a href='#onhotreload' class='list-group-item level-2'>onHotReload</a>
+  <a href='#dispose' class='list-group-item level-2'>dispose()</a>
   <a href='#debug-mode' class='list-group-item level-1'>Debug mode</a>
   <a href='#change-background-color' class='list-group-item level-1'>Change background color</a>
   <a href='#singlegameinstance-mixin' class='list-group-item level-1'>SingleGameInstance mixin</a>

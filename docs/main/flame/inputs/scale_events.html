@@ -113,7 +113,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="drag_events.html">Drag Events</a></li>
@@ -226,6 +233,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
@@ -289,6 +297,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -353,10 +369,10 @@ Only one single scale gesture can occur at the same time.</p>
 <p>For those components that you want to respond to scale events, add the <code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code> mixin.</p>
 <ul class="simple">
 <li><p>This mixin adds three overridable methods to your component: <code class="docutils literal notranslate"><span class="pre">onScaleStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onScaleUpdate</span></code>,
-<code class="docutils literal notranslate"><span class="pre">onScaleEnd</span></code>. By default, these methods do nothing – they need to be
-overridden in order to perform any function.</p></li>
+<code class="docutils literal notranslate"><span class="pre">onScaleEnd</span></code>. By default, these methods do nothing; they need to be overridden in order to
+perform any function.</p></li>
 <li><p>In addition, the component must implement the <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code> method (already implemented
-in <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, so most of the time you don’t need to do anything here) – this method
+in <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, so most of the time you don’t need to do anything here). This method
 allows Flame to know whether the event occurred within the component or not.</p></li>
 </ul>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ScaleCallbacks</span><span class="w"> </span><span class="p">{</span>

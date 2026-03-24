@@ -115,7 +115,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/drag_events.html">Drag Events</a></li>
@@ -228,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
@@ -291,6 +299,14 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../klondike/step2.html">2. Scaffolding</a></li>
@@ -423,6 +439,28 @@ our life way easier if you want to center the component on the screen.</p></li>
 </ul>
 <p>And that is it for this first part! In this first step, we learned the basics of how to create a
 game class, insert it into the Flutter widget tree, and render a simple component.</p>
+<section id="preparing-the-assets-folder">
+<h2>Preparing the assets folder<a class="headerlink" href="#preparing-the-assets-folder" title="Link to this heading">¶</a></h2>
+<p>Before we move on, let’s prepare our project for the graphics we will be using in the next steps.
+Games need assets such as images, sprites, and animations, and our Space Shooter is no exception.</p>
+<p>First, create an <code class="docutils literal notranslate"><span class="pre">assets/images/</span></code> folder at the root of your project. Then tell Flutter about it
+by adding the following lines to your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">assets</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">assets/images/</span>
+</pre></div>
+</div>
+<p>Your project structure should look like this:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>space_shooter/
+ ├─assets/
+ │  └─images/
+ ├─lib/
+ │  └─main.dart
+ └─pubspec.yaml
+</pre></div>
+</div>
+<p>In the following steps, we will provide the image files that need to be saved into the
+<code class="docutils literal notranslate"><span class="pre">assets/images/</span></code> folder. Make sure to save each one as you encounter it.</p>
 <button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/main/_static/apps/tutorials-space_shooter-app/index.html?step1&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step1">
 <div class="filename docutils container">
 main.dart</div>
@@ -459,6 +497,7 @@ main.dart</div>
 </div>
 <button class="flutter-app-button code" onclick="open_code_listings(&quot;tutorials-space_shooter-app-source-step1&quot;)">Code</button><p><a class="reference internal" href="step_2.html"><span class="std std-doc">Next step: Controlling the player and adding some graphics</span></a></p>
 </section>
+</section>
 
 
     </div>
@@ -490,6 +529,7 @@ main.dart</div>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#preparing-the-assets-folder' class='list-group-item level-1'>Preparing the assets folder</a>
 </div>
 
     </div>

@@ -115,7 +115,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/drag_events.html">Drag Events</a></li>
@@ -228,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
@@ -291,6 +299,14 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../klondike/step2.html">2. Scaffolding</a></li>
@@ -362,8 +378,10 @@ call Sprite Animations, which is an animation that is composed by a collection o
 one representing one frame, and the animation effect is achieved by rendering one sprite after
 the other over a time frame.</p>
 <p>To better visualize this, this is the animation that we will be using, note how the image holds 4
-individual images (or frames).</p>
-<p><img alt="" src="../../_images/player.png" /></p>
+individual images (or frames). Right-click the image below, choose “Save as…”, and store it as
+<code class="docutils literal notranslate"><span class="pre">player.png</span></code> in your <code class="docutils literal notranslate"><span class="pre">assets/images/</span></code> folder (replacing the static <code class="docutils literal notranslate"><span class="pre">player-sprite.png</span></code> we used
+before):</p>
+<p><img alt="player" src="../../_images/player.png" /></p>
 <p>Flame provides us with a specialized classes to deal with such images: <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code> and its component
 wrapper <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> and changing our <code class="docutils literal notranslate"><span class="pre">Player</span></code> component to be an animation is quite
 simple, take a look at how the component will look like now:</p>
@@ -420,7 +438,14 @@ speeds, this not only creates the sensation of depth but also improves the movem
 of the game a lot. If you want to read more about Parallax Scrolling, check this article
 from <a class="reference external" href="https://en.wikipedia.org/wiki/Parallax_scrolling">Wikipedia</a>.</p>
 <p>Flame provides classes to implement parallax scrolling out of the box, these classes are <code class="docutils literal notranslate"><span class="pre">Parallax</span></code> and
-<code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code>, so lets take a look at how we can add that new feature to the game:</p>
+<code class="docutils literal notranslate"><span class="pre">ParallaxComponent</span></code>. We will need three star layer images for our parallax background. Right-click
+each image below, choose “Save as…”, and store them in your <code class="docutils literal notranslate"><span class="pre">assets/images/</span></code> folder:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">stars_0.png</span></code> (farthest layer): <img alt="stars_0" src="../../_images/stars_0.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stars_1.png</span></code> (middle layer): <img alt="stars_1" src="../../_images/stars_1.png" /></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">stars_2.png</span></code> (closest layer): <img alt="stars_2" src="../../_images/stars_2.png" /></p></li>
+</ul>
+<p>Now lets take a look at how we can add that new feature to the game:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>

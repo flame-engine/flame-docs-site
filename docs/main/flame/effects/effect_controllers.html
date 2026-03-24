@@ -115,7 +115,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/drag_events.html">Drag Events</a></li>
@@ -228,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
@@ -291,6 +299,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -393,43 +409,43 @@ common controllers. The syntax of the constructor is the following:</p>
 </pre></div>
 </div>
 <ul>
-<li><p><em><code class="docutils literal notranslate"><span class="pre">duration</span></code></em> – the length of the main part of the effect, i.e. how long it should take to go
+<li><p><em><code class="docutils literal notranslate"><span class="pre">duration</span></code></em>: the length of the main part of the effect, i.e. how long it should take to go
 from 0 to 100%. This parameter cannot be negative, but can be zero. If this is the only parameter
 specified then the effect will grow linearly over the <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds.</p></li>
-<li><p><em><code class="docutils literal notranslate"><span class="pre">curve</span></code></em> – if given, creates a non-linear effect that grows from 0 to 100% according to the
+<li><p><em><code class="docutils literal notranslate"><span class="pre">curve</span></code></em>: if given, creates a non-linear effect that grows from 0 to 100% according to the
 provided <a class="reference external" href="https://api.flutter.dev/flutter/animation/Curves-class.html">curve</a>.</p></li>
-<li><p><em><code class="docutils literal notranslate"><span class="pre">reverseDuration</span></code></em> – if provided, adds an additional step to the controller: after the effect
+<li><p><em><code class="docutils literal notranslate"><span class="pre">reverseDuration</span></code></em>: if provided, adds an additional step to the controller: after the effect
 has grown from 0 to 100% over the <code class="docutils literal notranslate"><span class="pre">duration</span></code> seconds, it will then go backwards from 100% to 0
 over the <code class="docutils literal notranslate"><span class="pre">reverseDuration</span></code> seconds. In addition, the effect will complete at progress level of 0
 (normally the effect completes at progress 1).</p></li>
-<li><p><em><code class="docutils literal notranslate"><span class="pre">reverseCurve</span></code></em> – the curve to be used during the “reverse” step of the effect. If not given,
+<li><p><em><code class="docutils literal notranslate"><span class="pre">reverseCurve</span></code></em>: the curve to be used during the “reverse” step of the effect. If not given,
 this will default to <code class="docutils literal notranslate"><span class="pre">curve.flipped</span></code>.</p></li>
-<li><p><em><code class="docutils literal notranslate"><span class="pre">alternate</span></code></em> – setting this to true is equivalent to specifying the <code class="docutils literal notranslate"><span class="pre">reverseDuration</span></code> equal
+<li><p><em><code class="docutils literal notranslate"><span class="pre">alternate</span></code></em>: setting this to true is equivalent to specifying the <code class="docutils literal notranslate"><span class="pre">reverseDuration</span></code> equal
 to the <code class="docutils literal notranslate"><span class="pre">duration</span></code>. If the <code class="docutils literal notranslate"><span class="pre">reverseDuration</span></code> is already set, this flag has no effect.</p></li>
-<li><p><em><code class="docutils literal notranslate"><span class="pre">atMaxDuration</span></code></em> – if non-zero, this inserts a pause after the effect reaches its max
+<li><p><em><code class="docutils literal notranslate"><span class="pre">atMaxDuration</span></code></em>: if non-zero, this inserts a pause after the effect reaches its max
 progress and before the reverse stage. During this time the effect is kept at 100% progress. If
 there is no reverse stage, then this will simply be a pause before the effect is marked as
 completed.</p></li>
-<li><p><em><code class="docutils literal notranslate"><span class="pre">atMinDuration</span></code></em> – if non-zero, this inserts a pause after the reaches its lowest progress
+<li><p><em><code class="docutils literal notranslate"><span class="pre">atMinDuration</span></code></em>: if non-zero, this inserts a pause after the reaches its lowest progress
 (0) at the end of the reverse stage. During this time, the effect’s progress is at 0%. If there
 is no reverse stage, then this pause will still be inserted after the “at-max” pause if it’s
 present, or after the forward stage otherwise. In addition, the effect will now complete at
 progress level of 0.</p></li>
-<li><p><em><code class="docutils literal notranslate"><span class="pre">repeatCount</span></code></em> – if greater than one, it will cause the effect to repeat itself the prescribed
+<li><p><em><code class="docutils literal notranslate"><span class="pre">repeatCount</span></code></em>: if greater than one, it will cause the effect to repeat itself the prescribed
 number of times. Each iteration will consists of the forward stage, pause at max, reverse stage,
 then pause at min (skipping those that were not specified).</p></li>
-<li><p><em><code class="docutils literal notranslate"><span class="pre">infinite</span></code></em> – if true, the effect will repeat infinitely and never reach completion. This is
+<li><p><em><code class="docutils literal notranslate"><span class="pre">infinite</span></code></em>: if true, the effect will repeat infinitely and never reach completion. This is
 equivalent to as if <code class="docutils literal notranslate"><span class="pre">repeatCount</span></code> was set to infinity.</p></li>
-<li><p><em><code class="docutils literal notranslate"><span class="pre">startDelay</span></code></em> – an additional wait time inserted before the beginning of the effect. This
+<li><p><em><code class="docutils literal notranslate"><span class="pre">startDelay</span></code></em>: an additional wait time inserted before the beginning of the effect. This
 wait time is executed only once, even if the effect is repeating. During this time the effect’s
 <code class="docutils literal notranslate"><span class="pre">.started</span></code> property returns false. The effect’s <code class="docutils literal notranslate"><span class="pre">onStart()</span></code> callback will be executed at the end
 of this waiting period.</p>
 <p>Using this parameter is the simplest way to create a chain of effects that execute one after
 another (or with an overlap).</p>
 </li>
-<li><p><em><code class="docutils literal notranslate"><span class="pre">onMax</span></code></em> – callback function which will be invoked right after reaching its max progress and
+<li><p><em><code class="docutils literal notranslate"><span class="pre">onMax</span></code></em>: callback function which will be invoked right after reaching its max progress and
 before the optional pause and reverse stage.</p></li>
-<li><p><em><code class="docutils literal notranslate"><span class="pre">onMin</span></code></em> – callback function which will be invoked right after reaching its lowest progress
+<li><p><em><code class="docutils literal notranslate"><span class="pre">onMin</span></code></em>: callback function which will be invoked right after reaching its lowest progress
 at the end of the reverse stage and before the optional pause and forward stage.</p></li>
 </ul>
 <p>The effect controller returned by this factory constructor will be composited of multiple simpler
@@ -438,13 +454,13 @@ needs, you can always create your own combination from the same building blocks.
 <p>In addition to the factory constructor, the <code class="docutils literal notranslate"><span class="pre">EffectController</span></code> class defines a number of properties
 common for all effect controllers. These properties are:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">.started</span></code> – true if the effect has already started. For most effect controllers this property
+<li><p><code class="docutils literal notranslate"><span class="pre">.started</span></code>: true if the effect has already started. For most effect controllers this property
 is always true. The only exception is the <code class="docutils literal notranslate"><span class="pre">DelayedEffectController</span></code> which returns false while the
 effect is in the waiting stage.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.completed</span></code> – becomes true when the effect controller finishes execution.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.progress</span></code> – current value of the effect controller, a floating-point value from 0 to 1. This
+<li><p><code class="docutils literal notranslate"><span class="pre">.completed</span></code>: becomes true when the effect controller finishes execution.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">.progress</span></code>: current value of the effect controller, a floating-point value from 0 to 1. This
 variable is the main “output” value of an effect controller.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">.duration</span></code> – total duration of the effect, or <code class="docutils literal notranslate"><span class="pre">null</span></code> if the duration cannot be determined (for
+<li><p><code class="docutils literal notranslate"><span class="pre">.duration</span></code>: total duration of the effect, or <code class="docutils literal notranslate"><span class="pre">null</span></code> if the duration cannot be determined (for
 example if the duration is random or infinite).</p></li>
 </ul>
 </section>
@@ -535,8 +551,10 @@ following effects qualify:</p>
 <p>The parameter <code class="docutils literal notranslate"><span class="pre">speed</span></code> is in units per second, where the notion of a “unit” depends on the target
 effect. For example, for move effects, they refer to the distance traveled; for rotation effects
 the units are radians.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">speedController</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpeedEffectController</span><span class="p">(</span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">);</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// same as speedController</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">speedController</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">SpeedEffectController</span><span class="p">(</span><span class="n">LinearEffectController</span><span class="p">(</span><span class="m">0</span><span class="p">),</span><span class="w"> </span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span>
+<span class="w">    </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">speed:</span><span class="w"> </span><span class="m">1</span><span class="p">);</span><span class="w"> </span><span class="c1">// same as speedController</span>
 </pre></div>
 </div>
 </section>
@@ -570,7 +588,7 @@ repeated contexts, such as <a class="reference internal" href="#repeatedeffectco
 </pre></div>
 </div>
 <p>The user has the ability to control which <code class="docutils literal notranslate"><span class="pre">Random</span></code> source to use, as well as the exact distribution
-of the produced random durations. Two distributions – <code class="docutils literal notranslate"><span class="pre">.uniform</span></code> and <code class="docutils literal notranslate"><span class="pre">.exponential</span></code> are included,
+of the produced random durations. Two distributions, <code class="docutils literal notranslate"><span class="pre">.uniform</span></code> and <code class="docutils literal notranslate"><span class="pre">.exponential</span></code>, are included,
 any other can be implemented by the user.</p>
 </section>
 <section id="sineeffectcontroller">

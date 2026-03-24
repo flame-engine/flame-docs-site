@@ -115,7 +115,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/drag_events.html">Drag Events</a></li>
@@ -228,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
@@ -291,6 +299,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -357,11 +373,13 @@
    classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
    classDef lightYellow fill:#523F00,stroke-width:2px;
    classDef yellow fill:#F6BE00,color:#000000;
+   classDef green fill:#00523F,stroke:#F6BE00,stroke-width:2px;
 
    %% Nodes  %%
    x(Runs Each Tick)
    y(Runs On Add &amp; Resize):::lightYellow
    z(Runs Once):::yellow
+   w(Runs On Hot Reload):::green
 
         </div><div class="mermaid">
             %%{init: { 'theme': 'dark' } }%%
@@ -371,6 +389,7 @@
    classDef default fill:#282828,stroke:#F6BE00,stroke-width:2px;
    classDef lightYellow fill:#523F00,stroke-width:2px;
    classDef yellow fill:#F6BE00,color:#000000;
+   classDef green fill:#00523F,stroke:#F6BE00,stroke-width:2px;
 
     %% Nodes %%
 
@@ -380,6 +399,7 @@
     D(update)
     E(render)
     F(onRemove):::lightYellow
+    G(onHotReload):::green
 
     %% Flow %%
 
@@ -390,6 +410,8 @@
     E--&gt;D
     E-. If removed .-&gt;F
     F-. If re-parented .-&gt;B
+    D-. If hot reloaded .-&gt;G
+    G-.-&gt;D
 
         </div>
 

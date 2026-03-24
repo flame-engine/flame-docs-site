@@ -115,7 +115,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/drag_events.html">Drag Events</a></li>
@@ -228,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
@@ -291,6 +299,14 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../klondike/step2.html">2. Scaffolding</a></li>
@@ -352,7 +368,9 @@
 <h1>Adding Enemies<a class="headerlink" href="#adding-enemies" title="Link to this heading">¶</a></h1>
 <p>Now that the starship is able to shoot, we need something for the player to shoot at! So for
 this step we will work on adding enemies to the game.</p>
-<p>First, let’s create an <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class that will represent the enemies in game:</p>
+<p>First, let’s create an <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class that will represent the enemies in game. Right-click the
+image below, choose “Save as…”, and store it as <code class="docutils literal notranslate"><span class="pre">enemy.png</span></code> in your <code class="docutils literal notranslate"><span class="pre">assets/images/</span></code> folder:</p>
+<p><img alt="enemy" src="../../_images/enemy.png" /></p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Enemy</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 

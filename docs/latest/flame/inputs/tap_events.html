@@ -114,7 +114,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Inputs</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="drag_events.html">Drag Events</a></li>
@@ -135,6 +142,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../effects/anchor_effects.html">Anchor Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/color_effects.html">Color Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/combined_effect.html">Combined Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/remove_effect.html">Remove Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/function_effect.html">Function Effect</a></li>
 </ul>
@@ -220,6 +228,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_svg/svg.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
@@ -288,6 +297,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -325,7 +342,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -355,7 +372,7 @@ which is still supported, is described in <a class="reference internal" href="ge
 <p><strong>Tap events</strong> are one of the most basic methods of interaction with a Flame game. These events
 occur when the user touches the screen with a finger, or clicks with a mouse, or taps with a stylus.
 A tap can be “long”, but the finger isn’t supposed to move during the gesture. Thus, touching the
-screen, then moving the finger, and then releasing – is not a tap but a drag. Similarly, clicking
+screen, then moving the finger, and then releasing is not a tap but a drag. Similarly, clicking
 a mouse button while the mouse is moving will also be registered as a drag.</p>
 <p>Multiple tap events can occur at the same time, especially if the user has multiple fingers. Such
 cases will be handled correctly by Flame, and you can even keep track of the events by using their
@@ -366,7 +383,7 @@ cases will be handled correctly by Flame, and you can even keep track of the eve
 <code class="docutils literal notranslate"><span class="pre">onTapCancel</span></code>, and <code class="docutils literal notranslate"><span class="pre">onLongTapDown</span></code>. By default, each of these methods does nothing, they need
 to be overridden in order to perform any function.</p></li>
 <li><p>In addition, the component must implement the <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code> method (already implemented
-in <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, so most of the time you don’t need to do anything here) – this method
+in <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, so most of the time you don’t need to do anything here). This method
 allows Flame to know whether the event occurred within the component or not.</p></li>
 </ul>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapCallbacks</span><span class="w"> </span><span class="p">{</span>
@@ -440,7 +457,7 @@ starts making the circle. The thickness of the circle will be proportional to th
 tap: after <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code> the circle’s stroke width will no longer grow. There will be a thin white
 stripe at the moment the <code class="docutils literal notranslate"><span class="pre">onLongTapDown</span></code> fires. Lastly, the circle will implode and disappear if
 you cause the <code class="docutils literal notranslate"><span class="pre">onTapCancel</span></code> event by moving the finger.</p>
-<iframe class="flutter-app-iframe" src="/v1.33.0/_static/apps/flame-examples/index.html?tap_events"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-tap_events">
+<iframe class="flutter-app-iframe" src="/v1.36.0/_static/apps/flame-examples/index.html?tap_events"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-tap_events">
 <div class="filename docutils container">
 tap_events.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:math&#39;</span><span class="p">;</span>
@@ -681,7 +698,7 @@ for the new API:</p>
 event object <code class="docutils literal notranslate"><span class="pre">TapDownEvent</span> <span class="pre">event</span></code>.</p></li>
 <li><p>There is no return value anymore, but if you need to make a component to pass-through the taps
 to the components below, then set <code class="docutils literal notranslate"><span class="pre">event.continuePropagation</span></code> to true. This is only needed for
-<code class="docutils literal notranslate"><span class="pre">onTapDown</span></code> events – all other events will pass-through automatically.</p></li>
+<code class="docutils literal notranslate"><span class="pre">onTapDown</span></code> events; all other events will pass-through automatically.</p></li>
 <li><p>If your component needs to know the coordinates of the point of touch, use
 <code class="docutils literal notranslate"><span class="pre">event.localPosition</span></code> instead of computing it manually. Properties <code class="docutils literal notranslate"><span class="pre">event.canvasPosition</span></code> and
 <code class="docutils literal notranslate"><span class="pre">event.devicePosition</span></code> are also available.</p></li>

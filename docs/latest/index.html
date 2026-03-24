@@ -113,7 +113,14 @@
 <li class="toctree-l2"><a class="reference internal" href="flame/game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flame/game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="flame/structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="flame/components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="flame/components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="flame/inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="flame/inputs/drag_events.html">Drag Events</a></li>
@@ -134,6 +141,7 @@
 <li class="toctree-l3"><a class="reference internal" href="flame/effects/anchor_effects.html">Anchor Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="flame/effects/color_effects.html">Color Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="flame/effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="flame/effects/combined_effect.html">Combined Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="flame/effects/remove_effect.html">Remove Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="flame/effects/function_effect.html">Function Effect</a></li>
 </ul>
@@ -219,6 +227,7 @@
 <li class="toctree-l3"><a class="reference internal" href="bridge_packages/flame_svg/svg.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="bridge_packages/flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
 <li class="toctree-l3"><a class="reference internal" href="bridge_packages/flame_tiled/layers.html">Layers</a></li>
@@ -287,6 +296,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -324,7 +341,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -394,7 +411,7 @@ your widget tree. You can use it as the root widget of your app, or as a child o
 </div>
 <p>In Flame we provide a concept called the Flame Component System (FCS), which is a way to organize
 your game objects in a way that makes it easy to manage them. You can read more about it in the
-<a class="reference internal" href="flame/components.html"><span class="std std-doc">Components</span></a> section.</p>
+<a class="reference internal" href="flame/components/components.html"><span class="std std-doc">Components</span></a> section.</p>
 <p>When you want to start a new game you either have to extend the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class or the <code class="docutils literal notranslate"><span class="pre">World</span></code>
 class. The <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is the root of your game and is responsible for managing the game loop and
 the components. The <code class="docutils literal notranslate"><span class="pre">World</span></code> class is a component that can be used to create a world in your game.</p>
@@ -448,7 +465,7 @@ overridden the <code class="docutils literal notranslate"><span class="pre">onLo
 image file called <code class="docutils literal notranslate"><span class="pre">player.png</span></code>. The image has to be in the <code class="docutils literal notranslate"><span class="pre">assets/images</span></code> directory in your project
 (see the <a class="reference internal" href="flame/structure.html"><span class="std std-doc">Assets Directory Structure</span></a>) and you have to add it to the
 <a class="reference external" href="https://docs.flutter.dev/ui/assets/assets-and-images">assets section</a> of your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file.
-In this class we also set the size of the component to 200x200 and the <a class="reference internal" href="flame/components.html#anchor"><span class="std std-ref">anchor</span></a>
+In this class we also set the size of the component to 200x200 and the <a class="reference internal" href="flame/components/position_component.html#anchor"><span class="std std-ref">anchor</span></a>
 to the center of the component by sending them to the <code class="docutils literal notranslate"><span class="pre">super</span></code> constructor. We also let the user of
 the <code class="docutils literal notranslate"><span class="pre">Player</span></code> class set the position of the component when creating it
 (<code class="docutils literal notranslate"><span class="pre">Player(position:</span> <span class="pre">Vector2(0,</span> <span class="pre">0))</span></code>).</p>

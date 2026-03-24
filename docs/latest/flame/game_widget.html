@@ -114,7 +114,14 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
@@ -135,6 +142,7 @@
 <li class="toctree-l3"><a class="reference internal" href="effects/anchor_effects.html">Anchor Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="effects/color_effects.html">Color Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="effects/combined_effect.html">Combined Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="effects/remove_effect.html">Remove Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="effects/function_effect.html">Function Effect</a></li>
 </ul>
@@ -220,6 +228,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_svg/svg.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_tiled/layers.html">Layers</a></li>
@@ -288,6 +297,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -325,7 +342,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -347,6 +364,11 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="game-widget">
 <h1>Game Widget<a class="headerlink" href="#game-widget" title="Link to this heading">¶</a></h1>
+<p>The <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> is the bridge between Flutter and Flame. Since Flame games are not Flutter widgets
+by themselves, the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> wraps a <code class="docutils literal notranslate"><span class="pre">Game</span></code> instance and places it into the Flutter widget tree,
+just like any other <a class="reference external" href="https://docs.flutter.dev/get-started/fundamentals/widgets">widget</a>. This lets
+you combine a full-screen game with Flutter UI elements (navigation bars, overlays, dialogs) or
+embed a game as only part of your app’s layout.</p>
 <div class="dartdoc docutils container">
 <div class="class docutils container">
 <div class="signature sig1 docutils container" id="GameWidget">
@@ -379,7 +401,7 @@ possible.</p>
 some structural support, with the following features:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#GameWidget-loadingBuilder"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">loadingBuilder</span></code></a> to display something while the game is loading;</p></li>
-<li><p><a class="reference internal" href="#GameWidget-errorBuilder"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">errorBuilder</span></code></a> which will be shows if the game throws an error;</p></li>
+<li><p><a class="reference internal" href="#GameWidget-errorBuilder"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">errorBuilder</span></code></a> shown if the game throws an error;</p></li>
 <li><p><a class="reference internal" href="#GameWidget-backgroundBuilder"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">backgroundBuilder</span></code></a> to draw some decoration behind the game;</p></li>
 <li><p><a class="reference internal" href="#GameWidget-overlayBuilderMap"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">overlayBuilderMap</span></code></a> to draw one or more widgets on top of the game.</p></li>
 </ul>
@@ -393,7 +415,7 @@ then consider wrapping the widget in Flutter’s <a class="reference external" h
 <div class="constructor docutils container">
 <div class="signature sig2 docutils container" id="GameWidget-GameWidget">
 <div class="docutils container">
-<span class="name">GameWidget</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="keyword">required </span><span class="name">this.game</span></span><span class="punct">, </span><span class="argument"><span class="name">this.textDirection</span></span><span class="punct">, </span><span class="argument"><span class="name">this.loadingBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.errorBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.backgroundBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.overlayBuilderMap</span></span><span class="punct">, </span><span class="argument"><span class="name">this.initialActiveOverlays</span></span><span class="punct">, </span><span class="argument"><span class="name">this.focusNode</span></span><span class="punct">, </span><span class="argument"><span class="name">this.autofocus</span><span class="punct"> = </span><span class="default">true</span></span><span class="punct">, </span><span class="argument"><span class="name">this.mouseCursor</span></span><span class="punct">, </span><span class="argument"><span class="name">this.addRepaintBoundary</span><span class="punct"> = </span><span class="default">true</span></span><span class="punct">, </span><span class="argument"><span class="name">super.key</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
+<span class="name">GameWidget</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="keyword">required </span><span class="name">this.game</span></span><span class="punct">, </span><span class="argument"><span class="name">this.textDirection</span></span><span class="punct">, </span><span class="argument"><span class="name">this.loadingBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.errorBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.backgroundBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.overlayBuilderMap</span></span><span class="punct">, </span><span class="argument"><span class="name">this.initialActiveOverlays</span></span><span class="punct">, </span><span class="argument"><span class="name">this.focusNode</span></span><span class="punct">, </span><span class="argument"><span class="name">this.autofocus</span><span class="punct"> = </span><span class="default">true</span></span><span class="punct">, </span><span class="argument"><span class="name">this.mouseCursor</span></span><span class="punct">, </span><span class="argument"><span class="name">this.addRepaintBoundary</span><span class="punct"> = </span><span class="default">true</span></span><span class="punct">, </span><span class="argument"><span class="name">this.behavior</span><span class="punct"> = </span><span class="default">HitTestBehavior.opaque</span></span><span class="punct">, </span><span class="argument"><span class="name">super.key</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
 </div>
 <div class="description doc2 docutils container">
 <p>Renders the provided <a class="reference internal" href="#GameWidget-game"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">game</span></code></a> instance.</p>
@@ -402,7 +424,7 @@ then consider wrapping the widget in Flutter’s <a class="reference external" h
 <div class="constructor docutils container">
 <div class="signature sig2 docutils container" id="GameWidget-GameWidget.controlled">
 <div class="docutils container">
-<span class="name">GameWidget.controlled</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="keyword">required </span><span class="name">this.gameFactory</span></span><span class="punct">, </span><span class="argument"><span class="name">this.textDirection</span></span><span class="punct">, </span><span class="argument"><span class="name">this.loadingBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.errorBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.backgroundBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.overlayBuilderMap</span></span><span class="punct">, </span><span class="argument"><span class="name">this.initialActiveOverlays</span></span><span class="punct">, </span><span class="argument"><span class="name">this.focusNode</span></span><span class="punct">, </span><span class="argument"><span class="name">this.autofocus</span><span class="punct"> = </span><span class="default">true</span></span><span class="punct">, </span><span class="argument"><span class="name">this.mouseCursor</span></span><span class="punct">, </span><span class="argument"><span class="name">this.addRepaintBoundary</span><span class="punct"> = </span><span class="default">true</span></span><span class="punct">, </span><span class="argument"><span class="name">super.key</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
+<span class="name">GameWidget.controlled</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="keyword">required </span><span class="name">this.gameFactory</span></span><span class="punct">, </span><span class="argument"><span class="name">this.textDirection</span></span><span class="punct">, </span><span class="argument"><span class="name">this.loadingBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.errorBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.backgroundBuilder</span></span><span class="punct">, </span><span class="argument"><span class="name">this.overlayBuilderMap</span></span><span class="punct">, </span><span class="argument"><span class="name">this.initialActiveOverlays</span></span><span class="punct">, </span><span class="argument"><span class="name">this.focusNode</span></span><span class="punct">, </span><span class="argument"><span class="name">this.autofocus</span><span class="punct"> = </span><span class="default">true</span></span><span class="punct">, </span><span class="argument"><span class="name">this.mouseCursor</span></span><span class="punct">, </span><span class="argument"><span class="name">this.addRepaintBoundary</span><span class="punct"> = </span><span class="default">true</span></span><span class="punct">, </span><span class="argument"><span class="name">this.behavior</span><span class="punct"> = </span><span class="default">HitTestBehavior.opaque</span></span><span class="punct">, </span><span class="argument"><span class="name">super.key</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
 </div>
 <div class="description doc2 docutils container">
 <p>A <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> which will create and own a <code class="docutils literal notranslate"><span class="pre">Game</span></code> instance, using the
@@ -541,9 +563,85 @@ This property can be changed dynamically via <code class="xref dart dart-ref doc
 defaults to <code class="docutils literal notranslate"><span class="pre">true</span></code>.</p>
 </div>
 </div>
+<div class="field docutils container">
+<div class="signature sig2 docutils container" id="GameWidget-behavior">
+<span class="name">behavior</span><span class="punct"> : </span>HitTestBehavior</div>
+<div class="description doc2 docutils container">
+<p>How the game widget behaves during hit testing.</p>
+<ul class="simple">
+<li><p><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">HitTestBehavior.opaque</span></code> (default): the game absorbs all pointer
+events on its surface, preventing widgets behind it from receiving them.</p></li>
+<li><p><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">HitTestBehavior.deferToChild</span></code>: the game only intercepts events at
+positions where a component with event callbacks (e.g. <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">TapCallbacks</span></code>)
+exists. Events at other positions pass through to widgets behind.</p></li>
+<li><p><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">HitTestBehavior.translucent</span></code>: the game receives events where it has
+event-handling components, but always allows widgets behind it to be
+hit-tested as well.</p></li>
+</ul>
+</div>
+</div>
 </section>
 </div>
 </div>
+<section id="hit-test-behavior">
+<h2>Hit Test Behavior<a class="headerlink" href="#hit-test-behavior" title="Link to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">behavior</span></code> argument controls how the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> participates in Flutter’s hit testing. This
+determines whether pointer events (taps, drags, etc.) are absorbed by the game or allowed to pass
+through to widgets underneath it in the widget tree.</p>
+<p>There are three possible values from Flutter’s <code class="docutils literal notranslate"><span class="pre">HitTestBehavior</span></code>:</p>
+<ul class="simple">
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">HitTestBehavior.opaque</span></code></strong> (default): The game absorbs all pointer events on its entire surface,
+preventing any widgets behind it from receiving them. This is the classic behavior where the game
+acts as a solid layer.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">HitTestBehavior.deferToChild</span></code></strong>: The game only intercepts events at positions where a component
+with event callbacks (e.g. <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code>) exists. Events at positions with no interactive
+components pass through to widgets behind the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>. This is useful when layering a game on
+top of Flutter UI and you want the underlying widgets to remain interactive in areas the game
+doesn’t need to handle.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">HitTestBehavior.translucent</span></code></strong>: The game receives events where it has event-handling
+components, but always allows widgets behind it to be hit-tested as well. Both the game and the
+widgets behind it can receive the same event.</p></li>
+</ul>
+<section id="allowing-taps-to-pass-through">
+<h3>Allowing taps to pass through<a class="headerlink" href="#allowing-taps-to-pass-through" title="Link to this heading">¶</a></h3>
+<p>A common use case is placing a <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> on top of other Flutter widgets in a <code class="docutils literal notranslate"><span class="pre">Stack</span></code>. By
+default, the game will block all interaction with the widgets underneath. To let taps pass through
+to those widgets, set <code class="docutils literal notranslate"><span class="pre">behavior</span></code> to <code class="docutils literal notranslate"><span class="pre">HitTestBehavior.deferToChild</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">Stack</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="c1">// Flutter widgets underneath</span>
+<span class="w">      </span><span class="n">Center</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">child:</span><span class="w"> </span><span class="n">ElevatedButton</span><span class="p">(</span>
+<span class="w">          </span><span class="nl">onPressed:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;Button tapped!&#39;</span><span class="p">),</span>
+<span class="w">          </span><span class="nl">child:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Tap me&#39;</span><span class="p">),</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">      </span><span class="c1">// Game on top, letting taps pass through</span>
+<span class="w">      </span><span class="n">Positioned</span><span class="p">.</span><span class="n">fill</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">child:</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">(</span>
+<span class="w">          </span><span class="nl">game:</span><span class="w"> </span><span class="n">MyGame</span><span class="p">(),</span>
+<span class="w">          </span><span class="nl">behavior:</span><span class="w"> </span><span class="n">HitTestBehavior</span><span class="p">.</span><span class="n">deferToChild</span><span class="p">,</span>
+<span class="w">        </span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In this setup, tapping an area with no interactive game components will reach the <code class="docutils literal notranslate"><span class="pre">ElevatedButton</span></code>
+behind the game. Tapping a game component that uses <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> will be handled by the game
+instead.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When using <code class="docutils literal notranslate"><span class="pre">deferToChild</span></code> or <code class="docutils literal notranslate"><span class="pre">translucent</span></code>, <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> determines whether a
+position has an interactive component by traversing the component tree via
+<code class="docutils literal notranslate"><span class="pre">componentsAtPoint</span></code>. Games that directly extend the low-level <code class="docutils literal notranslate"><span class="pre">Game</span></code> class
+report a hit on their entire surface by default; override
+<code class="docutils literal notranslate"><span class="pre">containsEventHandlerAt</span></code> to customize this.</p>
+</div>
+</section>
+</section>
 </section>
 
 
@@ -578,6 +676,8 @@ defaults to <code class="docutils literal notranslate"><span class="pre">true</s
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#constructors' class='list-group-item level-1'>Constructors</a>
   <a href='#properties' class='list-group-item level-1'>Properties</a>
+  <a href='#hit-test-behavior' class='list-group-item level-1'>Hit Test Behavior</a>
+  <a href='#allowing-taps-to-pass-through' class='list-group-item level-2'>Allowing taps to pass through</a>
 </div>
 
     </div>

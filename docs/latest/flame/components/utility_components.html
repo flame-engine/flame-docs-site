@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Utility Components &#8212; Flame</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
+  <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=ac7bdd72" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
+  <!-- Scripts -->
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
+  <!--script src="searchindex.js" defer></script-->
+  <script src="https://cdn.jsdelivr.net/npm/virtual-webgl"></script>
+  <!-- Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../_static/fontawesome/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../_static/fontawesome/fa-solid-900.woff2">
+  <link rel="stylesheet" href="../../_static/fontawesome/all.min.css">
+  <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" />
+  <link rel="next" title="Inputs" href="../inputs/inputs.html" />
+  <link rel="prev" title="ShapeComponents" href="shape_components.html" />
+</head>
+
+<body data-spy="scroll" data-target="#toc-local" data-offset="80">
+
+<div class="top-bar">
+  <button id="menu-button" class="btn" title="Toggle menu"><i class="fa fa-bars"></i></button>
+  <script type="text/javascript">
+    jQuery(function(){
+      $("#menu-button").click(function() {
+        $(this).toggleClass("active");
+        $(".sidebar-left-area").toggleClass("active");
+      });
+
+      $('div.nav-left li > a:not(:only-child)').wrap('<div class=submenu></div>');
+      $('div.nav-left div.submenu').prepend('<a class=arrow>&nbsp;</a>');
+      $('div.nav-left div.submenu > a.arrow')
+        .click(function() {
+          $(this.parentElement.parentElement).toggleClass('current');
+        });
+
+      // This function ensures that when navigating to internal targets within the page (such as
+      // a section header), those targets will be visible to the user and not obscured by the menu
+      // bar at the top of the page.
+      function scrollToHashTarget() {
+        if (location.hash !== location.oldHash) {
+          window.scrollBy(0, -60);
+          location.oldHash = location.hash;
+        }
+      }
+      window.location.oldHash = '';
+      window.addEventListener('hashchange', scrollToHashTarget);
+      scrollToHashTarget();
+    });
+  </script>
+
+  <a href="../../index.html" class="logo_image" aria-label="Navigate to home page">
+    <img src="../../_static/logo_flame.png" alt="Flame logo: a fiery symbol along with the FLAME wordmark.">
+  </a>  
+  <div class="highlight-box" role="alert" style="display:none">
+    <div>
+      <div class="title">highlighted:</div>
+      <div class="content" id="highlight-content"></div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Dismiss">×</button>
+  </div>
+  <div class="expander"></div>
+
+  <div class="versions-placeholder"></div>
+  <a href="https://discord.com/invite/pxrBmy4" id="discord-button" class="btn"
+     title="Blue Fire Discord server">
+    <i class="fab fa-discord"></i>
+  </a>
+  <a href="https://github.com/flame-engine/flame/" id="github-button" class="btn"
+     title="GitHub repository">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+
+<div class="sidebar-left-area">
+  <div class="sidebar-left-bg"></div>
+  <div class="sidebar-left">
+    <div class="searchbox" role="search">
+      <form id="search-form" action="../../search.html" method="get">
+        <i class="icon fa fa-search"></i>
+        <input type="search" class="form-control" id="search-input" name="q"
+               placeholder="Search the docs..." autocomplete="off" />
+      </form>
+    </div>
+    <div class="nav-left" role="navigation" aria-label="Main">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../flame.html">Flame</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../README.html">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="components.html">Components</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shape_components.html">Shape Components</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Utility Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/tap_events.html">Tap Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/drag_events.html">Drag Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/gesture_input.html">Gesture Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/keyboard_input.html">Keyboard Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/other_inputs.html">Other Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/pointer_events.html">Pointer Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../effects/effects.html">Effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../effects/effect_controllers.html">Effect Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/move_effects.html">Move Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/rotate_effects.html">Rotate Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/scale_effects.html">Scale Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/size_effects.html">Size Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/anchor_effects.html">Anchor Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/color_effects.html">Color Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/combined_effect.html">Combined Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/remove_effect.html">Remove Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/function_effect.html">Function Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../collision_detection.html">Collision Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../router.html">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/post_processing.html">Post Processing and Shaders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/palette.html">Colors and Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/decorators.html">Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/images.html">Images, Sprites and Animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/layers.html">Layers and Snapshots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/particles.html">Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/text_rendering.html">Text Rendering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../layout/layout.html">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../layout/align_component.html">AlignComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/row_component.html">RowComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/column_component.html">ColumnComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/expanded_component.html">Expanded Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/padding_component.html">Padding Component</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overlays.html">Overlays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/other.html">Other</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../other/debug.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../other/util.html">Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../other/widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../other/performance.html">Performance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../bridge_packages/bridge_packages.html">Bridge Packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_audio/flame_audio.html">flame_audio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/audio.html">General audio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/bgm.html">Background music</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/audio_pool.html">AudioPool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_behaviors/flame_behaviors.html">flame_behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_behaviors/getting_started.html">Getting Started</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_bloc/flame_bloc.html">flame_bloc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_bloc/bloc.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_bloc/bloc_components.html">Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_fire_atlas/flame_fire_atlas.html">flame_fire_atlas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_fire_atlas/fire_atlas.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_forge2d/forge2d.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_forge2d/joints.html">Joints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_isolate/flame_isolate.html">flame_isolate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_lottie/flame_lottie.html">flame_lottie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_network_assets/flame_network_assets.html">flame_network_assets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_rive/flame_rive.html">flame_rive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_rive/rive.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_riverpod/flame_riverpod.html">flame_riverpod</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_riverpod/riverpod.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_riverpod/component.html">Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_riverpod/widget.html">Widget</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_splash_screen/flame_splash_screen.html">flame_splash_screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_spine/flame_spine.html">flame_spine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_svg/flame_svg.html">flame_svg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_svg/svg.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/jenny/jenny.html">jenny</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/jenny/language/language.html">YarnSpinner language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/nodes.html">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/options.html">Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/commands/commands.html">Commands</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/character.html">&lt;&lt;character&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/declare.html">&lt;&lt;declare&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/if.html">&lt;&lt;if&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/local.html">&lt;&lt;local&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/set.html">&lt;&lt;set&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/stop.html">&lt;&lt;stop&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/visit.html">&lt;&lt;visit&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/wait.html">&lt;&lt;wait&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/user_defined_commands.html">User-defined commands</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/expressions/expressions.html">Expressions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/expressions/variables.html">Variables</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/expressions/operators.html">Operators</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/functions.html">Functions</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/random.html">Random functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/numeric.html">Numeric functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/type.html">Type conversion functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/misc.html">Miscellaneous functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/markup.html">Markup</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/jenny/runtime/jenny_runtime.html">Jenny API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/character.html">Character</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/character_storage.html">CharacterStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/command_storage.html">CommandStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_choice.html">DialogueChoice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_line.html">DialogueLine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_option.html">DialogueOption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_runner.html">DialogueRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_view.html">DialogueView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/function_storage.html">FunctionStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/markup_attribute.html">MarkupAttribute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/node.html">Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/user_defined_command.html">UserDefinedCommand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/variable_storage.html">VariableStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/yarn_project.html">YarnProject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen/oxygen.html">oxygen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/oxygen/components.html">Components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step4.html">4. Gameplay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step5.html">5. Additional features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/platformer/platformer.html">Ember Quest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_2.html">2. Start Coding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_3.html">3. Building the World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_4.html">4. Adding the Remaining Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/space_shooter/space_shooter.html">Space Shooter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_1.html">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_2.html">2. Controlling the player and adding some graphics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_3.html">3. Adding animations and depth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_4.html">4. Adding Bullets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_5.html">5. Adding Enemies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_6.html">6. Enemy and Bullet collisions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/testing_guide.html">Tests Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="main-area">
+  <div class="document-wrapper">
+    <div class="warning hidden" id="version-warning">
+      <p><strong>Warning:</strong> you are currently viewing the docs for an older
+      version <span class="version"></span> of Flame.</p>
+      <p>Please <a href="/">click here</a> to go see the documentation for the latest
+      released version.</p>
+    </div>
+    <div class="document" role="main">
+      
+  <section class="tex2jax_ignore mathjax_ignore" id="utility-components">
+<h1>Utility Components<a class="headerlink" href="#utility-components" title="Link to this heading">¶</a></h1>
+<p>Beyond the core visual components, Flame provides several utility components that handle common
+game development tasks: spawning objects over time, rendering tiled maps, clipping render areas,
+and bridging Flutter widgets into the game. These components save you from writing boilerplate so
+you can focus on game-specific logic.</p>
+<section id="spawncomponent">
+<h2>SpawnComponent<a class="headerlink" href="#spawncomponent" title="Link to this heading">¶</a></h2>
+<p>This component is a non-visual component that spawns other components inside of the parent of the
+<code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code>. It’s great if you for example want to spawn enemies or power-ups randomly within
+an area.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code> takes a factory function that it uses to create new components and an area
+where the components should be spawned within (or along the edges of).</p>
+<p>For the area, you can use the <code class="docutils literal notranslate"><span class="pre">Circle</span></code>, <code class="docutils literal notranslate"><span class="pre">Rectangle</span></code> or <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> class, and if you want to only
+spawn components along the edges of the shape set the <code class="docutils literal notranslate"><span class="pre">within</span></code> argument to false (defaults to true).</p>
+<p>This would for example spawn new components of the type <code class="docutils literal notranslate"><span class="pre">MyComponent</span></code> every 0.5 seconds randomly
+within the defined circle:</p>
+<p>The component supports two types of factories. The <code class="docutils literal notranslate"><span class="pre">factory</span></code> returns a single component and the
+<code class="docutils literal notranslate"><span class="pre">multiFactory</span></code> returns a list of components that are added in a single step.</p>
+<p>The factory functions take an <code class="docutils literal notranslate"><span class="pre">int</span></code> as an argument, which is the number of components that have
+been spawned, so if for example 4 components have been spawned already the 5th call of the factory
+method will be called with the <code class="docutils literal notranslate"><span class="pre">amount=4</span></code>, since the counting starts at 0 for the first call.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">factory</span></code> with a single component is for backward compatibility, so you should use the
+<code class="docutils literal notranslate"><span class="pre">multiFactory</span></code> if in doubt. A single component <code class="docutils literal notranslate"><span class="pre">factory</span></code> will be wrapped internally to return a
+single item list and then used as the <code class="docutils literal notranslate"><span class="pre">multiFactory</span></code>.</p>
+<p>If you only want to spawn a certain amount of components, you can use the <code class="docutils literal notranslate"><span class="pre">spawnCount</span></code> argument,
+and once the limit is reached the <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code> will stop spawning and remove itself.</p>
+<p>By default, the <code class="docutils literal notranslate"><span class="pre">SpawnComponent</span></code> will spawn components to its parent, but if you want to spawn
+components to another component you can set the <code class="docutils literal notranslate"><span class="pre">target</span></code> argument. Remember that it should be a
+<code class="docutils literal notranslate"><span class="pre">Component</span></code> that has a size if you don’t use the <code class="docutils literal notranslate"><span class="pre">area</span></code> or <code class="docutils literal notranslate"><span class="pre">selfPositioning</span></code> arguments.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpawnComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">MyComponent</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">)),</span>
+<span class="w">  </span><span class="nl">period:</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">area:</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>If you don’t want the spawning rate to be static, you can use the <code class="docutils literal notranslate"><span class="pre">SpawnComponent.periodRange</span></code>
+constructor with the <code class="docutils literal notranslate"><span class="pre">minPeriod</span></code> and <code class="docutils literal notranslate"><span class="pre">maxPeriod</span></code> arguments instead.
+In the following example the component would be spawned randomly within the circle and the time
+between each new spawned component is between 0.5 to 10 seconds.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpawnComponent</span><span class="p">.</span><span class="n">periodRange</span><span class="p">(</span>
+<span class="w">  </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">MyComponent</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">)),</span>
+<span class="w">  </span><span class="nl">minPeriod:</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">maxPeriod:</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">area:</span><span class="w"> </span><span class="n">Circle</span><span class="p">(</span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>If you want to set the position yourself within the <code class="docutils literal notranslate"><span class="pre">factory</span></code> function, you can set
+<code class="docutils literal notranslate"><span class="pre">selfPositioning</span> <span class="pre">=</span> <span class="pre">true</span></code> in the constructors and you will be able to set the positions yourself and
+ignore the <code class="docutils literal notranslate"><span class="pre">area</span></code> argument.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpawnComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span>
+<span class="w">    </span><span class="n">MyComponent</span><span class="p">(</span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span><span class="w"> </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">)),</span>
+<span class="w">  </span><span class="nl">selfPositioning:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">period:</span><span class="w"> </span><span class="m">0.5</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="svgcomponent">
+<h2>SvgComponent<a class="headerlink" href="#svgcomponent" title="Link to this heading">¶</a></h2>
+<p><strong>Note</strong>: To use SVG with Flame, use the <a class="reference external" href="https://github.com/flame-engine/flame_svg"><code class="docutils literal notranslate"><span class="pre">flame_svg</span></code></a>
+package.</p>
+<p>This component uses an instance of <code class="docutils literal notranslate"><span class="pre">Svg</span></code> class to represent a Component that has an SVG that is
+rendered in the game:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">svg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Svg</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;android.svg&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">android</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SvgComponent</span><span class="p">.</span><span class="n">fromSvg</span><span class="p">(</span>
+<span class="w">    </span><span class="n">svg</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span>
+<span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">100</span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="isometrictilemapcomponent">
+<h2>IsometricTileMapComponent<a class="headerlink" href="#isometrictilemapcomponent" title="Link to this heading">¶</a></h2>
+<p>Isometric tile maps are commonly used in strategy, simulation, and RPG games to give a 2D map a
+pseudo-3D perspective. This component allows you to render an isometric map based on a cartesian
+matrix of blocks and an isometric tileset.</p>
+<p>A simple example on how to use it:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Creates a tileset, the block ids are automatically assigned sequentially</span>
+<span class="c1">// starting at 0, from left to right and then top to bottom.</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">tilesetImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;tileset.png&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">tileset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteSheet</span><span class="p">(</span><span class="nl">image:</span><span class="w"> </span><span class="n">tilesetImage</span><span class="p">,</span><span class="w"> </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">));</span>
+<span class="c1">// Each element is a block id, -1 means nothing</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">matrix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">]];</span>
+<span class="n">add</span><span class="p">(</span><span class="n">IsometricTileMapComponent</span><span class="p">(</span><span class="n">tileset</span><span class="p">,</span><span class="w"> </span><span class="n">matrix</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>It also provides methods for converting coordinates so you can handle clicks, hovers, render
+entities on top of tiles, add a selector, etc.</p>
+<p>You can also specify the <code class="docutils literal notranslate"><span class="pre">tileHeight</span></code>, which is the vertical distance between the bottom and top
+planes of each cuboid in your tile. Basically, it’s the height of the front-most edge of your
+cuboid; normally it’s half (default) or a quarter of the tile size. On the image below you can see
+the height colored in the darker tone:</p>
+<p><img alt="An example of how to determine the tileHeight" src="../../_images/tile-height-example.png" /></p>
+<p>This is an example of what a quarter-length map looks like:</p>
+<p><img alt="An example of a isometric map with selector" src="../../_images/isometric.png" /></p>
+<p>Flame’s Example app contains a more in-depth example, featuring how to parse coordinates to make a
+selector. The
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/isometric_tile_map_example.dart">source code</a>
+is available on GitHub, and a
+<a class="reference external" href="https://examples.flame-engine.org/#/Rendering_Isometric_Tile_Map">live version</a>
+can be viewed in the browser.</p>
+</section>
+<section id="ninetileboxcomponent">
+<h2>NineTileBoxComponent<a class="headerlink" href="#ninetileboxcomponent" title="Link to this heading">¶</a></h2>
+<p>A Nine Tile Box is a rectangle drawn using a grid sprite.</p>
+<p>The grid sprite is a 3x3 grid with 9 blocks, representing the 4 corners, the 4 sides and the
+middle.</p>
+<p>The corners are drawn at the same size, the sides are stretched on the side direction and the middle
+is expanded both ways.</p>
+<p>Using this, you can get a box/rectangle that expands well to any sizes. This is useful for making
+panels, dialogs, borders.</p>
+<p>Check the example app
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/nine_tile_box_example.dart">nine_tile_box</a>
+for details on how to use it.</p>
+</section>
+<section id="custompaintercomponent">
+<h2>CustomPainterComponent<a class="headerlink" href="#custompaintercomponent" title="Link to this heading">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">CustomPainter</span></code> is a Flutter class used with the <code class="docutils literal notranslate"><span class="pre">CustomPaint</span></code> widget to render custom
+shapes inside a Flutter application.</p>
+<p>Flame provides a component that can render a <code class="docutils literal notranslate"><span class="pre">CustomPainter</span></code> called <code class="docutils literal notranslate"><span class="pre">CustomPainterComponent</span></code>. It
+receives a custom painter and renders it on the game canvas.</p>
+<p>This can be used for sharing custom rendering logic between your Flame game, and your Flutter
+widgets.</p>
+<p>Check the example app
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/custom_painter_example.dart">custom_painter_component</a>
+for details on how to use it.</p>
+</section>
+<section id="componentsnotifier">
+<h2>ComponentsNotifier<a class="headerlink" href="#componentsnotifier" title="Link to this heading">¶</a></h2>
+<p>Most of the time just accessing children and their attributes is enough to build the logic of
+your game.</p>
+<p>But sometimes, reactivity can help the developer to simplify and write better code, to help with
+that Flame provides the <code class="docutils literal notranslate"><span class="pre">ComponentsNotifier</span></code>, which is an implementation of a
+<code class="docutils literal notranslate"><span class="pre">ChangeNotifier</span></code> that notifies listeners every time a component is added, removed or manually
+changed.</p>
+<p>For example, let’s say that we want to show a game over text when the player’s lives reach zero.</p>
+<p>To make the component automatically report when new instances are added or removed, the <code class="docutils literal notranslate"><span class="pre">Notifier</span></code>
+mixin can be applied to the component class:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Notifier</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+<p>Then to listen to changes on that component the <code class="docutils literal notranslate"><span class="pre">componentsNotifier</span></code> method from <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> can
+be used:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">lives</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">playerNotifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">componentsNotifier</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">        </span><span class="p">..</span><span class="n">addListener</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerNotifier</span><span class="p">.</span><span class="n">single</span><span class="p">;</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">lives</span><span class="o">--</span><span class="p">;</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">lives</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="n">add</span><span class="p">(</span><span class="n">GameOverComponent</span><span class="p">());</span>
+<span class="w">            </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="n">add</span><span class="p">(</span><span class="n">Player</span><span class="p">());</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">Notifier</span></code> component can also manually notify its listeners that something changed. Let’s expand
+the example above to make a HUD component blink when the player has half of their health. In
+order to do so, we need the <code class="docutils literal notranslate"><span class="pre">Player</span></code> component to notify a change manually:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">Notifier</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">health</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">takeHit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">health</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="p">.</span><span class="m">1</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">health</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">health</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">notifyListeners</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Then our hud component could look like:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Hud</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="w"> </span><span class="p">{</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">playerNotifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">componentsNotifier</span><span class="o">&lt;</span><span class="n">Player</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="w">        </span><span class="p">..</span><span class="n">addListener</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">playerNotifier</span><span class="p">.</span><span class="n">single</span><span class="p">;</span>
+<span class="w">          </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">player</span><span class="p">.</span><span class="n">health</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="p">.</span><span class="m">5</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">              </span><span class="n">add</span><span class="p">(</span><span class="n">BlinkEffect</span><span class="p">());</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">          </span><span class="p">}</span>
+<span class="w">        </span><span class="p">});</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ComponentsNotifier</span></code>s can also come in handy to rebuild widgets when state changes inside a
+<code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>, to help with that Flame provides a <code class="docutils literal notranslate"><span class="pre">ComponentsNotifierBuilder</span></code> widget.</p>
+<p>To see an example of its use, check the
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/components/components_notifier_example.dart">ComponentsNotifier example</a>.</p>
+</section>
+<section id="clipcomponent">
+<h2>ClipComponent<a class="headerlink" href="#clipcomponent" title="Link to this heading">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code> is a component that will clip the canvas to its size and shape. This means that
+if the component itself or any child of the <code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code> renders outside of the
+<code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code>’s boundaries, the part that is not inside the area will not be shown.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">ClipComponent</span></code> receives a builder function that should return the <code class="docutils literal notranslate"><span class="pre">Shape</span></code> that will define the
+clipped area, based on its size.</p>
+<p>To make it easier to use that component, there are three factories that offer common shapes:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ClipComponent.rectangle</span></code>: Clips the area in the form of a rectangle based on its size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ClipComponent.circle</span></code>: Clips the area in the form of a circle based on its size.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ClipComponent.polygon</span></code>:  Clips the area in the form of a polygon based on the points received
+in the constructor.</p></li>
+</ul>
+<p>Check the example app
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/components/clip_component_example.dart">clip_component</a>
+for details on how to use it.</p>
+</section>
+</section>
+
+
+    </div>
+    <div class="copyright">
+      The content on this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 License</a>,
+      and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
+    </div>
+    <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="shape_components.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">ShapeComponents</p>
+        </div>
+      </a>
+      <div class='expander'></div>
+      <a class="right-next" id="next-link" href="../inputs/inputs.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">Inputs</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-right">
+    
+    <div class="nav-right" role="navigation" aria-label="table of contents">
+      <div id='toc-local' class='list-group'>
+ <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#spawncomponent' class='list-group-item level-1'>SpawnComponent</a>
+  <a href='#svgcomponent' class='list-group-item level-1'>SvgComponent</a>
+  <a href='#isometrictilemapcomponent' class='list-group-item level-1'>IsometricTileMapComponent</a>
+  <a href='#ninetileboxcomponent' class='list-group-item level-1'>NineTileBoxComponent</a>
+  <a href='#custompaintercomponent' class='list-group-item level-1'>CustomPainterComponent</a>
+  <a href='#componentsnotifier' class='list-group-item level-1'>ComponentsNotifier</a>
+  <a href='#clipcomponent' class='list-group-item level-1'>ClipComponent</a>
+</div>
+
+    </div>
+  </div>
+
+  <div class="expander"></div>
+</div>
+
+
+
+
+</body>
+</html>

@@ -114,7 +114,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Inputs</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="tap_events.html">Tap Events</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Drag Events</a></li>
@@ -135,6 +142,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../effects/anchor_effects.html">Anchor Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/color_effects.html">Color Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/combined_effect.html">Combined Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/remove_effect.html">Remove Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/function_effect.html">Function Effect</a></li>
 </ul>
@@ -220,6 +228,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_svg/svg.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
@@ -288,6 +297,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -325,7 +342,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -355,10 +372,10 @@ will be handled correctly by Flame, and you can even keep track of the events by
 <p>For those components that you want to respond to drags, add the <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixin.</p>
 <ul class="simple">
 <li><p>This mixin adds four overridable methods to your component: <code class="docutils literal notranslate"><span class="pre">onDragStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code>,
-<code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code>, and <code class="docutils literal notranslate"><span class="pre">onDragCancel</span></code>. By default, these methods do nothing – they need to be
-overridden in order to perform any function.</p></li>
+<code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code>, and <code class="docutils literal notranslate"><span class="pre">onDragCancel</span></code>. By default, these methods do nothing; they need to be overridden
+in order to perform any function.</p></li>
 <li><p>In addition, the component must implement the <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code> method (already implemented
-in <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, so most of the time you don’t need to do anything here) – this method
+in <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, so most of the time you don’t need to do anything here). This method
 allows Flame to know whether the event occurred within the component or not.</p></li>
 </ul>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
@@ -375,7 +392,7 @@ allows Flame to know whether the event occurred within the component or not.</p>
 <h2>Demo<a class="headerlink" href="#demo" title="Link to this heading">¶</a></h2>
 <p>In this example you can use drag gestures to either drag star-like shapes across the screen, or to
 draw curves inside the magenta rectangle.</p>
-<iframe class="flutter-app-iframe" src="/v1.33.0/_static/apps/flame-examples/index.html?drag_events"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-drag_events">
+<iframe class="flutter-app-iframe" src="/v1.36.0/_static/apps/flame-examples/index.html?drag_events"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-drag_events">
 <div class="filename docutils container">
 drag_events.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:math&#39;</span><span class="p">;</span>
@@ -656,9 +673,9 @@ the user is holding their finger still.</p>
 if the user moves their finger away from the component, the property <code class="docutils literal notranslate"><span class="pre">event.localPosition</span></code> will
 return a point whose coordinates are NaNs. Likewise, the <code class="docutils literal notranslate"><span class="pre">event.renderingTrace</span></code> in this case will be
 empty. However, the <code class="docutils literal notranslate"><span class="pre">canvasPosition</span></code> and <code class="docutils literal notranslate"><span class="pre">devicePosition</span></code> properties of the event will be valid.</p>
-<p>In addition, the <code class="docutils literal notranslate"><span class="pre">DragUpdateEvent</span></code> will contain <code class="docutils literal notranslate"><span class="pre">delta</span></code> – the amount the finger has moved since the
-previous <code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code>, or since the <code class="docutils literal notranslate"><span class="pre">onDragStart</span></code> if this is the first drag-update after a drag-
-start.</p>
+<p>In addition, the <code class="docutils literal notranslate"><span class="pre">DragUpdateEvent</span></code> will contain <code class="docutils literal notranslate"><span class="pre">delta</span></code>, the amount the finger has moved since
+the previous <code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code>, or since the <code class="docutils literal notranslate"><span class="pre">onDragStart</span></code> if this is the first drag-update after
+a drag-start.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">event.timestamp</span></code> property measures the time elapsed since the beginning of the drag. It can be
 used, for example, to compute the speed of the movement.</p>
 </section>

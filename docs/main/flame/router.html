@@ -115,7 +115,14 @@
 <li class="toctree-l2"><a class="reference internal" href="game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
@@ -228,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
@@ -291,6 +299,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -797,9 +813,11 @@ visual effects to the content of the page below it.</p>
 </div>
 <section class="tex2jax_ignore mathjax_ignore" id="routercomponent">
 <h1>RouterComponent<a class="headerlink" href="#routercomponent" title="Link to this heading">¶</a></h1>
-<p>The <strong>RouterComponent</strong>’s job is to manage navigation across multiple screens within the game. It is
-similar in spirit to Flutter’s <a class="reference external" href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Navigator</a> class, except that it works with Flame
-components instead of Flutter widgets.</p>
+<p>Most games consist of more than a single screen: there is a main menu, a settings page, the
+gameplay screen, pop-up dialogs, and so on. Managing the transitions between these screens can
+quickly become messy. The <code class="docutils literal notranslate"><span class="pre">RouterComponent</span></code> solves this by providing a stack-based navigation
+model, similar in spirit to Flutter’s <a class="reference external" href="https://api.flutter.dev/flutter/widgets/Navigator-class.html">Navigator</a> class, except that it works
+with Flame components instead of Flutter widgets.</p>
 <p>A typical game will usually consist of multiple pages: the splash screen, the starting menu page,
 the settings page, credits, the main game page, several pop-ups, etc. The router will organize
 all these destinations and allow you to transition between them.</p>
@@ -839,19 +857,20 @@ events by using one of the <a class="reference internal" href="inputs/inputs.htm
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Use <code class="docutils literal notranslate"><span class="pre">hide</span> <span class="pre">Route</span></code> if any of your imported packages export another class called <code class="docutils literal notranslate"><span class="pre">Route</span></code></p>
-<p>eg: <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">'package:flutter/material.dart'</span> <span class="pre">hide</span> <span class="pre">Route;</span></code></p>
+<p>Use <code class="docutils literal notranslate"><span class="pre">hide</span> <span class="pre">Route</span></code> if any of your imported packages export
+another class called <code class="docutils literal notranslate"><span class="pre">Route</span></code></p>
+<p>e.g.: <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">'package:flutter/material.dart'</span> <span class="pre">hide</span> <span class="pre">Route;</span></code></p>
 </div>
 <section id="route">
 <h2>Route<a class="headerlink" href="#route" title="Link to this heading">¶</a></h2>
 <p>The <strong>Route</strong> component holds information about the content of a particular page. <code class="docutils literal notranslate"><span class="pre">Route</span></code>s are
 mounted as children to the <code class="docutils literal notranslate"><span class="pre">RouterComponent</span></code>.</p>
-<p>The main property of a <code class="docutils literal notranslate"><span class="pre">Route</span></code> is its <code class="docutils literal notranslate"><span class="pre">builder</span></code> – the function that creates the component with
+<p>The main property of a <code class="docutils literal notranslate"><span class="pre">Route</span></code> is its <code class="docutils literal notranslate"><span class="pre">builder</span></code>, the function that creates the component with
 the content of its page.</p>
-<p>In addition, the routes can be either transparent or opaque (default). An opaque prevents the route
-below it from rendering or receiving pointer events, a transparent route doesn’t. As a rule of
-thumb, declare the route opaque if it is full-screen, and transparent if it is supposed to cover
-only a part of the screen.</p>
+<p>In addition, the routes can be either transparent or opaque (default). An opaque route prevents
+the route below it from rendering or receiving pointer events, while a transparent route does
+not. As a rule of thumb, declare the route opaque if it is full-screen, and transparent if it
+is supposed to cover only a part of the screen.</p>
 <p>By default, routes maintain the state of the page component after being popped from the stack
 and the <code class="docutils literal notranslate"><span class="pre">builder</span></code> function is only called the first time a route is activated. Setting
 <code class="docutils literal notranslate"><span class="pre">maintainState</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code> drops the page component after the route is popped from the route stack
@@ -919,7 +938,7 @@ builder function was already specified within the <code class="docutils literal 
 <p>Overlays that were defined within the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> don’t even need to be declared within the routes
 map beforehand: the <code class="docutils literal notranslate"><span class="pre">RouterComponent.pushOverlay()</span></code> method can do it for you. Once an overlay route
 was registered, it can be activated either via the regular <code class="docutils literal notranslate"><span class="pre">.pushNamed()</span></code> method, or via the
-<code class="docutils literal notranslate"><span class="pre">.pushOverlay()</span></code> – the two methods will do exactly the same, though you can use the second one to
+<code class="docutils literal notranslate"><span class="pre">.pushOverlay()</span></code>. The two methods will do exactly the same, though you can use the second one to
 make it more clear in your code that an overlay is being added instead of a regular route.</p>
 <p>The current overlay can be replaced using <code class="docutils literal notranslate"><span class="pre">pushReplacementOverlay</span></code>.  This method executes
 <code class="docutils literal notranslate"><span class="pre">pushReplacementNamed</span></code> or <code class="docutils literal notranslate"><span class="pre">pushReplacement</span></code> based on the status of the overlay being pushed.</p>

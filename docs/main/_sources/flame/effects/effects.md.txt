@@ -1,5 +1,11 @@
 # Effects
 
+In game development, smoothly animating properties over time (moving a character, fading an element,
+scaling a power-up) is a constant need. Writing manual interpolation code in every `update` method
+is repetitive and error-prone. Effects provide a declarative way to describe these time-based
+changes: you attach an effect to a component, and it automatically handles the animation, then
+removes itself when finished.
+
 An effect is a special component that can attach to another component in order to modify its
 properties or appearance.
 
@@ -97,6 +103,20 @@ When implementing the `apply()` method we recommend to use relative updates only
 the target property by incrementing/decrementing its current value, rather than directly setting
 that property to a fixed value. This way multiple effects would be able to act on the same component
 without interfering with each other.
+
+
+## Effects vs Decorators
+
+While effects and decorators can sometimes achieve similar visual results (like changing opacity
+or color), they have different performance and visual characteristics:
+
+- **Effects** are fast and generally change a property on a single component. When applied to
+  a group, they affect each child individually.
+- **Decorators** are more powerful but slower. They use `saveLayer` to flatten a whole
+  component subtree into a single layer before applying an effect. This is essential for
+  correctly rendering composite objects with transparency or complex filters.
+
+See the [Decorators documentation](../rendering/decorators.md) for a more detailed comparison.
 
 
 ## See also

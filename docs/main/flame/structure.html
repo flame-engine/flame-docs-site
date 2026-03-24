@@ -38,7 +38,7 @@
   <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="Components" href="components.html" />
+  <link rel="next" title="Components" href="components/components.html" />
   <link rel="prev" title="FlameGame" href="game.html" />
 </head>
 
@@ -115,7 +115,14 @@
 <li class="toctree-l2"><a class="reference internal" href="game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">The game class</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
@@ -228,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
@@ -291,6 +299,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -350,6 +366,10 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="assets-directory-structure">
 <h1>Assets Directory Structure<a class="headerlink" href="#assets-directory-structure" title="Link to this heading">¶</a></h1>
+<p>Games rely heavily on external assets like images for sprites, audio files for sound effects, and
+tile maps for levels. Organizing these files consistently ensures that Flame’s built-in loaders
+(and Flutter’s own <a class="reference external" href="https://docs.flutter.dev/ui/assets/assets-and-images">asset system</a>) can find
+them without extra configuration.</p>
 <p>Flame has a proposed structure for your project that includes the standard Flutter <code class="docutils literal notranslate"><span class="pre">assets</span></code>
 directory in addition to some children: <code class="docutils literal notranslate"><span class="pre">audio</span></code>, <code class="docutils literal notranslate"><span class="pre">images</span></code> and <code class="docutils literal notranslate"><span class="pre">tiles</span></code>.</p>
 <p>If using the following example code:</p>
@@ -399,7 +419,7 @@ your instances of <code class="docutils literal notranslate"><span class="pre">A
 global ones provided by Flame.</p>
 <p>Additionally, <code class="docutils literal notranslate"><span class="pre">AssetsCache</span></code> and <code class="docutils literal notranslate"><span class="pre">Images</span></code> can receive a custom
 <a class="reference external" href="https://api.flutter.dev/flutter/services/AssetBundle-class.html"><code class="docutils literal notranslate"><span class="pre">AssetBundle</span></code></a>.
-This can be used to make Flame look for assets in a different location other the <code class="docutils literal notranslate"><span class="pre">rootBundle</span></code>,
+This can be used to make Flame look for assets in a different location other than the <code class="docutils literal notranslate"><span class="pre">rootBundle</span></code>,
 like the file system for example.</p>
 </section>
 
@@ -418,7 +438,7 @@ like the file system for example.</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="components.html" title="next page">
+      <a class="right-next" id="next-link" href="components/components.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
           <p class="prev-next-title">Components</p>

@@ -114,7 +114,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/drag_events.html">Drag Events</a></li>
@@ -135,6 +142,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../flame/effects/anchor_effects.html">Anchor Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/effects/color_effects.html">Color Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/combined_effect.html">Combined Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/effects/remove_effect.html">Remove Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/effects/function_effect.html">Function Effect</a></li>
 </ul>
@@ -220,6 +228,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_svg/svg.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
@@ -288,6 +297,14 @@
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="../tutorials.html">Tutorials</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../klondike/step2.html">2. Scaffolding</a></li>
@@ -325,7 +342,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -349,7 +366,9 @@
 <h1>Adding Enemies<a class="headerlink" href="#adding-enemies" title="Link to this heading">¶</a></h1>
 <p>Now that the starship is able to shoot, we need something for the player to shoot at! So for
 this step we will work on adding enemies to the game.</p>
-<p>First, let’s create an <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class that will represent the enemies in game:</p>
+<p>First, let’s create an <code class="docutils literal notranslate"><span class="pre">Enemy</span></code> class that will represent the enemies in game. Right-click the
+image below, choose “Save as…”, and store it as <code class="docutils literal notranslate"><span class="pre">enemy.png</span></code> in your <code class="docutils literal notranslate"><span class="pre">assets/images/</span></code> folder:</p>
+<p><img alt="enemy" src="../../_images/enemy.png" /></p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Enemy</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 
@@ -421,7 +440,7 @@ should be placed in the area above the screen top, so they can be seen as they a
 playable area.</p></li>
 </ul>
 <p>And this concludes this short step!</p>
-<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/v1.33.0/_static/apps/tutorials-space_shooter-app/index.html?step5&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step5">
+<button class="flutter-app-button popup" onclick="run_flutter_app(&quot;/v1.36.0/_static/apps/tutorials-space_shooter-app/index.html?step5&quot;)">Run</button><div class="flutter-app-code docutils container" id="tutorials-space_shooter-app-source-step5">
 <div class="filename docutils container">
 main.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos">  1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>

@@ -115,7 +115,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/drag_events.html">Drag Events</a></li>
@@ -228,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
@@ -291,6 +299,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -581,8 +597,9 @@ opacity_by_effect.dart</div>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>Currently this effect can only be applied to components that have a <code class="docutils literal notranslate"><span class="pre">HasPaint</span></code> mixin. If the target component
-uses multiple paints, the effect can target any individual color using the <code class="docutils literal notranslate"><span class="pre">paintId</span></code> parameter.</p>
+<p>Currently this effect can only be applied to components that have a <code class="docutils literal notranslate"><span class="pre">HasPaint</span></code> mixin. If the
+target component uses multiple paints, the effect can target any individual color using the
+<code class="docutils literal notranslate"><span class="pre">paintId</span></code> parameter.</p>
 </section>
 <section id="gloweffect">
 <h2>GlowEffect<a class="headerlink" href="#gloweffect" title="Link to this heading">¶</a></h2>
@@ -638,6 +655,70 @@ glow_effect.dart</div>
 </div>
 <p>Currently this effect can only be applied to components that have a <code class="docutils literal notranslate"><span class="pre">HasPaint</span></code> mixin.</p>
 </section>
+<section id="huetoeffect">
+<h2><code class="docutils literal notranslate"><span class="pre">HueToEffect</span></code><a class="headerlink" href="#huetoeffect" title="Link to this heading">¶</a></h2>
+<p>This effect will change the hue of the target over time to the specified angle in radians.
+It can only be applied to components that implement the <code class="docutils literal notranslate"><span class="pre">HueProvider</span></code>.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HueEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span>
+<span class="w">  </span><span class="n">pi</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="huebyeffect">
+<h2><code class="docutils literal notranslate"><span class="pre">HueByEffect</span></code><a class="headerlink" href="#huebyeffect" title="Link to this heading">¶</a></h2>
+<p>This effect will rotate the hue of the target relative by the specified angle in radians.
+It can only be applied to components that implement the <code class="docutils literal notranslate"><span class="pre">HueProvider</span></code>.</p>
+<div class="flutter-app-infobox docutils container">
+<iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?hue_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-hue_effect">
+<div class="filename docutils container">
+hue_effect.dart</div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:math&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 7</span>
+<span class="linenos"> 8</span><span class="kd">class</span><span class="w"> </span><span class="nc">HueEffectExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">10</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">11</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">ember</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EmberPlayer</span><span class="p">(</span>
+<span class="linenos">12</span><span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">13</span><span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
+<span class="linenos">14</span><span class="w">      </span><span class="nl">onTap:</span><span class="w"> </span><span class="p">(</span><span class="n">ember</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">15</span><span class="w">        </span><span class="n">ember</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">16</span><span class="w">          </span><span class="n">HueEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span>
+<span class="linenos">17</span><span class="w">            </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pi</span><span class="p">,</span>
+<span class="linenos">18</span><span class="w">            </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="linenos">19</span><span class="w">          </span><span class="p">),</span>
+<span class="linenos">20</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">21</span><span class="w">      </span><span class="p">},</span>
+<span class="linenos">22</span><span class="w">    </span><span class="p">)..</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
+<span class="linenos">23</span>
+<span class="linenos">24</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">ember</span><span class="p">);</span>
+<span class="linenos">25</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">26</span><span class="p">}</span>
+</pre></div>
+</div>
+</div>
+<button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-hue_effect&quot;)">Code</button></div>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HueEffect</span><span class="p">.</span><span class="n">by</span><span class="p">(</span>
+<span class="w">  </span><span class="m">2</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pi</span><span class="p">,</span>
+<span class="w">  </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="m">3</span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Both effects can target any component implementing <code class="docutils literal notranslate"><span class="pre">HueProvider</span></code>. The <code class="docutils literal notranslate"><span class="pre">HasPaint</span></code> mixin
+implements <code class="docutils literal notranslate"><span class="pre">HueProvider</span></code> and handles the necessary <code class="docutils literal notranslate"><span class="pre">ColorFilter</span></code> updates automatically.</p>
+<blockquote>
+<div><p>[!TIP]
+<strong>Performance Note</strong>: <code class="docutils literal notranslate"><span class="pre">HueEffect</span></code> is extremely efficient because it modifies the <code class="docutils literal notranslate"><span class="pre">Paint</span></code>’s
+<code class="docutils literal notranslate"><span class="pre">colorFilter</span></code> directly. If you have many components, prefer this effect over the <code class="docutils literal notranslate"><span class="pre">HueDecorator</span></code>,
+which uses <code class="docutils literal notranslate"><span class="pre">saveLayer()</span></code> and has much higher overhead.</p>
+</div></blockquote>
+</section>
 </section>
 
 
@@ -674,6 +755,8 @@ glow_effect.dart</div>
   <a href='#opacitytoeffect' class='list-group-item level-1'>OpacityToEffect</a>
   <a href='#opacitybyeffect' class='list-group-item level-1'>OpacityByEffect</a>
   <a href='#gloweffect' class='list-group-item level-1'>GlowEffect</a>
+  <a href='#huetoeffect' class='list-group-item level-1'>HueToEffect</a>
+  <a href='#huebyeffect' class='list-group-item level-1'>HueByEffect</a>
 </div>
 
     </div>

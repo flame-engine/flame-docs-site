@@ -114,7 +114,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../flame/components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/drag_events.html">Drag Events</a></li>
@@ -135,6 +142,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../flame/effects/anchor_effects.html">Anchor Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/effects/color_effects.html">Color Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/combined_effect.html">Combined Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/effects/remove_effect.html">Remove Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../flame/effects/function_effect.html">Function Effect</a></li>
 </ul>
@@ -220,6 +228,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../flame_svg/svg.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_tiled/flame_tiled.html">flame_tiled</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../flame_tiled/tiled.html">Tiled</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../flame_tiled/layers.html">Layers</a></li>
@@ -288,6 +297,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -325,7 +342,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -357,10 +374,12 @@ and in the pub.dev <a class="reference external" href="https://pub.dev/packages/
 <h2>How to use it<a class="headerlink" href="#how-to-use-it" title="Link to this heading">¶</a></h2>
 <p>First, start with adding the <code class="docutils literal notranslate"><span class="pre">animation.riv</span></code> file to the assets folder. Then load the artboard of
 the animation to the game using the <code class="docutils literal notranslate"><span class="pre">loadArtboard</span></code> method. After that, create the
-<code class="docutils literal notranslate"><span class="pre">StateMachineController</span></code> from the artboard and add a controller to it. Then you can create a
-<code class="docutils literal notranslate"><span class="pre">RiveComponent</span></code> using that artboard.</p>
+<code class="docutils literal notranslate"><span class="pre">StateMachine</span></code> from the artboard and pass it to the <code class="docutils literal notranslate"><span class="pre">RiveComponent</span></code>. The component will
+automatically advance the state machine for you.</p>
+<p>Interactivity should be handled via <a class="reference external" href="https://rive.app/docs/runtimes/data-binding">Data Binding</a>
+instead of state machine inputs, as they are deprecated in Rive 0.14.x.</p>
 <div class="flutter-app-infobox docutils container">
-<iframe class="flutter-app-iframe" src="/v1.33.0/_static/apps/flame-examples/index.html?rive_example" style="width: 200px; height: 200px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rive_example">
+<iframe class="flutter-app-iframe" src="/v1.36.0/_static/apps/flame-examples/index.html?rive_example" style="width: 200px; height: 200px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-rive_example">
 <div class="filename docutils container">
 rive_example.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;dart:async&#39;</span><span class="p">;</span>
@@ -370,33 +389,50 @@ rive_example.dart</div>
 <span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_rive/flame_rive.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 6</span>
 <span class="linenos"> 7</span><span class="kd">class</span><span class="w"> </span><span class="nc">RiveExampleGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapCallbacks</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 8</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">SMIInput</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;?</span><span class="w"> </span><span class="n">levelInput</span><span class="p">;</span>
-<span class="linenos"> 9</span>
-<span class="linenos">10</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">11</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">12</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">skillsArtboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadArtboard</span><span class="p">(</span>
-<span class="linenos">13</span><span class="w">      </span><span class="n">RiveFile</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span><span class="s1">&#39;assets/skills.riv&#39;</span><span class="p">),</span>
-<span class="linenos">14</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">15</span>
-<span class="linenos">16</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StateMachineController</span><span class="p">.</span><span class="n">fromArtboard</span><span class="p">(</span>
-<span class="linenos">17</span><span class="w">      </span><span class="n">skillsArtboard</span><span class="p">,</span>
-<span class="linenos">18</span><span class="w">      </span><span class="s2">&quot;Designer&#39;s Test&quot;</span><span class="p">,</span>
-<span class="linenos">19</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos"> 8</span><span class="w">  </span><span class="n">ViewModelInstanceNumber</span><span class="o">?</span><span class="w"> </span><span class="n">coinInput</span><span class="p">;</span>
+<span class="linenos"> 9</span><span class="w">  </span><span class="n">ViewModelInstanceNumber</span><span class="o">?</span><span class="w"> </span><span class="n">gemInput</span><span class="p">;</span>
+<span class="linenos">10</span>
+<span class="linenos">11</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">12</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">13</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span>
+<span class="linenos">14</span><span class="w">      </span><span class="s1">&#39;assets/rewards.riv&#39;</span><span class="p">,</span>
+<span class="linenos">15</span><span class="w">      </span><span class="nl">riveFactory:</span><span class="w"> </span><span class="n">Factory</span><span class="p">.</span><span class="n">flutter</span><span class="p">,</span>
+<span class="linenos">16</span><span class="w">    </span><span class="p">).</span><span class="n">then</span><span class="p">((</span><span class="n">file</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">file</span><span class="o">!</span><span class="p">);</span>
+<span class="linenos">17</span>
+<span class="linenos">18</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">artboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadArtboard</span><span class="p">(</span><span class="n">file</span><span class="p">);</span>
+<span class="linenos">19</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">stateMachine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">artboard</span><span class="p">.</span><span class="n">defaultStateMachine</span><span class="p">();</span>
 <span class="linenos">20</span>
-<span class="linenos">21</span><span class="w">    </span><span class="n">skillsArtboard</span><span class="p">.</span><span class="n">addController</span><span class="p">(</span><span class="n">controller</span><span class="o">!</span><span class="p">);</span>
-<span class="linenos">22</span>
-<span class="linenos">23</span><span class="w">    </span><span class="n">levelInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">controller</span><span class="p">.</span><span class="n">findInput</span><span class="o">&lt;</span><span class="kt">double</span><span class="o">&gt;</span><span class="p">(</span><span class="s1">&#39;Level&#39;</span><span class="p">);</span>
-<span class="linenos">24</span>
-<span class="linenos">25</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RiveComponent</span><span class="p">(</span><span class="nl">artboard:</span><span class="w"> </span><span class="n">skillsArtboard</span><span class="p">,</span><span class="w"> </span><span class="nl">size:</span><span class="w"> </span><span class="n">canvasSize</span><span class="p">));</span>
-<span class="linenos">26</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">27</span>
-<span class="linenos">28</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">29</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">30</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">levelInput</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">31</span><span class="w">      </span><span class="n">levelInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">levelInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">3</span><span class="p">;</span>
-<span class="linenos">32</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">33</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">34</span><span class="p">}</span>
+<span class="linenos">21</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stateMachine</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">22</span><span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="n">defaultArtboardViewModel</span><span class="p">(</span><span class="n">artboard</span><span class="p">);</span>
+<span class="linenos">23</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">viewModel</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">24</span><span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">viewModelInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="n">createDefaultInstance</span><span class="p">();</span>
+<span class="linenos">25</span><span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">viewModelInstance</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">26</span><span class="w">          </span><span class="n">stateMachine</span><span class="p">.</span><span class="n">bindViewModelInstance</span><span class="p">(</span><span class="n">viewModelInstance</span><span class="p">);</span>
+<span class="linenos">27</span><span class="w">          </span><span class="n">coinInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModelInstance</span><span class="p">.</span><span class="n">viewModel</span><span class="p">(</span><span class="s1">&#39;Coin&#39;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="n">number</span><span class="p">(</span><span class="s1">&#39;Item_Value&#39;</span><span class="p">);</span>
+<span class="linenos">28</span><span class="w">          </span><span class="n">gemInput</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModelInstance</span><span class="p">.</span><span class="n">viewModel</span><span class="p">(</span><span class="s1">&#39;Gem&#39;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="n">number</span><span class="p">(</span><span class="s1">&#39;Item_Value&#39;</span><span class="p">);</span>
+<span class="linenos">29</span><span class="w">        </span><span class="p">}</span>
+<span class="linenos">30</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">31</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">32</span>
+<span class="linenos">33</span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">34</span><span class="w">      </span><span class="n">RiveComponent</span><span class="p">(</span>
+<span class="linenos">35</span><span class="w">        </span><span class="nl">artboard:</span><span class="w"> </span><span class="n">artboard</span><span class="p">,</span>
+<span class="linenos">36</span><span class="w">        </span><span class="nl">stateMachine:</span><span class="w"> </span><span class="n">stateMachine</span><span class="p">,</span>
+<span class="linenos">37</span><span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">canvasSize</span><span class="p">,</span>
+<span class="linenos">38</span><span class="w">      </span><span class="p">),</span>
+<span class="linenos">39</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">40</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">43</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">44</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">coinInput</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">45</span><span class="w">      </span><span class="n">coinInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">coinInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">10</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">1001</span><span class="p">;</span>
+<span class="linenos">46</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">47</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gemInput</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">48</span><span class="w">      </span><span class="n">gemInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">gemInput</span><span class="o">!</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">1001</span><span class="p">;</span>
+<span class="linenos">49</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">50</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">51</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>
@@ -404,22 +440,39 @@ rive_example.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">RiveExampleGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">skillsArtboard</span><span class="w"> </span><span class="o">=</span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">loadArtboard</span><span class="p">(</span><span class="n">RiveFile</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span><span class="s1">&#39;assets/skills.riv&#39;</span><span class="p">));</span>
-
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">controller</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">StateMachineController</span><span class="p">.</span><span class="n">fromArtboard</span><span class="p">(</span>
-<span class="w">      </span><span class="n">skillsArtboard</span><span class="p">,</span>
-<span class="w">      </span><span class="s2">&quot;Designer&#39;s Test&quot;</span><span class="p">,</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">file</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">File</span><span class="p">.</span><span class="n">asset</span><span class="p">(</span>
+<span class="w">      </span><span class="s1">&#39;assets/rewards.riv&#39;</span><span class="p">,</span><span class="w"> </span>
+<span class="w">      </span><span class="nl">riveFactory:</span><span class="w"> </span><span class="n">Factory</span><span class="p">.</span><span class="n">rive</span><span class="p">,</span>
 <span class="w">    </span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">skillsArtboard</span><span class="p">.</span><span class="n">addController</span><span class="p">(</span><span class="n">controller</span><span class="o">!</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">artboard</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadArtboard</span><span class="p">(</span><span class="n">file</span><span class="o">!</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">stateMachine</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">artboard</span><span class="p">.</span><span class="n">defaultStateMachine</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">RiveComponent</span><span class="p">(</span><span class="nl">artboard:</span><span class="w"> </span><span class="n">skillsArtboard</span><span class="p">,</span><span class="w"> </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">550</span><span class="p">)));</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">stateMachine</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">viewModel</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">file</span><span class="p">.</span><span class="n">defaultArtboardViewModel</span><span class="p">(</span><span class="n">artboard</span><span class="p">);</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">viewModel</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kd">final</span><span class="w"> </span><span class="n">viewModelInstance</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">viewModel</span><span class="p">.</span><span class="n">createDefaultInstance</span><span class="p">();</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">viewModelInstance</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="n">stateMachine</span><span class="p">.</span><span class="n">bindViewModelInstance</span><span class="p">(</span><span class="n">viewModelInstance</span><span class="p">);</span>
+<span class="w">          </span><span class="kd">final</span><span class="w"> </span><span class="n">coinAmount</span><span class="w"> </span><span class="o">=</span>
+<span class="w">              </span><span class="n">viewModelInstance</span><span class="p">.</span><span class="n">viewModel</span><span class="p">(</span><span class="s1">&#39;Coin&#39;</span><span class="p">)</span><span class="o">?</span><span class="p">.</span><span class="n">number</span><span class="p">(</span><span class="s1">&#39;Item_Value&#39;</span><span class="p">);</span>
+<span class="w">          </span><span class="n">coinAmount</span><span class="o">?</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+
+<span class="w">    </span><span class="n">add</span><span class="p">(</span>
+<span class="w">      </span><span class="n">RiveComponent</span><span class="p">(</span>
+<span class="w">        </span><span class="nl">artboard:</span><span class="w"> </span><span class="n">artboard</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">stateMachine:</span><span class="w"> </span><span class="n">stateMachine</span><span class="p">,</span>
+<span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">550</span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>You can use the controller to manage the state of animation.
+<p>You can use the state machine to manage the state of animation via data binding.
 Check out the example for more information.</p>
 </section>
 <section id="full-example">

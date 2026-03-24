@@ -114,7 +114,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/drag_events.html">Drag Events</a></li>
@@ -135,6 +142,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../effects/anchor_effects.html">Anchor Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/color_effects.html">Color Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/combined_effect.html">Combined Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/remove_effect.html">Remove Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/function_effect.html">Function Effect</a></li>
 </ul>
@@ -220,6 +228,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_svg/svg.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
@@ -288,6 +297,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -325,7 +342,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -352,8 +369,8 @@ for building UIs, Flame tries to expand on that by introducing widgets that are 
 mind.</p>
 <p>Here you can find all the available widgets provided by Flame.</p>
 <p>You can also see all the widgets showcased inside a
-<a class="reference external" href="https://github.com/bluefireteam/dashbook">Dashbook</a> sandbox
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/widgets">here</a></p>
+<a class="reference external" href="https://github.com/bluefireteam/dashbook">Dashbook</a> sandbox in the
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/widgets">widgets examples directory</a>.</p>
 <section id="ninetileboxwidget">
 <h2>NineTileBoxWidget<a class="headerlink" href="#ninetileboxwidget" title="Link to this heading">¶</a></h2>
 <p>A Nine Tile Box is a rectangle drawn using a grid sprite.</p>
@@ -363,15 +380,15 @@ middle.</p>
 is expanded both ways.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">NineTileBoxWidget</span></code> implements a <code class="docutils literal notranslate"><span class="pre">Container</span></code> using that standard. This pattern is also
 implemented as a component in the <code class="docutils literal notranslate"><span class="pre">NineTileBoxComponent</span></code> so that you can add this feature directly
-to your <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>. To get to know more about this, check the component docs
-<a class="reference internal" href="../components.html#ninetileboxcomponent"><span class="std std-ref">here</span></a>.</p>
+to your <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>. To learn more, check the
+<a class="reference internal" href="../components/utility_components.html#ninetileboxcomponent"><span class="std std-ref">NineTileBoxComponent docs</span></a>.</p>
 <p>Here you can find an example of how to use it (without using the <code class="docutils literal notranslate"><span class="pre">NineTileBoxComponent</span></code>):</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/widgets&#39;</span><span class="p">;</span>
 
 <span class="n">NineTileBoxWidget</span><span class="p">(</span>
 <span class="w">    </span><span class="nl">image:</span><span class="w"> </span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="c1">// dart:ui image instance</span>
 <span class="w">    </span><span class="nl">tileSize:</span><span class="w"> </span><span class="m">16</span><span class="p">,</span><span class="w"> </span><span class="c1">// The width/height of the tile on your grid image</span>
-<span class="w">    </span><span class="nl">destTileSize:</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="c1">// The dimensions to be used when drawing the tile on the canvas</span>
+<span class="w">    </span><span class="nl">destTileSize:</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="c1">// The dimensions for the tile on canvas</span>
 <span class="w">    </span><span class="nl">child:</span><span class="w"> </span><span class="n">SomeWidget</span><span class="p">(),</span><span class="w"> </span><span class="c1">// Any Flutter widget</span>
 <span class="p">)</span>
 </pre></div>

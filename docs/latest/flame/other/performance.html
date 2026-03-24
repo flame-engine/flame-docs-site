@@ -114,7 +114,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/drag_events.html">Drag Events</a></li>
@@ -135,6 +142,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../effects/anchor_effects.html">Anchor Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/color_effects.html">Color Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/combined_effect.html">Combined Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/remove_effect.html">Remove Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/function_effect.html">Function Effect</a></li>
 </ul>
@@ -220,6 +228,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_svg/svg.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
@@ -288,6 +297,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -325,7 +342,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -365,15 +382,17 @@ described here cannot guarantee to always produce a significant improvement in p
 <p>Creating objects of a class is very common in any kind of project/game. But object creation is a somewhat
 involved operation. Depending on the frequency and amount of objects that are being created, the application
 can experience some slow down.</p>
-<p>In games, this is something to be very careful of because games generally have a game loop that updates
-as fast as possible, where each update is called a frame. Depending on the hardware, a game can be updating
-30, 60, 120 or even higher frames per second. This means if a new object is created in a frame, the game
-will end up creating as many number of objects as the frame count per second.</p>
-<p>Flame users, generally tend to run into this problem when they override the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> method
-of a <code class="docutils literal notranslate"><span class="pre">Component</span></code>. For example, in the following innocent looking code, a new <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> and a new <code class="docutils literal notranslate"><span class="pre">Paint</span></code>
-object is spawned every frame. But the data inside the objects is essentially the same across all frames.
-Now imagine if there are 100 instances of <code class="docutils literal notranslate"><span class="pre">MyComponent</span></code> in a game running at 60 FPS. That would essentially
-mean 6000 (100 * 60) new instances of <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> and <code class="docutils literal notranslate"><span class="pre">Paint</span></code> each will be created every second.</p>
+<p>In games, this is something to be very careful of because games generally have a game loop that
+updates as fast as possible, where each update is called a frame. Depending on the hardware, a
+game can be updating 30, 60, 120 or even higher frames per second. This means if a new object is
+created in a frame, the game will end up creating as many number of objects as the frame count
+per second.</p>
+<p>Flame users generally tend to run into this problem when they override the <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code>
+method of a <code class="docutils literal notranslate"><span class="pre">Component</span></code>. For example, in the following innocent looking code, a new <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> and
+a new <code class="docutils literal notranslate"><span class="pre">Paint</span></code> object is spawned every frame. But the data inside the objects is essentially the
+same across all frames. Now imagine if there are 100 instances of <code class="docutils literal notranslate"><span class="pre">MyComponent</span></code> in a game running
+at 60 FPS. That would essentially mean 6000 (100 * 60) new instances of <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> and <code class="docutils literal notranslate"><span class="pre">Paint</span></code>
+each will be created every second.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>It is like buying a new computer every time you want to send an email or buying
@@ -422,14 +441,16 @@ small object can affect the performance if spawned in high volume.</p>
 </section>
 <section id="unwanted-collision-checks">
 <h2>Unwanted collision checks<a class="headerlink" href="#unwanted-collision-checks" title="Link to this heading">¶</a></h2>
-<p>Flame has a built-in collision detection system which can detect when any two <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code>es intersect with
-each other. In an ideal case, this system runs on every frame and checks for collision. It is also smart
-enough to filter out only the possible collisions before performing the actual intersection checks.</p>
-<p>Despite this, it is safe to assume that the cost of collision detection will increase as the number of
-hitboxes increases. But in many games, the developers are not always interested in detecting collision
-between every possible pair. For example, consider a simple game where players can fire a <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> component
-that has a hitbox. In such a game it is likely that the developers are not interested in detecting collision
-between any two bullets, but Flame will still perform those collision checks.</p>
+<p>Flame has a built-in collision detection system which can detect when any two <code class="docutils literal notranslate"><span class="pre">Hitbox</span></code>es intersect
+with each other. In an ideal case, this system runs on every frame and checks for collision. It is
+also smart enough to filter out only the possible collisions before performing the actual
+intersection checks.</p>
+<p>Despite this, it is safe to assume that the cost of collision detection will increase as the
+number of hitboxes increases. But in many games, the developers are not always interested in
+detecting collision between every possible pair. For example, consider a simple game where players
+can fire a <code class="docutils literal notranslate"><span class="pre">Bullet</span></code> component that has a hitbox. In such a game it is likely that the developers
+are not interested in detecting collision between any two bullets, but Flame will still perform
+those collision checks.</p>
 <p>To avoid this, you can set the <code class="docutils literal notranslate"><span class="pre">collisionType</span></code> for bullet component to <code class="docutils literal notranslate"><span class="pre">CollisionType.passive</span></code>. Doing
 so will cause Flame to completely skip any kind of collision check between all the passive hitboxes.</p>
 <div class="admonition note">
@@ -439,6 +460,116 @@ It is up to the developers to decide which hitboxes can be made passive based on
 the rules of the game. For example, the Rogue Shooter game in Flame’s examples uses
 passive hitbox for enemies instead of the bullets.</p>
 </div>
+</section>
+<section id="object-pooling">
+<h2>Object Pooling<a class="headerlink" href="#object-pooling" title="Link to this heading">¶</a></h2>
+<p>As mentioned in the “Object creation per frame” section, creating and destroying objects
+frequently can impact performance. For components that are spawned and removed repeatedly
+(like bullets, particles, or enemies), object pooling is an effective optimization technique.</p>
+<p>Object pooling reuses objects instead of constantly creating and destroying them. Flame
+provides the <code class="docutils literal notranslate"><span class="pre">ComponentPool</span></code> class to make object pooling easy and efficient.</p>
+<section id="componentpool">
+<h3>ComponentPool<a class="headerlink" href="#componentpool" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">ComponentPool</span></code> class manages a pool of reusable components. It automatically handles
+the component lifecycle: when a pooled component is removed from its parent, it is
+returned to the pool for reuse.</p>
+<p><strong>Creating a pool:</strong></p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">ComponentPool</span><span class="o">&lt;</span><span class="n">Bullet</span><span class="o">&gt;</span><span class="w"> </span><span class="n">bulletPool</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">bulletPool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ComponentPool</span><span class="o">&lt;</span><span class="n">Bullet</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">      </span><span class="kd">factory</span><span class="o">:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Bullet</span><span class="p">(),</span>
+<span class="w">      </span><span class="nl">maxSize:</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w">      </span><span class="c1">// Maximum number of bullets to keep in the pool</span>
+<span class="w">      </span><span class="nl">initialSize:</span><span class="w"> </span><span class="m">10</span><span class="p">,</span><span class="w">  </span><span class="c1">// Pre-create 10 bullets for immediate use</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Acquiring components from the pool:</strong></p>
+<p>When you need a component, use <code class="docutils literal notranslate"><span class="pre">acquire()</span></code> to get one from the pool. If the pool is empty,
+a new component will be created automatically using the factory function.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">spawnBullet</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">position</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="w"> </span><span class="n">velocity</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">bullet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">bulletPool</span><span class="p">.</span><span class="n">acquire</span><span class="p">();</span>
+<span class="w">  </span><span class="n">bullet</span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">setFrom</span><span class="p">(</span><span class="n">position</span><span class="p">);</span>
+<span class="w">  </span><span class="n">bullet</span><span class="p">.</span><span class="n">velocity</span><span class="p">.</span><span class="n">setFrom</span><span class="p">(</span><span class="n">velocity</span><span class="p">);</span>
+<span class="w">  </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">bullet</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><strong>Returning components to the pool:</strong></p>
+<p>Components are returned to the pool <strong>automatically</strong> when they are removed from the game
+tree. Simply call <code class="docutils literal notranslate"><span class="pre">removeFromParent()</span></code> on the component. There is no manual release step.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Bullet</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">();</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+<span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">velocity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Remove bullet if it goes off screen. Automatically returned to pool.</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="o">-</span><span class="m">100</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">100</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionStart</span><span class="p">(</span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Return to pool on collision. No manual release needed.</span>
+<span class="w">    </span><span class="n">removeFromParent</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onMount</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onMount</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Reset visual/internal state here so the component is clean when reused.</span>
+<span class="w">    </span><span class="c1">// Caller-configured state (position, velocity) should NOT be reset here</span>
+<span class="w">    </span><span class="c1">// because it is set between acquire() and add().</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="pool-management">
+<h3>Pool Management<a class="headerlink" href="#pool-management" title="Link to this heading">¶</a></h3>
+<p><strong>Checking available components:</strong></p>
+<p>You can check how many components are currently available in the pool:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;Available bullets: </span><span class="si">${</span><span class="n">bulletPool</span><span class="p">.</span><span class="n">availableCount</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Clearing the pool:</strong></p>
+<p>If you need to free up memory or reset the pool, you can clear all available components:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">bulletPool</span><span class="p">.</span><span class="n">clear</span><span class="p">();</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Clearing only affects components currently in the pool. Components that are in use
+(acquired but not yet released) are not affected.</p>
+</div>
+</section>
+<section id="best-practices">
+<h3>Best Practices<a class="headerlink" href="#best-practices" title="Link to this heading">¶</a></h3>
+<ol class="arabic simple">
+<li><p><strong>No special mixin needed</strong>: Any <code class="docutils literal notranslate"><span class="pre">Component</span></code> subclass can be pooled. Just pass a factory
+function to <code class="docutils literal notranslate"><span class="pre">ComponentPool</span></code> and you’re ready to go.</p></li>
+<li><p><strong>Use <code class="docutils literal notranslate"><span class="pre">onMount</span></code> to reset internal state</strong>: Reset visual or internal properties (e.g.
+animation frame, bounce phase) in <code class="docutils literal notranslate"><span class="pre">onMount()</span></code>. Do not reset caller-configured state
+(like position or velocity) there, since those are set between <code class="docutils literal notranslate"><span class="pre">acquire()</span></code> and <code class="docutils literal notranslate"><span class="pre">add()</span></code>.</p></li>
+<li><p><strong>Just call <code class="docutils literal notranslate"><span class="pre">removeFromParent()</span></code></strong>: Components are returned to the pool automatically
+when removed. There is no manual release method to call.</p></li>
+<li><p><strong>Set appropriate pool sizes</strong>: Set <code class="docutils literal notranslate"><span class="pre">maxSize</span></code> based on your game’s needs. Too small and
+you’ll create new objects frequently; too large and you’ll waste memory.</p></li>
+<li><p><strong>Use <code class="docutils literal notranslate"><span class="pre">initialSize</span></code> for warm-up</strong>: Set <code class="docutils literal notranslate"><span class="pre">initialSize</span></code> to pre-create commonly used
+components, reducing frame drops during gameplay.</p></li>
+<li><p><strong>Pool behavior is LIFO</strong>: The pool uses a stack (Last In, First Out) internally, meaning
+the most recently returned component will be the next one acquired.</p></li>
+</ol>
+</section>
 </section>
 </section>
 
@@ -474,6 +605,10 @@ passive hitbox for enemies instead of the bullets.</p>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#object-creation-per-frame' class='list-group-item level-1'>Object creation per frame</a>
   <a href='#unwanted-collision-checks' class='list-group-item level-1'>Unwanted collision checks</a>
+  <a href='#object-pooling' class='list-group-item level-1'>Object Pooling</a>
+  <a href='#componentpool' class='list-group-item level-2'>ComponentPool</a>
+  <a href='#pool-management' class='list-group-item level-2'>Pool Management</a>
+  <a href='#best-practices' class='list-group-item level-2'>Best Practices</a>
 </div>
 
     </div>

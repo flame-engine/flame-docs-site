@@ -115,7 +115,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Inputs</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="drag_events.html">Drag Events</a></li>
@@ -228,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
@@ -291,6 +299,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -450,8 +466,8 @@ together, since no events will be triggered for the latter (there is also an ass
 <a class="reference external" href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html">GestureDetector widget</a>,
 <a class="reference external" href="https://api.flutter.dev/flutter/widgets/RawGestureDetector-class.html">RawGestureDetector widget</a>
 and <a class="reference external" href="https://api.flutter.dev/flutter/widgets/MouseRegion-class.html">MouseRegion widget</a>, you can
-also read more about Flutter’s gestures
-<a class="reference external" href="https://api.flutter.dev/flutter/gestures/gestures-library.html">here</a>.</p>
+also read more about
+<a class="reference external" href="https://api.flutter.dev/flutter/gestures/gestures-library.html">Flutter’s gesture system</a>.</p>
 </section>
 <section id="pandetector-and-scaledetector">
 <h2>PanDetector and ScaleDetector<a class="headerlink" href="#pandetector-and-scaledetector" title="Link to this heading">¶</a></h2>
@@ -548,8 +564,8 @@ explanation about each of them.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>You can also check more complete examples
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/">here</a>.</p>
+<p>You can also check more complete examples in the
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/">input examples directory</a>.</p>
 <section id="gesturehitboxes">
 <h3>GestureHitboxes<a class="headerlink" href="#gesturehitboxes" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin is used to more accurately recognize gestures on top of your
@@ -562,8 +578,8 @@ for the event to be registered on your component.</p>
 added in the below <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> example.</p>
 <p>More information about how to define hitboxes can be found in the hitbox section of the
 <a class="reference internal" href="../collision_detection.html#shapehitbox"><span class="std std-ref">collision detection</span></a> docs.</p>
-<p>An example of how to use it can be seen
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/gesture_hitboxes_example.dart">here</a>.</p>
+<p>An example of how to use it can be seen in the
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/gesture_hitboxes_example.dart">gesture hitboxes example</a>.</p>
 </section>
 </section>
 </section>

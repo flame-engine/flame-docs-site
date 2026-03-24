@@ -114,7 +114,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../components.html">Components</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/drag_events.html">Drag Events</a></li>
@@ -135,6 +142,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../effects/anchor_effects.html">Anchor Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/color_effects.html">Color Effects</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/combined_effect.html">Combined Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/remove_effect.html">Remove Effect</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../effects/function_effect.html">Function Effect</a></li>
 </ul>
@@ -220,6 +228,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_svg/svg.html">Overview</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
@@ -288,6 +297,14 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
@@ -325,7 +342,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.33.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -366,6 +383,9 @@ an instance of <a class="reference internal" href="#PaddingComponent-PaddingComp
 multiple children. It is designed only for one child.</p>
 <p>You may set <a class="reference internal" href="#PaddingComponent-padding"><code class="xref dart dart-ref docutils literal notranslate"><span class="pre">padding</span></code></a> as well as the <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">child</span></code> after the fact, and it will
 cause the layout to refresh.</p>
+<p>If <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">inflateChild</span></code> is true, <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">resetSize</span></code> sets the child’s size to fill up
+available space via <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">syncChildSize</span></code>. If the child is a <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">LayoutComponent</span></code>
+descendant, then <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">resetSize</span></code> uses the <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">LayoutComponent.setLayoutSize</span></code>.</p>
 <p>Example usage:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">PaddingComponent</span><span class="p">(</span>
 <span class="w">  </span><span class="nl">padding:</span><span class="w"> </span><span class="n">EdgeInsets</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">10</span><span class="p">),</span>
@@ -379,7 +399,7 @@ cause the layout to refresh.</p>
 <div class="constructor docutils container">
 <div class="signature sig2 docutils container" id="PaddingComponent-PaddingComponent">
 <div class="docutils container">
-<span class="name">PaddingComponent</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="name">super.key</span></span><span class="punct">, </span><span class="argument">EdgeInsets? <span class="name">padding</span></span><span class="punct">, </span><span class="argument"><span class="name">super.anchor</span></span><span class="punct">, </span><span class="argument"><span class="name">super.position</span></span><span class="punct">, </span><span class="argument"><span class="name">super.priority</span></span><span class="punct">, </span><span class="argument"><span class="name">super.size</span></span><span class="punct">, </span><span class="argument">PositionComponent? <span class="name">child</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
+<span class="name">PaddingComponent</span><span class="arguments"><span class="punct">(</span><span class="punct">{</span><span class="argument"><span class="name">super.key</span></span><span class="punct">, </span><span class="argument">EdgeInsets? <span class="name">padding</span></span><span class="punct">, </span><span class="argument"><span class="name">super.anchor</span></span><span class="punct">, </span><span class="argument"><span class="name">super.position</span></span><span class="punct">, </span><span class="argument"><span class="name">super.priority</span></span><span class="punct">, </span><span class="argument"><span class="name">super.size</span></span><span class="punct">, </span><span class="argument"><span class="name">super.inflateChild</span><span class="punct"> = </span><span class="default">false</span></span><span class="punct">, </span><span class="argument">PositionComponent? <span class="name">child</span></span><span class="punct">}</span><span class="punct">)</span></span></div>
 </div>
 </div>
 </section>
