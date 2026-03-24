@@ -72,12 +72,10 @@ function generate_docs_for_version {
   rm -rf $tmp_flame_src/scripts
   cp -r $tmp_stash/scripts $tmp_flame_src
 
-  # Remove dartdoc dependency which can cause analyzer version conflicts with
-  # newer Flutter SDKs. Docs are built with Sphinx, so dartdoc is not needed.
-  # It must be removed from both the melos bootstrap config (root pubspec.yaml)
-  # and from flame_test's pubspec.yaml where it's a direct dependency.
-  sed -i '/dartdoc: \^/d' $tmp_flame_src/pubspec.yaml
-  find $tmp_flame_src -path "*/flame_test/pubspec.yaml" -exec sed -i '/dartdoc: \^/d' {} +
+  # Remove dartdoc dependency from all pubspec.yaml files, as it can cause
+  # analyzer version conflicts with newer Flutter SDKs. Docs are built with
+  # Sphinx, so dartdoc is not needed.
+  find $tmp_flame_src -name "pubspec.yaml" -exec sed -i '/^\s*dartdoc: \^/d' {} +
 
   cd $tmp_flame_src
 
