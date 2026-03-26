@@ -6678,7 +6678,6 @@ pointer_interceptor
 pointer_interceptor_platform_interface
 pointer_interceptor_web
 shared_preferences_linux
-shared_preferences_platform_interface
 shared_preferences_web
 shared_preferences_windows
 url_launcher
@@ -11951,6 +11950,7 @@ pointer_interceptor_ios
 shared_preferences
 shared_preferences_android
 shared_preferences_foundation
+shared_preferences_platform_interface
 url_launcher_android
 url_launcher_ios
 url_launcher_linux
