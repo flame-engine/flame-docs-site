@@ -387,13 +387,17 @@ by providing an <code class="docutils literal notranslate"><span class="pre">ove
 
 <span class="w">  </span><span class="c1">// Marks &#39;SecondaryMenu&#39; to be rendered.</span>
 <span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">secondaryOverlayIdentifier</span><span class="p">,</span><span class="w"> </span><span class="nl">priority:</span><span class="w"> </span><span class="m">1</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to be rendered. Priority = 0 by default </span>
+<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to be rendered. Priority = 0 by default</span>
 <span class="w">  </span><span class="c1">// which means the &#39;PauseMenu&#39; will be displayed under the &#39;SecondaryMenu&#39;</span>
 <span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered. </span>
+<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span>
 <span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
 <span class="w">  </span><span class="c1">// Toggles the &#39;PauseMenu&#39; overlay.</span>
 <span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">toggle</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Check if the &#39;PauseMenu&#39; is being rendered</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">hasPauseMenu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">overlays</span><span class="p">.</span><span class="n">isActive</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Set active state ov &#39;SecondaryMenu&#39; based on a condition</span>
+<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">setActive</span><span class="p">(</span><span class="n">secondaryOverlayIdentifier</span><span class="p">,</span><span class="w"> </span><span class="nl">active:</span><span class="w"> </span><span class="o">!</span><span class="n">hasPauseMenu</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// On the widget declaration</span>
