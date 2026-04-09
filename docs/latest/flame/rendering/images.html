@@ -203,6 +203,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_forge2d/joints.html">Joints</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_gamepads/flame_gamepads.html">flame_gamepads</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_isolate/flame_isolate.html">flame_isolate</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
 </ul>
@@ -234,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
@@ -342,7 +344,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.37.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -739,6 +741,67 @@ either <code class="docutils literal notranslate"><span class="pre">SpriteSheet.
 <p>See a full example of the <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/sprites/sprite_sheet_example.dart"><code class="docutils literal notranslate"><span class="pre">SpriteSheet</span></code> class</a>
 for more details on how to work with it.</p>
 </section>
+<section id="hasautobatchedchildren">
+<h2>HasAutoBatchedChildren<a class="headerlink" href="#hasautobatchedchildren" title="Link to this heading">¶</a></h2>
+<p>Flame introduces automatic sprite batching for improved rendering performance via the
+<code class="docutils literal notranslate"><span class="pre">HasAutoBatchedChildren</span></code> mixin. This mixin enables groups of sprite components to be rendered in a
+single draw call per atlas, significantly reducing rendering overhead and improving performance,
+especially when managing many similar sprites.</p>
+<section id="purpose">
+<h3>Purpose<a class="headerlink" href="#purpose" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">HasAutoBatchedChildren</span></code> mixin is designed for scenarios where you have a group of sprite or
+animation components (such as enemies, bullets, or particles) that share the same atlas image. By
+batching their rendering, Flame minimizes the number of draw calls, which is a major performance
+bottleneck in graphics applications.</p>
+</section>
+<section id="when-to-use">
+<h3>When to Use<a class="headerlink" href="#when-to-use" title="Link to this heading">¶</a></h3>
+<p>Use this mixin when you have many <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> or <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> children that:</p>
+<ul class="simple">
+<li><p>Use the same atlas image</p></li>
+<li><p>Have uniform scale</p></li>
+<li><p>Do not require custom decorators or snapshot caching</p></li>
+<li><p>Do not have complex paint effects</p></li>
+</ul>
+<p>This is ideal for groups of similar objects, such as enemy waves or particle systems.</p>
+</section>
+<section id="how-to-use">
+<h3>How to Use<a class="headerlink" href="#how-to-use" title="Link to this heading">¶</a></h3>
+<p>To enable batching, simply add the mixin to your group component:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/src/components/mixins/has_auto_batched_children.dart&#39;</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">EnemyGroup</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasAutoBatchedChildren</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Add SpriteComponent or SpriteAnimationComponent children</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>You can toggle batching at runtime:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">group</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EnemyGroup</span><span class="p">();</span>
+<span class="n">group</span><span class="p">.</span><span class="n">batchingEnabled</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span><span class="w"> </span><span class="c1">// falls back to individual rendering</span>
+</pre></div>
+</div>
+<p>The mixin works by intercepting per-child rendering (<code class="docutils literal notranslate"><span class="pre">renderChild</span></code>) and post-children rendering
+hooks (<code class="docutils literal notranslate"><span class="pre">afterChildrenRendered</span></code>), accumulating eligible children for batch rendering and flushing
+batches at priority boundaries to preserve correct render order.</p>
+</section>
+<section id="example">
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h3>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">BulletGroup</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasAutoBatchedChildren</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Add SpriteComponent children representing bullets</span>
+<span class="p">}</span>
+
+<span class="c1">// Add bullets to the group</span>
+<span class="n">bulletGroup</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">BulletSpriteComponent</span><span class="p">(...));</span>
+</pre></div>
+</div>
+<section id="rogue-shooter-example">
+<h4>Rogue Shooter Example<a class="headerlink" href="#rogue-shooter-example" title="Link to this heading">¶</a></h4>
+<p>See the <a class="reference external" href="https://examples.flame-engine.org/#/Sample_Games_Rogue_Shooter">Rogue Shooter game example</a>
+for a real-world usage of this mixin.</p>
+</section>
+</section>
+</section>
 </section>
 
 
@@ -783,6 +846,12 @@ for more details on how to work with it.</p>
   <a href='#imagecomposition' class='list-group-item level-1'>ImageComposition</a>
   <a href='#animation' class='list-group-item level-1'>Animation</a>
   <a href='#spritesheet' class='list-group-item level-1'>SpriteSheet</a>
+  <a href='#hasautobatchedchildren' class='list-group-item level-1'>HasAutoBatchedChildren</a>
+  <a href='#purpose' class='list-group-item level-2'>Purpose</a>
+  <a href='#when-to-use' class='list-group-item level-2'>When to Use</a>
+  <a href='#how-to-use' class='list-group-item level-2'>How to Use</a>
+  <a href='#example' class='list-group-item level-2'>Example</a>
+  <a href='#rogue-shooter-example' class='list-group-item level-3'>Rogue Shooter Example</a>
 </div>
 
     </div>

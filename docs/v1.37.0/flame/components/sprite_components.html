@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Sprite Components &#8212; Flame</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b20cc3f5" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
+  <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=ac7bdd72" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
+  <!-- Scripts -->
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
+  <!--script src="searchindex.js" defer></script-->
+  <script src="https://cdn.jsdelivr.net/npm/virtual-webgl"></script>
+  <!-- Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../_static/fontawesome/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../_static/fontawesome/fa-solid-900.woff2">
+  <link rel="stylesheet" href="../../_static/fontawesome/all.min.css">
+  <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" />
+  <link rel="next" title="ParallaxComponent" href="parallax_component.html" />
+  <link rel="prev" title="PositionComponent" href="position_component.html" />
+</head>
+
+<body data-spy="scroll" data-target="#toc-local" data-offset="80">
+
+<div class="top-bar">
+  <button id="menu-button" class="btn" title="Toggle menu"><i class="fa fa-bars"></i></button>
+  <script type="text/javascript">
+    jQuery(function(){
+      $("#menu-button").click(function() {
+        $(this).toggleClass("active");
+        $(".sidebar-left-area").toggleClass("active");
+      });
+
+      $('div.nav-left li > a:not(:only-child)').wrap('<div class=submenu></div>');
+      $('div.nav-left div.submenu').prepend('<a class=arrow>&nbsp;</a>');
+      $('div.nav-left div.submenu > a.arrow')
+        .click(function() {
+          $(this.parentElement.parentElement).toggleClass('current');
+        });
+
+      // This function ensures that when navigating to internal targets within the page (such as
+      // a section header), those targets will be visible to the user and not obscured by the menu
+      // bar at the top of the page.
+      function scrollToHashTarget() {
+        if (location.hash !== location.oldHash) {
+          window.scrollBy(0, -60);
+          location.oldHash = location.hash;
+        }
+      }
+      window.location.oldHash = '';
+      window.addEventListener('hashchange', scrollToHashTarget);
+      scrollToHashTarget();
+    });
+  </script>
+
+  <a href="../../index.html" class="logo_image" aria-label="Navigate to home page">
+    <img src="../../_static/logo_flame.png" alt="Flame logo: a fiery symbol along with the FLAME wordmark.">
+  </a>  
+  <div class="highlight-box" role="alert" style="display:none">
+    <div>
+      <div class="title">highlighted:</div>
+      <div class="content" id="highlight-content"></div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Dismiss">×</button>
+  </div>
+  <div class="expander"></div>
+
+  <div class="versions-placeholder"></div>
+  <a href="https://discord.com/invite/pxrBmy4" id="discord-button" class="btn"
+     title="Blue Fire Discord server">
+    <i class="fab fa-discord"></i>
+  </a>
+  <a href="https://github.com/flame-engine/flame/" id="github-button" class="btn"
+     title="GitHub repository">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+
+<div class="sidebar-left-area">
+  <div class="sidebar-left-bg"></div>
+  <div class="sidebar-left">
+    <div class="searchbox" role="search">
+      <form id="search-form" action="../../search.html" method="get">
+        <i class="icon fa fa-search"></i>
+        <input type="search" class="form-control" id="search-input" name="q"
+               placeholder="Search the docs..." autocomplete="off" />
+      </form>
+    </div>
+    <div class="nav-left" role="navigation" aria-label="Main">
+      <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../flame.html">Flame</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../README.html">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game_widget.html">Game Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../game.html">The game class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../structure.html">Assets Structure</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="components.html">Components</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="position_component.html">Position Component</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="utility_components.html">Utility Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/tap_events.html">Tap Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/drag_events.html">Drag Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/gesture_input.html">Gesture Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/keyboard_input.html">Keyboard Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/other_inputs.html">Other Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/pointer_events.html">Pointer Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../effects/effects.html">Effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../effects/effect_controllers.html">Effect Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/move_effects.html">Move Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/rotate_effects.html">Rotate Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/scale_effects.html">Scale Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/size_effects.html">Size Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/anchor_effects.html">Anchor Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/color_effects.html">Color Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/combined_effect.html">Combined Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/remove_effect.html">Remove Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../effects/function_effect.html">Function Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../collision_detection.html">Collision Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../router.html">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../platforms.html">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/post_processing.html">Post Processing and Shaders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/palette.html">Colors and Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/decorators.html">Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/images.html">Images, Sprites and Animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/layers.html">Layers and Snapshots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/particles.html">Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../rendering/text_rendering.html">Text Rendering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../layout/layout.html">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../layout/align_component.html">AlignComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/row_component.html">RowComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/column_component.html">ColumnComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/expanded_component.html">Expanded Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../layout/padding_component.html">Padding Component</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../overlays.html">Overlays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../other/other.html">Other</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../other/debug.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../other/util.html">Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../other/widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../other/performance.html">Performance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../bridge_packages/bridge_packages.html">Bridge Packages</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_audio/flame_audio.html">flame_audio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/audio.html">General audio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/bgm.html">Background music</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_audio/audio_pool.html">AudioPool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_behaviors/flame_behaviors.html">flame_behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_behaviors/getting_started.html">Getting Started</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_bloc/flame_bloc.html">flame_bloc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_bloc/bloc.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_bloc/bloc_components.html">Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_fire_atlas/flame_fire_atlas.html">flame_fire_atlas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_fire_atlas/fire_atlas.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_forge2d/flame_forge2d.html">flame_forge2d</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_forge2d/forge2d.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_forge2d/joints.html">Joints</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_gamepads/flame_gamepads.html">flame_gamepads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_isolate/flame_isolate.html">flame_isolate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_lottie/flame_lottie.html">flame_lottie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_network_assets/flame_network_assets.html">flame_network_assets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_rive/flame_rive.html">flame_rive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_rive/rive.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_riverpod/flame_riverpod.html">flame_riverpod</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_riverpod/riverpod.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_riverpod/component.html">Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_riverpod/widget.html">Widget</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_splash_screen/flame_splash_screen.html">flame_splash_screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_spine/flame_spine.html">flame_spine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_svg/flame_svg.html">flame_svg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_svg/svg.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_tiled/flame_tiled.html">flame_tiled</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/tiled.html">Tiled</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/jenny/jenny.html">jenny</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/jenny/language/language.html">YarnSpinner language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/nodes.html">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/options.html">Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/commands/commands.html">Commands</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/character.html">&lt;&lt;character&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/declare.html">&lt;&lt;declare&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/if.html">&lt;&lt;if&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/local.html">&lt;&lt;local&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/set.html">&lt;&lt;set&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/stop.html">&lt;&lt;stop&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/visit.html">&lt;&lt;visit&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/wait.html">&lt;&lt;wait&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/user_defined_commands.html">User-defined commands</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/expressions/expressions.html">Expressions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/expressions/variables.html">Variables</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/expressions/operators.html">Operators</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/functions.html">Functions</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/random.html">Random functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/numeric.html">Numeric functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/type.html">Type conversion functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/misc.html">Miscellaneous functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/markup.html">Markup</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/jenny/runtime/jenny_runtime.html">Jenny API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/character.html">Character</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/character_storage.html">CharacterStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/command_storage.html">CommandStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_choice.html">DialogueChoice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_line.html">DialogueLine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_option.html">DialogueOption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_runner.html">DialogueRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_view.html">DialogueView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/function_storage.html">FunctionStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/markup_attribute.html">MarkupAttribute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/node.html">Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/user_defined_command.html">UserDefinedCommand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/variable_storage.html">VariableStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/yarn_project.html">YarnProject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen/oxygen.html">oxygen</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/oxygen/components.html">Components</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step4.html">4. Gameplay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step5.html">5. Additional features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/platformer/platformer.html">Ember Quest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_2.html">2. Start Coding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_3.html">3. Building the World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_4.html">4. Adding the Remaining Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/space_shooter/space_shooter.html">Space Shooter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_1.html">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_2.html">2. Controlling the player and adding some graphics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_3.html">3. Adding animations and depth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_4.html">4. Adding Bullets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_5.html">5. Adding Enemies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_6.html">6. Enemy and Bullet collisions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/testing_guide.html">Tests Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.37.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="main-area">
+  <div class="document-wrapper">
+    <div class="warning hidden" id="version-warning">
+      <p><strong>Warning:</strong> you are currently viewing the docs for an older
+      version <span class="version"></span> of Flame.</p>
+      <p>Please <a href="/">click here</a> to go see the documentation for the latest
+      released version.</p>
+    </div>
+    <div class="document" role="main">
+      
+  <section class="tex2jax_ignore mathjax_ignore" id="sprite-components">
+<h1>Sprite Components<a class="headerlink" href="#sprite-components" title="Link to this heading">¶</a></h1>
+<p>Sprites are 2D images (or regions of images) that represent the visual appearance of game objects.
+They are the most common way to display characters, items, backgrounds, and other visuals in 2D
+games. Flame provides several sprite-based components that make it easy to load images, play
+animations, and switch between visual states, all while benefiting from the transform properties
+inherited from <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p>
+<section id="spritecomponent">
+<h2>SpriteComponent<a class="headerlink" href="#spritecomponent" title="Link to this heading">¶</a></h2>
+<p>The most commonly used implementation of <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code>, and it can be
+created with a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components/component.dart&#39;</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kd">final</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">128.0</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">sprite</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// Vector2(0.0, 0.0) by default, can also be set in the constructor</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">);</span>
+
+<span class="w">    </span><span class="c1">// 0 by default, can also be set in the constructor</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="c1">// Adds the component</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="spriteanimationcomponent">
+<h2>SpriteAnimationComponent<a class="headerlink" href="#spriteanimationcomponent" title="Link to this heading">¶</a></h2>
+<p>This class is used to represent a Component that has sprites that run in a single cyclic animation.</p>
+<p>This will create a simple three frame animation using 3 different images:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">]</span>
+<span class="w">      </span><span class="p">.</span><span class="n">map</span><span class="p">((</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player_</span><span class="si">$</span><span class="n">i</span><span class="s1">.png&#39;</span><span class="p">));</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">Future</span><span class="p">.</span><span class="n">wait</span><span class="p">(</span><span class="n">sprites</span><span class="p">),</span>
+<span class="w">    </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.01</span><span class="p">,</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">animation:</span><span class="w"> </span><span class="n">animation</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">),</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you have a sprite sheet, you can use the <code class="docutils literal notranslate"><span class="pre">sequenced</span></code> constructor from the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationData</span></code>
+class (check more details on <a class="reference internal" href="../rendering/images.html#animation"><span class="std std-ref">Images &gt; Animation</span></a>):</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
+<span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">amount:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">data</span><span class="p">,</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>All animation components internally maintain a <code class="docutils literal notranslate"><span class="pre">SpriteAnimationTicker</span></code> which ticks the
+<code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>. This allows multiple components to share the same animation object.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="cm">/*Your sprite list here*/</span><span class="p">];</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">spriteList</span><span class="p">(</span><span class="n">sprites</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.01</span><span class="p">);</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationTicker</span><span class="p">(</span><span class="n">animation</span><span class="p">);</span>
+
+<span class="c1">// or alternatively, you can ask the animation object to create one for you.</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">animation</span><span class="p">.</span><span class="n">createTicker</span><span class="p">();</span><span class="w"> </span><span class="c1">// creates a new ticker</span>
+
+<span class="n">animationTicker</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">dt</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>To listen when the animation is done (when it reaches the last frame and is not looping) you can
+use <code class="docutils literal notranslate"><span class="pre">animationTicker.completed</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">await</span><span class="w"> </span><span class="n">animationTicker</span><span class="p">.</span><span class="n">completed</span><span class="p">;</span>
+
+<span class="n">doSomething</span><span class="p">();</span>
+
+<span class="c1">// or alternatively</span>
+
+<span class="n">animationTicker</span><span class="p">.</span><span class="n">completed</span><span class="p">.</span><span class="n">whenComplete</span><span class="p">(</span><span class="n">doSomething</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Additionally, <code class="docutils literal notranslate"><span class="pre">SpriteAnimationTicker</span></code> also has the following optional event callbacks: <code class="docutils literal notranslate"><span class="pre">onStart</span></code>,
+<code class="docutils literal notranslate"><span class="pre">onFrame</span></code>, and <code class="docutils literal notranslate"><span class="pre">onComplete</span></code>. To listen to these events, you can do the following:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationTicker</span><span class="p">(</span><span class="n">animation</span><span class="p">)</span>
+<span class="w">  </span><span class="p">..</span><span class="n">onStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Do something on start.</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationTicker</span><span class="p">(</span><span class="n">animation</span><span class="p">)</span>
+<span class="w">  </span><span class="p">..</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Do something on completion.</span>
+<span class="w">  </span><span class="p">};</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">animationTicker</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationTicker</span><span class="p">(</span><span class="n">animation</span><span class="p">)</span>
+<span class="w">  </span><span class="p">..</span><span class="n">onFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">index</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="m">1</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="c1">// Do something for the second frame.</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">};</span>
+</pre></div>
+</div>
+<p>To reset the animation to the first frame when the component is removed, you can set
+<code class="docutils literal notranslate"><span class="pre">resetOnRemove</span></code> to <code class="docutils literal notranslate"><span class="pre">true</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">SpriteAnimationComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">animation:</span><span class="w"> </span><span class="n">animation</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64.0</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">resetOnRemove:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="spriteanimationgroupcomponent">
+<h2>SpriteAnimationGroupComponent<a class="headerlink" href="#spriteanimationgroupcomponent" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SpriteAnimationGroupComponent</span></code> is a simple wrapper around <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> which enables
+your component to hold several animations and change the current playing animation at runtime. Since
+this component is just a wrapper, the event listeners can be implemented as described in
+<a class="reference internal" href="#spriteanimationcomponent">SpriteAnimationComponent</a>.</p>
+<p>Its use is very similar to the <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> but instead of being initialized with a
+single animation, this component receives a Map of a generic type <code class="docutils literal notranslate"><span class="pre">T</span></code> as key and a
+<code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code> as value, and the current animation.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span><span class="w"> </span><span class="n">RobotState</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">idle</span><span class="p">,</span>
+<span class="w">  </span><span class="n">running</span><span class="p">,</span>
+<span class="p">}</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">idle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationGroupComponent</span><span class="o">&lt;</span><span class="n">RobotState</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">animations:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">RobotState</span><span class="p">.</span><span class="nl">running:</span><span class="w"> </span><span class="n">running</span><span class="p">,</span>
+<span class="w">    </span><span class="n">RobotState</span><span class="p">.</span><span class="nl">idle:</span><span class="w"> </span><span class="n">idle</span><span class="p">,</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nl">current:</span><span class="w"> </span><span class="n">RobotState</span><span class="p">.</span><span class="n">idle</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="c1">// Changes current animation to &quot;running&quot;</span>
+<span class="n">robot</span><span class="p">.</span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RobotState</span><span class="p">.</span><span class="n">running</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>As this component works with multiple <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>s, naturally it needs an equal number of
+animation tickers to make all those animations tick. Use <code class="docutils literal notranslate"><span class="pre">animationsTickers</span></code> getter to access a map
+containing tickers for each animation state. This can be useful if you want to register callbacks
+for <code class="docutils literal notranslate"><span class="pre">onStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onComplete</span></code> and <code class="docutils literal notranslate"><span class="pre">onFrame</span></code>.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">enum</span><span class="w"> </span><span class="n">RobotState</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">idle</span><span class="p">,</span><span class="w"> </span><span class="n">running</span><span class="p">,</span><span class="w"> </span><span class="n">jump</span><span class="w"> </span><span class="p">}</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">running</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">idle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadSpriteAnimation</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
+
+<span class="kd">final</span><span class="w"> </span><span class="n">robot</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationGroupComponent</span><span class="o">&lt;</span><span class="n">RobotState</span><span class="o">&gt;</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">animations:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">RobotState</span><span class="p">.</span><span class="nl">running:</span><span class="w"> </span><span class="n">running</span><span class="p">,</span>
+<span class="w">    </span><span class="n">RobotState</span><span class="p">.</span><span class="nl">idle:</span><span class="w"> </span><span class="n">idle</span><span class="p">,</span>
+<span class="w">  </span><span class="p">},</span>
+<span class="w">  </span><span class="nl">current:</span><span class="w"> </span><span class="n">RobotState</span><span class="p">.</span><span class="n">idle</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="n">robot</span><span class="p">.</span><span class="n">animationTickers</span><span class="o">?</span><span class="p">[</span><span class="n">RobotState</span><span class="p">.</span><span class="n">running</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="n">onStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something on start of running animation.</span>
+<span class="p">};</span>
+
+<span class="n">robot</span><span class="p">.</span><span class="n">animationTickers</span><span class="o">?</span><span class="p">[</span><span class="n">RobotState</span><span class="p">.</span><span class="n">jump</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="n">onStart</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something on start of jump animation.</span>
+<span class="p">};</span>
+
+<span class="n">robot</span><span class="p">.</span><span class="n">animationTickers</span><span class="o">?</span><span class="p">[</span><span class="n">RobotState</span><span class="p">.</span><span class="n">jump</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="n">onComplete</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something on complete of jump animation.</span>
+<span class="p">};</span>
+
+<span class="n">robot</span><span class="p">.</span><span class="n">animationTickers</span><span class="o">?</span><span class="p">[</span><span class="n">RobotState</span><span class="p">.</span><span class="n">idle</span><span class="p">]</span><span class="o">?</span><span class="p">.</span><span class="n">onFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">currentIndex</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="c1">// Do something based on current frame index of idle animation.</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</section>
+<section id="spritegroupcomponent">
+<h2>SpriteGroupComponent<a class="headerlink" href="#spritegroupcomponent" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">SpriteGroupComponent</span></code> is pretty similar to its animation counterpart, but especially for sprites.</p>
+<p>Example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">PlayerComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteGroupComponent</span><span class="o">&lt;</span><span class="n">ButtonState</span><span class="o">&gt;</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpriteGroupExample</span><span class="o">&gt;</span><span class="p">,</span><span class="w"> </span><span class="n">TapCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">pressedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">unpressedSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="cm">/* omitted */</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">sprites</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">ButtonState</span><span class="p">.</span><span class="nl">pressed:</span><span class="w"> </span><span class="n">pressedSprite</span><span class="p">,</span>
+<span class="w">      </span><span class="n">ButtonState</span><span class="p">.</span><span class="nl">unpressed:</span><span class="w"> </span><span class="n">unpressedSprite</span><span class="p">,</span>
+<span class="w">    </span><span class="p">};</span>
+
+<span class="w">    </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ButtonState</span><span class="p">.</span><span class="n">unpressed</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="c1">// tap methods handler omitted...</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="iconcomponent">
+<h2>IconComponent<a class="headerlink" href="#iconcomponent" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">IconComponent</span></code> renders a Flutter <code class="docutils literal notranslate"><span class="pre">IconData</span></code> (such as <code class="docutils literal notranslate"><span class="pre">Icons.star</span></code>) as a Flame component. The icon
+is rasterized to an image once during <code class="docutils literal notranslate"><span class="pre">onLoad()</span></code> and then drawn each frame using
+<code class="docutils literal notranslate"><span class="pre">canvas.drawImageRect()</span></code> with the component’s <code class="docutils literal notranslate"><span class="pre">Paint</span></code>. Because the icon is rendered as a cached
+image rather than as text, all paint-based effects work out of the box, including <code class="docutils literal notranslate"><span class="pre">tint()</span></code>,
+<code class="docutils literal notranslate"><span class="pre">setOpacity()</span></code>, <code class="docutils literal notranslate"><span class="pre">ColorEffect</span></code>, <code class="docutils literal notranslate"><span class="pre">OpacityEffect</span></code>, <code class="docutils literal notranslate"><span class="pre">GlowEffect</span></code>, and custom <code class="docutils literal notranslate"><span class="pre">ColorFilter</span></code>s.</p>
+<section id="basic-usage">
+<h3>Basic usage<a class="headerlink" href="#basic-usage" title="Link to this heading">¶</a></h3>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
+
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">star</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IconComponent</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">icon:</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="n">star</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">iconSize:</span><span class="w"> </span><span class="m">64</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">star</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+<section id="tinting-and-effects">
+<h3>Tinting and effects<a class="headerlink" href="#tinting-and-effects" title="Link to this heading">¶</a></h3>
+<p>The icon is rasterized in white, which allows you to tint it to any color using
+<code class="docutils literal notranslate"><span class="pre">HasPaint</span></code> methods:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Tint the icon gold</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">star</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IconComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">icon:</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="n">star</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">iconSize:</span><span class="w"> </span><span class="m">64</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span>
+<span class="p">)..</span><span class="n">tint</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFFD700</span><span class="p">));</span>
+
+<span class="c1">// Set opacity</span>
+<span class="n">star</span><span class="p">.</span><span class="n">setOpacity</span><span class="p">(</span><span class="m">0.5</span><span class="p">);</span>
+
+<span class="c1">// Or use a custom paint</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IconComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">icon:</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="n">favorite</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">iconSize:</span><span class="w"> </span><span class="m">48</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">paint:</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">colorFilter</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">ColorFilter</span><span class="p">.</span><span class="n">mode</span><span class="p">(</span>
+<span class="w">    </span><span class="n">Color</span><span class="p">(</span><span class="mh">0xFFFF0000</span><span class="p">),</span>
+<span class="w">    </span><span class="n">BlendMode</span><span class="p">.</span><span class="n">srcATop</span><span class="p">,</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="constructor-parameters">
+<h3>Constructor parameters<a class="headerlink" href="#constructor-parameters" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">icon</span></code>: The <code class="docutils literal notranslate"><span class="pre">IconData</span></code> to render (e.g., <code class="docutils literal notranslate"><span class="pre">Icons.star</span></code>, <code class="docutils literal notranslate"><span class="pre">Icons.favorite</span></code>).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iconSize</span></code>: The resolution at which the icon is rasterized (default <code class="docutils literal notranslate"><span class="pre">64</span></code>). This is independent
+of the component’s display <code class="docutils literal notranslate"><span class="pre">size</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">size</span></code>: The display size of the component. Defaults to <code class="docutils literal notranslate"><span class="pre">Vector2.all(iconSize)</span></code> if not provided.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">paint</span></code>: Optional <code class="docutils literal notranslate"><span class="pre">Paint</span></code> for rendering effects.</p></li>
+<li><p>All standard <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> parameters (<code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">scale</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code>, <code class="docutils literal notranslate"><span class="pre">anchor</span></code>, etc.).</p></li>
+</ul>
+</section>
+<section id="changing-the-icon-at-runtime">
+<h3>Changing the icon at runtime<a class="headerlink" href="#changing-the-icon-at-runtime" title="Link to this heading">¶</a></h3>
+<p>Both the <code class="docutils literal notranslate"><span class="pre">icon</span></code> and <code class="docutils literal notranslate"><span class="pre">iconSize</span></code> properties can be changed after creation. The component will
+automatically re-rasterize the icon on the next frame:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">iconComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">IconComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">icon:</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="n">play_arrow</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">iconSize:</span><span class="w"> </span><span class="m">64</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="c1">// Later, swap the icon</span>
+<span class="n">iconComponent</span><span class="p">.</span><span class="n">icon</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Icons</span><span class="p">.</span><span class="n">pause</span><span class="p">;</span>
+
+<span class="c1">// Or change the rasterization resolution</span>
+<span class="n">iconComponent</span><span class="p">.</span><span class="n">iconSize</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">128</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+    </div>
+    <div class="copyright">
+      The content on this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 License</a>,
+      and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
+    </div>
+    <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="position_component.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">PositionComponent</p>
+        </div>
+      </a>
+      <div class='expander'></div>
+      <a class="right-next" id="next-link" href="parallax_component.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">ParallaxComponent</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-right">
+    
+    <div class="nav-right" role="navigation" aria-label="table of contents">
+      <div id='toc-local' class='list-group'>
+ <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#spritecomponent' class='list-group-item level-1'>SpriteComponent</a>
+  <a href='#spriteanimationcomponent' class='list-group-item level-1'>SpriteAnimationComponent</a>
+  <a href='#spriteanimationgroupcomponent' class='list-group-item level-1'>SpriteAnimationGroupComponent</a>
+  <a href='#spritegroupcomponent' class='list-group-item level-1'>SpriteGroupComponent</a>
+  <a href='#iconcomponent' class='list-group-item level-1'>IconComponent</a>
+  <a href='#basic-usage' class='list-group-item level-2'>Basic usage</a>
+  <a href='#tinting-and-effects' class='list-group-item level-2'>Tinting and effects</a>
+  <a href='#constructor-parameters' class='list-group-item level-2'>Constructor parameters</a>
+  <a href='#changing-the-icon-at-runtime' class='list-group-item level-2'>Changing the icon at runtime</a>
+</div>
+
+    </div>
+  </div>
+
+  <div class="expander"></div>
+</div>
+
+
+
+
+</body>
+</html>

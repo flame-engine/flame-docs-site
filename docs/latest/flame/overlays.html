@@ -203,6 +203,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_forge2d/joints.html">Joints</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_gamepads/flame_gamepads.html">flame_gamepads</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_isolate/flame_isolate.html">flame_isolate</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
 </ul>
@@ -234,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../other_modules/other_modules.html">Other Modules</a><ul>
@@ -342,7 +344,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.37.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -384,13 +386,17 @@ by providing an <code class="docutils literal notranslate"><span class="pre">ove
 
 <span class="w">  </span><span class="c1">// Marks &#39;SecondaryMenu&#39; to be rendered.</span>
 <span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">secondaryOverlayIdentifier</span><span class="p">,</span><span class="w"> </span><span class="nl">priority:</span><span class="w"> </span><span class="m">1</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to be rendered. Priority = 0 by default </span>
+<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to be rendered. Priority = 0 by default</span>
 <span class="w">  </span><span class="c1">// which means the &#39;PauseMenu&#39; will be displayed under the &#39;SecondaryMenu&#39;</span>
 <span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered. </span>
+<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span>
 <span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
 <span class="w">  </span><span class="c1">// Toggles the &#39;PauseMenu&#39; overlay.</span>
 <span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">toggle</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Check if the &#39;PauseMenu&#39; is being rendered</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">hasPauseMenu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">overlays</span><span class="p">.</span><span class="n">isActive</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
+<span class="w">  </span><span class="c1">// Set active state ov &#39;SecondaryMenu&#39; based on a condition</span>
+<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">setActive</span><span class="p">(</span><span class="n">secondaryOverlayIdentifier</span><span class="p">,</span><span class="w"> </span><span class="nl">active:</span><span class="w"> </span><span class="o">!</span><span class="n">hasPauseMenu</span><span class="p">);</span>
 </pre></div>
 </div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// On the widget declaration</span>

@@ -203,6 +203,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_forge2d/joints.html">Joints</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_gamepads/flame_gamepads.html">flame_gamepads</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_isolate/flame_isolate.html">flame_isolate</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_isolate/isolate.html">Overview</a></li>
 </ul>
@@ -234,6 +235,7 @@
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_tiled/layers.html">Layers</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_typled/flame_typled.html">flame_typled</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
@@ -342,7 +344,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.36.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.37.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -452,6 +454,19 @@ the target property by incrementing/decrementing its current value, rather than 
 that property to a fixed value. This way multiple effects would be able to act on the same component
 without interfering with each other.</p>
 </section>
+<section id="effects-vs-decorators">
+<h2>Effects vs Decorators<a class="headerlink" href="#effects-vs-decorators" title="Link to this heading">¶</a></h2>
+<p>While effects and decorators can sometimes achieve similar visual results (like changing opacity
+or color), they have different performance and visual characteristics:</p>
+<ul class="simple">
+<li><p><strong>Effects</strong> are fast and generally change a property on a single component. When applied to
+a group, they affect each child individually.</p></li>
+<li><p><strong>Decorators</strong> are more powerful but slower. They use <code class="docutils literal notranslate"><span class="pre">saveLayer</span></code> to flatten a whole
+component subtree into a single layer before applying an effect. This is essential for
+correctly rendering composite objects with transparency or complex filters.</p></li>
+</ul>
+<p>See the <a class="reference internal" href="../rendering/decorators.html"><span class="std std-doc">Decorators documentation</span></a> for a more detailed comparison.</p>
+</section>
 <section id="see-also">
 <h2>See also<a class="headerlink" href="#see-also" title="Link to this heading">¶</a></h2>
 <ul class="simple">
@@ -495,6 +510,7 @@ without interfering with each other.</p>
   <a href='#overview' class='list-group-item level-1'>Overview</a>
   <a href='#effect' class='list-group-item level-2'>Effect</a>
   <a href='#creating-new-effects' class='list-group-item level-1'>Creating new effects</a>
+  <a href='#effects-vs-decorators' class='list-group-item level-1'>Effects vs Decorators</a>
   <a href='#see-also' class='list-group-item level-1'>See also</a>
 </div>
 
