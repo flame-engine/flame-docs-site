@@ -38,7 +38,7 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="Long Press Events" href="long_press_events.html" />
+  <link rel="next" title="Scale Events" href="scale_events.html" />
   <link rel="prev" title="Tap Events" href="tap_events.html" />
 </head>
 
@@ -126,6 +126,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Inputs</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="tap_events.html">Tap Events</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Drag Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scale_events.html">Scale Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="long_press_events.html">Long Press Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="gesture_input.html">Gesture Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="keyboard_input.html">Keyboard Input</a></li>
@@ -711,30 +712,43 @@ If, however, your component derives from the bare <code class="docutils literal 
 method must be implemented manually.</p>
 <p>If your component is a part of a larger hierarchy, then it will only receive drag events if its
 ancestors have all implemented the <code class="docutils literal notranslate"><span class="pre">containsLocalPoint</span></code> correctly.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">MyComponent</span><span class="p">({</span><span class="k">super</span><span class="p">.</span><span class="n">size</span><span class="p">});</span>
+</section>
+<section id="isdragged">
+<h3>isDragged<a class="headerlink" href="#isdragged" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixin provides an <code class="docutils literal notranslate"><span class="pre">isDragged</span></code> getter that returns <code class="docutils literal notranslate"><span class="pre">true</span></code> while the component is
+actively being dragged. This is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> at <code class="docutils literal notranslate"><span class="pre">onDragStart</span></code> and back to <code class="docutils literal notranslate"><span class="pre">false</span></code> at <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code>.
+It can be used, for example, to change the component’s visual appearance during a drag.</p>
+</section>
+</section>
+<section id="combining-with-scalecallbacks">
+<h2>Combining with ScaleCallbacks<a class="headerlink" href="#combining-with-scalecallbacks" title="Link to this heading">¶</a></h2>
+<p>A component can use both <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> and <code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code> at the same time. When both mixins are
+present, single-finger gestures produce drag events and two-finger gestures produce both drag and
+scale events. This is useful for components that should be draggable with one finger and
+pinch-to-zoom or rotatable with two fingers.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">InteractiveRectangle</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">RectangleComponent</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">ScaleCallbacks</span><span class="p">,</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
 
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">_paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">();</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">_isDragged</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">_initialAngle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragStart</span><span class="p">(</span><span class="n">DragStartEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_isDragged</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">localDelta</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">delta</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleStart</span><span class="p">(</span><span class="n">ScaleStartEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onScaleStart</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_initialAngle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">angle</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">_isDragged</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">_paint</span><span class="p">.</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_isDragged</span><span class="o">?</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">white</span><span class="p">;</span>
-<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">toRect</span><span class="p">(),</span><span class="w"> </span><span class="n">_paint</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleUpdate</span><span class="p">(</span><span class="n">ScaleUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_initialAngle</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-</section>
 </section>
 </section>
 
@@ -753,10 +767,10 @@ ancestors have all implemented the <code class="docutils literal notranslate"><s
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="long_press_events.html" title="next page">
+      <a class="right-next" id="next-link" href="scale_events.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Long Press Events</p>
+          <p class="prev-next-title">Scale Events</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
@@ -776,6 +790,8 @@ ancestors have all implemented the <code class="docutils literal notranslate"><s
   <a href='#ondragcancel' class='list-group-item level-2'>onDragCancel</a>
   <a href='#mixins' class='list-group-item level-1'>Mixins</a>
   <a href='#dragcallbacks' class='list-group-item level-2'>DragCallbacks</a>
+  <a href='#isdragged' class='list-group-item level-2'>isDragged</a>
+  <a href='#combining-with-scalecallbacks' class='list-group-item level-1'>Combining with ScaleCallbacks</a>
 </div>
 
     </div>
