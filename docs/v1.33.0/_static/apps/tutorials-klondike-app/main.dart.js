@@ -12513,7 +12513,7 @@ $iyV:1}
 A.LC.prototype={
 $1(a){var s=A.bd().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/4c525dac5ebe5971c5708ef73558ed8edcf4a362/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/c416acfeb8126e097f758c664aaa3da929e27da0/":s)+a},
 $S:79}
 A.qU.prototype={
 gp(a){var s=this.a

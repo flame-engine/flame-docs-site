@@ -17403,7 +17403,7 @@ $iFO:1}
 A.Wy.prototype={
 $1(a){var s=A.bX().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/4c525dac5ebe5971c5708ef73558ed8edcf4a362/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/c416acfeb8126e097f758c664aaa3da929e27da0/":s)+a},
 $S:62}
 A.yk.prototype={
 gu4(){var s=this.b
