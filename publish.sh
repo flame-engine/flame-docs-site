@@ -116,6 +116,14 @@ function generate_docs_for_version {
 
   cd $tmp_flame_src
   git checkout -f "$version"
+  # `git checkout -f` leaves ignored files alone, so build output generated for
+  # a previously built version survives into this one. That breaks the Flutter
+  # apps: `.dart_tool/` holds a generated web plugin registrant, and a
+  # registrant left behind by a version using rive ^0.14 imports
+  # `package:rive_native`, which versions using rive ^0.13 do not depend on.
+  # The app then fails to compile with "Couldn't resolve the package
+  # 'rive_native'". Every version has to start from a pristine checkout.
+  git clean -xfd
   cd -
   rm -rf $tmp_flame_src/doc/_sphinx
   cp -r $tmp_stash/_sphinx $tmp_flame_src/doc/
