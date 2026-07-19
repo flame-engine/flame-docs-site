@@ -3,22 +3,55 @@ name: GH-Pages
 on:
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
-  build:
+  versions:
     runs-on: ubuntu-latest
-
-    concurrency:
-      group: ${{ github.ref }}
-      cancel-in-progress: true
-
+    outputs:
+      targets: ${{ steps.list.outputs.targets }}
+      latest: ${{ steps.list.outputs.latest }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
+      - id: list
+        run: ./publish.sh list >> "$GITHUB_OUTPUT"
+
+  build:
+    needs: versions
+    runs-on: ubuntu-latest
+    strategy:
+      # One broken version should not prevent the others from being published.
+      fail-fast: false
+      matrix:
+        version: ${{ fromJson(needs.versions.outputs.targets) }}
+    steps:
+      - uses: actions/checkout@v7
       - uses: subosito/flutter-action@v2
       - uses: bluefireteam/melos-action@v3
         with:
-          melos-version: 7.0.0-dev.7
+          melos-version: 8.2.2
           run-bootstrap: false
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v7
         with:
-          node-version: 16
-      - run: ./publish.sh
+          node-version: 22
+      - run: ./publish.sh build "${{ matrix.version }}" "${{ needs.versions.outputs.latest }}"
+      - uses: actions/upload-artifact@v7
+        with:
+          name: docs-${{ matrix.version }}
+          path: out/
+          retention-days: 1
+
+  publish:
+    needs: [versions, build]
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/download-artifact@v8
+        with:
+          path: artifacts
+          pattern: docs-*
+      - run: ./publish.sh assemble '${{ needs.versions.outputs.targets }}'
