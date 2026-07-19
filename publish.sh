@@ -1,34 +1,33 @@
 #!/bin/bash -e
+#
+# Builds the versioned Flame documentation.
+#
+# Usage:
+#   ./publish.sh                      Build every version sequentially, then
+#                                     assemble docs/ and push (local/full run).
+#   ./publish.sh list                 Print `latest` and `targets` (a JSON array
+#                                     of everything to build, in site order).
+#   ./publish.sh build <ver> <latest> Build a single version into out/.
+#   ./publish.sh assemble <targets>   Combine out/ (or artifacts/) into docs/
+#                                     and push.
+#
+# The CI workflow uses `list` to fan out one `build` job per version, then a
+# single `assemble` job to publish. Splitting it this way keeps one copy of the
+# build logic rather than duplicating it between the script and the workflow.
 
 tmp_flame_src='_flame'
 tmp_stash='_stash'
+flame_repo='https://github.com/flame-engine/flame.git'
+out_dir='out'
 
 function main {
-  prepare_flame_repo
-  prepare_docs
-
-  # Obtain the list of documentation versions to build. The list is
-  # created from git tags, skipping the versions that started with 0.
-  section "List of versions to build:"
-  cd $tmp_flame_src
-  # Removes all the old versions that doesn't support Melos 7 and pub workspaces.
-  list=$(git for-each-ref --sort=creatordate --format '%(refname:short)' 'refs/tags/v*' | sed -n '29,$p' | sort -rV)
-  cd -
-  echo "$list"
-  latest_version=$(head -n 1 <<< "$list")
-  sed -i "s/FLAME_VERSION/latest/g" docs/index.html
-  sed -i "s/FLAME_VERSION/latest/g" docs/404.html
-
-  generate_docs_for_version main "$latest_version"
-  while IFS= read -r line; do
-    generate_docs_for_version "$line" "$latest_version"
-  done <<< "$list"
-
-  git_push
-
-  rm -rf $tmp_flame_src
-  rm -rf $tmp_stash
-  section "Done."
+  case "${1:-}" in
+    list) cmd_list ;;
+    build) cmd_build "$2" "$3" ;;
+    assemble) cmd_assemble "$2" ;;
+    '') cmd_all ;;
+    *) echo "Unknown command: $1" >&2; exit 1 ;;
+  esac
 }
 
 function section {
@@ -38,11 +37,61 @@ function section {
   echo -e "\033[1;32m#-----------------------------------------------------------\033[m"
 }
 
+# Obtain the list of documentation versions to build. The list is created from
+# git tags, skipping the versions that started with 0, and removing all the old
+# versions that don't support Melos 7 and pub workspaces.
+function version_list {
+  git -C $tmp_flame_src for-each-ref --sort=creatordate \
+    --format '%(refname:short)' 'refs/tags/v*' | sed -n '29,$p' | sort -rV
+}
+
+# Prints `latest` and `targets` as `key=value` lines, ready to be appended to
+# $GITHUB_OUTPUT. `targets` is main followed by the versions in descending
+# order, which is also the order they are listed in on the site.
+function cmd_list {
+  rm -rf $tmp_flame_src
+  # Only the refs are needed here, so skip blobs and the working copy.
+  git clone --filter=blob:none --no-checkout --quiet $flame_repo $tmp_flame_src
+  local list latest targets
+  list=$(version_list)
+  latest=$(head -n 1 <<< "$list")
+  targets=$(printf 'main\n%s\n' "$list" | jq -R . | jq -s -c .)
+  rm -rf $tmp_flame_src
+  echo "latest=$latest"
+  echo "targets=$targets"
+}
+
+function cmd_build {
+  prepare_flame_repo
+  generate_docs_for_version "$1" "$2"
+}
+
+function cmd_all {
+  local list latest targets
+  prepare_flame_repo
+  section "List of versions to build:"
+  list=$(version_list)
+  echo "$list"
+  latest=$(head -n 1 <<< "$list")
+  targets=$(printf 'main\n%s\n' "$list" | jq -R . | jq -s -c .)
+
+  generate_docs_for_version main "$latest"
+  while IFS= read -r line; do
+    generate_docs_for_version "$line" "$latest"
+  done <<< "$list"
+
+  cmd_assemble "$targets"
+
+  rm -rf $tmp_flame_src
+  rm -rf $tmp_stash
+  section "Done."
+}
+
 function prepare_flame_repo {
   section 'Downloading Flame repository'
   rm -rf $tmp_flame_src
   rm -rf $tmp_stash
-  git clone https://github.com/flame-engine/flame.git $tmp_flame_src
+  git clone $flame_repo $tmp_flame_src
   mkdir $tmp_stash
   cp -r $tmp_flame_src/doc/_sphinx $tmp_stash
   cp -r $tmp_flame_src/scripts $tmp_stash
@@ -56,6 +105,9 @@ function prepare_docs {
   cp -r template docs/
 }
 
+# Builds one version into out/<version>. The latest version is additionally
+# copied to out/latest, before the noindex marker is added, so that only the
+# versioned copy is hidden from search engines.
 function generate_docs_for_version {
   version=$1
   latest_version=$2
@@ -90,15 +142,17 @@ function generate_docs_for_version {
   make html
   cd -
 
+  mkdir -p $out_dir
   if [[ "$version" == "$latest_version" ]]; then
-    cp -r $tmp_flame_src/doc/_build/html "docs/latest"
+    rm -rf "$out_dir/latest"
+    cp -r $tmp_flame_src/doc/_build/html "$out_dir/latest"
   fi
-  
-  cp -r $tmp_flame_src/doc/_build/html "docs/$version"
-  no_index_string="<meta name=\"robots\" content=\"noindex\">"
-  find "docs/$version" -type f -name "*.html" -exec sed -i "/<head>/a  $no_index_string" {} +
 
-  echo "$version" >> docs/versions.txt
+  rm -rf "${out_dir:?}/$version"
+  cp -r $tmp_flame_src/doc/_build/html "$out_dir/$version"
+  no_index_string="<meta name=\"robots\" content=\"noindex\">"
+  find "$out_dir/$version" -type f -name "*.html" \
+    -exec sed -i "/<head>/a  $no_index_string" {} +
 }
 
 function pre_process {
@@ -115,6 +169,31 @@ function pre_process {
   fi
 }
 
+# Combines the per-version builds into docs/ and publishes them. Version
+# directories are read from artifacts/*/ (one directory per CI artifact) when
+# present, and from out/ otherwise.
+function cmd_assemble {
+  local targets="$1"
+  section "Assembling docs"
+  prepare_docs
+  sed -i "s/FLAME_VERSION/latest/g" docs/index.html
+  sed -i "s/FLAME_VERSION/latest/g" docs/404.html
+
+  if compgen -G 'artifacts/*/' > /dev/null; then
+    cp -r artifacts/*/. docs/
+  else
+    cp -r $out_dir/. docs/
+  fi
+
+  # versions.txt drives the version picker, so the order has to be stable:
+  # main first, then newest to oldest.
+  jq -r '.[]' <<< "$targets" > docs/versions.txt
+  echo "Published versions:"
+  cat docs/versions.txt
+
+  git_push
+}
+
 function git_push {
   section "Publishing to Git"
   git config user.email "contact@blue-fire.xyz"
@@ -128,4 +207,4 @@ function git_push {
   fi
 }
 
-main
+main "$@"
