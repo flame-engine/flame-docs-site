@@ -38,7 +38,7 @@
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
   <link rel="next" title="Keyboard Input" href="keyboard_input.html" />
-  <link rel="prev" title="Drag Events" href="drag_events.html" />
+  <link rel="prev" title="Long Press Events" href="long_press_events.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -125,6 +125,8 @@
 <li class="toctree-l2 current"><a class="reference internal" href="inputs.html">Inputs</a><ul class="current">
 <li class="toctree-l3"><a class="reference internal" href="tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="drag_events.html">Drag Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="scale_events.html">Scale Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="long_press_events.html">Long Press Events</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Gesture Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="other_inputs.html">Other Inputs</a></li>
@@ -210,9 +212,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_lottie/flame_lottie.html">flame_lottie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_network_assets/flame_network_assets.html">flame_network_assets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_rive/flame_rive.html">flame_rive</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_rive/rive.html">Overview</a></li>
 </ul>
@@ -291,10 +290,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen/oxygen.html">oxygen</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../other_modules/oxygen/components.html">Components</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen/oxygen.html">oxygen</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
@@ -344,7 +340,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.37.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.38.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -382,6 +378,10 @@ of these <code class="docutils literal notranslate"><span class="pre">mixin</spa
 </section>
 <section id="touch-and-mouse-detectors">
 <h2>Touch and mouse detectors<a class="headerlink" href="#touch-and-mouse-detectors" title="Link to this heading">¶</a></h2>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Detectors will be deprecated in the future. Prefer <code class="docutils literal notranslate"><span class="pre">Callbacks</span></code> instead.</p>
+</div>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>- TapDetector
   - onTap
   - onTapCancel
@@ -591,11 +591,11 @@ added in the below <code class="docutils literal notranslate"><span class="pre">
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="drag_events.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="long_press_events.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Drag Events</p>
+          <p class="prev-next-title">Long Press Events</p>
         </div>
       </a>
       <div class='expander'></div>

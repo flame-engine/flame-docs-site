@@ -125,6 +125,8 @@
 <li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/tap_events.html">Tap Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/drag_events.html">Drag Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/scale_events.html">Scale Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/long_press_events.html">Long Press Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/gesture_input.html">Gesture Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="../inputs/other_inputs.html">Other Inputs</a></li>
@@ -210,9 +212,6 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_lottie/flame_lottie.html">flame_lottie</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_network_assets/flame_network_assets.html">flame_network_assets</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_oxygen/flame_oxygen.html">flame_oxygen</a><ul class="simple">
-</ul>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="../../bridge_packages/flame_rive/flame_rive.html">flame_rive</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../bridge_packages/flame_rive/rive.html">Overview</a></li>
 </ul>
@@ -291,10 +290,7 @@
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen/oxygen.html">oxygen</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../../other_modules/oxygen/components.html">Components</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen/oxygen.html">oxygen</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
@@ -344,7 +340,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
-<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.37.0/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/1.38.0/">Flame API</a></li>
 <li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
 </ul>
 </li>
@@ -436,6 +432,8 @@ members:</p>
 method actually creates a brand new instance every time it’s called. It’s safe to cascade
 mutations to this.</p></li>
 </ul>
+<p>It also exposes helper methods to derive a new <code class="docutils literal notranslate"><span class="pre">PaletteEntry</span></code> by transforming the underlying color,
+such as <code class="docutils literal notranslate"><span class="pre">withRed</span></code> or <code class="docutils literal notranslate"><span class="pre">lighten</span></code>.</p>
 </section>
 
 
