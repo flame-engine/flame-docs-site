@@ -4,7 +4,7 @@
 <meta name="robots" content="noindex">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Overlays &#8212; Flame</title>
+  <title>Migration Guides &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b20cc3f5" />
   <link rel="stylesheet" type="text/css" href="../_static/basic.css?v=eeb27264" />
@@ -38,8 +38,8 @@
   <link rel="shortcut icon" href="../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../genindex.html" />
   <link rel="search" title="Search" href="../search.html" />
-  <link rel="next" title="Other" href="other/other.html" />
-  <link rel="prev" title="PaddingComponent" href="layout/padding_component.html" />
+  <link rel="next" title="Game Widget" href="game_widget.html" />
+  <link rel="prev" title="Getting Started" href="../README.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -112,7 +112,7 @@
       <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="flame.html">Flame</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="../README.html">Getting Started</a></li>
-<li class="toctree-l2"><a class="reference internal" href="migration.html">Migration Guides</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Migration Guides</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game_widget.html">Game Widget</a></li>
 <li class="toctree-l2"><a class="reference internal" href="game.html">The game class</a></li>
 <li class="toctree-l2"><a class="reference internal" href="structure.html">Assets Structure</a></li>
@@ -172,7 +172,7 @@
 <li class="toctree-l3"><a class="reference internal" href="layout/padding_component.html">Padding Component</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Overlays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="overlays.html">Overlays</a></li>
 <li class="toctree-l2"><a class="reference internal" href="other/other.html">Other</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="other/debug.html">Debugging</a></li>
 <li class="toctree-l3"><a class="reference internal" href="other/util.html">Utils</a></li>
@@ -362,62 +362,30 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="overlays">
-<h1>Overlays<a class="headerlink" href="#overlays" title="Link to this heading">¶</a></h1>
-<p>Games often need to display Flutter widgets on top of the game canvas for things like pause menus,
-score displays, or chat interfaces. Because Flame games live inside a Flutter widget tree, you can
-layer any Flutter widget over the game surface. The Overlays API makes this especially convenient
-by letting you toggle named widget overlays on and off from within your game code.</p>
-<p>Since a Flame game can be wrapped in a widget, it is quite easy to use it alongside other Flutter
-widgets in your tree. However, if you want to easily show widgets on top of your Flame game, like
-messages, menu screens or something of that nature, you can use the Widgets Overlay API to make
-things even easier.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Game.overlays</span></code> enables any Flutter widget to be shown on top of a game instance. This makes it very
-easy to create things like a pause menu or an inventory screen for example.</p>
-<p>The feature can be used via the <code class="docutils literal notranslate"><span class="pre">game.overlays.add</span></code> and <code class="docutils literal notranslate"><span class="pre">game.overlays.remove</span></code> methods that mark an
-overlay to be shown or hidden, respectively, via a <code class="docutils literal notranslate"><span class="pre">String</span></code> argument that identifies the overlay.
-After that, you can map each overlay to their corresponding Widget in your <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> declaration
-by providing an <code class="docutils literal notranslate"><span class="pre">overlayBuilderMap</span></code>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="c1">// Inside your game:</span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">pauseOverlayIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;PauseMenu&#39;</span><span class="p">;</span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">secondaryOverlayIdentifier</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;SecondaryMenu&#39;</span><span class="p">;</span>
+  <section class="tex2jax_ignore mathjax_ignore" id="migration-guides">
+<h1>Migration Guides<a class="headerlink" href="#migration-guides" title="Link to this heading">¶</a></h1>
+<p>This section describes the breaking changes that you need to be aware of when upgrading between
+major versions of Flame, together with the steps required to migrate your code.</p>
+<section id="migrating-from-v1-38-0-to-v2-0-0">
+<h2>Migrating from v1.38.0 to v2.0.0<a class="headerlink" href="#migrating-from-v1-38-0-to-v2-0-0" title="Link to this heading">¶</a></h2>
+<section id="gamewidget-controlled-renamed-to-gamewidget-managed">
+<h3><code class="docutils literal notranslate"><span class="pre">GameWidget.controlled</span></code> renamed to <code class="docutils literal notranslate"><span class="pre">GameWidget.managed</span></code><a class="headerlink" href="#gamewidget-controlled-renamed-to-gamewidget-managed" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">GameWidget.controlled</span></code> constructor has been renamed to <code class="docutils literal notranslate"><span class="pre">GameWidget.managed</span></code>. The behavior is
+unchanged; only the name is different.</p>
+<p>Replace every usage of <code class="docutils literal notranslate"><span class="pre">GameWidget.controlled</span></code> with <code class="docutils literal notranslate"><span class="pre">GameWidget.managed</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="n">GameWidget</span><span class="p">.</span><span class="n">controlled</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">gameFactory:</span><span class="w"> </span><span class="n">MyGame</span><span class="p">.</span><span class="k">new</span><span class="p">,</span>
+<span class="p">);</span>
 
-<span class="w">  </span><span class="c1">// Marks &#39;SecondaryMenu&#39; to be rendered.</span>
-<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">secondaryOverlayIdentifier</span><span class="p">,</span><span class="w"> </span><span class="nl">priority:</span><span class="w"> </span><span class="m">1</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to be rendered. Priority = 0 by default</span>
-<span class="w">  </span><span class="c1">// which means the &#39;PauseMenu&#39; will be displayed under the &#39;SecondaryMenu&#39;</span>
-<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Marks &#39;PauseMenu&#39; to not be rendered.</span>
-<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Toggles the &#39;PauseMenu&#39; overlay.</span>
-<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">toggle</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Check if the &#39;PauseMenu&#39; is being rendered</span>
-<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">hasPauseMenu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">overlays</span><span class="p">.</span><span class="n">isActive</span><span class="p">(</span><span class="n">pauseOverlayIdentifier</span><span class="p">);</span>
-<span class="w">  </span><span class="c1">// Set active state ov &#39;SecondaryMenu&#39; based on a condition</span>
-<span class="w">  </span><span class="n">overlays</span><span class="p">.</span><span class="n">setActive</span><span class="p">(</span><span class="n">secondaryOverlayIdentifier</span><span class="p">,</span><span class="w"> </span><span class="nl">active:</span><span class="w"> </span><span class="o">!</span><span class="n">hasPauseMenu</span><span class="p">);</span>
+<span class="c1">// After</span>
+<span class="n">GameWidget</span><span class="p">.</span><span class="n">managed</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">gameFactory:</span><span class="w"> </span><span class="n">MyGame</span><span class="p">.</span><span class="k">new</span><span class="p">,</span>
+<span class="p">);</span>
 </pre></div>
 </div>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// On the widget declaration</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">game</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">MyGame</span><span class="p">();</span>
-
-<span class="n">Widget</span><span class="w"> </span><span class="n">build</span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">GameWidget</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">game:</span><span class="w"> </span><span class="n">game</span><span class="p">,</span>
-<span class="w">    </span><span class="nl">overlayBuilderMap:</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="s1">&#39;PauseMenu&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;A pause menu&#39;</span><span class="p">);</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">      </span><span class="s1">&#39;SecondaryMenu&#39;</span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="n">BuildContext</span><span class="w"> </span><span class="n">context</span><span class="p">,</span><span class="w"> </span><span class="n">MyGame</span><span class="w"> </span><span class="n">game</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;A secondary menu&#39;</span><span class="p">);</span>
-<span class="w">      </span><span class="p">},</span>
-<span class="w">    </span><span class="p">},</span>
-<span class="w">  </span><span class="p">);</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>The order of rendering for an overlay is determined by the order of the keys in the
-<code class="docutils literal notranslate"><span class="pre">overlayBuilderMap</span></code>.</p>
-<p>See an <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/system/overlays_example.dart">example of the Overlays feature</a>.</p>
+</section>
+</section>
 </section>
 
 
@@ -427,18 +395,18 @@ by providing an <code class="docutils literal notranslate"><span class="pre">ove
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="layout/padding_component.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="../README.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">PaddingComponent</p>
+          <p class="prev-next-title">Getting Started</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="other/other.html" title="next page">
+      <a class="right-next" id="next-link" href="game_widget.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Other</p>
+          <p class="prev-next-title">Game Widget</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
@@ -450,6 +418,8 @@ by providing an <code class="docutils literal notranslate"><span class="pre">ove
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#migrating-from-v1-38-0-to-v2-0-0' class='list-group-item level-1'>Migrating from v1.38.0 to v2.0.0</a>
+  <a href='#gamewidget-controlled-renamed-to-gamewidget-managed' class='list-group-item level-2'>GameWidget.controlled renamed to GameWidget.managed</a>
 </div>
 
     </div>
