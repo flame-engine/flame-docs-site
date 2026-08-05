@@ -1076,10 +1076,23 @@ mouse_joint.dart</div>
 <span class="linenos">62</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">63</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndEvent</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">64</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">info</span><span class="p">);</span>
-<span class="linenos">65</span><span class="w">    </span><span class="n">destroyJoint</span><span class="p">(</span><span class="n">mouseJoint</span><span class="o">!</span><span class="p">);</span>
-<span class="linenos">66</span><span class="w">    </span><span class="n">mouseJoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
-<span class="linenos">67</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">68</span><span class="p">}</span>
+<span class="linenos">65</span><span class="w">    </span><span class="n">_destroyMouseJoint</span><span class="p">();</span>
+<span class="linenos">66</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">67</span>
+<span class="linenos">68</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">69</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragCancel</span><span class="p">(</span><span class="n">DragCancelEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">70</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragCancel</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="linenos">71</span><span class="w">    </span><span class="n">_destroyMouseJoint</span><span class="p">();</span>
+<span class="linenos">72</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">73</span>
+<span class="linenos">74</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">_destroyMouseJoint</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">75</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mouseJoint</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="kc">null</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">76</span><span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="linenos">77</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">78</span><span class="w">    </span><span class="n">destroyJoint</span><span class="p">(</span><span class="n">mouseJoint</span><span class="o">!</span><span class="p">);</span>
+<span class="linenos">79</span><span class="w">    </span><span class="n">mouseJoint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">null</span><span class="p">;</span>
+<span class="linenos">80</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">81</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>

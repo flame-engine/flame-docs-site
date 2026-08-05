@@ -1214,6 +1214,18 @@ attached cards into the pile, and the same when it comes to returning the cards 
 <span class="w">  </span><span class="p">}</span>
 </pre></div>
 </div>
+<p>There is one more case to take care of: a drag can be <em>cancelled</em> instead of ended, for example when
+the player puts a second finger on the screen and the gesture turns into a pinch. Flame does not
+turn a cancellation into an <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code> event, so unless we handle it the card would be left
+floating in the middle of the table. Here we simply treat it as if the card had been dropped where
+it currently is:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragCancel</span><span class="p">(</span><span class="n">DragCancelEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragCancel</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="w">    </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">toDragEnd</span><span class="p">());</span>
+<span class="w">  </span><span class="p">}</span>
+</pre></div>
+</div>
 <p>Well, this is it! The game is now fully playable. Press the button below to see what the resulting
 code looks like, or to play it live. In the next section we will discuss how to make it more
 animated with the help of effects.</p>
@@ -1484,8 +1496,16 @@ components/card.dart</div>
 <span class="linenos">262</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">263</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">264</span>
-<span class="linenos">265</span><span class="w">  </span><span class="c1">//#endregion</span>
-<span class="linenos">266</span><span class="p">}</span>
+<span class="linenos">265</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">266</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragCancel</span><span class="p">(</span><span class="n">DragCancelEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">267</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragCancel</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="linenos">268</span><span class="w">    </span><span class="c1">// A cancelled drag is handled as if the card had been dropped where it is,</span>
+<span class="linenos">269</span><span class="w">    </span><span class="c1">// otherwise the card would be left floating in the middle of the table.</span>
+<span class="linenos">270</span><span class="w">    </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">toDragEnd</span><span class="p">());</span>
+<span class="linenos">271</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">272</span>
+<span class="linenos">273</span><span class="w">  </span><span class="c1">//#endregion</span>
+<span class="linenos">274</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="filename docutils container">

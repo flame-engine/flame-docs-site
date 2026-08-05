@@ -1417,144 +1417,152 @@ components/card.dart</div>
 <span class="linenos">356</span><span class="w">    </span><span class="p">}</span>
 <span class="linenos">357</span><span class="w">  </span><span class="p">}</span>
 <span class="linenos">358</span>
-<span class="linenos">359</span><span class="w">  </span><span class="c1">//#endregion</span>
-<span class="linenos">360</span>
-<span class="linenos">361</span><span class="w">  </span><span class="c1">//#region Card-Tapping</span>
-<span class="linenos">362</span>
-<span class="linenos">363</span><span class="w">  </span><span class="c1">// Tap a face-up card to make it auto-move and go out (if acceptable), but</span>
-<span class="linenos">364</span><span class="w">  </span><span class="c1">// if it is face-down and on the Stock Pile, pass the event to that pile.</span>
-<span class="linenos">365</span>
-<span class="linenos">366</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">367</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">368</span><span class="w">    </span><span class="n">handleTapUp</span><span class="p">();</span>
-<span class="linenos">369</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">359</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">360</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragCancel</span><span class="p">(</span><span class="n">DragCancelEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">361</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragCancel</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="linenos">362</span><span class="w">    </span><span class="c1">// A cancelled drag is handled as if the card had been dropped where it is,</span>
+<span class="linenos">363</span><span class="w">    </span><span class="c1">// otherwise the card would be left floating in the middle of the table.</span>
+<span class="linenos">364</span><span class="w">    </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">toDragEnd</span><span class="p">());</span>
+<span class="linenos">365</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">366</span>
+<span class="linenos">367</span><span class="w">  </span><span class="c1">//#endregion</span>
+<span class="linenos">368</span>
+<span class="linenos">369</span><span class="w">  </span><span class="c1">//#region Card-Tapping</span>
 <span class="linenos">370</span>
-<span class="linenos">371</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">handleTapUp</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">372</span><span class="w">    </span><span class="c1">// Can be called by onTapUp or after a very short (failed) drag-and-drop.</span>
-<span class="linenos">373</span><span class="w">    </span><span class="c1">// We need to be more user-friendly towards taps that include a short drag.</span>
-<span class="linenos">374</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pile</span><span class="o">?</span><span class="p">.</span><span class="n">canMoveCard</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">MoveMethod</span><span class="p">.</span><span class="n">tap</span><span class="p">)</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">375</span><span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">suitIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">suit</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
-<span class="linenos">376</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">world</span><span class="p">.</span><span class="n">foundations</span><span class="p">[</span><span class="n">suitIndex</span><span class="p">].</span><span class="n">canAcceptCard</span><span class="p">(</span><span class="k">this</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">377</span><span class="w">        </span><span class="n">pile</span><span class="o">!</span><span class="p">.</span><span class="n">removeCard</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">MoveMethod</span><span class="p">.</span><span class="n">tap</span><span class="p">);</span>
-<span class="linenos">378</span><span class="w">        </span><span class="n">doMove</span><span class="p">(</span>
-<span class="linenos">379</span><span class="w">          </span><span class="n">world</span><span class="p">.</span><span class="n">foundations</span><span class="p">[</span><span class="n">suitIndex</span><span class="p">].</span><span class="n">position</span><span class="p">,</span>
-<span class="linenos">380</span><span class="w">          </span><span class="nl">onComplete:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">381</span><span class="w">            </span><span class="n">world</span><span class="p">.</span><span class="n">foundations</span><span class="p">[</span><span class="n">suitIndex</span><span class="p">].</span><span class="n">acquireCard</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-<span class="linenos">382</span><span class="w">          </span><span class="p">},</span>
-<span class="linenos">383</span><span class="w">        </span><span class="p">);</span>
-<span class="linenos">384</span><span class="w">      </span><span class="p">}</span>
-<span class="linenos">385</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pile</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">StockPile</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">386</span><span class="w">      </span><span class="n">world</span><span class="p">.</span><span class="n">stock</span><span class="p">.</span><span class="n">handleTapUp</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
-<span class="linenos">387</span><span class="w">    </span><span class="p">}</span>
-<span class="linenos">388</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">389</span>
-<span class="linenos">390</span><span class="w">  </span><span class="c1">//#endRegion</span>
-<span class="linenos">391</span>
-<span class="linenos">392</span><span class="w">  </span><span class="c1">//#region Effects</span>
-<span class="linenos">393</span>
-<span class="linenos">394</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">doMove</span><span class="p">(</span>
-<span class="linenos">395</span><span class="w">    </span><span class="n">Vector2</span><span class="w"> </span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">396</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10.0</span><span class="p">,</span>
-<span class="linenos">397</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span>
-<span class="linenos">398</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">startPriority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span>
-<span class="linenos">399</span><span class="w">    </span><span class="n">Curve</span><span class="w"> </span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOutQuad</span><span class="p">,</span>
-<span class="linenos">400</span><span class="w">    </span><span class="n">VoidCallback</span><span class="o">?</span><span class="w"> </span><span class="n">onComplete</span><span class="p">,</span>
-<span class="linenos">401</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">402</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">speed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Speed must be &gt; 0 widths per second&#39;</span><span class="p">);</span>
-<span class="linenos">403</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">to</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">position</span><span class="p">).</span><span class="n">length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">speed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
-<span class="linenos">404</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">dt</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Distance to move must be &gt; 0&#39;</span><span class="p">);</span>
-<span class="linenos">405</span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
-<span class="linenos">406</span><span class="w">      </span><span class="n">CardMoveEffect</span><span class="p">(</span>
-<span class="linenos">407</span><span class="w">        </span><span class="n">to</span><span class="p">,</span>
-<span class="linenos">408</span><span class="w">        </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="nl">startDelay:</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="nl">curve:</span><span class="w"> </span><span class="n">curve</span><span class="p">),</span>
-<span class="linenos">409</span><span class="w">        </span><span class="nl">transitPriority:</span><span class="w"> </span><span class="n">startPriority</span><span class="p">,</span>
-<span class="linenos">410</span><span class="w">        </span><span class="nl">onComplete:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">411</span><span class="w">          </span><span class="n">onComplete</span><span class="o">?</span><span class="p">.</span><span class="n">call</span><span class="p">();</span>
-<span class="linenos">412</span><span class="w">        </span><span class="p">},</span>
-<span class="linenos">413</span><span class="w">      </span><span class="p">),</span>
-<span class="linenos">414</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">415</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">416</span>
-<span class="linenos">417</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">doMoveAndFlip</span><span class="p">(</span>
-<span class="linenos">418</span><span class="w">    </span><span class="n">Vector2</span><span class="w"> </span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">419</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10.0</span><span class="p">,</span>
-<span class="linenos">420</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span>
-<span class="linenos">421</span><span class="w">    </span><span class="n">Curve</span><span class="w"> </span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOutQuad</span><span class="p">,</span>
-<span class="linenos">422</span><span class="w">    </span><span class="n">VoidCallback</span><span class="o">?</span><span class="w"> </span><span class="n">whenDone</span><span class="p">,</span>
-<span class="linenos">423</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">424</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">speed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Speed must be &gt; 0 widths per second&#39;</span><span class="p">);</span>
-<span class="linenos">425</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">to</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">position</span><span class="p">).</span><span class="n">length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">speed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
-<span class="linenos">426</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">dt</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Distance to move must be &gt; 0&#39;</span><span class="p">);</span>
-<span class="linenos">427</span><span class="w">    </span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
-<span class="linenos">428</span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
-<span class="linenos">429</span><span class="w">      </span><span class="n">MoveToEffect</span><span class="p">(</span>
-<span class="linenos">430</span><span class="w">        </span><span class="n">to</span><span class="p">,</span>
-<span class="linenos">431</span><span class="w">        </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="nl">startDelay:</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="nl">curve:</span><span class="w"> </span><span class="n">curve</span><span class="p">),</span>
-<span class="linenos">432</span><span class="w">        </span><span class="nl">onComplete:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">433</span><span class="w">          </span><span class="n">turnFaceUp</span><span class="p">(</span>
-<span class="linenos">434</span><span class="w">            </span><span class="nl">onComplete:</span><span class="w"> </span><span class="n">whenDone</span><span class="p">,</span>
-<span class="linenos">435</span><span class="w">          </span><span class="p">);</span>
-<span class="linenos">436</span><span class="w">        </span><span class="p">},</span>
-<span class="linenos">437</span><span class="w">      </span><span class="p">),</span>
-<span class="linenos">438</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">439</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">440</span>
-<span class="linenos">441</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">turnFaceUp</span><span class="p">({</span>
-<span class="linenos">442</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span>
-<span class="linenos">443</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span>
-<span class="linenos">444</span><span class="w">    </span><span class="n">VoidCallback</span><span class="o">?</span><span class="w"> </span><span class="n">onComplete</span><span class="p">,</span>
-<span class="linenos">445</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">446</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="o">!</span><span class="n">_isFaceUpView</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Card must be face-down before turning face-up.&#39;</span><span class="p">);</span>
-<span class="linenos">447</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">time</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Time to turn card over must be &gt; 0&#39;</span><span class="p">);</span>
-<span class="linenos">448</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Start tim must be &gt;= 0&#39;</span><span class="p">);</span>
-<span class="linenos">449</span><span class="w">    </span><span class="n">_isAnimatedFlip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="linenos">450</span><span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">;</span>
-<span class="linenos">451</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span>
-<span class="linenos">452</span><span class="w">    </span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
-<span class="linenos">453</span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
-<span class="linenos">454</span><span class="w">      </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span>
-<span class="linenos">455</span><span class="w">        </span><span class="n">Vector2</span><span class="p">(</span><span class="n">scale</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="p">.</span><span class="n">y</span><span class="p">),</span>
-<span class="linenos">456</span><span class="w">        </span><span class="n">EffectController</span><span class="p">(</span>
-<span class="linenos">457</span><span class="w">          </span><span class="nl">startDelay:</span><span class="w"> </span><span class="n">start</span><span class="p">,</span>
-<span class="linenos">458</span><span class="w">          </span><span class="nl">curve:</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOutSine</span><span class="p">,</span>
-<span class="linenos">459</span><span class="w">          </span><span class="nl">duration:</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
-<span class="linenos">460</span><span class="w">          </span><span class="nl">onMax:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">461</span><span class="w">            </span><span class="n">_isFaceUpView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="linenos">462</span><span class="w">          </span><span class="p">},</span>
-<span class="linenos">463</span><span class="w">          </span><span class="nl">reverseDuration:</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
-<span class="linenos">464</span><span class="w">          </span><span class="nl">onMin:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">465</span><span class="w">            </span><span class="n">_isAnimatedFlip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
-<span class="linenos">466</span><span class="w">            </span><span class="n">_faceUp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
-<span class="linenos">467</span><span class="w">            </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
-<span class="linenos">468</span><span class="w">            </span><span class="n">position</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span>
-<span class="linenos">469</span><span class="w">          </span><span class="p">},</span>
-<span class="linenos">470</span><span class="w">        </span><span class="p">),</span>
-<span class="linenos">471</span><span class="w">        </span><span class="nl">onComplete:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">472</span><span class="w">          </span><span class="n">onComplete</span><span class="o">?</span><span class="p">.</span><span class="n">call</span><span class="p">();</span>
-<span class="linenos">473</span><span class="w">        </span><span class="p">},</span>
-<span class="linenos">474</span><span class="w">      </span><span class="p">),</span>
-<span class="linenos">475</span><span class="w">    </span><span class="p">);</span>
-<span class="linenos">476</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">477</span>
-<span class="linenos">478</span><span class="w">  </span><span class="c1">//#endregion</span>
-<span class="linenos">479</span><span class="p">}</span>
-<span class="linenos">480</span>
-<span class="linenos">481</span><span class="kd">class</span><span class="w"> </span><span class="nc">CardMoveEffect</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">MoveToEffect</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">482</span><span class="w">  </span><span class="n">CardMoveEffect</span><span class="p">(</span>
-<span class="linenos">483</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">destination</span><span class="p">,</span>
-<span class="linenos">484</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">controller</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">485</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onComplete</span><span class="p">,</span>
-<span class="linenos">486</span><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">transitPriority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span>
-<span class="linenos">487</span><span class="w">  </span><span class="p">});</span>
+<span class="linenos">371</span><span class="w">  </span><span class="c1">// Tap a face-up card to make it auto-move and go out (if acceptable), but</span>
+<span class="linenos">372</span><span class="w">  </span><span class="c1">// if it is face-down and on the Stock Pile, pass the event to that pile.</span>
+<span class="linenos">373</span>
+<span class="linenos">374</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">375</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">376</span><span class="w">    </span><span class="n">handleTapUp</span><span class="p">();</span>
+<span class="linenos">377</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">378</span>
+<span class="linenos">379</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">handleTapUp</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">380</span><span class="w">    </span><span class="c1">// Can be called by onTapUp or after a very short (failed) drag-and-drop.</span>
+<span class="linenos">381</span><span class="w">    </span><span class="c1">// We need to be more user-friendly towards taps that include a short drag.</span>
+<span class="linenos">382</span><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pile</span><span class="o">?</span><span class="p">.</span><span class="n">canMoveCard</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">MoveMethod</span><span class="p">.</span><span class="n">tap</span><span class="p">)</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="kc">false</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">383</span><span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">suitIndex</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">suit</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+<span class="linenos">384</span><span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">world</span><span class="p">.</span><span class="n">foundations</span><span class="p">[</span><span class="n">suitIndex</span><span class="p">].</span><span class="n">canAcceptCard</span><span class="p">(</span><span class="k">this</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">385</span><span class="w">        </span><span class="n">pile</span><span class="o">!</span><span class="p">.</span><span class="n">removeCard</span><span class="p">(</span><span class="k">this</span><span class="p">,</span><span class="w"> </span><span class="n">MoveMethod</span><span class="p">.</span><span class="n">tap</span><span class="p">);</span>
+<span class="linenos">386</span><span class="w">        </span><span class="n">doMove</span><span class="p">(</span>
+<span class="linenos">387</span><span class="w">          </span><span class="n">world</span><span class="p">.</span><span class="n">foundations</span><span class="p">[</span><span class="n">suitIndex</span><span class="p">].</span><span class="n">position</span><span class="p">,</span>
+<span class="linenos">388</span><span class="w">          </span><span class="nl">onComplete:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">389</span><span class="w">            </span><span class="n">world</span><span class="p">.</span><span class="n">foundations</span><span class="p">[</span><span class="n">suitIndex</span><span class="p">].</span><span class="n">acquireCard</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="linenos">390</span><span class="w">          </span><span class="p">},</span>
+<span class="linenos">391</span><span class="w">        </span><span class="p">);</span>
+<span class="linenos">392</span><span class="w">      </span><span class="p">}</span>
+<span class="linenos">393</span><span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pile</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">StockPile</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">394</span><span class="w">      </span><span class="n">world</span><span class="p">.</span><span class="n">stock</span><span class="p">.</span><span class="n">handleTapUp</span><span class="p">(</span><span class="k">this</span><span class="p">);</span>
+<span class="linenos">395</span><span class="w">    </span><span class="p">}</span>
+<span class="linenos">396</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">397</span>
+<span class="linenos">398</span><span class="w">  </span><span class="c1">//#endRegion</span>
+<span class="linenos">399</span>
+<span class="linenos">400</span><span class="w">  </span><span class="c1">//#region Effects</span>
+<span class="linenos">401</span>
+<span class="linenos">402</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">doMove</span><span class="p">(</span>
+<span class="linenos">403</span><span class="w">    </span><span class="n">Vector2</span><span class="w"> </span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">404</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10.0</span><span class="p">,</span>
+<span class="linenos">405</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span>
+<span class="linenos">406</span><span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">startPriority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span>
+<span class="linenos">407</span><span class="w">    </span><span class="n">Curve</span><span class="w"> </span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOutQuad</span><span class="p">,</span>
+<span class="linenos">408</span><span class="w">    </span><span class="n">VoidCallback</span><span class="o">?</span><span class="w"> </span><span class="n">onComplete</span><span class="p">,</span>
+<span class="linenos">409</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">410</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">speed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Speed must be &gt; 0 widths per second&#39;</span><span class="p">);</span>
+<span class="linenos">411</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">to</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">position</span><span class="p">).</span><span class="n">length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">speed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+<span class="linenos">412</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">dt</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Distance to move must be &gt; 0&#39;</span><span class="p">);</span>
+<span class="linenos">413</span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">414</span><span class="w">      </span><span class="n">CardMoveEffect</span><span class="p">(</span>
+<span class="linenos">415</span><span class="w">        </span><span class="n">to</span><span class="p">,</span>
+<span class="linenos">416</span><span class="w">        </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="nl">startDelay:</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="nl">curve:</span><span class="w"> </span><span class="n">curve</span><span class="p">),</span>
+<span class="linenos">417</span><span class="w">        </span><span class="nl">transitPriority:</span><span class="w"> </span><span class="n">startPriority</span><span class="p">,</span>
+<span class="linenos">418</span><span class="w">        </span><span class="nl">onComplete:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">419</span><span class="w">          </span><span class="n">onComplete</span><span class="o">?</span><span class="p">.</span><span class="n">call</span><span class="p">();</span>
+<span class="linenos">420</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos">421</span><span class="w">      </span><span class="p">),</span>
+<span class="linenos">422</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">423</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">424</span>
+<span class="linenos">425</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">doMoveAndFlip</span><span class="p">(</span>
+<span class="linenos">426</span><span class="w">    </span><span class="n">Vector2</span><span class="w"> </span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">427</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">10.0</span><span class="p">,</span>
+<span class="linenos">428</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span>
+<span class="linenos">429</span><span class="w">    </span><span class="n">Curve</span><span class="w"> </span><span class="n">curve</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOutQuad</span><span class="p">,</span>
+<span class="linenos">430</span><span class="w">    </span><span class="n">VoidCallback</span><span class="o">?</span><span class="w"> </span><span class="n">whenDone</span><span class="p">,</span>
+<span class="linenos">431</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">432</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">speed</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Speed must be &gt; 0 widths per second&#39;</span><span class="p">);</span>
+<span class="linenos">433</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">dt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">to</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">position</span><span class="p">).</span><span class="n">length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">speed</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">);</span>
+<span class="linenos">434</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">dt</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Distance to move must be &gt; 0&#39;</span><span class="p">);</span>
+<span class="linenos">435</span><span class="w">    </span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
+<span class="linenos">436</span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">437</span><span class="w">      </span><span class="n">MoveToEffect</span><span class="p">(</span>
+<span class="linenos">438</span><span class="w">        </span><span class="n">to</span><span class="p">,</span>
+<span class="linenos">439</span><span class="w">        </span><span class="n">EffectController</span><span class="p">(</span><span class="nl">duration:</span><span class="w"> </span><span class="n">dt</span><span class="p">,</span><span class="w"> </span><span class="nl">startDelay:</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="nl">curve:</span><span class="w"> </span><span class="n">curve</span><span class="p">),</span>
+<span class="linenos">440</span><span class="w">        </span><span class="nl">onComplete:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">441</span><span class="w">          </span><span class="n">turnFaceUp</span><span class="p">(</span>
+<span class="linenos">442</span><span class="w">            </span><span class="nl">onComplete:</span><span class="w"> </span><span class="n">whenDone</span><span class="p">,</span>
+<span class="linenos">443</span><span class="w">          </span><span class="p">);</span>
+<span class="linenos">444</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos">445</span><span class="w">      </span><span class="p">),</span>
+<span class="linenos">446</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">447</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">448</span>
+<span class="linenos">449</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">turnFaceUp</span><span class="p">({</span>
+<span class="linenos">450</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.3</span><span class="p">,</span>
+<span class="linenos">451</span><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">start</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span>
+<span class="linenos">452</span><span class="w">    </span><span class="n">VoidCallback</span><span class="o">?</span><span class="w"> </span><span class="n">onComplete</span><span class="p">,</span>
+<span class="linenos">453</span><span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">454</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="o">!</span><span class="n">_isFaceUpView</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Card must be face-down before turning face-up.&#39;</span><span class="p">);</span>
+<span class="linenos">455</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">time</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Time to turn card over must be &gt; 0&#39;</span><span class="p">);</span>
+<span class="linenos">456</span><span class="w">    </span><span class="k">assert</span><span class="p">(</span><span class="n">start</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="m">0.0</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Start tim must be &gt;= 0&#39;</span><span class="p">);</span>
+<span class="linenos">457</span><span class="w">    </span><span class="n">_isAnimatedFlip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos">458</span><span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topCenter</span><span class="p">;</span>
+<span class="linenos">459</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span>
+<span class="linenos">460</span><span class="w">    </span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
+<span class="linenos">461</span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
+<span class="linenos">462</span><span class="w">      </span><span class="n">ScaleEffect</span><span class="p">.</span><span class="n">to</span><span class="p">(</span>
+<span class="linenos">463</span><span class="w">        </span><span class="n">Vector2</span><span class="p">(</span><span class="n">scale</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">scale</span><span class="p">.</span><span class="n">y</span><span class="p">),</span>
+<span class="linenos">464</span><span class="w">        </span><span class="n">EffectController</span><span class="p">(</span>
+<span class="linenos">465</span><span class="w">          </span><span class="nl">startDelay:</span><span class="w"> </span><span class="n">start</span><span class="p">,</span>
+<span class="linenos">466</span><span class="w">          </span><span class="nl">curve:</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOutSine</span><span class="p">,</span>
+<span class="linenos">467</span><span class="w">          </span><span class="nl">duration:</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">468</span><span class="w">          </span><span class="nl">onMax:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">469</span><span class="w">            </span><span class="n">_isFaceUpView</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos">470</span><span class="w">          </span><span class="p">},</span>
+<span class="linenos">471</span><span class="w">          </span><span class="nl">reverseDuration:</span><span class="w"> </span><span class="n">time</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="linenos">472</span><span class="w">          </span><span class="nl">onMin:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">473</span><span class="w">            </span><span class="n">_isAnimatedFlip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="linenos">474</span><span class="w">            </span><span class="n">_faceUp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="linenos">475</span><span class="w">            </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
+<span class="linenos">476</span><span class="w">            </span><span class="n">position</span><span class="w"> </span><span class="o">-=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">width</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">);</span>
+<span class="linenos">477</span><span class="w">          </span><span class="p">},</span>
+<span class="linenos">478</span><span class="w">        </span><span class="p">),</span>
+<span class="linenos">479</span><span class="w">        </span><span class="nl">onComplete:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">480</span><span class="w">          </span><span class="n">onComplete</span><span class="o">?</span><span class="p">.</span><span class="n">call</span><span class="p">();</span>
+<span class="linenos">481</span><span class="w">        </span><span class="p">},</span>
+<span class="linenos">482</span><span class="w">      </span><span class="p">),</span>
+<span class="linenos">483</span><span class="w">    </span><span class="p">);</span>
+<span class="linenos">484</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">485</span>
+<span class="linenos">486</span><span class="w">  </span><span class="c1">//#endregion</span>
+<span class="linenos">487</span><span class="p">}</span>
 <span class="linenos">488</span>
-<span class="linenos">489</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">transitPriority</span><span class="p">;</span>
-<span class="linenos">490</span>
-<span class="linenos">491</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">492</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onStart</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">493</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onStart</span><span class="p">();</span><span class="w"> </span><span class="c1">// Flame connects MoveToEffect to EffectController.</span>
-<span class="linenos">494</span><span class="w">    </span><span class="n">parent</span><span class="o">?</span><span class="p">.</span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transitPriority</span><span class="p">;</span>
-<span class="linenos">495</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">496</span><span class="p">}</span>
+<span class="linenos">489</span><span class="kd">class</span><span class="w"> </span><span class="nc">CardMoveEffect</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">MoveToEffect</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">490</span><span class="w">  </span><span class="n">CardMoveEffect</span><span class="p">(</span>
+<span class="linenos">491</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">destination</span><span class="p">,</span>
+<span class="linenos">492</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">controller</span><span class="p">,</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">493</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onComplete</span><span class="p">,</span>
+<span class="linenos">494</span><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">transitPriority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">100</span><span class="p">,</span>
+<span class="linenos">495</span><span class="w">  </span><span class="p">});</span>
+<span class="linenos">496</span>
+<span class="linenos">497</span><span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">transitPriority</span><span class="p">;</span>
+<span class="linenos">498</span>
+<span class="linenos">499</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">500</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onStart</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">501</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onStart</span><span class="p">();</span><span class="w"> </span><span class="c1">// Flame connects MoveToEffect to EffectController.</span>
+<span class="linenos">502</span><span class="w">    </span><span class="n">parent</span><span class="o">?</span><span class="p">.</span><span class="n">priority</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">transitPriority</span><span class="p">;</span>
+<span class="linenos">503</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">504</span><span class="p">}</span>
 </pre></div>
 </div>
 <div class="filename docutils container">

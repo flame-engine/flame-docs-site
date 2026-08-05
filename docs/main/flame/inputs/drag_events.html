@@ -686,8 +686,11 @@ position associated with this event.</p>
 </section>
 <section id="ondragcancel">
 <h3>onDragCancel<a class="headerlink" href="#ondragcancel" title="Link to this heading">¶</a></h3>
-<p>The precise semantics when this event occurs is not clear, so we provide a default implementation
-which simply converts this event into an <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code>.</p>
+<p>This event is fired when the drag gesture is interrupted before it ends naturally, for example when
+another gesture recognizer wins the gesture arena or a second pointer triggers a scale takeover.
+Unlike <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code> it carries no velocity information. The default implementation simply resets the
+drag state; override it and call <code class="docutils literal notranslate"><span class="pre">onDragEnd(event.toDragEnd())</span></code> yourself if you want a cancellation
+handled identically to a natural drag end.</p>
 </section>
 </section>
 <section id="mixins">
