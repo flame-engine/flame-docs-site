@@ -368,6 +368,21 @@
 major versions of Flame, together with the steps required to migrate your code.</p>
 <section id="migrating-from-v1-38-0-to-v2-0-0">
 <h2>Migrating from v1.38.0 to v2.0.0<a class="headerlink" href="#migrating-from-v1-38-0-to-v2-0-0" title="Link to this heading">¶</a></h2>
+<section id="multidragdispatcher-removed">
+<h3><code class="docutils literal notranslate"><span class="pre">MultiDragDispatcher</span></code> removed<a class="headerlink" href="#multidragdispatcher-removed" title="Link to this heading">¶</a></h3>
+<p>The deprecated <code class="docutils literal notranslate"><span class="pre">MultiDragDispatcher</span></code> and <code class="docutils literal notranslate"><span class="pre">MultiDragDispatcherKey</span></code> aliases have been removed. Use
+<code class="docutils literal notranslate"><span class="pre">MultiDragScaleDispatcher</span></code> and <code class="docutils literal notranslate"><span class="pre">MultiDragScaleDispatcherKey</span></code> instead, if you were using them
+directly at all (normally you should just use the mixins).</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="n">game</span><span class="p">.</span><span class="n">findByKey</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MultiDragDispatcherKey</span><span class="p">())</span>
+<span class="w">    </span><span class="k">as</span><span class="w"> </span><span class="n">MultiDragDispatcher</span><span class="o">?</span><span class="p">;</span>
+
+<span class="c1">// After</span>
+<span class="n">game</span><span class="p">.</span><span class="n">findByKey</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">MultiDragScaleDispatcherKey</span><span class="p">())</span>
+<span class="w">    </span><span class="k">as</span><span class="w"> </span><span class="n">MultiDragScaleDispatcher</span><span class="o">?</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
 <section id="event-handled-removed-in-favour-of-continuepropagation">
 <h3><code class="docutils literal notranslate"><span class="pre">Event.handled</span></code> removed in favour of <code class="docutils literal notranslate"><span class="pre">continuePropagation</span></code><a class="headerlink" href="#event-handled-removed-in-favour-of-continuepropagation" title="Link to this heading">¶</a></h3>
 <p>Events used to carry two independent booleans: <code class="docutils literal notranslate"><span class="pre">handled</span></code>, which Flame never set nor read, and
@@ -466,6 +481,7 @@ unchanged; only the name is different.</p>
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#migrating-from-v1-38-0-to-v2-0-0' class='list-group-item level-1'>Migrating from v1.38.0 to v2.0.0</a>
+  <a href='#multidragdispatcher-removed' class='list-group-item level-2'>MultiDragDispatcher removed</a>
   <a href='#event-handled-removed-in-favour-of-continuepropagation' class='list-group-item level-2'>Event.handled removed in favour of continuePropagation</a>
   <a href='#gamewidget-controlled-renamed-to-gamewidget-managed' class='list-group-item level-2'>GameWidget.controlled renamed to GameWidget.managed</a>
 </div>
