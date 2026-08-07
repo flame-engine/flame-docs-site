@@ -384,34 +384,7 @@ of these <code class="docutils literal notranslate"><span class="pre">mixin</spa
 <p class="admonition-title">Warning</p>
 <p>Detectors will be deprecated in the future. Prefer <code class="docutils literal notranslate"><span class="pre">Callbacks</span></code> instead.</p>
 </div>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>- TapDetector
-  - onTap
-  - onTapCancel
-  - onTapDown
-  - onLongTapDown
-  - onTapUp
-
-- SecondaryTapDetector
-  - onSecondaryTapDown
-  - onSecondaryTapUp
-  - onSecondaryTapCancel
-
-- TertiaryTapDetector
-  - onTertiaryTapDown
-  - onTertiaryTapUp
-  - onTertiaryTapCancel
-
-- DoubleTapDetector
-  - onDoubleTap
-
-- LongPressDetector
-  - onLongPress
-  - onLongPressStart
-  - onLongPressMoveUpdate
-  - onLongPressUp
-  - onLongPressEnd
-
-- VerticalDragDetector
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>- VerticalDragDetector
   - onVerticalDragDown
   - onVerticalDragStart
   - onVerticalDragUpdate
@@ -549,23 +522,24 @@ explanation about each of them.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapDetector</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">MultiTouchTapDetector</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Other methods omitted</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Player tap down on </span><span class="si">${</span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">widget</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pointerId</span><span class="p">,</span><span class="w"> </span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;Player tap down on </span><span class="si">${</span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">widget</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">onTapUp</span><span class="p">(</span><span class="n">TapUpInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s2">&quot;Player tap up on </span><span class="si">${</span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">widget</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">);</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapUp</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pointerId</span><span class="p">,</span><span class="w"> </span><span class="n">TapUpInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;Player tap up on </span><span class="si">${</span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">widget</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>Note that there is no single-pointer tap detector at the game level; for that, use the component
+level <a class="reference internal" href="tap_events.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code></span></a> instead, which <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> can mix in directly since it is
+itself a <code class="docutils literal notranslate"><span class="pre">Component</span></code>.</p>
 <p>You can also check more complete examples in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/">input examples directory</a>.</p>
 <section id="gesturehitboxes">
