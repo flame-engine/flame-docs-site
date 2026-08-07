@@ -12624,7 +12624,7 @@ $iyO:1}
 A.Ln.prototype={
 $1(a){var s=A.bd().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/0cd610717bde95fd88343c64f81c11ba4e5c0010/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/5a2a6a42cce67f965cf540fcecf616faca624aa1/":s)+a},
 $S:57}
 A.t7.prototype={
 gpj(){var s=this.b
