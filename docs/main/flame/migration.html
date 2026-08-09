@@ -368,6 +368,26 @@
 major versions of Flame, together with the steps required to migrate your code.</p>
 <section id="migrating-from-v1-38-0-to-v2-0-0">
 <h2>Migrating from v1.38.0 to v2.0.0<a class="headerlink" href="#migrating-from-v1-38-0-to-v2-0-0" title="Link to this heading">¶</a></h2>
+<section id="forcepressdetector-removed">
+<h3><code class="docutils literal notranslate"><span class="pre">ForcePressDetector</span></code> removed<a class="headerlink" href="#forcepressdetector-removed" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">ForcePressDetector</span></code> mixin and its <code class="docutils literal notranslate"><span class="pre">ForcePressInfo</span></code> event class have been removed, with no
+replacement.</p>
+<p>It was a niche API, only available on some older Apple’s 3D Touch devices; the iPhone XS and XS Max
+(2018) were the last models to include it (see Apple’s
+<a class="reference external" href="https://support.apple.com/guide/iphone/aside/iph945ccc462/14.0/ios/14.0">Models with 3D Touch</a>,
+a list that Apple even stopped carrying forward after the iOS 14 guide). Every iPhone since,
+starting with the XR, uses Haptic Touch, which responds to how long a press lasts rather than how
+hard it is, and so never produces these callbacks. Only a handful of Android devices ever
+supported it, and some of those (such as the Pixel 2 and 3) have faux pressure sensors that never
+fired the callbacks anyway.</p>
+<p>Combined with force press being the last gesture without an equivalent on the component-level event
+system, maintaining it was no longer worth the surface area.</p>
+<p>If you do still target a 3D Touch device, the gesture remains fully available from Flutter: wrap
+your <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> in a
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html"><code class="docutils literal notranslate"><span class="pre">GestureDetector</span></code></a> and use its
+<code class="docutils literal notranslate"><span class="pre">onForcePressStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onForcePressPeak</span></code>, <code class="docutils literal notranslate"><span class="pre">onForcePressUpdate</span></code> and <code class="docutils literal notranslate"><span class="pre">onForcePressEnd</span></code> callbacks
+directly.</p>
+</section>
 <section id="deprecated-tap-and-long-press-game-detectors-removed">
 <h3>Deprecated tap and long press game detectors removed<a class="headerlink" href="#deprecated-tap-and-long-press-game-detectors-removed" title="Link to this heading">¶</a></h3>
 <p>The game-level detector mixins that were deprecated in v1.38.0 have now been removed, together with
@@ -584,6 +604,7 @@ unchanged; only the name is different.</p>
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#migrating-from-v1-38-0-to-v2-0-0' class='list-group-item level-1'>Migrating from v1.38.0 to v2.0.0</a>
+  <a href='#forcepressdetector-removed' class='list-group-item level-2'>ForcePressDetector removed</a>
   <a href='#deprecated-tap-and-long-press-game-detectors-removed' class='list-group-item level-2'>Deprecated tap and long press game detectors removed</a>
   <a href='#ondragcancel-no-longer-delegates-to-ondragend' class='list-group-item level-2'>onDragCancel no longer delegates to onDragEnd</a>
   <a href='#multidragdispatcher-removed' class='list-group-item level-2'>MultiDragDispatcher removed</a>
