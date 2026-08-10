@@ -570,6 +570,23 @@ unchanged; only the name is different.</p>
 </pre></div>
 </div>
 </section>
+<section id="game-paused-renamed-to-game-ispaused">
+<h3><code class="docutils literal notranslate"><span class="pre">Game.paused</span></code> renamed to <code class="docutils literal notranslate"><span class="pre">Game.isPaused</span></code><a class="headerlink" href="#game-paused-renamed-to-game-ispaused" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">paused</span></code> getter and setter on <code class="docutils literal notranslate"><span class="pre">Game</span></code> have been renamed to <code class="docutils literal notranslate"><span class="pre">isPaused</span></code>, to be consistent with the
+other boolean properties in Flame. The behavior is unchanged; only the name is different.</p>
+<p>Replace every usage of <code class="docutils literal notranslate"><span class="pre">game.paused</span></code> with <code class="docutils literal notranslate"><span class="pre">game.isPaused</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">paused</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">paused</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// After</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">isPaused</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">isPaused</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -610,6 +627,7 @@ unchanged; only the name is different.</p>
   <a href='#multidragdispatcher-removed' class='list-group-item level-2'>MultiDragDispatcher removed</a>
   <a href='#event-handled-removed-in-favour-of-continuepropagation' class='list-group-item level-2'>Event.handled removed in favour of continuePropagation</a>
   <a href='#gamewidget-controlled-renamed-to-gamewidget-managed' class='list-group-item level-2'>GameWidget.controlled renamed to GameWidget.managed</a>
+  <a href='#game-paused-renamed-to-game-ispaused' class='list-group-item level-2'>Game.paused renamed to Game.isPaused</a>
 </div>
 
     </div>
