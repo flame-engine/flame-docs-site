@@ -488,8 +488,8 @@ takeover, a system event, etc.) and it carries no velocity, so components such a
 would apply their action even though the drag never finished. This is not a rare event either, since
 with <code class="docutils literal notranslate"><span class="pre">MultiDragScaleDispatcher</span></code> every two finger pinch cancels the individual pointer drags.</p>
 <p>The default implementation now only resets <code class="docutils literal notranslate"><span class="pre">isDragged</span></code>, which means that <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code> is no longer
-called when a drag is cancelled. If you were relying on the old behavior, override <code class="docutils literal notranslate"><span class="pre">onDragCancel</span></code> and
-forward the event yourself with <code class="docutils literal notranslate"><span class="pre">DragCancelEvent.toDragEnd</span></code>:</p>
+called when a drag is cancelled. If you were relying on the old behavior, override <code class="docutils literal notranslate"><span class="pre">onDragCancel</span></code>
+and forward the event yourself with <code class="docutils literal notranslate"><span class="pre">DragCancelEvent.toDragEnd</span></code>:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
 <span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
@@ -581,6 +581,68 @@ an event does not need to do anything at all — the components below it will no
 <p>The equivalent field on the deprecated <code class="docutils literal notranslate"><span class="pre">*Info</span></code> event classes (<code class="docutils literal notranslate"><span class="pre">TapDownInfo.handled</span></code> and friends) has
 been removed as well.</p>
 </section>
+<section id="add-addall-and-addtoparent-are-now-synchronous">
+<h3><code class="docutils literal notranslate"><span class="pre">add</span></code>, <code class="docutils literal notranslate"><span class="pre">addAll</span></code> and <code class="docutils literal notranslate"><span class="pre">addToParent</span></code> are now synchronous<a class="headerlink" href="#add-addall-and-addtoparent-are-now-synchronous" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Component.add</span></code>, <code class="docutils literal notranslate"><span class="pre">Component.addAll</span></code> and <code class="docutils literal notranslate"><span class="pre">Component.addToParent</span></code> used to return a future, which made
+it look like you could await the addition. That future only covered the child’s loading, never its
+mounting, so awaiting it was misleading, and forgetting to await it (or to wrap it in <code class="docutils literal notranslate"><span class="pre">unawaited</span></code>)
+tripped the <code class="docutils literal notranslate"><span class="pre">discarded_futures</span></code> lint in a lot of games. All three methods now return <code class="docutils literal notranslate"><span class="pre">void</span></code>.</p>
+<p>Drop the <code class="docutils literal notranslate"><span class="pre">await</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">MyComponent</span><span class="p">());</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">addAll</span><span class="p">([</span><span class="n">MyComponent</span><span class="p">(),</span><span class="w"> </span><span class="n">MyOtherComponent</span><span class="p">()]);</span>
+
+<span class="c1">// After</span>
+<span class="n">add</span><span class="p">(</span><span class="n">MyComponent</span><span class="p">());</span>
+<span class="n">addAll</span><span class="p">([</span><span class="n">MyComponent</span><span class="p">(),</span><span class="w"> </span><span class="n">MyOtherComponent</span><span class="p">()]);</span>
+</pre></div>
+</div>
+<p>If you were relying on the returned future to know when the child had loaded, await the child’s
+<code class="docutils literal notranslate"><span class="pre">loaded</span></code> future instead:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">crate</span><span class="p">);</span>
+
+<span class="c1">// After</span>
+<span class="n">add</span><span class="p">(</span><span class="n">crate</span><span class="p">);</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">crate</span><span class="p">.</span><span class="n">loaded</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>For a batch of children, <code class="docutils literal notranslate"><span class="pre">loaded</span></code>, <code class="docutils literal notranslate"><span class="pre">mounted</span></code> and <code class="docutils literal notranslate"><span class="pre">removed</span></code> are also available on any
+<code class="docutils literal notranslate"><span class="pre">Iterable&lt;Component&gt;</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">addAll</span><span class="p">(</span><span class="n">crates</span><span class="p">);</span>
+
+<span class="c1">// After</span>
+<span class="n">addAll</span><span class="p">(</span><span class="n">crates</span><span class="p">);</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">crates</span><span class="p">.</span><span class="n">loaded</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Or, when you need them to be present in <code class="docutils literal notranslate"><span class="pre">children</span></code> rather than just loaded, await
+<code class="docutils literal notranslate"><span class="pre">game.lifecycleEventsProcessed</span></code> once after adding them.</p>
+<section id="load-errors-are-no-longer-reported-by-gamewidget-errorbuilder">
+<h4>Load errors are no longer reported by <code class="docutils literal notranslate"><span class="pre">GameWidget.errorBuilder</span></code><a class="headerlink" href="#load-errors-are-no-longer-reported-by-gamewidget-errorbuilder" title="Link to this heading">¶</a></h4>
+<p><code class="docutils literal notranslate"><span class="pre">GameWidget.errorBuilder</span></code> shows a widget when the <em>game’s</em> loading fails, and it used to catch a
+failing child’s <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> as well, because <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">add(child)</span></code> chained the child’s error onto the
+game’s own <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> future. Since <code class="docutils literal notranslate"><span class="pre">add</span></code> no longer returns a future, that chain is gone: a child that
+throws in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> no longer reaches <code class="docutils literal notranslate"><span class="pre">errorBuilder</span></code>.</p>
+<p>The component itself is not added to the tree, and the rest of the game keeps running. The error is
+reported through the child’s <code class="docutils literal notranslate"><span class="pre">loaded</span></code> future, and if nothing is awaiting it, it is handed to the
+current <code class="docutils literal notranslate"><span class="pre">Zone</span></code> as an uncaught error.</p>
+<p>To get the old behavior for a specific child, await its <code class="docutils literal notranslate"><span class="pre">loaded</span></code> future inside the parent’s
+<code class="docutils literal notranslate"><span class="pre">onLoad</span></code>, which puts the error back onto the future <code class="docutils literal notranslate"><span class="pre">errorBuilder</span></code> watches:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Level</span><span class="p">();</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">level</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// Throws here if Level.onLoad fails, so errorBuilder is shown.</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">level</span><span class="p">.</span><span class="n">loaded</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
 <section id="gamewidget-controlled-renamed-to-gamewidget-managed">
 <h3><code class="docutils literal notranslate"><span class="pre">GameWidget.controlled</span></code> renamed to <code class="docutils literal notranslate"><span class="pre">GameWidget.managed</span></code><a class="headerlink" href="#gamewidget-controlled-renamed-to-gamewidget-managed" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">GameWidget.controlled</span></code> constructor has been renamed to <code class="docutils literal notranslate"><span class="pre">GameWidget.managed</span></code>. The behavior is
@@ -655,6 +717,8 @@ other boolean properties in Flame. The behavior is unchanged; only the name is d
   <a href='#ondragcancel-no-longer-delegates-to-ondragend' class='list-group-item level-2'>onDragCancel no longer delegates to onDragEnd</a>
   <a href='#multidragdispatcher-removed' class='list-group-item level-2'>MultiDragDispatcher removed</a>
   <a href='#event-handled-removed-in-favour-of-continuepropagation' class='list-group-item level-2'>Event.handled removed in favour of continuePropagation</a>
+  <a href='#add-addall-and-addtoparent-are-now-synchronous' class='list-group-item level-2'>add, addAll and addToParent are now synchronous</a>
+  <a href='#load-errors-are-no-longer-reported-by-gamewidget-errorbuilder' class='list-group-item level-3'>Load errors are no longer reported by GameWidget.errorBuilder</a>
   <a href='#gamewidget-controlled-renamed-to-gamewidget-managed' class='list-group-item level-2'>GameWidget.controlled renamed to GameWidget.managed</a>
   <a href='#game-paused-renamed-to-game-ispaused' class='list-group-item level-2'>Game.paused renamed to Game.isPaused</a>
 </div>

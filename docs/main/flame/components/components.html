@@ -642,6 +642,48 @@ approach more closely resembles the standard Flutter API:</p>
 </div>
 <p>The two approaches can be combined freely: the children specified within the constructor will be
 added first, and then any additional child components after.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">add()</span></code>, <code class="docutils literal notranslate"><span class="pre">addAll()</span></code>, and <code class="docutils literal notranslate"><span class="pre">addToParent()</span></code> methods are synchronous: they return immediately
+without waiting for the child to load or mount. This makes them safe to call from anywhere,
+including inside <code class="docutils literal notranslate"><span class="pre">update()</span></code> or a loop that spawns many components, without having to <code class="docutils literal notranslate"><span class="pre">await</span></code> them
+or wrap them in <code class="docutils literal notranslate"><span class="pre">unawaited</span></code>. If you need to wait until a child has reached a given lifecycle stage,
+await its <code class="docutils literal notranslate"><span class="pre">loaded</span></code>, <code class="docutils literal notranslate"><span class="pre">mounted</span></code>, or <code class="docutils literal notranslate"><span class="pre">removed</span></code> future instead (see the lifecycle getters under
+<a class="reference internal" href="#component-lifecycle">Component lifecycle</a>):</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">coin</span><span class="p">);</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">coin</span><span class="p">.</span><span class="n">mounted</span><span class="p">;</span>
+<span class="c1">// The coin is now guaranteed to be mounted.</span>
+</pre></div>
+</div>
+<p>When you add a batch of children and only care that all of them made it into the tree, await
+<code class="docutils literal notranslate"><span class="pre">game.lifecycleEventsProcessed</span></code> once instead of collecting the individual futures:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">coins</span><span class="p">);</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">lifecycleEventsProcessed</span><span class="p">;</span>
+<span class="c1">// All the coins are now in world.children.</span>
+</pre></div>
+</div>
+<p>The same three getters are also available on any <code class="docutils literal notranslate"><span class="pre">Iterable&lt;Component&gt;</span></code>, for when you need a
+specific stage for a specific group of children rather than for the whole tree:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">addAll</span><span class="p">(</span><span class="n">coins</span><span class="p">);</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">coins</span><span class="p">.</span><span class="n">loaded</span><span class="p">;</span>
+<span class="c1">// Every coin has finished loading.</span>
+</pre></div>
+</div>
+<p>Awaiting <code class="docutils literal notranslate"><span class="pre">loaded</span></code> is safe from inside the parent’s own <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>, because the child starts loading as
+soon as it is added:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Inventory</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">coin</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Coin</span><span class="p">();</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">coin</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">coin</span><span class="p">.</span><span class="n">loaded</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Anything the coin&#39;s onLoad set up is now available here.</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Awaiting <code class="docutils literal notranslate"><span class="pre">mounted</span></code> or <code class="docutils literal notranslate"><span class="pre">removed</span></code> there is not safe: a child can only be mounted after its parent has
+been, and the parent is only mounted once its <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> has completed, so those futures would
+deadlock. The same goes for <code class="docutils literal notranslate"><span class="pre">game.lifecycleEventsProcessed</span></code>, since the parent’s own pending mount is
+part of the queue it waits for.</p>
 <p>Note that the children added via either method are only guaranteed to be available eventually:
 after they are loaded and mounted. We can only assure that they will appear in the children list
 in the same order as they were scheduled for addition.</p>

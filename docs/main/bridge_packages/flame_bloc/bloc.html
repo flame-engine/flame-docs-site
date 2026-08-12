@@ -380,7 +380,7 @@ components.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span>
 <span class="w">      </span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">PlayerInventoryBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerInventoryState</span><span class="o">&gt;</span><span class="p">(</span>
 <span class="w">        </span><span class="nl">create:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">PlayerInventoryBloc</span><span class="p">(),</span>
 <span class="w">        </span><span class="nl">children:</span><span class="w"> </span><span class="p">[</span>
@@ -399,7 +399,7 @@ fashion:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span>
 <span class="w">      </span><span class="n">FlameMultiBlocProvider</span><span class="p">(</span>
 <span class="w">        </span><span class="nl">providers:</span><span class="w"> </span><span class="p">[</span>
 <span class="w">          </span><span class="n">FlameBlocProvider</span><span class="o">&lt;</span><span class="n">PlayerInventoryBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerInventoryState</span><span class="o">&gt;</span><span class="p">(</span>
@@ -424,7 +424,7 @@ fashion:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span>
 <span class="w">      </span><span class="n">FlameBlocListener</span><span class="o">&lt;</span><span class="n">PlayerInventoryBloc</span><span class="p">,</span><span class="w"> </span><span class="n">PlayerInventoryState</span><span class="o">&gt;</span><span class="p">(</span>
 <span class="w">        </span><span class="nl">listener:</span><span class="w"> </span><span class="p">(</span><span class="n">state</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">          </span><span class="n">updateGear</span><span class="p">(</span><span class="n">state</span><span class="p">);</span>

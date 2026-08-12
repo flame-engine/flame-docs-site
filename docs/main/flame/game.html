@@ -399,7 +399,8 @@ the constructor can look like this:</p>
 <span class="kd">class</span><span class="w"> </span><span class="nc">MyWorld</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">add</span><span class="p">(</span><span class="n">MyCrate</span><span class="p">());</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">MyCrate</span><span class="p">());</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 
@@ -615,8 +616,8 @@ application. This is a common scenario when building games: there is a single fu
 <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> that hosts a single <code class="docutils literal notranslate"><span class="pre">Game</span></code> instance.</p>
 <p>Adding this mixin provides performance advantages in certain scenarios. In particular, a component’s
 <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method is guaranteed to start when that component is added to its parent, even if the
-parent is not yet mounted itself. Consequently, <code class="docutils literal notranslate"><span class="pre">await</span></code>-ing on <code class="docutils literal notranslate"><span class="pre">parent.add(component)</span></code> is guaranteed
-to always finish loading the component.</p>
+parent is not yet mounted itself. Consequently, awaiting <code class="docutils literal notranslate"><span class="pre">component.loaded</span></code> after
+<code class="docutils literal notranslate"><span class="pre">parent.add(component)</span></code> is guaranteed to finish loading the component.</p>
 <p>Using this mixin is simple:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">SingleGameInstance</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// ...</span>
