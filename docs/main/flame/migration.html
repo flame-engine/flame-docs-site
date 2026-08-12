@@ -368,6 +368,34 @@
 major versions of Flame, together with the steps required to migrate your code.</p>
 <section id="migrating-from-v1-38-0-to-v2-0-0">
 <h2>Migrating from v1.38.0 to v2.0.0<a class="headerlink" href="#migrating-from-v1-38-0-to-v2-0-0" title="Link to this heading">¶</a></h2>
+<section id="verticaldragdetector-and-horizontaldragdetector-removed">
+<h3><code class="docutils literal notranslate"><span class="pre">VerticalDragDetector</span></code> and <code class="docutils literal notranslate"><span class="pre">HorizontalDragDetector</span></code> removed<a class="headerlink" href="#verticaldragdetector-and-horizontaldragdetector-removed" title="Link to this heading">¶</a></h3>
+<p>Both game-level mixins have been removed, with no direct replacement in Flame.</p>
+<p>They existed only to expose Flutter’s <code class="docutils literal notranslate"><span class="pre">VerticalDragGestureRecognizer</span></code> and
+<code class="docutils literal notranslate"><span class="pre">HorizontalDragGestureRecognizer</span></code>, whose distinguishing feature is not the filtering itself but how
+they behave in Flutter’s gesture arena: an axis-constrained recognizer yields to a competitor on the
+other axis. That matters when a <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> is nested inside a scrollable, which is a concern of
+the widget tree rather than of the game, and it is not something the component-level <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code>
+can reproduce.</p>
+<p>If your game accepts drags on any axis, use <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code>, which can be mixed directly into your
+game class:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">VerticalDragDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onVerticalDragUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// After</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="cm">/* ... */</span><span class="w"> </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you specifically need the arena behavior, wrap your <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> in Flutter’s own
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html"><code class="docutils literal notranslate"><span class="pre">GestureDetector</span></code></a> and use its
+<code class="docutils literal notranslate"><span class="pre">onVerticalDragUpdate</span></code> / <code class="docutils literal notranslate"><span class="pre">onHorizontalDragUpdate</span></code> callbacks.</p>
+</section>
 <section id="forcepressdetector-removed">
 <h3><code class="docutils literal notranslate"><span class="pre">ForcePressDetector</span></code> removed<a class="headerlink" href="#forcepressdetector-removed" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">ForcePressDetector</span></code> mixin and its <code class="docutils literal notranslate"><span class="pre">ForcePressInfo</span></code> event class have been removed, with no
@@ -621,6 +649,7 @@ other boolean properties in Flame. The behavior is unchanged; only the name is d
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#migrating-from-v1-38-0-to-v2-0-0' class='list-group-item level-1'>Migrating from v1.38.0 to v2.0.0</a>
+  <a href='#verticaldragdetector-and-horizontaldragdetector-removed' class='list-group-item level-2'>VerticalDragDetector and HorizontalDragDetector removed</a>
   <a href='#forcepressdetector-removed' class='list-group-item level-2'>ForcePressDetector removed</a>
   <a href='#deprecated-tap-and-long-press-game-detectors-removed' class='list-group-item level-2'>Deprecated tap and long press game detectors removed</a>
   <a href='#ondragcancel-no-longer-delegates-to-ondragend' class='list-group-item level-2'>onDragCancel no longer delegates to onDragEnd</a>
