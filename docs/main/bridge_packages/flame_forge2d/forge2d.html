@@ -205,6 +205,7 @@
 <li class="toctree-l2 current"><a class="reference internal" href="flame_forge2d.html">flame_forge2d</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="joints.html">Joints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html">Migration</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_gamepads/flame_gamepads.html">flame_gamepads</a></li>
@@ -240,6 +241,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d/forge2d.html">forge2d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d/migration.html">forge2d migration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/jenny/jenny.html">jenny</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../other_modules/jenny/language/language.html">YarnSpinner language</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/nodes.html">Nodes</a></li>
@@ -364,28 +367,52 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="forge2d">
 <h1>Forge2D<a class="headerlink" href="#forge2d" title="Link to this heading">¶</a></h1>
-<p>Blue Fire maintains a ported version of the Box2D physics engine and our
-version is called Forge2D.</p>
+<p>Blue Fire maintains Forge2D, Dart bindings for the <a class="reference external" href="https://box2d.org/">Box2D</a> physics engine
+(native on mobile and desktop, WebAssembly on the web).</p>
 <p>If you want to use Forge2D specifically for Flame you should use our bridge library
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d">flame_forge2d</a> and if you
 just want to use it in a Dart project you can use the
 <a class="reference external" href="https://github.com/flame-engine/forge2d">forge2d</a> library directly.</p>
-<p>To use it in your game you just need to add <code class="docutils literal notranslate"><span class="pre">flame_forge2d</span></code> to your
-<code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>, as can be seen in the [Forge2D
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d/example">example</a>
-and the pub. dev <a class="reference external" href="https://pub.dev/packages/flame_forge2d">installation
-instructions</a>](<a class="reference external" href="https://pub.dev/packages/flame_forge2d">https://pub.dev/packages/flame_forge2d</a>).</p>
+<p>To use it in your game you just need to add <code class="docutils literal notranslate"><span class="pre">flame_forge2d</span></code> to your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>, as can be
+seen in the
+<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d/example">Forge2D example</a>
+and the pub.dev <a class="reference external" href="https://pub.dev/packages/flame_forge2d">installation instructions</a>.</p>
+<p>Since Forge2D runs Box2D as native code, a C toolchain is required when building for native
+platforms (Xcode on iOS/macOS, the NDK on Android, Visual Studio Build Tools on Windows and
+clang or gcc on Linux). On the web a bundled WebAssembly build of Box2D is used instead.</p>
+<p>Forge2D has to be initialized with <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">initializeForge2D()</span></code> before any physics world is
+created, which on the web is what loads that WebAssembly module. <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> awaits this in its
+<code class="docutils literal notranslate"><span class="pre">onLoad</span></code>, so games don’t have to do anything, but that also means that a <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> subclass
+which overrides <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> has to await <code class="docutils literal notranslate"><span class="pre">super.onLoad()</span></code> before it creates any bodies:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Forge2DGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span><span class="w">  </span><span class="c1">// Not awaiting this breaks the game on the web.</span>
+<span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">MyBody</span><span class="p">());</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you create a <code class="docutils literal notranslate"><span class="pre">Forge2DWorld</span></code> or a raw Forge2D <code class="docutils literal notranslate"><span class="pre">World</span></code> outside of a <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>, await
+<code class="docutils literal notranslate"><span class="pre">initializeForge2D()</span></code> yourself first, or the world creation will throw on the web.</p>
+<p>If you are upgrading an existing game from flame_forge2d 0.19, see the
+<a class="reference internal" href="migration.html"><span class="std std-doc">migration guide</span></a>.</p>
 <section id="forge2dgame">
 <h2>Forge2DGame<a class="headerlink" href="#forge2dgame" title="Link to this heading">¶</a></h2>
 <p>If you are going to use Forge2D in your project it can be a good idea to use the Forge2D-specific
 <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class, <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>.</p>
 <p>It is called <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> and supports both the special Forge2D components called <code class="docutils literal notranslate"><span class="pre">BodyComponents</span></code>
 as well as normal Flame components.</p>
-<p><code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> has a built-in <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> and has a zoom level set to 10 by default, so your
-components will be a lot bigger than in a normal Flame game. This is due to the speed limit in the
-<code class="docutils literal notranslate"><span class="pre">Forge2D</span></code> world, which you would hit very quickly if you are using it with <code class="docutils literal notranslate"><span class="pre">zoom</span> <span class="pre">=</span> <span class="pre">1.0</span></code>. You can
-easily change the zoom level either by calling <code class="docutils literal notranslate"><span class="pre">super(zoom:</span> <span class="pre">yourZoom)</span></code> in your constructor or
-doing <code class="docutils literal notranslate"><span class="pre">game.cameraComponent.viewfinder.zoom</span> <span class="pre">=</span> <span class="pre">yourZoom;</span></code> at a later stage.</p>
+<p><code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> has a built-in <code class="docutils literal notranslate"><span class="pre">CameraComponent</span></code> that uses a <code class="docutils literal notranslate"><span class="pre">Forge2DViewfinder</span></code>. The physics world
+is measured in meters, and the viewfinder renders one meter as <code class="docutils literal notranslate"><span class="pre">metersToPixels</span></code> pixels, which is
+100 by default. Lay your world out in meters at a realistic scale and let <code class="docutils literal notranslate"><span class="pre">metersToPixels</span></code> decide
+how big that is on screen; see <a class="reference internal" href="#units-and-scale"><span class="std std-ref">Units and scale</span></a> for why the two are kept apart.</p>
+<p>You can change the scale either by calling <code class="docutils literal notranslate"><span class="pre">super(metersToPixels:</span> <span class="pre">yourScale)</span></code> in your constructor
+or by doing <code class="docutils literal notranslate"><span class="pre">game.metersToPixels</span> <span class="pre">=</span> <span class="pre">yourScale;</span></code> at a later stage.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">zoom</span></code> of the viewfinder is applied on top of <code class="docutils literal notranslate"><span class="pre">metersToPixels</span></code> and defaults to 1, so it is free
+for what it is normally used for: zooming the camera in and out. Everything except the rendering
+stays in meters, so body positions, <code class="docutils literal notranslate"><span class="pre">camera.viewfinder.position</span></code>, <code class="docutils literal notranslate"><span class="pre">camera.visibleWorldRect</span></code> and the
+local positions that events report are all still expressed in meters.</p>
 <p>If you are previously familiar with Box2D it can be good to know that the whole concept of the
 Box2d world is mapped to <code class="docutils literal notranslate"><span class="pre">world</span></code> in the <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> component and every <code class="docutils literal notranslate"><span class="pre">Body</span></code> that you want to
 use as a component should be wrapped in a <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>, and added to the <code class="docutils literal notranslate"><span class="pre">world</span></code> in your
@@ -401,6 +428,128 @@ the constructor of the <code class="docutils literal notranslate"><span class="p
 <p>A simple <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> implementation example can be seen in the
 <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_forge2d/example">examples folder</a>.</p>
 </section>
+<section id="units-and-scale">
+<h2>Units and scale<a class="headerlink" href="#units-and-scale" title="Link to this heading">¶</a></h2>
+<p>Forge2D is Box2D, and Box2D is tuned for meters, kilograms and seconds. Lay your world out in
+meters at a realistic scale, aiming to keep moving bodies roughly between 0.1 and 10 of them, with
+1 meter being the sweet spot. How large that is on screen is a separate decision, and it is what
+<code class="docutils literal notranslate"><span class="pre">metersToPixels</span></code> is for.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you used flame_forge2d before the Box2D v3 migration, this is a
+change of advice. The old version had a hard <code class="docutils literal notranslate"><span class="pre">maxTranslation</span></code> of 2
+meters per step, so about 120 m/s, and the docs told you to lay the
+world out much smaller than a meter to stay under it. That limit is
+now <code class="docutils literal notranslate"><span class="pre">WorldDef.maximumLinearSpeed</span></code>, which defaults to 400 m/s and is
+settable per world through <code class="docutils literal notranslate"><span class="pre">Forge2DWorld(definition:</span> <span class="pre">WorldDef(...))</span></code>.
+When you pass a definition, also pass the <code class="docutils literal notranslate"><span class="pre">gravity</span></code> argument (or set
+<code class="docutils literal notranslate"><span class="pre">WorldDef.gravity</span></code> explicitly), because the definition’s default is
+Box2D’s y-up <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">-10)</span></code> rather than Flame’s y-down <code class="docutils literal notranslate"><span class="pre">(0,</span> <span class="pre">10)</span></code>.
+There is no longer a reason to shrink the world, and there are good
+reasons not to.</p>
+</div>
+<section id="why-a-shrunken-world-misbehaves">
+<h3>Why a shrunken world misbehaves<a class="headerlink" href="#why-a-shrunken-world-misbehaves" title="Link to this heading">¶</a></h3>
+<p>A handful of Box2D’s tolerances are absolute lengths rather than fractions of the shapes they
+apply to, so in a world laid out at a much smaller scale than a meter they stop being negligible
+and start dominating:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Tolerance</p></th>
+<th class="head"><p>Default</p></th>
+<th class="head"><p>What it does in a world only a meter across</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">Tolerances.speculativeDistance</span></code></p></td>
+<td><p>0.02 m</p></td>
+<td><p>contacts are reported across 2% of the world</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">WorldDef.restitutionThreshold</span></code></p></td>
+<td><p>1 m/s</p></td>
+<td><p>nothing ever bounces</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">WorldDef.hitEventThreshold</span></code></p></td>
+<td><p>1 m/s</p></td>
+<td><p>no hit events are ever generated</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">BodyDef.sleepThreshold</span></code></p></td>
+<td><p>0.05 m/s</p></td>
+<td><p>bodies fall asleep while still moving</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">WorldDef.maxContactPushSpeed</span></code></p></td>
+<td><p>3 m/s</p></td>
+<td><p>overlapping bodies are pushed apart violently</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">Tolerances.aabbMargin</span></code></p></td>
+<td><p>0.05 m</p></td>
+<td><p>broadphase bounds dwarf the shapes</p></td>
+</tr>
+</tbody>
+</table>
+<p>The first one is the one that gets reported as a bug. Box2D creates contact points for shapes that
+are approaching but have not touched yet, which is what stops fast bodies from passing through
+things and removes most collision jitter. It also means <code class="docutils literal notranslate"><span class="pre">beginContact</span></code> fires while there is still
+a visible gap of up to <code class="docutils literal notranslate"><span class="pre">Tolerances.speculativeDistance</span></code>. A body that is not comfortably larger
+than that is permanently in contact with its neighbors. flame_forge2d prints a debug-mode warning
+once when it notices a moving body that small.</p>
+</section>
+<section id="scaling-a-world-up">
+<h3>Scaling a world up<a class="headerlink" href="#scaling-a-world-up" title="Link to this heading">¶</a></h3>
+<p>If your world is currently too small, scale it up and scale gravity with it. That last part is the
+one that is easy to miss: scaling lengths alone makes everything look like it is moving in
+treacle, while scaling lengths and gravity by the same factor leaves the timing of the simulation
+completely unchanged. For a length scale factor of <code class="docutils literal notranslate"><span class="pre">S</span></code>:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Quantity</p></th>
+<th class="head"><p>Scale by</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>lengths, positions, radii, velocities, gravity, accelerations</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">S</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>densities, friction, restitution, damping, angular velocities</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">1</span></code>, unchanged</p></td>
+</tr>
+<tr class="row-even"><td><p>masses</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">S²</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p>forces, linear impulses</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">S³</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p>torques, rotational inertia, angular impulses</p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">S⁴</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><strong>time</strong></p></td>
+<td><p><strong><code class="docutils literal notranslate"><span class="pre">1</span></code>, unchanged</strong></p></td>
+</tr>
+</tbody>
+</table>
+<p>So a world that was 1 meter tall with a 0.02 m ball and a gravity of 9.81 becomes a world 10
+meters tall with a 0.2 m ball and a gravity of 98.1, behaving identically but comfortably inside
+the range Box2D is tuned for. Divide <code class="docutils literal notranslate"><span class="pre">metersToPixels</span></code> by the same factor to keep it the same size
+on screen.</p>
+</section>
+<section id="when-the-layout-cannot-change">
+<h3>When the layout cannot change<a class="headerlink" href="#when-the-layout-cannot-change" title="Link to this heading">¶</a></h3>
+<p>When scaling the world is not practical, tell Box2D how many of your length units make up a meter
+and every tolerance in the first table above moves with it:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Forge2DGame</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">MyGame</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">lengthUnitsPerMeter:</span><span class="w"> </span><span class="m">0.04</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A good rule of thumb is the height of your player character: if it is 0.04 units tall and you
+think of it as a person, pass 0.04. You are then responsible for gravity, densities and forces
+being sensible at that scale, using the same table.</p>
+<p>This is a process-wide setting inside Box2D that cannot change once a physics world exists, so it
+can only be passed to the constructor, and several games running at the same time have to agree on
+it. A game that asks for a different value than one already in effect throws a <code class="docutils literal notranslate"><span class="pre">StateError</span></code> rather
+than quietly corrupting the simulation.</p>
+</section>
+</section>
 <section id="forge2dworld">
 <h2>Forge2DWorld<a class="headerlink" href="#forge2dworld" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">Forge2DWorld</span></code> is a the world that all your [<code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>]s live in. In the <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>
@@ -410,19 +559,38 @@ there is a <code class="docutils literal notranslate"><span class="pre">Forge2DW
 to the <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> instance’s <code class="docutils literal notranslate"><span class="pre">world</span></code> property, <code class="docutils literal notranslate"><span class="pre">game.world</span> <span class="pre">=</span> <span class="pre">Forge2DWorld()</span></code>.</p>
 <p>If you would like to re-use a world later and have it keep its physics state you have to make sure
 that the bodies aren’t destroyed when the world is removed from the game. You can do this by
-setting <code class="docutils literal notranslate"><span class="pre">world.destroyOnRemove</span></code> to false, like <code class="docutils literal notranslate"><span class="pre">game.world.destroyOnRemove</span> <span class="pre">=</span> <span class="pre">false;</span></code>.</p>
+setting <code class="docutils literal notranslate"><span class="pre">world.destroyBodiesOnRemove</span></code> to false, like <code class="docutils literal notranslate"><span class="pre">game.world.destroyBodiesOnRemove</span> <span class="pre">=</span> <span class="pre">false;</span></code>.</p>
+<p>The underlying Forge2D physics world is available as <code class="docutils literal notranslate"><span class="pre">world.physicsWorld</span></code>, which you can use to
+access the parts of the Forge2D API that <code class="docutils literal notranslate"><span class="pre">Forge2DWorld</span></code> doesn’t wrap, like creating joints or
+polling the raw event streams.</p>
 </section>
 <section id="bodycomponent">
 <h2>BodyComponent<a class="headerlink" href="#bodycomponent" title="Link to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> is a wrapper for the <code class="docutils literal notranslate"><span class="pre">Forge2D</span></code> body, which is the body that the physics engine
-is interacting with. To create a <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> you can either:</p>
+is interacting with. A body carries one or more <code class="docutils literal notranslate"><span class="pre">Shape</span></code>s, which are created from a
+<code class="docutils literal notranslate"><span class="pre">ShapeGeometry</span></code> (<code class="docutils literal notranslate"><span class="pre">Circle</span></code>, <code class="docutils literal notranslate"><span class="pre">Capsule</span></code>, <code class="docutils literal notranslate"><span class="pre">Segment</span></code> or <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>, plus chains via
+<code class="docutils literal notranslate"><span class="pre">body.createChain</span></code>) and an optional <code class="docutils literal notranslate"><span class="pre">ShapeDef</span></code> that holds the surface material (friction,
+restitution), density, filter, and event flags.</p>
+<p>To create a <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> you can either:</p>
 <ul class="simple">
 <li><p>override <code class="docutils literal notranslate"><span class="pre">createBody()</span></code> and create and return your created body;</p></li>
 <li><p>use the default <code class="docutils literal notranslate"><span class="pre">createBody()</span></code> implementation by passing a <code class="docutils literal notranslate"><span class="pre">BodyDef</span></code> instance (and optionally a
-list of <code class="docutils literal notranslate"><span class="pre">FixtureDef</span></code> instances) to the BodyComponent’s constructor;</p></li>
+list of <code class="docutils literal notranslate"><span class="pre">ShapeSpec</span></code> instances, which pair a <code class="docutils literal notranslate"><span class="pre">ShapeGeometry</span></code> with an optional <code class="docutils literal notranslate"><span class="pre">ShapeDef</span></code>) to the
+BodyComponent’s constructor;</p></li>
 <li><p>use the default <code class="docutils literal notranslate"><span class="pre">createBody()</span></code> implementation and assign a <code class="docutils literal notranslate"><span class="pre">BodyDef</span></code> instance to <code class="docutils literal notranslate"><span class="pre">this.bodyDef</span></code>,
-and optionally a list of <code class="docutils literal notranslate"><span class="pre">FixtureDef</span></code> instances to <code class="docutils literal notranslate"><span class="pre">this.fixtureDefs</span></code>.</p></li>
+and optionally a list of <code class="docutils literal notranslate"><span class="pre">ShapeSpec</span></code> instances to <code class="docutils literal notranslate"><span class="pre">this.shapeSpecs</span></code>.</p></li>
 </ul>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">ball</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BodyComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">bodyDef:</span><span class="w"> </span><span class="n">BodyDef</span><span class="p">(</span><span class="nl">type:</span><span class="w"> </span><span class="n">BodyType</span><span class="p">.</span><span class="kt">dynamic</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">shapeSpecs:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="n">ShapeSpec</span><span class="p">(</span>
+<span class="w">      </span><span class="n">Circle</span><span class="p">(</span><span class="nl">radius:</span><span class="w"> </span><span class="m">0.5</span><span class="p">),</span>
+<span class="w">      </span><span class="n">ShapeDef</span><span class="p">(</span><span class="nl">material:</span><span class="w"> </span><span class="n">SurfaceMaterial</span><span class="p">(</span><span class="nl">restitution:</span><span class="w"> </span><span class="m">0.8</span><span class="p">)),</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="p">);</span>
+</pre></div>
+</div>
 <p>The <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> is by default having <code class="docutils literal notranslate"><span class="pre">renderBody</span> <span class="pre">=</span> <span class="pre">true</span></code>, since otherwise, it wouldn’t show
 anything after you have created a <code class="docutils literal notranslate"><span class="pre">Body</span></code> and added the <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> to the game. If you want to
 turn it off you can just set (or override) <code class="docutils literal notranslate"><span class="pre">renderBody</span></code> to false.</p>
@@ -435,16 +603,18 @@ since Forge2D doesn’t have a concept of nested bodies.
 So bodies should live on the top level in the physics world, <code class="docutils literal notranslate"><span class="pre">Forge2DGame.world</span></code>.
 So instead of <code class="docutils literal notranslate"><span class="pre">add(Weapon()))</span></code>, <code class="docutils literal notranslate"><span class="pre">world.add(Weapon())</span></code> should be used (as below), and the <code class="docutils literal notranslate"><span class="pre">Player</span></code>
 should also of course initially be added to the world.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Weapon</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w">  </span><span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Weapon</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="p">...</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// ...</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w">  </span><span class="p">{</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
 <span class="w">    </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Weapon</span><span class="p">());</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -457,9 +627,9 @@ to avoid some tunneling problems.</p>
 <section id="contact-callbacks">
 <h2>Contact callbacks<a class="headerlink" href="#contact-callbacks" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> provides a simple out-of-the-box solution to propagate contact events.</p>
-<p>Contact events occur whenever two <code class="docutils literal notranslate"><span class="pre">Fixture</span></code>s meet each other. These events allow listening when
-these <code class="docutils literal notranslate"><span class="pre">Fixture</span></code>s begin to come in contact (<code class="docutils literal notranslate"><span class="pre">beginContact</span></code>) and cease being in contact
-(<code class="docutils literal notranslate"><span class="pre">endContact</span></code>).</p>
+<p>Contact events occur whenever two <code class="docutils literal notranslate"><span class="pre">Shape</span></code>s meet each other. These events allow listening when
+these <code class="docutils literal notranslate"><span class="pre">Shape</span></code>s begin to come in contact (<code class="docutils literal notranslate"><span class="pre">beginContact</span></code>) and cease being in contact
+(<code class="docutils literal notranslate"><span class="pre">endContact</span></code>). Sensor overlaps are delivered through the same callbacks.</p>
 <p>There are multiple ways to listen to these events. One common way is to use the <code class="docutils literal notranslate"><span class="pre">ContactCallbacks</span></code>
 class as a mixin in the <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> where you are interested in these events.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Ball</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ContactCallbacks</span><span class="w"> </span><span class="p">{</span>
@@ -473,11 +643,16 @@ class as a mixin in the <code class="docutils literal notranslate"><span class="
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>For the above to work, the <code class="docutils literal notranslate"><span class="pre">Ball</span></code>’s <code class="docutils literal notranslate"><span class="pre">body.userData</span></code> or contacting <code class="docutils literal notranslate"><span class="pre">fixture.userData</span></code> must be
-set to a <code class="docutils literal notranslate"><span class="pre">ContactCallback</span></code>. And if <code class="docutils literal notranslate"><span class="pre">Wall</span></code> is a <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> it’s <code class="docutils literal notranslate"><span class="pre">body.userData</span></code> or contacting
-<code class="docutils literal notranslate"><span class="pre">fixture.userData</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">Wall</span></code>.</p>
+<p>For the above to work, the <code class="docutils literal notranslate"><span class="pre">Ball</span></code>’s <code class="docutils literal notranslate"><span class="pre">body.userData</span></code> or contacting <code class="docutils literal notranslate"><span class="pre">shape.userData</span></code> must be
+set to a <code class="docutils literal notranslate"><span class="pre">ContactCallbacks</span></code>. And if <code class="docutils literal notranslate"><span class="pre">Wall</span></code> is a <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> its <code class="docutils literal notranslate"><span class="pre">body.userData</span></code> or contacting
+<code class="docutils literal notranslate"><span class="pre">shape.userData</span></code> must be set to <code class="docutils literal notranslate"><span class="pre">Wall</span></code>.</p>
 <p>If <code class="docutils literal notranslate"><span class="pre">userData</span></code> is <code class="docutils literal notranslate"><span class="pre">null</span></code> the contact events are ignored, it is <code class="docutils literal notranslate"><span class="pre">null</span></code> by default.</p>
-<p>A convenient way of setting <code class="docutils literal notranslate"><span class="pre">userData</span></code> is to assign it when creating the body. For example:</p>
+<p>Forge2D only generates events for shapes that have opted in to them, so the involved shapes also
+need <code class="docutils literal notranslate"><span class="pre">ShapeDef.enableContactEvents</span></code> set to true (and <code class="docutils literal notranslate"><span class="pre">ShapeDef.enableSensorEvents</span></code> for sensors
+and their visitors). The default <code class="docutils literal notranslate"><span class="pre">createBody()</span></code> implementation of <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> enables these
+flags automatically for shapes created through <code class="docutils literal notranslate"><span class="pre">shapeSpecs</span></code> when a <code class="docutils literal notranslate"><span class="pre">ContactCallbacks</span></code> is present
+in the body’s or shape’s userData, but if you override <code class="docutils literal notranslate"><span class="pre">createBody()</span></code> you need to set them
+yourself:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Ball</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ContactCallbacks</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="p">...</span>
 
@@ -487,6 +662,9 @@ set to a <code class="docutils literal notranslate"><span class="pre">ContactCal
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">bodyDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">BodyDef</span><span class="p">(</span>
 <span class="w">      </span><span class="nl">userData:</span><span class="w"> </span><span class="k">this</span><span class="p">,</span>
 <span class="w">    </span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">shapeDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShapeDef</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">enableContactEvents:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">    </span><span class="p">);</span>
 <span class="w">    </span><span class="p">...</span>
 <span class="w">  </span><span class="p">}</span>
 
@@ -494,7 +672,11 @@ set to a <code class="docutils literal notranslate"><span class="pre">ContactCal
 </pre></div>
 </div>
 <p>Every time <code class="docutils literal notranslate"><span class="pre">Ball</span></code> and <code class="docutils literal notranslate"><span class="pre">Wall</span></code> begin to come in contact <code class="docutils literal notranslate"><span class="pre">beginContact</span></code> will be called, and once the
-fixtures cease being in contact, <code class="docutils literal notranslate"><span class="pre">endContact</span></code> will be called.</p>
+shapes cease being in contact, <code class="docutils literal notranslate"><span class="pre">endContact</span></code> will be called.</p>
+<p>The old <code class="docutils literal notranslate"><span class="pre">preSolve</span></code> and <code class="docutils literal notranslate"><span class="pre">postSolve</span></code> callbacks no longer exist. To disable a contact before it is
+solved (for example for one-sided platforms), use <code class="docutils literal notranslate"><span class="pre">world.preSolveCallback</span></code> together with
+<code class="docutils literal notranslate"><span class="pre">ShapeDef.enablePreSolveEvents</span></code>. To measure impact strength, enable <code class="docutils literal notranslate"><span class="pre">ShapeDef.enableHitEvents</span></code>
+and poll <code class="docutils literal notranslate"><span class="pre">world.physicsWorld.contactEvents.hit</span></code>.</p>
 <p>An implementation example can be seen in the <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/bridge_libraries/flame_forge2d/utils/balls.dart">Flame Forge2D
 example</a>.</p>
 </section>
@@ -531,6 +713,10 @@ example</a>.</p>
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#forge2dgame' class='list-group-item level-1'>Forge2DGame</a>
+  <a href='#units-and-scale' class='list-group-item level-1'>Units and scale</a>
+  <a href='#why-a-shrunken-world-misbehaves' class='list-group-item level-2'>Why a shrunken world misbehaves</a>
+  <a href='#scaling-a-world-up' class='list-group-item level-2'>Scaling a world up</a>
+  <a href='#when-the-layout-cannot-change' class='list-group-item level-2'>When the layout cannot change</a>
   <a href='#forge2dworld' class='list-group-item level-1'>Forge2DWorld</a>
   <a href='#bodycomponent' class='list-group-item level-1'>BodyComponent</a>
   <a href='#contact-callbacks' class='list-group-item level-1'>Contact callbacks</a>

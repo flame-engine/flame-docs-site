@@ -205,6 +205,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">flame_forge2d</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="forge2d.html">Overview</a></li>
 <li class="toctree-l3"><a class="reference internal" href="joints.html">Joints</a></li>
+<li class="toctree-l3"><a class="reference internal" href="migration.html">Migration</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../flame_gamepads/flame_gamepads.html">flame_gamepads</a></li>
@@ -240,6 +241,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d/forge2d.html">forge2d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d/migration.html">forge2d migration</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../other_modules/jenny/jenny.html">jenny</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="../../other_modules/jenny/language/language.html">YarnSpinner language</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/nodes.html">Nodes</a></li>
@@ -368,6 +371,12 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="forge2d.html">Overview</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="forge2d.html#forge2dgame">Forge2DGame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="forge2d.html#units-and-scale">Units and scale</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="forge2d.html#why-a-shrunken-world-misbehaves">Why a shrunken world misbehaves</a></li>
+<li class="toctree-l3"><a class="reference internal" href="forge2d.html#scaling-a-world-up">Scaling a world up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="forge2d.html#when-the-layout-cannot-change">When the layout cannot change</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="forge2d.html#forge2dworld">Forge2DWorld</a></li>
 <li class="toctree-l2"><a class="reference internal" href="forge2d.html#bodycomponent">BodyComponent</a></li>
 <li class="toctree-l2"><a class="reference internal" href="forge2d.html#contact-callbacks">Contact callbacks</a></li>
@@ -375,10 +384,8 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="joints.html">Joints</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="joints.html#built-in-joints">Built-in joints</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="joints.html#constantvolumejoint"><code class="docutils literal notranslate"><span class="pre">ConstantVolumeJoint</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="joints.html#distancejoint"><code class="docutils literal notranslate"><span class="pre">DistanceJoint</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="joints.html#frictionjoint"><code class="docutils literal notranslate"><span class="pre">FrictionJoint</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="joints.html#gearjoint"><code class="docutils literal notranslate"><span class="pre">GearJoint</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="joints.html#filterjoint"><code class="docutils literal notranslate"><span class="pre">FilterJoint</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="joints.html#motorjoint"><code class="docutils literal notranslate"><span class="pre">MotorJoint</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="joints.html#mousejoint"><code class="docutils literal notranslate"><span class="pre">MouseJoint</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="joints.html#prismaticjoint"><code class="docutils literal notranslate"><span class="pre">PrismaticJoint</span></code></a><ul>
@@ -386,19 +393,28 @@
 <li class="toctree-l4"><a class="reference internal" href="joints.html#prismatic-joint-motor">Prismatic Joint Motor</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="joints.html#pulleyjoint"><code class="docutils literal notranslate"><span class="pre">PulleyJoint</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="joints.html#revolutejoint"><code class="docutils literal notranslate"><span class="pre">RevoluteJoint</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="joints.html#revolute-joint-limit">Revolute Joint Limit</a></li>
 <li class="toctree-l4"><a class="reference internal" href="joints.html#revolute-joint-motor">Revolute Joint Motor</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="joints.html#ropejoint"><code class="docutils literal notranslate"><span class="pre">RopeJoint</span></code></a></li>
 <li class="toctree-l3"><a class="reference internal" href="joints.html#weldjoint"><code class="docutils literal notranslate"><span class="pre">WeldJoint</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="joints.html#breakable-bodies-and-weldjoint">Breakable Bodies and WeldJoint</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="joints.html#wheeljoint"><code class="docutils literal notranslate"><span class="pre">WheelJoint</span></code></a></li>
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="migration.html">Migration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#platform-requirements">Platform requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#bodycomponent">BodyComponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#contact-callbacks">Contact callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#forge2dworld">Forge2DWorld</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#forge2dgame">Forge2DGame</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#world-scale">World scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration.html#name-collisions">Name collisions</a></li>
 </ul>
 </li>
 </ul>

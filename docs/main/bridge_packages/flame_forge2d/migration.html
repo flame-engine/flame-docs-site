@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="robots" content="noindex">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Migrating from flame_forge2d 0.19 &#8212; Flame</title>
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
+  <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
+  <link rel="stylesheet" type="text/css" href="../../_static/dart_domain.css" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flutter_app.css?v=6984c178" />
+  <link rel="stylesheet" type="text/css" href="../../_static/package.css?v=7889e545" />
+  <link rel="stylesheet" type="text/css" href="../../_static/yarn_lexer.css?v=932ca0ec" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+  <link rel="stylesheet" type="text/css" href="../../_static/flames.css?v=ac7bdd72" />
+  <link rel="stylesheet" type="text/css" href="../../_static/copy-button.css?v=deecb4da" />
+  <!-- Scripts -->
+  <script src="../../_static/jquery.js?v=5d32c60e"></script>
+  <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+  <script src="../../_static/documentation_options.js?v=5929fcd5"></script>
+  <script src="../../_static/doctools.js?v=0b60eaae"></script>
+  <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+  <script src="../../_static/flutter_app.js?v=3619378f"></script>
+  <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+  <script src="../../_static/copybutton.js?v=f281be69"></script>
+  <script src="../../_static/versions.js?v=58484017"></script>
+  <script src="../../_static/menu-expand.js?v=8e297497"></script>
+  <!--script src="searchindex.js" defer></script-->
+  <script src="https://cdn.jsdelivr.net/npm/virtual-webgl"></script>
+  <!-- Links -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,400;0,700;1,400;1,700&display=swap">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../_static/fontawesome/fa-brands-400.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin="" href="../../_static/fontawesome/fa-solid-900.woff2">
+  <link rel="stylesheet" href="../../_static/fontawesome/all.min.css">
+  <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <link rel="index" title="Index" href="../../genindex.html" />
+  <link rel="search" title="Search" href="../../search.html" />
+  <link rel="next" title="flame_gamepads" href="../flame_gamepads/flame_gamepads.html" />
+  <link rel="prev" title="Joints" href="joints.html" />
+</head>
+
+<body data-spy="scroll" data-target="#toc-local" data-offset="80">
+
+<div class="top-bar">
+  <button id="menu-button" class="btn" title="Toggle menu"><i class="fa fa-bars"></i></button>
+  <script type="text/javascript">
+    jQuery(function(){
+      $("#menu-button").click(function() {
+        $(this).toggleClass("active");
+        $(".sidebar-left-area").toggleClass("active");
+      });
+
+      $('div.nav-left li > a:not(:only-child)').wrap('<div class=submenu></div>');
+      $('div.nav-left div.submenu').prepend('<a class=arrow>&nbsp;</a>');
+      $('div.nav-left div.submenu > a.arrow')
+        .click(function() {
+          $(this.parentElement.parentElement).toggleClass('current');
+        });
+
+      // This function ensures that when navigating to internal targets within the page (such as
+      // a section header), those targets will be visible to the user and not obscured by the menu
+      // bar at the top of the page.
+      function scrollToHashTarget() {
+        if (location.hash !== location.oldHash) {
+          window.scrollBy(0, -60);
+          location.oldHash = location.hash;
+        }
+      }
+      window.location.oldHash = '';
+      window.addEventListener('hashchange', scrollToHashTarget);
+      scrollToHashTarget();
+    });
+  </script>
+
+  <a href="../../index.html" class="logo_image" aria-label="Navigate to home page">
+    <img src="../../_static/logo_flame.png" alt="Flame logo: a fiery symbol along with the FLAME wordmark.">
+  </a>  
+  <div class="highlight-box" role="alert" style="display:none">
+    <div>
+      <div class="title">highlighted:</div>
+      <div class="content" id="highlight-content"></div>
+    </div>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Dismiss">×</button>
+  </div>
+  <div class="expander"></div>
+
+  <div class="versions-placeholder"></div>
+  <a href="https://discord.com/invite/pxrBmy4" id="discord-button" class="btn"
+     title="Blue Fire Discord server">
+    <i class="fab fa-discord"></i>
+  </a>
+  <a href="https://github.com/flame-engine/flame/" id="github-button" class="btn"
+     title="GitHub repository">
+    <i class="fab fa-github"></i>
+  </a>
+</div>
+
+<div class="sidebar-left-area">
+  <div class="sidebar-left-bg"></div>
+  <div class="sidebar-left">
+    <div class="searchbox" role="search">
+      <form id="search-form" action="../../search.html" method="get">
+        <i class="icon fa fa-search"></i>
+        <input type="search" class="form-control" id="search-input" name="q"
+               placeholder="Search the docs..." autocomplete="off" />
+      </form>
+    </div>
+    <div class="nav-left" role="navigation" aria-label="Main">
+      <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../flame/flame.html">Flame</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../README.html">Getting Started</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/migration.html">Migration Guides</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/game_widget.html">Game Widget</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/game.html">The game class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/structure.html">Assets Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/components/components.html">Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/position_component.html">Position Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/sprite_components.html">Sprite Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/parallax_component.html">Parallax Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/shape_components.html">Shape Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/components/utility_components.html">Utility Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/tap_events.html">Tap Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/drag_events.html">Drag Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/scale_events.html">Scale Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/long_press_events.html">Long Press Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/gesture_input.html">Gesture Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/keyboard_input.html">Keyboard Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/other_inputs.html">Other Inputs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/pointer_events.html">Pointer Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/camera.html">Camera</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/effects/effects.html">Effects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/effect_controllers.html">Effect Controllers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/move_effects.html">Move Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/rotate_effects.html">Rotate Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/scale_effects.html">Scale Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/size_effects.html">Size Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/anchor_effects.html">Anchor Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/color_effects.html">Color Effects</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/sequence_effect.html">Sequence Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/combined_effect.html">Combined Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/remove_effect.html">Remove Effect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/effects/function_effect.html">Function Effect</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/collision_detection.html">Collision Detection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/router.html">Router</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/platforms.html">Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/rendering/rendering.html">Rendering</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/post_processing.html">Post Processing and Shaders</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/palette.html">Colors and Palette</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/decorators.html">Decorators</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/images.html">Images, Sprites and Animations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/layers.html">Layers and Snapshots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/particles.html">Particles</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/rendering/text_rendering.html">Text Rendering</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/layout/layout.html">Layout</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/layout/align_component.html">AlignComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/layout/row_component.html">RowComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/layout/column_component.html">ColumnComponent</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/layout/expanded_component.html">Expanded Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/layout/padding_component.html">Padding Component</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/overlays.html">Overlays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../flame/other/other.html">Other</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/debug.html">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/util.html">Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../flame/other/performance.html">Performance</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="../bridge_packages.html">Bridge Packages</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../flame_audio/flame_audio.html">flame_audio</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_audio/audio.html">General audio</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame_audio/bgm.html">Background music</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame_audio/audio_pool.html">AudioPool</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_behaviors/flame_behaviors.html">flame_behaviors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_behaviors/getting_started.html">Getting Started</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_bloc/flame_bloc.html">flame_bloc</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_bloc/bloc.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame_bloc/bloc_components.html">Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_fire_atlas/flame_fire_atlas.html">flame_fire_atlas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_fire_atlas/fire_atlas.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="reference internal" href="flame_forge2d.html">flame_forge2d</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="forge2d.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="joints.html">Joints</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Migration</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_gamepads/flame_gamepads.html">flame_gamepads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_isolate/flame_isolate.html">flame_isolate</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_isolate/isolate.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_lottie/flame_lottie.html">flame_lottie</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_network_assets/flame_network_assets.html">flame_network_assets</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_rive/flame_rive.html">flame_rive</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_rive/rive.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_riverpod/flame_riverpod.html">flame_riverpod</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_riverpod/riverpod.html">Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame_riverpod/component.html">Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame_riverpod/widget.html">Widget</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_splash_screen/flame_splash_screen.html">flame_splash_screen</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_spine/flame_spine.html">flame_spine</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_svg/flame_svg.html">flame_svg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_svg/svg.html">Overview</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_texturepacker/flame_texturepacker.html">flame_texturepacker</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_tiled/flame_tiled.html">flame_tiled</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../flame_tiled/tiled.html">Tiled</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../flame_tiled/layers.html">Layers</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../flame_typled/flame_typled.html">flame_typled</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../other_modules/other_modules.html">Other Modules</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d/forge2d.html">forge2d</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/forge2d/migration.html">forge2d migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/jenny/jenny.html">jenny</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/jenny/language/language.html">YarnSpinner language</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/nodes.html">Nodes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/lines.html">Lines</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/options.html">Options</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/commands/commands.html">Commands</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/character.html">&lt;&lt;character&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/declare.html">&lt;&lt;declare&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/if.html">&lt;&lt;if&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/jump.html">&lt;&lt;jump&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/local.html">&lt;&lt;local&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/set.html">&lt;&lt;set&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/stop.html">&lt;&lt;stop&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/visit.html">&lt;&lt;visit&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/wait.html">&lt;&lt;wait&gt;&gt;</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/commands/user_defined_commands.html">User-defined commands</a></li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/expressions/expressions.html">Expressions</a><ul>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/expressions/variables.html">Variables</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/expressions/operators.html">Operators</a></li>
+<li class="toctree-l5"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/functions.html">Functions</a><ul>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/random.html">Random functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/numeric.html">Numeric functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/type.html">Type conversion functions</a></li>
+<li class="toctree-l6"><a class="reference internal" href="../../other_modules/jenny/language/expressions/functions/misc.html">Miscellaneous functions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/language/markup.html">Markup</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../../other_modules/jenny/runtime/jenny_runtime.html">Jenny API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/character.html">Character</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/character_storage.html">CharacterStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/command_storage.html">CommandStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_choice.html">DialogueChoice</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_line.html">DialogueLine</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_option.html">DialogueOption</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_runner.html">DialogueRunner</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/dialogue_view.html">DialogueView</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/function_storage.html">FunctionStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/markup_attribute.html">MarkupAttribute</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/node.html">Node</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/user_defined_command.html">UserDefinedCommand</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/variable_storage.html">VariableStorage</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../../other_modules/jenny/runtime/yarn_project.html">YarnProject</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../other_modules/oxygen/oxygen.html">oxygen</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/tutorials.html">Tutorials</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/bare_flame_game.html">Bare Flame game</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/basic_shader/basic_shader.html">Basic Shader</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step1.html">1. Sprite Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step2.html">2. Outline Post Process</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step3.html">3. Shader</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/step4.html">4. User Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/basic_shader/takeaways.html">5. Takeaways</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/klondike/klondike.html">Klondike</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step2.html">2. Scaffolding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step3.html">3. Cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step4.html">4. Gameplay</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/klondike/step5.html">5. Additional features</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/platformer/platformer.html">Ember Quest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_1.html">1. Preparation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_2.html">2. Start Coding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_3.html">3. Building the World</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_4.html">4. Adding the Remaining Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_5.html">5. Controlling Movement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_6.html">6. Adding the HUD</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/platformer/step_7.html">7. Adding Menus</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../tutorials/space_shooter/space_shooter.html">Space Shooter</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_1.html">1. Getting Started</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_2.html">2. Controlling the player and adding some graphics</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_3.html">3. Adding animations and depth</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_4.html">4. Adding Bullets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_5.html">5. Adding Enemies</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../../tutorials/space_shooter/step_6.html">6. Enemy and Bullet collisions</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../development/development.html">Development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../development/contributing.html">Contributing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/documentation.html">Documentation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/style_guide.html">Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../development/testing_guide.html">Tests Guide</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../resources/resources.html">Resources</a><ul>
+<li class="toctree-l2"><a class="reference external" href="https://pub.dev/documentation/flame/latest/">Flame API</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://examples.flame-engine.org/#/">Flame Examples</a></li>
+</ul>
+</li>
+</ul>
+
+    </div>
+  </div>
+</div>
+
+<div class="main-area">
+  <div class="document-wrapper">
+    <div class="warning hidden" id="version-warning">
+      <p><strong>Warning:</strong> you are currently viewing the docs for an older
+      version <span class="version"></span> of Flame.</p>
+      <p>Please <a href="/">click here</a> to go see the documentation for the latest
+      released version.</p>
+    </div>
+    <div class="document" role="main">
+      
+  <section class="tex2jax_ignore mathjax_ignore" id="migrating-from-flame-forge2d-0-19">
+<h1>Migrating from flame_forge2d 0.19<a class="headerlink" href="#migrating-from-flame-forge2d-0-19" title="Link to this heading">¶</a></h1>
+<p>flame_forge2d 0.20 is built on Forge2D 0.15, which replaced the pure Dart port of Box2D 2.x with
+bindings for <a class="reference external" href="https://box2d.org/">Box2D v3</a>. The whole underlying API changed, so this is a large
+breaking change.</p>
+<p>This page covers the flame_forge2d side of the migration: <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code>, <code class="docutils literal notranslate"><span class="pre">Forge2DWorld</span></code>,
+<code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code>, and the contact callbacks. Everything you do directly with the physics engine
+(shapes, joints, queries, world stepping) is described in the
+<a class="reference internal" href="../../other_modules/forge2d/migration.html"><span class="std std-doc">Forge2D migration guide</span></a>, which is worth reading first.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The particle system (LiquidFun) no longer exists in Box2D v3 and has been
+removed, together with <code class="docutils literal notranslate"><span class="pre">Forge2DWorld.raycastParticle</span></code>. If your game depends on
+it, stay on flame_forge2d 0.19.</p>
+</div>
+<section id="platform-requirements">
+<h2>Platform requirements<a class="headerlink" href="#platform-requirements" title="Link to this heading">¶</a></h2>
+<p>The SDK floor is now Dart 3.12 (Flutter 3.44), and building for native platforms requires a C
+toolchain (Xcode on iOS and macOS, the NDK on Android, Visual Studio Build Tools on Windows, and
+clang or gcc on Linux) because Box2D is compiled through the Dart build hooks. On the web the
+WebAssembly module is bundled into the app automatically, so no build setup is needed there
+either.</p>
+<p>Forge2D now needs <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">initializeForge2D()</span></code> before a physics world is created, which is what
+loads that module on the web. <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> awaits it in its <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> and creates the physics
+world lazily, so games need no change. Code that creates a <code class="docutils literal notranslate"><span class="pre">Forge2DWorld</span></code> or a raw Forge2D
+<code class="docutils literal notranslate"><span class="pre">World</span></code> on its own, including tests, has to await it first.</p>
+</section>
+<section id="bodycomponent">
+<h2>BodyComponent<a class="headerlink" href="#bodycomponent" title="Link to this heading">¶</a></h2>
+<p>Fixtures are gone; bodies now carry shapes created from a <code class="docutils literal notranslate"><span class="pre">ShapeGeometry</span></code> and a <code class="docutils literal notranslate"><span class="pre">ShapeDef</span></code>. The
+<code class="docutils literal notranslate"><span class="pre">fixtureDefs</span></code> constructor argument is replaced by <code class="docutils literal notranslate"><span class="pre">shapeSpecs</span></code>, a list of <code class="docutils literal notranslate"><span class="pre">ShapeSpec</span></code>, which pairs
+a geometry with an optional def:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="n">BodyComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">bodyDef:</span><span class="w"> </span><span class="n">BodyDef</span><span class="p">(</span><span class="nl">type:</span><span class="w"> </span><span class="n">BodyType</span><span class="p">.</span><span class="kt">dynamic</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">fixtureDefs:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="n">FixtureDef</span><span class="p">(</span><span class="n">CircleShape</span><span class="p">()..</span><span class="n">radius</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="nl">restitution:</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="nl">friction:</span><span class="w"> </span><span class="m">0.4</span><span class="p">),</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="p">);</span>
+
+<span class="c1">// After</span>
+<span class="n">BodyComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">bodyDef:</span><span class="w"> </span><span class="n">BodyDef</span><span class="p">(</span><span class="nl">type:</span><span class="w"> </span><span class="n">BodyType</span><span class="p">.</span><span class="kt">dynamic</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">shapeSpecs:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="n">ShapeSpec</span><span class="p">(</span>
+<span class="w">      </span><span class="n">Circle</span><span class="p">(</span><span class="nl">radius:</span><span class="w"> </span><span class="m">5</span><span class="p">),</span>
+<span class="w">      </span><span class="n">ShapeDef</span><span class="p">(</span><span class="nl">material:</span><span class="w"> </span><span class="n">SurfaceMaterial</span><span class="p">(</span><span class="nl">restitution:</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="nl">friction:</span><span class="w"> </span><span class="m">0.4</span><span class="p">)),</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>If you override <code class="docutils literal notranslate"><span class="pre">createBody</span></code> instead, replace <code class="docutils literal notranslate"><span class="pre">createFixture</span></code>/<code class="docutils literal notranslate"><span class="pre">createFixtureFromShape</span></code> with
+<code class="docutils literal notranslate"><span class="pre">createShape</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="nd">@override</span>
+<span class="n">Body</span><span class="w"> </span><span class="n">createBody</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">shape</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EdgeShape</span><span class="p">()..</span><span class="kd">set</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">end</span><span class="p">);</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">fixtureDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">FixtureDef</span><span class="p">(</span><span class="n">shape</span><span class="p">,</span><span class="w"> </span><span class="nl">friction:</span><span class="w"> </span><span class="m">0.3</span><span class="p">);</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="n">createBody</span><span class="p">(</span><span class="n">BodyDef</span><span class="p">())..</span><span class="n">createFixture</span><span class="p">(</span><span class="n">fixtureDef</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// After</span>
+<span class="nd">@override</span>
+<span class="n">Body</span><span class="w"> </span><span class="n">createBody</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">shapeDef</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ShapeDef</span><span class="p">(</span><span class="nl">material:</span><span class="w"> </span><span class="n">SurfaceMaterial</span><span class="p">(</span><span class="nl">friction:</span><span class="w"> </span><span class="m">0.3</span><span class="p">));</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="n">createBody</span><span class="p">(</span><span class="n">BodyDef</span><span class="p">())</span>
+<span class="w">    </span><span class="p">..</span><span class="n">createShape</span><span class="p">(</span><span class="n">Segment</span><span class="p">(</span><span class="nl">point1:</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="nl">point2:</span><span class="w"> </span><span class="n">end</span><span class="p">),</span><span class="w"> </span><span class="n">shapeDef</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The rendering hooks changed accordingly, and now read the geometry back from the shape:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Before</p></th>
+<th class="head"><p>After</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">renderFixture(Canvas,</span> <span class="pre">Fixture)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">renderShape(Canvas,</span> <span class="pre">Shape)</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">renderEdge(Canvas,</span> <span class="pre">Offset,</span> <span class="pre">Offset)</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">renderSegment(Canvas,</span> <span class="pre">Offset,</span> <span class="pre">Offset)</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">renderChain(Canvas,</span> <span class="pre">List&lt;Offset&gt;)</span></code></p></td>
+<td><p>removed, chain segments render through <code class="docutils literal notranslate"><span class="pre">renderSegment</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">renderCapsule(Canvas,</span> <span class="pre">Offset,</span> <span class="pre">Offset,</span> <span class="pre">double)</span></code> is new</p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">renderCircle</span></code> and <code class="docutils literal notranslate"><span class="pre">renderPolygon</span></code> are unchanged. <code class="docutils literal notranslate"><span class="pre">BodyComponent.center</span></code> now returns
+<code class="docutils literal notranslate"><span class="pre">body.worldCenterOfMass</span></code>, and <code class="docutils literal notranslate"><span class="pre">BodyDef(angle:</span> <span class="pre">a)</span></code> becomes <code class="docutils literal notranslate"><span class="pre">BodyDef(rotation:</span> <span class="pre">Rot.fromAngle(a))</span></code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The default friction changed: <code class="docutils literal notranslate"><span class="pre">FixtureDef</span></code> defaulted to 0, while
+<code class="docutils literal notranslate"><span class="pre">SurfaceMaterial</span></code> defaults to 0.6. Shapes that relied on the old default are
+no longer frictionless, so pass <code class="docutils literal notranslate"><span class="pre">SurfaceMaterial(friction:</span> <span class="pre">0)</span></code> explicitly
+where you need the old behavior.</p>
+</div>
+<p>Chains changed from two-sided to one-sided, which is easy to miss because it
+compiles fine and only shows up as bodies falling through your level geometry.
+The solid surface is to the right of the winding direction, and since Flame’s
+y-axis points down, that is the opposite order from what Box2D’s own
+documentation describes: list ground chains from <strong>left to right</strong>, and wind
+loops clockwise on screen. If bodies fall through a chain, reverse its points.</p>
+<p>A one-sided chain is the right shape for ground and walls that are only ever
+approached from one side. For solid level geometry that has to block from
+every direction, such as a ramp or a platform that bodies can reach from
+below, use a <code class="docutils literal notranslate"><span class="pre">Polygon</span></code> instead: a chain loop is hollow, so bodies that get
+past one edge end up trapped inside it.</p>
+<p>One behavior improvement to be aware of: a <code class="docutils literal notranslate"><span class="pre">BodyComponent</span></code> that was removed
+from the tree, which destroys its body by default, can now be safely added
+back again, since the component recreates its body when it is remounted.</p>
+</section>
+<section id="contact-callbacks">
+<h2>Contact callbacks<a class="headerlink" href="#contact-callbacks" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ContactCallbacks</span></code> keeps the same shape, so components that only implement <code class="docutils literal notranslate"><span class="pre">beginContact</span></code> and
+<code class="docutils literal notranslate"><span class="pre">endContact</span></code> mostly keep working:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Ball</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">BodyComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ContactCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">beginContact</span><span class="p">(</span><span class="kt">Object</span><span class="w"> </span><span class="n">other</span><span class="p">,</span><span class="w"> </span><span class="n">Contact</span><span class="w"> </span><span class="n">contact</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Wall</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>What changed:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Contact</span></code> is now a small flame_forge2d class instead of the Forge2D one. It carries <code class="docutils literal notranslate"><span class="pre">shapeA</span></code>,
+<code class="docutils literal notranslate"><span class="pre">shapeB</span></code>, <code class="docutils literal notranslate"><span class="pre">bodyA</span></code>, <code class="docutils literal notranslate"><span class="pre">bodyB</span></code>, <code class="docutils literal notranslate"><span class="pre">isSensorEvent</span></code>, and, for begin events, <code class="docutils literal notranslate"><span class="pre">normal</span></code> and <code class="docutils literal notranslate"><span class="pre">points</span></code>. Since
+end events can arrive after a shape was destroyed, check <code class="docutils literal notranslate"><span class="pre">contact.isValid</span></code> before using the
+bodies. <code class="docutils literal notranslate"><span class="pre">contact.fixtureA</span></code>/<code class="docutils literal notranslate"><span class="pre">fixtureB</span></code> become <code class="docutils literal notranslate"><span class="pre">contact.shapeA</span></code>/<code class="docutils literal notranslate"><span class="pre">shapeB</span></code>. The old <code class="docutils literal notranslate"><span class="pre">isTouching()</span></code>
+and <code class="docutils literal notranslate"><span class="pre">getWorldManifold()</span></code> methods are gone: a begin event already means the shapes started
+touching, and the manifold data is on the event itself.</p></li>
+<li><p><strong>Contact events are opt-in per shape.</strong> Box2D v3 only generates events for shapes that asked
+for them, so the involved shapes need <code class="docutils literal notranslate"><span class="pre">ShapeDef(enableContactEvents:</span> <span class="pre">true)</span></code>, and sensors together
+with their visitors need <code class="docutils literal notranslate"><span class="pre">enableSensorEvents:</span> <span class="pre">true</span></code>. The default <code class="docutils literal notranslate"><span class="pre">BodyComponent.createBody()</span></code>
+sets both flags automatically for shapes created through <code class="docutils literal notranslate"><span class="pre">shapeSpecs</span></code> when the <code class="docutils literal notranslate"><span class="pre">bodyDef</span></code>’s or the
+<code class="docutils literal notranslate"><span class="pre">ShapeDef</span></code>’s <code class="docutils literal notranslate"><span class="pre">userData</span></code> is a <code class="docutils literal notranslate"><span class="pre">ContactCallbacks</span></code>, but if you override <code class="docutils literal notranslate"><span class="pre">createBody</span></code> you have to set
+them yourself.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">preSolve</span></code> and <code class="docutils literal notranslate"><span class="pre">postSolve</span></code> are removed from <code class="docutils literal notranslate"><span class="pre">ContactCallbacks</span></code>. To veto a contact before it is
+solved, set <code class="docutils literal notranslate"><span class="pre">world.preSolveCallback</span></code> and enable <code class="docutils literal notranslate"><span class="pre">ShapeDef.enablePreSolveEvents</span></code> on the shapes.
+For impact strength, enable <code class="docutils literal notranslate"><span class="pre">ShapeDef.enableHitEvents</span></code> and read
+<code class="docutils literal notranslate"><span class="pre">world.physicsWorld.contactEvents.hit</span></code>, whose events carry an <code class="docutils literal notranslate"><span class="pre">approachSpeed</span></code>. <code class="docutils literal notranslate"><span class="pre">Manifold</span></code> and
+<code class="docutils literal notranslate"><span class="pre">ContactImpulse</span></code> no longer exist.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WorldContactListener</span></code> is replaced by <code class="docutils literal notranslate"><span class="pre">ContactEventsDispatcher</span></code>, which the world polls once per
+update. Subclass it if you customized the dispatch algorithm, and pass it through the
+<code class="docutils literal notranslate"><span class="pre">contactEventsDispatcher</span></code> argument of <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> or <code class="docutils literal notranslate"><span class="pre">Forge2DWorld</span></code>, which replaced the
+<code class="docutils literal notranslate"><span class="pre">contactListener</span></code> argument.</p></li>
+</ul>
+<p>Also note that a body destroyed while it is touching something does not produce a final
+<code class="docutils literal notranslate"><span class="pre">endContact</span></code> for that contact any more, because the userData needed to route the event is cleared
+together with the body.</p>
+</section>
+<section id="forge2dworld">
+<h2>Forge2DWorld<a class="headerlink" href="#forge2dworld" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Joint helpers were removed. Create joints on the physics world with the typed methods and destroy
+them on the joint: <code class="docutils literal notranslate"><span class="pre">world.physicsWorld.createRevoluteJoint(def)</span></code> and <code class="docutils literal notranslate"><span class="pre">joint.destroy()</span></code> replace
+<code class="docutils literal notranslate"><span class="pre">world.createJoint(joint)</span></code> and <code class="docutils literal notranslate"><span class="pre">world.destroyJoint(joint)</span></code>.</p></li>
+<li><p>Queries follow the new Forge2D API: <code class="docutils literal notranslate"><span class="pre">raycast(callback,</span> <span class="pre">p1,</span> <span class="pre">p2)</span></code> becomes <code class="docutils literal notranslate"><span class="pre">castRayClosest</span></code>,
+<code class="docutils literal notranslate"><span class="pre">castRay</span></code>, or <code class="docutils literal notranslate"><span class="pre">castRayAll</span></code> (taking an origin and a translation), and <code class="docutils literal notranslate"><span class="pre">queryAABB(callback,</span> <span class="pre">aabb)</span></code>
+becomes <code class="docutils literal notranslate"><span class="pre">overlapAabb(aabb)</span></code>, whose bounding box type was renamed from <code class="docutils literal notranslate"><span class="pre">AABB</span></code> to <code class="docutils literal notranslate"><span class="pre">Aabb</span></code>.
+<code class="docutils literal notranslate"><span class="pre">clearForces()</span></code> and <code class="docutils literal notranslate"><span class="pre">raycastParticle</span></code> are gone.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">world.preSolveCallback</span></code> and <code class="docutils literal notranslate"><span class="pre">world.customFilterCallback</span></code> are new forwarding setters.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">subStepCount</span></code> (default 4) controls how many sub-steps each update performs, replacing the old
+velocity and position iteration counts.</p></li>
+<li><p>Forge2D no longer exposes a list of all bodies, so <code class="docutils literal notranslate"><span class="pre">world.physicsWorld.bodies</span></code> becomes
+<code class="docutils literal notranslate"><span class="pre">world.bodies</span></code>, which tracks the bodies created through <code class="docutils literal notranslate"><span class="pre">world.createBody</span></code>. Bodies created
+directly on <code class="docutils literal notranslate"><span class="pre">world.physicsWorld</span></code> are not included, and are not woken by the gravity setter.</p></li>
+<li><p>The physics world is never destroyed automatically, so that a world can be removed and added back
+later. Call <code class="docutils literal notranslate"><span class="pre">world.physicsWorld.destroy()</span></code> yourself when you are permanently done with a world.</p></li>
+</ul>
+</section>
+<section id="forge2dgame">
+<h2>Forge2DGame<a class="headerlink" href="#forge2dgame" title="Link to this heading">¶</a></h2>
+<p>The meters-to-pixels scaling no longer goes through the camera’s zoom, so the zoom is free for
+zooming the camera in and out.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">Forge2DGame(zoom:</span> <span class="pre">24)</span></code> becomes <code class="docutils literal notranslate"><span class="pre">Forge2DGame(metersToPixels:</span> <span class="pre">24)</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">game.camera.viewfinder.zoom</span> <span class="pre">=</span> <span class="pre">24</span></code> becomes <code class="docutils literal notranslate"><span class="pre">game.metersToPixels</span> <span class="pre">=</span> <span class="pre">24</span></code>.</p></li>
+<li><p>The default changed from 10 to 100, so a game that never set a zoom now renders ten times
+larger. Pass <code class="docutils literal notranslate"><span class="pre">metersToPixels:</span> <span class="pre">10</span></code> to keep it exactly as it was, but read
+<a class="reference internal" href="forge2d.html#units-and-scale"><span class="std std-ref">Units and scale</span></a> first: the old default came with advice to lay the world out much
+smaller than a meter, and that advice is now actively harmful.</p></li>
+<li><p>The camera of a <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> uses a <code class="docutils literal notranslate"><span class="pre">Forge2DViewfinder</span></code>, which renders one meter of the physics
+world as <code class="docutils literal notranslate"><span class="pre">metersToPixels</span></code> pixels. Its <code class="docutils literal notranslate"><span class="pre">zoom</span></code> is applied on top of that and now starts at 1. If
+you pass your own <code class="docutils literal notranslate"><span class="pre">camera</span></code>, its viewfinder is replaced with a <code class="docutils literal notranslate"><span class="pre">Forge2DViewfinder</span></code>, so pass one
+yourself if you have a custom viewfinder.</p></li>
+<li><p>Nothing outside of the rendering changed units: body positions,
+<code class="docutils literal notranslate"><span class="pre">camera.viewfinder.position</span></code>, <code class="docutils literal notranslate"><span class="pre">camera.viewfinder.visibleGameSize</span></code>, <code class="docutils literal notranslate"><span class="pre">camera.visibleWorldRect</span></code> and
+the local positions that events report are all still in meters.</p></li>
+<li><p>Code that used the zoom to convert between meters and pixels, for example when positioning a
+Flutter widget on top of a body, should use <code class="docutils literal notranslate"><span class="pre">game.metersToPixels</span></code> instead.</p></li>
+</ul>
+</section>
+<section id="world-scale">
+<h2>World scale<a class="headerlink" href="#world-scale" title="Link to this heading">¶</a></h2>
+<p>This is the change most likely to break a game that otherwise compiles and runs.</p>
+<p>flame_forge2d used to tell you to lay your world out in meters much smaller than a pixel, because
+Box2D v2 clamped every body to <code class="docutils literal notranslate"><span class="pre">maxTranslation</span></code> of 2 meters per step, about 120 m/s. Box2D v3
+replaced that with <code class="docutils literal notranslate"><span class="pre">WorldDef.maximumLinearSpeed</span></code>, which defaults to 400 m/s and is settable per
+world, and it added speculative contacts, which report a contact as soon as two shapes are within
+<code class="docutils literal notranslate"><span class="pre">Tolerances.speculativeDistance</span></code> (0.02 meters) of each other.</p>
+<p>The upshot is that a world that was deliberately laid out at a sub-meter scale now reports
+contacts across visible gaps, never bounces, and puts bodies to sleep while they are still moving.
+See <a class="reference internal" href="forge2d.html#units-and-scale"><span class="std std-ref">Units and scale</span></a> for the full picture; in short:</p>
+<ul class="simple">
+<li><p>Prefer scaling the world up so that moving bodies are roughly 0.1 to 10 meters. Multiply lengths
+<strong>and gravity</strong> by the same factor, which leaves the timing of the simulation unchanged, then
+divide <code class="docutils literal notranslate"><span class="pre">metersToPixels</span></code> by it to keep everything the same size on screen. There is a table of
+how the other quantities scale in the same section.</p></li>
+<li><p>If that is impractical, pass <code class="docutils literal notranslate"><span class="pre">lengthUnitsPerMeter</span></code> to the <code class="docutils literal notranslate"><span class="pre">Forge2DGame</span></code> constructor to move
+Box2D’s tolerances to your scale instead, for example <code class="docutils literal notranslate"><span class="pre">super(lengthUnitsPerMeter:</span> <span class="pre">0.04)</span></code> for a
+world where a person is 0.04 units tall.</p></li>
+</ul>
+<p>In debug mode flame_forge2d prints a warning once when it creates a moving body that is small
+enough for this to bite.</p>
+</section>
+<section id="name-collisions">
+<h2>Name collisions<a class="headerlink" href="#name-collisions" title="Link to this heading">¶</a></h2>
+<p>Forge2D exports a <code class="docutils literal notranslate"><span class="pre">World</span></code>, which collides with Flame’s <code class="docutils literal notranslate"><span class="pre">World</span></code> component, so files that use both
+need <code class="docutils literal notranslate"><span class="pre">import</span> <span class="pre">'package:flame_forge2d/flame_forge2d.dart'</span> <span class="pre">hide</span> <span class="pre">World;</span></code>. That was already the case
+before, as was the collision between Forge2D’s <code class="docutils literal notranslate"><span class="pre">Transform</span></code> and the one in
+<code class="docutils literal notranslate"><span class="pre">flutter/material.dart</span></code>, but Forge2D now also exports <code class="docutils literal notranslate"><span class="pre">Circle</span></code>, <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>, and <code class="docutils literal notranslate"><span class="pre">Shape</span></code>, which
+can collide with the ones in <code class="docutils literal notranslate"><span class="pre">flame/experimental.dart</span></code>. Resolve them per file with <code class="docutils literal notranslate"><span class="pre">hide</span></code> or a
+prefixed import, for example:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame_forge2d/flame_forge2d.dart&#39;</span><span class="w"> </span><span class="k">hide</span><span class="w"> </span><span class="n">Transform</span><span class="p">,</span><span class="w"> </span><span class="n">World</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+    </div>
+    <div class="copyright">
+      The content on this page is licensed under the <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0 License</a>,
+      and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
+    </div>
+    <div class="prev-next-area">
+      <a class="left-prev" id="prev-link" href="joints.html" title="previous page">
+        <i class="fa fa-angle-left"></i>
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Previous:</p>
+          <p class="prev-next-title">Joints</p>
+        </div>
+      </a>
+      <div class='expander'></div>
+      <a class="right-next" id="next-link" href="../flame_gamepads/flame_gamepads.html" title="next page">
+        <div class="prev-next-info">
+          <p class="prev-next-subtitle">Next:</p>
+          <p class="prev-next-title">flame_gamepads</p>
+        </div>
+        <i class="fa fa-angle-right"></i>
+      </a>
+    </div>
+  </div>
+
+  <div class="sidebar-right">
+    
+    <div class="nav-right" role="navigation" aria-label="table of contents">
+      <div id='toc-local' class='list-group'>
+ <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#platform-requirements' class='list-group-item level-1'>Platform requirements</a>
+  <a href='#bodycomponent' class='list-group-item level-1'>BodyComponent</a>
+  <a href='#contact-callbacks' class='list-group-item level-1'>Contact callbacks</a>
+  <a href='#forge2dworld' class='list-group-item level-1'>Forge2DWorld</a>
+  <a href='#forge2dgame' class='list-group-item level-1'>Forge2DGame</a>
+  <a href='#world-scale' class='list-group-item level-1'>World scale</a>
+  <a href='#name-collisions' class='list-group-item level-1'>Name collisions</a>
+</div>
+
+    </div>
+  </div>
+
+  <div class="expander"></div>
+</div>
+
+
+
+
+</body>
+</html>
