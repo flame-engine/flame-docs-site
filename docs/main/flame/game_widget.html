@@ -639,9 +639,10 @@ instead.</p>
 <p class="admonition-title">Note</p>
 <p>When using <code class="docutils literal notranslate"><span class="pre">deferToChild</span></code> or <code class="docutils literal notranslate"><span class="pre">translucent</span></code>, <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> determines whether a
 position has an interactive component by traversing the component tree via
-<code class="docutils literal notranslate"><span class="pre">componentsAtPoint</span></code>. Games that directly extend the low-level <code class="docutils literal notranslate"><span class="pre">Game</span></code> class
-report a hit on their entire surface by default; override
-<code class="docutils literal notranslate"><span class="pre">containsEventHandlerAt</span></code> to customize this.</p>
+<code class="docutils literal notranslate"><span class="pre">componentsAtPoint</span></code>, and treating any component that implements
+<code class="docutils literal notranslate"><span class="pre">PointerInputCallbacks</span></code> as interactive. Games that directly extend the
+low-level <code class="docutils literal notranslate"><span class="pre">Game</span></code> class report a hit on their entire surface by default;
+override <code class="docutils literal notranslate"><span class="pre">containsEventHandlerAt</span></code> to customize this.</p>
 </div>
 </section>
 </section>
