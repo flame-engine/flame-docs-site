@@ -394,11 +394,6 @@ of these <code class="docutils literal notranslate"><span class="pre">mixin</spa
   - onPanEnd
   - onPanCancel
 
-- ScaleDetector
-  - onScaleStart
-  - onScaleUpdate
-  - onScaleEnd
-
 - MultiTouchTapDetector
   - onTap
   - onTapCancel
@@ -427,48 +422,43 @@ and <a class="reference external" href="https://api.flutter.dev/flutter/widgets/
 also read more about
 <a class="reference external" href="https://api.flutter.dev/flutter/gestures/gestures-library.html">Flutter’s gesture system</a>.</p>
 </section>
-<section id="pandetector-and-scaledetector">
-<h2>PanDetector and ScaleDetector<a class="headerlink" href="#pandetector-and-scaledetector" title="Link to this heading">¶</a></h2>
-<p>If you add a <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> together with a <code class="docutils literal notranslate"><span class="pre">ScaleDetector</span></code> you will be prompted with a quite cryptic
-assertion from Flutter that says:</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Having both a pan gesture recognizer and a scale gesture recognizer is
-redundant; scale is a superset of pan.</p>
-<p>Just use the scale gesture recognizer.</p>
-</div>
-<p>This might seem strange, but <code class="docutils literal notranslate"><span class="pre">onScaleUpdate</span></code> is not only triggered when the scale should be changed,
-but for all pan/drag events too. So if you need to use both of those detectors you’ll have to handle
-both of their logic inside <code class="docutils literal notranslate"><span class="pre">onScaleUpdate</span></code> (+<code class="docutils literal notranslate"><span class="pre">onScaleStart</span></code> and <code class="docutils literal notranslate"><span class="pre">onScaleEnd</span></code>).</p>
-<p>For example you could do something like this if you want to move the camera on pan events and zoom
-on scale events:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">clampZoom</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<section id="panning-and-zooming">
+<h2>Panning and zooming<a class="headerlink" href="#panning-and-zooming" title="Link to this heading">¶</a></h2>
+<p>To handle panning and pinch-to-zoom at the same time, use the
+<a class="reference internal" href="drag_events.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code></span></a> and <a class="reference internal" href="scale_events.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code></span></a> mixins together. Both are
+driven by the same recognizer, so they can be combined freely: drag events are reported per pointer,
+while scale events only start once two or more pointers are down.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="p">,</span><span class="w"> </span><span class="n">ScaleCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">startZoom</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">clampZoom</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="m">3.0</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
-<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">startZoom</span><span class="p">;</span>
-
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleStart</span><span class="p">(</span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleStart</span><span class="p">(</span><span class="n">ScaleStartEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onScaleStart</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
 <span class="w">    </span><span class="n">startZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleUpdate</span><span class="p">(</span><span class="n">ScaleUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">currentScale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">info</span><span class="p">.</span><span class="n">scale</span><span class="p">.</span><span class="n">global</span><span class="p">;</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">currentScale</span><span class="p">.</span><span class="n">isIdentity</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startZoom</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">currentScale</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
-<span class="w">      </span><span class="n">clampZoom</span><span class="p">();</span>
-<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
-<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span>
-<span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">delta</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">..</span><span class="n">negate</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">zoom</span><span class="p">;</span>
-<span class="w">      </span><span class="n">camera</span><span class="p">.</span><span class="n">moveBy</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
-<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleUpdate</span><span class="p">(</span><span class="n">ScaleUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startZoom</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">verticalScale</span><span class="p">;</span>
+<span class="w">    </span><span class="n">clampZoom</span><span class="p">();</span>
 <span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Two-finger pinches emit both drag and scale; skip pan while zooming</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isScaling</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">moveBy</span><span class="p">((</span><span class="n">event</span><span class="p">.</span><span class="n">localDelta</span><span class="p">..</span><span class="n">negate</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">zoom</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
-<p>In the example above the pan events are handled with <code class="docutils literal notranslate"><span class="pre">info.delta</span></code> and the scale events with
-<code class="docutils literal notranslate"><span class="pre">info.scale</span></code>, although they are theoretically both from underlying scale events.</p>
 <p>This can also be seen in the
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/camera_and_viewport/zoom_example.dart">zoom example</a>.</p>
 </section>
@@ -575,7 +565,7 @@ added in the below <code class="docutils literal notranslate"><span class="pre">
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#intro' class='list-group-item level-1'>Intro</a>
   <a href='#touch-and-mouse-detectors' class='list-group-item level-1'>Touch and mouse detectors</a>
-  <a href='#pandetector-and-scaledetector' class='list-group-item level-1'>PanDetector and ScaleDetector</a>
+  <a href='#panning-and-zooming' class='list-group-item level-1'>Panning and zooming</a>
   <a href='#mouse-cursor' class='list-group-item level-1'>Mouse cursor</a>
   <a href='#event-coordinate-system' class='list-group-item level-1'>Event coordinate system</a>
   <a href='#global' class='list-group-item level-2'>global</a>
