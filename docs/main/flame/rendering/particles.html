@@ -367,414 +367,267 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="particles">
 <h1>Particles<a class="headerlink" href="#particles" title="Link to this heading">¶</a></h1>
-<p>Flame offers a basic, yet robust and extendable particle system. The core concept of this system is
-the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> class, which is very similar in its behavior to the <code class="docutils literal notranslate"><span class="pre">ParticleSystemComponent</span></code>.</p>
-<p>The most basic usage of a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> with <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> would look as in the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
-
-<span class="c1">// ...</span>
-
-<span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="c1">// Wrapping a Particle with ParticleSystemComponent</span>
-<span class="w">  </span><span class="c1">// which maps Component lifecycle hooks to Particle ones</span>
-<span class="w">  </span><span class="c1">// and embeds a trigger for removing the component.</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">CircleParticle</span><span class="p">(),</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-<p>When using <code class="docutils literal notranslate"><span class="pre">Particle</span></code> with a custom <code class="docutils literal notranslate"><span class="pre">Game</span></code> implementation, please ensure that both the <code class="docutils literal notranslate"><span class="pre">update</span></code> and
-<code class="docutils literal notranslate"><span class="pre">render</span></code> methods are called during each game loop tick.</p>
-<p>Main approaches to implement desired particle effects:</p>
+<p>Flame ships a data-oriented particle system built for large particle counts:
+all particle state lives in preallocated typed-data buffers, and the built-in
+renderers draw every particle of an emitter in a single batched canvas call.
+Effects are described declaratively through reusable presets, so most
+particle effects require no custom classes and no per-frame allocation.</p>
+<p>The system consists of three parts:</p>
 <ul class="simple">
-<li><p>Composition of existing behaviors.</p></li>
-<li><p>Use behavior chaining (just a syntactic sugar of the first one).</p></li>
-<li><p>Using <code class="docutils literal notranslate"><span class="pre">ComputedParticle</span></code>.</p></li>
+<li><p><a class="reference internal" href="#particleemitter"><code class="docutils literal notranslate"><span class="pre">ParticleEmitter</span></code></a>: a declarative, reusable description
+of what to spawn and how particles behave over their lifetime.</p></li>
+<li><p><a class="reference internal" href="#renderers"><code class="docutils literal notranslate"><span class="pre">ParticleRenderer</span></code></a>: how particles are drawn (batched circles,
+sprites, or fully custom canvas code).</p></li>
+<li><p><a class="reference internal" href="#particleemittercomponent"><code class="docutils literal notranslate"><span class="pre">ParticleEmitterComponent</span></code></a>: the
+<code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> that ties the two together, simulating and rendering
+the particles.</p></li>
 </ul>
-<p>Composition works in a similar fashion to those of Flutter widgets by defining the effect from top
-to bottom. Chaining allows to express the same composition trees more fluently by defining behaviors
-from bottom to top. Computed particles in their turn fully delegate implementation of the behavior
-to your code. Any of the approaches could be used in conjunction with existing behaviors where
-needed.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Random</span><span class="w"> </span><span class="n">rnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
+<p>A minimal explosion looks like this:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/particles.dart&#39;</span><span class="p">;</span>
 
-<span class="n">Vector2</span><span class="w"> </span><span class="n">randomVector2</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="n">rnd</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="n">rnd</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">200</span><span class="p">;</span>
-
-<span class="c1">// Composition.</span>
-<span class="c1">//</span>
-<span class="c1">// Defining a particle effect as a set of nested behaviors from top to bottom,</span>
-<span class="c1">// one within another:</span>
-<span class="c1">//</span>
-<span class="c1">// ParticleSystemComponent</span>
-<span class="c1">//   &gt; ComposedParticle</span>
-<span class="c1">//     &gt; AcceleratedParticle</span>
-<span class="c1">//       &gt; CircleParticle</span>
-<span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">Particle</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">count:</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">generator:</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">AcceleratedParticle</span><span class="p">(</span>
-<span class="w">        </span><span class="nl">acceleration:</span><span class="w"> </span><span class="n">randomVector2</span><span class="p">(),</span>
-<span class="w">        </span><span class="nl">child:</span><span class="w"> </span><span class="n">CircleParticle</span><span class="p">(</span>
-<span class="w">          </span><span class="nl">paint:</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">,</span>
-<span class="w">        </span><span class="p">),</span>
-<span class="w">      </span><span class="p">),</span>
+<span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="w">  </span><span class="n">ParticleEmitterComponent</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span>
+<span class="w">    </span><span class="nl">emitter:</span><span class="w"> </span><span class="n">ParticleEmitter</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">bursts:</span><span class="w"> </span><span class="p">[</span><span class="n">EmitterBurst</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">)],</span>
+<span class="w">      </span><span class="nl">lifespan:</span><span class="w"> </span><span class="p">(</span><span class="m">0.4</span><span class="p">,</span><span class="w"> </span><span class="m">1.2</span><span class="p">),</span>
+<span class="w">      </span><span class="nl">speed:</span><span class="w"> </span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
+<span class="w">      </span><span class="nl">gravity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span>
+<span class="w">      </span><span class="nl">scaleOverLife:</span><span class="w"> </span><span class="n">ParticleCurve</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+<span class="w">      </span><span class="nl">colorOverLife:</span><span class="w"> </span><span class="n">ColorRamp</span><span class="p">([</span><span class="n">Colors</span><span class="p">.</span><span class="n">yellow</span><span class="p">,</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">]),</span>
 <span class="w">    </span><span class="p">),</span>
+<span class="w">    </span><span class="nl">renderer:</span><span class="w"> </span><span class="n">CircleParticleRenderer</span><span class="p">(),</span>
 <span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-
-<span class="c1">// Chaining.</span>
-<span class="c1">//</span>
-<span class="c1">// Expresses the same behavior as above, but with a more fluent API.</span>
-<span class="c1">// Only Particles with SingleChildParticle mixin can be used as chainable behaviors.</span>
-<span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">Particle</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">count:</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">generator:</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">pt</span><span class="p">.</span><span class="n">CircleParticle</span><span class="p">(</span><span class="nl">paint:</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">)</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">)</span>
-<span class="p">);</span>
-
-<span class="c1">// Computed Particle.</span>
-<span class="c1">//</span>
-<span class="c1">// All the behaviors are defined explicitly. Offers greater flexibility</span>
-<span class="c1">// compared to built-in behaviors.</span>
-<span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">particle:</span><span class="w"> </span><span class="n">Particle</span><span class="p">.</span><span class="n">generate</span><span class="p">(</span>
-<span class="w">        </span><span class="nl">count:</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
-<span class="w">        </span><span class="nl">generator:</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">          </span><span class="n">Vector2</span><span class="w"> </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">();</span>
-<span class="w">          </span><span class="n">Vector2</span><span class="w"> </span><span class="n">speed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">();</span>
-<span class="w">          </span><span class="kd">final</span><span class="w"> </span><span class="n">acceleration</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">randomVector2</span><span class="p">();</span>
-<span class="w">          </span><span class="kd">final</span><span class="w"> </span><span class="n">paint</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">;</span>
-
-<span class="w">          </span><span class="k">return</span><span class="w"> </span><span class="n">ComputedParticle</span><span class="p">(</span>
-<span class="w">            </span><span class="nl">renderer:</span><span class="w"> </span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">_</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">              </span><span class="n">speed</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">acceleration</span><span class="p">;</span>
-<span class="w">              </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">speed</span><span class="p">;</span>
-<span class="w">              </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawCircle</span><span class="p">(</span><span class="n">Offset</span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">),</span><span class="w"> </span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="n">paint</span><span class="p">);</span>
-<span class="w">            </span><span class="p">}</span>
-<span class="w">        </span><span class="p">);</span>
-<span class="w">      </span><span class="p">}</span>
-<span class="w">    </span><span class="p">)</span>
-<span class="w">  </span><span class="p">)</span>
 <span class="p">);</span>
 </pre></div>
 </div>
-<p>See more <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/particles_example.dart">examples of how to use built-in particles in various
-combinations</a>.</p>
+<p>The component removes itself automatically once the burst has fired and the
+last particle has died (see <a class="reference internal" href="#lifecycle">Lifecycle</a>).</p>
+<section id="ranges">
+<h2>Ranges<a class="headerlink" href="#ranges" title="Link to this heading">¶</a></h2>
+<p>Emitter properties that vary from particle to particle are expressed as a
+<code class="docutils literal notranslate"><span class="pre">(min,</span> <span class="pre">max)</span></code> record called <code class="docutils literal notranslate"><span class="pre">ParticleRange</span></code>; each particle samples a uniform
+value from it when it spawns. Use the same value twice for a constant:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nl">lifespan:</span><span class="w"> </span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">),</span><span class="w">  </span><span class="c1">// between 0.5 and 2 seconds</span>
+<span class="nl">size:</span><span class="w"> </span><span class="p">(</span><span class="m">8</span><span class="p">,</span><span class="w"> </span><span class="m">8</span><span class="p">),</span><span class="w">        </span><span class="c1">// always exactly 8</span>
+</pre></div>
+</div>
+</section>
+<section id="particleemitter">
+<h2>ParticleEmitter<a class="headerlink" href="#particleemitter" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ParticleEmitter</span></code> is a reusable preset that can be shared by any number of
+emitter components. All distances are in the component’s local units, angles
+in radians, and times in seconds.</p>
+<section id="emission">
+<h3>Emission<a class="headerlink" href="#emission" title="Link to this heading">¶</a></h3>
+<p>Particles can be spawned continuously, in bursts, or both:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">ParticleEmitter</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">rate:</span><span class="w"> </span><span class="m">120</span><span class="p">,</span><span class="w">                     </span><span class="c1">// particles per second</span>
+<span class="w">  </span><span class="nl">bursts:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="n">EmitterBurst</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">),</span><span class="w">         </span><span class="c1">// 50 particles at t = 0</span>
+<span class="w">    </span><span class="n">EmitterBurst</span><span class="p">(</span><span class="m">0.5</span><span class="p">,</span><span class="w"> </span><span class="m">25</span><span class="p">),</span><span class="w">       </span><span class="c1">// 25 more at t = 0.5s</span>
+<span class="w">  </span><span class="p">],</span>
+<span class="w">  </span><span class="nl">duration:</span><span class="w"> </span><span class="m">1.5</span><span class="p">,</span><span class="w">                 </span><span class="c1">// stop emitting after 1.5s</span>
+<span class="w">  </span><span class="nl">loop:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">                    </span><span class="c1">// and restart the timeline</span>
+<span class="w">  </span><span class="nl">maxParticles:</span><span class="w"> </span><span class="m">2048</span><span class="p">,</span><span class="w">            </span><span class="c1">// storage for simultaneous particles</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">rate</span></code> emits continuously; fractional amounts accumulate correctly across
+frames.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bursts</span></code> fire once per pass over the emission timeline.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">duration</span></code> ends emission; when null, a <code class="docutils literal notranslate"><span class="pre">rate</span></code>-based emitter runs forever
+and a burst-only emitter finishes after its last burst.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loop</span></code> restarts the timeline after <code class="docutils literal notranslate"><span class="pre">duration</span></code> (which must then be set).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">maxParticles</span></code> is allocated up front; spawns beyond it are dropped until
+older particles die.</p></li>
+</ul>
+</section>
+<section id="spawn-position-and-velocity">
+<h3>Spawn position and velocity<a class="headerlink" href="#spawn-position-and-velocity" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">shape</span></code> controls where particles appear, relative to the component’s
+position:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nl">shape:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">PointEmitterShape</span><span class="p">(),</span><span class="w">                    </span><span class="c1">// the default</span>
+<span class="nl">shape:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">CircleEmitterShape</span><span class="p">(</span><span class="m">50</span><span class="p">),</span><span class="w">                 </span><span class="c1">// inside a circle</span>
+<span class="nl">shape:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">CircleEmitterShape</span><span class="p">(</span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="nl">edgeOnly:</span><span class="w"> </span><span class="kc">true</span><span class="p">),</span><span class="w"> </span><span class="c1">// on its edge</span>
+<span class="nl">shape:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">RectangleEmitterShape</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">),</span><span class="w">         </span><span class="c1">// inside a rectangle</span>
+</pre></div>
+</div>
+<p>Custom spawn patterns are one subclass away: extend <code class="docutils literal notranslate"><span class="pre">EmitterShape</span></code> and
+implement <code class="docutils literal notranslate"><span class="pre">samplePosition</span></code>.</p>
+<p>The initial velocity is polar: a <code class="docutils literal notranslate"><span class="pre">speed</span></code> range plus a <code class="docutils literal notranslate"><span class="pre">direction</span></code> (radians,
+0 points along the positive x-axis, <code class="docutils literal notranslate"><span class="pre">-tau</span> <span class="pre">/</span> <span class="pre">4</span></code> points up) with a <code class="docutils literal notranslate"><span class="pre">spread</span></code>
+angle centered on it. The default spread of <code class="docutils literal notranslate"><span class="pre">tau</span></code> emits in all directions.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nl">speed:</span><span class="w"> </span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">200</span><span class="p">),</span>
+<span class="nl">direction:</span><span class="w"> </span><span class="o">-</span><span class="n">tau</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">4</span><span class="p">,</span><span class="w">   </span><span class="c1">// up</span>
+<span class="nl">spread:</span><span class="w"> </span><span class="n">tau</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">8</span><span class="p">,</span><span class="w">       </span><span class="c1">// in a 45 degree cone</span>
+</pre></div>
+</div>
+</section>
+<section id="forces-and-rotation">
+<h3>Forces and rotation<a class="headerlink" href="#forces-and-rotation" title="Link to this heading">¶</a></h3>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nl">gravity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">300</span><span class="p">),</span><span class="w">  </span><span class="c1">// constant acceleration</span>
+<span class="nl">drag:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w">                   </span><span class="c1">// velocity damping, 0 = none</span>
+<span class="nl">rotation:</span><span class="w"> </span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="n">tau</span><span class="p">),</span><span class="w">        </span><span class="c1">// initial rotation</span>
+<span class="nl">spin:</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="m">5</span><span class="p">,</span><span class="w"> </span><span class="m">5</span><span class="p">),</span><span class="w">             </span><span class="c1">// radians per second</span>
+<span class="nl">rotateToVelocity:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">    </span><span class="c1">// or: always face the direction of travel</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">rotateToVelocity</span></code> suits directional particles such as sparks or arrows;
+it overrides <code class="docutils literal notranslate"><span class="pre">rotation</span></code> and <code class="docutils literal notranslate"><span class="pre">spin</span></code>.</p>
+</section>
+<section id="behavior-over-a-particles-lifetime">
+<h3>Behavior over a particle’s lifetime<a class="headerlink" href="#behavior-over-a-particles-lifetime" title="Link to this heading">¶</a></h3>
+<p>Three optional properties change a particle as its life progresses from
+0 (spawn) to 1 (death). They are baked into lookup tables when the emitter
+is created, so evaluating them per particle per frame is just an array read,
+no matter how complex the curve.</p>
+<p><code class="docutils literal notranslate"><span class="pre">scaleOverLife</span></code> multiplies the spawn <code class="docutils literal notranslate"><span class="pre">size</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nl">size:</span><span class="w"> </span><span class="p">(</span><span class="m">10</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
+<span class="nl">scaleOverLife:</span><span class="w"> </span><span class="n">ParticleCurve</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nl">curve:</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeOut</span><span class="p">),</span><span class="w">  </span><span class="c1">// shrink away</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">ParticleCurve</span></code> interpolates between two values, optionally shaped by any
+Flutter animation <code class="docutils literal notranslate"><span class="pre">Curve</span></code>. <code class="docutils literal notranslate"><span class="pre">ParticleCurve.constant</span></code> holds a value and
+<code class="docutils literal notranslate"><span class="pre">ParticleCurve.custom</span></code> bakes an arbitrary function:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nl">opacityOverLife:</span><span class="w"> </span><span class="n">ParticleCurve</span><span class="p">.</span><span class="n">custom</span><span class="p">(</span>
+<span class="w">  </span><span class="c1">// Fade in during the first 20% of life, out during the rest.</span>
+<span class="w">  </span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="o">?</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">0.2</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="p">(</span><span class="m">1</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">t</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span>
+<span class="p">),</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">colorOverLife</span></code> is a <code class="docutils literal notranslate"><span class="pre">ColorRamp</span></code>: a list of colors (optionally with stops)
+interpolated over the lifetime. <code class="docutils literal notranslate"><span class="pre">opacityOverLife</span></code> multiplies the ramp’s
+alpha, so they compose naturally:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nl">colorOverLife:</span><span class="w"> </span><span class="n">ColorRamp</span><span class="p">([</span><span class="n">Colors</span><span class="p">.</span><span class="n">white</span><span class="p">,</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">orange</span><span class="p">,</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">]),</span>
+<span class="nl">opacityOverLife:</span><span class="w"> </span><span class="n">ParticleCurve</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
+</pre></div>
+</div>
+<p>With the texture renderers the color tints the texture, so a white texture
+takes on the ramp color exactly and sprites stay untinted while the ramp is
+unset.</p>
+</section>
+</section>
+<section id="renderers">
+<h2>Renderers<a class="headerlink" href="#renderers" title="Link to this heading">¶</a></h2>
+<p>Renderers describe how particles are drawn and can also be shared between
+components.</p>
+<section id="circleparticlerenderer">
+<h3>CircleParticleRenderer<a class="headerlink" href="#circleparticlerenderer" title="Link to this heading">¶</a></h3>
+<p>Draws every particle as a circle. The circle is rasterized to a texture once
+at load; after that each particle is a transformed, tinted copy of it,
+drawn in one <code class="docutils literal notranslate"><span class="pre">drawRawAtlas</span></code> batch. <code class="docutils literal notranslate"><span class="pre">softness</span></code> fades the circle from crisp
+(0) to fully soft (1), and <code class="docutils literal notranslate"><span class="pre">blendMode:</span> <span class="pre">BlendMode.plus</span></code> gives additive glow,
+a natural fit for fire and magic:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nl">renderer:</span><span class="w"> </span><span class="n">CircleParticleRenderer</span><span class="p">(</span><span class="nl">softness:</span><span class="w"> </span><span class="m">0.8</span><span class="p">,</span><span class="w"> </span><span class="nl">blendMode:</span><span class="w"> </span><span class="n">BlendMode</span><span class="p">.</span><span class="n">plus</span><span class="p">),</span>
+</pre></div>
+</div>
+</section>
+<section id="spriteparticlerenderer">
+<h3>SpriteParticleRenderer<a class="headerlink" href="#spriteparticlerenderer" title="Link to this heading">¶</a></h3>
+<p>Draws every particle as a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> (or a whole image), also fully batched:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nl">renderer:</span><span class="w"> </span><span class="n">SpriteParticleRenderer</span><span class="p">.</span><span class="n">fromImage</span><span class="p">(</span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;spark.png&#39;</span><span class="p">)),</span>
+<span class="nl">renderer:</span><span class="w"> </span><span class="n">SpriteParticleRenderer</span><span class="p">(</span><span class="n">sprite</span><span class="p">),</span><span class="w">  </span><span class="c1">// a region of a sprite sheet</span>
+</pre></div>
+</div>
+<p>Particles are drawn centered, rotated by their rotation, and scaled so the
+sprite’s width matches the particle’s current size.</p>
+</section>
+<section id="custom-rendering">
+<h3>Custom rendering<a class="headerlink" href="#custom-rendering" title="Link to this heading">¶</a></h3>
+<p>For full control, use <code class="docutils literal notranslate"><span class="pre">CallbackParticleRenderer</span></code> (or extend
+<code class="docutils literal notranslate"><span class="pre">ParticleRenderer</span></code>). The callback receives the canvas, already in the
+component’s local coordinate system, and the <code class="docutils literal notranslate"><span class="pre">ParticleBuffer</span></code> holding all
+live particle state as flat typed-data arrays:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nl">renderer:</span><span class="w"> </span><span class="n">CallbackParticleRenderer</span><span class="p">((</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">particles</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">particles</span><span class="p">.</span><span class="n">length</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawCircle</span><span class="p">(</span>
+<span class="w">      </span><span class="n">Offset</span><span class="p">(</span><span class="n">particles</span><span class="p">.</span><span class="n">posX</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="w"> </span><span class="n">particles</span><span class="p">.</span><span class="n">posY</span><span class="p">[</span><span class="n">i</span><span class="p">]),</span>
+<span class="w">      </span><span class="n">particles</span><span class="p">.</span><span class="n">size</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
+<span class="w">      </span><span class="n">paint</span><span class="p">,</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}),</span>
+</pre></div>
+</div>
+<p>Nothing is batched in a callback renderer, so prefer the texture renderers
+for large particle counts.</p>
+</section>
+</section>
+<section id="particleemittercomponent">
+<h2>ParticleEmitterComponent<a class="headerlink" href="#particleemittercomponent" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">ParticleEmitterComponent</span></code> is a regular <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>: position it,
+give it a priority, add it anywhere in the component tree. It exposes
+runtime control over the effect:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">effect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ParticleEmitterComponent</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">emitter:</span><span class="w"> </span><span class="n">smokePreset</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">renderer:</span><span class="w"> </span><span class="n">CircleParticleRenderer</span><span class="p">(</span><span class="nl">softness:</span><span class="w"> </span><span class="m">0.9</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">emitting:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">     </span><span class="c1">// start paused</span>
+<span class="p">);</span>
+
+<span class="n">effect</span><span class="p">.</span><span class="n">start</span><span class="p">();</span><span class="w">        </span><span class="c1">// run the emission timeline (restarts if finished)</span>
+<span class="n">effect</span><span class="p">.</span><span class="n">stop</span><span class="p">();</span><span class="w">         </span><span class="c1">// pause emission; live particles keep simulating</span>
+<span class="n">effect</span><span class="p">.</span><span class="n">emit</span><span class="p">(</span><span class="m">30</span><span class="p">);</span><span class="w">       </span><span class="c1">// spawn 30 particles right now, timeline-independent</span>
+<span class="n">effect</span><span class="p">.</span><span class="n">clearParticles</span><span class="p">();</span>
+<span class="n">effect</span><span class="p">.</span><span class="n">particleCount</span><span class="p">;</span><span class="w">  </span><span class="c1">// live particles</span>
+</pre></div>
+</div>
+<p>Pass a seeded <code class="docutils literal notranslate"><span class="pre">Random</span></code> for deterministic effects (useful in tests and
+replays):</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">ParticleEmitterComponent</span><span class="p">(</span><span class="nl">emitter:</span><span class="w"> </span><span class="n">e</span><span class="p">,</span><span class="w"> </span><span class="nl">renderer:</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="nl">random:</span><span class="w"> </span><span class="n">Random</span><span class="p">(</span><span class="m">42</span><span class="p">));</span>
+</pre></div>
+</div>
 <section id="lifecycle">
-<h2>Lifecycle<a class="headerlink" href="#lifecycle" title="Link to this heading">¶</a></h2>
-<p>A behavior common to all <code class="docutils literal notranslate"><span class="pre">Particle</span></code>s is that all of them accept a <code class="docutils literal notranslate"><span class="pre">lifespan</span></code> argument. This value is
-used to make the <code class="docutils literal notranslate"><span class="pre">ParticleSystemComponent</span></code> remove itself once its internal <code class="docutils literal notranslate"><span class="pre">Particle</span></code> has reached
-the end of its life. Time within the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> itself is tracked using the Flame <code class="docutils literal notranslate"><span class="pre">Timer</span></code> class. It
-can be configured with a <code class="docutils literal notranslate"><span class="pre">double</span></code>, represented in seconds (with microsecond precision) by passing
-it into the corresponding <code class="docutils literal notranslate"><span class="pre">Particle</span></code> constructor.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">Particle</span><span class="p">(</span><span class="nl">lifespan:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">);</span><span class="w"> </span><span class="c1">// will live for 200ms.</span>
-<span class="n">Particle</span><span class="p">(</span><span class="nl">lifespan:</span><span class="w"> </span><span class="m">4</span><span class="p">);</span><span class="w"> </span><span class="c1">// will live for 4s.</span>
+<h3>Lifecycle<a class="headerlink" href="#lifecycle" title="Link to this heading">¶</a></h3>
+<p>With <code class="docutils literal notranslate"><span class="pre">removeOnFinish</span></code> (the default), the component removes itself once
+emission has naturally finished, meaning the timeline completed without
+looping, and the last particle has died. Endless emitters are never removed
+automatically. This makes one-shot effects fire-and-forget:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="w">  </span><span class="n">ParticleEmitterComponent</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">position:</span><span class="w"> </span><span class="n">hitPosition</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">emitter:</span><span class="w"> </span><span class="n">sparksPreset</span><span class="p">,</span><span class="w">   </span><span class="c1">// burst-only preset, shared by all hits</span>
+<span class="w">    </span><span class="nl">renderer:</span><span class="w"> </span><span class="n">sparksRenderer</span><span class="p">,</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">);</span>
 </pre></div>
 </div>
-<p>It is also possible to reset a <code class="docutils literal notranslate"><span class="pre">Particle</span></code>’s lifespan by using the <code class="docutils literal notranslate"><span class="pre">setLifespan</span></code> method, which also
-accepts a <code class="docutils literal notranslate"><span class="pre">double</span></code> of seconds.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">particle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Particle</span><span class="p">(</span><span class="nl">lifespan:</span><span class="w"> </span><span class="m">2</span><span class="p">);</span>
-
-<span class="c1">// ... after some time.</span>
-<span class="n">particle</span><span class="p">.</span><span class="n">setLifespan</span><span class="p">(</span><span class="m">2</span><span class="p">)</span><span class="w"> </span><span class="c1">// will live for another 2s.</span>
-</pre></div>
-</div>
-<p>During its lifetime, a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> tracks the time it was alive and exposes it through the <code class="docutils literal notranslate"><span class="pre">progress</span></code>
-getter, which returns a value between <code class="docutils literal notranslate"><span class="pre">0.0</span></code> and <code class="docutils literal notranslate"><span class="pre">1.0</span></code>. This value can be used in a similar fashion
-as the <code class="docutils literal notranslate"><span class="pre">value</span></code> property of the <code class="docutils literal notranslate"><span class="pre">AnimationController</span></code> class in Flutter.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">particle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Particle</span><span class="p">(</span><span class="nl">lifespan:</span><span class="w"> </span><span class="m">2.0</span><span class="p">);</span>
-
-<span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">ParticleSystemComponent</span><span class="p">(</span><span class="nl">particle:</span><span class="w"> </span><span class="n">particle</span><span class="p">));</span>
-
-<span class="c1">// Will print values from 0 to 1 with step of .1: 0, 0.1, 0.2 ... 0.9, 1.0.</span>
-<span class="n">Timer</span><span class="p">.</span><span class="n">periodic</span><span class="p">(</span><span class="n">duration</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">.</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="n">particle</span><span class="p">.</span><span class="n">progress</span><span class="p">));</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">lifespan</span></code> is passed down to all the descendants of a given <code class="docutils literal notranslate"><span class="pre">Particle</span></code>, if it supports any of
-the nesting behaviors.</p>
 </section>
-<section id="built-in-particles">
-<h2>Built-in particles<a class="headerlink" href="#built-in-particles" title="Link to this heading">¶</a></h2>
-<p>Flame ships with a few built-in <code class="docutils literal notranslate"><span class="pre">Particle</span></code> behaviors:</p>
+<section id="moving-emitters-and-trails">
+<h3>Moving emitters and trails<a class="headerlink" href="#moving-emitters-and-trails" title="Link to this heading">¶</a></h3>
+<p>Particles simulate in the component’s local space, so moving the component
+moves live particles with it. For trails, exhaust, and similar effects set
+<code class="docutils literal notranslate"><span class="pre">worldSpace:</span> <span class="pre">true</span></code>: already-spawned particles then keep their world
+position while the emitter moves on.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">ship</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="w">  </span><span class="n">ParticleEmitterComponent</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">position:</span><span class="w"> </span><span class="n">exhaustOffset</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">emitter:</span><span class="w"> </span><span class="n">exhaustPreset</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">renderer:</span><span class="w"> </span><span class="n">CircleParticleRenderer</span><span class="p">(</span><span class="nl">softness:</span><span class="w"> </span><span class="m">1</span><span class="p">),</span>
+<span class="w">    </span><span class="nl">worldSpace:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Only translation is compensated: the component and its ancestors should not
+be rotated or scaled while <code class="docutils literal notranslate"><span class="pre">worldSpace</span></code> is enabled.</p>
+</section>
+</section>
+<section id="performance-notes">
+<h2>Performance notes<a class="headerlink" href="#performance-notes" title="Link to this heading">¶</a></h2>
 <ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">TranslatedParticle</span></code> translates its <code class="docutils literal notranslate"><span class="pre">child</span></code> by given <code class="docutils literal notranslate"><span class="pre">Vector2</span></code></p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">MovingParticle</span></code> moves its <code class="docutils literal notranslate"><span class="pre">child</span></code> between two predefined <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>, supports <code class="docutils literal notranslate"><span class="pre">Curve</span></code></p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">AcceleratedParticle</span></code> allows basic physics based effects, like gravitation or speed dampening</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">CircleParticle</span></code> renders circles of all shapes and sizes</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">SpriteParticle</span></code> renders Flame <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> within a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> effect</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">ImageParticle</span></code> renders <em>dart:ui</em> <code class="docutils literal notranslate"><span class="pre">Image</span></code> within a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> effect</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">ComponentParticle</span></code> renders Flame <code class="docutils literal notranslate"><span class="pre">Component</span></code> within a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> effect</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">FlareParticle</span></code> renders Flare animation within a <code class="docutils literal notranslate"><span class="pre">Particle</span></code> effect</p></li>
+<li><p>All per-particle state is stored in <code class="docutils literal notranslate"><span class="pre">Float32List</span></code>/<code class="docutils literal notranslate"><span class="pre">Int32List</span></code> columns
+(a struct-of-arrays layout); simulation is a tight loop over contiguous
+memory and dead particles are swap-removed in constant time.</p></li>
+<li><p>The texture renderers issue a single <code class="docutils literal notranslate"><span class="pre">Canvas.drawRawAtlas</span></code> call per
+component per frame, regardless of particle count.</p></li>
+<li><p>Over-life curves and color ramps are baked into lookup tables at emitter
+construction.</p></li>
+<li><p>Storage is allocated once, at <code class="docutils literal notranslate"><span class="pre">maxParticles</span></code>; a running effect performs
+no allocations. Reuse a paused component and call <code class="docutils literal notranslate"><span class="pre">emit()</span></code> instead of
+spawning new components when an effect fires very frequently.</p></li>
 </ul>
-<p>See more <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/rendering/particles_example.dart">examples of how to use built-in Particle behaviors
-together</a>.
-All the implementations are available in the <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame/lib/src/particles">particles folder on the
-Flame repository.</a></p>
-</section>
-<section id="translatedparticle">
-<h2>TranslatedParticle<a class="headerlink" href="#translatedparticle" title="Link to this heading">¶</a></h2>
-<p>Simply translates the underlying <code class="docutils literal notranslate"><span class="pre">Particle</span></code> to a specified <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> within the rendering <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>.
-Does not change or alter its position, consider using <code class="docutils literal notranslate"><span class="pre">MovingParticle</span></code> or <code class="docutils literal notranslate"><span class="pre">AcceleratedParticle</span></code>
-where change of position is required. Same effect could be achieved by translating the <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>
-layer.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">TranslatedParticle</span><span class="p">(</span>
-<span class="w">      </span><span class="c1">// Will translate the child Particle effect to the center of game canvas.</span>
-<span class="w">      </span><span class="nl">offset:</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">child:</span><span class="w"> </span><span class="n">Particle</span><span class="p">(),</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</section>
-<section id="movingparticle">
-<h2>MovingParticle<a class="headerlink" href="#movingparticle" title="Link to this heading">¶</a></h2>
-<p>Moves the child <code class="docutils literal notranslate"><span class="pre">Particle</span></code> between the <code class="docutils literal notranslate"><span class="pre">from</span></code> and <code class="docutils literal notranslate"><span class="pre">to</span></code> <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>s during its lifespan. Supports
-<code class="docutils literal notranslate"><span class="pre">Curve</span></code> via <code class="docutils literal notranslate"><span class="pre">CurvedParticle</span></code>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">MovingParticle</span><span class="p">(</span>
-<span class="w">      </span><span class="c1">// Will move from corner to corner of the game canvas.</span>
-<span class="w">      </span><span class="nl">from:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">zero</span><span class="p">(),</span>
-<span class="w">      </span><span class="nl">to:</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">child:</span><span class="w"> </span><span class="n">CircleParticle</span><span class="p">(</span>
-<span class="w">        </span><span class="nl">radius:</span><span class="w"> </span><span class="m">2.0</span><span class="p">,</span>
-<span class="w">        </span><span class="nl">paint:</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">,</span>
-<span class="w">      </span><span class="p">),</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</section>
-<section id="acceleratedparticle">
-<h2>AcceleratedParticle<a class="headerlink" href="#acceleratedparticle" title="Link to this heading">¶</a></h2>
-<p>A basic physics particle which allows you to specify its initial <code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">speed</span></code> and
-<code class="docutils literal notranslate"><span class="pre">acceleration</span></code> and lets the <code class="docutils literal notranslate"><span class="pre">update</span></code> cycle do the rest. All three are specified as <code class="docutils literal notranslate"><span class="pre">Vector2</span></code>s, which
-you can think of as vectors. It works especially well for physics-based “bursts”, but it is not
-limited to that. Unit of the <code class="docutils literal notranslate"><span class="pre">Vector2</span></code> value is <em>logical px/s</em>. So a speed of <code class="docutils literal notranslate"><span class="pre">Vector2(0,</span> <span class="pre">100)</span></code> will
-move a child <code class="docutils literal notranslate"><span class="pre">Particle</span></code> by 100 logical pixels of the device every second of game time.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">rnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
-<span class="n">Vector2</span><span class="w"> </span><span class="n">randomVector2</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">Vector2</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="n">rnd</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">random</span><span class="p">(</span><span class="n">rnd</span><span class="p">))</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">;</span>
-
-<span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">AcceleratedParticle</span><span class="p">(</span>
-<span class="w">      </span><span class="c1">// Will fire off in the center of game canvas</span>
-<span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">canvasSize</span><span class="o">/</span><span class="m">2</span><span class="p">,</span>
-<span class="w">      </span><span class="c1">// With random initial speed of Vector2(-100..100, 0..-100)</span>
-<span class="w">      </span><span class="nl">speed:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">rnd</span><span class="p">.</span><span class="n">nextDouble</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">200</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="n">rnd</span><span class="p">.</span><span class="n">nextDouble</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">),</span>
-<span class="w">      </span><span class="c1">// Accelerating downwards, simulating &quot;gravity&quot;</span>
-<span class="w">      </span><span class="c1">// speed: Vector2(0, 100),</span>
-<span class="w">      </span><span class="nl">child:</span><span class="w"> </span><span class="n">CircleParticle</span><span class="p">(</span>
-<span class="w">        </span><span class="nl">radius:</span><span class="w"> </span><span class="m">2.0</span><span class="p">,</span>
-<span class="w">        </span><span class="nl">paint:</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">,</span>
-<span class="w">      </span><span class="p">),</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</section>
-<section id="circleparticle">
-<h2>CircleParticle<a class="headerlink" href="#circleparticle" title="Link to this heading">¶</a></h2>
-<p>A <code class="docutils literal notranslate"><span class="pre">Particle</span></code> which renders a circle with given <code class="docutils literal notranslate"><span class="pre">Paint</span></code> at the zero offset of passed <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>. Use in
-conjunction with <code class="docutils literal notranslate"><span class="pre">TranslatedParticle</span></code>, <code class="docutils literal notranslate"><span class="pre">MovingParticle</span></code> or <code class="docutils literal notranslate"><span class="pre">AcceleratedParticle</span></code> in order to achieve
-desired positioning.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">CircleParticle</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">radius:</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">paint:</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">.</span><span class="n">withValues</span><span class="p">(</span><span class="nl">alpha:</span><span class="w"> </span><span class="p">.</span><span class="m">5</span><span class="p">),</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</section>
-<section id="spriteparticle">
-<h2>SpriteParticle<a class="headerlink" href="#spriteparticle" title="Link to this heading">¶</a></h2>
-<p>Allows you to embed a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> into your particle effects.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">SpriteParticle</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="s1">&#39;sprite.png&#39;</span><span class="p">),</span>
-<span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">64</span><span class="p">,</span><span class="w"> </span><span class="m">64</span><span class="p">),</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</section>
-<section id="imageparticle">
-<h2>ImageParticle<a class="headerlink" href="#imageparticle" title="Link to this heading">¶</a></h2>
-<p>Renders given <code class="docutils literal notranslate"><span class="pre">dart:ui</span></code> image within the particle tree.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// During game initialization</span>
-<span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">loadAll</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="p">[</span>
-<span class="w">  </span><span class="s1">&#39;image.png&#39;</span><span class="p">,</span>
-<span class="p">]);</span>
-
-<span class="c1">// ...</span>
-
-<span class="c1">// Somewhere during the game loop</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;image.png&#39;</span><span class="p">);</span>
-
-<span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">ImageParticle</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">24</span><span class="p">),</span>
-<span class="w">      </span><span class="nl">image:</span><span class="w"> </span><span class="n">image</span><span class="p">,</span>
-<span class="w">    </span><span class="p">);</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</section>
-<section id="scalingparticle">
-<h2>ScalingParticle<a class="headerlink" href="#scalingparticle" title="Link to this heading">¶</a></h2>
-<p>Scales the child <code class="docutils literal notranslate"><span class="pre">Particle</span></code> between <code class="docutils literal notranslate"><span class="pre">1</span></code> and <code class="docutils literal notranslate"><span class="pre">to</span></code> during its lifespan.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">ScalingParticle</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">lifespan:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">to:</span><span class="w"> </span><span class="m">0</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">curve:</span><span class="w"> </span><span class="n">Curves</span><span class="p">.</span><span class="n">easeIn</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">child:</span><span class="w"> </span><span class="n">CircleParticle</span><span class="p">(</span>
-<span class="w">        </span><span class="nl">radius:</span><span class="w"> </span><span class="m">2.0</span><span class="p">,</span>
-<span class="w">        </span><span class="nl">paint:</span><span class="w"> </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">,</span>
-<span class="w">      </span><span class="p">)</span>
-<span class="w">    </span><span class="p">);</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</section>
-<section id="spriteanimationparticle">
-<h2>SpriteAnimationParticle<a class="headerlink" href="#spriteanimationparticle" title="Link to this heading">¶</a></h2>
-<p>A <code class="docutils literal notranslate"><span class="pre">Particle</span></code> which embeds a <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>.
-By default, aligns the <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>’s <code class="docutils literal notranslate"><span class="pre">stepTime</span></code> so that
-it’s fully played during the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> lifespan. It’s possible to override this behavior with the
-<code class="docutils literal notranslate"><span class="pre">alignAnimationTime</span></code> argument.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">spriteSheet</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteSheet</span><span class="p">(</span>
-<span class="w">  </span><span class="nl">image:</span><span class="w"> </span><span class="n">yourSpriteSheetImage</span><span class="p">,</span>
-<span class="w">  </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16.0</span><span class="p">),</span>
-<span class="p">);</span>
-
-<span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">SpriteAnimationParticle</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">animation:</span><span class="w"> </span><span class="n">spriteSheet</span><span class="p">.</span><span class="n">createAnimation</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">),</span>
-<span class="w">    </span><span class="p">);</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-</pre></div>
-</div>
-</section>
-<section id="componentparticle">
-<h2>ComponentParticle<a class="headerlink" href="#componentparticle" title="Link to this heading">¶</a></h2>
-<p>This <code class="docutils literal notranslate"><span class="pre">Particle</span></code> allows you to embed a <code class="docutils literal notranslate"><span class="pre">Component</span></code> within the particle effects. The <code class="docutils literal notranslate"><span class="pre">Component</span></code> could
-have its own <code class="docutils literal notranslate"><span class="pre">update</span></code> lifecycle and could be reused across different effect trees. If the only thing
-you need is to add some dynamics to an instance of a certain <code class="docutils literal notranslate"><span class="pre">Component</span></code>, please consider adding it
-to the <code class="docutils literal notranslate"><span class="pre">game</span></code> directly, without the <code class="docutils literal notranslate"><span class="pre">Particle</span></code> in the middle.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">longLivingRect</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RectComponent</span><span class="p">();</span>
-
-<span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">ComponentParticle</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">component:</span><span class="w"> </span><span class="n">longLivingRect</span>
-<span class="w">    </span><span class="p">);</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">);</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">RectComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">c</span><span class="p">.</span><span class="n">drawRect</span><span class="p">(</span>
-<span class="w">      </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromCenter</span><span class="p">(</span><span class="nl">center:</span><span class="w"> </span><span class="n">Offset</span><span class="p">.</span><span class="n">zero</span><span class="p">,</span><span class="w"> </span><span class="nl">width:</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="nl">height:</span><span class="w"> </span><span class="m">100</span><span class="p">),</span>
-<span class="w">      </span><span class="n">Paint</span><span class="p">()..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span>
-<span class="w">    </span><span class="p">);</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="c1">/// Will be called by parent [Particle]</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-</section>
-<section id="computedparticle">
-<h2>ComputedParticle<a class="headerlink" href="#computedparticle" title="Link to this heading">¶</a></h2>
-<p>A <code class="docutils literal notranslate"><span class="pre">Particle</span></code> which could help you when:</p>
-<ul class="simple">
-<li><p>Default behavior is not enough</p></li>
-<li><p>Complex effects optimization</p></li>
-<li><p>Custom easings</p></li>
-</ul>
-<p>When created, it delegates all the rendering to a supplied <code class="docutils literal notranslate"><span class="pre">ParticleRenderDelegate</span></code> which is called
-on each frame to perform necessary computations and render something to the <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
-<span class="w">  </span><span class="n">ParticleSystemComponent</span><span class="p">(</span>
-<span class="w">    </span><span class="c1">// Renders a circle which gradually changes its color and size during the</span>
-<span class="w">    </span><span class="c1">// particle lifespan.</span>
-<span class="w">    </span><span class="nl">particle:</span><span class="w"> </span><span class="n">ComputedParticle</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">renderer:</span><span class="w"> </span><span class="p">(</span><span class="n">canvas</span><span class="p">,</span><span class="w"> </span><span class="n">particle</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">canvas</span><span class="p">.</span><span class="n">drawCircle</span><span class="p">(</span>
-<span class="w">        </span><span class="n">Offset</span><span class="p">.</span><span class="n">zero</span><span class="p">,</span>
-<span class="w">        </span><span class="n">particle</span><span class="p">.</span><span class="n">progress</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">10</span><span class="p">,</span>
-<span class="w">        </span><span class="n">Paint</span><span class="p">()</span>
-<span class="w">          </span><span class="p">..</span><span class="n">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Color</span><span class="p">.</span><span class="n">lerp</span><span class="p">(</span>
-<span class="w">            </span><span class="n">Colors</span><span class="p">.</span><span class="n">red</span><span class="p">,</span>
-<span class="w">            </span><span class="n">Colors</span><span class="p">.</span><span class="n">blue</span><span class="p">,</span>
-<span class="w">            </span><span class="n">particle</span><span class="p">.</span><span class="n">progress</span><span class="p">,</span>
-<span class="w">          </span><span class="p">),</span>
-<span class="w">      </span><span class="p">),</span>
-<span class="w">    </span><span class="p">),</span>
-<span class="w">  </span><span class="p">),</span>
-<span class="p">)</span>
-</pre></div>
-</div>
-</section>
-<section id="nesting-behavior">
-<h2>Nesting behavior<a class="headerlink" href="#nesting-behavior" title="Link to this heading">¶</a></h2>
-<p>Flame’s implementation of particles follows the same pattern of extreme composition as Flutter
-widgets. That is achieved by encapsulating small pieces of behavior in every particle and then
-nesting these behaviors together to achieve the desired visual effect.</p>
-<p>Two entities that allow <code class="docutils literal notranslate"><span class="pre">Particle</span></code>s to nest each other are: <code class="docutils literal notranslate"><span class="pre">SingleChildParticle</span></code> mixin and
-<code class="docutils literal notranslate"><span class="pre">ComposedParticle</span></code> class.</p>
-<p>A <code class="docutils literal notranslate"><span class="pre">SingleChildParticle</span></code> may help you with creating <code class="docutils literal notranslate"><span class="pre">Particles</span></code> with a custom behavior. For example,
-randomly positioning its child during each frame:</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">SingleChildParticle</span></code> may help you with creating <code class="docutils literal notranslate"><span class="pre">Particles</span></code> with a custom behavior.</p>
-<p>For example, randomly positioning it’s child during each frame:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">var</span><span class="w"> </span><span class="n">rnd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Random</span><span class="p">();</span>
-
-<span class="kd">class</span><span class="w"> </span><span class="nc">GlitchParticle</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Particle</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">SingleChildParticle</span><span class="w"> </span><span class="p">{</span>
-<span class="w">  </span><span class="n">Particle</span><span class="w"> </span><span class="n">child</span><span class="p">;</span>
-
-<span class="w">  </span><span class="n">GlitchParticle</span><span class="p">({</span>
-<span class="w">    </span><span class="kd">required</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">child</span><span class="p">,</span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">lifespan</span><span class="p">,</span>
-<span class="w">  </span><span class="p">});</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="n">render</span><span class="p">(</span><span class="n">Canvas</span><span class="w"> </span><span class="n">canvas</span><span class="p">)</span><span class="w">  </span><span class="p">{</span>
-<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">save</span><span class="p">();</span>
-<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">translate</span><span class="p">(</span><span class="n">rnd</span><span class="p">.</span><span class="n">nextDouble</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="n">rnd</span><span class="p">.</span><span class="n">nextDouble</span><span class="p">()</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="m">100</span><span class="p">);</span>
-
-<span class="w">    </span><span class="c1">// Will also render the child</span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">render</span><span class="p">();</span>
-
-<span class="w">    </span><span class="n">canvas</span><span class="p">.</span><span class="n">restore</span><span class="p">();</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">ComposedParticle</span></code> could be used either as a standalone or within an existing <code class="docutils literal notranslate"><span class="pre">Particle</span></code> tree.</p>
 </section>
 </section>
 
@@ -808,19 +661,20 @@ randomly positioning its child during each frame:</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
-  <a href='#lifecycle' class='list-group-item level-1'>Lifecycle</a>
-  <a href='#built-in-particles' class='list-group-item level-1'>Built-in particles</a>
-  <a href='#translatedparticle' class='list-group-item level-1'>TranslatedParticle</a>
-  <a href='#movingparticle' class='list-group-item level-1'>MovingParticle</a>
-  <a href='#acceleratedparticle' class='list-group-item level-1'>AcceleratedParticle</a>
-  <a href='#circleparticle' class='list-group-item level-1'>CircleParticle</a>
-  <a href='#spriteparticle' class='list-group-item level-1'>SpriteParticle</a>
-  <a href='#imageparticle' class='list-group-item level-1'>ImageParticle</a>
-  <a href='#scalingparticle' class='list-group-item level-1'>ScalingParticle</a>
-  <a href='#spriteanimationparticle' class='list-group-item level-1'>SpriteAnimationParticle</a>
-  <a href='#componentparticle' class='list-group-item level-1'>ComponentParticle</a>
-  <a href='#computedparticle' class='list-group-item level-1'>ComputedParticle</a>
-  <a href='#nesting-behavior' class='list-group-item level-1'>Nesting behavior</a>
+  <a href='#ranges' class='list-group-item level-1'>Ranges</a>
+  <a href='#particleemitter' class='list-group-item level-1'>ParticleEmitter</a>
+  <a href='#emission' class='list-group-item level-2'>Emission</a>
+  <a href='#spawn-position-and-velocity' class='list-group-item level-2'>Spawn position and velocity</a>
+  <a href='#forces-and-rotation' class='list-group-item level-2'>Forces and rotation</a>
+  <a href='#behavior-over-a-particles-lifetime' class='list-group-item level-2'>Behavior over a particle’s lifetime</a>
+  <a href='#renderers' class='list-group-item level-1'>Renderers</a>
+  <a href='#circleparticlerenderer' class='list-group-item level-2'>CircleParticleRenderer</a>
+  <a href='#spriteparticlerenderer' class='list-group-item level-2'>SpriteParticleRenderer</a>
+  <a href='#custom-rendering' class='list-group-item level-2'>Custom rendering</a>
+  <a href='#particleemittercomponent' class='list-group-item level-1'>ParticleEmitterComponent</a>
+  <a href='#lifecycle' class='list-group-item level-2'>Lifecycle</a>
+  <a href='#moving-emitters-and-trails' class='list-group-item level-2'>Moving emitters and trails</a>
+  <a href='#performance-notes' class='list-group-item level-1'>Performance notes</a>
 </div>
 
     </div>
