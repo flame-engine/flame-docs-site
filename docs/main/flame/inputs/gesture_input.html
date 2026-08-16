@@ -367,26 +367,32 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="gesture-input">
 <h1>Gesture Input<a class="headerlink" href="#gesture-input" title="Link to this heading">¶</a></h1>
-<p>This is documentation for the legacy detector mixins, which are added directly to your game class.
-New code should prefer the <code class="docutils literal notranslate"><span class="pre">Callbacks</span></code> mixins instead (e.g. <a class="reference internal" href="tap_events.html"><span class="std std-doc">TapCallbacks</span></a> and
-<a class="reference internal" href="drag_events.html"><span class="std std-doc">DragCallbacks</span></a>) which can be added to any <code class="docutils literal notranslate"><span class="pre">Component</span></code>, including the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>
-itself.</p>
+<p>Gesture input in Flame is handled by the <code class="docutils literal notranslate"><span class="pre">Callbacks</span></code> mixins. They can be added to any <code class="docutils literal notranslate"><span class="pre">Component</span></code>,
+and since <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is itself a <code class="docutils literal notranslate"><span class="pre">Component</span></code>, adding one to your game class works exactly as well —
+no wrapper component required. Each family has its own page:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="tap_events.html"><span class="std std-doc">Tap Events</span></a>: <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code>, <code class="docutils literal notranslate"><span class="pre">DoubleTapCallbacks</span></code>, and the secondary/tertiary
+button variants</p></li>
+<li><p><a class="reference internal" href="drag_events.html"><span class="std std-doc">Drag Events</span></a>: <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code></p></li>
+<li><p><a class="reference internal" href="scale_events.html"><span class="std std-doc">Scale Events</span></a>: <code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code></p></li>
+<li><p><a class="reference internal" href="long_press_events.html"><span class="std std-doc">Long Press Events</span></a>: <code class="docutils literal notranslate"><span class="pre">LongPressCallbacks</span></code></p></li>
+<li><p><a class="reference internal" href="pointer_events.html"><span class="std std-doc">Pointer Events</span></a>: <code class="docutils literal notranslate"><span class="pre">MouseMoveCallbacks</span></code>, <code class="docutils literal notranslate"><span class="pre">HoverCallbacks</span></code>, <code class="docutils literal notranslate"><span class="pre">ScrollCallbacks</span></code></p></li>
+</ul>
 <p>For other input documents, see also:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="keyboard_input.html"><span class="std std-doc">Keyboard Input</span></a>: for keystrokes</p></li>
 <li><p><a class="reference internal" href="other_inputs.html"><span class="std std-doc">Other Inputs</span></a>: For joysticks, game pads, etc.</p></li>
 </ul>
-<section id="intro">
-<h2>Intro<a class="headerlink" href="#intro" title="Link to this heading">¶</a></h2>
-<p>Inside <code class="docutils literal notranslate"><span class="pre">package:flame/input.dart</span></code> you can find a set of legacy <code class="docutils literal notranslate"><span class="pre">mixin</span></code>s which can be included on
-your game class instance to be able to receive touch input events. Below you can see the full
-list of these <code class="docutils literal notranslate"><span class="pre">mixin</span></code>s and its methods:</p>
-</section>
-<section id="touch-and-mouse-detectors">
-<h2>Touch and mouse detectors<a class="headerlink" href="#touch-and-mouse-detectors" title="Link to this heading">¶</a></h2>
+<section id="pandetector">
+<h2>PanDetector<a class="headerlink" href="#pandetector" title="Link to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> is the last remaining detector mixin — the older style of input handling, added
+directly to the game class instead of to a component. Everything else on that side has already been
+replaced by the <code class="docutils literal notranslate"><span class="pre">Callbacks</span></code> mixins above.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Detectors will be deprecated in the future. Prefer <code class="docutils literal notranslate"><span class="pre">Callbacks</span></code> instead.</p>
+<p><code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> will be removed. Prefer <a class="reference internal" href="drag_events.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code></span></a>, which
+can be added to your <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> directly and additionally reports a
+<code class="docutils literal notranslate"><span class="pre">pointerId</span></code> so that simultaneous drags can be told apart.</p>
 </div>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>- PanDetector
   - onPanDown
@@ -394,11 +400,6 @@ list of these <code class="docutils literal notranslate"><span class="pre">mixin
   - onPanUpdate
   - onPanEnd
   - onPanCancel
-</pre></div>
-</div>
-<p>Mouse only events</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> - MouseMovementDetector
-  - onMouseMove
 </pre></div>
 </div>
 <p>Flame’s GestureApi is provided by Flutter’s Gesture Widgets, including
@@ -496,21 +497,6 @@ explanation about each of them.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<section id="gesturehitboxes">
-<h3>GestureHitboxes<a class="headerlink" href="#gesturehitboxes" title="Link to this heading">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin is used to more accurately recognize gestures on top of your
-<code class="docutils literal notranslate"><span class="pre">Component</span></code>s. Say that you have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you
-don’t want to register input that is in the corner of the image where the rock is not displayed,
-since a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is rectangular by default. Then you can use the <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin
-to define a more accurate circle or polygon (or another shape) for which the input should be within
-for the event to be registered on your component.</p>
-<p>You can add new hitboxes to the component that has the <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin just like they are
-added in the below <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> example.</p>
-<p>More information about how to define hitboxes can be found in the hitbox section of the
-<a class="reference internal" href="../collision_detection.html#shapehitbox"><span class="std std-ref">collision detection</span></a> docs.</p>
-<p>An example of how to use it can be seen in the
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/gesture_hitboxes_example.dart">gesture hitboxes example</a>.</p>
-</section>
 </section>
 </section>
 
@@ -544,15 +530,13 @@ added in the below <code class="docutils literal notranslate"><span class="pre">
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
-  <a href='#intro' class='list-group-item level-1'>Intro</a>
-  <a href='#touch-and-mouse-detectors' class='list-group-item level-1'>Touch and mouse detectors</a>
+  <a href='#pandetector' class='list-group-item level-1'>PanDetector</a>
   <a href='#panning-and-zooming' class='list-group-item level-1'>Panning and zooming</a>
   <a href='#mouse-cursor' class='list-group-item level-1'>Mouse cursor</a>
   <a href='#event-coordinate-system' class='list-group-item level-1'>Event coordinate system</a>
   <a href='#global' class='list-group-item level-2'>global</a>
   <a href='#widget' class='list-group-item level-2'>widget</a>
   <a href='#example' class='list-group-item level-1'>Example</a>
-  <a href='#gesturehitboxes' class='list-group-item level-2'>GestureHitboxes</a>
 </div>
 
     </div>

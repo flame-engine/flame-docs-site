@@ -385,8 +385,25 @@ works, but adapted for Flame’s component tree.</p>
 <li><p><a class="reference internal" href="pointer_events.html"><span class="std std-doc">Pointer Events</span></a></p></li>
 <li><p><a class="reference internal" href="hardware_keyboard_detector.html"><span class="std std-doc">Hardware Keyboard Detector</span></a></p></li>
 </ul>
+<section id="gesturehitboxes">
+<h2>GestureHitboxes<a class="headerlink" href="#gesturehitboxes" title="Link to this heading">¶</a></h2>
+<p>Every mixin whose events carry a position implements <code class="docutils literal notranslate"><span class="pre">PointerInputCallbacks</span></code> — that is all of the
+above except keyboard — and they all decide whether an event belongs to a component by asking its
+<code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code>, which for a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is its rectangular bounds. The
+<code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin is used to recognize input on top of your <code class="docutils literal notranslate"><span class="pre">Component</span></code>s more accurately than
+that. Say that you have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you don’t want
+to register input that is in the corner of the image where the rock is not displayed. Then you can
+use the <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin to define a more accurate circle or polygon (or another shape) for
+which the input should be within for the event to be registered on your component.</p>
+<p>You can add new hitboxes to the component that has the <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin just like they are
+added in the <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> example.</p>
+<p>More information about how to define hitboxes can be found in the hitbox section of the
+<a class="reference internal" href="../collision_detection.html#shapehitbox"><span class="std std-ref">collision detection</span></a> docs.</p>
+<p>An example of how to use it can be seen in the
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/gesture_hitboxes_example.dart">gesture hitboxes example</a>.</p>
 <div class="toctree-wrapper compound">
 </div>
+</section>
 </section>
 
 
@@ -419,6 +436,7 @@ works, but adapted for Flame’s component tree.</p>
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#gesturehitboxes' class='list-group-item level-1'>GestureHitboxes</a>
 </div>
 
     </div>

@@ -374,13 +374,13 @@ which is still supported, is described in <a class="reference internal" href="ge
 </div>
 <p><strong>Pointer events</strong> are Flutter’s generalized “mouse-movement”-type events (for desktop or web).</p>
 <p>If you want to interact with mouse movement events within your component or game, you can use the
-<code class="docutils literal notranslate"><span class="pre">PointerMoveCallbacks</span></code> mixin.</p>
+<code class="docutils literal notranslate"><span class="pre">MouseMoveCallbacks</span></code> mixin.</p>
 <p>For example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PointerMoveCallbacks</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">MouseMoveCallbacks</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">MyComponent</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">80</span><span class="p">,</span><span class="w"> </span><span class="m">60</span><span class="p">));</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPointerMove</span><span class="p">(</span><span class="n">PointerMoveEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onMouseMove</span><span class="p">(</span><span class="n">MouseMoveEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Do something in response to the mouse move (e.g. update coordinates)</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -388,8 +388,8 @@ which is still supported, is described in <a class="reference internal" href="ge
 </div>
 <p>The mixin adds two overridable methods to your component:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">onPointerMove</span></code>: called when the mouse moves within the component</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">onPointerMoveStop</span></code>: called once if the component was being hovered and the mouse leaves</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">onMouseMove</span></code>: called when the mouse moves within the component</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">onMouseMoveStop</span></code>: called once if the component was being hovered and the mouse leaves</p></li>
 </ul>
 <p>By default, each of these methods does nothing, they need to be overridden in order to perform any
 function.</p>
@@ -397,7 +397,7 @@ function.</p>
 <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, so most of the time you don’t need to do anything here). This method allows
 Flame to know whether the event occurred within the component or not.</p>
 <p>Note that only mouse events happening within your component will be proxied along. However,
-<code class="docutils literal notranslate"><span class="pre">onPointerMoveStop</span></code> will be fired once on the first mouse movement that leaves your component, so
+<code class="docutils literal notranslate"><span class="pre">onMouseMoveStop</span></code> will be fired once on the first mouse movement that leaves your component, so
 you can handle any exit conditions there.</p>
 <section id="hovercallbacks">
 <h2>HoverCallbacks<a class="headerlink" href="#hovercallbacks" title="Link to this heading">¶</a></h2>
@@ -425,7 +425,7 @@ into hover enter and exit events, you can use a more dedicated mixin called <cod
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Note that you can still listen to the “raw” onPointerMove methods for additional functionality, just
+<p>Note that you can still listen to the “raw” onMouseMove methods for additional functionality, just
 make sure to call the <code class="docutils literal notranslate"><span class="pre">super</span></code> version to enable the <code class="docutils literal notranslate"><span class="pre">HoverCallbacks</span></code> behavior.</p>
 <section id="hover-demo">
 <h3>Hover Demo<a class="headerlink" href="#hover-demo" title="Link to this heading">¶</a></h3>
