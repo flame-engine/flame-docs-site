@@ -428,7 +428,7 @@ By doing so we will be able to override some methods like <code class="docutils 
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span>
-<span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
 <span class="w">    </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
 <span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionStart</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
@@ -486,7 +486,7 @@ automatically be removed from the game!</p>
 in order to add the explosion to the game:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span>
-<span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
 <span class="w">    </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
 <span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionStart</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
@@ -706,7 +706,7 @@ main.dart</div>
 <span class="linenos">197</span>
 <span class="linenos">198</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">199</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span>
-<span class="linenos">200</span><span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
+<span class="linenos">200</span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
 <span class="linenos">201</span><span class="w">    </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
 <span class="linenos">202</span><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">203</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionStart</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>

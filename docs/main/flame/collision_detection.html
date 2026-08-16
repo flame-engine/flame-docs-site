@@ -482,7 +482,7 @@ collision_detection.dart</div>
 <span class="linenos">55</span>
 <span class="linenos">56</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">57</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span>
-<span class="linenos">58</span><span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
+<span class="linenos">58</span><span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
 <span class="linenos">59</span><span class="w">    </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
 <span class="linenos">60</span><span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">61</span><span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onCollisionStart</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
@@ -503,7 +503,7 @@ collision_detection.dart</div>
 <button class="flutter-app-button code" onclick="open_code_listings(&quot;flame-examples-source-collision_detection&quot;)">Code</button></div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyCollidable</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">points</span><span class="p">,</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">ScreenHitbox</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="c1">//...</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">YourOtherComponent</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -523,7 +523,7 @@ collision_detection.dart</div>
 </pre></div>
 </div>
 <p>In this example we use Dart’s <code class="docutils literal notranslate"><span class="pre">is</span></code> keyword to check what kind of component we collided with.
-The set of points is where the edges of the hitboxes intersect.</p>
+The list of points is where the edges of the hitboxes intersect.</p>
 <p>Note that the <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method will be called on both <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s if they have both
 implemented the <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> method, and also on both hitboxes. The same goes for the
 <code class="docutils literal notranslate"><span class="pre">onCollisionStart</span></code> and <code class="docutils literal notranslate"><span class="pre">onCollisionEnd</span></code> methods, which are called when two components and hitboxes
@@ -551,7 +551,7 @@ the other components with which it’s colliding:
 <code class="docutils literal notranslate"><span class="pre">List&lt;PositionComponent&gt;</span> <span class="pre">collisionComponents</span> <span class="pre">=</span> <span class="pre">[];</span></code>. The <code class="docutils literal notranslate"><span class="pre">onCollision</span></code> callback is then used to
 save all the other <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>s to this list:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
-<span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="kt">void</span><span class="w"> </span><span class="n">onCollision</span><span class="p">(</span><span class="n">List</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">collisionComponents</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">other</span><span class="p">);</span>
 <span class="w">  </span><span class="k">super</span><span class="p">.</span><span class="n">onCollision</span><span class="p">(</span><span class="n">intersectionPoints</span><span class="p">,</span><span class="w"> </span><span class="n">other</span><span class="p">);</span>
 <span class="p">}</span>
@@ -773,7 +773,7 @@ type checker:</p>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onCollisionStart</span><span class="p">(</span>
-<span class="w">    </span><span class="n">Set</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
+<span class="w">    </span><span class="n">List</span><span class="o">&lt;</span><span class="n">Vector2</span><span class="o">&gt;</span><span class="w"> </span><span class="n">intersectionPoints</span><span class="p">,</span>
 <span class="w">    </span><span class="n">PositionComponent</span><span class="w"> </span><span class="n">other</span><span class="p">,</span>
 <span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Removes the component when it comes in contact with a Brick.</span>
