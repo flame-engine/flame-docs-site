@@ -367,9 +367,10 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="gesture-input">
 <h1>Gesture Input<a class="headerlink" href="#gesture-input" title="Link to this heading">¶</a></h1>
-<p>This is documentation for gesture inputs attached directly on the game class, most of the time you
-want to detect input on your components instead, see for example the <a class="reference internal" href="tap_events.html"><span class="std std-doc">TapCallbacks</span></a>
-and <a class="reference internal" href="drag_events.html"><span class="std std-doc">DragCallbacks</span></a> for that.</p>
+<p>This is documentation for the legacy detector mixins, which are added directly to your game class.
+New code should prefer the <code class="docutils literal notranslate"><span class="pre">Callbacks</span></code> mixins instead (e.g. <a class="reference internal" href="tap_events.html"><span class="std std-doc">TapCallbacks</span></a> and
+<a class="reference internal" href="drag_events.html"><span class="std std-doc">DragCallbacks</span></a>) which can be added to any <code class="docutils literal notranslate"><span class="pre">Component</span></code>, including the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code>
+itself.</p>
 <p>For other input documents, see also:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="keyboard_input.html"><span class="std std-doc">Keyboard Input</span></a>: for keystrokes</p></li>
@@ -377,9 +378,9 @@ and <a class="reference internal" href="drag_events.html"><span class="std std-d
 </ul>
 <section id="intro">
 <h2>Intro<a class="headerlink" href="#intro" title="Link to this heading">¶</a></h2>
-<p>Inside <code class="docutils literal notranslate"><span class="pre">package:flame/gestures.dart</span></code> you can find a whole set of <code class="docutils literal notranslate"><span class="pre">mixin</span></code>s which can be included on
-your game class instance to be able to receive touch input events. Below you can see the full list
-of these <code class="docutils literal notranslate"><span class="pre">mixin</span></code>s and its methods:</p>
+<p>Inside <code class="docutils literal notranslate"><span class="pre">package:flame/input.dart</span></code> you can find a set of legacy <code class="docutils literal notranslate"><span class="pre">mixin</span></code>s which can be included on
+your game class instance to be able to receive touch input events. Below you can see the full
+list of these <code class="docutils literal notranslate"><span class="pre">mixin</span></code>s and its methods:</p>
 </section>
 <section id="touch-and-mouse-detectors">
 <h2>Touch and mouse detectors<a class="headerlink" href="#touch-and-mouse-detectors" title="Link to this heading">¶</a></h2>
@@ -393,15 +394,6 @@ of these <code class="docutils literal notranslate"><span class="pre">mixin</spa
   - onPanUpdate
   - onPanEnd
   - onPanCancel
-
-- MultiTouchTapDetector
-  - onTap
-  - onTapCancel
-  - onTapDown
-  - onTapUp
-
-- MultiTouchDragDetector
-  - onReceiveDrag
 </pre></div>
 </div>
 <p>Mouse only events</p>
@@ -411,10 +403,6 @@ of these <code class="docutils literal notranslate"><span class="pre">mixin</spa
   - onScroll
 </pre></div>
 </div>
-<p>It is not possible to mix advanced detectors (<code class="docutils literal notranslate"><span class="pre">MultiTouch*</span></code>) with basic detectors of the same
-kind, since the advanced detectors will <em>always win the gesture arena</em> and the basic detectors will
-never be triggered. So for example, you can’t use both <code class="docutils literal notranslate"><span class="pre">MultiTouchTapDetector</span></code> and <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code>
-together, since no events will be triggered for the latter (there is also an assertion for this).</p>
 <p>Flame’s GestureApi is provided by Flutter’s Gesture Widgets, including
 <a class="reference external" href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html">GestureDetector widget</a>,
 <a class="reference external" href="https://api.flutter.dev/flutter/widgets/RawGestureDetector-class.html">RawGestureDetector widget</a>
@@ -495,26 +483,21 @@ explanation about each of them.</p>
 </section>
 <section id="example">
 <h2>Example<a class="headerlink" href="#example" title="Link to this heading">¶</a></h2>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">MultiTouchTapDetector</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Other methods omitted</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pointerId</span><span class="p">,</span><span class="w"> </span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;Player tap down on </span><span class="si">${</span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">widget</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanStart</span><span class="p">(</span><span class="n">DragStartInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;Player started panning on </span><span class="si">${</span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">widget</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapUp</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pointerId</span><span class="p">,</span><span class="w"> </span><span class="n">TapUpInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;Player tap up on </span><span class="si">${</span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">widget</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;Player panned to </span><span class="si">${</span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">widget</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Note that there is no single-pointer tap detector at the game level; for that, use the component
-level <a class="reference internal" href="tap_events.html"><span class="std std-doc"><code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code></span></a> instead, which <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> can mix in directly since it is
-itself a <code class="docutils literal notranslate"><span class="pre">Component</span></code>.</p>
-<p>You can also check more complete examples in the
-<a class="reference external" href="https://github.com/flame-engine/flame/tree/main/examples/lib/stories/input/">input examples directory</a>.</p>
 <section id="gesturehitboxes">
 <h3>GestureHitboxes<a class="headerlink" href="#gesturehitboxes" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin is used to more accurately recognize gestures on top of your

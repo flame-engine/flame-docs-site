@@ -482,6 +482,120 @@ surface. To keep the old whole-screen behavior, add the mixin to your <code clas
 <p>See <a class="reference internal" href="inputs/tap_events.html"><span class="std std-doc">Tap Events</span></a> and <a class="reference internal" href="inputs/long_press_events.html"><span class="std std-doc">Long Press Events</span></a> for the
 full replacement APIs.</p>
 </section>
+<section id="scaledetector-removed">
+<h3><code class="docutils literal notranslate"><span class="pre">ScaleDetector</span></code> removed<a class="headerlink" href="#scaledetector-removed" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">ScaleDetector</span></code> game mixin has been removed, together with the event classes that only it used:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Removed</p></th>
+<th class="head"><p>Use instead</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ScaleDetector</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ScaleStartInfo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ScaleStartEvent</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">ScaleUpdateInfo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ScaleUpdateEvent</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">ScaleEndInfo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">ScaleEndEvent</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p><code class="docutils literal notranslate"><span class="pre">ScaleUpdateEvent</span></code> is a strict superset of <code class="docutils literal notranslate"><span class="pre">ScaleUpdateInfo</span></code>: <code class="docutils literal notranslate"><span class="pre">info.scale.global.x</span></code> and
+<code class="docutils literal notranslate"><span class="pre">info.scale.global.y</span></code> become <code class="docutils literal notranslate"><span class="pre">event.horizontalScale</span></code> and <code class="docutils literal notranslate"><span class="pre">event.verticalScale</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">info.delta.global</span></code> becomes <code class="docutils literal notranslate"><span class="pre">event.focalPointDelta</span></code>.</p>
+<p>There is one behavioral difference to be aware of. The old detector was backed by Flutter’s
+<code class="docutils literal notranslate"><span class="pre">ScaleGestureRecognizer</span></code>, which also emits scale events for a <em>single</em> pointer, with a scale factor
+of 1.0 — a quirk that games commonly relied on to pan the camera from within <code class="docutils literal notranslate"><span class="pre">onScaleUpdate</span></code>. The
+new <code class="docutils literal notranslate"><span class="pre">MultiDragScaleGestureRecognizer</span></code> only emits scale events once two or more pointers are down, so
+panning must now be handled with <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code>, which can be combined freely with <code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ScaleDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleUpdate</span><span class="p">(</span><span class="n">ScaleUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">scale</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">info</span><span class="p">.</span><span class="n">scale</span><span class="p">.</span><span class="n">global</span><span class="p">;</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">scale</span><span class="p">.</span><span class="n">isIdentity</span><span class="p">())</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startZoom</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">scale</span><span class="p">.</span><span class="n">y</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="n">camera</span><span class="p">.</span><span class="n">moveBy</span><span class="p">((</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">..</span><span class="n">negate</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// After</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ScaleCallbacks</span><span class="p">,</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleUpdate</span><span class="p">(</span><span class="n">ScaleUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startZoom</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">verticalScale</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Two-finger pinches emit both drag and scale; skip pan while zooming</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isScaling</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">moveBy</span><span class="p">((</span><span class="n">event</span><span class="p">.</span><span class="n">localDelta</span><span class="p">..</span><span class="n">negate</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that trackpad pinch gestures are not currently recognized by the new system:
+<code class="docutils literal notranslate"><span class="pre">MultiDragScaleGestureRecognizer</span></code> does not yet handle Flutter’s <code class="docutils literal notranslate"><span class="pre">PointerPanZoom</span></code> events, which is how
+a trackpad pinch reaches a scale recognizer. Touchscreen pinches are unaffected.</p>
+<p>See <a class="reference internal" href="inputs/scale_events.html"><span class="std std-doc">Scale Events</span></a> for the full replacement API.</p>
+</section>
+<section id="multitouchtapdetector-and-multitouchdragdetector-removed">
+<h3><code class="docutils literal notranslate"><span class="pre">MultiTouchTapDetector</span></code> and <code class="docutils literal notranslate"><span class="pre">MultiTouchDragDetector</span></code> removed<a class="headerlink" href="#multitouchtapdetector-and-multitouchdragdetector-removed" title="Link to this heading">¶</a></h3>
+<p>Both game-level mixins have been removed:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Removed</p></th>
+<th class="head"><p>Use instead</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">MultiTouchTapDetector</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">MultiTouchDragDetector</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<p>The <code class="docutils literal notranslate"><span class="pre">pointerId</span></code> that used to be passed as a separate first argument is now carried on the event
+itself, so simultaneous touches can still be told apart:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">MultiTouchTapDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">pointerId</span><span class="p">,</span><span class="w"> </span><span class="n">TapDownInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">taps</span><span class="p">[</span><span class="n">pointerId</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">info</span><span class="p">.</span><span class="n">eventPosition</span><span class="p">.</span><span class="n">widget</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// After</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">TapCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onTapDown</span><span class="p">(</span><span class="n">TapDownEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">taps</span><span class="p">[</span><span class="n">event</span><span class="p">.</span><span class="n">pointerId</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">canvasPosition</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> has no equivalent of <code class="docutils literal notranslate"><span class="pre">MultiTouchTapDetector.onTap</span></code>, which was a direct passthrough of
+Flutter’s “tap completed” callback on <code class="docutils literal notranslate"><span class="pre">MultiTapGestureRecognizer</span></code>. Use <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code> instead, which fires
+at the same point in the gesture.</p>
+<p>Because the new mixins are routed through <code class="docutils literal notranslate"><span class="pre">MultiDragScaleDispatcher</span></code>, they no longer conflict with
+<code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> in the gesture arena, and the assertion that used to guard against combining
+<code class="docutils literal notranslate"><span class="pre">MultiTouchDragDetector</span></code> with <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> has been removed.</p>
+<p>See <a class="reference internal" href="inputs/tap_events.html"><span class="std std-doc">Tap Events</span></a> and <a class="reference internal" href="inputs/drag_events.html"><span class="std std-doc">Drag Events</span></a> for the full
+replacement APIs.</p>
+</section>
 <section id="ondragcancel-no-longer-delegates-to-ondragend">
 <h3><code class="docutils literal notranslate"><span class="pre">onDragCancel</span></code> no longer delegates to <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code><a class="headerlink" href="#ondragcancel-no-longer-delegates-to-ondragend" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">DragCallbacks.onDragCancel</span></code> used to convert the cancellation into an <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code> event by default,
@@ -717,6 +831,8 @@ other boolean properties in Flame. The behavior is unchanged; only the name is d
   <a href='#verticaldragdetector-and-horizontaldragdetector-removed' class='list-group-item level-2'>VerticalDragDetector and HorizontalDragDetector removed</a>
   <a href='#forcepressdetector-removed' class='list-group-item level-2'>ForcePressDetector removed</a>
   <a href='#deprecated-tap-and-long-press-game-detectors-removed' class='list-group-item level-2'>Deprecated tap and long press game detectors removed</a>
+  <a href='#scaledetector-removed' class='list-group-item level-2'>ScaleDetector removed</a>
+  <a href='#multitouchtapdetector-and-multitouchdragdetector-removed' class='list-group-item level-2'>MultiTouchTapDetector and MultiTouchDragDetector removed</a>
   <a href='#ondragcancel-no-longer-delegates-to-ondragend' class='list-group-item level-2'>onDragCancel no longer delegates to onDragEnd</a>
   <a href='#multidragdispatcher-removed' class='list-group-item level-2'>MultiDragDispatcher removed</a>
   <a href='#event-handled-removed-in-favour-of-continuepropagation' class='list-group-item level-2'>Event.handled removed in favour of continuePropagation</a>
