@@ -16838,7 +16838,7 @@ $imS:1}
 A.Sp.prototype={
 $1(a){var s=A.bJ().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/5f77625673248ee5846fbcaf5d3e1a3878386fd7/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/5d531788691ec3404cac0cee66ead4007b177363/":s)+a},
 $S:73}
 A.vm.prototype={
 gA(a){var s=this.a
