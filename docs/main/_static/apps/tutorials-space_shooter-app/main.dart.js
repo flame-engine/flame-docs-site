@@ -12694,7 +12694,7 @@ $iyV:1}
 A.LR.prototype={
 $1(a){var s=A.b1().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/5d531788691ec3404cac0cee66ead4007b177363/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/a804b261645ef8c13eb3d5c44a5c2fb0340c5539/":s)+a},
 $S:62}
 A.tg.prototype={
 geK(){var s=this.b

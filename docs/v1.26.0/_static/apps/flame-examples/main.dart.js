@@ -13174,7 +13174,8 @@ k=e}}l=f}m=h}}if(j){if(n)p=o
 else{j=s?q:b
 o=(j==null?p.a(j):j).b
 p=o}A.li(p)
-p=new A.bE(Math.max(A.rc(m),A.rc(k)),Math.max(A.rc(l),p))
+a=new A.bE(Math.max(A.rc(m),A.rc(k)),Math.max(A.rc(l),p))
+p=a
 break A}p=d}return p},
 agX(a,b,c,d,e,f,g,h,i){var s,r=null,q=A.dC(),p=J.a3r(4,t.mi)
 for(s=0;s<4;++s)p[s]=new A.qo(r,B.X,B.w,new A.le(1),r,r,r,r,B.aO,r)
@@ -20795,7 +20796,7 @@ $iMK:1}
 A.a15.prototype={
 $1(a){var s=A.cn().b
 s=s==null?null:s.canvasKitBaseUrl
-return(s==null?"https://www.gstatic.com/flutter-canvaskit/5d531788691ec3404cac0cee66ead4007b177363/":s)+a},
+return(s==null?"https://www.gstatic.com/flutter-canvaskit/a804b261645ef8c13eb3d5c44a5c2fb0340c5539/":s)+a},
 $S:88}
 A.Ck.prototype={
 gB(a){var s=this.a
