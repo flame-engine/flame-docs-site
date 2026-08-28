@@ -627,13 +627,13 @@ as:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span>
-<span class="w">      </span><span class="s1">&#39;block.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;ember.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;ground.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;heart_half.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;heart.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;star.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/block.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/ember.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/ground.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/heart_half.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/heart.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/star.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/water_enemy.png&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="p">]);</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
@@ -718,7 +718,7 @@ width of the image) then remove this platform block from the game entirely.</p>
 <p>Now we just need to finish the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method. So make your <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method look like this:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">platformImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;block.png&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">platformImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;assets/images/block.png&#39;</span><span class="p">);</span>
 <span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">platformImage</span><span class="p">);</span>
 <span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">((</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xOffset</span><span class="p">,</span>
 <span class="w">        </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">y</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">y</span><span class="p">),</span>

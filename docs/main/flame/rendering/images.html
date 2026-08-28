@@ -385,13 +385,19 @@ the assets directory into memory.</p>
 <p>Flutter has a handful of types related to images, and converting everything properly from a local
 asset to an <code class="docutils literal notranslate"><span class="pre">Image</span></code> that can be drawn on Canvas is a bit convoluted. This class allows you to obtain
 an <code class="docutils literal notranslate"><span class="pre">Image</span></code> that can be drawn on the <code class="docutils literal notranslate"><span class="pre">Canvas</span></code> using the <code class="docutils literal notranslate"><span class="pre">drawImageRect</span></code> method.</p>
-<p>It automatically caches any image loaded by filename, so you can safely call it many times.</p>
-<p>The methods for loading and clearing the cache are: <code class="docutils literal notranslate"><span class="pre">load</span></code>, <code class="docutils literal notranslate"><span class="pre">loadAll</span></code>, <code class="docutils literal notranslate"><span class="pre">clear</span></code> and <code class="docutils literal notranslate"><span class="pre">clearCache</span></code>.
+<p>Images are addressed by their full asset path, exactly as declared in the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>, for
+example <code class="docutils literal notranslate"><span class="pre">assets/images/player.png</span></code>. Nothing is prepended for you, and that same path is the key the
+image is cached under, so you can safely call <code class="docutils literal notranslate"><span class="pre">load</span></code> many times.</p>
+<p>The methods for loading and clearing the cache are: <code class="docutils literal notranslate"><span class="pre">load</span></code>, <code class="docutils literal notranslate"><span class="pre">loadAll</span></code>, <code class="docutils literal notranslate"><span class="pre">loadAllImages</span></code>,
+<code class="docutils literal notranslate"><span class="pre">loadAllFromPattern</span></code>, <code class="docutils literal notranslate"><span class="pre">clear</span></code> and <code class="docutils literal notranslate"><span class="pre">clearCache</span></code>. The two <code class="docutils literal notranslate"><span class="pre">loadAll*</span></code> methods scan the asset manifest
+and take a required <code class="docutils literal notranslate"><span class="pre">directory</span></code> to scope the search, for example
+<code class="docutils literal notranslate"><span class="pre">loadAllImages(directory:</span> <span class="pre">'assets/images/')</span></code>.
 They return <code class="docutils literal notranslate"><span class="pre">Future</span></code>s for loading the images. These futures must be awaited for before the images
 can be used in any way. If you do not want to await these futures right away, you can initiate
 multiple <code class="docutils literal notranslate"><span class="pre">load()</span></code> operations and then await for all of them at once using <code class="docutils literal notranslate"><span class="pre">Images.ready()</span></code> method.</p>
-<p>To synchronously retrieve a previously cached image, the <code class="docutils literal notranslate"><span class="pre">fromCache</span></code> method can be used. If an image
-with that key was not previously loaded, it will throw an exception.</p>
+<p>To synchronously retrieve a previously cached image, the <code class="docutils literal notranslate"><span class="pre">fromCache</span></code> method can be used, passing the
+same full path you loaded it with. If an image with that key was not previously loaded, it will
+throw an exception.</p>
 <p>To add an already loaded image to the cache, the <code class="docutils literal notranslate"><span class="pre">add</span></code> method can be used and you can set the key
 that the image should have in the cache. You can retrieve all the keys in the cache using the <code class="docutils literal notranslate"><span class="pre">keys</span></code>
 getter.</p>
@@ -403,7 +409,7 @@ cache, so make sure that you don’t use the image afterwards.</p>
 <p>It can manually be used by instantiating it:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/cache.dart&#39;</span><span class="p">;</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">imagesLoader</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Images</span><span class="p">();</span>
-<span class="n">Image</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">imagesLoader</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;yourImage.png&#39;</span><span class="p">);</span>
+<span class="n">Image</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">imagesLoader</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/yourImage.png&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>But Flame also offers two ways of using this class without instantiating it yourself.</p>
@@ -416,7 +422,7 @@ cache, so make sure that you don’t use the image afterwards.</p>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/sprite.dart&#39;</span><span class="p">;</span>
 
 <span class="c1">// inside an async context</span>
-<span class="n">Image</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="n">Image</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/player.png&#39;</span><span class="p">);</span>
 
 <span class="kd">final</span><span class="w"> </span><span class="n">playerSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
 </pre></div>
@@ -436,7 +442,7 @@ will automatically free the cache when the game widget is removed from the widge
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Note that you could also use Sprite.load for this.</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">playerImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">playerImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/player.png&#39;</span><span class="p">);</span>
 <span class="w">    </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">playerImage</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -450,13 +456,13 @@ will automatically free the cache when the game widget is removed from the widge
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// other loads omitted</span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;bullet.png&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/bullet.png&#39;</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">shoot</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// This is just an example, in your game you probably don&#39;t want to</span>
 <span class="w">    </span><span class="c1">// instantiate new [Sprite] objects every time you shoot.</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">bulletSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;bullet.png&#39;</span><span class="p">));</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">bulletSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;assets/images/bullet.png&#39;</span><span class="p">));</span>
 <span class="w">    </span><span class="n">_bullets</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">bulletSprite</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -492,13 +498,13 @@ for a ready to use network assets solution that provides a built in cache.</p>
 <p>You can create a <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> by providing it an <code class="docutils literal notranslate"><span class="pre">Image</span></code> and coordinates that defines the piece of the
 image that that sprite represents.</p>
 <p>For example, this will create a sprite representing the whole image of the file passed:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/player.png&#39;</span><span class="p">);</span>
 <span class="n">Sprite</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>You can also specify the coordinates in the original image where the sprite is located. This allows
 you to use sprite sheets and reduce the number of images in memory, for example:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/player.png&#39;</span><span class="p">);</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">playerFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span>
 <span class="w">  </span><span class="n">image</span><span class="p">,</span>
 <span class="w">  </span><span class="nl">srcPosition:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32.0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
@@ -509,7 +515,7 @@ you to use sprite sheets and reduce the number of images in memory, for example:
 <p>The default values are <code class="docutils literal notranslate"><span class="pre">(0.0,</span> <span class="pre">0.0)</span></code> for <code class="docutils literal notranslate"><span class="pre">srcPosition</span></code> and <code class="docutils literal notranslate"><span class="pre">null</span></code> for <code class="docutils literal notranslate"><span class="pre">srcSize</span></code> (meaning it will use
 the full width/height of the source image).</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> class has a render method, that allows you to render the sprite onto a <code class="docutils literal notranslate"><span class="pre">Canvas</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;block.png&#39;</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/block.png&#39;</span><span class="p">);</span>
 <span class="n">Sprite</span><span class="w"> </span><span class="n">block</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">image</span><span class="p">);</span>
 
 <span class="c1">// in your render method</span>
@@ -538,7 +544,7 @@ avoid rendering the ghost lines.</p>
 <p>Flame provides a way to do this by using the <code class="docutils literal notranslate"><span class="pre">bleed</span></code> parameter in the <code class="docutils literal notranslate"><span class="pre">Sprite</span></code> render method. This
 is a double value that represents the amount of bleeding to be applied to the edges of the sprite.</p>
 <p>For example, if you do:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/player.png&#39;</span><span class="p">);</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">playerFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span>
 <span class="w">  </span><span class="n">image</span><span class="p">,</span>
 <span class="w">  </span><span class="nl">srcPosition:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32.0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
@@ -574,7 +580,7 @@ rounding errors), and it causes parts outside of a sprite selection to also be r
 <p>Extracting the sprite selection and rasterizing it before rendering is a way to avoid this issue,
 since it then renders an image that only contains the selected area.</p>
 <p>Example of using a <code class="docutils literal notranslate"><span class="pre">RasterSpriteComponent</span></code>:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;flame.png&#39;</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/flame.png&#39;</span><span class="p">);</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">rasterSpriteComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">RasterSpriteComponent</span><span class="p">(</span>
 <span class="w">  </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">sprite</span><span class="p">,</span>
 <span class="w">  </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16.0</span><span class="p">),</span>
@@ -584,7 +590,7 @@ since it then renders an image that only contains the selected area.</p>
 <p>When using the <code class="docutils literal notranslate"><span class="pre">RasterSpriteComponent</span></code>, it will automatically rasterize the sprite when it is
 loaded.</p>
 <p>If you need to rasterize a sprite manually, you can use the <code class="docutils literal notranslate"><span class="pre">Sprite.rasterize</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/player.png&#39;</span><span class="p">);</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">playerFrame</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span>
 <span class="w">  </span><span class="n">image</span><span class="p">,</span>
 <span class="w">  </span><span class="nl">srcPosition:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">32.0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">),</span>
@@ -690,8 +696,8 @@ the <code class="docutils literal notranslate"><span class="pre">SpriteAnimation
 <p>If you use Aseprite for your animations, Flame does provide some support for Aseprite animation’s
 JSON data. To use this feature you will need to export the Sprite Sheet’s JSON data, and use
 something like the following snippet:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;chopper.png&#39;</span><span class="p">);</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">jsonData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">assets</span><span class="p">.</span><span class="n">readJson</span><span class="p">(</span><span class="s1">&#39;chopper.json&#39;</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/chopper.png&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">jsonData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">assets</span><span class="p">.</span><span class="n">readJson</span><span class="p">(</span><span class="s1">&#39;assets/chopper.json&#39;</span><span class="p">);</span>
 <span class="kd">final</span><span class="w"> </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">fromAsepriteData</span><span class="p">(</span><span class="n">image</span><span class="p">,</span><span class="w"> </span><span class="n">jsonData</span><span class="p">);</span>
 </pre></div>
 </div>

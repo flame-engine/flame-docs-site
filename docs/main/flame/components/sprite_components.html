@@ -383,7 +383,7 @@ created with a <code class="docutils literal notranslate"><span class="pre">Spri
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Sprite</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/player.png&#39;</span><span class="p">);</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">128.0</span><span class="p">);</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">size</span><span class="p">,</span><span class="w"> </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">sprite</span><span class="p">);</span>
 
@@ -430,7 +430,7 @@ class (check more details on <a class="reference internal" href="../rendering/im
 <span class="w">    </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.1</span><span class="p">,</span>
 <span class="w">  </span><span class="p">);</span>
 <span class="w">  </span><span class="k">this</span><span class="p">.</span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span>
-<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/player.png&#39;</span><span class="p">),</span>
 <span class="w">    </span><span class="n">data</span><span class="p">,</span>
 <span class="w">  </span><span class="p">);</span>
 <span class="p">}</span>

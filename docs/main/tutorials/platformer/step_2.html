@@ -408,13 +408,13 @@ file, we will add:</p>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span>
-<span class="w">      </span><span class="s1">&#39;block.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;ember.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;ground.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;heart_half.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;heart.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;star.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/block.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/ember.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/ground.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/heart_half.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/heart.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/star.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/water_enemy.png&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="p">]);</span>
 
 <span class="w">  </span><span class="p">}</span>
@@ -424,8 +424,8 @@ file, we will add:</p>
 <p>As I mentioned in the <a class="reference internal" href="step_1.html#assets"><span class="std std-ref">assets</span></a> section, we are using multiple individual image
 files and for performance reasons, we should leverage Flame’s built-in caching system which will
 only load the files once, but allow us to access them as many times as needed without an impact to
-the game. <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">images.loadAll()</span></code> takes a list of the file names that are found in <code class="docutils literal notranslate"><span class="pre">assets/images</span></code>
-and loads them to cache.</p>
+the game. <code class="docutils literal notranslate"><span class="pre">await</span> <span class="pre">images.loadAll()</span></code> takes a list of full asset paths and loads them into the cache,
+keyed by those same paths.</p>
 </section>
 <section id="scaffolding">
 <h2>Scaffolding<a class="headerlink" href="#scaffolding" title="Link to this heading">¶</a></h2>
@@ -459,13 +459,13 @@ We are going to add all our components to the <code class="docutils literal notr
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span>
-<span class="w">      </span><span class="s1">&#39;block.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;ember.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;ground.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;heart_half.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;heart.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;star.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/block.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/ember.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/ground.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/heart_half.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/heart.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/star.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/water_enemy.png&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="p">]);</span>
 
 <span class="w">    </span><span class="c1">// Everything in this tutorial assumes that the position</span>
@@ -495,7 +495,7 @@ organized by how they will be involved in my game. So for Ember, let’s create 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span>
-<span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;ember.png&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;assets/images/ember.png&#39;</span><span class="p">),</span>
 <span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
 <span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
 <span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span>
@@ -508,8 +508,9 @@ organized by how they will be involved in my game. So for Ember, let’s create 
 </div>
 <p>This file uses the <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code> mixin which allows us to reach back to <code class="docutils literal notranslate"><span class="pre">ember_quest.dart</span></code> and
 leverage any of the variables or methods that are defined in the game class. You can see this in
-use with the line <code class="docutils literal notranslate"><span class="pre">game.images.fromCache('ember.png')</span></code>. Earlier, we loaded all the files into
-cache, so to use that file now, we call <code class="docutils literal notranslate"><span class="pre">fromCache</span></code> so it can be leveraged by the <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>.
+use with the line <code class="docutils literal notranslate"><span class="pre">game.images.fromCache('assets/images/ember.png')</span></code>. Earlier, we loaded all the
+files into cache, so to use that file now, we call <code class="docutils literal notranslate"><span class="pre">fromCache</span></code> so it can be leveraged by the
+<code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>.
 The <code class="docutils literal notranslate"><span class="pre">EmberPlayer</span></code> class is extending a <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> which allows us to define
 animation as well as position it accordingly in our game world. When we construct this class, the
 default size of <code class="docutils literal notranslate"><span class="pre">Vector2.all(64)</span></code> is defined as the size of Ember in our game world should be 64x64.
@@ -530,13 +531,13 @@ back to <code class="docutils literal notranslate"><span class="pre">ember_quest
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span>
-<span class="w">      </span><span class="s1">&#39;block.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;ember.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;ground.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;heart_half.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;heart.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;star.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/block.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/ember.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/ground.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/heart_half.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/heart.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/star.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/water_enemy.png&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="p">]);</span>
 
 <span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>

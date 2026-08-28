@@ -405,7 +405,7 @@ global audio cache:</p>
 <span class="w">  </span><span class="c1">// Create a pool with minimum 1 player and maximum 2 players</span>
 <span class="w">  </span><span class="c1">// This automatically uses Flame&#39;s global audio cache</span>
 <span class="w">  </span><span class="n">AudioPool</span><span class="w"> </span><span class="n">explosionSoundPool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">createPool</span><span class="p">(</span>
-<span class="w">    </span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;assets/audio/explosion.mp3&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">minPlayers:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">maxPlayers:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
 <span class="w">  </span><span class="p">);</span>
@@ -494,13 +494,13 @@ naturally.</p>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Load sound effects into audio pools</span>
 <span class="w">    </span><span class="n">laserSound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">createPool</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;laser.mp3&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/audio/laser.mp3&#39;</span><span class="p">,</span>
 <span class="w">      </span><span class="nl">minPlayers:</span><span class="w"> </span><span class="m">3</span><span class="p">,</span>
 <span class="w">      </span><span class="nl">maxPlayers:</span><span class="w"> </span><span class="m">6</span><span class="p">,</span>
 <span class="w">    </span><span class="p">);</span>
 
 <span class="w">    </span><span class="n">explosionSound</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">createPool</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/audio/explosion.mp3&#39;</span><span class="p">,</span>
 <span class="w">      </span><span class="nl">minPlayers:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
 <span class="w">      </span><span class="nl">maxPlayers:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
 <span class="w">    </span><span class="p">);</span>

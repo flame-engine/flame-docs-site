@@ -407,11 +407,11 @@ and in the pub.dev <a class="reference external" href="https://pub.dev/packages/
 
 <span class="c1">// Load the atlas from your assets</span>
 <span class="c1">// file at assets/atlas.fa</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FireAtlas</span><span class="p">.</span><span class="n">loadAsset</span><span class="p">(</span><span class="s1">&#39;atlas.fa&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">FireAtlas</span><span class="p">.</span><span class="n">loadAsset</span><span class="p">(</span><span class="s1">&#39;assets/atlas.fa&#39;</span><span class="p">);</span>
 
 <span class="c1">//or when inside a game instance, the loadFireAtlas can be used:</span>
 <span class="c1">// file at assets/atlas.fa</span>
-<span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadFireAtlas</span><span class="p">(</span><span class="s1">&#39;atlas.fa&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadFireAtlas</span><span class="p">(</span><span class="s1">&#39;assets/atlas.fa&#39;</span><span class="p">);</span>
 
 <span class="c1">// Get a Sprite with the given key.</span>
 <span class="n">FireAtlas</span><span class="p">.</span><span class="n">getSprite</span><span class="p">(</span><span class="s1">&#39;sprite_name&#39;</span><span class="p">)</span>
@@ -428,7 +428,7 @@ or a component. Then you can use <code class="docutils literal notranslate"><spa
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">_atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadFireAtlas</span><span class="p">(</span><span class="s1">&#39;atlas.fa&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">_atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadFireAtlas</span><span class="p">(</span><span class="s1">&#39;assets/atlas.fa&#39;</span><span class="p">);</span>
 
 <span class="w">    </span><span class="n">add</span><span class="p">(</span>
 <span class="w">      </span><span class="n">SpriteComponent</span><span class="p">(</span>

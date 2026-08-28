@@ -379,8 +379,8 @@ moving with a different velocity.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
 <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">parallaxComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">([</span>
-<span class="w">    </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;bg.png&#39;</span><span class="p">),</span>
-<span class="w">    </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;trees.png&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;assets/images/bg.png&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;assets/images/trees.png&#39;</span><span class="p">),</span>
 <span class="w">  </span><span class="p">]);</span>
 <span class="w">  </span><span class="n">add</span><span class="p">(</span><span class="n">parallaxComponent</span><span class="p">);</span>
 <span class="p">}</span>
@@ -391,8 +391,8 @@ moving with a different velocity.</p>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadParallax</span><span class="p">([</span>
-<span class="w">      </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;bg.png&#39;</span><span class="p">),</span>
-<span class="w">      </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;trees.png&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;assets/images/bg.png&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;assets/images/trees.png&#39;</span><span class="p">),</span>
 <span class="w">    </span><span class="p">]);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
@@ -439,19 +439,19 @@ you then pass in to the <code class="docutils literal notranslate"><span class="
 <p>Advanced example:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">images</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span>
 <span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span>
-<span class="w">    </span><span class="s1">&#39;stars.jpg&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;assets/images/stars.jpg&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">width</span><span class="p">,</span>
 <span class="w">  </span><span class="p">),</span>
 <span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span>
-<span class="w">    </span><span class="s1">&#39;planets.jpg&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;assets/images/planets.jpg&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeatY</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">bottomLeft</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">none</span><span class="p">,</span>
 <span class="w">  </span><span class="p">),</span>
 <span class="w">  </span><span class="n">loadParallaxImage</span><span class="p">(</span>
-<span class="w">    </span><span class="s1">&#39;dust.jpg&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="s1">&#39;assets/images/dust.jpg&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeatX</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">alignment:</span><span class="w"> </span><span class="n">Alignment</span><span class="p">.</span><span class="n">topRight</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">fill:</span><span class="w"> </span><span class="n">LayerFill</span><span class="p">.</span><span class="n">height</span><span class="p">,</span>

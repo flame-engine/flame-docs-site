@@ -371,6 +371,144 @@
 major versions of Flame, together with the steps required to migrate your code.</p>
 <section id="migrating-from-v1-38-0-to-v2-0-0">
 <h2>Migrating from v1.38.0 to v2.0.0<a class="headerlink" href="#migrating-from-v1-38-0-to-v2-0-0" title="Link to this heading">¶</a></h2>
+<section id="asset-prefix-removed">
+<h3>Asset prefix removed<a class="headerlink" href="#asset-prefix-removed" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">Images</span></code> and <code class="docutils literal notranslate"><span class="pre">AssetsCache</span></code> no longer prepend anything to the paths you give them. <code class="docutils literal notranslate"><span class="pre">Images</span></code> used to
+prepend <code class="docutils literal notranslate"><span class="pre">assets/images/</span></code> and <code class="docutils literal notranslate"><span class="pre">AssetsCache</span></code> used to prepend <code class="docutils literal notranslate"><span class="pre">assets/</span></code>, both configurable through a
+<code class="docutils literal notranslate"><span class="pre">prefix</span></code> property. That property is gone, along with the <code class="docutils literal notranslate"><span class="pre">prefix</span></code> constructor argument.</p>
+<p>Every asset is now addressed by its full path, exactly as declared in the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">assets</span><span class="p">.</span><span class="n">readJson</span><span class="p">(</span><span class="s1">&#39;levels/level1.json&#39;</span><span class="p">);</span>
+
+<span class="c1">// After</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/player.png&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">assets</span><span class="p">.</span><span class="n">readJson</span><span class="p">(</span><span class="s1">&#39;assets/levels/level1.json&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This applies to everything that loads through those caches, including <code class="docutils literal notranslate"><span class="pre">Sprite.load</span></code>,
+<code class="docutils literal notranslate"><span class="pre">SpriteAnimation.load</span></code>, <code class="docutils literal notranslate"><span class="pre">SpriteBatch.load</span></code>, <code class="docutils literal notranslate"><span class="pre">Game.loadSprite</span></code>, <code class="docutils literal notranslate"><span class="pre">Game.loadSpriteAnimation</span></code>, the
+<code class="docutils literal notranslate"><span class="pre">Parallax</span></code> loaders and <code class="docutils literal notranslate"><span class="pre">ParallaxImageData</span></code>/<code class="docutils literal notranslate"><span class="pre">ParallaxAnimationData</span></code>, and the <code class="docutils literal notranslate"><span class="pre">.asset</span></code> constructors of
+<code class="docutils literal notranslate"><span class="pre">SpriteWidget</span></code>, <code class="docutils literal notranslate"><span class="pre">SpriteAnimationWidget</span></code>, <code class="docutils literal notranslate"><span class="pre">NineTileBoxWidget</span></code> and <code class="docutils literal notranslate"><span class="pre">SpriteButton</span></code>.</p>
+<p>If you relied on a custom prefix, there is nothing to replace it with, and nothing to configure:
+just write the paths you actually want.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">prefix</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;gfx/&#39;</span><span class="p">;</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+
+<span class="c1">// After</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;gfx/player.png&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<section id="cache-keys-are-now-the-full-path">
+<h4>Cache keys are now the full path<a class="headerlink" href="#cache-keys-are-now-the-full-path" title="Link to this heading">¶</a></h4>
+<p>The path is also the key the asset is cached under, so anything that reads the cache by key needs
+the same full path:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;player.png&#39;</span><span class="p">);</span>
+
+<span class="c1">// After</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/images/player.png&#39;</span><span class="p">);</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">image</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;assets/images/player.png&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>This affects <code class="docutils literal notranslate"><span class="pre">Images.fromCache</span></code>, <code class="docutils literal notranslate"><span class="pre">Images.containsKey</span></code>, <code class="docutils literal notranslate"><span class="pre">Images.clear</span></code>, <code class="docutils literal notranslate"><span class="pre">Images.keys</span></code>,
+<code class="docutils literal notranslate"><span class="pre">AssetsCache.fromCache</span></code> and <code class="docutils literal notranslate"><span class="pre">AssetsCache.clear</span></code>. It also affects <code class="docutils literal notranslate"><span class="pre">SpriteBatch</span></code>, whose internal
+<code class="docutils literal notranslate"><span class="pre">imageKey</span></code> is derived from the path you loaded with.</p>
+<p>One consequence is a bug fix: <code class="docutils literal notranslate"><span class="pre">Images.load</span></code> now includes the package in the cache key, matching what
+<code class="docutils literal notranslate"><span class="pre">AssetsCache</span></code> already did. Previously, loading the same filename from two different packages
+collided on one key and the second load silently returned the first package’s image.</p>
+</section>
+<section id="loadallimages-and-loadallfrompattern-require-a-directory">
+<h4><code class="docutils literal notranslate"><span class="pre">loadAllImages</span></code> and <code class="docutils literal notranslate"><span class="pre">loadAllFromPattern</span></code> require a directory<a class="headerlink" href="#loadallimages-and-loadallfrompattern-require-a-directory" title="Link to this heading">¶</a></h4>
+<p>These two methods used the prefix both to filter the asset manifest and to strip it back off the
+resulting keys. They now take a required <code class="docutils literal notranslate"><span class="pre">directory</span></code> argument instead, and cache entries under their
+full manifest path. Pass an empty string to scan the whole bundle.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">loadAllImages</span><span class="p">();</span>
+
+<span class="c1">// After</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">Flame</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">loadAllImages</span><span class="p">(</span><span class="nl">directory:</span><span class="w"> </span><span class="s1">&#39;assets/images/&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="flame-audio">
+<h4><code class="docutils literal notranslate"><span class="pre">flame_audio</span></code><a class="headerlink" href="#flame-audio" title="Link to this heading">¶</a></h4>
+<p>The global <code class="docutils literal notranslate"><span class="pre">AudioCache</span></code> is now created with an empty prefix, so audio paths are full paths too.
+<code class="docutils literal notranslate"><span class="pre">FlameAudio.updatePrefix()</span></code> has been removed, as there is no longer a prefix to update.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="n">FlameAudio</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span>
+<span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;music/theme.mp3&#39;</span><span class="p">);</span>
+
+<span class="c1">// After</span>
+<span class="n">FlameAudio</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;assets/audio/explosion.mp3&#39;</span><span class="p">);</span>
+<span class="n">FlameAudio</span><span class="p">.</span><span class="n">bgm</span><span class="p">.</span><span class="n">play</span><span class="p">(</span><span class="s1">&#39;assets/audio/music/theme.mp3&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="flame-tiled">
+<h4><code class="docutils literal notranslate"><span class="pre">flame_tiled</span></code><a class="headerlink" href="#flame-tiled" title="Link to this heading">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">prefix</span></code> argument is gone from <code class="docutils literal notranslate"><span class="pre">TiledComponent.load</span></code>, <code class="docutils literal notranslate"><span class="pre">RenderableTiledMap.fromFile</span></code>,
+<code class="docutils literal notranslate"><span class="pre">RenderableTiledMap.fromString</span></code> and <code class="docutils literal notranslate"><span class="pre">FlameTsxProvider.parse</span></code>. The map’s file name is now a full
+path, and the assertion that it must not contain path separators has been removed.</p>
+<p>External <code class="docutils literal notranslate"><span class="pre">.tsx</span></code> tilesets are resolved relative to the map’s own directory, derived from that path.
+<code class="docutils literal notranslate"><span class="pre">RenderableTiledMap.fromString</span></code> has no path to derive from, so its <code class="docutils literal notranslate"><span class="pre">prefix</span></code> argument became
+<code class="docutils literal notranslate"><span class="pre">tsxDirectory</span></code>.</p>
+<p>Watch out for these two, since they change behavior without failing to compile:
+<code class="docutils literal notranslate"><span class="pre">RenderableTiledMap.fromString</span></code>’s <code class="docutils literal notranslate"><span class="pre">tsxDirectory</span></code> and <code class="docutils literal notranslate"><span class="pre">FlameTsxProvider.parse</span></code>’s third argument both
+default to <code class="docutils literal notranslate"><span class="pre">''</span></code> now, where the old <code class="docutils literal notranslate"><span class="pre">prefix</span></code> defaulted to <code class="docutils literal notranslate"><span class="pre">assets/tiles/</span></code>. If you call either
+directly and rely on that default, pass the directory explicitly.</p>
+<p>Tileset and image-layer sources are resolved against a new <code class="docutils literal notranslate"><span class="pre">imagesDirectory</span></code> argument, which
+defaults to <code class="docutils literal notranslate"><span class="pre">assets/images/</span></code> and so preserves the previous behavior.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;map.tmx&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">));</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span>
+<span class="w">  </span><span class="s1">&#39;map.tmx&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span>
+<span class="w">  </span><span class="nl">prefix:</span><span class="w"> </span><span class="s1">&#39;assets/maps/&#39;</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="c1">// After</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/tiles/map.tmx&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">));</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;assets/maps/map.tmx&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>Note that <code class="docutils literal notranslate"><span class="pre">TiledAtlas</span></code> cache keys are now scoped by <code class="docutils literal notranslate"><span class="pre">imagesDirectory</span></code>, so a key that was
+<code class="docutils literal notranslate"><span class="pre">tiles.png</span></code> is now <code class="docutils literal notranslate"><span class="pre">assets/images/tiles.png</span></code>.</p>
+</section>
+<section id="flame-texturepacker">
+<h4><code class="docutils literal notranslate"><span class="pre">flame_texturepacker</span></code><a class="headerlink" href="#flame-texturepacker" title="Link to this heading">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">assetsPrefix</span></code> argument is gone from <code class="docutils literal notranslate"><span class="pre">atlasFromAssets</span></code>, <code class="docutils literal notranslate"><span class="pre">TexturePackerAtlas.load</span></code> and
+<code class="docutils literal notranslate"><span class="pre">TexturePackerAtlas.loadAtlas</span></code>. The atlas path is a full path, and page textures listed inside the
+atlas are resolved relative to the atlas’s own directory.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">atlasFromAssets</span><span class="p">(</span><span class="s1">&#39;atlas_map.atlas&#39;</span><span class="p">);</span>
+
+<span class="c1">// After</span>
+<span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">atlasFromAssets</span><span class="p">(</span><span class="s1">&#39;assets/images/atlas_map.atlas&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="flame-sprite-fusion">
+<h4><code class="docutils literal notranslate"><span class="pre">flame_sprite_fusion</span></code><a class="headerlink" href="#flame-sprite-fusion" title="Link to this heading">¶</a></h4>
+<p>The <code class="docutils literal notranslate"><span class="pre">tilemapPrefix</span></code> argument is gone from <code class="docutils literal notranslate"><span class="pre">SpriteFusionTilemapComponent.load</span></code>. Both <code class="docutils literal notranslate"><span class="pre">mapJsonFile</span></code>
+and <code class="docutils literal notranslate"><span class="pre">spriteSheetFile</span></code> are now full paths.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">SpriteFusionTilemapComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">mapJsonFile:</span><span class="w"> </span><span class="s1">&#39;map.json&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">spriteSheetFile:</span><span class="w"> </span><span class="s1">&#39;spritesheet.png&#39;</span><span class="p">,</span>
+<span class="p">);</span>
+
+<span class="c1">// After</span>
+<span class="kd">await</span><span class="w"> </span><span class="n">SpriteFusionTilemapComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">mapJsonFile:</span><span class="w"> </span><span class="s1">&#39;assets/tiles/map.json&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="nl">spriteSheetFile:</span><span class="w"> </span><span class="s1">&#39;assets/images/spritesheet.png&#39;</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+</section>
+</section>
 <section id="verticaldragdetector-and-horizontaldragdetector-removed">
 <h3><code class="docutils literal notranslate"><span class="pre">VerticalDragDetector</span></code> and <code class="docutils literal notranslate"><span class="pre">HorizontalDragDetector</span></code> removed<a class="headerlink" href="#verticaldragdetector-and-horizontaldragdetector-removed" title="Link to this heading">¶</a></h3>
 <p>Both game-level mixins have been removed, with no direct replacement in Flame.</p>
@@ -942,6 +1080,13 @@ other boolean properties in Flame. The behavior is unchanged; only the name is d
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#migrating-from-v1-38-0-to-v2-0-0' class='list-group-item level-1'>Migrating from v1.38.0 to v2.0.0</a>
+  <a href='#asset-prefix-removed' class='list-group-item level-2'>Asset prefix removed</a>
+  <a href='#cache-keys-are-now-the-full-path' class='list-group-item level-3'>Cache keys are now the full path</a>
+  <a href='#loadallimages-and-loadallfrompattern-require-a-directory' class='list-group-item level-3'>loadAllImages and loadAllFromPattern require a directory</a>
+  <a href='#flame-audio' class='list-group-item level-3'>flame_audio</a>
+  <a href='#flame-tiled' class='list-group-item level-3'>flame_tiled</a>
+  <a href='#flame-texturepacker' class='list-group-item level-3'>flame_texturepacker</a>
+  <a href='#flame-sprite-fusion' class='list-group-item level-3'>flame_sprite_fusion</a>
   <a href='#verticaldragdetector-and-horizontaldragdetector-removed' class='list-group-item level-2'>VerticalDragDetector and HorizontalDragDetector removed</a>
   <a href='#forcepressdetector-removed' class='list-group-item level-2'>ForcePressDetector removed</a>
   <a href='#deprecated-tap-and-long-press-game-detectors-removed' class='list-group-item level-2'>Deprecated tap and long press game detectors removed</a>

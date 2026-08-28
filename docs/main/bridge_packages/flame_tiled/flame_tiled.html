@@ -375,7 +375,7 @@ TMX (XML) files and accessing the tiles, objects, and everything in there.</p>
 <li><p>Create a <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code> and add it to the component tree as follows:</p></li>
 </ol>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span>
-<span class="w">  </span><span class="s1">&#39;my_map.tmx&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;assets/tiles/my_map.tmx&#39;</span><span class="p">,</span>
 <span class="w">  </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span>
 <span class="p">);</span>
 
@@ -445,7 +445,7 @@ passing in the <code class="docutils literal notranslate"><span class="pre">atla
 <p>NOTE: This is not recommended as such huge sizes might not work with all hardware. Instead consider
 resizing the original tileset images so that when packed they fit with the limits.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span>
-<span class="w">  </span><span class="s1">&#39;my_map.tmx&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;assets/tiles/my_map.tmx&#39;</span><span class="p">,</span>
 <span class="w">  </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span>
 <span class="w">  </span><span class="nl">atlasMaxX:</span><span class="w"> </span><span class="m">9216</span><span class="p">,</span>
 <span class="w">  </span><span class="nl">atlasMaxY:</span><span class="w"> </span><span class="m">9216</span><span class="p">,</span>
@@ -467,7 +467,7 @@ be a drop in performance. If you want to ignore any flips in your tilemap you ca
 <p><strong>Note</strong>: A large texture in this context means one with multiple tilesets (or a huge tileset)
 where the sum of their dimensions are in the thousands.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TiledComponent</span><span class="p">.</span><span class="n">load</span><span class="p">(</span>
-<span class="w">  </span><span class="s1">&#39;my_map.tmx&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;assets/tiles/my_map.tmx&#39;</span><span class="p">,</span>
 <span class="w">  </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span>
 <span class="w">  </span><span class="nl">ignoreFlip:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
 <span class="p">);</span>

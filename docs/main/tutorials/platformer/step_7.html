@@ -533,13 +533,13 @@ overlay and also the call to <code class="docutils literal notranslate"><span cl
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="nd">@override</span>
 <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span>
-<span class="w">      </span><span class="s1">&#39;block.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;ember.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;ground.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;heart_half.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;heart.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;star.png&#39;</span><span class="p">,</span>
-<span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/block.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/ember.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/ground.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/heart_half.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/heart.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/star.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/water_enemy.png&#39;</span><span class="p">,</span>
 <span class="w">  </span><span class="p">]);</span>
 <span class="w">  </span>
 <span class="w">  </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
@@ -690,7 +690,7 @@ actors/ember.dart</div>
 <span class="linenos"> 30</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos"> 31</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 32</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span>
-<span class="linenos"> 33</span><span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;ember.png&#39;</span><span class="p">),</span>
+<span class="linenos"> 33</span><span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;assets/images/ember.png&#39;</span><span class="p">),</span>
 <span class="linenos"> 34</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
 <span class="linenos"> 35</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
 <span class="linenos"> 36</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span>
@@ -854,7 +854,7 @@ actors/water_enemy.dart</div>
 <span class="linenos">19</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">20</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">21</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span>
-<span class="linenos">22</span><span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">),</span>
+<span class="linenos">22</span><span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;assets/images/water_enemy.png&#39;</span><span class="p">),</span>
 <span class="linenos">23</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
 <span class="linenos">24</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
 <span class="linenos">25</span><span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span>
@@ -922,13 +922,13 @@ ember_quest.dart</div>
 <span class="linenos"> 28</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 29</span><span class="w">    </span><span class="c1">//debugMode = true; // Uncomment to see the bounding boxes</span>
 <span class="linenos"> 30</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="n">images</span><span class="p">.</span><span class="n">loadAll</span><span class="p">([</span>
-<span class="linenos"> 31</span><span class="w">      </span><span class="s1">&#39;block.png&#39;</span><span class="p">,</span>
-<span class="linenos"> 32</span><span class="w">      </span><span class="s1">&#39;ember.png&#39;</span><span class="p">,</span>
-<span class="linenos"> 33</span><span class="w">      </span><span class="s1">&#39;ground.png&#39;</span><span class="p">,</span>
-<span class="linenos"> 34</span><span class="w">      </span><span class="s1">&#39;heart_half.png&#39;</span><span class="p">,</span>
-<span class="linenos"> 35</span><span class="w">      </span><span class="s1">&#39;heart.png&#39;</span><span class="p">,</span>
-<span class="linenos"> 36</span><span class="w">      </span><span class="s1">&#39;star.png&#39;</span><span class="p">,</span>
-<span class="linenos"> 37</span><span class="w">      </span><span class="s1">&#39;water_enemy.png&#39;</span><span class="p">,</span>
+<span class="linenos"> 31</span><span class="w">      </span><span class="s1">&#39;assets/images/block.png&#39;</span><span class="p">,</span>
+<span class="linenos"> 32</span><span class="w">      </span><span class="s1">&#39;assets/images/ember.png&#39;</span><span class="p">,</span>
+<span class="linenos"> 33</span><span class="w">      </span><span class="s1">&#39;assets/images/ground.png&#39;</span><span class="p">,</span>
+<span class="linenos"> 34</span><span class="w">      </span><span class="s1">&#39;assets/images/heart_half.png&#39;</span><span class="p">,</span>
+<span class="linenos"> 35</span><span class="w">      </span><span class="s1">&#39;assets/images/heart.png&#39;</span><span class="p">,</span>
+<span class="linenos"> 36</span><span class="w">      </span><span class="s1">&#39;assets/images/star.png&#39;</span><span class="p">,</span>
+<span class="linenos"> 37</span><span class="w">      </span><span class="s1">&#39;assets/images/water_enemy.png&#39;</span><span class="p">,</span>
 <span class="linenos"> 38</span><span class="w">    </span><span class="p">]);</span>
 <span class="linenos"> 39</span><span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">topLeft</span><span class="p">;</span>
 <span class="linenos"> 40</span>
@@ -1170,7 +1170,7 @@ objects/ground_block.dart</div>
 <span class="linenos">22</span>
 <span class="linenos">23</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">24</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">25</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">groundImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;ground.png&#39;</span><span class="p">);</span>
+<span class="linenos">25</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">groundImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;assets/images/ground.png&#39;</span><span class="p">);</span>
 <span class="linenos">26</span><span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">groundImage</span><span class="p">);</span>
 <span class="linenos">27</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span>
 <span class="linenos">28</span><span class="w">      </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xOffset</span><span class="p">,</span>
@@ -1232,7 +1232,7 @@ objects/platform_block.dart</div>
 <span class="linenos">17</span>
 <span class="linenos">18</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">19</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">20</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">platformImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;block.png&#39;</span><span class="p">);</span>
+<span class="linenos">20</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">platformImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;assets/images/block.png&#39;</span><span class="p">);</span>
 <span class="linenos">21</span><span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">platformImage</span><span class="p">);</span>
 <span class="linenos">22</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span>
 <span class="linenos">23</span><span class="w">      </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xOffset</span><span class="p">,</span>
@@ -1275,7 +1275,7 @@ objects/star.dart</div>
 <span class="linenos">18</span>
 <span class="linenos">19</span><span class="w">  </span><span class="nd">@override</span>
 <span class="linenos">20</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">21</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">starImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;star.png&#39;</span><span class="p">);</span>
+<span class="linenos">21</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">starImage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;assets/images/star.png&#39;</span><span class="p">);</span>
 <span class="linenos">22</span><span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Sprite</span><span class="p">(</span><span class="n">starImage</span><span class="p">);</span>
 <span class="linenos">23</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span>
 <span class="linenos">24</span><span class="w">      </span><span class="p">(</span><span class="n">gridPosition</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">xOffset</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">),</span>
@@ -1405,12 +1405,12 @@ overlays/heart.dart</div>
 <span class="linenos">25</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos">26</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
 <span class="linenos">27</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">availableSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span>
-<span class="linenos">28</span><span class="w">      </span><span class="s1">&#39;heart.png&#39;</span><span class="p">,</span>
+<span class="linenos">28</span><span class="w">      </span><span class="s1">&#39;assets/images/heart.png&#39;</span><span class="p">,</span>
 <span class="linenos">29</span><span class="w">      </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span>
 <span class="linenos">30</span><span class="w">    </span><span class="p">);</span>
 <span class="linenos">31</span>
 <span class="linenos">32</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">unavailableSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span>
-<span class="linenos">33</span><span class="w">      </span><span class="s1">&#39;heart_half.png&#39;</span><span class="p">,</span>
+<span class="linenos">33</span><span class="w">      </span><span class="s1">&#39;assets/images/heart_half.png&#39;</span><span class="p">,</span>
 <span class="linenos">34</span><span class="w">      </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span>
 <span class="linenos">35</span><span class="w">    </span><span class="p">);</span>
 <span class="linenos">36</span>
@@ -1470,7 +1470,7 @@ overlays/hud.dart</div>
 <span class="linenos">32</span><span class="w">    </span><span class="p">);</span>
 <span class="linenos">33</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">_scoreTextComponent</span><span class="p">);</span>
 <span class="linenos">34</span>
-<span class="linenos">35</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">starSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;star.png&#39;</span><span class="p">);</span>
+<span class="linenos">35</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">starSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;assets/images/star.png&#39;</span><span class="p">);</span>
 <span class="linenos">36</span><span class="w">    </span><span class="n">add</span><span class="p">(</span>
 <span class="linenos">37</span><span class="w">      </span><span class="n">SpriteComponent</span><span class="p">(</span>
 <span class="linenos">38</span><span class="w">        </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">starSprite</span><span class="p">,</span>

@@ -403,7 +403,7 @@ them in your <code class="docutils literal notranslate"><span class="pre">pubspe
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// Load the texture atlas</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">atlasFromAssets</span><span class="p">(</span><span class="s1">&#39;atlas_map.atlas&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">atlasFromAssets</span><span class="p">(</span><span class="s1">&#39;assets/images/atlas_map.atlas&#39;</span><span class="p">);</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="c1">// Use the atlas to get sprites</span>
 <span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">atlas</span><span class="p">.</span><span class="n">findSpriteByName</span><span class="p">(</span><span class="s1">&#39;robot_jump&#39;</span><span class="p">)</span><span class="o">!</span><span class="p">;</span>
@@ -454,7 +454,7 @@ several methods to query and retrieve sprites.</p>
 <p>To optimize memory usage, you can specify a whitelist of sprite names to load. Only sprites whose
 names contain any of the whitelist strings will be loaded:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TexturePackerAtlas</span><span class="p">.</span><span class="n">load</span><span class="p">(</span>
-<span class="w">  </span><span class="s1">&#39;atlas_map.atlas&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;assets/images/atlas_map.atlas&#39;</span><span class="p">,</span>
 <span class="w">  </span><span class="nl">whiteList:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="s1">&#39;robot_walk&#39;</span><span class="w"> </span><span class="p">]</span>
 <span class="p">);</span>
 </pre></div>
@@ -466,19 +466,17 @@ names contain any of the whitelist strings will be loaded:</p>
 <p>TexturePacker can trim transparent pixels from sprites to save space. By default,
 <code class="docutils literal notranslate"><span class="pre">flame_texturepacker</span></code> uses the original (untrimmed) size. You can change this behavior:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">TexturePackerAtlas</span><span class="p">.</span><span class="n">load</span><span class="p">(</span>
-<span class="w">  </span><span class="s1">&#39;atlas_map.atlas&#39;</span><span class="p">,</span>
+<span class="w">  </span><span class="s1">&#39;assets/images/atlas_map.atlas&#39;</span><span class="p">,</span>
 <span class="w">  </span><span class="nl">useOriginalSize:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> </span><span class="c1">// Use the trimmed/packed size instead</span>
 <span class="p">);</span>
 </pre></div>
 </div>
 </section>
-<section id="custom-asset-prefix">
-<h3>Custom Asset Prefix<a class="headerlink" href="#custom-asset-prefix" title="Link to this heading">¶</a></h3>
-<p>If your <code class="docutils literal notranslate"><span class="pre">.atlas</span></code> data file is not stored in the default <code class="docutils literal notranslate"><span class="pre">images</span></code> directory:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">atlasFromAssets</span><span class="p">(</span>
-<span class="w">  </span><span class="s1">&#39;atlas_map.atlas&#39;</span><span class="p">,</span>
-<span class="w">  </span><span class="nl">assetsPrefix:</span><span class="w"> </span><span class="s1">&#39;custom_path&#39;</span><span class="p">,</span>
-<span class="p">);</span>
+<section id="atlas-location">
+<h3>Atlas Location<a class="headerlink" href="#atlas-location" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">.atlas</span></code> path is a full asset path, so the file can live anywhere. Page textures listed
+inside the atlas are resolved relative to the atlas’s own directory:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">atlas</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">atlasFromAssets</span><span class="p">(</span><span class="s1">&#39;assets/atlases/atlas_map.atlas&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </section>
@@ -528,7 +526,7 @@ in this <a class="reference external" href="https://www.codeandweb.com/texturepa
   <a href='#advanced-options' class='list-group-item level-1'>Advanced Options</a>
   <a href='#whitelist-filtering' class='list-group-item level-2'>Whitelist Filtering</a>
   <a href='#original-size-vs-packed-size' class='list-group-item level-2'>Original Size vs Packed Size</a>
-  <a href='#custom-asset-prefix' class='list-group-item level-2'>Custom Asset Prefix</a>
+  <a href='#atlas-location' class='list-group-item level-2'>Atlas Location</a>
   <a href='#full-example' class='list-group-item level-1'>Full Example</a>
 </div>
 

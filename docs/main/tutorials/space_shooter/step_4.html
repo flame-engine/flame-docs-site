@@ -389,7 +389,7 @@ bullet sprite for it. Right-click the image below, choose “Save as…”, and 
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
 
 <span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
-<span class="w">      </span><span class="s1">&#39;bullet.png&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="s1">&#39;assets/images/bullet.png&#39;</span><span class="p">,</span>
 <span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
 <span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
 <span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="p">.</span><span class="m">2</span><span class="p">,</span>
@@ -561,9 +561,9 @@ main.dart</div>
 <span class="linenos"> 16</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 17</span><span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">parallax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">loadParallaxComponent</span><span class="p">(</span>
 <span class="linenos"> 18</span><span class="w">      </span><span class="p">[</span>
-<span class="linenos"> 19</span><span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;stars_0.png&#39;</span><span class="p">),</span>
-<span class="linenos"> 20</span><span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;stars_1.png&#39;</span><span class="p">),</span>
-<span class="linenos"> 21</span><span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;stars_2.png&#39;</span><span class="p">),</span>
+<span class="linenos"> 19</span><span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;assets/images/stars_0.png&#39;</span><span class="p">),</span>
+<span class="linenos"> 20</span><span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;assets/images/stars_1.png&#39;</span><span class="p">),</span>
+<span class="linenos"> 21</span><span class="w">        </span><span class="n">ParallaxImageData</span><span class="p">(</span><span class="s1">&#39;assets/images/stars_2.png&#39;</span><span class="p">),</span>
 <span class="linenos"> 22</span><span class="w">      </span><span class="p">],</span>
 <span class="linenos"> 23</span><span class="w">      </span><span class="nl">baseVelocity:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="m">5</span><span class="p">),</span>
 <span class="linenos"> 24</span><span class="w">      </span><span class="nl">repeat:</span><span class="w"> </span><span class="n">ImageRepeat</span><span class="p">.</span><span class="n">repeat</span><span class="p">,</span>
@@ -606,7 +606,7 @@ main.dart</div>
 <span class="linenos"> 61</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
 <span class="linenos"> 62</span>
 <span class="linenos"> 63</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
-<span class="linenos"> 64</span><span class="w">      </span><span class="s1">&#39;player.png&#39;</span><span class="p">,</span>
+<span class="linenos"> 64</span><span class="w">      </span><span class="s1">&#39;assets/images/player.png&#39;</span><span class="p">,</span>
 <span class="linenos"> 65</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
 <span class="linenos"> 66</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
 <span class="linenos"> 67</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
@@ -662,7 +662,7 @@ main.dart</div>
 <span class="linenos">117</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
 <span class="linenos">118</span>
 <span class="linenos">119</span><span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSpriteAnimation</span><span class="p">(</span>
-<span class="linenos">120</span><span class="w">      </span><span class="s1">&#39;bullet.png&#39;</span><span class="p">,</span>
+<span class="linenos">120</span><span class="w">      </span><span class="s1">&#39;assets/images/bullet.png&#39;</span><span class="p">,</span>
 <span class="linenos">121</span><span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
 <span class="linenos">122</span><span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
 <span class="linenos">123</span><span class="w">        </span><span class="nl">stepTime:</span><span class="w"> </span><span class="m">0.2</span><span class="p">,</span>
