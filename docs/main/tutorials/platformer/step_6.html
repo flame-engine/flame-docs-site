@@ -388,7 +388,7 @@ the game. Add the following code:</p>
 <span class="p">}</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">HeartHealthComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteGroupComponent</span><span class="o">&lt;</span><span class="n">HeartState</span><span class="o">&gt;</span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">heartNumber</span><span class="p">;</span>
 
 <span class="w">  </span><span class="n">HeartHealthComponent</span><span class="p">({</span>
@@ -404,12 +404,12 @@ the game. Add the following code:</p>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">availableSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">availableSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span>
 <span class="w">      </span><span class="s1">&#39;assets/images/heart.png&#39;</span><span class="p">,</span>
 <span class="w">      </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
 
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">unavailableSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">unavailableSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span>
 <span class="w">      </span><span class="s1">&#39;assets/images/heart_half.png&#39;</span><span class="p">,</span>
 <span class="w">      </span><span class="nl">srcSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
@@ -424,7 +424,7 @@ the game. Add the following code:</p>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">health</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">heartNumber</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">gameRef</span><span class="p">.</span><span class="n">health</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">heartNumber</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HeartState</span><span class="p">.</span><span class="n">unavailable</span><span class="p">;</span>
 <span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">else</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="n">current</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HeartState</span><span class="p">.</span><span class="n">available</span><span class="p">;</span>
@@ -437,8 +437,8 @@ the game. Add the following code:</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">HeartHealthComponent</span></code> is just a <a class="reference internal" href="../../flame/components/sprite_components.html#spritegroupcomponent"><span class="std std-ref">SpriteGroupComponent</span></a>
 that uses the heart images that were created early on. The unique thing that is being done, is when
 the component is created, it requires a <code class="docutils literal notranslate"><span class="pre">heartNumber</span></code>, so in the <code class="docutils literal notranslate"><span class="pre">update</span></code> method, we check to see if
-the <code class="docutils literal notranslate"><span class="pre">game.health</span></code> is less than the <code class="docutils literal notranslate"><span class="pre">heartNumber</span></code> and if so, change the state of the component to
-unavailable.</p>
+the <code class="docutils literal notranslate"><span class="pre">gameRef.health</span></code> is less than the <code class="docutils literal notranslate"><span class="pre">heartNumber</span></code> and if so, change the state of the component
+to unavailable.</p>
 <p>To put this all together, create <code class="docutils literal notranslate"><span class="pre">hud.dart</span></code> in the same folder and add the following code:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
@@ -446,7 +446,7 @@ unavailable.</p>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;../ember_quest.dart&#39;</span><span class="p">;</span>
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;heart.dart&#39;</span><span class="p">;</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">Hud</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">Hud</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">Hud</span><span class="p">({</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
 <span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">size</span><span class="p">,</span>
@@ -462,7 +462,7 @@ unavailable.</p>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">_scoreTextComponent</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">TextComponent</span><span class="p">(</span>
-<span class="w">      </span><span class="nl">text:</span><span class="w"> </span><span class="s1">&#39;</span><span class="si">${</span><span class="n">game</span><span class="p">.</span><span class="n">starsCollected</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
+<span class="w">      </span><span class="nl">text:</span><span class="w"> </span><span class="s1">&#39;</span><span class="si">${</span><span class="n">gameRef</span><span class="p">.</span><span class="n">starsCollected</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">,</span>
 <span class="w">      </span><span class="nl">textRenderer:</span><span class="w"> </span><span class="n">TextPaint</span><span class="p">(</span>
 <span class="w">        </span><span class="nl">style:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">TextStyle</span><span class="p">(</span>
 <span class="w">          </span><span class="nl">fontSize:</span><span class="w"> </span><span class="m">32</span><span class="p">,</span>
@@ -470,21 +470,21 @@ unavailable.</p>
 <span class="w">        </span><span class="p">),</span>
 <span class="w">      </span><span class="p">),</span>
 <span class="w">      </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">60</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
+<span class="w">      </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">gameRef</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">60</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">_scoreTextComponent</span><span class="p">);</span>
 
-<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">starSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;assets/images/star.png&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">starSprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;assets/images/star.png&#39;</span><span class="p">);</span>
 <span class="w">    </span><span class="n">add</span><span class="p">(</span>
 <span class="w">      </span><span class="n">SpriteComponent</span><span class="p">(</span>
 <span class="w">        </span><span class="nl">sprite:</span><span class="w"> </span><span class="n">starSprite</span><span class="p">,</span>
-<span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
+<span class="w">        </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="n">gameRef</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">20</span><span class="p">),</span>
 <span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">32</span><span class="p">),</span>
 <span class="w">        </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
 <span class="w">      </span><span class="p">),</span>
 <span class="w">    </span><span class="p">);</span>
 
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">health</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kd">var</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">health</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">++</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">      </span><span class="kd">final</span><span class="w"> </span><span class="n">positionX</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">40</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="p">;</span>
 <span class="w">      </span><span class="n">add</span><span class="p">(</span>
 <span class="w">        </span><span class="n">HeartHealthComponent</span><span class="p">(</span>
@@ -498,13 +498,13 @@ unavailable.</p>
 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">update</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">_scoreTextComponent</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;</span><span class="si">${</span><span class="n">game</span><span class="p">.</span><span class="n">starsCollected</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">;</span>
+<span class="w">    </span><span class="n">_scoreTextComponent</span><span class="p">.</span><span class="n">text</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;</span><span class="si">${</span><span class="n">gameRef</span><span class="p">.</span><span class="n">starsCollected</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method, you can see where we loop from 1 to the <code class="docutils literal notranslate"><span class="pre">game.health</span></code> amount, to create
-the number of hearts necessary. The last step is to add the hud to the game.</p>
+<p>In the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method, you can see where we loop from 1 to the <code class="docutils literal notranslate"><span class="pre">gameRef.health</span></code> amount, to
+create the number of hearts necessary. The last step is to add the hud to the game.</p>
 <p>Go to <code class="docutils literal notranslate"><span class="pre">lib/ember_quest.dart</span></code> and add the following code in the <code class="docutils literal notranslate"><span class="pre">initializeGame</span></code> method:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">camera</span><span class="p">.</span><span class="n">viewport</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">Hud</span><span class="p">());</span>
 </pre></div>
@@ -523,13 +523,13 @@ to open <code class="docutils literal notranslate"><span class="pre">lib/actors/
 <p><code class="docutils literal notranslate"><span class="pre">onCollision</span></code></p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">other</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="n">Star</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">other</span><span class="p">.</span><span class="n">removeFromParent</span><span class="p">();</span>
-<span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">starsCollected</span><span class="o">++</span><span class="p">;</span>
+<span class="w">  </span><span class="n">gameRef</span><span class="p">.</span><span class="n">starsCollected</span><span class="o">++</span><span class="p">;</span>
 <span class="p">}</span>
 </pre></div>
 </div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">hit</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">hitByEnemy</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">game</span><span class="p">.</span><span class="n">health</span><span class="o">--</span><span class="p">;</span>
+<span class="w">    </span><span class="n">gameRef</span><span class="p">.</span><span class="n">health</span><span class="o">--</span><span class="p">;</span>
 <span class="w">    </span><span class="n">hitByEnemy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="w">  </span><span class="n">add</span><span class="p">(</span>

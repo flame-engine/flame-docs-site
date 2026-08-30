@@ -369,15 +369,13 @@
 <h1>Controlling the player and adding some graphics<a class="headerlink" href="#controlling-the-player-and-adding-some-graphics" title="Link to this heading">¶</a></h1>
 <p>Now that we have the base for our game and a component for our player, let’s add some interactivity
 to it. We can begin by allowing the player to be controlled by mouse/touch gestures.</p>
-<p>There are a couple of ways of doing that in Flame. For this tutorial, we will do that by using one
-of Flame’s gesture detectors: <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code>.</p>
-<p>This detector will make our game class receive pan (or drag) events. To do so, we just need to add
-the <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> mixin to our game class and override its listener methods; in our case, we will
-use the <code class="docutils literal notranslate"><span class="pre">onPanUpdate</span></code> method. The updated code will look like the following:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
-<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
+<p>Flame handles input with mixins that you add to a component, one for each kind of gesture. Dragging
+is <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code>, and since <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is itself a component we can add it straight to our game
+class and override its listener methods; in our case, we will use the <code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code> method. The
+updated code will look like the following:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
 
 <span class="w">  </span><span class="nd">@override</span>
@@ -386,13 +384,13 @@ use the <code class="docutils literal notranslate"><span class="pre">onPanUpdate
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>At this point, our game should be receiving all the pan update inputs, but we are not doing anything
-with these events.</p>
+<p>At this point, our game should be receiving all the drag update inputs, but we are not doing
+anything with these events.</p>
 <p>We now need a way to move our player. That can be achieved by simply saving our <code class="docutils literal notranslate"><span class="pre">Player</span></code> component
 to a variable inside our game class, adding a method <code class="docutils literal notranslate"><span class="pre">move</span></code> to our <code class="docutils literal notranslate"><span class="pre">Player</span></code>, and just connect
 them:</p>
@@ -409,7 +407,7 @@ them:</p>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
 
 <span class="w">  </span><span class="nd">@override</span>
@@ -426,8 +424,8 @@ them:</p>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">localDelta</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -452,7 +450,7 @@ features into a component.</p>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
 
 <span class="w">  </span><span class="nd">@override</span>
@@ -472,8 +470,8 @@ features into a component.</p>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">localDelta</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -495,10 +493,10 @@ become a mess quite fast.</p>
 initializations. But before we implement our player’s load method, note that we use an attribute and
 the <code class="docutils literal notranslate"><span class="pre">loadSprite</span></code> method from the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> class.</p>
 <p>That is not a problem! Every time our component needs to access things from its game class, we can
-mix our component with the <code class="docutils literal notranslate"><span class="pre">HasGameReference</span></code> mixin; that will add a new variable to our component called
-<code class="docutils literal notranslate"><span class="pre">game</span></code> which will point to the game instance where the component is running. Now, let’s refactor
+mix our component with the <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code> mixin; that will add a new variable to our component called
+<code class="docutils literal notranslate"><span class="pre">gameRef</span></code> which will point to the game instance where the component is running. Now, let’s refactor
 our game a little bit:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 
 <span class="w">  </span><span class="n">Player</span><span class="p">()</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
 <span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
@@ -509,9 +507,9 @@ our game a little bit:</p>
 <span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
 
-<span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;assets/images/player-sprite.png&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;assets/images/player-sprite.png&#39;</span><span class="p">);</span>
 
-<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -519,7 +517,7 @@ our game a little bit:</p>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 
-<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
 
 <span class="w">  </span><span class="nd">@override</span>
@@ -532,8 +530,8 @@ our game a little bit:</p>
 <span class="w">  </span><span class="p">}</span>
 
 <span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">);</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">localDelta</span><span class="p">);</span>
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </pre></div>
@@ -546,49 +544,48 @@ main.dart</div>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/events.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/input.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 6</span>
-<span class="linenos"> 7</span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos"> 8</span><span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">SpaceShooterGame</span><span class="p">()));</span>
-<span class="linenos"> 9</span><span class="p">}</span>
-<span class="linenos">10</span>
-<span class="linenos">11</span><span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">12</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
-<span class="linenos">13</span>
-<span class="linenos">14</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">15</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">16</span><span class="w">    </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Player</span><span class="p">();</span>
-<span class="linenos">17</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
-<span class="linenos">18</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">19</span>
-<span class="linenos">20</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">21</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">22</span><span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">);</span>
-<span class="linenos">23</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">24</span><span class="p">}</span>
-<span class="linenos">25</span>
-<span class="linenos">26</span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">27</span><span class="w">  </span><span class="n">Player</span><span class="p">()</span>
-<span class="linenos">28</span><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
-<span class="linenos">29</span><span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
-<span class="linenos">30</span><span class="w">        </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
-<span class="linenos">31</span><span class="w">      </span><span class="p">);</span>
-<span class="linenos">32</span>
-<span class="linenos">33</span><span class="w">  </span><span class="nd">@override</span>
-<span class="linenos">34</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">35</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
-<span class="linenos">36</span>
-<span class="linenos">37</span><span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;assets/images/player-sprite.png&#39;</span><span class="p">);</span>
-<span class="linenos">38</span>
-<span class="linenos">39</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
-<span class="linenos">40</span><span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
-<span class="linenos">41</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">42</span>
-<span class="linenos">43</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="linenos">44</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
-<span class="linenos">45</span><span class="w">  </span><span class="p">}</span>
-<span class="linenos">46</span><span class="p">}</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span>
+<span class="linenos"> 6</span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos"> 7</span><span class="w">  </span><span class="n">runApp</span><span class="p">(</span><span class="n">GameWidget</span><span class="p">(</span><span class="nl">game:</span><span class="w"> </span><span class="n">SpaceShooterGame</span><span class="p">()));</span>
+<span class="linenos"> 8</span><span class="p">}</span>
+<span class="linenos"> 9</span>
+<span class="linenos">10</span><span class="kd">class</span><span class="w"> </span><span class="nc">SpaceShooterGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">11</span><span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="n">Player</span><span class="w"> </span><span class="n">player</span><span class="p">;</span>
+<span class="linenos">12</span>
+<span class="linenos">13</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">14</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">15</span><span class="w">    </span><span class="n">player</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Player</span><span class="p">();</span>
+<span class="linenos">16</span><span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
+<span class="linenos">17</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">18</span>
+<span class="linenos">19</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">20</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">21</span><span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">localDelta</span><span class="p">);</span>
+<span class="linenos">22</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">23</span><span class="p">}</span>
+<span class="linenos">24</span>
+<span class="linenos">25</span><span class="kd">class</span><span class="w"> </span><span class="nc">Player</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">SpaceShooterGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">26</span><span class="w">  </span><span class="n">Player</span><span class="p">()</span>
+<span class="linenos">27</span><span class="w">    </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span>
+<span class="linenos">28</span><span class="w">        </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">150</span><span class="p">),</span>
+<span class="linenos">29</span><span class="w">        </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="linenos">30</span><span class="w">      </span><span class="p">);</span>
+<span class="linenos">31</span>
+<span class="linenos">32</span><span class="w">  </span><span class="nd">@override</span>
+<span class="linenos">33</span><span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">34</span><span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="linenos">35</span>
+<span class="linenos">36</span><span class="w">    </span><span class="n">sprite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">loadSprite</span><span class="p">(</span><span class="s1">&#39;assets/images/player-sprite.png&#39;</span><span class="p">);</span>
+<span class="linenos">37</span>
+<span class="linenos">38</span><span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">size</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">;</span>
+<span class="linenos">39</span><span class="w">    </span><span class="n">anchor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">;</span>
+<span class="linenos">40</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">41</span>
+<span class="linenos">42</span><span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">move</span><span class="p">(</span><span class="n">Vector2</span><span class="w"> </span><span class="n">delta</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="linenos">43</span><span class="w">    </span><span class="n">position</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">delta</span><span class="p">);</span>
+<span class="linenos">44</span><span class="w">  </span><span class="p">}</span>
+<span class="linenos">45</span><span class="p">}</span>
 </pre></div>
 </div>
 </div>

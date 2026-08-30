@@ -380,7 +380,7 @@ appropriate mixins to the game class and Ember. Add the following:</p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">lib/actors/ember.dart</span></code></p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">EmberPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardHandler</span><span class="p">,</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardHandler</span><span class="p">,</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 </pre></div>
 </div>
 <p>Now we can add a new method:</p>
@@ -458,7 +458,7 @@ first thing we need to do is make the game aware that collisions are going to oc
 </div>
 <p>Next, add the <code class="docutils literal notranslate"><span class="pre">CollisionCallbacks</span></code> mixin to <code class="docutils literal notranslate"><span class="pre">lib/actors/ember.dart</span></code> like:</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">EmberPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardHandler</span><span class="p">,</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="p">,</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">KeyboardHandler</span><span class="p">,</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="p">,</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 </pre></div>
 </div>
 <p>If it did not auto-import, you will need the following:</p>
@@ -605,15 +605,15 @@ collide with an enemy, Ember should blink.</p>
 <p>This is our last task with Ember. We need to restrict Ember’s movement because as of now, Ember can
 go off-screen and we never move the map. So to implement this feature, we simply need to add the
 following to the end of our <code class="docutils literal notranslate"><span class="pre">update</span></code> method:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">gameRef</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 <span class="c1">// Prevent ember from going backwards at screen edge.</span>
 <span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="m">36</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="m">0</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="c1">// Prevent ember from going beyond half screen.</span>
-<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">position</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">64</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">size</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">horizontalDirection</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="m">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">velocity</span><span class="p">.</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-<span class="w">  </span><span class="n">game</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">moveSpeed</span><span class="p">;</span>
+<span class="w">  </span><span class="n">gameRef</span><span class="p">.</span><span class="n">objectSpeed</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="n">moveSpeed</span><span class="p">;</span>
 <span class="p">}</span>
 
 <span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">velocity</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">dt</span><span class="p">;</span>
@@ -622,7 +622,7 @@ following to the end of our <code class="docutils literal notranslate"><span cla
 </div>
 <p>If you run the game now, Ember can’t move off-screen to the left, and as Ember moves to the right,
 once they get to the middle of the screen, the rest of the objects scroll by. This is because we
-are now updating <code class="docutils literal notranslate"><span class="pre">game.objectSpeed</span></code> which we established early on in the series. Additionally,
+are now updating <code class="docutils literal notranslate"><span class="pre">gameRef.objectSpeed</span></code> which we established early on in the series. Additionally,
 you will see the next random segment be generated and added to the level based on the work we did in
 Ground Block.</p>
 <div class="admonition note">

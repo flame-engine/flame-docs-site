@@ -559,7 +559,7 @@ save all the other <code class="docutils literal notranslate"><span class="pre">
 </div>
 <p>Finally, one adds a listener to the <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> method of the <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> to call a function
 which will resolve how the collisions should be dealt with:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">game</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="p">)</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="n">gameRef</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">HasCollisionDetection</span><span class="p">)</span>
 <span class="w">    </span><span class="p">.</span><span class="n">collisionDetection</span>
 <span class="w">    </span><span class="p">.</span><span class="n">collisionsCompletedNotifier</span>
 <span class="w">    </span><span class="p">.</span><span class="n">addListener</span><span class="p">(()</span><span class="w"> </span><span class="p">{</span>
@@ -840,7 +840,7 @@ But in some use cases, it might be interesting to find hits only within a certai
 range. For such cases, an optional <code class="docutils literal notranslate"><span class="pre">maxDistance</span></code> can be provided.</p>
 <p>To use the ray casting functionality you have to have the <code class="docutils literal notranslate"><span class="pre">HasCollisionDetection</span></code> mixin on your
 game. After you have added that, you can call <code class="docutils literal notranslate"><span class="pre">collisionDetection.raycast(...)</span></code> on your game class,
-or with the <code class="docutils literal notranslate"><span class="pre">HasGameReference</span></code> mixin from other components as well.</p>
+or with the <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code> mixin from other components as well.</p>
 <p>Example:</p>
 <div class="flutter-app-infobox docutils container">
 <iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?ray_cast" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-ray_cast">

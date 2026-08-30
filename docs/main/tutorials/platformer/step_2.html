@@ -487,7 +487,7 @@ organized by how they will be involved in my game. So for Ember, let’s create 
 <span class="k">import</span><span class="w"> </span><span class="s1">&#39;../ember_quest.dart&#39;</span><span class="p">;</span>
 
 <span class="kd">class</span><span class="w"> </span><span class="nc">EmberPlayer</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteAnimationComponent</span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">EmberQuestGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">EmberPlayer</span><span class="p">({</span>
 <span class="w">    </span><span class="kd">required</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">position</span><span class="p">,</span>
 <span class="w">  </span><span class="p">})</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="k">super</span><span class="p">(</span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">64</span><span class="p">),</span><span class="w"> </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">);</span>
@@ -495,7 +495,7 @@ organized by how they will be involved in my game. So for Ember, let’s create 
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="n">animation</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SpriteAnimation</span><span class="p">.</span><span class="n">fromFrameData</span><span class="p">(</span>
-<span class="w">      </span><span class="n">game</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;assets/images/ember.png&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="n">gameRef</span><span class="p">.</span><span class="n">images</span><span class="p">.</span><span class="n">fromCache</span><span class="p">(</span><span class="s1">&#39;assets/images/ember.png&#39;</span><span class="p">),</span>
 <span class="w">      </span><span class="n">SpriteAnimationData</span><span class="p">.</span><span class="n">sequenced</span><span class="p">(</span>
 <span class="w">        </span><span class="nl">amount:</span><span class="w"> </span><span class="m">4</span><span class="p">,</span>
 <span class="w">        </span><span class="nl">textureSize:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">.</span><span class="n">all</span><span class="p">(</span><span class="m">16</span><span class="p">),</span>
@@ -508,8 +508,8 @@ organized by how they will be involved in my game. So for Ember, let’s create 
 </div>
 <p>This file uses the <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code> mixin which allows us to reach back to <code class="docutils literal notranslate"><span class="pre">ember_quest.dart</span></code> and
 leverage any of the variables or methods that are defined in the game class. You can see this in
-use with the line <code class="docutils literal notranslate"><span class="pre">game.images.fromCache('assets/images/ember.png')</span></code>. Earlier, we loaded all the
-files into cache, so to use that file now, we call <code class="docutils literal notranslate"><span class="pre">fromCache</span></code> so it can be leveraged by the
+use with the line <code class="docutils literal notranslate"><span class="pre">gameRef.images.fromCache('assets/images/ember.png')</span></code>. Earlier, we loaded all
+the files into cache, so to use that file now, we call <code class="docutils literal notranslate"><span class="pre">fromCache</span></code> so it can be leveraged by the
 <code class="docutils literal notranslate"><span class="pre">SpriteAnimation</span></code>.
 The <code class="docutils literal notranslate"><span class="pre">EmberPlayer</span></code> class is extending a <code class="docutils literal notranslate"><span class="pre">SpriteAnimationComponent</span></code> which allows us to define
 animation as well as position it accordingly in our game world. When we construct this class, the
