@@ -587,6 +587,26 @@ user taps the component we change its priority to 2:</p>
 </pre></div>
 </div>
 </section>
+<section id="custom-update-traversal-and-pausing">
+<h3>Custom update traversal and pausing<a class="headerlink" href="#custom-update-traversal-and-pausing" title="Link to this heading">¶</a></h3>
+<p>The engine drives the update pass through a flattened traversal list owned by the game, and
+<code class="docutils literal notranslate"><span class="pre">updateTree</span></code> itself cannot be overridden. Components that need to control how their subtree is
+updated (changing the effective <code class="docutils literal notranslate"><span class="pre">dt</span></code>, skipping children, or updating them manually) mix in
+<code class="docutils literal notranslate"><span class="pre">CustomTraversal</span></code> and override its <code class="docutils literal notranslate"><span class="pre">updateSubtree</span></code> method:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">SlowMotionArea</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CustomTraversal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">updateSubtree</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">updateSubtree</span><span class="p">(</span><span class="n">dt</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The engine treats every <code class="docutils literal notranslate"><span class="pre">CustomTraversal</span></code> component as a traversal barrier: it appears in the
+flattened list itself and its <code class="docutils literal notranslate"><span class="pre">updateSubtree</span></code> drives its subtree. Mixins that build on it (like
+<code class="docutils literal notranslate"><span class="pre">HasTimeScale</span></code>) are declared <code class="docutils literal notranslate"><span class="pre">on</span> <span class="pre">CustomTraversal</span></code> and chain via <code class="docutils literal notranslate"><span class="pre">super.updateSubtree</span></code>, so their
+users mix in <code class="docutils literal notranslate"><span class="pre">CustomTraversal</span></code> first: <code class="docutils literal notranslate"><span class="pre">with</span> <span class="pre">CustomTraversal,</span> <span class="pre">HasTimeScale</span></code>. <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> already
+mixes it in, so <code class="docutils literal notranslate"><span class="pre">extends</span> <span class="pre">FlameGame</span> <span class="pre">with</span> <span class="pre">HasTimeScale</span></code> needs nothing extra.</p>
+<p>To pause a subtree, set a <code class="docutils literal notranslate"><span class="pre">HasTimeScale</span></code> time scale to <code class="docutils literal notranslate"><span class="pre">0</span></code> (or call <code class="docutils literal notranslate"><span class="pre">pause()</span></code>): the update pass
+then skips the component and all of its descendants until the time scale is raised again.</p>
+</section>
 <section id="composability-of-components">
 <h3>Composability of components<a class="headerlink" href="#composability-of-components" title="Link to this heading">¶</a></h3>
 <p>Sometimes it is useful to wrap other components inside of your component. For example by grouping
@@ -969,6 +989,7 @@ check the <a class="reference internal" href="../effects/effects.html"><span cla
   <a href='#component' class='list-group-item level-1'>Component</a>
   <a href='#component-lifecycle' class='list-group-item level-2'>Component lifecycle</a>
   <a href='#priority' class='list-group-item level-2'>Priority</a>
+  <a href='#custom-update-traversal-and-pausing' class='list-group-item level-2'>Custom update traversal and pausing</a>
   <a href='#composability-of-components' class='list-group-item level-2'>Composability of components</a>
   <a href='#access-to-the-world-from-a-component' class='list-group-item level-2'>Access to the World from a Component</a>
   <a href='#ensuring-a-component-has-a-given-parent' class='list-group-item level-2'>Ensuring a component has a given parent</a>

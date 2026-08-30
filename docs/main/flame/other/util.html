@@ -513,7 +513,10 @@ to any Flame <code class="docutils literal notranslate"><span class="pre">Compon
 <code class="docutils literal notranslate"><span class="pre">timeScale</span></code> is <code class="docutils literal notranslate"><span class="pre">1</span></code>, implying in-game time of the component is running at the same speed as real life
 time. Setting it to <code class="docutils literal notranslate"><span class="pre">2</span></code> will make the component tick twice as fast and setting it to <code class="docutils literal notranslate"><span class="pre">0.5</span></code> will make
 it tick at half the speed as compared to real life time. This mixin also provides <code class="docutils literal notranslate"><span class="pre">pause</span></code> and <code class="docutils literal notranslate"><span class="pre">resume</span></code>
-methods, which can be used instead of manually setting the timeScale to 0 and 1 respectively.</p>
+methods, which can be used instead of manually setting the timeScale to 0 and 1 respectively. A
+<code class="docutils literal notranslate"><span class="pre">timeScale</span></code> of <code class="docutils literal notranslate"><span class="pre">0</span></code> stops the update pass for the component and its whole subtree: <code class="docutils literal notranslate"><span class="pre">update</span></code> is not
+called on any of them until the time scale is changed again. Components added to a paused game are
+still mounted, since lifecycle events are processed independently of the time scale.</p>
 <p>Since <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is a <code class="docutils literal notranslate"><span class="pre">Component</span></code> too, this mixin can be attached to the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> as well. Doing
 so will allow controlling time scale for all the component of the game from a single place.</p>
 <div class="admonition note">

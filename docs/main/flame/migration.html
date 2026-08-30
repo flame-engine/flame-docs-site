@@ -1092,6 +1092,36 @@ ordering for that parent, which gives custom orderings such as y-sort a supporte
 </pre></div>
 </div>
 </section>
+<section id="component-updatetree-is-non-virtual">
+<h3><code class="docutils literal notranslate"><span class="pre">Component.updateTree</span></code> is non-virtual<a class="headerlink" href="#component-updatetree-is-non-virtual" title="Link to this heading">¶</a></h3>
+<p>The update pass runs over a flattened traversal list owned by the game, so <code class="docutils literal notranslate"><span class="pre">updateTree</span></code> can no
+longer be overridden. If you overrode it, mix in <code class="docutils literal notranslate"><span class="pre">CustomTraversal</span></code> and override its
+<code class="docutils literal notranslate"><span class="pre">updateSubtree</span></code> instead; call <code class="docutils literal notranslate"><span class="pre">super.updateSubtree(dt)</span></code> to run the standard traversal:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">SlowMotionArea</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">updateTree</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">updateTree</span><span class="p">(</span><span class="n">dt</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">// After</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">SlowMotionArea</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CustomTraversal</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">updateSubtree</span><span class="p">(</span><span class="kt">double</span><span class="w"> </span><span class="n">dt</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">updateSubtree</span><span class="p">(</span><span class="n">dt</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">2</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">HasTimeScale</span></code> is now declared <code class="docutils literal notranslate"><span class="pre">on</span> <span class="pre">CustomTraversal</span></code>, so components other than <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> (which
+already mixes it in) must mix in <code class="docutils literal notranslate"><span class="pre">CustomTraversal</span></code> before it:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">SlowWorld</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasTimeScale</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="c1">// After</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">SlowWorld</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CustomTraversal</span><span class="p">,</span><span class="w"> </span><span class="n">HasTimeScale</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+<p>A <code class="docutils literal notranslate"><span class="pre">HasTimeScale</span></code> time scale of <code class="docutils literal notranslate"><span class="pre">0</span></code> (or <code class="docutils literal notranslate"><span class="pre">pause()</span></code>) now stops the update pass for the whole subtree
+instead of updating it with a <code class="docutils literal notranslate"><span class="pre">dt</span></code> of <code class="docutils literal notranslate"><span class="pre">0</span></code>, which is what <code class="docutils literal notranslate"><span class="pre">Route.stopTime()</span></code> relies on.</p>
+</section>
 </section>
 </section>
 
@@ -1149,6 +1179,7 @@ ordering for that parent, which gives custom orderings such as y-sort a supporte
   <a href='#game-paused-renamed-to-game-ispaused' class='list-group-item level-2'>Game.paused renamed to Game.isPaused</a>
   <a href='#children-is-now-a-componentlist-instead-of-an-orderedset' class='list-group-item level-2'>children is now a ComponentList instead of an OrderedSet</a>
   <a href='#component-childrenfactory-is-removed' class='list-group-item level-2'>Component.childrenFactory is removed</a>
+  <a href='#component-updatetree-is-non-virtual' class='list-group-item level-2'>Component.updateTree is non-virtual</a>
 </div>
 
     </div>
