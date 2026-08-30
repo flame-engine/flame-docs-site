@@ -780,10 +780,11 @@ instance, meaning that:</p>
 </section>
 <section id="querying-child-components">
 <h3>Querying child components<a class="headerlink" href="#querying-child-components" title="Link to this heading">¶</a></h3>
-<p>The children that have been added to a component live in a <code class="docutils literal notranslate"><span class="pre">QueryableOrderedSet</span></code> called
+<p>The children that have been added to a component live in a <code class="docutils literal notranslate"><span class="pre">ComponentList</span></code> called
 <code class="docutils literal notranslate"><span class="pre">children</span></code>. To query for a specific type of components in the set, the <code class="docutils literal notranslate"><span class="pre">query&lt;T&gt;()</span></code> function can be
-used. By default <code class="docutils literal notranslate"><span class="pre">strictMode</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code> in the children set, but if you set it to true, then the
-queries will have to be registered with <code class="docutils literal notranslate"><span class="pre">children.register</span></code> before a query can be used.</p>
+used. By default <code class="docutils literal notranslate"><span class="pre">strictMode</span></code> is <code class="docutils literal notranslate"><span class="pre">false</span></code> in the children list, but if you enable it (by overriding
+<code class="docutils literal notranslate"><span class="pre">createComponentList</span></code> to return a <code class="docutils literal notranslate"><span class="pre">ComponentList(strictMode:</span> <span class="pre">true)</span></code>), then the queries will have to
+be registered with <code class="docutils literal notranslate"><span class="pre">children.register</span></code> before a query can be used.</p>
 <p>If you know at compile time that you later will run a query of a specific type it is recommended to
 register the query, no matter if the <code class="docutils literal notranslate"><span class="pre">strictMode</span></code> is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> or <code class="docutils literal notranslate"><span class="pre">false</span></code>, since there are some
 performance benefits to gain from it. The <code class="docutils literal notranslate"><span class="pre">register</span></code> call is usually done in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>.</p>

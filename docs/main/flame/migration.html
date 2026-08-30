@@ -1046,6 +1046,52 @@ other boolean properties in Flame. The behavior is unchanged; only the name is d
 </pre></div>
 </div>
 </section>
+<section id="children-is-now-a-componentlist-instead-of-an-orderedset">
+<h3><code class="docutils literal notranslate"><span class="pre">children</span></code> is now a <code class="docutils literal notranslate"><span class="pre">ComponentList</span></code> instead of an <code class="docutils literal notranslate"><span class="pre">OrderedSet</span></code><a class="headerlink" href="#children-is-now-a-componentlist-instead-of-an-orderedset" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">ordered_set</span></code> package is no longer used; children live in a Flame-owned <code class="docutils literal notranslate"><span class="pre">ComponentList</span></code>. The
+iterable surface, <code class="docutils literal notranslate"><span class="pre">query&lt;T&gt;()</span></code>, and <code class="docutils literal notranslate"><span class="pre">register&lt;T&gt;()</span></code> are unchanged, so most code compiles as is. If
+you imported <code class="docutils literal notranslate"><span class="pre">package:ordered_set</span></code> types to annotate variables, use <code class="docutils literal notranslate"><span class="pre">ComponentList</span></code> (from
+<code class="docutils literal notranslate"><span class="pre">package:flame/components.dart</span></code>) instead:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:ordered_set/ordered_set.dart&#39;</span><span class="p">;</span>
+<span class="n">OrderedSet</span><span class="o">&lt;</span><span class="n">Component</span><span class="o">&gt;</span><span class="w"> </span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">component</span><span class="p">.</span><span class="n">children</span><span class="p">;</span>
+
+<span class="c1">// After</span>
+<span class="n">ComponentList</span><span class="w"> </span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">component</span><span class="p">.</span><span class="n">children</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Other changes to be aware of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">children.reversed()</span></code> is now a getter: <code class="docutils literal notranslate"><span class="pre">children.reversed</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Component.strictQueryMode</span></code> is removed. Strict mode is off by default; to enable it for a
+component, override <code class="docutils literal notranslate"><span class="pre">createComponentList()</span></code> to return <code class="docutils literal notranslate"><span class="pre">ComponentList(strictMode:</span> <span class="pre">true)</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">query&lt;T&gt;()</span></code> results are now always in priority order.</p></li>
+<li><p>Removing components while iterating <code class="docutils literal notranslate"><span class="pre">children</span></code> is allowed; reordering the list while iterating
+it throws <code class="docutils literal notranslate"><span class="pre">ConcurrentModificationError</span></code>.</p></li>
+</ul>
+</section>
+<section id="component-childrenfactory-is-removed">
+<h3><code class="docutils literal notranslate"><span class="pre">Component.childrenFactory</span></code> is removed<a class="headerlink" href="#component-childrenfactory-is-removed" title="Link to this heading">¶</a></h3>
+<p>The global children-container factory is gone. Override <code class="docutils literal notranslate"><span class="pre">createComponentList()</span></code> on the component
+instead. The constructor accepts an optional <code class="docutils literal notranslate"><span class="pre">Comparator&lt;Component&gt;</span></code> that replaces priority
+ordering for that parent, which gives custom orderings such as y-sort a supported home:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="n">Component</span><span class="p">.</span><span class="n">childrenFactory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">OrderedSet</span><span class="p">.</span><span class="n">mapping</span><span class="o">&lt;</span><span class="kt">num</span><span class="p">,</span><span class="w"> </span><span class="n">Component</span><span class="o">&gt;</span><span class="p">((</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">c</span><span class="p">.</span><span class="n">priority</span><span class="p">);</span>
+
+<span class="c1">// After</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">YSortedWorld</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">World</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">ComponentList</span><span class="w"> </span><span class="n">createComponentList</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">ComponentList</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">comparator:</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">PositionComponent</span><span class="p">)</span>
+<span class="w">          </span><span class="p">.</span><span class="n">position</span><span class="p">.</span><span class="n">y</span>
+<span class="w">          </span><span class="p">.</span><span class="n">compareTo</span><span class="p">((</span><span class="n">b</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">PositionComponent</span><span class="p">).</span><span class="n">position</span><span class="p">.</span><span class="n">y</span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
@@ -1101,6 +1147,8 @@ other boolean properties in Flame. The behavior is unchanged; only the name is d
   <a href='#load-errors-are-no-longer-reported-by-gamewidget-errorbuilder' class='list-group-item level-3'>Load errors are no longer reported by GameWidget.errorBuilder</a>
   <a href='#gamewidget-controlled-renamed-to-gamewidget-managed' class='list-group-item level-2'>GameWidget.controlled renamed to GameWidget.managed</a>
   <a href='#game-paused-renamed-to-game-ispaused' class='list-group-item level-2'>Game.paused renamed to Game.isPaused</a>
+  <a href='#children-is-now-a-componentlist-instead-of-an-orderedset' class='list-group-item level-2'>children is now a ComponentList instead of an OrderedSet</a>
+  <a href='#component-childrenfactory-is-removed' class='list-group-item level-2'>Component.childrenFactory is removed</a>
 </div>
 
     </div>
