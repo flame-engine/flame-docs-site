@@ -129,11 +129,10 @@
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/scale_events.html">Scale Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/long_press_events.html">Long Press Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="inputs/gesture_input.html">Gesture Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="inputs/keyboard_input.html">Keyboard Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="inputs/other_inputs.html">Other Inputs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/pointer_events.html">Pointer Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs/keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs/other_inputs.html">Other Inputs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="camera.html">Camera</a></li>
@@ -375,7 +374,7 @@ collide rather than writing the intersection math yourself.</p>
 other. For example, an arrow hitting an enemy or the player picking up a coin.</p>
 <p>In most collision detection systems you use something called hitboxes to create more precise
 bounding boxes of your components. In Flame the hitboxes are areas of the component that can react
-to collisions and make <a class="reference internal" href="inputs/gesture_input.html#gesturehitboxes"><span class="std std-ref">gesture input</span></a> more accurate.</p>
+to collisions and make <a class="reference internal" href="inputs/inputs.html#gesturehitboxes"><span class="std std-ref">gesture input</span></a> more accurate.</p>
 <p>The collision detection system supports three different types of shapes that you can build hitboxes
 from, these shapes are Polygon, Rectangle and Circle. Multiple hitboxes can be added to a
 component to form the area which can be used to either detect collisions or determine whether it
@@ -629,7 +628,7 @@ more complex areas. For example a snowman with a hat could be represented by thr
 and two <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code>s as its hat.</p>
 <p>A hitbox can be used either for collision detection or for making gesture detection more accurate
 on top of components, see more regarding the latter in the section about the
-<a class="reference internal" href="inputs/gesture_input.html#gesturehitboxes"><span class="std std-ref">GestureHitboxes</span></a> mixin.</p>
+<a class="reference internal" href="inputs/inputs.html#gesturehitboxes"><span class="std std-ref">GestureHitboxes</span></a> mixin.</p>
 <section id="collisiontype">
 <h3>CollisionType<a class="headerlink" href="#collisiontype" title="Link to this heading">¶</a></h3>
 <p>The hitboxes have a field called <code class="docutils literal notranslate"><span class="pre">collisionType</span></code> which defines when a hitbox should collide with

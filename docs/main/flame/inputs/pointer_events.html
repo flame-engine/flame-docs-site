@@ -38,8 +38,8 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="HardwareKeyboardDetector" href="hardware_keyboard_detector.html" />
-  <link rel="prev" title="Other Inputs and Helpers" href="other_inputs.html" />
+  <link rel="next" title="Keyboard Input" href="keyboard_input.html" />
+  <link rel="prev" title="Long Press Events" href="long_press_events.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -129,11 +129,10 @@
 <li class="toctree-l3"><a class="reference internal" href="drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scale_events.html">Scale Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="long_press_events.html">Long Press Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="gesture_input.html">Gesture Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="keyboard_input.html">Keyboard Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="other_inputs.html">Other Inputs</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Pointer Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="other_inputs.html">Other Inputs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../camera.html">Camera</a></li>
@@ -367,11 +366,6 @@
       
   <section class="tex2jax_ignore mathjax_ignore" id="pointer-events">
 <h1>Pointer Events<a class="headerlink" href="#pointer-events" title="Link to this heading">¶</a></h1>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>This document describes the new events API. The old (legacy) approach,
-which is still supported, is described in <a class="reference internal" href="gesture_input.html"><span class="std std-doc">Gesture Input</span></a>.</p>
-</div>
 <p><strong>Pointer events</strong> are Flutter’s generalized “mouse-movement”-type events (for desktop or web).</p>
 <p>If you want to interact with mouse movement events within your component or game, you can use the
 <code class="docutils literal notranslate"><span class="pre">MouseMoveCallbacks</span></code> mixin.</p>
@@ -494,8 +488,7 @@ pointer_events.dart</div>
 </section>
 <section id="scrollcallbacks">
 <h2>ScrollCallbacks<a class="headerlink" href="#scrollcallbacks" title="Link to this heading">¶</a></h2>
-<p>If you want to handle mouse-wheel or trackpad scroll events at the component level, use the
-<code class="docutils literal notranslate"><span class="pre">ScrollCallbacks</span></code> mixin.</p>
+<p>If you want to handle mouse-wheel or trackpad scroll events, use the <code class="docutils literal notranslate"><span class="pre">ScrollCallbacks</span></code> mixin.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">ScrollableSquare</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">RectangleComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">ScrollCallbacks</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="nd">@override</span>
 <span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScroll</span><span class="p">(</span><span class="n">ScrollEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -524,11 +517,26 @@ down the hit-test list (or the game itself).</p></li>
 </ul>
 <p>Scroll events are delivered to <strong>all</strong> components under the pointer (not just the topmost one),
 unless set <code class="docutils literal notranslate"><span class="pre">continuePropagation</span> <span class="pre">=</span> <span class="pre">false</span></code> is set to stop it from bubbling further.</p>
-<p>You can also mix <code class="docutils literal notranslate"><span class="pre">ScrollCallbacks</span></code> directly into your <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> to handle scrolling at the
-game level.</p>
+<p>You can also mix <code class="docutils literal notranslate"><span class="pre">ScrollCallbacks</span></code> directly into your <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> to handle scrolling anywhere on
+the game surface.</p>
 <section id="scroll-demo">
 <h3>Scroll Demo<a class="headerlink" href="#scroll-demo" title="Link to this heading">¶</a></h3>
 </section>
+</section>
+<section id="mouse-cursor">
+<h2>Mouse cursor<a class="headerlink" href="#mouse-cursor" title="Link to this heading">¶</a></h2>
+<p>It is also possible to change the current mouse cursor displayed on the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> region. To do
+so the following code can be used inside the <code class="docutils literal notranslate"><span class="pre">Game</span></code> class</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">mouseCursor</span><span class="p">.</span><span class="n">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SystemMouseCursors</span><span class="p">.</span><span class="n">move</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>To initialize the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> with a custom cursor immediately, the <code class="docutils literal notranslate"><span class="pre">mouseCursor</span></code> property can be used:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">GameWidget</span><span class="p">(</span>
+<span class="w">  </span><span class="nl">game:</span><span class="w"> </span><span class="n">MouseCursorGame</span><span class="p">(),</span>
+<span class="w">  </span><span class="nl">mouseCursor:</span><span class="w"> </span><span class="n">SystemMouseCursors</span><span class="p">.</span><span class="n">move</span><span class="p">,</span>
+<span class="p">);</span>
+</pre></div>
+</div>
 </section>
 </section>
 
@@ -539,18 +547,18 @@ game level.</p>
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="other_inputs.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="long_press_events.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Other Inputs and Helpers</p>
+          <p class="prev-next-title">Long Press Events</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="hardware_keyboard_detector.html" title="next page">
+      <a class="right-next" id="next-link" href="keyboard_input.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">HardwareKeyboardDetector</p>
+          <p class="prev-next-title">Keyboard Input</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
@@ -566,6 +574,7 @@ game level.</p>
   <a href='#hover-demo' class='list-group-item level-2'>Hover Demo</a>
   <a href='#scrollcallbacks' class='list-group-item level-1'>ScrollCallbacks</a>
   <a href='#scroll-demo' class='list-group-item level-2'>Scroll Demo</a>
+  <a href='#mouse-cursor' class='list-group-item level-1'>Mouse cursor</a>
 </div>
 
     </div>

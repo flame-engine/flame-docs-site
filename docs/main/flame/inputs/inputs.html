@@ -129,11 +129,10 @@
 <li class="toctree-l3"><a class="reference internal" href="drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scale_events.html">Scale Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="long_press_events.html">Long Press Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="gesture_input.html">Gesture Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="keyboard_input.html">Keyboard Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="other_inputs.html">Other Inputs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pointer_events.html">Pointer Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="other_inputs.html">Other Inputs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../camera.html">Camera</a></li>
@@ -369,32 +368,63 @@
 <h1>Inputs<a class="headerlink" href="#inputs" title="Link to this heading">¶</a></h1>
 <p>Games are interactive by nature, so handling player input is essential. Flame provides input
 handling that works on all platforms Flutter supports: touch on mobile, mouse and keyboard on
-desktop, and
-pointer events on the web. These APIs are designed as mixins that you add to your components, so
-each component can independently decide which input events it cares about. This is similar to how
+desktop, and pointer events on the web. These APIs are designed as mixins that you add to your
+components, so each component can independently decide which input events it cares about. This is
+similar to how
 Flutter’s <a class="reference external" href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html">GestureDetector</a>
 works, but adapted for Flame’s component tree.</p>
+<p>Since <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is itself a <code class="docutils literal notranslate"><span class="pre">Component</span></code>, adding one of these mixins to your game class works
+exactly as well as adding it to a component; no wrapper component required.</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="tap_events.html"><span class="std std-doc">Tap Events</span></a></p></li>
-<li><p><a class="reference internal" href="drag_events.html"><span class="std std-doc">Drag Events</span></a></p></li>
-<li><p><a class="reference internal" href="scale_events.html"><span class="std std-doc">Scale Events</span></a></p></li>
-<li><p><a class="reference internal" href="long_press_events.html"><span class="std std-doc">Long Press Events</span></a></p></li>
-<li><p><a class="reference internal" href="gesture_input.html"><span class="std std-doc">Gesture Input</span></a></p></li>
-<li><p><a class="reference internal" href="keyboard_input.html"><span class="std std-doc">Keyboard Input</span></a></p></li>
-<li><p><a class="reference internal" href="other_inputs.html"><span class="std std-doc">Other Inputs and Helpers</span></a></p></li>
-<li><p><a class="reference internal" href="pointer_events.html"><span class="std std-doc">Pointer Events</span></a></p></li>
+<li><p><a class="reference internal" href="tap_events.html"><span class="std std-doc">Tap Events</span></a>: <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code>, <code class="docutils literal notranslate"><span class="pre">SecondaryTapCallbacks</span></code>, <code class="docutils literal notranslate"><span class="pre">TertiaryTapCallbacks</span></code>,
+<code class="docutils literal notranslate"><span class="pre">DoubleTapCallbacks</span></code></p></li>
+<li><p><a class="reference internal" href="drag_events.html"><span class="std std-doc">Drag Events</span></a>: <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code></p></li>
+<li><p><a class="reference internal" href="scale_events.html"><span class="std std-doc">Scale Events</span></a>: <code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code></p></li>
+<li><p><a class="reference internal" href="long_press_events.html"><span class="std std-doc">Long Press Events</span></a>: <code class="docutils literal notranslate"><span class="pre">LongPressCallbacks</span></code></p></li>
+<li><p><a class="reference internal" href="pointer_events.html"><span class="std std-doc">Pointer Events</span></a>: <code class="docutils literal notranslate"><span class="pre">MouseMoveCallbacks</span></code>, <code class="docutils literal notranslate"><span class="pre">HoverCallbacks</span></code>, <code class="docutils literal notranslate"><span class="pre">ScrollCallbacks</span></code></p></li>
+<li><p><a class="reference internal" href="keyboard_input.html"><span class="std std-doc">Keyboard Input</span></a>: for keystrokes</p></li>
 <li><p><a class="reference internal" href="hardware_keyboard_detector.html"><span class="std std-doc">Hardware Keyboard Detector</span></a></p></li>
+<li><p><a class="reference internal" href="other_inputs.html"><span class="std std-doc">Other Inputs and Helpers</span></a>: for joysticks, game pads, etc.</p></li>
 </ul>
+<p>Under the hood, these are all built on Flutter’s own gesture widgets, including the
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html">GestureDetector widget</a>,
+<a class="reference external" href="https://api.flutter.dev/flutter/widgets/RawGestureDetector-class.html">RawGestureDetector widget</a>
+and <a class="reference external" href="https://api.flutter.dev/flutter/widgets/MouseRegion-class.html">MouseRegion widget</a>; you can
+also read more about
+<a class="reference external" href="https://api.flutter.dev/flutter/gestures/gestures-library.html">Flutter’s gesture system</a>.</p>
+<section id="event-coordinate-system">
+<h2>Event coordinate system<a class="headerlink" href="#event-coordinate-system" title="Link to this heading">¶</a></h2>
+<p>Every event that carries a position reports it in three coordinate systems:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">devicePosition</span></code>: relative to the entire screen, the same as <code class="docutils literal notranslate"><span class="pre">globalPosition</span></code> in Flutter’s native
+events.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">canvasPosition</span></code>: relative to the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> position and size, the same as <code class="docutils literal notranslate"><span class="pre">localPosition</span></code> in
+Flutter’s native events. This is Flame’s “global” position.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">localPosition</span></code>: relative to the component currently receiving the event, with the whole chain of
+parent transforms (camera included) already applied.</p></li>
+</ul>
+<p>Events that represent a movement, such as <code class="docutils literal notranslate"><span class="pre">DragUpdateEvent</span></code>, additionally expose start and end
+positions (<code class="docutils literal notranslate"><span class="pre">canvasStartPosition</span></code> / <code class="docutils literal notranslate"><span class="pre">canvasEndPosition</span></code>, and so on) plus the corresponding deltas:
+<code class="docutils literal notranslate"><span class="pre">deviceDelta</span></code>, <code class="docutils literal notranslate"><span class="pre">canvasDelta</span></code> and <code class="docutils literal notranslate"><span class="pre">localDelta</span></code>.</p>
+<p><code class="docutils literal notranslate"><span class="pre">localPosition</span></code> and <code class="docutils literal notranslate"><span class="pre">localDelta</span></code> are relative to whichever component is currently receiving the
+event, so only read them inside the callback. Do not hold on to the event and read them afterwards:
+once delivery is over they are no longer maintained, and depending on the event you will either get
+a leftover value or an error. If you need the position later, copy it during the callback with
+<code class="docutils literal notranslate"><span class="pre">event.localPosition.clone()</span></code>.</p>
+<p>When you mix a callback into your <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> directly, the game is that component; and since it has
+no transform of its own, the local values there are equivalent to the canvas coordinates.</p>
+</section>
 <section id="gesturehitboxes">
 <h2>GestureHitboxes<a class="headerlink" href="#gesturehitboxes" title="Link to this heading">¶</a></h2>
-<p>Every mixin whose events carry a position implements <code class="docutils literal notranslate"><span class="pre">PointerInputCallbacks</span></code> — that is all of the
-above except keyboard — and they all decide whether an event belongs to a component by asking its
-<code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code>, which for a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is its rectangular bounds. The
-<code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin is used to recognize input on top of your <code class="docutils literal notranslate"><span class="pre">Component</span></code>s more accurately than
-that. Say that you have a fairly round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you don’t want
-to register input that is in the corner of the image where the rock is not displayed. Then you can
-use the <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin to define a more accurate circle or polygon (or another shape) for
-which the input should be within for the event to be registered on your component.</p>
+<p>Every mixin whose events carry a position implements <code class="docutils literal notranslate"><span class="pre">PointerInputCallbacks</span></code> (taps, drags, scales,
+long presses and pointer events - but not the keyboard ones) and they all decide whether an event
+belongs to a component by asking its <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code>, which for a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is its
+rectangular bounds.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin is used to recognize input on top of your <code class="docutils literal notranslate"><span class="pre">Component</span></code>s more accurately.
+Say that you have a round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you don’t want to register
+input that is in the corner of the image where the rock is not displayed; you can use the
+<code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin to define a more accurate boundary (circle, polygon, any shape) for the
+event to check when propagating to your component.</p>
 <p>You can add new hitboxes to the component that has the <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin just like they are
 added in the <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> example.</p>
 <p>More information about how to define hitboxes can be found in the hitbox section of the
@@ -436,6 +466,7 @@ added in the <code class="docutils literal notranslate"><span class="pre">Collid
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
+  <a href='#event-coordinate-system' class='list-group-item level-1'>Event coordinate system</a>
   <a href='#gesturehitboxes' class='list-group-item level-1'>GestureHitboxes</a>
 </div>
 

@@ -129,11 +129,10 @@
 <li class="toctree-l3"><a class="reference internal" href="drag_events.html">Drag Events</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Scale Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="long_press_events.html">Long Press Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="gesture_input.html">Gesture Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="keyboard_input.html">Keyboard Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="other_inputs.html">Other Inputs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pointer_events.html">Pointer Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="other_inputs.html">Other Inputs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../camera.html">Camera</a></li>
@@ -481,10 +480,10 @@ higher value requires a more deliberate gesture before scale events fire.</p>
 </section>
 <section id="combining-with-dragcallbacks">
 <h2>Combining with DragCallbacks<a class="headerlink" href="#combining-with-dragcallbacks" title="Link to this heading">¶</a></h2>
-<p>A component can use both <code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code> and <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> at the same time. When both mixins are
-present, single-finger gestures produce drag events and two-finger gestures produce both scale and
-drag events. This is useful for components that should be draggable with one finger and
-pinch-to-zoom or rotatable with two fingers.</p>
+<p><code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code> and <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> can be used at the same time. Both are driven by the same
+recognizer, so they combine freely: single-finger gestures produce drag events, and two-finger
+gestures produce both scale and drag events. This is useful for components that should be draggable
+with one finger and pinch-to-zoom or rotatable with two fingers.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">InteractiveRectangle</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">RectangleComponent</span>
 <span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">ScaleCallbacks</span><span class="p">,</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
 
@@ -508,6 +507,42 @@ pinch-to-zoom or rotatable with two fingers.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
+<p>The same pair mixed into a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> gives you the usual “drag to pan, pinch to zoom” camera
+controls. Because a two-finger pinch emits drag events as well, the drag handler has to bail out
+while a scale is in progress, otherwise the camera would pan and zoom at once:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="p">,</span><span class="w"> </span><span class="n">ScaleCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">late</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="n">startZoom</span><span class="p">;</span>
+
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">clampZoom</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">.</span><span class="n">clamp</span><span class="p">(</span><span class="m">0.05</span><span class="p">,</span><span class="w"> </span><span class="m">3.0</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleStart</span><span class="p">(</span><span class="n">ScaleStartEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onScaleStart</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="w">    </span><span class="n">startZoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleUpdate</span><span class="p">(</span><span class="n">ScaleUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">startZoom</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">scale</span><span class="p">;</span>
+<span class="w">    </span><span class="n">clampZoom</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Two-finger pinches emit both drag and scale; skip pan while zooming</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">isScaling</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="kd">final</span><span class="w"> </span><span class="n">zoom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">camera</span><span class="p">.</span><span class="n">viewfinder</span><span class="p">.</span><span class="n">zoom</span><span class="p">;</span>
+<span class="w">    </span><span class="n">camera</span><span class="p">.</span><span class="n">moveBy</span><span class="p">((</span><span class="n">event</span><span class="p">.</span><span class="n">localDelta</span><span class="p">..</span><span class="n">negate</span><span class="p">())</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">zoom</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>This can also be seen in the
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/camera_and_viewport/zoom_example.dart">zoom example</a>.</p>
 </section>
 </section>
 

@@ -129,11 +129,10 @@
 <li class="toctree-l3"><a class="reference internal" href="inputs/drag_events.html">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/scale_events.html">Scale Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/long_press_events.html">Long Press Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="inputs/gesture_input.html">Gesture Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="inputs/keyboard_input.html">Keyboard Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="inputs/other_inputs.html">Other Inputs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/pointer_events.html">Pointer Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs/keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="inputs/other_inputs.html">Other Inputs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="camera.html">Camera</a></li>
@@ -371,6 +370,26 @@
 major versions of Flame, together with the steps required to migrate your code.</p>
 <section id="migrating-from-v1-38-0-to-v2-0-0">
 <h2>Migrating from v1.38.0 to v2.0.0<a class="headerlink" href="#migrating-from-v1-38-0-to-v2-0-0" title="Link to this heading">¶</a></h2>
+<section id="hasgamereference-removed-in-favour-of-hasgameref">
+<h3><code class="docutils literal notranslate"><span class="pre">HasGameReference</span></code> removed in favour of <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code><a class="headerlink" href="#hasgamereference-removed-in-favour-of-hasgameref" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">HasGameReference</span></code> has been removed. Use <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code> instead, which is no longer deprecated and is
+now the one and only mixin used to access the game instance from a component. Its accessor is
+called <code class="docutils literal notranslate"><span class="pre">gameRef</span></code>, the <code class="docutils literal notranslate"><span class="pre">game</span></code> getter and setter are gone:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameReference</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">doSomething</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">game</span><span class="p">.</span><span class="n">score</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="c1">// After</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasGameRef</span><span class="o">&lt;</span><span class="n">MyGame</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">doSomething</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">gameRef</span><span class="p">.</span><span class="n">score</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>If you were already using <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code>, no changes are required; its accessor remains <code class="docutils literal notranslate"><span class="pre">gameRef</span></code>.</p>
+<p>Setting the game instance explicitly (useful for mocking in tests) is done through <code class="docutils literal notranslate"><span class="pre">gameRef</span></code> as
+well, and the <code class="docutils literal notranslate"><span class="pre">findGame()</span></code> override behaves exactly as before.</p>
+</section>
 <section id="asset-prefix-removed">
 <h3>Asset prefix removed<a class="headerlink" href="#asset-prefix-removed" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Images</span></code> and <code class="docutils literal notranslate"><span class="pre">AssetsCache</span></code> no longer prepend anything to the paths you give them. <code class="docutils literal notranslate"><span class="pre">Images</span></code> used to
@@ -728,9 +747,9 @@ itself, so simultaneous touches can still be told apart:</p>
 <p><code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> has no equivalent of <code class="docutils literal notranslate"><span class="pre">MultiTouchTapDetector.onTap</span></code>, which was a direct passthrough of
 Flutter’s “tap completed” callback on <code class="docutils literal notranslate"><span class="pre">MultiTapGestureRecognizer</span></code>. Use <code class="docutils literal notranslate"><span class="pre">onTapUp</span></code> instead, which fires
 at the same point in the gesture.</p>
-<p>Because the new mixins are routed through <code class="docutils literal notranslate"><span class="pre">MultiDragScaleDispatcher</span></code>, they no longer conflict with
-<code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> in the gesture arena, and the assertion that used to guard against combining
-<code class="docutils literal notranslate"><span class="pre">MultiTouchDragDetector</span></code> with <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> has been removed.</p>
+<p>Because the new mixins are routed through <code class="docutils literal notranslate"><span class="pre">MultiDragScaleDispatcher</span></code>, the assertion that used to
+guard against combining <code class="docutils literal notranslate"><span class="pre">MultiTouchDragDetector</span></code> with <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> in the gesture arena is gone
+(as is <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> itself; see below).</p>
 <p>See <a class="reference internal" href="inputs/tap_events.html"><span class="std std-doc">Tap Events</span></a> and <a class="reference internal" href="inputs/drag_events.html"><span class="std std-doc">Drag Events</span></a> for the full
 replacement APIs.</p>
 </section>
@@ -847,6 +866,104 @@ detector.</p>
 <p><code class="docutils literal notranslate"><span class="pre">flame_test</span></code>’s <code class="docutils literal notranslate"><span class="pre">createMouseMoveEvent</span></code> helper now returns a <code class="docutils literal notranslate"><span class="pre">MouseMoveEvent</span></code>, and if you were using
 <code class="docutils literal notranslate"><span class="pre">flame_behaviors</span></code>, note that it no longer re-exports the legacy <code class="docutils literal notranslate"><span class="pre">*Info</span></code> event classes.</p>
 <p>See <a class="reference internal" href="inputs/pointer_events.html"><span class="std std-doc">Pointer Events</span></a> for the full replacement API.</p>
+</section>
+<section id="pandetector-removed-and-with-it-the-whole-info-event-hierarchy">
+<h3><code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> removed, and with it the whole <code class="docutils literal notranslate"><span class="pre">*Info</span></code> event hierarchy<a class="headerlink" href="#pandetector-removed-and-with-it-the-whole-info-event-hierarchy" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">PanDetector</span></code> was the last of the game-level gesture detectors, so removing it also removes every
+event class that existed to serve them:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Removed</p></th>
+<th class="head"><p>Use instead</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">PanDetector</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DragStartInfo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DragStartEvent</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DragUpdateInfo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DragUpdateEvent</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">DragEndInfo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">DragEndEvent</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">DragDownInfo</span></code></p></td>
+<td><p>—</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">TapDownInfo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TapDownEvent</span></code></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">TapUpInfo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">TapUpEvent</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">PositionInfo</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">PositionEvent</span></code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">PanDetector</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanStart</span><span class="p">(</span><span class="n">DragStartInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">startShooting</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanUpdate</span><span class="p">(</span><span class="n">DragUpdateInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">info</span><span class="p">.</span><span class="n">delta</span><span class="p">.</span><span class="n">global</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onPanEnd</span><span class="p">(</span><span class="n">DragEndInfo</span><span class="w"> </span><span class="n">info</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">stopShooting</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// After</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragStart</span><span class="p">(</span><span class="n">DragStartEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragStart</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">startShooting</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">move</span><span class="p">(</span><span class="n">event</span><span class="p">.</span><span class="n">localDelta</span><span class="p">);</span>
+<span class="w">  </span><span class="p">}</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">DragEndEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onDragEnd</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
+<span class="w">    </span><span class="n">player</span><span class="p">.</span><span class="n">stopShooting</span><span class="p">();</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>A few differences to be aware of:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">onDragStart</span></code>, <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code> and <code class="docutils literal notranslate"><span class="pre">onDragCancel</span></code> are <code class="docutils literal notranslate"><span class="pre">&#64;mustCallSuper</span></code>, because they maintain the
+<code class="docutils literal notranslate"><span class="pre">isDragged</span></code> flag; your overrides have to call <code class="docutils literal notranslate"><span class="pre">super</span></code> first.</p></li>
+<li><p>There is no equivalent of <code class="docutils literal notranslate"><span class="pre">onPanDown</span></code>. Use <code class="docutils literal notranslate"><span class="pre">onDragStart</span></code>, which fires once the touch slop has been
+exceeded, exactly like <code class="docutils literal notranslate"><span class="pre">onPanStart</span></code> did.</p></li>
+<li><p>The nested position and delta wrappers are gone: <code class="docutils literal notranslate"><span class="pre">info.eventPosition.widget</span></code> becomes
+<code class="docutils literal notranslate"><span class="pre">event.canvasPosition</span></code>, and <code class="docutils literal notranslate"><span class="pre">info.delta.global</span></code> becomes <code class="docutils literal notranslate"><span class="pre">event.localDelta</span></code> (or <code class="docutils literal notranslate"><span class="pre">event.canvasDelta</span></code>
+if you want the delta before any camera transform is applied).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">DragEndEvent</span></code> exposes <code class="docutils literal notranslate"><span class="pre">velocity</span></code>, but there is no replacement for <code class="docutils literal notranslate"><span class="pre">DragEndInfo.primaryVelocity</span></code> —
+it was permanently <code class="docutils literal notranslate"><span class="pre">null</span></code> anyway, since only axis-constrained recognizers ever set it.</p></li>
+<li><p>Every drag event carries a <code class="docutils literal notranslate"><span class="pre">pointerId</span></code>, so simultaneous drags can be told apart. <code class="docutils literal notranslate"><span class="pre">PanDetector</span></code>
+could only ever track one.</p></li>
+<li><p>Like the other component callbacks, drags are routed by position: a component only receives a drag
+that starts on top of it, as determined by <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code>. Mixing <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> into
+your <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> subclass directly, as above, keeps the old whole-surface behavior.</p></li>
+</ul>
+<p>With this, <code class="docutils literal notranslate"><span class="pre">package:flame/events.dart</span></code> and <code class="docutils literal notranslate"><span class="pre">package:flame/input.dart</span></code> no longer export any <code class="docutils literal notranslate"><span class="pre">*Detector</span></code>
+mixin or <code class="docutils literal notranslate"><span class="pre">*Info</span></code> class, and <code class="docutils literal notranslate"><span class="pre">GestureDetectorBuilder.initializeGestures</span></code> - which existed only to wire
+those detectors up — has been removed.</p>
+<p>See <a class="reference internal" href="inputs/drag_events.html"><span class="std std-doc">Drag Events</span></a> for the full replacement API.</p>
 </section>
 <section id="ondragcancel-no-longer-delegates-to-ondragend">
 <h3><code class="docutils literal notranslate"><span class="pre">onDragCancel</span></code> no longer delegates to <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code><a class="headerlink" href="#ondragcancel-no-longer-delegates-to-ondragend" title="Link to this heading">¶</a></h3>
@@ -1156,6 +1273,7 @@ instead of updating it with a <code class="docutils literal notranslate"><span c
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#migrating-from-v1-38-0-to-v2-0-0' class='list-group-item level-1'>Migrating from v1.38.0 to v2.0.0</a>
+  <a href='#hasgamereference-removed-in-favour-of-hasgameref' class='list-group-item level-2'>HasGameReference removed in favour of HasGameRef</a>
   <a href='#asset-prefix-removed' class='list-group-item level-2'>Asset prefix removed</a>
   <a href='#cache-keys-are-now-the-full-path' class='list-group-item level-3'>Cache keys are now the full path</a>
   <a href='#loadallimages-and-loadallfrompattern-require-a-directory' class='list-group-item level-3'>loadAllImages and loadAllFromPattern require a directory</a>
@@ -1170,6 +1288,7 @@ instead of updating it with a <code class="docutils literal notranslate"><span c
   <a href='#multitouchtapdetector-and-multitouchdragdetector-removed' class='list-group-item level-2'>MultiTouchTapDetector and MultiTouchDragDetector removed</a>
   <a href='#scrolldetector-removed' class='list-group-item level-2'>ScrollDetector removed</a>
   <a href='#mousemovementdetector-removed-and-pointermove-renamed-to-mousemove' class='list-group-item level-2'>MouseMovementDetector removed and PointerMove* renamed to MouseMove*</a>
+  <a href='#pandetector-removed-and-with-it-the-whole-info-event-hierarchy' class='list-group-item level-2'>PanDetector removed, and with it the whole *Info event hierarchy</a>
   <a href='#ondragcancel-no-longer-delegates-to-ondragend' class='list-group-item level-2'>onDragCancel no longer delegates to onDragEnd</a>
   <a href='#multidragdispatcher-removed' class='list-group-item level-2'>MultiDragDispatcher removed</a>
   <a href='#event-handled-removed-in-favour-of-continuepropagation' class='list-group-item level-2'>Event.handled removed in favour of continuePropagation</a>

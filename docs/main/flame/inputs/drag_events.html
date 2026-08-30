@@ -129,11 +129,10 @@
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Drag Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="scale_events.html">Scale Events</a></li>
 <li class="toctree-l3"><a class="reference internal" href="long_press_events.html">Long Press Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="gesture_input.html">Gesture Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="keyboard_input.html">Keyboard Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="other_inputs.html">Other Inputs</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pointer_events.html">Pointer Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="keyboard_input.html">Keyboard Input</a></li>
 <li class="toctree-l3"><a class="reference internal" href="hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="other_inputs.html">Other Inputs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../camera.html">Camera</a></li>
@@ -727,33 +726,10 @@ It can be used, for example, to change the component’s visual appearance durin
 </section>
 <section id="combining-with-scalecallbacks">
 <h2>Combining with ScaleCallbacks<a class="headerlink" href="#combining-with-scalecallbacks" title="Link to this heading">¶</a></h2>
-<p>A component can use both <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> and <code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code> at the same time. When both mixins are
-present, single-finger gestures produce drag events and two-finger gestures produce both drag and
-scale events. This is useful for components that should be draggable with one finger and
-pinch-to-zoom or rotatable with two fingers.</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">InteractiveRectangle</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">RectangleComponent</span>
-<span class="w">    </span><span class="kd">with</span><span class="w"> </span><span class="n">ScaleCallbacks</span><span class="p">,</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
-
-<span class="w">  </span><span class="kt">double</span><span class="w"> </span><span class="n">_initialAngle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">0</span><span class="p">;</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">localDelta</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleStart</span><span class="p">(</span><span class="n">ScaleStartEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="k">super</span><span class="p">.</span><span class="n">onScaleStart</span><span class="p">(</span><span class="n">event</span><span class="p">);</span>
-<span class="w">    </span><span class="n">_initialAngle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">angle</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-
-<span class="w">  </span><span class="nd">@override</span>
-<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onScaleUpdate</span><span class="p">(</span><span class="n">ScaleUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">angle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">_initialAngle</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">rotation</span><span class="p">;</span>
-<span class="w">  </span><span class="p">}</span>
-<span class="p">}</span>
-</pre></div>
-</div>
+<p><code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> and <code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code> can be used at the same time: single-finger gestures produce
+drag events, and two-finger gestures produce both drag and scale events. See
+<a class="reference internal" href="scale_events.html#combining-with-dragcallbacks"><span class="std std-ref">Combining with DragCallbacks</span></a> for how to make the two
+work together, both on a component and for panning and zooming the camera.</p>
 </section>
 </section>
 
