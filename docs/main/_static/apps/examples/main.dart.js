@@ -92528,7 +92528,7 @@ for(;;)switch(s){case 0:p=A.c9(q.dA(),t.H)
 s=2
 return A.u(p,$async$n)
 case 2:s=3
-return A.u(A.bsF(q.gac(),"svgs/happy_player.svg"),$async$n)
+return A.u(A.bsF(q.gac(),"assets/svgs/happy_player.svg"),$async$n)
 case 3:q.sQK(b)
 return A.p(null,r)}})
 return A.q($async$n,r)},
@@ -92547,7 +92547,7 @@ for(;;)switch(s){case 0:p=A.c9(q.dA(),t.H)
 s=2
 return A.u(p,$async$n)
 case 2:s=3
-return A.u(A.bsF(q.gac(),"svgs/checkerboard.svg"),$async$n)
+return A.u(A.bsF(q.gac(),"assets/svgs/checkerboard.svg"),$async$n)
 case 3:q.sQK(b)
 return A.p(null,r)}})
 return A.q($async$n,r)}}
@@ -92559,7 +92559,7 @@ s=2
 return A.u(o,$async$n)
 case 2:p=B.R.xv()?"red":"green"
 s=3
-return A.u(A.bsF(q.gac(),"svgs/"+p+"_balloons.svg"),$async$n)
+return A.u(A.bsF(q.gac(),"assets/svgs/"+p+"_balloons.svg"),$async$n)
 case 3:q.sQK(b)
 return A.p(null,r)}})
 return A.q($async$n,r)}}

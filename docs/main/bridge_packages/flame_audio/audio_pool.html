@@ -422,7 +422,7 @@ global audio cache:</p>
 <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">loadSounds</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="c1">// Create a pool with a specific Source</span>
 <span class="w">  </span><span class="n">AudioPool</span><span class="w"> </span><span class="n">explosionSoundPool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">AudioPool</span><span class="p">.</span><span class="n">create</span><span class="p">(</span>
-<span class="w">    </span><span class="k">source</span><span class="o">:</span><span class="w"> </span><span class="n">AssetSource</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="k">source</span><span class="o">:</span><span class="w"> </span><span class="n">AssetSource</span><span class="p">(</span><span class="s1">&#39;assets/audio/explosion.mp3&#39;</span><span class="p">),</span>
 <span class="w">    </span><span class="nl">minPlayers:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">maxPlayers:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">audioCache:</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">,</span><span class="w"> </span><span class="c1">// Optional</span>
@@ -438,7 +438,7 @@ global audio cache:</p>
 
 <span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">loadSounds</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="n">AudioPool</span><span class="w"> </span><span class="n">explosionSoundPool</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kd">await</span><span class="w"> </span><span class="n">AudioPool</span><span class="p">.</span><span class="n">createFromAsset</span><span class="p">(</span>
-<span class="w">    </span><span class="nl">path:</span><span class="w"> </span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">path:</span><span class="w"> </span><span class="s1">&#39;assets/audio/explosion.mp3&#39;</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">minPlayers:</span><span class="w"> </span><span class="m">1</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">maxPlayers:</span><span class="w"> </span><span class="m">2</span><span class="p">,</span>
 <span class="w">    </span><span class="nl">audioCache:</span><span class="w"> </span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">,</span><span class="w"> </span><span class="c1">// Optional</span>

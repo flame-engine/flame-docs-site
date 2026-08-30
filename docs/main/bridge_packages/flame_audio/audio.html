@@ -377,8 +377,8 @@ list in your <code class="docutils literal notranslate"><span class="pre">pubspe
 <p>The latest version can be found on <a class="reference external" href="https://pub.dev/packages/flame_audio/install">pub.dev</a>.</p>
 <p>After installing the <code class="docutils literal notranslate"><span class="pre">flame_audio</span></code> package, you can add audio files in the assets section of your
 <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file. Make sure that the audio files exists in the paths that you provide.</p>
-<p>The default directory for <code class="docutils literal notranslate"><span class="pre">FlameAudio</span></code> is <code class="docutils literal notranslate"><span class="pre">assets/audio</span></code> (which can be changed by providing your own
-instance of <code class="docutils literal notranslate"><span class="pre">AudioCache</span></code>).</p>
+<p>Every path is given in full, exactly as declared in the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>, nothing is prepended.
+The examples below keep the audio files in <code class="docutils literal notranslate"><span class="pre">assets/audio</span></code>, but any directory works.</p>
 <p>For the examples below, your <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code> file needs to contain something like this:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">flutter</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">assets</span><span class="p">:</span>
@@ -446,7 +446,7 @@ play smoothly. To load multiple audio files, use the <code class="docutils liter
 </pre></div>
 </div>
 <p>Finally, you can use the <code class="docutils literal notranslate"><span class="pre">clear</span></code> method to remove a file that has been loaded into the cache:</p>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="s1">&#39;explosion.mp3&#39;</span><span class="p">);</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">FlameAudio</span><span class="p">.</span><span class="n">audioCache</span><span class="p">.</span><span class="n">clear</span><span class="p">(</span><span class="s1">&#39;assets/audio/explosion.mp3&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>There is also a <code class="docutils literal notranslate"><span class="pre">clearCache</span></code> method, that clears the whole cache.</p>
