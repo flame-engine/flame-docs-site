@@ -723,6 +723,33 @@ ancestors have all implemented the <code class="docutils literal notranslate"><s
 actively being dragged. This is set to <code class="docutils literal notranslate"><span class="pre">true</span></code> at <code class="docutils literal notranslate"><span class="pre">onDragStart</span></code> and back to <code class="docutils literal notranslate"><span class="pre">false</span></code> at <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code>.
 It can be used, for example, to change the component’s visual appearance during a drag.</p>
 </section>
+<section id="allowsmultipointerdrag">
+<h3>allowsMultiPointerDrag<a class="headerlink" href="#allowsmultipointerdrag" title="Link to this heading">¶</a></h3>
+<p>Drags are tracked per pointer, so a component that is already being dragged will start a second,
+independent drag when another finger touches it. That is what you want when each drag manipulates
+something of its own, but not when they all drive a single piece of state (such as a camera or
+a draggable object), where a second finger just fights the first.</p>
+<p>Override <code class="docutils literal notranslate"><span class="pre">allowsMultiPointerDrag</span></code> to <code class="docutils literal notranslate"><span class="pre">false</span></code> to accept only one drag at a time:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MagnifyingGlass</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">PositionComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DragCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="kd">get</span><span class="w"> </span><span class="n">allowsMultiPointerDrag</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">onDragUpdate</span><span class="p">(</span><span class="n">DragUpdateEvent</span><span class="w"> </span><span class="n">event</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="n">position</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">event</span><span class="p">.</span><span class="n">canvasEndPosition</span><span class="p">;</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>While a drag is in progress, no other pointer gets an <code class="docutils literal notranslate"><span class="pre">onDragStart</span></code> on this component, and no
+<code class="docutils literal notranslate"><span class="pre">onDragUpdate</span></code>, <code class="docutils literal notranslate"><span class="pre">onDragEnd</span></code> or <code class="docutils literal notranslate"><span class="pre">onDragCancel</span></code> follow for it either; the event is offered to the
+components below instead. Once the accepted drag ends or is cancelled, the component is free to
+accept a new one.</p>
+<p>Control is not handed over: if the accepted pointer is lifted while another is still down, the drag
+ends rather than continuing on the remaining finger.</p>
+<p>This only gates drags. A component that also uses <code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code> keeps receiving scale events
+normally, so one-finger drag plus two-finger pinch still works.</p>
+</section>
 </section>
 <section id="combining-with-scalecallbacks">
 <h2>Combining with ScaleCallbacks<a class="headerlink" href="#combining-with-scalecallbacks" title="Link to this heading">¶</a></h2>
@@ -772,6 +799,7 @@ work together, both on a component and for panning and zooming the camera.</p>
   <a href='#mixins' class='list-group-item level-1'>Mixins</a>
   <a href='#dragcallbacks' class='list-group-item level-2'>DragCallbacks</a>
   <a href='#isdragged' class='list-group-item level-2'>isDragged</a>
+  <a href='#allowsmultipointerdrag' class='list-group-item level-2'>allowsMultiPointerDrag</a>
   <a href='#combining-with-scalecallbacks' class='list-group-item level-1'>Combining with ScaleCallbacks</a>
 </div>
 
