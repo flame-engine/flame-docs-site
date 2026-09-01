@@ -409,11 +409,14 @@ events as well.</p>
 <p>This event is fired continuously as user drags their finger across the screen. It will not fire if
 the user is holding their finger still.</p>
 <p>The default implementation delivers this event to all the components that received the previous
-<code class="docutils literal notranslate"><span class="pre">onScaleStart</span></code>. If the point of touch is still within the component, then
-<code class="docutils literal notranslate"><span class="pre">event.localPosition</span></code> will give the position of that point in the local coordinate system. However,
-if the user moves their finger away from the component, the property <code class="docutils literal notranslate"><span class="pre">event.localPosition</span></code> will
-return a point whose coordinates are NaNs. Likewise, the <code class="docutils literal notranslate"><span class="pre">event.renderingTrace</span></code> in this case will be
-empty. However, the <code class="docutils literal notranslate"><span class="pre">canvasPosition</span></code> and <code class="docutils literal notranslate"><span class="pre">devicePosition</span></code> properties of the event will be valid.</p>
+<code class="docutils literal notranslate"><span class="pre">onScaleStart</span></code>. Moving the focal point off the component <strong>does not</strong> stop the scale gesture,
+and the local coordinates are still computed (potentially outside the component bounds).</p>
+<p>The exception is when hit testing stops reaching the component altogether while it still holds the
+gesture, for example if an ancestor turns on <code class="docutils literal notranslate"><span class="pre">IgnoreEvents</span></code> mid-gesture. The component still
+receives the event, but with an empty <code class="docutils literal notranslate"><span class="pre">event.renderingTrace</span></code> behind it, so reading
+<code class="docutils literal notranslate"><span class="pre">localStartPosition</span></code>, <code class="docutils literal notranslate"><span class="pre">localEndPosition</span></code> or <code class="docutils literal notranslate"><span class="pre">localDelta</span></code> throws. <code class="docutils literal notranslate"><span class="pre">canvasStartPosition</span></code>,
+<code class="docutils literal notranslate"><span class="pre">canvasEndPosition</span></code>, <code class="docutils literal notranslate"><span class="pre">deviceStartPosition</span></code> and <code class="docutils literal notranslate"><span class="pre">deviceEndPosition</span></code> never depend on the trace and
+remain valid.</p>
 <p>In addition, the <code class="docutils literal notranslate"><span class="pre">ScaleUpdateEvent</span></code> will contain <code class="docutils literal notranslate"><span class="pre">focalPointDelta</span></code> –
 the amount the focal point has moved since the
 previous <code class="docutils literal notranslate"><span class="pre">onScaleUpdate</span></code>, or since the <code class="docutils literal notranslate"><span class="pre">onScaleStart</span></code> if this is the first scale-update after a scale-
