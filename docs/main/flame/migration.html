@@ -370,6 +370,17 @@
 major versions of Flame, together with the steps required to migrate your code.</p>
 <section id="migrating-from-v1-38-0-to-v2-0-0">
 <h2>Migrating from v1.38.0 to v2.0.0<a class="headerlink" href="#migrating-from-v1-38-0-to-v2-0-0" title="Link to this heading">¶</a></h2>
+<section id="the-gesture-listener-interfaces-removed">
+<h3>The gesture listener interfaces removed<a class="headerlink" href="#the-gesture-listener-interfaces-removed" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">MultiTapListener</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiDragListener</span></code> and <code class="docutils literal notranslate"><span class="pre">ScaleListener</span></code> have been removed, with no replacement.</p>
+<p>They existed so that one adapter could work with either of two implementations: the component-level
+mixins, or the matching game-level detector. Those detectors were removed earlier in the v2 rewrite,
+leaving each interface with a single implementation and nothing that consumed it as an interface.</p>
+<p>If you implemented one of these directly, use the <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code>, <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> or
+<code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code> mixin on your component or game instead, which is what they already pointed you at.</p>
+<p><code class="docutils literal notranslate"><span class="pre">FlameDragAdapter</span></code> is gone too, folded into <code class="docutils literal notranslate"><span class="pre">MultiDragScaleDispatcher</span></code> as a private class. It was
+already <code class="docutils literal notranslate"><span class="pre">&#64;internal</span></code>, so it could not be constructed from outside Flame.</p>
+</section>
 <section id="hasgamereference-removed-in-favour-of-hasgameref">
 <h3><code class="docutils literal notranslate"><span class="pre">HasGameReference</span></code> removed in favour of <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code><a class="headerlink" href="#hasgamereference-removed-in-favour-of-hasgameref" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">HasGameReference</span></code> has been removed. Use <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code> instead, which is no longer deprecated and is
@@ -1273,6 +1284,7 @@ instead of updating it with a <code class="docutils literal notranslate"><span c
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#migrating-from-v1-38-0-to-v2-0-0' class='list-group-item level-1'>Migrating from v1.38.0 to v2.0.0</a>
+  <a href='#the-gesture-listener-interfaces-removed' class='list-group-item level-2'>The gesture listener interfaces removed</a>
   <a href='#hasgamereference-removed-in-favour-of-hasgameref' class='list-group-item level-2'>HasGameReference removed in favour of HasGameRef</a>
   <a href='#asset-prefix-removed' class='list-group-item level-2'>Asset prefix removed</a>
   <a href='#cache-keys-are-now-the-full-path' class='list-group-item level-3'>Cache keys are now the full path</a>
