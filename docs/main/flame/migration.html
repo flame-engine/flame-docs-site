@@ -401,6 +401,28 @@ called <code class="docutils literal notranslate"><span class="pre">gameRef</spa
 <p>Setting the game instance explicitly (useful for mocking in tests) is done through <code class="docutils literal notranslate"><span class="pre">gameRef</span></code> as
 well, and the <code class="docutils literal notranslate"><span class="pre">findGame()</span></code> override behaves exactly as before.</p>
 </section>
+<section id="hasworldreference-renamed-to-hasworldref">
+<h3><code class="docutils literal notranslate"><span class="pre">HasWorldReference</span></code> renamed to <code class="docutils literal notranslate"><span class="pre">HasWorldRef</span></code><a class="headerlink" href="#hasworldreference-renamed-to-hasworldref" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">HasWorldReference</span></code> has been renamed to <code class="docutils literal notranslate"><span class="pre">HasWorldRef</span></code>, and its accessor <code class="docutils literal notranslate"><span class="pre">world</span></code> has been renamed to
+<code class="docutils literal notranslate"><span class="pre">worldRef</span></code>, so that it mirrors <code class="docutils literal notranslate"><span class="pre">HasGameRef</span></code>/<code class="docutils literal notranslate"><span class="pre">gameRef</span></code> exactly. The old name is gone, there is no
+deprecated alias:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasWorldReference</span><span class="o">&lt;</span><span class="n">MyWorld</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">doSomething</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">AnotherComponent</span><span class="p">());</span>
+<span class="p">}</span>
+
+<span class="c1">// After</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyComponent</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">Component</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">HasWorldRef</span><span class="o">&lt;</span><span class="n">MyWorld</span><span class="o">&gt;</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kt">void</span><span class="w"> </span><span class="n">doSomething</span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">worldRef</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">AnotherComponent</span><span class="p">());</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Note that this only affects the mixin’s accessor; <code class="docutils literal notranslate"><span class="pre">FlameGame.world</span></code> and <code class="docutils literal notranslate"><span class="pre">CameraComponent.world</span></code> are
+unchanged. Setting the world instance explicitly (useful for mocking in tests) is now done through
+<code class="docutils literal notranslate"><span class="pre">worldRef</span></code>, and <code class="docutils literal notranslate"><span class="pre">findWorld()</span></code> behaves exactly as before.</p>
+<p>Components that get the mixin indirectly are affected too: <code class="docutils literal notranslate"><span class="pre">Component3D</span></code> in <code class="docutils literal notranslate"><span class="pre">flame_3d</span></code> mixes in
+<code class="docutils literal notranslate"><span class="pre">HasWorldRef&lt;World3D&gt;</span></code>, so subclasses reaching for the enclosing world must use <code class="docutils literal notranslate"><span class="pre">worldRef</span></code>.</p>
+</section>
 <section id="asset-prefix-removed">
 <h3>Asset prefix removed<a class="headerlink" href="#asset-prefix-removed" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">Images</span></code> and <code class="docutils literal notranslate"><span class="pre">AssetsCache</span></code> no longer prepend anything to the paths you give them. <code class="docutils literal notranslate"><span class="pre">Images</span></code> used to
@@ -1286,6 +1308,7 @@ instead of updating it with a <code class="docutils literal notranslate"><span c
   <a href='#migrating-from-v1-38-0-to-v2-0-0' class='list-group-item level-1'>Migrating from v1.38.0 to v2.0.0</a>
   <a href='#the-gesture-listener-interfaces-removed' class='list-group-item level-2'>The gesture listener interfaces removed</a>
   <a href='#hasgamereference-removed-in-favour-of-hasgameref' class='list-group-item level-2'>HasGameReference removed in favour of HasGameRef</a>
+  <a href='#hasworldreference-renamed-to-hasworldref' class='list-group-item level-2'>HasWorldReference renamed to HasWorldRef</a>
   <a href='#asset-prefix-removed' class='list-group-item level-2'>Asset prefix removed</a>
   <a href='#cache-keys-are-now-the-full-path' class='list-group-item level-3'>Cache keys are now the full path</a>
   <a href='#loadallimages-and-loadallfrompattern-require-a-directory' class='list-group-item level-3'>loadAllImages and loadAllFromPattern require a directory</a>
