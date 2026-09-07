@@ -524,9 +524,12 @@ your viewfinder, [0,0] is in the center (<code class="docutils literal notransla
     G-.-&gt;D
 
         </div><p>When a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is first added to a <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> the lifecycle methods <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>, <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>
-and <code class="docutils literal notranslate"><span class="pre">onMount</span></code> will be called in that order. Then <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> are called in sequence for
-every game tick. If the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is removed from the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> then <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> is called.
-If the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is added to a new <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> the sequence repeats from <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>.</p>
+and <code class="docutils literal notranslate"><span class="pre">onMount</span></code> will be called in that order. After that, the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> waits for the whole initial
+component tree to be loaded and mounted, so the game does not start (and the <code class="docutils literal notranslate"><span class="pre">loadingBuilder</span></code>
+widget, if one is set, stays visible) until every component added during <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> is ready. Then
+<code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> are called in sequence for every game tick. If the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is removed
+from the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> then <code class="docutils literal notranslate"><span class="pre">onRemove</span></code> is called. If the <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is added to a new <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>
+the sequence repeats from <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>The order of <code class="docutils literal notranslate"><span class="pre">onGameResize</span></code> and <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> are reversed from that of other

@@ -481,6 +481,9 @@ constructor was used, this will always be <code class="docutils literal notransl
 <div class="description doc2 docutils container">
 <p>Builder to provide a widget which will be displayed while the game is
 loading. By default this is an empty <code class="docutils literal notranslate"><span class="pre">Container</span></code>.</p>
+<p>For a <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">FlameGame</span></code>, the game counts as loading until the whole initial
+component tree has been loaded and mounted, so the game does not start
+until every component added during <code class="xref dart dart-ref docutils literal notranslate"><span class="pre">Game.onLoad</span></code> is ready.</p>
 </div>
 </div>
 <div class="field docutils container">
