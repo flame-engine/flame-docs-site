@@ -542,7 +542,8 @@ in your override:</p>
 <p>A component’s lifecycle state can be checked by a series of getters:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">isLoaded</span></code>: Returns a bool with the current loaded state.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">loaded</span></code>: Returns a future that will complete once the component has finished loading.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loaded</span></code>: Returns a future that will complete once the component has finished loading, including
+the loading of any children that were added during its <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">isMounted</span></code>: Returns a bool with the current mounted state.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">mounted</span></code>: Returns a future that will complete once the component has finished mounting.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">isRemoved</span></code>: Returns a bool with the current removed state.</p></li>
@@ -706,6 +707,13 @@ soon as it is added:</p>
 been, and the parent is only mounted once its <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> has completed, so those futures would
 deadlock. The same goes for <code class="docutils literal notranslate"><span class="pre">game.lifecycleEventsProcessed</span></code>, since the parent’s own pending mount is
 part of the queue it waits for.</p>
+<p>A component does not count as loaded until every child that was added during its <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> has
+finished loading as well, even without awaiting their <code class="docutils literal notranslate"><span class="pre">loaded</span></code> futures explicitly. This means that
+by the time the component mounts, the subtree it created during <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> is fully loaded, and those
+children mount together with it in the same lifecycle processing pass. A child that fails to load
+is the exception: it is dropped from the tree without blocking its parent. Because the parent
+waits for its children, a child’s <code class="docutils literal notranslate"><span class="pre">onLoad</span></code> must not await the parent’s <code class="docutils literal notranslate"><span class="pre">loaded</span></code> or <code class="docutils literal notranslate"><span class="pre">mounted</span></code>
+future, that would deadlock.</p>
 <p>Note that the children added via either method are only guaranteed to be available eventually:
 after they are loaded and mounted. We can only assure that they will appear in the children list
 in the same order as they were scheduled for addition.</p>
