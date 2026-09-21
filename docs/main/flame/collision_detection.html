@@ -657,15 +657,35 @@ them so don’t hesitate to use them even if your use case isn’t listed here.<
 </section>
 <section id="polygonhitbox">
 <h3>PolygonHitbox<a class="headerlink" href="#polygonhitbox" title="Link to this heading">¶</a></h3>
-<p>It should be noted that if you want to use collision detection or <code class="docutils literal notranslate"><span class="pre">containsPoint</span></code> on the <code class="docutils literal notranslate"><span class="pre">Polygon</span></code>,
-the polygon needs to be convex. So always use convex polygons or you will most likely run into
-problems if you don’t really know what you are doing.</p>
+<p>A <code class="docutils literal notranslate"><span class="pre">PolygonHitbox</span></code> can be either convex or concave. Collisions, <code class="docutils literal notranslate"><span class="pre">containsPoint</span></code> and ray casting work
+for both, since whether a point is inside of the polygon is decided by how many of its edges are
+crossed on the way out of it. The cost grows with the number of vertices though, so a polygon with
+many of them is more expensive to collide with and to cast rays against than one with a few.</p>
 <p>The other hitbox shapes don’t have any mandatory constructor, that is because they can have a
 default calculated from the size of the collidable that they are attached to, but since a
 polygon can be made in an infinite number of ways inside of a bounding box you have to add the
 definition in the constructor for this shape.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">PolygonHitbox</span></code> has the same constructors as the <a class="reference internal" href="components/shape_components.html#polygoncomponent"><span class="std std-ref">PolygonComponent</span></a>,
 see that section for documentation regarding those.</p>
+<p>That includes <code class="docutils literal notranslate"><span class="pre">PolygonHitbox.fromPath</span></code>, which makes the hitbox
+<a class="reference internal" href="components/shape_components.html#from-a-path"><span class="std std-ref">from a contour of a Path</span></a>. This is a quick way to get a
+hitbox that follows the outline of a sprite or a vector graphic, which usually is concave:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Spaceship</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Spaceship</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">outline</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="n">outline</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">PolygonHitbox</span><span class="p">.</span><span class="n">fromPath</span><span class="p">(</span><span class="n">outline</span><span class="p">,</span><span class="w"> </span><span class="nl">sampling:</span><span class="w"> </span><span class="m">2</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Since the amount of vertices decides what the hitbox costs, use the highest <code class="docutils literal notranslate"><span class="pre">sampling</span></code> that still
+follows the outline closely enough for your game. The contour is walked when the hitbox is created,
+so create it once and not in every tick.</p>
 </section>
 <section id="rectanglehitbox">
 <h3>RectangleHitbox<a class="headerlink" href="#rectanglehitbox" title="Link to this heading">¶</a></h3>

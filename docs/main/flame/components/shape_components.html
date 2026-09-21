@@ -417,6 +417,61 @@ the center of the polygon.</p>
 <p><img alt="An example of how to define a polygon shape" src="../../_images/polygon_shape.png" /></p>
 <p>In the image you can see how the polygon shape formed by the purple arrows is defined by the red
 arrows.</p>
+<section id="from-a-path">
+<h3>From a Path<a class="headerlink" href="#from-a-path" title="Link to this heading">¶</a></h3>
+<p>When the outline of a shape already exists as a <code class="docutils literal notranslate"><span class="pre">Path</span></code>, for example one that was converted from a
+vector graphic, the <code class="docutils literal notranslate"><span class="pre">PolygonComponent.fromPath</span></code> constructor follows that outline with straight edges
+instead of you having to list the vertices by hand. The corners between the straight lines of the
+path become vertices as they are, and the curves are approximated.</p>
+<p>The following would create a rounded rectangle with a size of <code class="docutils literal notranslate"><span class="pre">(100,</span> <span class="pre">60)</span></code>, centered in <code class="docutils literal notranslate"><span class="pre">(200,</span> <span class="pre">100)</span></code>:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="p">()</span>
+<span class="w">    </span><span class="p">..</span><span class="n">addRRect</span><span class="p">(</span>
+<span class="w">      </span><span class="n">RRect</span><span class="p">.</span><span class="n">fromRectAndRadius</span><span class="p">(</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">60</span><span class="p">),</span>
+<span class="w">        </span><span class="k">const</span><span class="w"> </span><span class="n">Radius</span><span class="p">.</span><span class="n">circular</span><span class="p">(</span><span class="m">20</span><span class="p">),</span>
+<span class="w">      </span><span class="p">),</span>
+<span class="w">    </span><span class="p">);</span>
+
+<span class="w">  </span><span class="n">PolygonComponent</span><span class="p">.</span><span class="n">fromPath</span><span class="p">(</span>
+<span class="w">    </span><span class="n">path</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span>
+<span class="w">    </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="w">  </span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The component gets the size of the contour, so that curves which reach the bounds of the path are
+not cut short. If no <code class="docutils literal notranslate"><span class="pre">position</span></code> is given the polygon ends up where the contour is in the coordinates
+of the path.</p>
+<p>There are two arguments that control how the path is followed:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">contour</span></code>: A path has one contour for each shape that was added to it, and for each <code class="docutils literal notranslate"><span class="pre">moveTo</span></code>.
+This is the index of the one that the polygon is made from, and it defaults to the first one. An
+index that the path does not have results in a <code class="docutils literal notranslate"><span class="pre">RangeError</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">sampling</span></code>: The step that curves are followed with, in the units of the path, which defaults
+to <code class="docutils literal notranslate"><span class="pre">1.0</span></code>. The polygon stays within about half of it from the path. A higher value gives fewer
+vertices, which makes collision detection and ray casting cheaper, and a lower value follows the
+curves more closely. A path that is defined in small units, like meters, needs a sampling that
+is small compared to its size. Straight stretches cost the same whatever the sampling is.</p></li>
+</ul>
+<p>The constructor is built on the <code class="docutils literal notranslate"><span class="pre">walkContours</span></code>, <code class="docutils literal notranslate"><span class="pre">walkContourAt</span></code> and <code class="docutils literal notranslate"><span class="pre">walkContour</span></code> extension methods
+on <code class="docutils literal notranslate"><span class="pre">Path</span></code> and <code class="docutils literal notranslate"><span class="pre">PathMetric</span></code>, which return the vertices as lists of <code class="docutils literal notranslate"><span class="pre">Offset</span></code>s. Those also accept a
+<code class="docutils literal notranslate"><span class="pre">tolerance</span></code>, in case the simplification of the sampled contour should not follow the sampling.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="p">()</span>
+<span class="w">    </span><span class="p">..</span><span class="n">addOval</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">60</span><span class="p">))</span>
+<span class="w">    </span><span class="p">..</span><span class="n">addRect</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">));</span>
+
+<span class="w">  </span><span class="c1">// One list of offsets for each contour in the path.</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">contours</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="n">walkContours</span><span class="p">();</span>
+<span class="w">  </span><span class="c1">// Only the rectangle, sampled with a step of 2 and simplified with a</span>
+<span class="w">  </span><span class="c1">// tolerance of 0.5.</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">rectangle</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">path</span><span class="p">.</span><span class="n">walkContourAt</span><span class="p">(</span><span class="m">1</span><span class="p">,</span><span class="w"> </span><span class="m">2</span><span class="p">,</span><span class="w"> </span><span class="m">0.5</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</section>
 </section>
 <section id="rectanglecomponent">
 <h2>RectangleComponent<a class="headerlink" href="#rectanglecomponent" title="Link to this heading">¶</a></h2>
@@ -529,6 +584,7 @@ radius is in comparison to the shortest edge of the bounding box defined by <cod
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#polygoncomponent' class='list-group-item level-1'>PolygonComponent</a>
+  <a href='#from-a-path' class='list-group-item level-2'>From a Path</a>
   <a href='#rectanglecomponent' class='list-group-item level-1'>RectangleComponent</a>
   <a href='#circlecomponent' class='list-group-item level-1'>CircleComponent</a>
 </div>
