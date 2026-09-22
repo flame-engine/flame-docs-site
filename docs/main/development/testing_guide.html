@@ -515,6 +515,14 @@ higher than 10.</p>
 as the <code class="docutils literal notranslate"><span class="pre">seed:</span> <span class="pre">NNN</span></code> parameter to your test, and you’ll be able to run it for the same seed as long
 as you need until the test is fixed. Do not leave the <code class="docutils literal notranslate"><span class="pre">seed:</span></code> parameter when submitting your code,
 as it defeats the purpose of having the test randomized.</p>
+<p>You can also fix the seed for a whole test run without touching the code, by passing it as a
+compile-time define:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flutter<span class="w"> </span><span class="nb">test</span><span class="w"> </span>--dart-define<span class="o">=</span><span class="nv">RANDOM_SEED</span><span class="o">=</span><span class="m">1234</span>
+</pre></div>
+</div>
+<p>Every randomized test then starts from that seed, and each repeat of a test offsets it by the
+repeat index so that the repeats stay distinct. This is what the flutter/tests customer testing run
+uses to stay deterministic.</p>
 </section>
 </section>
 </section>
