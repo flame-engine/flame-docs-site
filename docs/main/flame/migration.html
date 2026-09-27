@@ -370,6 +370,28 @@
 major versions of Flame, together with the steps required to migrate your code.</p>
 <section id="migrating-from-v1-38-0-to-v2-0-0">
 <h2>Migrating from v1.38.0 to v2.0.0<a class="headerlink" href="#migrating-from-v1-38-0-to-v2-0-0" title="Link to this heading">¶</a></h2>
+<section id="games-are-opaque-to-hit-tests-by-default">
+<h3>Games are opaque to hit tests by default<a class="headerlink" href="#games-are-opaque-to-hit-tests-by-default" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> used to answer <code class="docutils literal notranslate"><span class="pre">containsEventHandlerAt</span></code> by walking the component tree and reporting a
+hit only where a component implemented <code class="docutils literal notranslate"><span class="pre">PointerInputCallbacks</span></code>. It now reports a hit everywhere,
+like the base <code class="docutils literal notranslate"><span class="pre">Game</span></code> class, and the tree walk is opt-in:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="c1">// Before: implicit, and paid for on every hit test under deferToChild</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{}</span>
+
+<span class="c1">// After</span>
+<span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DeferHitTestToComponents</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
+</div>
+<p>This only affects games built with <code class="docutils literal notranslate"><span class="pre">HitTestBehavior.deferToChild</span></code>, since <code class="docutils literal notranslate"><span class="pre">opaque</span></code> (the default) and
+<code class="docutils literal notranslate"><span class="pre">translucent</span></code> never consult the game. If you use <code class="docutils literal notranslate"><span class="pre">deferToChild</span></code> to let events reach widgets behind
+the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>, add the mixin, or override <code class="docutils literal notranslate"><span class="pre">containsEventHandlerAt</span></code> with a cheaper rule of your
+own.</p>
+<p>Separately, <code class="docutils literal notranslate"><span class="pre">translucent</span></code> no longer consults the game either. Flutter’s meaning for it is “hit me,
+and hit what is behind me too”, so the game is now always a hit and the passthrough is left to
+Flutter. Previously a translucent game could not be hit at all wherever it had no interactive
+component.</p>
+<p>See <a class="reference internal" href="game_widget.html#hit-test-behavior"><span class="std std-ref">Hit Test Behavior</span></a> for the full picture.</p>
+</section>
 <section id="the-gesture-listener-interfaces-removed">
 <h3>The gesture listener interfaces removed<a class="headerlink" href="#the-gesture-listener-interfaces-removed" title="Link to this heading">¶</a></h3>
 <p><code class="docutils literal notranslate"><span class="pre">MultiTapListener</span></code>, <code class="docutils literal notranslate"><span class="pre">MultiDragListener</span></code> and <code class="docutils literal notranslate"><span class="pre">ScaleListener</span></code> have been removed, with no replacement.</p>
@@ -1306,6 +1328,7 @@ instead of updating it with a <code class="docutils literal notranslate"><span c
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#migrating-from-v1-38-0-to-v2-0-0' class='list-group-item level-1'>Migrating from v1.38.0 to v2.0.0</a>
+  <a href='#games-are-opaque-to-hit-tests-by-default' class='list-group-item level-2'>Games are opaque to hit tests by default</a>
   <a href='#the-gesture-listener-interfaces-removed' class='list-group-item level-2'>The gesture listener interfaces removed</a>
   <a href='#hasgamereference-removed-in-favour-of-hasgameref' class='list-group-item level-2'>HasGameReference removed in favour of HasGameRef</a>
   <a href='#hasworldreference-renamed-to-hasworldref' class='list-group-item level-2'>HasWorldReference renamed to HasWorldRef</a>

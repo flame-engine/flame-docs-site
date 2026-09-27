@@ -598,14 +598,14 @@ through to widgets underneath it in the widget tree.</p>
 <li><p><strong><code class="docutils literal notranslate"><span class="pre">HitTestBehavior.opaque</span></code></strong> (default): The game absorbs all pointer events on its entire surface,
 preventing any widgets behind it from receiving them. This is the classic behavior where the game
 acts as a solid layer.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">HitTestBehavior.deferToChild</span></code></strong>: The game only intercepts events at positions where a component
-with event callbacks (e.g. <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code>) exists. Events at positions with no interactive
-components pass through to widgets behind the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>. This is useful when layering a game on
-top of Flutter UI and you want the underlying widgets to remain interactive in areas the game
-doesn’t need to handle.</p></li>
-<li><p><strong><code class="docutils literal notranslate"><span class="pre">HitTestBehavior.translucent</span></code></strong>: The game receives events where it has event-handling
-components, but always allows widgets behind it to be hit-tested as well. Both the game and the
-widgets behind it can receive the same event.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">HitTestBehavior.deferToChild</span></code></strong>: The game is asked, position by position, whether the event is
+its own, by calling <code class="docutils literal notranslate"><span class="pre">containsEventHandlerAt</span></code>. Events it declines pass through to widgets behind
+the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>. This is useful when layering a game on top of Flutter UI and you want the
+underlying widgets to remain interactive in areas the game doesn’t need to handle. See
+<a class="reference internal" href="#deciding-what-the-game-absorbs">Deciding what the game absorbs</a> below, since the default answer
+is “everything”.</p></li>
+<li><p><strong><code class="docutils literal notranslate"><span class="pre">HitTestBehavior.translucent</span></code></strong>: The game absorbs events on its entire surface, and the widgets
+behind it are hit-tested as well, so both can receive the same event.</p></li>
 </ul>
 <section id="allowing-taps-to-pass-through">
 <h3>Allowing taps to pass through<a class="headerlink" href="#allowing-taps-to-pass-through" title="Link to this heading">¶</a></h3>
@@ -634,18 +634,32 @@ to those widgets, set <code class="docutils literal notranslate"><span class="pr
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In this setup, tapping an area with no interactive game components will reach the <code class="docutils literal notranslate"><span class="pre">ElevatedButton</span></code>
-behind the game. Tapping a game component that uses <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> will be handled by the game
-instead.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>When using <code class="docutils literal notranslate"><span class="pre">deferToChild</span></code> or <code class="docutils literal notranslate"><span class="pre">translucent</span></code>, <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> determines whether a
-position has an interactive component by traversing the component tree via
-<code class="docutils literal notranslate"><span class="pre">componentsAtPoint</span></code>, and treating any component that implements
-<code class="docutils literal notranslate"><span class="pre">PointerInputCallbacks</span></code> as interactive. Games that directly extend the
-low-level <code class="docutils literal notranslate"><span class="pre">Game</span></code> class report a hit on their entire surface by default;
-override <code class="docutils literal notranslate"><span class="pre">containsEventHandlerAt</span></code> to customize this.</p>
+<p>On its own this is not enough: <code class="docutils literal notranslate"><span class="pre">deferToChild</span></code> asks the game which positions are its own, and a game
+answers “all of them” unless told otherwise. Add the <code class="docutils literal notranslate"><span class="pre">DeferHitTestToComponents</span></code> mixin so it answers
+based on its components:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">MyGame</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">DeferHitTestToComponents</span><span class="w"> </span><span class="p">{}</span>
+</pre></div>
 </div>
+<p>With both in place, tapping an area with no interactive game components reaches the
+<code class="docutils literal notranslate"><span class="pre">ElevatedButton</span></code> behind the game, while tapping a component that uses <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> is handled by
+the game.</p>
+</section>
+<section id="deciding-what-the-game-absorbs">
+<h3>Deciding what the game absorbs<a class="headerlink" href="#deciding-what-the-game-absorbs" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">containsEventHandlerAt</span></code> answers, for a single position, whether the game wants the event. It is
+only consulted under <code class="docutils literal notranslate"><span class="pre">deferToChild</span></code>; <code class="docutils literal notranslate"><span class="pre">opaque</span></code> and <code class="docutils literal notranslate"><span class="pre">translucent</span></code> decide without asking.</p>
+<p>By default it returns <code class="docutils literal notranslate"><span class="pre">true</span></code> everywhere, which is why a game is opaque until you opt out. There are
+two ways to change that:</p>
+<ul class="simple">
+<li><p>add the <code class="docutils literal notranslate"><span class="pre">DeferHitTestToComponents</span></code> mixin, which walks the components at that point and reports a
+hit if any of them implements <code class="docutils literal notranslate"><span class="pre">PointerInputCallbacks</span></code> (which every positional callbacks mixin
+does);</p></li>
+<li><p>or override <code class="docutils literal notranslate"><span class="pre">containsEventHandlerAt</span></code> with your own rule, for instance a fixed rectangle, which
+avoids the per-event tree walk that the mixin costs.</p></li>
+</ul>
+<p>Note that a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> which handles pointer events itself, by mixing in something like
+<code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> directly, is interactive across its whole surface; the mixin has nothing to defer in
+that case and asserts.</p>
 </section>
 </section>
 </section>
@@ -684,6 +698,7 @@ override <code class="docutils literal notranslate"><span class="pre">containsEv
   <a href='#properties' class='list-group-item level-1'>Properties</a>
   <a href='#hit-test-behavior' class='list-group-item level-1'>Hit Test Behavior</a>
   <a href='#allowing-taps-to-pass-through' class='list-group-item level-2'>Allowing taps to pass through</a>
+  <a href='#deciding-what-the-game-absorbs' class='list-group-item level-2'>Deciding what the game absorbs</a>
 </div>
 
     </div>
