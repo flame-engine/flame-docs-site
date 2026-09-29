@@ -457,6 +457,7 @@ for details. All rights reserved. Use of this source code is governed by a
 BSD-style license that can be found in the LICENSE file.
 --------------------------------------------------------------------------------
 analyzer
+intl
 
 Copyright 2013, the Dart project authors.
 
@@ -2526,8 +2527,10 @@ See the License for the specific language governing permissions and
 limitations under the License.
 --------------------------------------------------------------------------------
 cross_file
+cupertino_ui
 google_fonts
 listen
+material_ui
 path_provider
 path_provider_android
 path_provider_foundation

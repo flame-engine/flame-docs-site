@@ -377,12 +377,12 @@ the provided color between a provided range.</p>
 <iframe class="flutter-app-iframe" src="/main/_static/apps/flame-examples/index.html?color_effect" style="width: 180px; height: 160px"></iframe><div class="flutter-app-code docutils container" id="flame-examples-source-color_effect">
 <div class="filename docutils container">
 color_effect.dart</div>
-<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/animation.dart&#39;</span><span class="p">;</span>
-<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/cupertino.dart&#39;</span><span class="p">;</span>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:cupertino_ui/cupertino_ui.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:doc_flame_examples/ember.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/components.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 4</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 6</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/animation.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 7</span>
 <span class="linenos"> 8</span><span class="kd">class</span><span class="w"> </span><span class="nc">ColorEffectExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 9</span><span class="w">  </span><span class="kt">bool</span><span class="w"> </span><span class="n">reset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
@@ -618,7 +618,7 @@ glow_effect.dart</div>
 <span class="linenos"> 2</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/effects.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 3</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flame/game.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 4</span>
-<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:flutter/material.dart&#39;</span><span class="p">;</span>
+<span class="linenos"> 5</span><span class="k">import</span><span class="w"> </span><span class="s1">&#39;package:material_ui/material_ui.dart&#39;</span><span class="p">;</span>
 <span class="linenos"> 6</span>
 <span class="linenos"> 7</span><span class="kd">class</span><span class="w"> </span><span class="nc">GlowEffectExample</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">FlameGame</span><span class="w"> </span><span class="p">{</span>
 <span class="linenos"> 8</span><span class="w">  </span><span class="nd">@override</span>
