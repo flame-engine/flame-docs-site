@@ -687,6 +687,34 @@ hitbox that follows the outline of a sprite or a vector graphic, which usually i
 follows the outline closely enough for your game. The contour is walked when the hitbox is created,
 so create it once and not in every tick.</p>
 </section>
+<section id="pathhitbox">
+<h3>PathHitbox<a class="headerlink" href="#pathhitbox" title="Link to this heading">¶</a></h3>
+<p>A <code class="docutils literal notranslate"><span class="pre">PathHitbox</span></code> follows all the closed contours of a <code class="docutils literal notranslate"><span class="pre">Path</span></code> at once, with one polygon for each of
+them, where <code class="docutils literal notranslate"><span class="pre">PolygonHitbox.fromPath</span></code> follows a single contour. The polygons form a single hitbox:
+it collides, contains points and is hit by rays as a whole, whichever of its polygons is involved,
+and it reports one collision to its parent even when several of its polygons touch the other
+hitbox. A ray hits the nearest of the polygons.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">PathHitbox</span></code> has the same constructor as the <a class="reference internal" href="components/shape_components.html#pathcomponent"><span class="std std-ref">PathComponent</span></a>,
+see that section for the <code class="docutils literal notranslate"><span class="pre">sampling</span></code>, <code class="docutils literal notranslate"><span class="pre">tolerance</span></code> and <code class="docutils literal notranslate"><span class="pre">filter</span></code> arguments, and it takes the
+<code class="docutils literal notranslate"><span class="pre">collisionType</span></code> like the other hitboxes. When rendered, it draws its polygons and not the path, so
+that you can see what actually collides:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">class</span><span class="w"> </span><span class="nc">Spaceship</span><span class="w"> </span><span class="kd">extends</span><span class="w"> </span><span class="n">SpriteComponent</span><span class="w"> </span><span class="kd">with</span><span class="w"> </span><span class="n">CollisionCallbacks</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="n">Spaceship</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="n">outline</span><span class="p">);</span>
+
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">Path</span><span class="w"> </span><span class="n">outline</span><span class="p">;</span>
+
+<span class="w">  </span><span class="nd">@override</span>
+<span class="w">  </span><span class="n">Future</span><span class="o">&lt;</span><span class="kt">void</span><span class="o">&gt;</span><span class="w"> </span><span class="n">onLoad</span><span class="p">()</span><span class="w"> </span><span class="kd">async</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kd">await</span><span class="w"> </span><span class="k">super</span><span class="p">.</span><span class="n">onLoad</span><span class="p">();</span>
+<span class="w">    </span><span class="n">add</span><span class="p">(</span><span class="n">PathHitbox</span><span class="p">(</span><span class="nl">path:</span><span class="w"> </span><span class="n">outline</span><span class="p">,</span><span class="w"> </span><span class="nl">sampling:</span><span class="w"> </span><span class="m">2</span><span class="p">));</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Every polygon takes part in the collision detection, so a path with many contours or many vertices
+costs accordingly. Keep the <code class="docutils literal notranslate"><span class="pre">filter</span></code> on unless the inner contours matter, and use the highest
+<code class="docutils literal notranslate"><span class="pre">sampling</span></code> that still follows the outline closely enough.</p>
+</section>
 <section id="rectanglehitbox">
 <h3>RectangleHitbox<a class="headerlink" href="#rectanglehitbox" title="Link to this heading">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">RectangleHitbox</span></code> has the same constructors as the <a class="reference internal" href="components/shape_components.html#rectanglecomponent"><span class="std std-ref">RectangleComponent</span></a>,
@@ -1206,6 +1234,7 @@ need some of the following things (since it is simpler to not involve Forge2D):<
   <a href='#shapehitbox' class='list-group-item level-1'>ShapeHitbox</a>
   <a href='#collisiontype' class='list-group-item level-2'>CollisionType</a>
   <a href='#polygonhitbox' class='list-group-item level-2'>PolygonHitbox</a>
+  <a href='#pathhitbox' class='list-group-item level-2'>PathHitbox</a>
   <a href='#rectanglehitbox' class='list-group-item level-2'>RectangleHitbox</a>
   <a href='#circlehitbox' class='list-group-item level-2'>CircleHitbox</a>
   <a href='#screenhitbox' class='list-group-item level-1'>ScreenHitbox</a>

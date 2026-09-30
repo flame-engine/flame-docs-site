@@ -499,6 +499,68 @@ widgets.</p>
 <a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/widgets/custom_painter_example.dart">custom_painter_component</a>
 for details on how to use it.</p>
 </section>
+<section id="widgetcomponent">
+<h2>WidgetComponent<a class="headerlink" href="#widgetcomponent" title="Link to this heading">¶</a></h2>
+<p>A <code class="docutils literal notranslate"><span class="pre">WidgetComponent</span></code> hosts a Flutter widget inside the Flame component tree. The widget becomes a
+real part of the Flutter widget tree under the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>, so it is laid out, painted, hit tested
+and focused like any other widget: buttons respond to taps, text fields receive keyboard input, and
+inherited widgets such as <code class="docutils literal notranslate"><span class="pre">Theme</span></code>, <code class="docutils literal notranslate"><span class="pre">MediaQuery</span></code> and <code class="docutils literal notranslate"><span class="pre">Directionality</span></code> are available to it. At the
+same time it is rendered in the middle of the Flame render pass, so it respects the component
+<code class="docutils literal notranslate"><span class="pre">priority</span></code>, the camera transform, and the position, angle, scale and anchor of the component and all
+of its ancestors.</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="n">world</span><span class="p">.</span><span class="n">add</span><span class="p">(</span>
+<span class="w">  </span><span class="n">WidgetComponent</span><span class="p">(</span>
+<span class="w">    </span><span class="nl">position:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">),</span>
+<span class="w">    </span><span class="nl">size:</span><span class="w"> </span><span class="n">Vector2</span><span class="p">(</span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="m">60</span><span class="p">),</span>
+<span class="w">    </span><span class="nl">anchor:</span><span class="w"> </span><span class="n">Anchor</span><span class="p">.</span><span class="n">center</span><span class="p">,</span>
+<span class="w">    </span><span class="nl">widget:</span><span class="w"> </span><span class="n">ElevatedButton</span><span class="p">(</span>
+<span class="w">      </span><span class="nl">onPressed:</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">print</span><span class="p">(</span><span class="s1">&#39;pressed&#39;</span><span class="p">),</span>
+<span class="w">      </span><span class="nl">child:</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="n">Text</span><span class="p">(</span><span class="s1">&#39;Play&#39;</span><span class="p">),</span>
+<span class="w">    </span><span class="p">),</span>
+<span class="w">  </span><span class="p">),</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>When <code class="docutils literal notranslate"><span class="pre">size</span></code> is given, the widget is laid out with tight constraints of that size, in the same way
+as a <code class="docutils literal notranslate"><span class="pre">SizedBox</span></code> would. When it is omitted, the component adopts whatever size the widget ends up
+with. In that case the widget is laid out with the <code class="docutils literal notranslate"><span class="pre">constraints</span></code> passed to the component, or, when
+those are omitted too, with loose constraints bounded by the size of the game canvas expressed in
+the local units of the component, so the scale of the component and of its ancestors is taken into
+account but the camera zoom is not.</p>
+<p>The hosted widget can be replaced at any time by assigning <code class="docutils literal notranslate"><span class="pre">widget</span></code>, which rebuilds the hosted
+subtree in the same way as returning a new widget from a <code class="docutils literal notranslate"><span class="pre">build</span></code> method would. State inside the
+widget, such as the text of a <code class="docutils literal notranslate"><span class="pre">TextField</span></code>, is kept as long as the widget types and keys line up, as
+in any other Flutter rebuild.</p>
+<p>Widgets are hit tested before the components of the game, so a tap on a button inside a
+<code class="docutils literal notranslate"><span class="pre">WidgetComponent</span></code> is not also delivered to a <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> component below it. Material widgets
+such as <code class="docutils literal notranslate"><span class="pre">ElevatedButton</span></code> and <code class="docutils literal notranslate"><span class="pre">TextField</span></code> need a <code class="docutils literal notranslate"><span class="pre">Material</span></code> ancestor, so either put a <code class="docutils literal notranslate"><span class="pre">Material</span></code>
+inside the hosted widget or make sure the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> is inside a <code class="docutils literal notranslate"><span class="pre">MaterialApp</span></code> <code class="docutils literal notranslate"><span class="pre">Scaffold</span></code>.</p>
+<p>This differs from <a class="reference internal" href="../overlays.html"><span class="std std-doc">overlays</span></a>, which are placed in a <code class="docutils literal notranslate"><span class="pre">Stack</span></code> on top of the whole
+game and are not affected by the camera or by any component transforms. Use overlays for menus and
+HUD elements that should stay fixed on the screen, and <code class="docutils literal notranslate"><span class="pre">WidgetComponent</span></code> for widgets that belong to
+the game world, for example a speech bubble attached to a character or a form on an in-game
+terminal.</p>
+<p>There are some limitations to be aware of:</p>
+<ul class="simple">
+<li><p>The widget is only rendered by the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> render pass. It is not included when the component
+tree is rendered to a <code class="docutils literal notranslate"><span class="pre">Picture</span></code> or <code class="docutils literal notranslate"><span class="pre">Image</span></code> elsewhere, for example by the <code class="docutils literal notranslate"><span class="pre">Snapshot</span></code> mixin, by
+<code class="docutils literal notranslate"><span class="pre">PostProcess</span></code>es or by the devtools component snapshot.</p></li>
+<li><p>Flame paints are not applied to the widget. Paint based effects such as <code class="docutils literal notranslate"><span class="pre">OpacityEffect</span></code> or
+<code class="docutils literal notranslate"><span class="pre">ColorEffect</span></code> on the component or its ancestors do not affect the widget, only transforms and
+rectangular clips (such as the camera viewport) do.</p></li>
+<li><p>A widget that needs its own compositing layer (for example one that contains a <code class="docutils literal notranslate"><span class="pre">RepaintBoundary</span></code>,
+a scrollable list, or a platform view) splits the game’s picture in two around it. Any <code class="docutils literal notranslate"><span class="pre">saveLayer</span></code>
+that an ancestor component has active at that point is closed and reopened around the widget.</p></li>
+<li><p>A widget can only be painted once per frame. When the same <code class="docutils literal notranslate"><span class="pre">WidgetComponent</span></code> is rendered several
+times in one frame, for example because its world is viewed by several cameras, only the first
+render paints the widget.</p></li>
+<li><p>While the component is not rendered, for example because an ancestor is hidden, the widget stays
+in the widget tree but is excluded from focus and semantics, and <code class="docutils literal notranslate"><span class="pre">isPainted</span></code> is false.</p></li>
+</ul>
+<p>Check the example app
+<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/components/widget_component_example.dart">widget_component</a>
+for details on how to use it.</p>
+</section>
 <section id="componentsnotifier">
 <h2>ComponentsNotifier<a class="headerlink" href="#componentsnotifier" title="Link to this heading">¶</a></h2>
 <p>Most of the time just accessing children and their attributes is enough to build the logic of
@@ -631,6 +693,7 @@ for details on how to use it.</p>
   <a href='#isometrictilemapcomponent' class='list-group-item level-1'>IsometricTileMapComponent</a>
   <a href='#ninetileboxcomponent' class='list-group-item level-1'>NineTileBoxComponent</a>
   <a href='#custompaintercomponent' class='list-group-item level-1'>CustomPainterComponent</a>
+  <a href='#widgetcomponent' class='list-group-item level-1'>WidgetComponent</a>
   <a href='#componentsnotifier' class='list-group-item level-1'>ComponentsNotifier</a>
   <a href='#clipcomponent' class='list-group-item level-1'>ClipComponent</a>
 </div>

@@ -444,20 +444,22 @@ path become vertices as they are, and the curves are approximated.</p>
 <p>The component gets the size of the contour, so that curves which reach the bounds of the path are
 not cut short. If no <code class="docutils literal notranslate"><span class="pre">position</span></code> is given the polygon ends up where the contour is in the coordinates
 of the path.</p>
-<p>There are two arguments that control how the path is followed:</p>
+<p>There are three arguments that control how the path is followed:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">contour</span></code>: A path has one contour for each shape that was added to it, and for each <code class="docutils literal notranslate"><span class="pre">moveTo</span></code>.
 This is the index of the one that the polygon is made from, and it defaults to the first one. An
 index that the path does not have results in a <code class="docutils literal notranslate"><span class="pre">RangeError</span></code>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sampling</span></code>: The step that curves are followed with, in the units of the path, which defaults
-to <code class="docutils literal notranslate"><span class="pre">1.0</span></code>. The polygon stays within about half of it from the path. A higher value gives fewer
-vertices, which makes collision detection and ray casting cheaper, and a lower value follows the
-curves more closely. A path that is defined in small units, like meters, needs a sampling that
-is small compared to its size. Straight stretches cost the same whatever the sampling is.</p></li>
+to <code class="docutils literal notranslate"><span class="pre">1.0</span></code>. A higher value gives fewer vertices, which makes collision detection and ray casting
+cheaper, and a lower value follows the curves more closely. A path that is defined in small
+units, like meters, needs a sampling that is small compared to its size. Straight stretches cost
+the same whatever the sampling is.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">tolerance</span></code>: How far the polygon may stray from the path, in the units of the path. The samples
+that are not needed to stay within it are left out. It defaults to half of the <code class="docutils literal notranslate"><span class="pre">sampling</span></code>.</p></li>
 </ul>
 <p>The constructor is built on the <code class="docutils literal notranslate"><span class="pre">walkContours</span></code>, <code class="docutils literal notranslate"><span class="pre">walkContourAt</span></code> and <code class="docutils literal notranslate"><span class="pre">walkContour</span></code> extension methods
-on <code class="docutils literal notranslate"><span class="pre">Path</span></code> and <code class="docutils literal notranslate"><span class="pre">PathMetric</span></code>, which return the vertices as lists of <code class="docutils literal notranslate"><span class="pre">Offset</span></code>s. Those also accept a
-<code class="docutils literal notranslate"><span class="pre">tolerance</span></code>, in case the simplification of the sampled contour should not follow the sampling.</p>
+on <code class="docutils literal notranslate"><span class="pre">Path</span></code> and <code class="docutils literal notranslate"><span class="pre">PathMetric</span></code>, which take the same <code class="docutils literal notranslate"><span class="pre">sampling</span></code> and <code class="docutils literal notranslate"><span class="pre">tolerance</span></code> and return the vertices
+as lists of <code class="docutils literal notranslate"><span class="pre">Offset</span></code>s.</p>
 <div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="p">()</span>
 <span class="w">    </span><span class="p">..</span><span class="n">addOval</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">60</span><span class="p">))</span>
@@ -472,6 +474,35 @@ on <code class="docutils literal notranslate"><span class="pre">Path</span></cod
 </pre></div>
 </div>
 </section>
+</section>
+<section id="pathcomponent">
+<h2>PathComponent<a class="headerlink" href="#pathcomponent" title="Link to this heading">¶</a></h2>
+<p>When a whole <code class="docutils literal notranslate"><span class="pre">Path</span></code> is needed instead of a single contour, a <code class="docutils literal notranslate"><span class="pre">PathComponent</span></code> renders the path as it
+is and follows each of its closed contours with a polygon, in the same way as
+<code class="docutils literal notranslate"><span class="pre">PolygonComponent.fromPath</span></code> follows one contour. The polygons decide whether a point is inside of
+the component, so taps and drags only count on the shapes of the path and not in the space between
+them. The component gets the size of the bounds of the path, and the path is moved so that those
+bounds start at the origin of the component, so the anchor and the transforms apply to it like to
+any other shape.</p>
+<p>Using the previous two-contour <code class="docutils literal notranslate"><span class="pre">Path</span></code>, a <code class="docutils literal notranslate"><span class="pre">PathComponent</span></code> that renders and covers both shapes is
+created like this:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">path</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Path</span><span class="p">()</span>
+<span class="w">    </span><span class="p">..</span><span class="n">addOval</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">100</span><span class="p">,</span><span class="w"> </span><span class="m">60</span><span class="p">))</span>
+<span class="w">    </span><span class="p">..</span><span class="n">addRect</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">Rect</span><span class="p">.</span><span class="n">fromLTWH</span><span class="p">(</span><span class="m">200</span><span class="p">,</span><span class="w"> </span><span class="m">0</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">,</span><span class="w"> </span><span class="m">50</span><span class="p">));</span>
+
+<span class="w">  </span><span class="kd">final</span><span class="w"> </span><span class="n">component</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">PathComponent</span><span class="p">(</span><span class="nl">path:</span><span class="w"> </span><span class="n">path</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">sampling</span></code> and <code class="docutils literal notranslate"><span class="pre">tolerance</span></code> arguments control how the contours are followed, see
+<a class="reference internal" href="#from-a-path"><span class="std std-ref">From a Path</span></a>. The vertices of each polygon are available in <code class="docutils literal notranslate"><span class="pre">polygons</span></code>.</p>
+<p>Contours with fewer than three vertices, like open lines, are rendered but do not become polygons.
+By default, the polygons whose vertices all lie inside of the largest polygon are left out as well,
+since the largest one already covers them; the eyes of a face are an example of this. Pass
+<code class="docutils literal notranslate"><span class="pre">filter:</span> <span class="pre">false</span></code> to keep every polygon, for example when the inner contours should be hit by rays.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">PathHitbox</span></code> is the hitbox counterpart of the <code class="docutils literal notranslate"><span class="pre">PathComponent</span></code>, see
+<a class="reference internal" href="../collision_detection.html#pathhitbox"><span class="std std-ref">PathHitbox</span></a>.</p>
 </section>
 <section id="rectanglecomponent">
 <h2>RectangleComponent<a class="headerlink" href="#rectanglecomponent" title="Link to this heading">¶</a></h2>
@@ -585,6 +616,7 @@ radius is in comparison to the shortest edge of the bounding box defined by <cod
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#polygoncomponent' class='list-group-item level-1'>PolygonComponent</a>
   <a href='#from-a-path' class='list-group-item level-2'>From a Path</a>
+  <a href='#pathcomponent' class='list-group-item level-1'>PathComponent</a>
   <a href='#rectanglecomponent' class='list-group-item level-1'>RectangleComponent</a>
   <a href='#circlecomponent' class='list-group-item level-1'>CircleComponent</a>
 </div>
