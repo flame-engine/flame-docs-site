@@ -4,7 +4,7 @@
 <meta name="robots" content="noindex">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Inputs &#8212; Flame</title>
+  <title>Flame CLI &#8212; Flame</title>
   <!-- Stylesheets -->
   <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=5349f25f" />
   <link rel="stylesheet" type="text/css" href="../../_static/basic.css?v=eeb27264" />
@@ -38,8 +38,8 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="Tap Events" href="tap_events.html" />
-  <link rel="prev" title="Utility Components" href="../components/utility_components.html" />
+  <link rel="next" title="Util" href="util.html" />
+  <link rel="prev" title="Debug features" href="debug.html" />
 </head>
 
 <body data-spy="scroll" data-target="#toc-local" data-offset="80">
@@ -124,15 +124,15 @@
 <li class="toctree-l3"><a class="reference internal" href="../components/utility_components.html">Utility Components</a></li>
 </ul>
 </li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Inputs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="tap_events.html">Tap Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="drag_events.html">Drag Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="scale_events.html">Scale Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="long_press_events.html">Long Press Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="pointer_events.html">Pointer Events</a></li>
-<li class="toctree-l3"><a class="reference internal" href="keyboard_input.html">Keyboard Input</a></li>
-<li class="toctree-l3"><a class="reference internal" href="hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
-<li class="toctree-l3"><a class="reference internal" href="other_inputs.html">Other Inputs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../inputs/inputs.html">Inputs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/tap_events.html">Tap Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/drag_events.html">Drag Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/scale_events.html">Scale Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/long_press_events.html">Long Press Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/pointer_events.html">Pointer Events</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/keyboard_input.html">Keyboard Input</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/hardware_keyboard_detector.html">HardwareKeyboardDetector</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../inputs/other_inputs.html">Other Inputs</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../camera.html">Camera</a></li>
@@ -172,12 +172,12 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../overlays.html">Overlays</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../other/other.html">Other</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../other/debug.html">Debugging</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../other/cli.html">Flame CLI</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../other/util.html">Utils</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../other/widgets.html">Widgets</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../other/performance.html">Performance</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="other.html">Other</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="debug.html">Debugging</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">Flame CLI</a></li>
+<li class="toctree-l3"><a class="reference internal" href="util.html">Utils</a></li>
+<li class="toctree-l3"><a class="reference internal" href="widgets.html">Widgets</a></li>
+<li class="toctree-l3"><a class="reference internal" href="performance.html">Performance</a></li>
 </ul>
 </li>
 </ul>
@@ -365,75 +365,226 @@
     </div>
     <div class="document" role="main">
       
-  <section class="tex2jax_ignore mathjax_ignore" id="inputs">
-<h1>Inputs<a class="headerlink" href="#inputs" title="Link to this heading">¶</a></h1>
-<p>Games are interactive by nature, so handling player input is essential. Flame provides input
-handling that works on all platforms Flutter supports: touch on mobile, mouse and keyboard on
-desktop, and pointer events on the web. These APIs are designed as mixins that you add to your
-components, so each component can independently decide which input events it cares about. This is
-similar to how
-Flutter’s <a class="reference external" href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html">GestureDetector</a>
-works, but adapted for Flame’s component tree.</p>
-<p>Since <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is itself a <code class="docutils literal notranslate"><span class="pre">Component</span></code>, adding one of these mixins to your game class works
-exactly as well as adding it to a component; no wrapper component required.</p>
-<ul class="simple">
-<li><p><a class="reference internal" href="tap_events.html"><span class="std std-doc">Tap Events</span></a>: <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code>, <code class="docutils literal notranslate"><span class="pre">SecondaryTapCallbacks</span></code>, <code class="docutils literal notranslate"><span class="pre">TertiaryTapCallbacks</span></code>,
-<code class="docutils literal notranslate"><span class="pre">DoubleTapCallbacks</span></code></p></li>
-<li><p><a class="reference internal" href="drag_events.html"><span class="std std-doc">Drag Events</span></a>: <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code></p></li>
-<li><p><a class="reference internal" href="scale_events.html"><span class="std std-doc">Scale Events</span></a>: <code class="docutils literal notranslate"><span class="pre">ScaleCallbacks</span></code></p></li>
-<li><p><a class="reference internal" href="long_press_events.html"><span class="std std-doc">Long Press Events</span></a>: <code class="docutils literal notranslate"><span class="pre">LongPressCallbacks</span></code></p></li>
-<li><p><a class="reference internal" href="pointer_events.html"><span class="std std-doc">Pointer Events</span></a>: <code class="docutils literal notranslate"><span class="pre">MouseMoveCallbacks</span></code>, <code class="docutils literal notranslate"><span class="pre">HoverCallbacks</span></code>, <code class="docutils literal notranslate"><span class="pre">ScrollCallbacks</span></code></p></li>
-<li><p><a class="reference internal" href="keyboard_input.html"><span class="std std-doc">Keyboard Input</span></a>: for keystrokes</p></li>
-<li><p><a class="reference internal" href="hardware_keyboard_detector.html"><span class="std std-doc">Hardware Keyboard Detector</span></a></p></li>
-<li><p><a class="reference internal" href="other_inputs.html"><span class="std std-doc">Other Inputs and Helpers</span></a>: for joysticks, game pads, etc.</p></li>
-</ul>
-<p>Under the hood, these are all built on Flutter’s own gesture widgets, including the
-<a class="reference external" href="https://api.flutter.dev/flutter/widgets/GestureDetector-class.html">GestureDetector widget</a>,
-<a class="reference external" href="https://api.flutter.dev/flutter/widgets/RawGestureDetector-class.html">RawGestureDetector widget</a>
-and <a class="reference external" href="https://api.flutter.dev/flutter/widgets/MouseRegion-class.html">MouseRegion widget</a>; you can
-also read more about
-<a class="reference external" href="https://api.flutter.dev/flutter/gestures/gestures-library.html">Flutter’s gesture system</a>.</p>
-<section id="event-coordinate-system">
-<h2>Event coordinate system<a class="headerlink" href="#event-coordinate-system" title="Link to this heading">¶</a></h2>
-<p>Every event that carries a position reports it in three coordinate systems:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">devicePosition</span></code>: relative to the entire screen, the same as <code class="docutils literal notranslate"><span class="pre">globalPosition</span></code> in Flutter’s native
-events.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">canvasPosition</span></code>: relative to the <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code> position and size, the same as <code class="docutils literal notranslate"><span class="pre">localPosition</span></code> in
-Flutter’s native events. This is Flame’s “global” position.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">localPosition</span></code>: relative to the component currently receiving the event, with the whole chain of
-parent transforms (camera included) already applied.</p></li>
-</ul>
-<p>Events that represent a movement, such as <code class="docutils literal notranslate"><span class="pre">DragUpdateEvent</span></code>, additionally expose start and end
-positions (<code class="docutils literal notranslate"><span class="pre">canvasStartPosition</span></code> / <code class="docutils literal notranslate"><span class="pre">canvasEndPosition</span></code>, and so on) plus the corresponding deltas:
-<code class="docutils literal notranslate"><span class="pre">deviceDelta</span></code>, <code class="docutils literal notranslate"><span class="pre">canvasDelta</span></code> and <code class="docutils literal notranslate"><span class="pre">localDelta</span></code>.</p>
-<p><code class="docutils literal notranslate"><span class="pre">localPosition</span></code> and <code class="docutils literal notranslate"><span class="pre">localDelta</span></code> are relative to whichever component is currently receiving the
-event, so only read them inside the callback. Do not hold on to the event and read them afterwards:
-once delivery is over they are no longer maintained, and depending on the event you will either get
-a leftover value or an error. If you need the position later, copy it during the callback with
-<code class="docutils literal notranslate"><span class="pre">event.localPosition.clone()</span></code>.</p>
-<p>When you mix a callback into your <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> directly, the game is that component; and since it has
-no transform of its own, the local values there are equivalent to the canvas coordinates.</p>
-</section>
-<section id="gesturehitboxes">
-<h2>GestureHitboxes<a class="headerlink" href="#gesturehitboxes" title="Link to this heading">¶</a></h2>
-<p>Every mixin whose events carry a position implements <code class="docutils literal notranslate"><span class="pre">PointerInputCallbacks</span></code> (taps, drags, scales,
-long presses and pointer events - but not the keyboard ones) and they all decide whether an event
-belongs to a component by asking its <code class="docutils literal notranslate"><span class="pre">containsLocalPoint()</span></code>, which for a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> is its
-rectangular bounds.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin is used to recognize input on top of your <code class="docutils literal notranslate"><span class="pre">Component</span></code>s more accurately.
-Say that you have a round rock as a <code class="docutils literal notranslate"><span class="pre">SpriteComponent</span></code> for example, then you don’t want to register
-input that is in the corner of the image where the rock is not displayed; you can use the
-<code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin to define a more accurate boundary (circle, polygon, any shape) for the
-event to check when propagating to your component.</p>
-<p>You can add new hitboxes to the component that has the <code class="docutils literal notranslate"><span class="pre">GestureHitboxes</span></code> mixin just like they are
-added in the <code class="docutils literal notranslate"><span class="pre">Collidable</span></code> example.</p>
-<p>More information about how to define hitboxes can be found in the hitbox section of the
-<a class="reference internal" href="../collision_detection.html#shapehitbox"><span class="std std-ref">collision detection</span></a> docs.</p>
-<p>An example of how to use it can be seen in the
-<a class="reference external" href="https://github.com/flame-engine/flame/blob/main/examples/lib/stories/input/gesture_hitboxes_example.dart">gesture hitboxes example</a>.</p>
-<div class="toctree-wrapper compound">
+  <section class="tex2jax_ignore mathjax_ignore" id="flame-cli">
+<h1>Flame CLI<a class="headerlink" href="#flame-cli" title="Link to this heading">¶</a></h1>
+<p>The <a class="reference external" href="https://pub.dev/packages/flame_cli">flame_cli</a> package provides the <code class="docutils literal notranslate"><span class="pre">flame</span></code> command, which
+inspects and controls a Flame game that is running in debug mode, without having to open the
+<a class="reference internal" href="debug.html#devtools-extension"><span class="std std-ref">DevTools</span></a>.</p>
+<p>This is useful for scripts, and for AI coding agents that want to see what the game currently looks
+like. The agent can start the game with <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code>, take a snapshot with <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">snapshot</span></code> and then
+read the PNG image:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>macos
+flame<span class="w"> </span>pause
+flame<span class="w"> </span>snapshot<span class="w"> </span>--output<span class="w"> </span>snapshot.png
+</pre></div>
 </div>
+<section id="installation">
+<h2>Installation<a class="headerlink" href="#installation" title="Link to this heading">¶</a></h2>
+<p>The CLI is a pure Dart package, so it can be activated globally once and then used for all of your
+projects:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>dart<span class="w"> </span>pub<span class="w"> </span>global<span class="w"> </span>activate<span class="w"> </span>flame_cli
+</pre></div>
+</div>
+<p>After that the <code class="docutils literal notranslate"><span class="pre">flame</span></code> command is available, as long as the pub cache <code class="docutils literal notranslate"><span class="pre">bin</span></code> directory is on your
+<code class="docutils literal notranslate"><span class="pre">PATH</span></code>.</p>
+<p>You can also add it as a development dependency of your project instead:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>dart<span class="w"> </span>pub<span class="w"> </span>add<span class="w"> </span>dev:flame_cli
+</pre></div>
+</div>
+<p>and then run it with <code class="docutils literal notranslate"><span class="pre">dart</span> <span class="pre">run</span> <span class="pre">flame_cli</span></code> instead of <code class="docutils literal notranslate"><span class="pre">flame</span></code>, for example
+<code class="docutils literal notranslate"><span class="pre">dart</span> <span class="pre">run</span> <span class="pre">flame_cli</span> <span class="pre">snapshot</span></code>.</p>
+</section>
+<section id="connecting-to-a-game">
+<h2>Connecting to a game<a class="headerlink" href="#connecting-to-a-game" title="Link to this heading">¶</a></h2>
+<p>The commands connect to the game through the Dart VM Service, so the game has to be running in
+debug mode. The URI of the service contains a random secret, so it can’t be guessed and has to come
+from the tool that started the game.</p>
+<p>The easiest way is to start the game with <a class="reference internal" href="#run">flame run</a> from your project directory. The other
+commands then find the game on their own, as long as they are run from the project directory or
+one of its subdirectories.</p>
+<p>If you start the game in another way, for example from your IDE, pass the URI of the service to
+the commands with the <code class="docutils literal notranslate"><span class="pre">--uri</span></code> (<code class="docutils literal notranslate"><span class="pre">-u</span></code>) option. <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code> prints it when the game has started:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>A Dart VM Service on macOS is available at: http://127.0.0.1:50300/abc123=/
+</pre></div>
+</div>
+<p>Both the <code class="docutils literal notranslate"><span class="pre">http</span></code> URI above and the <code class="docutils literal notranslate"><span class="pre">ws</span></code> URI of the service are accepted. You can also let your IDE
+write the URI to the same file that <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code> uses, by adding
+<code class="docutils literal notranslate"><span class="pre">--vmservice-out-file=.dart_tool/flame/vm_service_uri</span></code> to the arguments that it passes to
+<code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code>. The commands then find the game without <code class="docutils literal notranslate"><span class="pre">--uri</span></code>.</p>
+<p>If you have multiple games in your app, only the last one created is connected, see
+<code class="docutils literal notranslate"><span class="pre">DevToolsService.initWithGame</span></code> to change it.</p>
+</section>
+<section id="commands">
+<h2>Commands<a class="headerlink" href="#commands" title="Link to this heading">¶</a></h2>
+<p>Run <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">--help</span></code> to list the commands, and <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">help</span> <span class="pre">&lt;command&gt;</span></code> for the options of a
+command.</p>
+<section id="run">
+<h3>run<a class="headerlink" href="#run" title="Link to this heading">¶</a></h3>
+<p>Runs the game with <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code>, and writes the URI of the Dart VM Service to
+<code class="docutils literal notranslate"><span class="pre">.dart_tool/flame/vm_service_uri</span></code> in the project, so that the other commands can find the game:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>macos
+</pre></div>
+</div>
+<p>All the arguments are passed on to <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code>, and it works just like <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code>, including
+hot reload from the terminal. The file is removed again when the game is stopped. The <code class="docutils literal notranslate"><span class="pre">.dart_tool</span></code>
+directory is ignored by version control in Flutter projects, so the file is never committed.</p>
+<p>When an agent or a script starts the game with <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code> in the background, the other commands
+say that no running game was found until the game has started, so they can be retried until they
+succeed.</p>
+</section>
+<section id="snapshot">
+<h3>snapshot<a class="headerlink" href="#snapshot" title="Link to this heading">¶</a></h3>
+<p>Renders the whole game to a PNG image:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>snapshot<span class="w"> </span>--output<span class="w"> </span>snapshot.png
+</pre></div>
+</div>
+<p>The game is rendered through the camera and with the game’s background color, the same way that it
+is currently shown on the screen. Flutter overlays are not part of the game canvas, so they are not
+included in the image. The command prints the absolute path of the written image.</p>
+<p>These are the options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--uri</span></code> (<code class="docutils literal notranslate"><span class="pre">-u</span></code>): The Dart VM Service URI of the running game, not needed when the game was
+started with <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--output</span></code> (<code class="docutils literal notranslate"><span class="pre">-o</span></code>): The file that the PNG image is written to, by default <code class="docutils literal notranslate"><span class="pre">flame_snapshot.png</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--pixel-ratio</span></code> (<code class="docutils literal notranslate"><span class="pre">-p</span></code>): Renders the image in a higher resolution, for example <code class="docutils literal notranslate"><span class="pre">2</span></code> renders an
+800x600 game to a 1600x1200 image.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--component</span></code> (<code class="docutils literal notranslate"><span class="pre">-c</span></code>): The id of a single component to render instead of the whole game, see the
+<a class="reference internal" href="#tree">tree</a> command for how to find the id.</p></li>
+</ul>
+<p>A single component is rendered together with its children, but without the camera. For a
+<code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, the image covers the component’s bounding rectangle, with its anchor, angle
+and scale taken into account. Other components are rendered in a 100x100 image.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>snapshot<span class="w"> </span>--component<span class="w"> </span><span class="m">220731871</span>
+</pre></div>
+</div>
+</section>
+<section id="tree">
+<h3>tree<a class="headerlink" href="#tree" title="Link to this heading">¶</a></h3>
+<p>Prints the component tree of the game, together with the id and the attributes of every
+component:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>flame<span class="w"> </span>tree
+MyGame<span class="w"> </span><span class="o">(</span>id:<span class="w"> </span><span class="m">6126309</span><span class="o">)</span>
+<span class="w">  </span>World<span class="w"> </span><span class="o">(</span>id:<span class="w"> </span><span class="m">729356887</span><span class="o">)</span><span class="w"> </span>priority<span class="w"> </span>-2147483647
+<span class="w">    </span>Player<span class="w"> </span><span class="o">(</span>id:<span class="w"> </span><span class="m">220731871</span><span class="o">)</span><span class="w"> </span>position<span class="w"> </span><span class="m">100</span>,200,<span class="w"> </span>size<span class="w"> </span><span class="m">32</span>,32,<span class="w"> </span>anchor<span class="w"> </span>center
+<span class="w">    </span>Enemy<span class="w"> </span><span class="o">(</span>id:<span class="w"> </span><span class="m">220731872</span><span class="o">)</span><span class="w"> </span>position<span class="w"> </span><span class="m">300</span>,200,<span class="w"> </span>size<span class="w"> </span><span class="m">32</span>,32,<span class="w"> </span>angle<span class="w"> </span><span class="m">1</span>.57,<span class="w"> </span>anchor<span class="w"> </span>center
+<span class="w">  </span>CameraComponent<span class="w"> </span><span class="o">(</span>id:<span class="w"> </span><span class="m">167418721</span><span class="o">)</span>
+<span class="w">    </span>Viewfinder<span class="w"> </span><span class="o">(</span>id:<span class="w"> </span><span class="m">429571719</span><span class="o">)</span>
+<span class="w">    </span>MaxViewport<span class="w"> </span><span class="o">(</span>id:<span class="w"> </span><span class="m">703047016</span><span class="o">)</span><span class="w"> </span>size<span class="w"> </span><span class="m">800</span>,600
+</pre></div>
+</div>
+<p>Attributes with their default value, such as an angle of <code class="docutils literal notranslate"><span class="pre">0</span></code> or the <code class="docutils literal notranslate"><span class="pre">topLeft</span></code> anchor, are left
+out. The id of a component is its <code class="docutils literal notranslate"><span class="pre">hashCode</span></code>, so it stays the same for as long as the component
+exists, but it changes when the game is restarted.</p>
+<p>These are the options, in addition to <code class="docutils literal notranslate"><span class="pre">--uri</span></code>:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--filter</span></code> (<code class="docutils literal notranslate"><span class="pre">-f</span></code>): A regular expression, matched case insensitively against the type of the
+components. Only the matching components are shown, together with their ancestors and their
+children. For example <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">tree</span> <span class="pre">--filter</span> <span class="pre">enemy</span></code> shows all the enemies and where they are in
+the tree.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--depth</span></code> (<code class="docutils literal notranslate"><span class="pre">-d</span></code>): The number of levels below the game to show, for example <code class="docutils literal notranslate"><span class="pre">1</span></code> shows only the
+direct children of the game.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--json</span></code>: Prints the tree as JSON instead of text. Every node has an <code class="docutils literal notranslate"><span class="pre">id</span></code>, a <code class="docutils literal notranslate"><span class="pre">name</span></code>, the
+<code class="docutils literal notranslate"><span class="pre">toString</span></code> of the component, its <code class="docutils literal notranslate"><span class="pre">attributes</span></code> and its <code class="docutils literal notranslate"><span class="pre">children</span></code>.</p></li>
+</ul>
+</section>
+<section id="inspect">
+<h3>inspect<a class="headerlink" href="#inspect" title="Link to this heading">¶</a></h3>
+<p>Prints the details of a single component:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>flame<span class="w"> </span>inspect<span class="w"> </span><span class="m">220731871</span>
+type:<span class="w"> </span>Player
+id:<span class="w"> </span><span class="m">220731871</span>
+parent:<span class="w"> </span><span class="m">729356887</span>
+children:<span class="w"> </span><span class="m">2</span>
+debugMode:<span class="w"> </span><span class="nb">false</span>
+priority:<span class="w"> </span><span class="m">0</span>
+position:<span class="w"> </span><span class="m">100</span>.0,<span class="w"> </span><span class="m">200</span>.0
+size:<span class="w"> </span><span class="m">32</span>.0,<span class="w"> </span><span class="m">32</span>.0
+angle:<span class="w"> </span><span class="m">0</span>.0
+scale:<span class="w"> </span><span class="m">1</span>.0,<span class="w"> </span><span class="m">1</span>.0
+anchor:<span class="w"> </span>center
+toString:<span class="w"> </span>Player<span class="o">()</span>
+</pre></div>
+</div>
+<p>The position, size, angle, scale and anchor are only shown for a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>. Pass
+<code class="docutils literal notranslate"><span class="pre">--json</span></code> to get the same information as JSON.</p>
+</section>
+<section id="set">
+<h3>set<a class="headerlink" href="#set" title="Link to this heading">¶</a></h3>
+<p>Changes the attributes of a component and prints its details afterwards:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span><span class="nb">set</span><span class="w"> </span><span class="m">220731871</span><span class="w"> </span>--position<span class="w"> </span><span class="m">150</span>,200<span class="w"> </span>--angle<span class="w"> </span><span class="m">0</span>.5
+</pre></div>
+</div>
+<p>These are the attributes that can be changed:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--position</span></code>: The position, as <code class="docutils literal notranslate"><span class="pre">x,y</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--size</span></code>: The size, as <code class="docutils literal notranslate"><span class="pre">width,height</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--angle</span></code>: The angle in radians.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--scale</span></code>: The scale, as <code class="docutils literal notranslate"><span class="pre">x,y</span></code> or as a single number that is used for both.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--anchor</span></code>: The anchor, as a name like <code class="docutils literal notranslate"><span class="pre">center</span></code> or <code class="docutils literal notranslate"><span class="pre">bottomRight</span></code>, or as <code class="docutils literal notranslate"><span class="pre">x,y</span></code> between 0 and 1.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--priority</span></code>: The render priority.</p></li>
+</ul>
+<p>The priority can be changed on any component, the other attributes only on a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>.</p>
+</section>
+<section id="pause-resume-and-step">
+<h3>pause, resume and step<a class="headerlink" href="#pause-resume-and-step" title="Link to this heading">¶</a></h3>
+<p>The game loop can be paused and resumed, and a paused game can be advanced frame by frame:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>pause
+flame<span class="w"> </span>step<span class="w"> </span>--frames<span class="w"> </span><span class="m">60</span>
+flame<span class="w"> </span>snapshot
+flame<span class="w"> </span>resume
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">step</span></code> takes <code class="docutils literal notranslate"><span class="pre">--frames</span></code> (<code class="docutils literal notranslate"><span class="pre">-n</span></code>) for the number of frames to advance, and <code class="docutils literal notranslate"><span class="pre">--time</span></code> (<code class="docutils literal notranslate"><span class="pre">-t</span></code>) for the
+time in seconds that passes in each frame, which is a sixtieth of a second by default. It pauses
+the game first if it is running.</p>
+<p>Pausing the game before taking a snapshot makes the snapshot stable, and stepping a fixed number of
+frames between snapshots makes the comparison repeatable.</p>
+</section>
+<section id="debug">
+<h3>debug<a class="headerlink" href="#debug" title="Link to this heading">¶</a></h3>
+<p>Shows or changes the debug mode, which renders hitboxes, bounds and other debug information on top
+of the components:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>debug<span class="w"> </span>on
+flame<span class="w"> </span>snapshot
+flame<span class="w"> </span>debug<span class="w"> </span>off
+</pre></div>
+</div>
+<p>Without <code class="docutils literal notranslate"><span class="pre">on</span></code> or <code class="docutils literal notranslate"><span class="pre">off</span></code> it prints the current state. Pass <code class="docutils literal notranslate"><span class="pre">--component</span> <span class="pre">&lt;id&gt;</span></code> to change the debug
+mode of a single component instead of the whole game.</p>
+</section>
+<section id="overlays-and-overlay">
+<h3>overlays and overlay<a class="headerlink" href="#overlays-and-overlay" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">overlays</span></code> lists the registered overlays of the game and which of them are shown:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>flame<span class="w"> </span>overlays
+PauseMenu<span class="w"> </span><span class="o">(</span>shown<span class="o">)</span>
+Settings
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">overlay</span> <span class="pre">show</span> <span class="pre">&lt;name&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">overlay</span> <span class="pre">hide</span> <span class="pre">&lt;name&gt;</span></code> show or hide a single overlay without affecting
+the others, and <code class="docutils literal notranslate"><span class="pre">overlay</span> <span class="pre">only</span> <span class="pre">&lt;name&gt;</span></code> shows one overlay and hides all the others. Overlays are
+Flutter widgets, so they are not part of the images that <code class="docutils literal notranslate"><span class="pre">snapshot</span></code> takes.</p>
+</section>
+</section>
+<section id="exit-codes">
+<h2>Exit codes<a class="headerlink" href="#exit-codes" title="Link to this heading">¶</a></h2>
+<p>The commands follow the common Unix conventions for exit codes, so that scripts can tell failures
+apart. <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code> exits with the exit code of <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code>, and the other commands use these:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: The command succeeded.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">64</span></code>: The command was used incorrectly, for example with an invalid option.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">65</span></code>: The game rejected the input, for example because there is no component with the given
+id.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">69</span></code>: No running game was found, the game could not be reached, or it runs a version of Flame
+that does not support the command.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">70</span></code>: The game reported an error while running the command.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">73</span></code>: The output file could not be written.</p></li>
+</ul>
+</section>
+<section id="compatibility">
+<h2>Compatibility<a class="headerlink" href="#compatibility" title="Link to this heading">¶</a></h2>
+<p>The commands use the <a class="reference internal" href="debug.html#service-extensions"><span class="std std-ref">service extensions</span></a> that Flame registers for its
+DevTools extension. If the game runs an older version of Flame that does not have the service
+extension that a command needs, the command says so and exits with <code class="docutils literal notranslate"><span class="pre">69</span></code>, update Flame in that case.</p>
 </section>
 </section>
 
@@ -444,18 +595,18 @@ added in the <code class="docutils literal notranslate"><span class="pre">Collid
       and code samples under the <a href="https://raw.githubusercontent.com/flame-engine/flame/main/LICENSE">MIT License</a>.
     </div>
     <div class="prev-next-area">
-      <a class="left-prev" id="prev-link" href="../components/utility_components.html" title="previous page">
+      <a class="left-prev" id="prev-link" href="debug.html" title="previous page">
         <i class="fa fa-angle-left"></i>
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Previous:</p>
-          <p class="prev-next-title">Utility Components</p>
+          <p class="prev-next-title">Debug features</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="tap_events.html" title="next page">
+      <a class="right-next" id="next-link" href="util.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Tap Events</p>
+          <p class="prev-next-title">Util</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
@@ -467,8 +618,19 @@ added in the <code class="docutils literal notranslate"><span class="pre">Collid
     <div class="nav-right" role="navigation" aria-label="table of contents">
       <div id='toc-local' class='list-group'>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
-  <a href='#event-coordinate-system' class='list-group-item level-1'>Event coordinate system</a>
-  <a href='#gesturehitboxes' class='list-group-item level-1'>GestureHitboxes</a>
+  <a href='#installation' class='list-group-item level-1'>Installation</a>
+  <a href='#connecting-to-a-game' class='list-group-item level-1'>Connecting to a game</a>
+  <a href='#commands' class='list-group-item level-1'>Commands</a>
+  <a href='#run' class='list-group-item level-2'>run</a>
+  <a href='#snapshot' class='list-group-item level-2'>snapshot</a>
+  <a href='#tree' class='list-group-item level-2'>tree</a>
+  <a href='#inspect' class='list-group-item level-2'>inspect</a>
+  <a href='#set' class='list-group-item level-2'>set</a>
+  <a href='#pause-resume-and-step' class='list-group-item level-2'>pause, resume and step</a>
+  <a href='#debug' class='list-group-item level-2'>debug</a>
+  <a href='#overlays-and-overlay' class='list-group-item level-2'>overlays and overlay</a>
+  <a href='#exit-codes' class='list-group-item level-1'>Exit codes</a>
+  <a href='#compatibility' class='list-group-item level-1'>Compatibility</a>
 </div>
 
     </div>

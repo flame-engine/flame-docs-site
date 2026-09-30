@@ -38,7 +38,7 @@
   <link rel="shortcut icon" href="../../_static/favicon.ico"/>
   <link rel="index" title="Index" href="../../genindex.html" />
   <link rel="search" title="Search" href="../../search.html" />
-  <link rel="next" title="Util" href="util.html" />
+  <link rel="next" title="Flame CLI" href="cli.html" />
   <link rel="prev" title="Other" href="other.html" />
 </head>
 
@@ -174,6 +174,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../overlays.html">Overlays</a></li>
 <li class="toctree-l2 current"><a class="reference internal" href="other.html">Other</a><ul class="current">
 <li class="toctree-l3 current"><a class="current reference internal" href="#">Debugging</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cli.html">Flame CLI</a></li>
 <li class="toctree-l3"><a class="reference internal" href="util.html">Utils</a></li>
 <li class="toctree-l3"><a class="reference internal" href="widgets.html">Widgets</a></li>
 <li class="toctree-l3"><a class="reference internal" href="performance.html">Performance</a></li>
@@ -381,6 +382,47 @@ boundaries and positions.</p>
 new tab called “Flame”. This tab will show you information about the current game, for example a
 visualization of the component tree, the ability to play, pause and step the game, information
 about the selected component, and more.</p>
+<p>The extension talks to the game through
+<a class="reference external" href="https://api.flutter.dev/flutter/dart-developer/registerExtension.html">service extensions</a> that
+Flame registers when a <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> is created in debug mode. Other tools can call the same service
+extensions through the Dart VM Service. The <a class="reference internal" href="cli.html"><span class="std std-doc">Flame CLI</span></a> uses them to take snapshots of a
+running game from the terminal, which is also useful for scripts and AI coding agents.</p>
+<section id="service-extensions">
+<h3>Service extensions<a class="headerlink" href="#service-extensions" title="Link to this heading">¶</a></h3>
+<p>If you want to build your own tooling, these are the service extensions that the DevTools
+extension and the CLI use. They are only available in debug mode and they are called on the
+isolate that runs the game. Every <code class="docutils literal notranslate"><span class="pre">id</span></code> parameter is the <code class="docutils literal notranslate"><span class="pre">hashCode</span></code> of a component.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.getGameSnapshot</span></code>: Renders the whole game. It takes an optional <code class="docutils literal notranslate"><span class="pre">pixelRatio</span></code>
+parameter and returns <code class="docutils literal notranslate"><span class="pre">snapshot</span></code> (a base64 encoded PNG image), <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.getComponentSnapshot</span></code>: Renders a single component. It takes the <code class="docutils literal notranslate"><span class="pre">id</span></code> of the
+component and an optional <code class="docutils literal notranslate"><span class="pre">pixelRatio</span></code> parameter, and returns <code class="docutils literal notranslate"><span class="pre">snapshot</span></code> (a base64 encoded PNG
+image). It responds with an invalid parameters error if no component with that id was found.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.getComponentTree</span></code>: Returns the <code class="docutils literal notranslate"><span class="pre">component_tree</span></code>, where every node has an
+<code class="docutils literal notranslate"><span class="pre">id</span></code>, a <code class="docutils literal notranslate"><span class="pre">name</span></code>, the <code class="docutils literal notranslate"><span class="pre">toString</span></code> of the component, its <code class="docutils literal notranslate"><span class="pre">attributes</span></code> and its <code class="docutils literal notranslate"><span class="pre">children</span></code>. The
+attributes are the <code class="docutils literal notranslate"><span class="pre">priority</span></code> of the component, and for a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> also its
+<code class="docutils literal notranslate"><span class="pre">position</span></code>, <code class="docutils literal notranslate"><span class="pre">size</span></code>, <code class="docutils literal notranslate"><span class="pre">angle</span></code>, <code class="docutils literal notranslate"><span class="pre">scale</span></code> and <code class="docutils literal notranslate"><span class="pre">anchor</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.getComponentInfo</span></code>: Returns the same fields as a tree node for the component
+with the given <code class="docutils literal notranslate"><span class="pre">id</span></code>, without the children, and additionally the id of its <code class="docutils literal notranslate"><span class="pre">parent</span></code>, its
+<code class="docutils literal notranslate"><span class="pre">childCount</span></code> and its <code class="docutils literal notranslate"><span class="pre">debugMode</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.getPositionComponentAttributes</span></code> and
+<code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.setPositionComponentAttributes</span></code>: Read and change the attributes of a
+<code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>. Setting takes the <code class="docutils literal notranslate"><span class="pre">id</span></code>, an <code class="docutils literal notranslate"><span class="pre">attribute</span></code> (<code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code>, <code class="docutils literal notranslate"><span class="pre">width</span></code>, <code class="docutils literal notranslate"><span class="pre">height</span></code>,
+<code class="docutils literal notranslate"><span class="pre">angle</span></code>, <code class="docutils literal notranslate"><span class="pre">scaleX</span></code>, <code class="docutils literal notranslate"><span class="pre">scaleY</span></code>, <code class="docutils literal notranslate"><span class="pre">anchor</span></code> or <code class="docutils literal notranslate"><span class="pre">priority</span></code>) and the <code class="docutils literal notranslate"><span class="pre">value</span></code> as a string. The
+<code class="docutils literal notranslate"><span class="pre">priority</span></code> can be set on any component.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.getPaused</span></code>, <code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.setPaused</span></code> and <code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.step</span></code>:
+Read and change whether the game loop is paused, and step a paused game by <code class="docutils literal notranslate"><span class="pre">step_time</span></code> seconds.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.getDebugMode</span></code> and <code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.setDebugMode</span></code>: Read and change the
+<code class="docutils literal notranslate"><span class="pre">debug_mode</span></code> of the whole game, or of a single component when an <code class="docutils literal notranslate"><span class="pre">id</span></code> is given.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.getOverlays</span></code>: Returns the registered <code class="docutils literal notranslate"><span class="pre">overlays</span></code> and the <code class="docutils literal notranslate"><span class="pre">active</span></code> ones.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.setOverlay</span></code>: Shows or hides the <code class="docutils literal notranslate"><span class="pre">overlay</span></code> with the given name depending on
+the <code class="docutils literal notranslate"><span class="pre">active</span></code> parameter.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.navigateToOverlay</span></code>: Shows the <code class="docutils literal notranslate"><span class="pre">overlay</span></code> with the given name and hides all
+the others.</p></li>
+</ul>
+<p>If you have multiple games in your app, only the last one created is connected, see
+<code class="docutils literal notranslate"><span class="pre">DevToolsService.initWithGame</span></code> to change it.</p>
+</section>
 </section>
 <section id="fps">
 <h2>FPS<a class="headerlink" href="#fps" title="Link to this heading">¶</a></h2>
@@ -451,10 +493,10 @@ microseconds.</p>
         </div>
       </a>
       <div class='expander'></div>
-      <a class="right-next" id="next-link" href="util.html" title="next page">
+      <a class="right-next" id="next-link" href="cli.html" title="next page">
         <div class="prev-next-info">
           <p class="prev-next-subtitle">Next:</p>
-          <p class="prev-next-title">Util</p>
+          <p class="prev-next-title">Flame CLI</p>
         </div>
         <i class="fa fa-angle-right"></i>
       </a>
@@ -468,6 +510,7 @@ microseconds.</p>
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#flamegame-features' class='list-group-item level-1'>FlameGame features</a>
   <a href='#devtools-extension' class='list-group-item level-1'>Devtools extension</a>
+  <a href='#service-extensions' class='list-group-item level-2'>Service extensions</a>
   <a href='#fps' class='list-group-item level-1'>FPS</a>
   <a href='#fpscomponent' class='list-group-item level-2'>FpsComponent</a>
   <a href='#fpstextcomponent' class='list-group-item level-2'>FpsTextComponent</a>
