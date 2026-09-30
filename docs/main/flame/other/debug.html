@@ -394,7 +394,9 @@ extension and the CLI use. They are only available in debug mode and they are ca
 isolate that runs the game. Every <code class="docutils literal notranslate"><span class="pre">id</span></code> parameter is the <code class="docutils literal notranslate"><span class="pre">hashCode</span></code> of a component.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.getGameSnapshot</span></code>: Renders the whole game. It takes an optional <code class="docutils literal notranslate"><span class="pre">pixelRatio</span></code>
-parameter and returns <code class="docutils literal notranslate"><span class="pre">snapshot</span></code> (a base64 encoded PNG image), <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code>.</p></li>
+parameter and returns <code class="docutils literal notranslate"><span class="pre">snapshot</span></code> (a base64 encoded PNG image), <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code>. With
+<code class="docutils literal notranslate"><span class="pre">world</span></code> set to <code class="docutils literal notranslate"><span class="pre">true</span></code> the world is rendered directly instead of through the camera, and with
+<code class="docutils literal notranslate"><span class="pre">rect</span></code> given as <code class="docutils literal notranslate"><span class="pre">x,y,width,height</span></code> in world coordinates only that part of the world is rendered.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.getComponentSnapshot</span></code>: Renders a single component. It takes the <code class="docutils literal notranslate"><span class="pre">id</span></code> of the
 component and an optional <code class="docutils literal notranslate"><span class="pre">pixelRatio</span></code> parameter, and returns <code class="docutils literal notranslate"><span class="pre">snapshot</span></code> (a base64 encoded PNG
 image). It responds with an invalid parameters error if no component with that id was found.</p></li>
@@ -419,6 +421,12 @@ Read and change whether the game loop is paused, and step a paused game by <code
 the <code class="docutils literal notranslate"><span class="pre">active</span></code> parameter.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.navigateToOverlay</span></code>: Shows the <code class="docutils literal notranslate"><span class="pre">overlay</span></code> with the given name and hides all
 the others.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.tap</span></code>: Taps the game at <code class="docutils literal notranslate"><span class="pre">x</span></code>, <code class="docutils literal notranslate"><span class="pre">y</span></code> in canvas coordinates, through the tap
+dispatcher of the game.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.drag</span></code>: Drags across the game from <code class="docutils literal notranslate"><span class="pre">fromX</span></code>, <code class="docutils literal notranslate"><span class="pre">fromY</span></code> to <code class="docutils literal notranslate"><span class="pre">toX</span></code>, <code class="docutils literal notranslate"><span class="pre">toY</span></code> in canvas
+coordinates, with <code class="docutils literal notranslate"><span class="pre">steps</span></code> updates in between.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">ext.flame_devtools.key</span></code>: Delivers the <code class="docutils literal notranslate"><span class="pre">key</span></code> with the given name to the <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> of the
+game, where <code class="docutils literal notranslate"><span class="pre">action</span></code> is <code class="docutils literal notranslate"><span class="pre">press</span></code>, <code class="docutils literal notranslate"><span class="pre">down</span></code> or <code class="docutils literal notranslate"><span class="pre">up</span></code>.</p></li>
 </ul>
 <p>If you have multiple games in your app, only the last one created is connected, see
 <code class="docutils literal notranslate"><span class="pre">DevToolsService.initWithGame</span></code> to change it.</p>

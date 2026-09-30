@@ -371,9 +371,11 @@
 inspects and controls a Flame game that is running in debug mode, without having to open the
 <a class="reference internal" href="debug.html#devtools-extension"><span class="std std-ref">DevTools</span></a>.</p>
 <p>This is useful for scripts, and for AI coding agents that want to see what the game currently looks
-like. The agent can start the game with <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code>, take a snapshot with <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">snapshot</span></code> and then
-read the PNG image:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>macos
+like. The agent can create a game with <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">create</span></code>, start it with <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code>, take a snapshot
+with <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">snapshot</span></code> and then read the PNG image:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>create<span class="w"> </span>my_game
+<span class="nb">cd</span><span class="w"> </span>my_game
+flame<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>macos
 flame<span class="w"> </span>pause
 flame<span class="w"> </span>snapshot<span class="w"> </span>--output<span class="w"> </span>snapshot.png
 </pre></div>
@@ -413,11 +415,82 @@ write the URI to the same file that <code class="docutils literal notranslate"><
 <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code>. The commands then find the game without <code class="docutils literal notranslate"><span class="pre">--uri</span></code>.</p>
 <p>If you have multiple games in your app, only the last one created is connected, see
 <code class="docutils literal notranslate"><span class="pre">DevToolsService.initWithGame</span></code> to change it.</p>
+<section id="running-several-instances-of-one-game">
+<h3>Running several instances of one game<a class="headerlink" href="#running-several-instances-of-one-game" title="Link to this heading">¶</a></h3>
+<p>A running game is tied to its project, the closest directory with a <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>. Games started
+from different projects never interfere with each other, and that includes separate git checkouts
+of the same game: the commands pick the game of the project they are run in.</p>
+<p>You can also start the same project several times, for example to test on two devices at once or
+to compare two builds of the game:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>macos
+flame<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>chrome
+</pre></div>
+</div>
+<p>The commands go to the game that was started last, in this case the one in Chrome. When that game
+is stopped, the game started before it becomes reachable again, and the <a class="reference internal" href="#logs">logs</a> command
+shows the output of whichever game the commands currently go to.</p>
+<p>To reach a game that was not started last, address it explicitly. Every <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code> prints the two
+things needed for that when it starts:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>flame run: the reload and restart commands reach this game on port 50312.
+...
+A Dart VM Service on macOS is available at: http://127.0.0.1:50300/abc123=/
+</pre></div>
+</div>
+<p>Pass the URI with <code class="docutils literal notranslate"><span class="pre">--uri</span></code> to the commands that talk to the game, and the port with <code class="docutils literal notranslate"><span class="pre">--port</span></code> to
+<code class="docutils literal notranslate"><span class="pre">reload</span></code> and <code class="docutils literal notranslate"><span class="pre">restart</span></code>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>snapshot<span class="w"> </span>--uri<span class="w"> </span>http://127.0.0.1:50300/abc123<span class="o">=</span>/<span class="w"> </span>--output<span class="w"> </span>macos.png
+flame<span class="w"> </span>reload<span class="w"> </span>--port<span class="w"> </span><span class="m">50312</span>
+</pre></div>
+</div>
+<p>A script that drives several instances can keep the URI and the port of each one and pass them
+every time, so that it never depends on which game was started last.</p>
+</section>
 </section>
 <section id="commands">
 <h2>Commands<a class="headerlink" href="#commands" title="Link to this heading">¶</a></h2>
 <p>Run <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">--help</span></code> to list the commands, and <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">help</span> <span class="pre">&lt;command&gt;</span></code> for the options of a
 command.</p>
+<section id="create">
+<h3>create<a class="headerlink" href="#create" title="Link to this heading">¶</a></h3>
+<p>Creates a new Flame game, the same way <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">create</span></code> creates a new Flutter app: without
+questions, with sensible defaults, and with options to change them:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>create<span class="w"> </span>my_game
+<span class="nb">cd</span><span class="w"> </span>my_game
+flame<span class="w"> </span>run
+</pre></div>
+</div>
+<p>It runs <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">create</span></code> for the platform folders and the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>, writes the files of the
+chosen template on top of it, replaces <code class="docutils literal notranslate"><span class="pre">flutter_lints</span></code> with <code class="docutils literal notranslate"><span class="pre">flame_lint</span></code>, and adds <code class="docutils literal notranslate"><span class="pre">flame</span></code> (and
+<code class="docutils literal notranslate"><span class="pre">flame_test</span></code> when the template has tests) with <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">pub</span> <span class="pre">add</span></code>, so that the game starts on the
+newest versions. The result is a normal Flutter project that <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code>, your IDE and the other
+<code class="docutils literal notranslate"><span class="pre">flame</span></code> commands all understand.</p>
+<p>These are the options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--project-name</span></code>: The name of the game, a valid Dart package name. It defaults to the name of
+the output directory, so <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">create</span> <span class="pre">my_game</span></code> creates the package <code class="docutils literal notranslate"><span class="pre">my_game</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--org</span></code>: The organization in reverse domain name notation, used for the bundle and package
+identifiers, <code class="docutils literal notranslate"><span class="pre">com.example</span></code> by default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--description</span></code>: The description in the <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--template</span></code> (<code class="docutils literal notranslate"><span class="pre">-t</span></code>): The template to start from, see below. The default is <code class="docutils literal notranslate"><span class="pre">basics</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--platforms</span></code>: The platforms to generate folders for, as a comma separated list such as
+<code class="docutils literal notranslate"><span class="pre">macos,web</span></code>, passed on to <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">create</span></code>. All of them by default.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--packages</span></code>: Additional Flame packages to add, for example <code class="docutils literal notranslate"><span class="pre">--packages</span> <span class="pre">flame_audio,flame_tiled</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--flame-version</span></code>: A version constraint for <code class="docutils literal notranslate"><span class="pre">flame</span></code>, for example <code class="docutils literal notranslate"><span class="pre">^1.30.0</span></code>, instead of the
+newest version.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--overwrite</span></code>: Replace the files of a game that already exists in the output directory.</p></li>
+</ul>
+<p>These are the templates:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">simple</span></code>: The emptiest possible game, an empty <code class="docutils literal notranslate"><span class="pre">FlameGame</span></code> in a <code class="docutils literal notranslate"><span class="pre">GameWidget</span></code>, for starting from
+scratch.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">basics</span></code>: The structure that most games start from, a world with a component that reacts to
+taps, and a test for it.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">example</span></code>: A complete small game with a world, a camera, keyboard and tap input, collisions, a
+score in the viewport and tests, spread over a few files, to show how the pieces fit together.</p></li>
+</ul>
+<p>Every template comes with <code class="docutils literal notranslate"><span class="pre">flame_lint</span></code> as its analysis options, and the games from the <code class="docutils literal notranslate"><span class="pre">basics</span></code>
+and <code class="docutils literal notranslate"><span class="pre">example</span></code> templates pass <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">analyze</span></code> and <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">test</span></code> right after they are created.</p>
+</section>
 <section id="run">
 <h3>run<a class="headerlink" href="#run" title="Link to this heading">¶</a></h3>
 <p>Runs the game with <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code>, and writes the URI of the Dart VM Service to
@@ -426,11 +499,58 @@ command.</p>
 </pre></div>
 </div>
 <p>All the arguments are passed on to <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code>, and it works just like <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code>, including
-hot reload from the terminal. The file is removed again when the game is stopped. The <code class="docutils literal notranslate"><span class="pre">.dart_tool</span></code>
-directory is ignored by version control in Flutter projects, so the file is never committed.</p>
+the keys in the terminal such as <code class="docutils literal notranslate"><span class="pre">r</span></code> for hot reload and <code class="docutils literal notranslate"><span class="pre">q</span></code> to quit. Next to the URI, <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code>
+keeps two more files in <code class="docutils literal notranslate"><span class="pre">.dart_tool/flame</span></code>: <code class="docutils literal notranslate"><span class="pre">control_port</span></code>, through which the <a class="reference internal" href="#reload-and-restart">reload and
+restart</a> commands talk to it, and <code class="docutils literal notranslate"><span class="pre">log</span></code>, which the <a class="reference internal" href="#logs">logs</a> command
+reads. The URI and the port are removed when the game is stopped, the log is kept. The <code class="docutils literal notranslate"><span class="pre">.dart_tool</span></code>
+directory is ignored by version control in Flutter projects, so the files are never committed.</p>
+<p>The files live in the root of the project, the closest directory with a <code class="docutils literal notranslate"><span class="pre">pubspec.yaml</span></code>, no matter
+which subdirectory <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code> was started from. That ties every running game to its project, and
+the same project can be started several times, see
+<a class="reference internal" href="#running-several-instances-of-one-game">running several instances of one game</a>.</p>
 <p>When an agent or a script starts the game with <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code> in the background, the other commands
 say that no running game was found until the game has started, so they can be retried until they
-succeed.</p>
+succeed. Since <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code> reads the terminal input like <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code> does, redirect its input
+from <code class="docutils literal notranslate"><span class="pre">/dev/null</span></code> when it runs in the background of an interactive shell:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>macos<span class="w"> </span>&lt;<span class="w"> </span>/dev/null<span class="w"> </span>&gt;<span class="w"> </span>run.log<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">&amp;</span>
+</pre></div>
+</div>
+</section>
+<section id="reload-and-restart">
+<h3>reload and restart<a class="headerlink" href="#reload-and-restart" title="Link to this heading">¶</a></h3>
+<p>Hot reloads or hot restarts a game that was started with <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code>, and waits for the result:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>flame<span class="w"> </span>reload
+Reloaded<span class="w"> </span><span class="m">1</span><span class="w"> </span>of<span class="w"> </span><span class="m">1097</span><span class="w"> </span>libraries<span class="w"> </span><span class="k">in</span><span class="w"> </span>71ms.
+</pre></div>
+</div>
+<p>This is the same as pressing <code class="docutils literal notranslate"><span class="pre">r</span></code> or <code class="docutils literal notranslate"><span class="pre">R</span></code> in the terminal of <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code>, but it can be done from
+another terminal or from a script, and the command only returns when the reload is done. If the
+reload fails, for example because of a compile error, the errors are printed and the command exits
+with <code class="docutils literal notranslate"><span class="pre">70</span></code>, so an agent can fix the code and try again:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>flame<span class="w"> </span>reload
+lib/main.dart:19:44:<span class="w"> </span>Error:<span class="w"> </span>Expected<span class="w"> </span><span class="s1">&#39;;&#39;</span><span class="w"> </span>after<span class="w"> </span>this.
+<span class="w">        </span>paint:<span class="w"> </span>Paint<span class="o">()</span>..color<span class="w"> </span><span class="o">=</span><span class="w"> </span>Colors.orange
+<span class="w">                                       </span>^^^^^^
+Try<span class="w"> </span>again<span class="w"> </span>after<span class="w"> </span>fixing<span class="w"> </span>the<span class="w"> </span>above<span class="w"> </span>error<span class="o">(</span>s<span class="o">)</span>.
+</pre></div>
+</div>
+<p>Both commands take <code class="docutils literal notranslate"><span class="pre">--port</span></code> (<code class="docutils literal notranslate"><span class="pre">-p</span></code>) to reach a specific <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code> when several games were
+started from the same project, see <a class="reference internal" href="#run">run</a>.</p>
+<p>A hot reload swaps the code but keeps the state of the game, so a change to something that was
+set when a component was created, such as a paint in its constructor or a position in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>,
+is only visible after a hot restart. Changes to <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">render</span></code> methods show up right away.
+Component ids change with a restart, so run <code class="docutils literal notranslate"><span class="pre">tree</span></code> again afterwards.</p>
+</section>
+<section id="logs">
+<h3>logs<a class="headerlink" href="#logs" title="Link to this heading">¶</a></h3>
+<p>Prints the output of the <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code> that <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code> started, which includes everything the
+game prints and the exceptions it throws:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>logs<span class="w"> </span>--lines<span class="w"> </span><span class="m">50</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">--lines</span></code> (<code class="docutils literal notranslate"><span class="pre">-n</span></code>) is the number of lines from the end to print, 100 by default, and <code class="docutils literal notranslate"><span class="pre">--follow</span></code>
+(<code class="docutils literal notranslate"><span class="pre">-f</span></code>) keeps printing new output until the game is stopped. The log is kept after the game has
+stopped, so it can still be read after a crash.</p>
 </section>
 <section id="snapshot">
 <h3>snapshot<a class="headerlink" href="#snapshot" title="Link to this heading">¶</a></h3>
@@ -450,13 +570,22 @@ started with <code class="docutils literal notranslate"><span class="pre">flame<
 800x600 game to a 1600x1200 image.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">--component</span></code> (<code class="docutils literal notranslate"><span class="pre">-c</span></code>): The id of a single component to render instead of the whole game, see the
 <a class="reference internal" href="#tree">tree</a> command for how to find the id.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--world</span></code> (<code class="docutils literal notranslate"><span class="pre">-w</span></code>): Renders the whole world directly instead of through the camera, so that
+components that are off screen are visible too. The image covers the bounding rectangle of all
+the position components in the world.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--rect</span></code> (<code class="docutils literal notranslate"><span class="pre">-r</span></code>): Renders only this part of the world, given as <code class="docutils literal notranslate"><span class="pre">x,y,width,height</span></code> in world
+coordinates, for example <code class="docutils literal notranslate"><span class="pre">--rect</span> <span class="pre">-100,-100,200,200</span></code>.</p></li>
 </ul>
 <p>A single component is rendered together with its children, but without the camera. For a
 <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code>, the image covers the component’s bounding rectangle, with its anchor, angle
-and scale taken into account. Other components are rendered in a 100x100 image.</p>
+and scale taken into account. For the <code class="docutils literal notranslate"><span class="pre">World</span></code> it covers all the position components in it, like
+<code class="docutils literal notranslate"><span class="pre">--world</span></code>. Other components are rendered in a 100x100 image.</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>snapshot<span class="w"> </span>--component<span class="w"> </span><span class="m">220731871</span>
 </pre></div>
 </div>
+<p>The pixel coordinates of a snapshot of the whole game, at the default pixel ratio, are the same
+coordinates that the <a class="reference internal" href="#input">input</a> commands take, so a position found in the image can be
+tapped directly.</p>
 </section>
 <section id="tree">
 <h3>tree<a class="headerlink" href="#tree" title="Link to this heading">¶</a></h3>
@@ -564,16 +693,56 @@ Settings
 the others, and <code class="docutils literal notranslate"><span class="pre">overlay</span> <span class="pre">only</span> <span class="pre">&lt;name&gt;</span></code> shows one overlay and hides all the others. Overlays are
 Flutter widgets, so they are not part of the images that <code class="docutils literal notranslate"><span class="pre">snapshot</span></code> takes.</p>
 </section>
+<section id="input">
+<h3>input<a class="headerlink" href="#input" title="Link to this heading">¶</a></h3>
+<p>Sends taps, drags and key presses to the game, so that it can be played from the terminal:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>input<span class="w"> </span>tap<span class="w"> </span><span class="m">400</span>,300
+flame<span class="w"> </span>input<span class="w"> </span>drag<span class="w"> </span><span class="m">100</span>,300<span class="w"> </span><span class="m">500</span>,300<span class="w"> </span>--steps<span class="w"> </span><span class="m">20</span>
+flame<span class="w"> </span>input<span class="w"> </span>key<span class="w"> </span>space
+flame<span class="w"> </span>input<span class="w"> </span>key<span class="w"> </span>arrowLeft<span class="w"> </span>--down
+flame<span class="w"> </span>input<span class="w"> </span>key<span class="w"> </span>arrowLeft<span class="w"> </span>--up
+</pre></div>
+</div>
+<p>Positions are in canvas coordinates, the same ones as the pixels of a <code class="docutils literal notranslate"><span class="pre">snapshot</span></code> of the whole
+game at pixel ratio 1. The events go through the same dispatchers as real input, so they reach the
+components with the <code class="docutils literal notranslate"><span class="pre">TapCallbacks</span></code> and <code class="docutils literal notranslate"><span class="pre">DragCallbacks</span></code> mixins, in the same order and with the same
+propagation rules. A drag sends a start event, <code class="docutils literal notranslate"><span class="pre">--steps</span></code> update events (10 by default) evenly
+spaced between the two positions, and an end event, all at once. If the game has no component
+that handles the event, the command fails with exit code <code class="docutils literal notranslate"><span class="pre">65</span></code> and says which mixin is missing.</p>
+<p>Keys are delivered to the <code class="docutils literal notranslate"><span class="pre">onKeyEvent</span></code> of a game with the <code class="docutils literal notranslate"><span class="pre">HasKeyboardHandlerComponents</span></code> or
+<code class="docutils literal notranslate"><span class="pre">KeyboardEvents</span></code> mixin. A key is named like the <code class="docutils literal notranslate"><span class="pre">LogicalKeyboardKey</span></code> constants, for example
+<code class="docutils literal notranslate"><span class="pre">space</span></code>, <code class="docutils literal notranslate"><span class="pre">enter</span></code>, <code class="docutils literal notranslate"><span class="pre">escape</span></code>, <code class="docutils literal notranslate"><span class="pre">arrowLeft</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span></code> or <code class="docutils literal notranslate"><span class="pre">digit1</span></code>, and the name is matched without regard
+to case, spaces and underscores. By default the key is pressed and released right away. Pass
+<code class="docutils literal notranslate"><span class="pre">--down</span></code> to hold it, for example to keep a character walking while stepping the game, and <code class="docutils literal notranslate"><span class="pre">--up</span></code>
+to release it again.</p>
+</section>
+<section id="diff">
+<h3>diff<a class="headerlink" href="#diff" title="Link to this heading">¶</a></h3>
+<p>Compares two PNG images, for example two snapshots, and reports how much and where they differ:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>flame<span class="w"> </span>diff<span class="w"> </span>before.png<span class="w"> </span>after.png<span class="w"> </span>--output<span class="w"> </span>diff.png
+<span class="m">4</span>.17%<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>pixels<span class="w"> </span>differ<span class="w"> </span><span class="o">(</span><span class="m">20000</span><span class="w"> </span>of<span class="w"> </span><span class="m">480000</span><span class="o">)</span>,<span class="w"> </span>within<span class="w"> </span>the<span class="w"> </span>rectangle
+<span class="m">300</span>,250<span class="w"> </span>of<span class="w"> </span>size<span class="w"> </span>200x100.
+/path/to/diff.png
+</pre></div>
+</div>
+<p>The bounding rectangle of the changes makes it easy to tell what moved, even when the difference
+is too small to notice by looking at the two images. With <code class="docutils literal notranslate"><span class="pre">--output</span></code> the differing pixels are
+written in red on top of a dimmed version of the second image. <code class="docutils literal notranslate"><span class="pre">--threshold</span></code> (<code class="docutils literal notranslate"><span class="pre">-t</span></code>) is how much
+a color channel may differ, from 0 to 255, before a pixel counts as different, which helps with
+anti-aliasing. <code class="docutils literal notranslate"><span class="pre">--exit-code</span></code> makes the command exit with <code class="docutils literal notranslate"><span class="pre">1</span></code> when the images differ, like
+<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">diff</span></code>, for use in scripts.</p>
+</section>
 </section>
 <section id="exit-codes">
 <h2>Exit codes<a class="headerlink" href="#exit-codes" title="Link to this heading">¶</a></h2>
 <p>The commands follow the common Unix conventions for exit codes, so that scripts can tell failures
-apart. <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code> exits with the exit code of <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code>, and the other commands use these:</p>
+apart. <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code> exits with the exit code of <code class="docutils literal notranslate"><span class="pre">flutter</span> <span class="pre">run</span></code>, <code class="docutils literal notranslate"><span class="pre">reload</span></code> and <code class="docutils literal notranslate"><span class="pre">restart</span></code> exit with
+<code class="docutils literal notranslate"><span class="pre">70</span></code> when the reload failed, and the other commands use these:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">0</span></code>: The command succeeded.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">64</span></code>: The command was used incorrectly, for example with an invalid option.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">65</span></code>: The game rejected the input, for example because there is no component with the given
-id.</p></li>
+id, or the input files could not be read.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">69</span></code>: No running game was found, the game could not be reached, or it runs a version of Flame
 that does not support the command.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">70</span></code>: The game reported an error while running the command.</p></li>
@@ -620,8 +789,12 @@ extension that a command needs, the command says so and exits with <code class="
  <div class='header'><i class='fa fa-list'></i> Contents</div>
   <a href='#installation' class='list-group-item level-1'>Installation</a>
   <a href='#connecting-to-a-game' class='list-group-item level-1'>Connecting to a game</a>
+  <a href='#running-several-instances-of-one-game' class='list-group-item level-2'>Running several instances of one game</a>
   <a href='#commands' class='list-group-item level-1'>Commands</a>
+  <a href='#create' class='list-group-item level-2'>create</a>
   <a href='#run' class='list-group-item level-2'>run</a>
+  <a href='#reload-and-restart' class='list-group-item level-2'>reload and restart</a>
+  <a href='#logs' class='list-group-item level-2'>logs</a>
   <a href='#snapshot' class='list-group-item level-2'>snapshot</a>
   <a href='#tree' class='list-group-item level-2'>tree</a>
   <a href='#inspect' class='list-group-item level-2'>inspect</a>
@@ -629,6 +802,8 @@ extension that a command needs, the command says so and exits with <code class="
   <a href='#pause-resume-and-step' class='list-group-item level-2'>pause, resume and step</a>
   <a href='#debug' class='list-group-item level-2'>debug</a>
   <a href='#overlays-and-overlay' class='list-group-item level-2'>overlays and overlay</a>
+  <a href='#input' class='list-group-item level-2'>input</a>
+  <a href='#diff' class='list-group-item level-2'>diff</a>
   <a href='#exit-codes' class='list-group-item level-1'>Exit codes</a>
   <a href='#compatibility' class='list-group-item level-1'>Compatibility</a>
 </div>
