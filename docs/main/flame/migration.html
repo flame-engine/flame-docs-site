@@ -1295,6 +1295,39 @@ already mixes it in) must mix in <code class="docutils literal notranslate"><spa
 <p>A <code class="docutils literal notranslate"><span class="pre">HasTimeScale</span></code> time scale of <code class="docutils literal notranslate"><span class="pre">0</span></code> (or <code class="docutils literal notranslate"><span class="pre">pause()</span></code>) now stops the update pass for the whole subtree
 instead of updating it with a <code class="docutils literal notranslate"><span class="pre">dt</span></code> of <code class="docutils literal notranslate"><span class="pre">0</span></code>, which is what <code class="docutils literal notranslate"><span class="pre">Route.stopTime()</span></code> relies on.</p>
 </section>
+<section id="flame-tiled-layers-are-components">
+<h3><code class="docutils literal notranslate"><span class="pre">flame_tiled</span></code> layers are components<a class="headerlink" href="#flame-tiled-layers-are-components" title="Link to this heading">¶</a></h3>
+<p><code class="docutils literal notranslate"><span class="pre">RenderableTiledMap</span></code> is now a <code class="docutils literal notranslate"><span class="pre">Component</span></code> and every layer of the map is a <code class="docutils literal notranslate"><span class="pre">RenderableLayer</span></code>, which
+is a <code class="docutils literal notranslate"><span class="pre">PositionComponent</span></code> that is a child of the map, or of its group layer, in the same order as
+in Tiled. <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code> adds its <code class="docutils literal notranslate"><span class="pre">tileMap</span></code> as a child, so the whole map is part of the component
+tree. Components can be added to a layer to render between the layers of the map:</p>
+<div class="highlight-dart notranslate"><div class="highlight"><pre><span></span><span class="kd">final</span><span class="w"> </span><span class="n">ground</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tiledComponent</span><span class="p">.</span><span class="n">tileMap</span><span class="p">.</span><span class="n">getRenderableLayer</span><span class="p">(</span><span class="s1">&#39;Ground&#39;</span><span class="p">);</span>
+<span class="n">ground</span><span class="o">?</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="n">player</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>As a consequence of this, a few things changed:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">RenderableTiledMap.render</span></code>, <code class="docutils literal notranslate"><span class="pre">update</span></code> and <code class="docutils literal notranslate"><span class="pre">handleResize</span></code> are no longer meant to be called
+directly, the map renders and updates as any other component. Where you rendered the map
+yourself, use <code class="docutils literal notranslate"><span class="pre">renderTree</span></code> and <code class="docutils literal notranslate"><span class="pre">updateTree</span></code> instead.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">TiledComponent.tileMap</span></code> is final, since the map is a child of the component. To show another
+map, replace the <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code>.</p></li>
+<li><p>Layers that are not visible in Tiled are still loaded, so <code class="docutils literal notranslate"><span class="pre">renderableLayers</span></code> and the indices
+used by <code class="docutils literal notranslate"><span class="pre">setLayerOpacity</span></code> and <code class="docutils literal notranslate"><span class="pre">getLayerOpacity</span></code> now match <code class="docutils literal notranslate"><span class="pre">TiledMap.layers</span></code>. Toggling the
+visibility of a layer with <code class="docutils literal notranslate"><span class="pre">setLayerVisibility</span></code> works at runtime.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">RenderableLayer.offsetX</span></code> and <code class="docutils literal notranslate"><span class="pre">offsetY</span></code> are the offset of the layer relative to its parent
+layer, instead of the accumulated offset of all its parents. The accumulated position is
+available through <code class="docutils literal notranslate"><span class="pre">absolutePosition</span></code>.</p></li>
+<li><p>The parallax scrolling reference point is now the center of the view, the same as in Tiled, so
+layers with a parallax factor may render at a slightly different position than before.</p></li>
+<li><p>The camera for the parallax calculation is the camera that the map is rendered through, falling
+back to the camera of the game for a map that is not rendered through a camera, so
+<code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code> no longer looks up the first camera of the game in <code class="docutils literal notranslate"><span class="pre">onLoad</span></code>. Set
+<code class="docutils literal notranslate"><span class="pre">RenderableTiledMap.camera</span></code> only when the map is rendered outside of a game.</p></li>
+<li><p>A <code class="docutils literal notranslate"><span class="pre">RenderableTiledMap</span></code> can only belong to one <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code>, since it is a child of the
+component. Constructing a second <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code> with the same map fails an assertion.</p></li>
+</ul>
+</section>
 </section>
 </section>
 
@@ -1358,6 +1391,7 @@ instead of updating it with a <code class="docutils literal notranslate"><span c
   <a href='#children-is-now-a-componentlist-instead-of-an-orderedset' class='list-group-item level-2'>children is now a ComponentList instead of an OrderedSet</a>
   <a href='#component-childrenfactory-is-removed' class='list-group-item level-2'>Component.childrenFactory is removed</a>
   <a href='#component-updatetree-is-non-virtual' class='list-group-item level-2'>Component.updateTree is non-virtual</a>
+  <a href='#flame-tiled-layers-are-components' class='list-group-item level-2'>flame_tiled layers are components</a>
 </div>
 
     </div>

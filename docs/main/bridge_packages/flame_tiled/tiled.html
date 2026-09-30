@@ -387,6 +387,13 @@ rendering order can be configured.</p>
 <p>The <a class="reference external" href="https://pub.dev/packages/tiled">dart</a> package provides a simple <code class="docutils literal notranslate"><span class="pre">Tiled</span></code> class and <a class="reference external" href="https://github.com/flame-engine/flame/tree/main/packages/flame_tiled">flame_tiled</a> provides a component wrapper
 <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code>, for the map rendering, which renders the tiles on the screen and supports
 rotations and flips.</p>
+<p>Infinite maps from the Tiled editor are supported. Tile positions, <code class="docutils literal notranslate"><span class="pre">getTileData</span></code>, and object
+coordinates match the editor (including negative tile indices if you painted left or above the
+origin). All chunks present in the file are cached at load time; very large infinite maps may
+therefore be expensive. Chunk streaming based on the camera is not implemented yet.</p>
+<p>Keep in mind that the size of a <code class="docutils literal notranslate"><span class="pre">TiledComponent</span></code> still comes from the map’s <code class="docutils literal notranslate"><span class="pre">width</span></code> and <code class="docutils literal notranslate"><span class="pre">height</span></code>,
+so tiles outside of that area (for example at negative indices) are rendered outside of the
+component’s bounds. <code class="docutils literal notranslate"><span class="pre">setTileData</span></code> only changes cells inside chunks that already exist in the map.</p>
 <section id="tiled-editor">
 <h2>Tiled Editor<a class="headerlink" href="#tiled-editor" title="Link to this heading">¶</a></h2>
 <p>You can choose to download the <a class="reference external" href="https://www.mapeditor.org/">Tiled</a> map editor and create interactive maps that can be loaded
