@@ -601,6 +601,7 @@ classDiagram
         render(Canvas canvas, ...)
     }
     class TextPainterTextElement
+    class ParagraphTextElement
         
     TextRenderer --&gt; TextPaint
     TextRenderer --&gt; SpriteFontRenderer
@@ -614,6 +615,7 @@ classDiagram
     laid out and ready to render.&quot;
     TextElement --&gt; TextPainterTextElement
     TextElement --&gt; SpriteFontTextElement
+    TextElement --&gt; ParagraphTextElement
     TextElement --&gt; Others
         </div><section id="textrenderer">
 <h3>TextRenderer<a class="headerlink" href="#textrenderer" title="Link to this heading">¶</a></h3>
@@ -880,15 +882,19 @@ classDiagram
 <p>Finally, we have the elements, that represent a combination of a node (“what”) with a style (“how”),
 and therefore represent a pre-compiled, laid-out piece of rich text to be rendered on the Canvas.</p>
 <p>Inline Text Elements specifically can alternatively be thought of as a combination of a
-<code class="docutils literal notranslate"><span class="pre">TextRenderer</span></code> (simplified “how”) and a string (single line of “what”).</p>
-<p>That is because an <code class="docutils literal notranslate"><span class="pre">InlineTextStyle</span></code> can be converted to a specific <code class="docutils literal notranslate"><span class="pre">TextRenderer</span></code> via the
-<code class="docutils literal notranslate"><span class="pre">asTextRenderer</span></code> method, which is then used to lay out each line of text into a unique
-<code class="docutils literal notranslate"><span class="pre">InlineTextElement</span></code>.</p>
-<p>When using the renderer directly, the entire layout process is skipped, and a single
-<code class="docutils literal notranslate"><span class="pre">TextPainterTextElement</span></code> or <code class="docutils literal notranslate"><span class="pre">SpriteFontTextElement</span></code> is returned.</p>
-<p>As you can see, both definitions of an Element are, essentially, equivalent, all things considered.
-But it still leaves us with two paths for rendering text. Which one to pick? How to solve this
-conundrum?</p>
+<code class="docutils literal notranslate"><span class="pre">TextRenderer</span></code> (simplified “how”) and a string (single line of “what”). When using a renderer
+directly, the entire layout process is skipped, and a single <code class="docutils literal notranslate"><span class="pre">TextPainterTextElement</span></code> or
+<code class="docutils literal notranslate"><span class="pre">SpriteFontTextElement</span></code> is returned.</p>
+<p>Text blocks in a document (<code class="docutils literal notranslate"><span class="pre">ParagraphNode</span></code>, <code class="docutils literal notranslate"><span class="pre">HeaderNode</span></code>) work differently: every <code class="docutils literal notranslate"><span class="pre">InlineTextNode</span></code>
+converts itself into a Flutter <code class="docutils literal notranslate"><span class="pre">InlineSpan</span></code> via <code class="docutils literal notranslate"><span class="pre">toInlineSpan</span></code>, and the whole block is laid out at
+once by Flutter’s paragraph engine, producing a single <code class="docutils literal notranslate"><span class="pre">ParagraphTextElement</span></code>. This means that rich
+text gets Unicode line breaking (including scripts without spaces, such as CJK), every <code class="docutils literal notranslate"><span class="pre">TextAlign</span></code>
+value including <code class="docutils literal notranslate"><span class="pre">justify</span></code>, and kerning and ligatures that continue across differently styled spans.
+The <code class="docutils literal notranslate"><span class="pre">ParagraphTextElement</span></code> exposes the resulting <code class="docutils literal notranslate"><span class="pre">lines</span></code> and <code class="docutils literal notranslate"><span class="pre">lineMetrics</span></code> if you need to know how
+the text was broken up.</p>
+<p>Since documents are always laid out by Flutter, an <code class="docutils literal notranslate"><span class="pre">InlineTextStyle</span></code> can only describe font-based
+text. To render a <code class="docutils literal notranslate"><span class="pre">SpriteFont</span></code>, use <code class="docutils literal notranslate"><span class="pre">SpriteFontRenderer</span></code> with <code class="docutils literal notranslate"><span class="pre">TextComponent</span></code> or
+<code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code> instead.</p>
 <p>When in doubt, the following guidelines can help you picking the best path for you:</p>
 <ul class="simple">
 <li><p>for the simplest way to render text, use <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code> (basic renderer implementation)</p>
@@ -900,10 +906,11 @@ conundrum?</p>
 accepts a <code class="docutils literal notranslate"><span class="pre">SpriteFont</span></code>);</p></li>
 <li><p>for rendering multiple lines of text, with automatic line breaks, you have two options:</p>
 <ul>
-<li><p>use the FCS <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code>, which uses any text renderer to draw each line of text as an
-Element, and does its own layout and line breaking;</p></li>
-<li><p>use the Text Node &amp; Style system to create your pre-laid-out Elements. Note: there is no current
-FCS component for it.</p></li>
+<li><p>use the FCS <code class="docutils literal notranslate"><span class="pre">TextBoxComponent</span></code>, which lets Flutter break the lines when used with <code class="docutils literal notranslate"><span class="pre">TextPaint</span></code>
+(and falls back to breaking at spaces for other renderers), and then draws each line of text as
+an Element;</p></li>
+<li><p>use the Text Node &amp; Style system to create your pre-laid-out Elements, and render them with
+<code class="docutils literal notranslate"><span class="pre">TextElementComponent</span></code>.</p></li>
 </ul>
 </li>
 <li><p>finally, in order to have formatted (or rich) text, you must use Text Nodes &amp; Styles.</p></li>
