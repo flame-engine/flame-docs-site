@@ -552,6 +552,25 @@ game prints and the exceptions it throws:</p>
 (<code class="docutils literal notranslate"><span class="pre">-f</span></code>) keeps printing new output until the game is stopped. The log is kept after the game has
 stopped, so it can still be read after a crash.</p>
 </section>
+<section id="devtools">
+<h3>devtools<a class="headerlink" href="#devtools" title="Link to this heading">¶</a></h3>
+<p>Opens the Flutter DevTools for the running game in the browser, where the Flame tab holds the
+<a class="reference internal" href="debug.html#devtools-extension"><span class="std std-ref">Flame DevTools extension</span></a>:</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>flame<span class="w"> </span>devtools
+</pre></div>
+</div>
+<p>The command checks that the game is reachable and then runs <code class="docutils literal notranslate"><span class="pre">dart</span> <span class="pre">devtools</span></code> with the URI of the
+game, so it needs the Dart SDK on the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> like the other commands need Flutter, and it keeps
+serving the DevTools until it is stopped with <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code>. The game is found the same way as by the
+other commands, so <code class="docutils literal notranslate"><span class="pre">--uri</span></code> (<code class="docutils literal notranslate"><span class="pre">-u</span></code>) reaches a game that was not started with <code class="docutils literal notranslate"><span class="pre">flame</span> <span class="pre">run</span></code>. With
+<code class="docutils literal notranslate"><span class="pre">--no-launch-browser</span></code> only the URL of the DevTools is printed, to open it in a browser of your
+choice or to hand it to someone else.</p>
+<p>The DevTools only show the tab of an extension that is enabled in the <code class="docutils literal notranslate"><span class="pre">devtools_options.yaml</span></code> of
+the project, and ask whether to enable it otherwise. The command enables the Flame extension in
+that file before it starts the DevTools, creating the file if the project has none and keeping the
+other settings in it, so the Flame tab is there right away. The DevTools open on their overview
+page, select the Flame tab to get to the extension.</p>
+</section>
 <section id="snapshot">
 <h3>snapshot<a class="headerlink" href="#snapshot" title="Link to this heading">¶</a></h3>
 <p>Renders the whole game to a PNG image:</p>
@@ -795,6 +814,7 @@ extension that a command needs, the command says so and exits with <code class="
   <a href='#run' class='list-group-item level-2'>run</a>
   <a href='#reload-and-restart' class='list-group-item level-2'>reload and restart</a>
   <a href='#logs' class='list-group-item level-2'>logs</a>
+  <a href='#devtools' class='list-group-item level-2'>devtools</a>
   <a href='#snapshot' class='list-group-item level-2'>snapshot</a>
   <a href='#tree' class='list-group-item level-2'>tree</a>
   <a href='#inspect' class='list-group-item level-2'>inspect</a>
