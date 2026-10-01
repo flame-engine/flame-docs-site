@@ -45964,9 +45964,9 @@ if(a===-1)return B.af2
 if(a<0)return new A.a3(a>>>0,B.h.d9(a,32))
 return new A.a3(B.h.aZ(a,s),B.h.by(a,s))},
 bKP(a){var s,r,q=A.a([],t.t)
-for(s=0;s<a.length;++s){if((s&1)===1){r=a[s]
-if(r<0)r+=4294967296}else r=a[s]
-q.push(r)}return q},
+for(s=0;s<a.length;++s)if((s&1)===1){r=a[s]
+q.push(r<0?r+4294967296:r)}else q.push(a[s])
+return q},
 uR:function uR(a,b,c){this.a=a
 this.b=b
 this.c=c},
